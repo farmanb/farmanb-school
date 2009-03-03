@@ -99,7 +99,7 @@
       </pref>
       <pref name='geometry'>
 	<pref name='grip1'>
-	  <pref name='vert_data_file' type='string' value='Geometry/hw2_finger.pdat'/>
+	  <pref name='vert_data_file' type='string' value='Geometry/hw2-b_finger.pdat'/>
 	  <pref name='mass' type='double' value='3'/>
 	  <pref name='momentOfInertia' type='double' value='0.006'/>
 	  <pref name='color'>
@@ -125,7 +125,7 @@
 	  </pref>
 	</pref>
 	<pref name='grip2'>
-	  <pref name='vert_data_file' type='string' value='Geometry/hw2_finger.pdat'/>
+	  <pref name='vert_data_file' type='string' value='Geometry/hw2-b_finger.pdat'/>
 	  <pref name='mass' type='double' value='3'/>
 	  <pref name='momentOfInertia' type='double' value='0.006'/>
 	  <pref name='color'>
@@ -151,7 +151,7 @@
 	  </pref>
 	</pref>
 	<pref name='grip3'>
-	  <pref name='vert_data_file' type='string' value='Geometry/hw2_finger.pdat'/>
+	  <pref name='vert_data_file' type='string' value='Geometry/hw2-b_finger.pdat'/>
 	  <pref name='mass' type='double' value='3'/>
 	  <pref name='momentOfInertia' type='double' value='0.006'/>
 	  <pref name='color'>
@@ -177,7 +177,7 @@
 	  </pref>
 	</pref>
 	<pref name='grip4'>
-	  <pref name='vert_data_file' type='string' value='Geometry/hw2_finger.pdat'/>
+	  <pref name='vert_data_file' type='string' value='Geometry/hw2-b_finger.pdat'/>
 	  <pref name='mass' type='double' value='3'/>
 	  <pref name='momentOfInertia' type='double' value='0.006'/>
 	  <pref name='color'>
@@ -203,7 +203,7 @@
 	  </pref>
 	</pref>
 	<pref name='palm'>
-	  <pref name='vert_data_file' type='string' value='Geometry/hw2_finger.pdat'/>
+	  <pref name='vert_data_file' type='string' value='Geometry/hw2-b_finger.pdat'/>
 	  <pref name='mass' type='double' value='3'/>
 	  <pref name='momentOfInertia' type='double' value='0.006'/>
 	  <pref name='color'>
