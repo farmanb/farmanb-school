@@ -1,0 +1,10 @@
+Settings 
+
+Ball Initial Position 10
+
+Goal Initial Position goalFront  9
+Goal Initial Position goalBack   11
+Goal Initial Position goalSide1  10
+Goal Initial Position goalSide2  10
+Goal Initial Position goalBottom 10
+ 

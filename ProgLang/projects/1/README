@@ -1,0 +1,9 @@
+Blake Farman
+
+Problem 1:
+
+Had a hard time passing RedSeq back to my original calling function.  The parser works, but the interface isn't right, so all output is printed.    Assumed input of the form sr([3,+,5],RedSeq), etc.
+
+Problem 2:
+
+Only made it as far as coding the move up/down/right functions.  Renamed a lot of the variables from the other functions in the starter code as an attempt to understand the code but didn't really change the functionality.

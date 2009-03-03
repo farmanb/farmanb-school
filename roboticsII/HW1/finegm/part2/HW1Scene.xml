@@ -1,0 +1,436 @@
+<pref name='/'>
+  <pref name='active_scene' type='string' value='finegm-part2'/>
+  <pref name='app_plugin' type='string' value='finegm-part2-app'/>
+  <pref name='screenshot_directory' type='string' value='./'/>
+  <pref name='screenshot_label' type='string' value='frame'/>
+  <pref name='screenshot_type' type='int' value='1'/>
+  <pref name='plugins'>
+    <pref name='timestepper'>
+      <pref name='ST_MCP'>
+	<pref name='filename' type='string' value='stewarttrinkle_mcp'/>
+	<pref name='restitutionCoefficent' type='double' value='0'/>
+	<pref name='bilatErrorCorrectionParam' type='double' value='0.5'/>
+	<pref name='unilatErrorCorrectionParam' type='double' value='1'/>
+	<pref name='useSparseMatrix' type='bool' value='0'/>
+	<pref name='auto_load' type='bool' value='1'/>
+      </pref>
+    </pref>
+    <pref name='collision'>
+      <pref name='bulletcollision'>
+	<pref name='filename' type='string' value='bulletCollision'/>
+      </pref>
+    </pref>
+    <pref name='cpsolver'>
+      <pref name='pathsolver'>
+	<pref name='filename' type='string' value='pathsolver'/>
+	<pref name='license_filepath' type='string' value='PathLicense.txt'/>
+      </pref>
+    </pref>
+  </pref>
+  <pref name='scenes'>
+    <pref name='finegm-part2'>
+
+
+
+
+      <pref name='timestepper' type='string' value='ST_MCP'/>
+      <pref name='collision' type='string' value='bulletcollision'/>
+      <pref name='cpsolver' type='string' value='@DEFAULT_CPSOLVER@'/>
+      <pref name='dynamics_settings'>
+	<pref name='record_forces' type='bool' value='0'/>
+	<pref name='friction_coefficient' type='double' value='0.2'/>
+	<pref name='time_step' type='double' value='0.01'/>
+	<pref name='gravity' type='double' value='9.81'/>
+	<pref name='collision_epsilon' type='double' value='1e-05'/>
+	<pref name='numFricDir' type='int' value='8'/>
+      </pref>
+      <pref name='screen_settings'>
+	<pref name='cam_x' type='double' value='0'/>
+	<pref name='cam_y' type='double' value='0'/>
+	<pref name='cam_z' type='double' value='46'/>
+	<pref name='zoom_rate' type='int' value='1'/>
+	<pref name='lineOfSight'>
+	  <pref name='x' type='double' value='0'/>
+	  <pref name='y' type='double' value='0'/>
+	  <pref name='z' type='double' value='-1'/>
+	</pref>
+      </pref>
+      <pref name='joints'/>
+      <pref name='geometry'>
+	<pref name='bat'>
+	  <pref name='is_kinematical' type='bool' value='1'/>
+	  <pref name='box'>
+	    <pref name='width' type='double' value='4'/>
+	    <pref name='height' type='double' value='0.5'/>
+	    <pref name='depth' type='double' value='0.5'/>
+	  </pref>
+	  <pref name='mass' type='double' value='1'/>
+	  <pref name='inertia'>
+	    <pref name='xx' type='double' value='0'/>
+	    <pref name='yy' type='double' value='0'/>
+	    <pref name='zz' type='double' value='0'/>
+	    <pref name='xy' type='double' value='0'/>
+	    <pref name='xz' type='double' value='0'/>
+	    <pref name='yz' type='double' value='0'/>
+	  </pref>
+	  <pref name='color'>
+	    <pref name='r' type='double' value='0'/>
+	    <pref name='g' type='double' value='1'/>
+	    <pref name='b' type='double' value='0'/>
+	    <pref name='a' type='double' value='0.5'/>
+	  </pref>
+	  <pref name='initialVelocity'>
+	    <pref name='x' type='double' value='0'/>
+	    <pref name='y' type='double' value='0'/>
+	    <pref name='z' type='double' value='0'/>
+	    <pref name='wx' type='double' value='0'/>
+	    <pref name='wy' type='double' value='0'/>
+	    <pref name='wz' type='double' value='0'/>
+	  </pref>
+	  <pref name='initialPosition'>
+	    <pref name='x' type='double' value='0'/>
+	    <pref name='y' type='double' value='0'/>
+	    <pref name='z' type='double' value='0'/>
+	  </pref>
+	  <pref name='initialQuat'>
+	    <pref name='ex' type='double' value='0'/>
+	    <pref name='ey' type='double' value='0'/>
+	    <pref name='ez' type='double' value='0'/>
+	    <pref name='s' type='double' value='1'/>
+	  </pref>
+	  <pref name='geomToBodyTransform'>
+	    <pref name='x' type='double' value='0'/>
+	    <pref name='y' type='double' value='0'/>
+	    <pref name='z' type='double' value='0'/>
+	    <pref name='ex' type='double' value='0'/>
+	    <pref name='ey' type='double' value='0'/>
+	    <pref name='ez' type='double' value='0'/>
+	    <pref name='s' type='double' value='1'/>
+	  </pref>
+	</pref>
+	<pref name='ball'>
+	  <pref name='is_kinematical' type='bool' value='0'/>
+	  <pref name='sphere'>
+	    <pref name='radius' type='double' value='0.5'/>
+	  </pref>
+	  <pref name='mass' type='double' value='1'/>
+	  <pref name='inertia'>
+	    <pref name='xx' type='double' value='0'/>
+	    <pref name='yy' type='double' value='0'/>
+	    <pref name='zz' type='double' value='0'/>
+	    <pref name='xy' type='double' value='0'/>
+	    <pref name='xz' type='double' value='0'/>
+	    <pref name='yz' type='double' value='0'/>
+	  </pref>
+	  <pref name='initialVelocity'>
+	    <pref name='x' type='double' value='0'/>
+	    <pref name='y' type='double' value='0'/>
+	    <pref name='z' type='double' value='0'/>
+	    <pref name='wx' type='double' value='0'/>
+	    <pref name='wy' type='double' value='0'/>
+	    <pref name='wz' type='double' value='0'/>
+	  </pref>
+	  <pref name='color'>
+	    <pref name='r' type='double' value='1'/>
+	    <pref name='g' type='double' value='0'/>
+	    <pref name='b' type='double' value='0'/>
+	    <pref name='a' type='double' value='1'/>
+	  </pref>
+	  <pref name='initialPosition'>
+	    <pref name='x' type='double' value='0'/>
+	    <pref name='y' type='double' value='9'/>
+	    <pref name='z' type='double' value='0'/>
+	  </pref>
+	  <pref name='initialQuat'>
+	    <pref name='ex' type='double' value='0'/>
+	    <pref name='ey' type='double' value='0'/>
+	    <pref name='ez' type='double' value='0'/>
+	    <pref name='s' type='double' value='1'/>
+	  </pref>
+	  <pref name='geomToBodyTransform'>
+	    <pref name='x' type='double' value='0'/>
+	    <pref name='y' type='double' value='0'/>
+	    <pref name='z' type='double' value='0'/>
+	    <pref name='ex' type='double' value='0'/>
+	    <pref name='ey' type='double' value='0'/>
+	    <pref name='ez' type='double' value='0'/>
+	    <pref name='s' type='double' value='1'/>
+	  </pref>
+	</pref>
+	<pref name='goalFront'>
+	  <pref name='box'>
+	    <pref name='width' type='double' value='0.5'/>
+	    <pref name='height' type='double' value='2'/>
+	    <pref name='depth' type='double' value='2'/>
+	  </pref>
+	  <pref name='mass' type='double' value='1'/>
+	  <pref name='inertia'>
+	    <pref name='xx' type='double' value='0'/>
+	    <pref name='yy' type='double' value='0'/>
+	    <pref name='zz' type='double' value='0'/>
+	    <pref name='xy' type='double' value='0'/>
+	    <pref name='xz' type='double' value='0'/>
+	    <pref name='yz' type='double' value='0'/>
+	  </pref>
+	  <pref name='color'>
+	    <pref name='r' type='double' value='0'/>
+	    <pref name='g' type='double' value='1'/>
+	    <pref name='b' type='double' value='0'/>
+	    <pref name='a' type='double' value='0.5'/>
+	  </pref>
+	  <pref name='initialVelocity'>
+	    <pref name='x' type='double' value='0'/>
+	    <pref name='y' type='double' value='0'/>
+	    <pref name='z' type='double' value='0'/>
+	    <pref name='wx' type='double' value='0'/>
+	    <pref name='wy' type='double' value='0'/>
+	    <pref name='wz' type='double' value='0'/>
+	  </pref>
+	  <pref name='initialPosition'>
+	    <pref name='x' type='double' value='9'/>
+	    <pref name='y' type='double' value='1'/>
+	    <pref name='z' type='double' value='0'/>
+	  </pref>
+	  <pref name='initialQuat'>
+	    <pref name='ex' type='double' value='0'/>
+	    <pref name='ey' type='double' value='0'/>
+	    <pref name='ez' type='double' value='0'/>
+	    <pref name='s' type='double' value='1'/>
+	  </pref>
+	  <pref name='geomToBodyTransform'>
+	    <pref name='x' type='double' value='0'/>
+	    <pref name='y' type='double' value='0'/>
+	    <pref name='z' type='double' value='0'/>
+	    <pref name='ex' type='double' value='0'/>
+	    <pref name='ey' type='double' value='0'/>
+	    <pref name='ez' type='double' value='0'/>
+	    <pref name='s' type='double' value='1'/>
+	  </pref>
+	  <pref name='is_kinematical' type='bool' value='1'/>
+	</pref>
+	<pref name='goalBack'>
+	  <pref name='box'>
+	    <pref name='width' type='double' value='0.5'/>
+	    <pref name='height' type='double' value='2'/>
+	    <pref name='depth' type='double' value='2'/>
+	  </pref>
+	  <pref name='mass' type='double' value='1'/>
+	  <pref name='inertia'>
+	    <pref name='xx' type='double' value='0'/>
+	    <pref name='yy' type='double' value='0'/>
+	    <pref name='zz' type='double' value='0'/>
+	    <pref name='xy' type='double' value='0'/>
+	    <pref name='xz' type='double' value='0'/>
+	    <pref name='yz' type='double' value='0'/>
+	  </pref>
+	  <pref name='color'>
+	    <pref name='r' type='double' value='0'/>
+	    <pref name='g' type='double' value='1'/>
+	    <pref name='b' type='double' value='0'/>
+	    <pref name='a' type='double' value='0.5'/>
+	  </pref>
+	  <pref name='initialVelocity'>
+	    <pref name='x' type='double' value='0'/>
+	    <pref name='y' type='double' value='0'/>
+	    <pref name='z' type='double' value='0'/>
+	    <pref name='wx' type='double' value='0'/>
+	    <pref name='wy' type='double' value='0'/>
+	    <pref name='wz' type='double' value='0'/>
+	  </pref>
+	  <pref name='initialPosition'>
+	    <pref name='x' type='double' value='11'/>
+	    <pref name='y' type='double' value='0.954978'/>
+	    <pref name='z' type='double' value='0'/>
+	  </pref>
+	  <pref name='initialQuat'>
+	    <pref name='ex' type='double' value='0'/>
+	    <pref name='ey' type='double' value='0'/>
+	    <pref name='ez' type='double' value='0'/>
+	    <pref name='s' type='double' value='1'/>
+	  </pref>
+	  <pref name='geomToBodyTransform'>
+	    <pref name='x' type='double' value='0'/>
+	    <pref name='y' type='double' value='0'/>
+	    <pref name='z' type='double' value='0'/>
+	    <pref name='ex' type='double' value='0'/>
+	    <pref name='ey' type='double' value='0'/>
+	    <pref name='ez' type='double' value='0'/>
+	    <pref name='s' type='double' value='1'/>
+	  </pref>
+	  <pref name='is_kinematical' type='bool' value='1'/>
+	</pref>
+	<pref name='goalSide1'>
+	  <pref name='box'>
+	    <pref name='width' type='double' value='2'/>
+	    <pref name='height' type='double' value='2'/>
+	    <pref name='depth' type='double' value='0.5'/>
+	  </pref>
+	  <pref name='mass' type='double' value='1'/>
+	  <pref name='inertia'>
+	    <pref name='xx' type='double' value='0'/>
+	    <pref name='yy' type='double' value='0'/>
+	    <pref name='zz' type='double' value='0'/>
+	    <pref name='xy' type='double' value='0'/>
+	    <pref name='xz' type='double' value='0'/>
+	    <pref name='yz' type='double' value='0'/>
+	  </pref>
+	  <pref name='color'>
+	    <pref name='r' type='double' value='0'/>
+	    <pref name='g' type='double' value='1'/>
+	    <pref name='b' type='double' value='0'/>
+	    <pref name='a' type='double' value='0.5'/>
+	  </pref>
+	  <pref name='initialVelocity'>
+	    <pref name='x' type='double' value='0'/>
+	    <pref name='y' type='double' value='0'/>
+	    <pref name='z' type='double' value='0'/>
+	    <pref name='wx' type='double' value='0'/>
+	    <pref name='wy' type='double' value='0'/>
+	    <pref name='wz' type='double' value='0'/>
+	  </pref>
+	  <pref name='initialPosition'>
+	    <pref name='x' type='double' value='10'/>
+	    <pref name='y' type='double' value='1'/>
+	    <pref name='z' type='double' value='1'/>
+	  </pref>
+	  <pref name='initialQuat'>
+	    <pref name='ex' type='double' value='0'/>
+	    <pref name='ey' type='double' value='0'/>
+	    <pref name='ez' type='double' value='0'/>
+	    <pref name='s' type='double' value='1'/>
+	  </pref>
+	  <pref name='geomToBodyTransform'>
+	    <pref name='x' type='double' value='0'/>
+	    <pref name='y' type='double' value='0'/>
+	    <pref name='z' type='double' value='0'/>
+	    <pref name='ex' type='double' value='0'/>
+	    <pref name='ey' type='double' value='0'/>
+	    <pref name='ez' type='double' value='0'/>
+	    <pref name='s' type='double' value='1'/>
+	  </pref>
+	  <pref name='is_kinematical' type='bool' value='1'/>
+	</pref>
+	<pref name='goalSide2'>
+	  <pref name='box'>
+	    <pref name='width' type='double' value='2'/>
+	    <pref name='height' type='double' value='2'/>
+	    <pref name='depth' type='double' value='0.5'/>
+	  </pref>
+	  <pref name='mass' type='double' value='1'/>
+	  <pref name='inertia'>
+	    <pref name='xx' type='double' value='0'/>
+	    <pref name='yy' type='double' value='0'/>
+	    <pref name='zz' type='double' value='0'/>
+	    <pref name='xy' type='double' value='0'/>
+	    <pref name='xz' type='double' value='0'/>
+	    <pref name='yz' type='double' value='0'/>
+	  </pref>
+	  <pref name='color'>
+	    <pref name='r' type='double' value='0'/>
+	    <pref name='g' type='double' value='1'/>
+	    <pref name='b' type='double' value='0'/>
+	    <pref name='a' type='double' value='0.5'/>
+	  </pref>
+	  <pref name='initialVelocity'>
+	    <pref name='x' type='double' value='0'/>
+	    <pref name='y' type='double' value='0'/>
+	    <pref name='z' type='double' value='0'/>
+	    <pref name='wx' type='double' value='0'/>
+	    <pref name='wy' type='double' value='0'/>
+	    <pref name='wz' type='double' value='0'/>
+	  </pref>
+	  <pref name='initialPosition'>
+	    <pref name='x' type='double' value='10'/>
+	    <pref name='y' type='double' value='1'/>
+	    <pref name='z' type='double' value='-1'/>
+	  </pref>
+	  <pref name='initialQuat'>
+	    <pref name='ex' type='double' value='0'/>
+	    <pref name='ey' type='double' value='0'/>
+	    <pref name='ez' type='double' value='0'/>
+	    <pref name='s' type='double' value='1'/>
+	  </pref>
+	  <pref name='geomToBodyTransform'>
+	    <pref name='x' type='double' value='0'/>
+	    <pref name='y' type='double' value='0'/>
+	    <pref name='z' type='double' value='0'/>
+	    <pref name='ex' type='double' value='0'/>
+	    <pref name='ey' type='double' value='0'/>
+	    <pref name='ez' type='double' value='0'/>
+	    <pref name='s' type='double' value='1'/>
+	  </pref>
+	  <pref name='is_kinematical' type='bool' value='1'/>
+	</pref>
+	<pref name='goalBottom'>
+	  <pref name='box'>
+	    <pref name='width' type='double' value='2'/>
+	    <pref name='height' type='double' value='0.5'/>
+	    <pref name='depth' type='double' value='2'/>
+	  </pref>
+	  <pref name='mass' type='double' value='1'/>
+	  <pref name='inertia'>
+	    <pref name='xx' type='double' value='0'/>
+	    <pref name='yy' type='double' value='0'/>
+	    <pref name='zz' type='double' value='0'/>
+	    <pref name='xy' type='double' value='0'/>
+	    <pref name='xz' type='double' value='0'/>
+	    <pref name='yz' type='double' value='0'/>
+	  </pref>
+	  <pref name='color'>
+	    <pref name='r' type='double' value='0'/>
+	    <pref name='g' type='double' value='1'/>
+	    <pref name='b' type='double' value='0'/>
+	    <pref name='a' type='double' value='0.5'/>
+	  </pref>
+	  <pref name='initialVelocity'>
+	    <pref name='x' type='double' value='0'/>
+	    <pref name='y' type='double' value='0'/>
+	    <pref name='z' type='double' value='0'/>
+	    <pref name='wx' type='double' value='0'/>
+	    <pref name='wy' type='double' value='0'/>
+	    <pref name='wz' type='double' value='0'/>
+	  </pref>
+	  <pref name='initialPosition'>
+	    <pref name='x' type='double' value='10'/>
+	    <pref name='y' type='double' value='0'/>
+	    <pref name='z' type='double' value='0'/>
+	  </pref>
+	  <pref name='initialQuat'>
+	    <pref name='ex' type='double' value='0'/>
+	    <pref name='ey' type='double' value='0'/>
+	    <pref name='ez' type='double' value='0'/>
+	    <pref name='s' type='double' value='1'/>
+	  </pref>
+	  <pref name='geomToBodyTransform'>
+	    <pref name='x' type='double' value='0'/>
+	    <pref name='y' type='double' value='0'/>
+	    <pref name='z' type='double' value='0'/>
+	    <pref name='ex' type='double' value='0'/>
+	    <pref name='ey' type='double' value='0'/>
+	    <pref name='ez' type='double' value='0'/>
+	    <pref name='s' type='double' value='1'/>
+	  </pref>
+	  <pref name='is_kinematical' type='bool' value='1'/>
+	</pref>
+      </pref>
+    </pref>
+  </pref>
+  <pref name='screen_settings'>
+    <pref name='width' type='int' value='1024'/>
+    <pref name='height' type='int' value='768'/>
+    <pref name='title' type='string' value='DVC'/>
+    <pref name='subtitle' type='string' value='DaVinci Code Simulator'/>
+    <pref name='framerate' type='int' value='60'/>
+    <pref name='color_bits' type='int' value='32'/>
+    <pref name='r' type='double' value='1'/>
+    <pref name='g' type='double' value='1'/>
+    <pref name='b' type='double' value='1'/>
+    <pref name='a' type='double' value='1'/>
+  </pref>
+  <pref name='Gui'>
+    <pref name='treepath' type='string' value='0:1'/>
+    <pref name='fontfile' type='string' value='font.ttf'/>
+  </pref>
+  <pref name='plugins_dir' type='string' value='/home/blake/work/dvc/experimental/dvc3/build/lib/dvc-plugins/'/>
+  <pref name='assets_root' type='string' value='/home/blake/work/dvc/experimental/dvc3/build/share/dvc/data/'/>
+</pref>
