@@ -1,0 +1,9 @@
+Blake Farman
+
+getJavaFiles and findExcept both use non-relative file names to ensure that 
+files with the same name, buried within a tree, don't get double counted since 
+class names are taken directly from file names
+
+Also, all directory operations use python's built in os library (os, os.path, etc.),
+so they SHOULD work on windows, however, please note that all development was done
+on a linux machine.

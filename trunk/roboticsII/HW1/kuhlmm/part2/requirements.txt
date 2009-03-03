@@ -1,0 +1,54 @@
+Robotics II
+Homework 1
+
+HW1 is designed to introduce you to the dvc simulator.
+You will learn how to use position controllers.
+Most of the scene setup is done for you, and a lot of the code structure is already in place.
+Please, take time to familiarize yourself with setting up a scene using the SceneBuilder and the XML (this will be important later.)
+
+There are five parts.  Parts 1 & 2 are required, parts 4 & 5 are extra challenges:
+
+1) Program the bat position controller so it knocks the ball into the goal.  You may reposition the ball anywhere as long as its X coordinate is greater than 0 and less than 2.  You may reposition the goal as long as the X coordinate for the front piece of the goal is greater than 5.  The point of this is exercise is to write a position controller for the bat so that it knocks the ball into the goal.  
+The initial position of the ball and goal are defined in HW1Scene.xml.  You may use the SceneBuilder to visually modify the XML file.
+
+2) Implement position controller(s) for the goal so that the goal moves as a function of time.  Make the goal move in a circle.  Note that the goal is not one piece, but instead five (5) separate pieces.
+
+3) Set the surface angle back to 90 degrees.  Modify the goalPositionController so it takes a variable X as input and
+shifts the goal by X along the X-axis.  Modify the batPositionController so that
+it also takes the variable X as input and can knock the ball into the goal for any X within a reasonable range (you can choose the range).
+
+4) Extend part 4 so that the goal's X coordinate changes as a function of time and knock the ball into the goal.
+
+5) Modify the batPositionController so it can hit the ball straight up and down at least 5 times in a row.
+
+How to hand in the hw:
+
+When you complete part 1, copy App.cpp, App.h, any .h/.cpp files used for any controllers, and HW1Scene.xml into a folder named part1.  Do this for all parts you complete.
+When you're done, put all the folders into a folder labled with your RCS ID, zip the folder, and email it to farmab@rpi.edu.
+
+
+
+TIPS:
+
+Feel free to modify the code however you'd like.
+You might want to give pointers to the ball and goal to the batPositionController so it can access their position or velocity vectors.
+You can use the mouse to grab and move the ball in the scene.
+Look at the KeyDown method, you may find this helpful for implementing your own custom functionality.
+
+Keyboard controls for the dvcQt:
+'L' - reload the scene
+'P' - pause the scene
+'spacebar' - step forward one timestep
+'mousewheel' - zoom in/out
+right-click+drag - translate viewport
+W - Move forward
+A - Move left
+S - Move back
+D - Move right
+
+
+The keyboard controls for SceneBuilder are the same as that in dvcQt.  However, there are some slight differences.
+
+To add objects to the world, right click somewhere in the world and select the type of object.  The object will be created at your mouse.  
+You can select objects by clicking, drag them by clicking and dragging(as well as drag multiple objects with control + click, then dragging)
+You can modify an object either through the settings window or by right clicking on the object and selecting "Properties." 

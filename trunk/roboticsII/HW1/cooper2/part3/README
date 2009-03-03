@@ -1,0 +1,1 @@
+I mentioned the weird thing that was going on in an email, but this works for at least -5, 0, and 2.5 for values between -5 and 2.5. It's not robust enough to work for all X in the range, but it almost does.
