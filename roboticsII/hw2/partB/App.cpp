@@ -2,27 +2,47 @@
 #include "DvcCollisionResult.h"
 
 App::App(){
-  part = 0;
   palm = 0;
- 
+
+  /*
+    Allocate memory for the parts, grips and
+    grip controllers.
+  */
+  part = new DynamicalBody*[3];
   grip = new DynamicalBody*[4];
   gripController = new GripControl*[4];
   
+  /*
+    Initialize the grips and gripControllers to 0.
+   */
   for (unsigned int i = 0; i < 4; i++){
     grip[i] = 0;
     gripController[i] = 0;
   }
+
+  /*
+    Initialize the parts to 0.
+  */
+  for (unsigned int i=0; i<3; i++){
+    part[i] = 0;
+  }
   
   palmName = new std::string("palm");
   gripName = new std::string*[4];
+  partName = new std::string*[4];
   gripName[0] = new std::string("grip1");
   gripName[1] = new std::string("grip2");
   gripName[2] = new std::string("grip3");
   gripName[3] = new std::string("grip4");
-  partName = new std::string("part");
+  partName[0] = new std::string("part1");
+  partName[1] = new std::string("part2");
+  partName[2] = new std::string("part3");
 }
 
 App::~App(){
+  for (unsigned int i=0; i<3;i++){
+    delete partName[i];
+  }
   delete partName;
   
   for(unsigned int i=0; i<4; i++){
@@ -64,6 +84,11 @@ bool App::Init(){
     return false;
   }
 
+  /*
+    Select the part we wish to pick up.
+   */
+  selectedPart = 0;
+  
   /*Enable all PD controllers*/
   for (unsigned int i=0; i<4; i++)
     gripController[i]->TogglePD(true);
@@ -73,21 +98,19 @@ bool App::Init(){
 }
 
 bool App::GetBodies(){
-  if (part && grip[0] && grip[1] &&
-      grip[2] && grip[3] && palm){
-    return true;
-  }
-
   if (!palm){
     if (!sim->GetBodyByNameMutable(*palmName, palm))
       return false;
   }
 
-  if (!part){
-    if (!sim->GetBodyByNameMutable(*partName, part));
+  for (unsigned int i=0; i<3; i++){
+    if (!part[i]){
+      if (!sim->GetBodyByNameMutable(*partName[i], part[i]))
+	return false;
+    }
   }
   
-  for (int i = 0; i < 4; i++){
+  for (unsigned int i = 0; i < 4; i++){
     if (!grip[i]){
       if (!sim->GetBodyByNameMutable(*gripName[i],grip[i]))
 	return false;
@@ -166,8 +189,8 @@ void App::PostStep(){
 
     /* Check for contact between the grippers and the part*/
     for (unsigned int j=0; j < 4; j++){
-      if (b1 == *gripName[j] && b2 == *partName ||
-	  b1 == *partName && b2 == *gripName[j]){
+      if (b1 == *gripName[j] && b2 == *partName[selectedPart] ||
+	  b1 == *partName[selectedPart] && b2 == *gripName[j]){
 	gripInContact[j] = true;
 	gripContact[j] = *contacts[i];
       }
@@ -214,7 +237,7 @@ void App::PostStep(){
 
 void App::GoToPartCG(){
 
-  DVC::Vector<DVC::REAL> partQ = part->GetQ();
+  DVC::Vector<DVC::REAL> partQ = part[selectedPart]->GetQ();
 
   /* Grip */
   for (unsigned int i=0; i<4; i++)

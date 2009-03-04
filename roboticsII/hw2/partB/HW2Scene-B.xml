@@ -207,9 +207,9 @@
 	  <pref name='mass' type='double' value='3'/>
 	  <pref name='momentOfInertia' type='double' value='0.006'/>
 	  <pref name='color'>
-	    <pref name='r' type='double' value='0'/>
-	    <pref name='g' type='double' value='0'/>
-	    <pref name='b' type='double' value='0'/>
+	    <pref name='r' type='double' value='1'/>
+	    <pref name='g' type='double' value='1'/>
+	    <pref name='b' type='double' value='1'/>
 	    <pref name='a' type='double' value='1'/>
 	  </pref>
 	  <pref name='initialVelocity'>
@@ -228,14 +228,14 @@
 	    <pref name='t' type='double' value='0'/>
 	  </pref>
 	</pref>
-	<pref name='part'>
+	<pref name='part1'>
 	  <pref name='vert_data_file' type='string' value='Geometry/hw2-b_part.pdat'/>
 	  <pref name='mass' type='double' value='8'/>
 	  <pref name='momentOfInertia' type='double' value='0.022'/>
 	  <pref name='color'>
-	    <pref name='r' type='double' value='0.516869'/>
-	    <pref name='g' type='double' value='0.516869'/>
-	    <pref name='b' type='double' value='0.516869'/>
+	    <pref name='r' type='double' value='0'/>
+	    <pref name='g' type='double' value='0'/>
+	    <pref name='b' type='double' value='0.6'/>
 	    <pref name='a' type='double' value='1'/>
 	  </pref>
 	  <pref name='initialVelocity'>
@@ -245,7 +245,59 @@
 	  </pref>
 	  <pref name='initialPosition'>
 	    <pref name='x' type='double' value='0'/>
-	    <pref name='y' type='double' value='0.2'/>
+	    <pref name='y' type='double' value='0.23'/>
+	    <pref name='t' type='double' value='0'/>
+	  </pref>
+	  <pref name='geomToBodyTransform'>
+	    <pref name='x' type='double' value='0'/>
+	    <pref name='y' type='double' value='-0.03'/>
+	    <pref name='t' type='double' value='0'/>
+	  </pref>
+	</pref>
+	<pref name='part2'>
+	  <pref name='vert_data_file' type='string' value='Geometry/hw2-b_part.pdat'/>
+	  <pref name='mass' type='double' value='8'/>
+	  <pref name='momentOfInertia' type='double' value='0.022'/>
+	  <pref name='color'>
+	    <pref name='r' type='double' value='0'/>
+	    <pref name='g' type='double' value='0'/>
+	    <pref name='b' type='double' value='0.7'/>
+	    <pref name='a' type='double' value='1'/>
+	  </pref>
+	  <pref name='initialVelocity'>
+	    <pref name='x' type='double' value='0'/>
+	    <pref name='y' type='double' value='0'/>
+	    <pref name='t' type='double' value='0'/>
+	  </pref>
+	  <pref name='initialPosition'>
+	    <pref name='x' type='double' value='1'/>
+	    <pref name='y' type='double' value='0.23'/>
+	    <pref name='t' type='double' value='0'/>
+	  </pref>
+	  <pref name='geomToBodyTransform'>
+	    <pref name='x' type='double' value='0'/>
+	    <pref name='y' type='double' value='-0.03'/>
+	    <pref name='t' type='double' value='0'/>
+	  </pref>
+	</pref>
+	<pref name='part3'>
+	  <pref name='vert_data_file' type='string' value='Geometry/hw2-b_part.pdat'/>
+	  <pref name='mass' type='double' value='8'/>
+	  <pref name='momentOfInertia' type='double' value='0.022'/>
+	  <pref name='color'>
+	    <pref name='r' type='double' value='0'/>
+	    <pref name='g' type='double' value='0'/>
+	    <pref name='b' type='double' value='0.8'/>
+	    <pref name='a' type='double' value='1'/>
+	  </pref>
+	  <pref name='initialVelocity'>
+	    <pref name='x' type='double' value='0'/>
+	    <pref name='y' type='double' value='0'/>
+	    <pref name='t' type='double' value='0'/>
+	  </pref>
+	  <pref name='initialPosition'>
+	    <pref name='x' type='double' value='2'/>
+	    <pref name='y' type='double' value='0.23'/>
 	    <pref name='t' type='double' value='0'/>
 	  </pref>
 	  <pref name='geomToBodyTransform'>
@@ -255,7 +307,7 @@
 	  </pref>
 	</pref>
 	<pref name='ground'>
-	  <pref name='vert_data_file' type='string' value='Geometry/hw2_ground.pdat'/>
+	  <pref name='vert_data_file' type='string' value='Geometry/hw2-b_ground.pdat'/>
 	  <pref name='mass' type='double' value='8'/>
 	  <pref name='momentOfInertia' type='double' value='0.012'/>
 	  <pref name='color'>
@@ -275,9 +327,87 @@
 	    <pref name='t' type='double' value='0'/>
 	  </pref>
 	</pref>
+	<pref name='pedestal1'>
+	  <pref name='vert_data_file' type='string' value='Geometry/hw2-b_pedestal1.pdat'/>
+	  <pref name='mass' type='double' value='8'/>
+	  <pref name='momentOfInertia' type='double' value='0.012'/>
+	  <pref name='color'>
+	    <pref name='r' type='double' value='0.75'/>
+	    <pref name='g' type='double' value='0.4'/>
+	    <pref name='b' type='double' value='0.25'/>
+	    <pref name='a' type='double' value='1'/>
+	  </pref>
+	  <pref name='initialPosition'>
+	    <pref name='x' type='double' value='-3'/>
+	    <pref name='y' type='double' value='.25'/>
+	    <pref name='t' type='double' value='0'/>
+	  </pref>
+	  <pref name='initialVelocity'>
+	    <pref name='x' type='double' value='0'/>
+	    <pref name='y' type='double' value='0'/>
+	    <pref name='t' type='double' value='0'/>
+	  </pref>
+	  <pref name='geomToBodyTransform'>
+	    <pref name='x' type='double' value='0'/>
+	    <pref name='y' type='double' value='0'/>
+	    <pref name='t' type='double' value='0'/>
+	  </pref>
+	</pref>
+	<pref name='pedestal2'>
+	  <pref name='vert_data_file' type='string' value='Geometry/hw2-b_pedestal2.pdat'/>
+	  <pref name='mass' type='double' value='8'/>
+	  <pref name='momentOfInertia' type='double' value='0.012'/>
+	  <pref name='color'>
+	    <pref name='r' type='double' value='0.5'/>
+	    <pref name='g' type='double' value='0.5'/>
+	    <pref name='b' type='double' value='0.5'/>
+	    <pref name='a' type='double' value='.5'/>
+	  </pref>
+	  <pref name='initialPosition'>
+	    <pref name='x' type='double' value='-2'/>
+	    <pref name='y' type='double' value='0.25'/>
+	    <pref name='t' type='double' value='0'/>
+	  </pref>
+	  <pref name='initialVelocity'>
+	    <pref name='x' type='double' value='0'/>
+	    <pref name='y' type='double' value='0'/>
+	    <pref name='t' type='double' value='0'/>
+	  </pref>
+	  <pref name='geomToBodyTransform'>
+	    <pref name='x' type='double' value='0'/>
+	    <pref name='y' type='double' value='0'/>
+	    <pref name='t' type='double' value='0'/>
+	  </pref>
+	</pref>
+	<pref name='pedestal3'>
+	  <pref name='vert_data_file' type='string' value='Geometry/hw2-b_pedestal3.pdat'/>
+	  <pref name='mass' type='double' value='8'/>
+	  <pref name='momentOfInertia' type='double' value='0.012'/>
+	  <pref name='color'>
+	    <pref name='r' type='double' value='1'/>
+	    <pref name='g' type='double' value='.75'/>
+	    <pref name='b' type='double' value='0.0'/>
+	    <pref name='a' type='double' value='1'/>
+	  </pref>
+	  <pref name='initialPosition'>
+	    <pref name='x' type='double' value='-1'/>
+	    <pref name='y' type='double' value='.25'/>
+	    <pref name='t' type='double' value='0'/>
+	  </pref>
+	  <pref name='initialVelocity'>
+	    <pref name='x' type='double' value='0'/>
+	    <pref name='y' type='double' value='0'/>
+	    <pref name='t' type='double' value='0'/>
+	  </pref>
+	  <pref name='geomToBodyTransform'>
+	    <pref name='x' type='double' value='0'/>
+	    <pref name='y' type='double' value='0'/>
+	    <pref name='t' type='double' value='0'/>
+	  </pref>
+	</pref>
       </pref>
       <pref name='screen_settings'>
-	<pref name='view_distance' type='double' value='2'/>
+	<pref name='view_distance' type='double' value='10'/>
 	<pref name='x_trans' type='double' value='0'/>
 	<pref name='y_trans' type='double' value='0.5'/>
 	<pref name='point_radius' type='double' value='0.005'/>
@@ -298,9 +428,9 @@
     <pref name='subtitle' type='string' value='Robotics II - Gripper App'/>
     <pref name='framerate' type='int' value='60'/>
     <pref name='color_bits' type='int' value='32'/>
-    <pref name='r' type='double' value='0.2'/>
-    <pref name='g' type='double' value='0.2'/>
-    <pref name='b' type='double' value='0.2'/>
+    <pref name='r' type='double' value='0'/>
+    <pref name='g' type='double' value='0'/>
+    <pref name='b' type='double' value='0'/>
     <pref name='a' type='double' value='1'/>
   </pref>
   <pref name='Gui'>

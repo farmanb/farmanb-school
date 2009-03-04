@@ -15,8 +15,9 @@ class App : public DVC_AppGL{
   void GoToPartCG();
   
   std::string **gripName,
-    *partName, *palmName;
+    **partName, *palmName;
 
-  DynamicalBody *part, **grip, *palm;
+  DynamicalBody **part, **grip, *palm;
   GripControl **gripController;
+  int selectedPart;
 };

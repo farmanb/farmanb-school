@@ -39,10 +39,10 @@
       <pref name='collision' type='string' value='polypoly'/>
       <pref name='cpsolver' type='string' value='@DEFAULT_CPSOLVER@'/>
       <pref name='dynamics_settings'>
-	<pref name='friction_coefficient' type='double' value='0'/>
+	<pref name='friction_coefficient' type='double' value='0.1'/>
 	<pref name='integration_method' type='int' value='0'/>
 	<pref name='time_step' type='double' value='0.01'/>
-	<pref name='gravity' type='double' value='0'/>
+	<pref name='gravity' type='double' value='9.8'/>
 	<pref name='collision_epsilon' type='double' value='0.0001'/>
       </pref>
       <pref name='joints'>
@@ -98,6 +98,27 @@
 	</pref>
       </pref>
       <pref name='geometry'>
+	<pref name='ground'>
+	  <pref name='vert_data_file' type='string' value='Geometry/hw2-a_ground.pdat'/>
+	  <pref name='mass' type='double' value='8'/>
+	  <pref name='momentOfInertia' type='double' value='0.012'/>
+	  <pref name='color'>
+	    <pref name='r' type='double' value='0.0'/>
+	    <pref name='g' type='double' value='0.4081483177'/>
+	    <pref name='b' type='double' value='0.0090333410'/>
+	    <pref name='a' type='double' value='1'/>
+	  </pref>
+	  <pref name='initialPosition'>
+	    <pref name='x' type='double' value='0'/>
+	    <pref name='y' type='double' value='0'/>
+	    <pref name='t' type='double' value='0'/>
+	  </pref>
+	  <pref name='geomToBodyTransform'>
+	    <pref name='x' type='double' value='0'/>
+	    <pref name='y' type='double' value='0'/>
+	    <pref name='t' type='double' value='0'/>
+	  </pref>
+	</pref>
 	<pref name='grip1'>
 	  <pref name='vert_data_file' type='string' value='Geometry/hw2-a_finger.pdat'/>
 	  <pref name='mass' type='double' value='3'/>
@@ -115,7 +136,7 @@
 	  </pref>
 	  <pref name='initialPosition'>
 	    <pref name='x' type='double' value='-0.34142135623730951'/>
-	    <pref name='y' type='double' value='0.95'/>
+	    <pref name='y' type='double' value='1.05'/>
 	    <pref name='t' type='double' value='-0.78539816339744828'/>
 	  </pref>
 	  <pref name='geomToBodyTransform'>
@@ -141,7 +162,7 @@
 	  </pref>
 	  <pref name='initialPosition'>
 	    <pref name='x' type='double' value='-0.48284271247461907'/>
-	    <pref name='y' type='double' value='0.6'/>	    
+	    <pref name='y' type='double' value='0.7'/>	    
 	    <pref name='t' type='double' value='0'/>
 	  </pref>
 	  <pref name='geomToBodyTransform'>
@@ -167,7 +188,7 @@
 	  </pref>
 	  <pref name='initialPosition'>
 	    <pref name='x' type='double' value='0.34142135623730951'/>
-	    <pref name='y' type='double' value='0.95'/>
+	    <pref name='y' type='double' value='1.05'/>
 	    <pref name='t' type='double' value='0.78539816339744828'/>
 	  </pref>
 	  <pref name='geomToBodyTransform'>
@@ -193,7 +214,7 @@
 	  </pref>
 	  <pref name='initialPosition'>
 	    <pref name='x' type='double' value='0.48284271247461907'/>
-	    <pref name='y' type='double' value='0.6'/>
+	    <pref name='y' type='double' value='0.7'/>
 	    <pref name='t' type='double' value='0'/>
 	  </pref>
 	  <pref name='geomToBodyTransform'>
@@ -219,7 +240,7 @@
 	  </pref>
 	  <pref name='initialPosition'>
 	    <pref name='x' type='double' value='0'/>
-	    <pref name='y' type='double' value='1.12284271247461907'/>
+	    <pref name='y' type='double' value='1.22284271247461907'/>
 	    <pref name='t' type='double' value='1.5707963267948966'/>
 	  </pref>
 	  <pref name='geomToBodyTransform'>
@@ -244,8 +265,8 @@
 	    <pref name='t' type='double' value='0'/>
 	  </pref>
 	  <pref name='initialPosition'>
-	    <pref name='x' type='double' value='0'/>
-	    <pref name='y' type='double' value='.6'/>
+	    <pref name='x' type='double' value='-.1'/>
+	    <pref name='y' type='double' value='.625'/>
 	    <pref name='t' type='double' value='0'/>
 	  </pref>
 	  <pref name='geomToBodyTransform'>
@@ -256,7 +277,7 @@
 	</pref>
       </pref>
       <pref name='screen_settings'>
-	<pref name='view_distance' type='double' value='2'/>
+	<pref name='view_distance' type='double' value='5'/>
 	<pref name='x_trans' type='double' value='0'/>
 	<pref name='y_trans' type='double' value='0.5'/>
 	<pref name='point_radius' type='double' value='0.005'/>
