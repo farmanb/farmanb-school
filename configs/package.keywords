@@ -1,0 +1,189 @@
+#ATI
+x11-drivers/ati-drivers ~x86
+
+#Compiz-Fusion
+dev-python/compizconfig-python
+x11-wm/compiz
+x11-wm/compiz-fusion
+x11-plugins/compiz-fusion-plugins-main
+x11-plugins/compiz-fusion-plugins-extra
+x11-plugins/compiz-fusion-plugins-unsupported
+x11-wm/emerald
+x11-themes/emerald-themes
+x11-apps/ccsm
+x11-libs/libcompizconfig
+x11-libs/compizconfig-backend-gconf
+x11-libs/compizconfig-backend-kconfig
+x11-libs/compiz-bcop
+
+#cmake
+dev-util/cmake ~x86
+
+#Firefox
+www-client/mozilla-firefox ~x86
+net-libs/xulrunner ~x86
+dev-libs/nspr ~x86
+dev-libs/nss ~x86
+
+#Audio/Video codecs & players
+media-video/vlc ~x86
+media-libs/faad2
+media-video/ffmpeg ~x86
+media-libs/libquicktime ~x86
+media-video/mplayer ~x86
+net-www/mplayerplug-in ~x86
+media-libs/x264 ~x86
+media-plugins/live ~x86
+
+#xfce
+app-editors/mousepad ~x86
+app-office/orage ~x86
+dev-libs/glib ~x86
+dev-util/intltool ~x86
+net-print/xfprint ~x86
+sys-devel/libtool ~x86
+xfce-base/libxfce4mcs ~x86
+xfce-base/libxfce4util ~x86
+xfce-base/libxfcegui4 ~x86
+xfce-base/thunar ~x86
+xfce-base/xfce4 ~x86
+xfce-base/xfce4-panel ~x86
+xfce-base/xfce-utils ~x86
+xfce-base/xfce-mcs-manager ~x86
+xfce-base/xfdesktop ~x86
+xfce-base/xfwm4 ~x86
+xfce-base/xfce4-session ~x86
+xfce-base/xfce-mcs-plugins ~x86
+xfce-extra/xfce4-appfinder ~x86
+xfce-extra/xfce4-mixer ~x86
+xfce-base/xfconf ~x86
+xfce-base/xfce4-settings ~x86
+xfce-extra/exo ~x86
+xfce-base/libxfce4menu ~x86
+x11-terms/terminal ~x86
+x11-themes/gtk-engines-xfce ~x86
+x11-themes/slim-themes ~x86
+x11-themes/xfce4-icon-theme ~x86
+x11-themes/xfwm4-themes ~x86
+
+#System Utils/Portage
+sys-apps/portage ~x86
+app-admin/eselect-news ~x86
+app-admin/eselect ~x86
+sys-auth/thinkfinger ~x86
+
+#Development
+dev-util/scons ~x86
+
+#Emacs
+app-emacs/scheme-complete ~x86
+app-emacs/ssh ~x86
+
+#X11
+x11-apps/xdm ~x86
+x11-proto/dri2proto ~x86
+x11-base/xorg-server ~x86
+x11-libs/pixman ~x86
+x11-drivers/xf86-input-mouse ~x86
+x11-libs/libpciaccess ~x86
+x11-apps/xauth ~x86
+x11-apps/xauth ~x86
+x11-libs/libXrender ~x86
+x11-proto/renderproto ~x86
+x11-proto/xextproto ~x86
+x11-libs/libXau ~x86
+x11-proto/xproto ~x86
+media-libs/mesa ~x86
+x11-libs/libdrm ~x86
+x11-libs/libXext ~x86
+x11-proto/inputproto ~x86
+x11-libs/libX11 ~x86
+x11-proto/xf86driproto ~x86
+x11-libs/libXxf86vm ~x86
+x11-misc/xkeyboard-config ~x86
+x11-libs/xtrans ~x86
+x11-apps/rgb ~x86
+x11-apps/xinit ~x86
+x11-proto/randrproto ~x86
+x11-libs/libXfont ~x86
+x11-drivers/xf86-input-keyboard ~x86
+x11-drivers/xf86-input-synaptics ~x86
+
+#Development
+sys-devel/gcc ~x86
+cross-mingw32/binutils * ~* -x86 -~x86
+cross-mingw32/gcc * ~* -x86 -~x86
+cross-mingw32/w32api * ~* -x86 -~x86
+cross-mingw32/mingw-runtime * ~* -x86 -~x86
+cross-mingw32/gdb * ~* -x86 -~x86
+cross-mingw32/insight * ~* -x86 -~x86
+net-wireless/waveselect ~x86
+
+#KDE
+dev-db/sqlite ~x86
+x11-libs/qt-script ~x86
+x11-libs/qt-qt3support ~x86
+x11-libs/qt-dbus ~x86
+x11-libs/qt-webkit ~x86
+x11-libs/qt-opengl ~x86
+x11-libs/qt-sql ~x86
+x11-libs/qt ~x86
+x11-libs/qt-xmlpatterns ~x86
+x11-libs/qt-assistant ~x86
+x11-libs/qt-core ~x86
+x11-libs/qt-svg ~x86
+x11-libs/qt-gui ~x86
+x11-libs/qt-test ~x86
+#kde-base/kdepimlibs ~x86
+#kde-base/qimageblitz ~x86
+#kde-base/automoc ~x86
+#kde-base/kdelibs ~x86
+#kde-base/kdebase-data ~x86
+#kde-base/kdebase-kioslaves ~x86
+#app-misc/strigi ~x86
+#dev-libs/soprano ~x86
+#kde-base/libkonq ~x86
+#media-sound/phonon ~x86
+#kde-base/kdesu ~x86
+#kde-base/kdialog ~x86
+#dev-libs/boost ~x86
+#kde-base/kicker ~x86
+#kde-base/drkonqi ~x86
+#kde-base/kappfinder ~x86
+#kde-base/kde-menu ~x86
+#kde-base/kdebase ~x86
+#kde-base/kdebase-pam ~x86
+#dev-util/boost-build ~x86
+#dev-libs/libical ~x86
+sys-libs/glibc ~x86
+#kde-base/keditbookmarks ~x86
+#kde-base/kfind ~x86
+#kde-base/kfile ~x86
+#kde-base/kinfocenter ~x86
+#kde-base/kpasswdserver ~x86
+#kde-base/kurifilter-plugins ~x86
+#kde-base/konqueror ~x86
+
+#Vuze
+net-p2p/vuze ~x86
+net-p2p/vuze-coreplugins ~x86
+dev-java/swt ~x86
+dev-java/json-simple ~x86
+
+#Amarok
+#media-sound/amarok ~x86
+#kde-base/plasma-workspace ~x86
+#media-libs/libgpod ~x86
+#kde-base/libkworkspace ~x86
+#kde-base/pykde4 ~x86
+#kde-base/kephal ~x86
+#kde-base/soliduiserver ~x86
+#kde-base/ksysguard ~x86
+#kde-base/libplasmaclock ~x86
+#kde-base/libtaskmanager ~x86
+#kde-base/kioclient ~x86
+#kde-base/kde-menu-icons ~x86
+#kde-base/solid ~x86
+
+#Whois
+net-misc/bsdwhois ~x86

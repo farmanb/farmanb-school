@@ -1,0 +1,76 @@
+#gmime
+dev-libs/gmime mono
+
+media-libs/freetype bindist
+
+media-video/mplayer 3dnow 3dnowext a52 aac cdparanoia dga dts dvb encode mad mmx mmxext mp2 mp3 nas quicktime real samba sse sse2 theora v4l xvid vorbis win32codecs x264 xanim live srt
+
+media-video/realplayer nsplugin
+
+dev-java/sun-jdk nsplugin
+
+app-text/acroread nsplugin
+
+media-gfx/gimp mmx sse
+
+media-video/vlc a52 aac bidi cdda cdio dts ffmpeg flac gnutls httpd id3tag live matroska mmx mp3 mpeg ogg samba skins sse stream svga theora v4l vcd vlm vorbis win32codecs wxwindows xosd xvid
+
+net-dns/avahi mdnsresponder-compat
+
+#CMake/CMake Deps
+dev-libs/xmlrpc-c libwww curl
+
+#Skype
+net-im/skype qt-static
+
+#QT
+x11-libs/qt doc debug ssl slib
+
+app-text/poppler gtk
+app-text/poppler-bindings gtk
+
+#Pidgin
+net-im/pidgin gtk
+
+sys-devel/gcc gtk
+
+app-office/openoffice gtk
+gnome-extra/nautilus-cd-burner dvdr
+app-admin/conky wifi -ipv6
+media-libs/libquicktime ffmpeg
+app-editors/vim bash-completion
+app-editors/vim-core bash-completion
+media-sound/amarok ipod mp4 mysql real visualization
+media-libs/xine gtk win32codecs
+media-video/totem ffmpeg mpeg
+net-www/mplayerplug-in divx realmedia wmp xulrunner
+www-client/mozilla-firefox
+
+=x11-libs/qt-3.3.8-r4 -debug doc
+www-client/opera qt-static spell
+net-www/mplayerplug-in firefox
+sys-apps/tuxonice-userui fbsplash
+#net-p2p/azureus source
+dev-java/swt xulrunner cairo
+net-ftp/ftp -ssl
+x11-libs/libX11 xcb
+dev-scheme/plt-scheme backtrace
+cross-mingw32/binutils -selinux
+cross-mingw32/w32api -selinux
+cross-mingw32/mingw-runtime -selinux
+cross-mingw32/gcc -selinux -boundschecking -d -gtk -gcj -libffi -mudflap -objc -objc++ -objc-gc -openmp
+dev-libs/boost tools
+x11-wm/compiz-fusion emerald
+
+dev-db/mysql -berkdb embedded
+
+#qt
+#Installs drivers for Qt.
+x11-libs/qt-sql mysql
+
+media-libs/sdl-mixer mikmod
+dev-python/PyQt4 webkit
+
+
+media-libs/freetype kpathsea
+app-text/lcdf-typetools kpathsea
