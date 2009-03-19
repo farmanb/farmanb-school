@@ -224,19 +224,13 @@
 	  </pref>
 	</pref>
 	<pref name='palm'>
+	  <pref name='is_kinematical' type='bool' value='1'/>
 	  <pref name='vert_data_file' type='string' value='Geometry/hw2-a_finger.pdat'/>
-	  <pref name='mass' type='double' value='3'/>
-	  <pref name='momentOfInertia' type='double' value='0.006'/>
 	  <pref name='color'>
 	    <pref name='r' type='double' value='0'/>
 	    <pref name='g' type='double' value='0'/>
 	    <pref name='b' type='double' value='0'/>
 	    <pref name='a' type='double' value='1'/>
-	  </pref>
-	  <pref name='initialVelocity'>
-	    <pref name='x' type='double' value='0'/>
-	    <pref name='y' type='double' value='0'/>
-	    <pref name='t' type='double' value='0'/>
 	  </pref>
 	  <pref name='initialPosition'>
 	    <pref name='x' type='double' value='0'/>

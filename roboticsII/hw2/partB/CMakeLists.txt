@@ -9,6 +9,7 @@ set(APP_SRCS
   Factory.cpp
   App.cpp
   GripControl.cpp
+  PalmControl.cpp
   )
 
 set(APP_LIBRARIES

@@ -1,5 +1,7 @@
 #include "App.h"
 #include "DvcCollisionResult.h"
+#include "PalmControl.h"
+#include "GripControl.h"
 
 App::App(){
   palm = 0;
@@ -55,7 +57,9 @@ App::~App(){
     
     delete gripName[i];
   }
-  
+
+  delete palmController;
+
   delete gripController;
   delete gripName;
   delete grip;
@@ -89,11 +93,24 @@ bool App::Init(){
    */
   selectedPart = 0;
   
-  /*Enable all PD controllers*/
+  /*Enable all PD controllers
   for (unsigned int i=0; i<4; i++)
-    gripController[i]->TogglePD(true);
+  gripController[i]->TogglePD(true);*/
 
-  GoToPartCG();
+  DVC::REAL	t[4] = {2,0,-2,0.0};
+
+  SetGripTorques(t);
+
+  /*GoToPartCG();*/
+    
+  /*
+    Example of how to move the palm.
+    Because it is position controlled you have to move it very
+    slowly, otherwise the joints will explode and dVC will crash.
+  */
+  DVC::Vector<DVC::REAL> basePos = GetPalmPos();
+  SetPalmVelocity( 0 , 0.005 , 0);
+  
   return true;
 }
 
@@ -123,7 +140,13 @@ bool App::GetBodies(){
 bool App::AddControllers(){
   if (!GetBodies())
     return false;
+
+  if (palmController){
+    sim->RemoveAllBodyControllersByName(*palmName);
+  }
   
+  palmController = new PalmControl(palm);  
+
   for (int i = 0; i < 4; i++){
     if (gripController[i]){
       sim->RemoveAllBodyControllersByName(*gripName[i]);
@@ -135,7 +158,14 @@ bool App::AddControllers(){
   return sim->SetBodyControllerByName(*gripName[0], *gripController[0]) &&
     sim->SetBodyControllerByName(*gripName[1], *gripController[1]) &&
     sim->SetBodyControllerByName(*gripName[2], *gripController[2]) &&
-    sim->SetBodyControllerByName(*gripName[3], *gripController[3]);
+    sim->SetBodyControllerByName(*gripName[3], *gripController[3]) &&
+    sim->SetBodyControllerByName(*palmName, *palmController);
+}
+
+void App::PreStep(){
+  for (unsigned int i=0; i<4; i++){
+    gripController[i]->SetTorque(m_torques[i]);
+  }
 }
 
 /*
@@ -235,11 +265,34 @@ void App::PostStep(){
   }
 }
 
-void App::GoToPartCG(){
+/*
+  void App::GoToPartCG(){
 
   DVC::Vector<DVC::REAL> partQ = part[selectedPart]->GetQ();
 
-  /* Grip */
   for (unsigned int i=0; i<4; i++)
-    gripController[i]->SetPDTarget(partQ[0], partQ[1]);
+  gripController[i]->SetPDTarget(partQ[0], partQ[1]);
+  }
+*/
+
+bool App::SetGripTorques(DVC::REAL torques[4]){
+  for (int i=0; i< 4; i++){
+    m_torques[i] = torques[i];
+  }
+
+  return true;
+}
+
+void App::SetPalmVelocity(DVC::REAL x,DVC::REAL y, DVC::REAL rot){
+  if (palmController){
+    DVC::Vector<DVC::REAL> q(3);
+    q[0] = x;
+    q[1] = y;
+    q[2] = rot;
+    palmController->SetVel(q);
+  }
+}
+
+const DVC::Vector<DVC::REAL>& App::GetPalmPos(){
+  return palm->GetQ();
 }

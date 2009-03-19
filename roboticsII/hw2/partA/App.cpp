@@ -1,5 +1,7 @@
 #include "App.h"
 #include "DvcCollisionResult.h"
+#include "GripControl.h"
+#include "PalmControl.h"
 
 App::App(){
   part = 0;
@@ -7,6 +9,7 @@ App::App(){
  
   grip = new DynamicalBody*[4];
   gripController = new GripControl*[4];
+  palmController = new PalmControl(palm);
   
   for (unsigned int i = 0; i < 4; i++){
     grip[i] = 0;
@@ -20,6 +23,8 @@ App::App(){
   gripName[2] = new std::string("grip3");
   gripName[3] = new std::string("grip4");
   partName = new std::string("part");
+
+
 }
 
 App::~App(){
@@ -35,11 +40,35 @@ App::~App(){
     
     delete gripName[i];
   }
+
+  delete palmController;
   
   delete gripController;
   delete gripName;
   delete grip;
 
+}
+
+bool App::SetGripTorques(DVC::REAL torques[4]){
+  for (int i=0; i< 4; i++){
+    m_torques[i] = torques[i];
+  }
+
+  return true;
+}
+
+void App::SetPalmVelocity(DVC::REAL x,DVC::REAL y, DVC::REAL rot){
+  if (palmController){
+    DVC::Vector<DVC::REAL> q(3);
+    q[0] = x;
+    q[1] = y;
+    q[2] = rot;
+    palmController->SetVel(q);
+  }
+}
+
+const DVC::Vector<DVC::REAL>& App::GetPalmPos(){
+  return palm->GetQ();
 }
 
 bool App::Init(){
@@ -64,11 +93,26 @@ bool App::Init(){
     return false;
   }
 
-  /*Enable all PD controllers*/
-  for (unsigned int i=0; i<4; i++)
+  /*
+    Enable all PD controllers
+    for (unsigned int i=0; i<4; i++)
     gripController[i]->TogglePD(true);
 
-  GoToPartCG();
+    GoToPartCG();
+  */
+
+  DVC::REAL	t[4] = {2,0,-2,0.0};
+
+  SetGripTorques(t);
+
+  /* 
+     Example of how to move the base
+     Because it is position controlled you have to move it very
+     slowly, or else the joints will explode and dVC will crash.
+  */
+  DVC::Vector<DVC::REAL> basePos = GetPalmPos();
+  SetPalmVelocity( 0 , 0.005 , 0);
+
   return true;
 }
 
@@ -83,9 +127,11 @@ bool App::GetBodies(){
       return false;
   }
 
-  if (!part){
-    if (!sim->GetBodyByNameMutable(*partName, part));
-  }
+  if (!part)
+    {
+      if (!sim->GetBodyByNameMutable(*partName, part))
+	return false;
+    }
   
   for (int i = 0; i < 4; i++){
     if (!grip[i]){
@@ -98,8 +144,15 @@ bool App::GetBodies(){
 }
 
 bool App::AddControllers(){
+
   if (!GetBodies())
     return false;
+
+  if (palmController){
+    sim->RemoveAllBodyControllersByName(*palmName);
+  }
+  
+  palmController = new PalmControl(palm);  
   
   for (int i = 0; i < 4; i++){
     if (gripController[i]){
@@ -112,7 +165,16 @@ bool App::AddControllers(){
   return sim->SetBodyControllerByName(*gripName[0], *gripController[0]) &&
     sim->SetBodyControllerByName(*gripName[1], *gripController[1]) &&
     sim->SetBodyControllerByName(*gripName[2], *gripController[2]) &&
-    sim->SetBodyControllerByName(*gripName[3], *gripController[3]);
+    sim->SetBodyControllerByName(*gripName[3], *gripController[3]) &&
+    sim->SetBodyControllerByName(*palmName, *palmController);
+}
+
+void App::PreStep()
+{
+  for (unsigned int i=0; i < 4; i++)
+    {
+      gripController[i]->SetTorque( m_torques[i]);
+    }
 }
 
 /*
@@ -211,12 +273,12 @@ void App::PostStep(){
     
   }
 }
-
-void App::GoToPartCG(){
-
-  DVC::Vector<DVC::REAL> partQ = part->GetQ();
-
-  /* Grip */
-  for (unsigned int i=0; i<4; i++)
-    gripController[i]->SetPDTarget(partQ[0], partQ[1]);
-}
+//
+//void App::GoToPartCG(){
+//
+//  DVC::Vector<DVC::REAL> partQ = part->GetQ();
+//
+//  /* Grip */
+//  for (unsigned int i=0; i<4; i++)
+//    gripController[i]->SetPDTarget(partQ[0], partQ[1]);
+//}

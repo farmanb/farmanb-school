@@ -7,7 +7,23 @@ namespace DVC{
     class Vector;
 }
 
-class GripControl : public DVC::ForceController {
+class GripControl : public DVC::ForceController
+{
+public:
+	GripControl();
+	~GripControl();
+	void GetForce(DVC::REAL t, 
+		DVC::Vector<DVC::REAL> & outForce, 
+		const DVC::Vector<DVC::REAL> & pos, 
+		const DVC::Vector<DVC::REAL> & nu) const;
+	void SetTorque(DVC::REAL t);
+
+ private:
+	DVC::REAL m_torque;
+
+};
+
+/*class GripControl : public DVC::ForceController {
  public:
   GripControl();
   
@@ -30,4 +46,4 @@ class GripControl : public DVC::ForceController {
   DVC::REAL m_pdTarget[2];
   bool m_pdEnabled;
 };
-
+*/
