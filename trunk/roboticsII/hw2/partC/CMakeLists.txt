@@ -10,6 +10,7 @@ set(APP_SRCS
   App.cpp
   GripControl.cpp
   BallController.cpp
+  PalmControl.cpp
   )
 
 set(APP_LIBRARIES
