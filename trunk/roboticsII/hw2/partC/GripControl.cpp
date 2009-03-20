@@ -23,7 +23,7 @@ void GripControl::GetForce(DVC::REAL t,
   
   outForce[0] = 0; /*X force */
   outForce[1] = 0; /*Y force */
-  outForce[2] = 0; /* Theta angular force*/
+  outForce[2] = m_torque; /* Theta angular force*/
   
   /*If the PD controller is enabled, add the PD control force.
    The PD controller is implemented as a spring with damping.*/
