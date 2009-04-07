@@ -60,7 +60,7 @@ class GripControl : public DVC::ForceController {//, public DVC::PositionControl
   void SetC(DVC::REAL c);
   void setForce(DVC::REAL x, DVC::REAL y);
   
-void GripControl::SetTorque(DVC::REAL t);
+  void SetTorque(DVC::REAL t);
 
 
  private:
