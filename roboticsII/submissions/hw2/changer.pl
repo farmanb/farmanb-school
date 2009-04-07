@@ -67,9 +67,9 @@ while ($rcs = readdir $dir){
 			$geomFile = catfile($geomPath, $geomFile);
 			$oldGeom  = catfile($geomPath, $oldGeom);
 			#print "rename from: \n\t$oldGeom to \n\t$geomFile\n";
-			#if (!rename $oldGeom, $geomFile){
-			#print "Error:  Rename from $oldGeom to $geomFile failed\n";
-			#}
+			if (!rename $oldGeom, $geomFile){
+			    print "Error:  Rename from $oldGeom to $geomFile failed\n";
+			}
 		    }
 		}
 
@@ -83,12 +83,17 @@ while ($rcs = readdir $dir){
 			die "Can not open $geomCMake.tmp for input\n";
 		    while (my $input = <$infh>){
 			chomp $input;
-			if ($input =~ s/^(.*?)(.pdat)$/$1-$rcs$2/){
+			if ($input !~ /$rcs/ && 
+			    $input =~ s/(\w+)(.pdat)/$1-$rcs$2/g){
 			    #TODO: write the changes and rename the new
 			    #CMake file so it has the same name as the old one
 			}
+			print $outfh "$input\n";
 		    }
 		    #print "rename from:\n\t$geomCMake.tmp to\n\t$geomCMake\n";
+		    if (!rename "$geomCMake.tmp", $geomCMake){
+			print "Error:  Rename from $geomCMake.tmp to $geomCMake failed\n";
+		    }
 		}
 		else{
 		    #TODO: Might want to throw an error here..
@@ -108,18 +113,20 @@ while ($rcs = readdir $dir){
 		    while (my $input = <$infh>){
 			chomp $input;
 			#Change the app name
-			if ($input =~ s/'($oldApp)'/$app/){
-			    #print "1: $1\n$input\n";
+			if ($input !~ /$rcs/){
+			    $input =~ s/'($oldApp)'/$app/;
 			}
 			
 			#Change the scene name
-			if ($input =~ s/'($oldScene)'/$scene/i){
-			    #print "1: $1\n$input\n";
+			if ($input !~ /$rcs/){
+			    $input =~ s/'($oldScene)'/$scene/i;
 			}
 
-			if ($input =~ s/'(.*?)(.pdat)'/$1-$rcs$2/){
-			    #print "$input\n";
+			#Change the names of the geom files.
+			if ($input !~ /$rcs/){
+			    $input =~ s/'(.*?)(.pdat)'/$1-$rcs$2/;
 			}
+			print $outfh "$input\n";
 		    }
 		    close $infh;
 		    close $outfh;
@@ -140,17 +147,21 @@ while ($rcs = readdir $dir){
 		    while (my $input = <$infh>){
 			chomp $input;
 			#Change the app name
-			if ($input =~ s/($oldApp)/$app/){
-			    #print "1: $1\n$input\n";
+			if ($input !~ /$rcs/){
+			    $input =~ s/($oldApp)/$app/;
 			}
 			
 			#Change the scene name
-			if ($input =~ s/($oldXml)/$xml/i){
-			    #print "1: $1\n$input\n";
+			if ($input !~ /$rcs/){
+			    $input =~ s/($oldXml)/$xml/i;
 			}
+			print $outfh "$input\n";
 		    }
 		    
 		    #print "rename from:\n\t $cmakelist.tmp to\n\t$cmakelist\n";
+		    if (!rename "$cmakelist.tmp", $cmakelist){
+			print "Error:  Rename from $cmakelist.tmp to $cmakelist failed\n";
+		    }
 
 		    close $infh;
 		    close $outfh;
