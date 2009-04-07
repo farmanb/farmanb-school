@@ -18,12 +18,12 @@ while ($rcs = readdir $dir){
     }
     
     #Create the absolute path to each of the folders
-    my $path = catfile($root, $rcs);
+    my $rcsPath = catfile($root, $rcs);
     
     #Iterate through the directories for each RCS id.
-    if (-d $path){
-	opendir my $fh, $path or
-	    die "Error:  Can not open directory: $path\n";
+    if (-d $rcsPath){
+	opendir my $fh, $rcsPath or
+	    die "Error:  Can not open directory: $rcsPath\n";
 
 	while (my $part = readdir $fh){
 	    #Discard ., .., .svn, etc.
@@ -32,7 +32,7 @@ while ($rcs = readdir $dir){
 	    }
 	    
 	    #Expand the path to include the part
-	    $path = catfile($path, $part);
+	    my $path = catfile($rcsPath, $part);
 	    if (-d $path && $path =~ /part(A|B|C)/){
 		
 		#Create names for files, scenes, etc.
@@ -40,7 +40,7 @@ while ($rcs = readdir $dir){
 		my $oldScene = "hw2$1";
 		my $app = "$oldApp-$rcs";
 		my $scene = "$oldScene-$rcs";
-		
+	       
 		my $cmakelist = catfile($path, "CMakeLists.txt");
 		
 		my $oldXml = "HW2Scene-$1.xml";
@@ -114,17 +114,17 @@ while ($rcs = readdir $dir){
 			chomp $input;
 			#Change the app name
 			if ($input !~ /$rcs/){
-			    $input =~ s/'($oldApp)'/$app/;
+			    $input =~ s/'($oldApp)'/'$app'/;
 			}
 			
 			#Change the scene name
 			if ($input !~ /$rcs/){
-			    $input =~ s/'($oldScene)'/$scene/i;
+			    $input =~ s/'($oldScene)'/'$scene'/i;
 			}
 
 			#Change the names of the geom files.
 			if ($input !~ /$rcs/){
-			    $input =~ s/'(.*?)(.pdat)'/$1-$rcs$2/;
+			    $input =~ s/'(.*?)(.pdat)'/'$1-$rcs$2'/;
 			}
 			print $outfh "$input\n";
 		    }
@@ -153,7 +153,7 @@ while ($rcs = readdir $dir){
 			
 			#Change the scene name
 			if ($input !~ /$rcs/){
-			    $input =~ s/($oldXml)/$xml/i;
+			    $input =~ s/($oldXml)/$xml/ig;
 			}
 			print $outfh "$input\n";
 		    }
