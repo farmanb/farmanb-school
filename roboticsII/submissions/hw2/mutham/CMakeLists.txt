@@ -1,1 +1,1 @@
-add_subdirectory(partC)
+add_subdirectory(partA)
