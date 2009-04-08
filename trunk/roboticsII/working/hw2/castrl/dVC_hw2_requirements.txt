@@ -1,0 +1,114 @@
+*****************************************************************************************
+*				Homework 2						*
+*					 						*
+*In this homework you will explore grasping and dexterous manipulation.                 *
+*****************************************************************************************
+
+
+This homework will be done in **2D**, not 3D.  
+Directions for getting 2D working are included below.
+
+
+Part A:
+     This part takes place in a vertical plane above a slippery support surface.
+     The scene contains an object and a hand.
+     
+     Your task is to control the hand to achieve form closure of the object and
+     then place it back on the surface in its original position and orientation.
+
+Part B:
+     This part takes place in a vertical plane above a rough support surface. The
+     scene contains a hand, three objects, and three pedestals; bronze, silver,
+     and gold.
+       
+     Your task is to grasp each part and place it on a pedestal.  Take notice of
+     the fact that the pedestals are *not* anchored to the ground.  To get full
+     credit, one part must be at rest on top of each pedestal.
+
+Part C:
+      This part takes place in a vertical plane above a rough support surface.  The
+      scene contains a hand, four objects, and a ball.
+
+      Your task is to stack as many parts on top of the first part (located at (0,0))
+      as you can.  To make this challenging, the ball will shoot at the stack of parts
+      periodically.  If you want to make your stack higher, you can add parts to the
+      scene by copying and pasting the geometry of the part in the xml scene.  Just
+      make sure you change the name after pasting.
+
+
+*******************
+*Setting up DVC 2D*
+*******************
+
+1)  Get the code.
+
+    You only need to do this if you ONLY checked out the experimental branch of dvc.  
+You can check this by looking inside the directory where you placed the dvc source code.  
+If along with the experimental folder there is a trunk folder, then you have dvc 2d and you can skip this step.  
+Otherwise, check out (using TortoiseSVN on Windows or 'svn co' on Unix/Linux) the following repo:
+
+    https://dvc.svn.sourceforge.net/svnroot/dvc/trunk
+
+2)  Provide PATH to dvc
+
+    
+    Inside your dvc3 folder, from the libraries folder, copy the entire pathlib directory into
+
+    ../trunk/dvc-2d/libraries/
+
+3)  Configure
+    
+    Place the hw2 folder containing the files for the homework into the examples folder (../trunk/dvc-2d/examples/)
+
+    Inside the examples folder, open up CMakeLists.txt and add the following line:
+
+   	  add_subdirectory(hw2)    
+
+    Open CMake and set the source folder to the dvc-2d folder (inside the trunk folder).  Set the build folder to be ../dvc-2d/build
+
+4) Build
+   
+   Windows:   
+      Open up the dvc.sln solution file inside the build folder and compile.
+
+  Linux/Unix:
+      execute make inside the build directory.
+
+****************************************
+*Some Notes on Completing the Homework:*
+****************************************
+
+Provided to you is the skeleton structure of the code and a small example of a force controller works.
+If you take a look at the App class included you'll notice there is a function 'GoToPartCG.'  
+This demonstrates how you can move the hand, but is not how you should solve the problem.  
+You will need to implement an intelligent controller to coordinate the movement of the hand.  
+The actual grip control code is located in the GripControl.h/cpp files.  
+Feel free to adjust the GripControl class however you'd like.  
+For example, you may wish to tune the K and C constants.  
+The best place to write your solution is in the PostStep (although you can place code elsewhere if you wish) method of the App class.
+You may also wish to write a new class to manage the controllers so that the code looks cleaner.  This is fine.
+
+*********************
+*Submitting the code*
+*********************
+
+Make sure any and ALL modifications are included in the submitted copy in the correct folders.
+When you submit, bundle the entire hw2 folder into a zip/rar archive or tarball with your RCS ID somewhere in the file name 
+(Note: This is the first part of your e-mail address, NOT your RIN.  For example, my RCS ID is farmab) and e-mail it to farmab@rpi.edu.
+	
+********************
+*Modifying the hand*
+********************
+
+I have included a small python script which will allow you to easily generate vertex files for the fingers if it is
+necessary to change the geometry of the hand.  The fingers are specified by the hw2-<part number>_finger.pdat files
+in the Geometry folder for each part.  Imagining the fingers as a rectangle with two half-spheres on each end, you
+can specify the radius of the spheres (dictating the size of the fingertips) and the length of the rectangle in the
+python script.  You should all have access to the school's RCS servers (or perhaps the CS servers if you have an
+account from labstaff).  There, python is installed and you can run this script to generate the vertex data files.
+from a unix terminal, simply modify the tipRadius and fingerLength values accordingly, then execute
+
+./finger.py > hw2-a_finger.pdat
+
+This will create a vertex file for you using those values.  Also,  python.org/download provides 
+a win32 implementation if you don't want to work on the RCS servers.
