@@ -1,81 +1,89 @@
-This is pdfTeXk, Version 3.1415926-1.40.9 (Web2C 7.5.7) (format=pdflatex 2009.3.8)  12 MAR 2009 12:44
+This is pdfTeXk, Version 3.1415926-1.40.9 (Web2C 7.5.7) (format=pdfetex 2009.5.1)  17 MAY 2009 08:35
 entering extended mode
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**./resume.tex
-(./resume.tex
-LaTeX2e <2005/12/01>
-Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
-yphenation, loaded.
-(./res.cls
-Document Style `res' <26 Sep 89>.
-Document Class: res 2000/05/19 v1.4b Resume class
-(/usr/share/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2005/09/16 v1.4f Standard LaTeX document class
-(/usr/share/texmf-dist/tex/latex/base/size10.clo
-File: size10.clo 2005/09/16 v1.4f Standard LaTeX file (size option)
-)
-\c@part=\count79
-\c@section=\count80
-\c@subsection=\count81
-\c@subsubsection=\count82
-\c@paragraph=\count83
-\c@subparagraph=\count84
-\c@figure=\count85
-\c@table=\count86
-\abovecaptionskip=\skip41
-\belowcaptionskip=\skip42
-\bibindent=\dimen102
-)
-No auxiliary output files.
+**./resume.pdf
+(./resume.pdf
+Missing character: There is no Ú in font cmr10!
+Missing character: There is no Õ in font cmr10!
+Missing character: There is no Û in font cmr10!
+Missing character: There is no ¶ in font cmr10!
+Missing character: There is no ÷ in font cmr10!
+Missing character: There is no ¯ in font cmr10!
+Missing character: There is no Ğ in font cmr10!
+Missing character: There is no Î in font cmr10!
+Missing character: There is no ï in font cmr10!
+Missing character: There is no ¤ in font cmr10!
+Missing character: There is no Î in font cmr10!
+Missing character: There is no Ó in font cmr10!
+Missing character: There is no ± in font cmr10!
+Missing character: There is no  in font cmr10!
+Missing character: There is no ¸ in font cmr10!
+Missing character: There is no Ú in font cmr10!
+Missing character: There is no ¤ in font cmr10!
+Missing character: There is no ã in font cmr10!
+Missing character: There is no ™ in font cmr10!
+Missing character: There is no – in font cmr10!
+Missing character: There is no ‘ in font cmr10!
+Missing character: There is no „ in font cmr10!
+Missing character: There is no € in font cmr10!
+Missing character: There is no ı in font cmr10!
+Missing character: There is no ï in font cmr10!
+Missing character: There is no » in font cmr10!
+Missing character: There is no ¢ in font cmr10!
+Missing character: There is no ù in font cmr10!
+Missing character: There is no Ò in font cmr10!
+Missing character: There is no ¾ in font cmr10!
+Missing character: There is no ’ in font cmr10!
+Missing character: There is no Á in font cmr10!
+Missing character: There is no Å in font cmr10!
+Missing character: There is no  in font cmr10!
+Missing character: There is no İ in font cmr10!
+Missing character: There is no ı in font cmr10!
+Missing character: There is no ö in font cmr10!
+Missing character: There is no ‹ in font cmr10!
+Missing character: There is no “ in font cmr10!
+Missing character: There is no ³ in font cmr10!
+Missing character: There is no « in font cmr10!
+Missing character: There is no Ÿ in font cmr10!
+Missing character: There is no Ë in font cmr10!
+Missing character: There is no ² in font cmr10!
+Missing character: There is no ² in font cmr10!
+Missing character: There is no ¸ in font cmr10!
+Missing character: There is no Ÿ in font cmr10!
+Missing character: There is no Ä in font cmr10!
+Missing character: There is no Ì in font cmr10!
+Missing character: There is no ’ in font cmr10!
+Missing character: There is no ³ in font cmr10!
+Missing character: There is no “ in font cmr10!
+Missing character: There is no ù in font cmr10!
+Missing character: There is no Å in font cmr10!
+Missing character: There is no » in font cmr10!
+Missing character: There is no « in font cmr10!
+Missing character: There is no µ in font cmr10!
+Missing character: There is no Ÿ in font cmr10!
+Missing character: There is no  in font cmr10!
+Missing character: There is no ğ in font cmr10!
+Missing character: There is no § in font cmr10!
+Missing character: There is no ‘ in font cmr10!
+Missing character: There is no ç in font cmr10!
 
-\tabular@text=\toks14
-\tabular@head=\toks15
-\tabular@tail=\toks16
-\@ta=\toks17
-\undefined@token=\toks18
-\sectionwidth=\dimen103
-\sectionskip=\skip43
-\resumewidth=\dimen104
-\@columnwidth=\dimen105
-\c@numberofcolumns=\count87
-)
-No file resume.aux.
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 18.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 18.
-[1
+./resume.pdf:9: Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   ^^A
+l.9 ...x²¸ŸÄY^^VÌ’hRd³`^^V^^W“E3ùÅ»h«µŸDğ§I‘yç^^A
+                                                  ?¯üYêUº«zÿ·Å‡“÷‹“?N¢I^^Hÿà...
 
-{//var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] ) 
-Here is how much of TeX's memory you used:
- 291 strings out of 95069
- 3059 string characters out of 1180694
- 52422 words of memory out of 1500000
- 3549 multiletter control sequences out of 10000+50000
- 5252 words of font info for 19 fonts, out of 1200000 for 2000
- 28 hyphenation exceptions out of 8191
- 29i,8n,19p,244b,178s stack positions out of 5000i,500n,10000p,200000b,5000s
-</usr/share/texmf-dist/f
-onts/type1/bluesky/cm/cmbx10.pfb></usr/share/texmf-dist/fonts/type1/bluesky/cm/
-cmbx12.pfb></usr/share/texmf-dist/fonts/type1/bluesky/cm/cmr10.pfb></usr/share/
-texmf-dist/fonts/type1/bluesky/cm/cmsl10.pfb></usr/share/texmf-dist/fonts/type1
-/bluesky/cm/cmti10.pfb>
-Output written on resume.pdf (1 page, 44402 bytes).
-PDF statistics:
- 26 PDF objects out of 1000 (max. 8388607)
- 0 named destinations out of 1000 (max. 131072)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+? 
+./resume.pdf:9: Emergency stop.
+<inserted text> 
+                $
+<to be read again> 
+                   ^^A
+l.9 ...x²¸ŸÄY^^VÌ’hRd³`^^V^^W“E3ùÅ»h«µŸDğ§I‘yç^^A
+                                                  ?¯üYêUº«zÿ·Å‡“÷‹“?N¢I^^Hÿà...
+End of file on the terminal!
 
+./resume.pdf:9:  ==> Fatal error occurred, no output PDF file produced!
