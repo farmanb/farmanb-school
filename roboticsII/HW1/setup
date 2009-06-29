@@ -1,2 +1,0 @@
- tar -cf e.tar castrl/ cooper2/ finegm/ huntd2/ klappa2/ kuhlmm/ lim4/ mutham/ royes/ wasonj/ zhangl15/ spineb/
-cp e.tar ~/work/dvc/experimental/dvc3/examples/
