@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+NUM="6"
+TEX="hw$NUM.tex"
+PDF="hw$NUM.pdf"
+PDFDIR=../pdf/
+SCRIPT="hw$NUM.pl"
+
+./$SCRIPT > $TEX && texi2pdf $TEX
+mv $PDF $PDFDIR
+
+rm -fr *.log
+rm -fr *.aux
+rm -fr *.tex

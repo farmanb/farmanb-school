@@ -1,0 +1,462 @@
+\documentclass[12pt]{article}
+\usepackage{amssymb}
+\author{Blake Farman}
+\title{Math-237: Homework 2}
+
+\begin{document}
+\maketitle
+\newpage
+\section*{3.1}
+\subsection*{2}
+Newton
+\begin{eqnarray*}
+P_n(x) & = & f[x_1] + f[x_1, x_2](x-1) + f[x_1, x_2, x_3](x-x_1)(x-x_2)\\
+& + & f[x_1, x_2, x_3, x_4](x-x_1)(x-x_2)(x-x_3) + \ldots\\
+& + & f[x_1, \ldots, x_n](x-x_1)\ldots(x-x_n)
+\end{eqnarray*}
+
+\begin{eqnarray*}
+  f[x_1] & = & f(x_1)\\
+  f[x_1, x_2] & = & \frac{f(x_2) - f(x_1)}{x_2 - x_1}\\
+  f[x_1, x_2, x_3] & = & \frac{\frac{f(x_3) - f(x_2)}{x_3 - x_2} - f[x_1, x_2]}{x_3 - x_1}\\
+  f[x_1, x_2, x_3] & = & \frac{f[x_3, x_4] - f[x_2, x_3]}{x_1-x_2}\\
+  & = & \frac{\frac{\frac{f(x_4) - f(x_3)}{x_4 - x_3} - \frac{f(x_3) - f(x_2)}{x_3 - x_2}}{x_4-x_2} - f[x_1, x_2, x_3]}{x_4 - x_1}\\
+\end{eqnarray*}
+
+Lagrange
+
+\[
+L_k(x) = \frac{(x-x_1)\ldots(x-x_{k-1})(x-x_{k+1})\ldots(x-x_n)}
+   {
+     (x_k-x_1)
+     \ldots
+     (x_k-x_{k-1})
+     (x_k-x_{k+1})
+     \ldots
+     (x_k-x_n)
+   }\\
+\]
+\[P_{n-1}(x) = \sum_{i=1}^{n}y_iL_k(x)\]
+
+\subsubsection*{a)}
+\[(0,1), (2,3), (3,0)\]
+\begin{eqnarray*}
+  P_2(x) & = & f[x_1] + f[x_1, x_2](x-1) + f[x_1, x_2, x_3](x-x_1)(x-x_2)\\ 
+  & = & 1 + \frac{2 - 1}{2}(x) + \frac{\frac{3-3}{2-0} - \frac{1}{2}}{3-0}(x)(x - 2)\\
+  & = & 1 + \frac{1}{2}(x) - \frac{1}{2}(x)(x-2)
+\end{eqnarray*}
+
+\begin{eqnarray*}
+  P_2(x) & = & \frac{(x-2)(x-3)}{(-2)(-3)} + \frac{-3(x)(x-3)}{(2)(2-3)}\\
+  & = & \frac{(x-2)(x-3)}{6} - \frac{3(x)(x-3)}{2}\\
+\end{eqnarray*}
+\subsubsection*{b)}
+\[(-1,0), (2,1), (3,1), (5,2)\]
+\begin{eqnarray*}
+  P_3(x) & = & f[x_1] + f[x_1, x_2](x-1) + f[x_1, x_2, x_3](x-x_1)(x-x_2) \\
+  & + &f[x_1, x_2, x_3, x_4](x-x_1)(x-x_2)(x-x_3)\\
+  & = & 0 + 
+  \frac{1-0}{2 - (-1)}(x-(-1)) + 
+  \frac{
+    \frac{1 - 1}{3 - 2} -
+    \frac{1}{3}}{3 - (-1)}(x-(-1))(x-2) + 
+  \frac{\frac{\frac{2 - 1}{5-3} - 
+      \frac{1 - 1}{3 - 2}}{5-2} +
+    \frac{1}{12}}{5-(-1)}\\
+  & = & \frac{1}{3}(x+1) - \frac{1}{12}(x+1)(x-2) + \frac{\frac{2}{12} - \frac{1}{12}}{6}(x+1)(x-2)(x-3)\\
+  & = & \frac{1}{3}(x+1) - \frac{1}{12}(x+1)(x-2) + \frac{1}{6}(\frac{3}{12})(x+1)(x-2)(x-3)\\
+  & = & \frac{1}{3}(x+1) - \frac{1}{12}(x+1)(x-2) + \frac{1}{24}(x+1)(x-2)(x-3)\\
+\end{eqnarray*}
+
+\begin{eqnarray*}
+  P_3(x) & = & \frac{(x+1)(x-3)(x-5)}{3(-1)(-3)} + \frac{(x+1)(x-2)(x-5)}{4(1)(-2)} + \frac{2(x+1)(x-2)(x-3)}{6(3)(2)}\\
+  & = & \frac{(x+1)(x-3)(x-5)}{9} - \frac{(x+1)(x-2)(x-5)}{8} + \frac{(x+1)(x-2)(x-3)}{18}\\
+\end{eqnarray*}
+\subsubsection*{c)}
+\[(0, -2), (2,1), (4,4)\]
+\begin{eqnarray*}
+  P_2(x) & = & f[x_1] + f[x_1, x_2](x-1) + f[x_1, x_2, x_3](x-x_1)(x-x_2)\\
+  & = & -2 + \frac{3}{2}(x - 0) + \frac{\frac{4-1}{4-2} - \frac{3}{2}}{6}(x-0)(x-2)\\
+  & = & -2 + \frac{3}{2}(x)\\
+\end{eqnarray*}
+
+\subsection*{6}
+(1,1), (2,3), (3,3), (4,4)
+
+\begin{eqnarray*}
+  P_3(x) & = & 1 + \frac{3-1}{2-1}(x-1) + \frac{\frac{3-3}{3-1} - 2}{3-1}(x-1)(x-2) + \frac{\frac{\frac{4-3}{4-3} - \frac{3-3}{3-2}}{4-2} + 1}{4-1}(x-1)(x-2)(x-3)\\
+  & = & 1 + 2(x-1) - (x-1)(x-2) + \frac{\frac{1}{2} + 1}{3}(x-1)(x-2)(x-3)\\
+  & = & 1 + 2(x-1) - (x-1)(x-2) + \frac{1}{2}(x-1)(x-2)(x-3)\\
+  P_5(x) & = &  P_3(x) + c_1O(x^4) + c_2O(x^5), c_2 \neq 0
+\end{eqnarray*}
+
+\((x-1), (x-2), (x-3), (x-4)\) are all \(O(x)\)
+
+
+\(\Rightarrow (x-1)(x-2)(x-3)(x-4)\) is \( O(x^4)\) and \((x-1)^2(x-2)(x-3)(x-4)\) is \(O(x^5)\). Thus,
+\[P_5(x) = P_3(x) + c_1(x-1)(x-2)(x-3)(x-4) + c_2(x-1)^2(x-2)(x-3)(x-4), c_2 \neq 0\]
+
+\subsection*{12}
+Let \(P_4(x)\) and \(P_3(x)\) be fourth- and third-degree polynomials, respectively, such that
+\begin{eqnarray*}
+P_4(x) & = & a_0x^4 + a_1x^3 + a_2x^2 + a_3x + a_4\\
+P_3(x) & = & b_0x^3 + b_1x^2 + b_2x + b_3\\
+\end{eqnarray*}
+where \[a_0 \neq 0, b_0 \neq 0\]\\
+
+Then, to say that these two polynomials intersect is to say
+\[P_4(x) = P_3(x)\]  
+Or, equivalently, \[P_4(x) - P_3(x) = 0\]  From the definitions of \(P_4\) and \(P_3\), 
+\[P_4(x) - P_3(x) = a_0x^4 + a_1x^3 + a_2x^2 + a_3x + a_4 - (b_0x^3 + b_1x^2 + b_2x + b_3)\]
+where 
+\[a_0 \neq 0, b_0 \neq 0\]
+Rearranging terms yields
+\[P_4(x) - P_3(x) = a_0x^4 + (a_1 - b_0)x^3 + (a_2 - b_1)x^2 + (a_3 - b_2)x + (a_4- b_3)\]
+Since \(a_0 \neq 0\), \(P_4(x) - P_3(x)\) is a fourth-degree polynomial.  
+It follows that since \(P_4(x) - P_3(x)\) is a fourth-degree polynomial, then it can have, at most, four roots.
+Equivalently, \(P_4(x)\) and \(P_3(x)\) can intersect at, at most, four points.  
+Therefore, it is not possible for a fourth-degree polynomial and a third-degree polynomial to intersect at five points.
+
+\subsection*{14}
+\subsubsection*{a)}
+\[(40,75), (50,63), (60,54)\]
+\begin{eqnarray*}
+  P_2(x) & = & 75 + \frac{63-75}{50-40}(x-40) + \frac{\frac{54-63}{60-50} + \frac{12}{10}}{60-40}(x-40)(x-50)\\
+  & = & 75 + \frac{-12}{10}(x-40) + \frac{\frac{-9}{10} + \frac{12}{10}}{20}(x-40)(x-50)\\
+  & = & 75 + \frac{-12}{10}(x-40) + \frac{3}{10}\frac{1}{20}(x-40)(x-50)\\
+  P_2(70) & = & 75 + \frac{-12}{10}(70-40) + \frac{\frac{3}{10}}{20}(70-40)(70-50)\\
+  & = & 75 + \frac{-12}{10}(30) + \frac{3}{10}\frac{1}{20}(30)(20)\\
+  & = & 75 -12(3) + (3)(3)\\
+  & = & 75 -36 + 9\\
+  & = & 48\\
+\end{eqnarray*}
+
+\subsubsection*{b)}
+\[(25,95), (40,75), (50,63), (60,54)\]
+
+\begin{eqnarray*}
+  f[x_1] & = & 95\\
+  f[x_1, x_2]  & = & \frac{75 - 95}{40-25}\\
+  & = & \frac{-20}{15}\\
+  & = & \frac{-4}{3}\\
+  f[x_1, x_2, x_3] & = & \frac{\frac{63-75}{50-40} + \frac{4}{3}}{50-25}\\
+  & = & (\frac{-12}{10} + \frac{4}{3})\frac{1}{25}\\
+  & = & \frac{-(3^2)(2^2) + 2^3(5)}{5(2)(3)}(\frac{1}{5(5)})\\
+  & = & \frac{-(3^2)(2) + (2^2)(5)}{(5)(3)}(\frac{1}{5(5)})\\
+  & = & \frac{-18 + 20}{5^3(3)}\\
+  f[x_1, x_2, x_3, x_4] & = & ((\frac{54-63}{60-50} - \frac{63-75}{50-40})(\frac{1}{60-40}) - \frac{2}{5^3(3)})(\frac{1}{60-25})\\
+  & = & ((\frac{-9}{10} - \frac{-12}{10})(\frac{1}{20}) - \frac{2}{5^3(3)})(\frac{1}{35})\\
+  & = & ((\frac{-3}{10}(\frac{1}{20}) - \frac{2}{5^3}{3})(\frac{1}{35})\\
+  & = & (\frac{3}{20(10)} - \frac{2}{5^3(3)})(\frac{1}{7(5)})\\
+  & = & \frac{3^2(5^3) - 2^4(5^2)}{2^3(5^6)(3)(7)}\\
+  & = & \frac{3^2(5) - 2^4}{2^3(5^4)(3)(7)}\\
+  P_3(x) & = & 95 - \frac{4}{3}(x-25) + \frac{-18 + 20}{5^3(3)}(x-25)(x-40)\\
+  & + &\frac{3^2(5) - 2^4}{2^3(5^4)(3)(7)}(x-25)(x-40)(x-50)\\
+  P_3(70) & = & 95 - \frac{4}{3}(70-25) + \frac{-18 + 20}{5^3(3)}(70-25)(70-40)\\
+  & + &\frac{3^2(5) - 2^4}{2^3(5^4)(3)(7)}(70-25)(70-40)(70-50)\\
+  & = & 95 - \frac{2^2}{3}(3^2(5)) + \frac{2}{5^3(3)}(3^2(5))(3(5)(2))\\
+  & + &\frac{3^2(5) - 2^4}{2^3(5^4)(3)(7)}(3^2(5))(3(5)(2))(2^2(5))\\
+  & = & 19(5) - \frac{2^2}{3}(3^2)(5) + \frac{2}{5^3(3)}(3^3)(5^2)(2)\\
+  & + &\frac{3^2(5) - 2^4}{2^3(5^4)(3)(7)}(3^3)(5^3)(2^3)\\
+  & = & 19(5) - (2^2)(3)(5) + \frac{2^2(3^2)}{5} + \frac{29}{(5)(7)}(3^2)\\
+  & = & \frac{19(5^2)(7) - (2^2)(3)(5^2)(7) + (2^2)(3^2)(7) + 29(3^2)}{5(7)}\\
+  & = & \frac{1738}{35} \approx 49.6571\\
+\end{eqnarray*}
+
+\section*{3.2}
+\subsection*{2}
+\subsubsection*{a)}
+\[(1,0), (2,ln(2)), (4, ln(4))\]
+\begin{eqnarray*}
+  P_2(x) & = & 0 + \frac{ln(2) -0}{2-1}(x-1) + \frac{\frac{ln(4) - ln(2)}{4-2} - ln(2)}{4-1}(x-1)(x-2)\\
+  & = & ln(2)(x-1) + \frac{\frac{log(\frac{4}{2})}{2} - ln(2)}{3}(x-1)(x-2)\\
+  & = & ln(2)(x-1) + \frac{\frac{log(2)}{2} - ln(2)}{3}(x-1)(x-2)\\
+  & = & ln(2)(x-1) - \frac{log(2)}{6}(x-1)(x-2)\\
+  & = & ln(2)(x-1)(1 - \frac{(x-2)}{6})\\
+\end{eqnarray*}
+\subsubsection*{b)}
+\begin{eqnarray*}
+  P_2(3) & = & ln(2)(3-1)(1 - \frac{(3-2)}{6})\\
+  & = & ln(2)(2)(1 - \frac{(1)}{6})\\
+  & = & ln(2)(2)(\frac{5}{6})\\
+  & = & ln(2)(\frac{5}{3})\\
+\end{eqnarray*}
+\subsubsection*{c)}
+\begin{eqnarray*}
+  f(x) & = & \ln(x)\\
+  |f(x) - P_2(x)| & = & \left|\frac{(x-1)(x-2)(x-4)f^{'''}(c)}{3!}\right|\\
+  f^{'}(x) & = & \frac{1}{x}\\
+  f^{''}(x) & = & \frac{-1}{x^2}\\\\
+  f^{'''}(x) & = & \frac{2}{x^3}\\\\
+  |f(x) - P_2(x)| & \leq & \left|\frac{(x-1)(x-2)(x-4)f^{'''}(1)}{3!}\right|\\
+  & = & \left|\frac{(x-1)(x-2)(x-3)(2)}{3!}\right|\\
+  & = & \left|\frac{(x-1)(x-2)(x-3)}{3}\right|\\
+  |f(3) - P_2(3)| & \leq & \left|\frac{(3-1)(3-2)(3-4)}{3}\right|\\
+  & = & \frac{2}{3}\\
+\end{eqnarray*}
+\subsubsection*{d)}
+\begin{eqnarray*}
+  |\frac{5}{3}\ln(2) - \ln(3)| & = & |\ln(\frac{2^{\frac{5}{3}}}{3})|\\
+  |2/3 - \ln(\frac{2^{\frac{5}{3}}}{3})| & \approx & .061\\
+\end{eqnarray*}
+\subsection*{4}
+\(x = 2k, k \leq 5, k \in \mathbb{N}\)\\
+\(n = 6\)
+\begin{eqnarray*}
+  f(x) & = & \frac{1}{x+5} = (x+5)^{-1}\\
+  f^{'}(x) & = & \frac{1}{x+5} = -(x+5)^{-2}\\
+  f^{''}(x) & = & \frac{1}{x+5} = 2!(x+5)^{-3}\\
+  f^{'''}(x) & = & \frac{1}{x+5} = -3!(x+5)^{-4}\\
+  f^{(iv)}(x) & = & \frac{1}{x+5} = 4!(x+5)^{-5}\\
+  f^{(v)}(x) & = & \frac{1}{x+5} = -5!(x+5)^{-6}\\
+  f^{(vi)}(x) & = & \frac{1}{x+5} = 6!(x+5)^{-7}\\
+  |f(x) - P(x)| & = & |\frac{(x-x_1)(x-x_2)(x-x_3)(x-x_4)(x-x_5)(x-x_6)f^{vi}(c)}{6!}|\\
+\end{eqnarray*}
+
+\(x_i \in \mathbb{N} \Rightarrow x-x_i < x, \forall x_i\)\\
+
+
+\begin{eqnarray*}
+  \Rightarrow |f(x) - P(x)| & \leq & \left|\frac{(x^6)f^{(vi)}(c)}{6!}\right|\\
+  & \leq & \left|\frac{x^6(6!)}{(6!)5^{7}}\right|\\
+  & = & \left|\frac{x^6}{5^{7}}\right|\\
+\end{eqnarray*}
+
+\(f^{vi}(c)\) maximized at \(c = 0\)\\
+\begin{eqnarray*}
+  \Rightarrow |f(1) - P(1)| & \leq & \left|\frac{(x^6)6!}{6!(5^7)}\right|\\
+  & = & \left|\frac{x^6}{5^{7}}\right|\\
+\end{eqnarray*}
+\subsubsection*{a)}
+\(x = 1\)
+\begin{eqnarray*}
+  |f(1) - P(1)| & \leq & \left|\frac{1}{5^{7}}\right|\\
+  & = & \frac{1}{5^7}\\
+\end{eqnarray*}
+\subsubsection*{b)}
+\(x = 5\)
+\begin{eqnarray*}
+  |f(1) - P(1)| & \leq & \left|\frac{5^6}{5^{7}}\right|\\
+  & = & \frac{1}{5}\\
+\end{eqnarray*}
+
+\section*{3.4}
+\subsection*{4}
+\begin{displaymath}
+  S(x) = \left\{
+  \begin{array}{lr}
+    4 + k_1x + 2x^2 - \frac{1}{6}x^3 \\
+    1 - \frac{4}{3}(x-1) + k_2(x-1)^2 - \frac{1}{6}(x-1)^3\\
+    1 + k_3(x-2) + (x-2)^2 - \frac{1}{6}(x-2)^3\\
+    \end{array}
+  \right.
+\end{displaymath}
+
+\(S_i(x_{i+1}) = y_{i+1}\), \(i \in [1,3]\)
+\begin{eqnarray*}
+  &\Rightarrow & S_1(1) = 1,\\
+  & & S_2(2) = 1\\
+\end{eqnarray*}
+
+\begin{eqnarray*}
+  S_1(1) & = & 4 + k_1 + 2 - \frac{1}{6}\\
+  & = & k_1 + 6 - \frac{1}{6}\\
+  & = & k_1 + \frac{36}{6} - \frac{1}{6}\\
+  & = & k_1 + \frac{35}{6}\\
+  \frac{6}{6} & = & k_1 + \frac{35}{6}\\
+  k_1 & = & \frac{-29}{6}\\
+  S_2(2) & = & 1 -4 \frac{4}{3} + k_2 - \frac{1}{6}\\
+  & = & 1 - \frac{8+1}{6} + k_2\\
+  1 & = & 1 - \frac{8+1}{6} + k_2\\
+  k_2 & = & \frac{3}{2}\\
+\end{eqnarray*}
+
+\begin{eqnarray*}
+  S_2^{'}(2) & = & S_3^{'}(2)\\
+  S_2^{'}(x) & = & \frac{-4}{3} + 2k_2(x-1) - \frac{1}{2}(x-1)^2\\
+  S_3^{'}(x) & = & k_3 + 2(x-2) - \frac{1}{2}(x-2)^2\\
+  S_2^{'}(2) & = & \frac{-4}{3} + 3 - \frac{1}{2}\\
+  & = & \frac{-8 + 18 - 3}{6}\\
+  & = & \frac{7}{6}\\
+  S_3^{'}(2) & = & k_3\\
+  \Rightarrow k_3 & = & \frac{7}{6}\\
+\end{eqnarray*}
+
+\begin{displaymath}
+  k = \left[
+    \begin{array}{lr}
+      \frac{-29}{6}\\
+      \frac{3}{2}\\
+      \frac{7}{6}\\
+    \end{array}
+    \right]
+\end{displaymath}
+
+\begin{eqnarray*}
+  S_1^{'}(x) & = & k_1 + 4x - \frac{1}{2}x^2\\
+  S_1^{''}(x) & = & 4 - x\\
+  S_1^{''}(0) & \neq & 0\\
+\end{eqnarray*}
+\(\Rightarrow\) not a natural spline.\\
+
+\begin{eqnarray*}
+  S_1^{'''}(x) & = & -1\\
+  S_3^{''}(x) & = & 2 - (x-2)\\
+  S_3^{'''}(x) & = & - 1\\
+\end{eqnarray*}
+
+\(\Rightarrow\) not-a-knot.\\
+\subsection*{8}
+\subsubsection*{a)}
+\((0,1), (2,3), (3,2)\)\\
+
+\[
+\begin{array}{ll}
+  a_1 = 1, & a_2 = 3\\
+  \delta_1 = 2, &  \delta_2 = 1\\
+  \Delta_1 = 2, & \Delta_2 = -1\\
+\end{array}
+\]
+
+\[
+\left[
+\begin{array}{ccc}
+  1 & 0 & 0\\
+  \delta_1 & 2(\delta_1 + \delta_2) & \delta_2\\
+  0 & 0 & 1\\
+\end{array}
+\right]
+\left[
+\begin{array}{c}
+  c_1\\
+  c_2\\
+  c_3\\
+\end{array}
+\right]
+=
+\left[
+\begin{array}{c}
+  0\\
+  3(\frac{\Delta_2}{\delta_2} - \frac{\Delta_1}{\delta_1})\\
+  0\\
+\end{array}
+\right]
+\]
+
+\[
+\left[
+\begin{array}{ccc}
+  1 & 0 & 0\\
+  2 & 2(2 + 1) & 1\\
+  0 & 0 & 1\\
+\end{array}
+\right]
+\left[
+\begin{array}{c}
+  c_1\\
+  c_2\\
+  c_3\\
+\end{array}
+\right]
+=
+\left[
+\begin{array}{c}
+  0\\
+  3(\frac{-1}{1} - \frac{2}{2})\\
+  0\\
+\end{array}
+\right]
+=
+\left[
+\begin{array}{c}
+  0\\
+  -6\\
+  0\\
+\end{array}
+\right]
+\]
+\(\Rightarrow c_1 = c_3 = 0\), \(6c_2 = -6\)\\
+\(\Rightarrow c_2 = -1\)\\
+
+\[
+\begin{array}{cc}
+  d_1 = \frac{c_2 - c_1}{3(\delta_1)}, & b_1 = \frac{\Delta_1}{\delta_1} - (c_1)(\delta_1) - (d_1)(\delta_1)^2\\
+  d_2 = \frac{c_3 - c_2}{3(\delta_2)}, & b_2 = \frac{\Delta_2}{\delta_2} - (c_2)(\delta_2) - (d_2)(\delta_2)^2\\
+\end{array}
+\]
+
+\[
+\begin{array}{cc}
+  d_1 = \frac{-1 - 0}{3(2)}, & b_1 = \frac{2}{2} - (0)(2) - (d_1)(2)^2\\
+  d_2 = \frac{0 - -1}{3(1)}, & b_2 = \frac{-1}{1} - (-1)(1) - (d_2)1^2\\
+\end{array}
+\]
+
+\[
+\Rightarrow
+\begin{array}{cc}
+  d_1 = \frac{-1}{6}, & b_1 = 1 - \frac{-2}{3} = \frac{5}{3}\\
+  d_2 = \frac{1}{3}, & b_2 = - \frac{1}{3}\\
+\end{array}
+\]
+
+\begin{displaymath}
+  S(x) = \left\{
+  \begin{array}{c}
+    1 + \frac{5}{3}(x) - \frac{1}{6}(x)^3\\
+    3 - \frac{1}{3}(x-2) -(x-2)^2 + \frac{1}{3}(x-2)^3\\
+    \end{array}
+  \right.
+\end{displaymath}
+
+\subsubsection*{b)}
+\((0,0),(1,1),(2,6)\)\\
+\[
+\begin{array}{ll}
+  a_1 = 0, & a_2 = 1\\
+  \delta_1 = 1, &  \delta_2 = 1\\
+  \Delta_1 = 1, & \Delta_2 = 5\\
+\end{array}
+\]
+
+\[
+\left[
+\begin{array}{ccc}
+  1 & 0 & 0\\
+  1 & 4 & 1\\
+  0 & 0 & 1\\
+\end{array}
+\right]
+\left[
+\begin{array}{c}
+  0\\
+  3\\
+  0\\
+\end{array}
+\right]
+=
+\left[
+\begin{array}{c}
+  0\\
+  12\\
+  0\\
+\end{array}
+\right]
+\]
+
+\[
+\begin{array}{cc}
+  d_1 = 1, & b_1 =  0\\
+  d_2 = -1, & b_2 = 3\\
+\end{array}
+\]
+
+\begin{displaymath}
+  S(x) = \left\{
+  \begin{array}{c}
+    x^3\\
+    1 + 3(x-1) + 3(x-1)^2  - (x-1)^3\\
+    \end{array}
+  \right.
+\end{displaymath}
+\end{document}

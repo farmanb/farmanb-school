@@ -1,0 +1,1 @@
+The difference occurs because of the noise added to the second image.

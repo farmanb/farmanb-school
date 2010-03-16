@@ -1,0 +1,24 @@
+\documentclass[12pt]{article}
+\usepackage[normalem]{ulem}
+\usepackage{amssymb}
+
+\begin{document}
+For \(f(x) = e^{2x}\), the Taylor series is \[\sum_{n=0}^{\infty} \frac{(2x)^{n}}{n!}\] As \(n\rightarrow\infty\), \(\frac{(2x)^{n}}{n!} \rightarrow 0\).\\
+
+\(\underline{Pf:}\)
+
+Let \(m\) be any integer greater than \(2\left|2x\right|\).  Then, for all \(k \geq m, \left|2x\right| / k < \frac{1}{2}\), and
+\begin{eqnarray*}
+\left|\frac{2x^{n}}{n!}\right| & = & \left(\frac{\left|2x\right|}{m!}^{m}\right)\left(\frac{\left|2x\right|}{m+1}\right)\ldots\left(\frac{\left|2x\right|}{n}\right)\\
+& \leq & \left(\frac{\left|2x\right|^{m}}{m!}\right)\left(\frac{1}{2^{n-m}}\right)\\
+& = & \left(\frac{\left|2x\right|^{m}}{m!}\right)\left(\frac{1}{2^{n-m}}\right)\frac{2^m}{2^m}\\
+& = & \left(\frac{\left|4x\right|^{m}}{m!}\right)\left(\frac{1}{2^{n}}\right)\\
+\Rightarrow\left|\frac{2x^{n}}{n!}\right| & \leq & \left(\frac{\left|4x\right|^{m}}{m!}\right)\left(\frac{1}{2^{n}}\right)\\
+\end{eqnarray*}
+
+Since the first factor on the right is independent of \(n\), whereas \(1/2^n\rightarrow 0\) for \(n \rightarrow \infty\), then \(\frac{(2x)^{n}}{n!} \rightarrow 0\)\\
+
+Since the terms of \(A_{N}(x) \rightarrow 0\), as they do they begin to suffer more and more from rounding error, eventually causing some \((N+1)^{st}\) term to be so small that when it is added to \(A_{N}(x)\), we have indistinguishable sums \[A_{N}(x) = A_{N+1}(x)\]
+
+For negative values of x, we end up with alternating signs, causing these relatively equivalent terms to actually cancel each other out.  This results in very poor estimates, such as that for \(e^{-30} = -3.0668e^{-05}\), which is clearly wrong since \(e^{x} > 0, \forall x \in \mathbb{R}\).
+\end{document}

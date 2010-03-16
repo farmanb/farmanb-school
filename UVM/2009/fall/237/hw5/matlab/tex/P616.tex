@@ -1,0 +1,84 @@
+
+% This LaTeX was auto-generated from an M-file by MATLAB.
+% To make changes, update the M-file and republish this document.
+
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{color}
+
+\sloppy
+\definecolor{lightgray}{gray}{0.5}
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+    
+    \begin{verbatim}
+%a
+[y,Error] = forwardEuler(@(t,y) t + y,0,1,1/4,0, @(t) exp(t) - t - 1)
+%b
+[y,Error] = forwardEuler(@(t,y) t - y,0,1,1/4,0, @(t) exp(-t) + t -1)
+%c
+[y,Error] = forwardEuler(@(t,y) 4*t - 2*y,0,1,1/4,0, @(t) exp(-2*t) +2*t - 1)
+\end{verbatim}
+
+        \color{lightgray} \begin{verbatim}
+y =
+
+         0
+    0.0625
+    0.2031
+    0.4414
+    0.8018
+
+
+Error =
+
+         0
+    0.0285
+    0.0544
+    0.0744
+    0.0835
+
+
+y =
+
+         0
+    0.0625
+    0.1719
+    0.3164
+    0.4873
+
+
+Error =
+
+         0
+    0.0337
+    0.0653
+    0.0940
+    0.1194
+
+
+y =
+
+         0
+    0.2500
+    0.6250
+    1.0625
+    1.5312
+
+
+Error =
+
+         0
+    0.1435
+    0.2571
+    0.3394
+    0.3959
+
+\end{verbatim} \color{black}
+    
+
+
+\end{document}
+    
