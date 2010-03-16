@@ -1,0 +1,40 @@
+
+% This LaTeX was auto-generated from an M-file by MATLAB.
+% To make changes, update the M-file and republish this document.
+
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{color}
+
+\sloppy
+\definecolor{lightgray}{gray}{0.5}
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+    
+    \begin{verbatim}
+function [x,e] = P432(A,b)
+
+%Get the dimensions of A
+[m,n] = size(A);
+
+%QR Factorization
+[Q,R] = qr(A);
+
+%Set up Rx = d
+d = Q'*b;
+
+%Solve
+x = R(1:n,1:n)\d(1:n);
+
+%Calculate the error
+e = norm(b - A*x);
+
+end
+\end{verbatim}
+
+
+
+\end{document}
+    

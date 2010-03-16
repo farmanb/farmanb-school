@@ -1,0 +1,13 @@
+#Brusselator
+
+x' = a - b*x + x^2*y - x
+y' = b*x - x^2*y
+
+x(0) = 0.9
+y(0) = 0.9
+
+param a=1, b=1
+
+@MAXSTOR=1000000
+
+done

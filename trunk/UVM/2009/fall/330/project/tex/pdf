@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+TEX="project.tex"
+PDF="project.pdf"
+PDFDIR=../pdf/
+SCRIPT="project.pl"
+
+./$SCRIPT > $TEX && texi2pdf $TEX
+mv $PDF $PDFDIR
+
+rm -fr *.log
+rm -fr *.aux
+rm -fr *.tex

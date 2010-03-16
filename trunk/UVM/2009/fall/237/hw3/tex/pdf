@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+TEX="hw3.tex"
+PDF="hw3.pdf"
+PDFDIR=../pdf/
+SCRIPT="hw3.pl"
+
+./$SCRIPT > $TEX && texi2pdf $TEX
+mv $PDF $PDFDIR
+
+rm -fr *.log
+rm -fr *.aux
+rm -fr *.tex

@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+NUM="5"
+NAME="hw$NUM-273"
+PDFDIR=../pdf/
+SCRIPT="$NAME.pl"
+
+./$SCRIPT > $NAME.tex && texi2pdf $NAME.tex
+
+if [ ! -d ../pdf ]; then
+    mkdir ../pdf
+fi
+
+mv $NAME.pdf ../pdf
+
+rm -fr *.log
+rm -fr *.aux
+rm -fr *.tex
+rm -fr *~

@@ -1,0 +1,408 @@
+\documentclass[12pt]{article}
+\usepackage[normalem]{ulem}
+\usepackage{amssymb}
+
+\title{Blake Farman\\9/14/09\\Math-237\\Homework 1\\}
+\date{}
+
+\begin{document}
+\maketitle
+\newpage
+
+\section*{Problem 0.1.6}
+
+\subsection*{Part a)}
+\begin{eqnarray*}
+P(x) & = & a_0 + a_{5}x^{5} + a_{10}x^{10} + a_{15}x^{15}\\
+& = & a_{0} + x^{5}(a_{5} + a_{10}x^{5} + a_{15}x^{10})\\
+& = & a_{0} + x^{5}(a_{5} + x^{5}(a_{10} + a_{15}x^{5}))\\
+\end{eqnarray*}
+\(x^{2} = x(x)\\
+x^{4} = x^{2}\\
+x^{5} = x(x^{4})\\
+\)
+
+6 multiplication operations, 3 addition operations.
+
+\subsection*{Part b)}
+\begin{eqnarray*}
+P(x) & = & a_{7}x^{7} + a_{12}x^{12} + a_{17}x^{17} + a_{22}x^{22} + a_{27}x^{27}\\
+& = & x^{7}(a_{7} + a_{12}x^5 + a_{17}x^{10} + a_{22}x^{15} + a_{27}x^{20})\\
+& = & x^{7}(a_{7} + x^{5}(a_{12} + a_{17}x^{5} + a_{22}x^{10} + a_{27}x^{15}))\\
+& = & x^{7}(a_{7} + x^{5}(a_{12} + x^{5}(a_{17} + a_{22}x^{5} + a_{27}x^{10})))\\
+& = & x^{7}(a_{7} + x^{5}(a_{12} + x^{5}(a_{17} + x^{5}(a_{22} + a_{27}x^{5}))))\\
+\end{eqnarray*}
+\(x^{2} = x(x)\\
+x^{4} = x^{2}(x^{2})\\
+x^{5} = x^{4}(x)\\
+x^{7} = x^{5}(x^{2})\)\\
+
+9 multiplication operations, 4 addition operations.\\
+
+\section*{Problem 0.2.2}
+
+\subsection*{Part a)}
+\(10.5_{10} = 1010.1_{2}\)
+\subsection*{Part b)}
+\(1/3_{10}\)\\
+
+\begin{eqnarray*}
+1/3(2) & = & 2/3 + 0\\
+2/3(2) & = & 1/3 + 1\\
+1/3(2) & = & 2/3 + 0\\
+2/3(2) & = & 1/3 + 1\\
+...
+\end{eqnarray*}
+
+\(\Rightarrow 1/3_{10} = 0.01\overline{01}_{2}\)
+
+\subsection*{Part c)}
+\(5/7_{10}\)
+
+\begin{eqnarray*}
+5/7(2) & = & 3/7 + 1\\
+3/7(2) & = & 6/7 + 0\\
+6/7(2) & = & 5/7 + 1\\
+5/7(2) & = & 3/7 + 1\\
+3/7(2) & = & 6/7 + 0\\
+6/7(2) & = & 5/7 + 1\\
+...   
+\end{eqnarray*}
+
+\(\Rightarrow 5/7_{10} = 0.101\overline{101}_{2}\)
+\subsection*{Part d)}
+\(12.8_{10} = 110.001_{2}\)
+\subsection*{Part e)}
+\(55.4_{10} = 110111.01_{2}\)
+\subsection*{Part f)}
+\(0.1_{10}\)
+
+\begin{eqnarray*}
+1/10(2) & = & 2/10 + 0\\
+2/10(2) & = & 4/10 + 0\\
+4/10(2) & = & 8/10 + 0\\
+8/10(2) & = & 6/10 + 1\\
+6/10(2) & = & 2/10 + 1\\
+2/10(2) & = & 4/10 + 0\\
+4/10(2) & = & 8/10 + 0\\
+8/10(2) & = & 6/10 + 1\\
+6/10(2) & = & 2/10 + 1\\
+\end{eqnarray*}
+
+\(\Rightarrow0.1_{10} = 0.00011\overline{0011}_{2}\)
+\section*{Problem 0.3.10}
+
+\subsection*{Part a)}
+\(2.75_{10} = (2 + 3/4)_{10} = (2 + 1/2 + 1/4)_{10} = 10.11_{2} = 1.011\times2^{1}\)\\
+\(fl(x) = 1.011000...0\times2^{1}\)\\
+\(fl(x) - x = 1.011000...0\times2^{1} - 1.011\times2^{1} = 0\\
+\\
+\Rightarrow \frac{\left|fl(x) - x\right|}{\left|x\right|} = 0\)
+
+
+\subsection*{Part b)}
+\(2.7_{10} = (2 + 7/10)_{10} = 10.1011\overline{0011}_{2} = 1.01011\overline{0011}_{2}\times2^{1}\)
+\\
+\(2.7 = 1.010110011...001100{\underline1}1...\times2^1\)\\
+Where the underlined 1 is the 52nd bit.\\
+\begin{eqnarray*}
+\Rightarrow fl(x) & = & 1.010110011...0011010\\
+& = & 2.7 - (\overline{.0011}\times2^{-53} - 2^{-52} + 2^{-51})\times2^{1}\\
+\\
+fl(x) - x & = & [2.7 - (\overline{.0011}\times2^{-53} - 2^{-52} + 2^{-51})\times2^{1}] - 2.7\\
+& = & (\overline{.0011}\times2^{-53} - 2^{-53} + 2^{-52})\times2^{1}\\
+& = & \overline{.0011}\times2^{-52} - 2^{-52} + 2^{-51}\\
+& = & \overline{.0011}\times2^{-52} - 2^{-52} + 2^{-51}\\
+& = & \varepsilon_{mach}(\overline{.0011}_{2} - 1 + 2^{-1})\\
+& = & \varepsilon_{mach}([2^{-3} + 2^{-4} + 2^{-7} + 2^{-8} + ...] - 1 + 2^{-1})\\
+& = & \varepsilon_{mach}([2^{-3} + 2^{-7} + ...] + [2^{-4} + 2^{-8} + ...] - 1 + 2^{-1})\\
+& = & \varepsilon_{mach}(2^{-3}[1 + 2^{-4} + ...] + 2^{-4}[1 + 2^{-4} + ...] - 1 + 2^{-1})\\
+& = & \varepsilon_{mach}((2^{-3} + 2^{-4})[1 + 2^{-4} + ...] - 1 + 2^{-1})\\
+& = & \varepsilon_{mach}((2^{-3} + 2^{-4})\sum_{n=0}^{\infty} (\frac{1}{2})^{4n} - 1 + 2^{-1})\\
+& = & \varepsilon_{mach}(\frac{3}{16}\sum_{n=0}^{\infty} (\frac{1}{2})^{4n} - 1 + 2^{-1})\\
+\\
+\sum_{n=0}^{\infty} x^{n} & = & \frac{1}{1-x}, \left|x\right| < 1\\
+\Rightarrow\frac{1}{1-x^{4}} & = & \sum_{n=1}^{\infty} (x^{4})^{n}\\
+& = &\sum_{n=0}^{\infty} x^{4n}\\
+\\
+\Rightarrow \left|fl(x) - x\right| & = & \left|\varepsilon_{mach}(\frac{3}{16}\frac{1}{1-(1/2)^{4}} - 1 + 2^{-1})\right|\\
+& = & \varepsilon_{mach}\left|\frac{3}{16}\frac{1}{1-(1/16)} - 1 + 2^{-1}\right|\\
+& = & \varepsilon_{mach}\left|\frac{3}{16}\frac{1}{15/16} - 1 + 2^{-1}\right|\\
+& = & \varepsilon_{mach}\left|\frac{3}{16}\frac{16}{15} - 1 + 2^{-1}\right|\\
+& = & \varepsilon_{mach}\left|\frac{3}{15} + \frac{-2 + 1}{2}\right|\\
+& = & \varepsilon_{mach}\left|\frac{6}{30} - \frac{15}{30}\right|\\
+& = & \varepsilon_{mach}\left|\frac{-9}{30}\right|\\
+& = & \frac{3}{10}\varepsilon_{mach}\\
+\\
+\frac{\left|fl(x) - x\right|}{\left|x\right|} & = & \frac{\frac{3}{10}\varepsilon_{mach}}{27/10}\\
+& = & \frac{10}{27}\frac{3}{10}\varepsilon_{mach}\\
+& = & \frac{3}{27}\varepsilon_{mach}\leq\frac{1}{2}\varepsilon_{mach}\\
+\end{eqnarray*}
+
+\subsection*{Part c)}
+\(\frac{10}{3}_{10} = 3\frac{1}{3}_{10} = 11.\overline{01}_{2} = 1.1\overline{01}_{2}\times2^{1}\)
+
+\begin{eqnarray*}
+fl(x) & = & 1.10101...011\times2^{1}\\
+\left|fl(x) - x\right| & = & \left|(2^{-52} - .1\overline{01}_{2}\times2^{-53})\times2^{1}\right|\\
+& = & 2\varepsilon_{mach}\left|1 - 2^{-1}[2^{-1} + 2^{-3} + 2^{-5} + ...]\right|\\
+& = & 2\varepsilon_{mach}\left|1 - 2^{-2}[1 + 2^{-2} + 2^{-3} + ...]\right|\\
+& = & 2\varepsilon_{mach}\left|1 - 2^{-2}\sum_{n=0}^{\infty} (\frac{1}{2})^{2n}\right|\\
+\\
+\sum_{n=0}^{\infty} x^{n} & = & \frac{1}{1-x}, \left|x\right| < 1\\
+\Rightarrow\frac{1}{1-x^{2}} & = & \sum_{n=0}^{\infty} (x^{2})^{n}\\
+& = &\sum_{n=0}^{\infty} x^{2n}, \left|x\right| < 1\\
+\\
+\Rightarrow\left|fl(x) - x\right| & = & 2\varepsilon_{mach}\left|1 - 2^{-2}\frac{1}{1-(1/4)}\right|\\
+& = & 2\varepsilon_{mach}\left|1 - 2^{-2}\frac{1}{3/4}\right|\\
+& = & 2\varepsilon_{mach}\left|1 - 2^{-2}\frac{4}{3}\right|\\
+& = & 2\varepsilon_{mach}\left|1 - \frac{1}{3}\right|\\
+& = & \frac{4}{3}\varepsilon_{mach}\\
+\\
+\Rightarrow\frac{\left|fl(x) - x\right|}{\left|x\right|} & = & \frac{\frac{4}{3}\varepsilon_{mach}}{\frac{10}{3}}\\
+& = & \frac{3}{10}\frac{4}{3}\varepsilon_{mach}\\
+& = & \frac{4}{10}\varepsilon_{mach}\\
+& = & \frac{2}{5}\varepsilon_{mach}\\
+& \leq & \frac{1}{2}\varepsilon_{mach}\\
+\end{eqnarray*}
+
+\section*{Problem 0.4.2}
+
+\(x^{2} + 3x - 8^{-14}\)
+
+\begin{eqnarray*}
+x_{1} & = & - \frac{3 + \sqrt{9 - 4(-8^{-14})}}{2}\\
+& = & - \frac{3 + \sqrt{9 + 4(8^{-14})}}{2}\\
+& = & - \frac{3 + \sqrt{9 + 4(8^{-14})}}{2}\\
+& \approx & \frac{3 + 3}{2}\\
+& = & \frac{6}{2}\\
+& = & 3\\
+\\
+x_{2} & = & - \frac{2(8^{-14})}{3 + \sqrt{9 - 4(-8^{-14})}}\\
+& = & - \frac{2(8^{-14})}{3 + \sqrt{9 + 4(8^{-14})}}\\
+& \approx & - \frac{2(-8^{-14})}{3 + 3}\\
+& = & \frac{2(-8^{-14})}{6}\\
+& = & \frac{-8^{-14}}{3}\\
+\end{eqnarray*}
+
+\section*{Problem 0.5.4}
+\subsection*{Part a)}
+\(f(x) = e^{x^{2}}\)\\
+\begin{eqnarray*}
+e^{x} & = & \sum_{n=0}^{\infty} \frac{x^{n}}{n!}\\
+\Rightarrow e^{x^{2}} & = & \sum_{n=0}^{\infty} \frac{(x^{2})^{n}}{n!}\\ 
+& = & \sum_{n=0}^{\infty} \frac{x^{2n}}{n!}, \left|x\right| < 1\\ 
+\Rightarrow P_{2}(x) = 1 + x^{2} + \frac{x^{4}}{2}\\
+\end{eqnarray*}
+
+\subsection*{Part b)}
+\(f(x) = \cos(5x)\)
+\begin{eqnarray*}
+\cos(x) & = & \sum_{n=0}^{\infty} \frac{(-1)^{n}x^{2n}}{2n!}\\
+\Rightarrow\cos(5x) & = & \sum_{n=0}^{\infty} \frac{(-1)^{n}(5x)^{2n}}{2n!}\\
+\Rightarrow P_{2}(x) & = & 1 - \frac{25x^{2}}{2}\\
+\end{eqnarray*}
+
+\subsection*{Part c)}
+\(f(x) = \frac{1}{1+x}\)
+
+\begin{eqnarray*}
+\sum_{n=0}^{\infty} x^{n} & = & \frac{1}{1-x}, \left|x\right| < 1\\
+\\
+\underline{x = -x}\\
+\\
+\Rightarrow\frac{1}{1-x} & = & \frac{1}{1 - (-x)}\\
+& = & \frac{1}{1 + x}\\
+& = & \sum_{n=0}^{\infty} (-x)^{n}\\
+& = & \sum_{n=0}^{\infty} (-1)^{n}x^{n}\\
+\Rightarrow P_{2}(x) & = & 1 - x + \frac{x^{2}}{2}
+\end{eqnarray*}
+\section*{Problem 0.5.6}
+\subsection*{Part a)}
+\(f(x) = x^{-2},\) about \(x=1\)\\
+\begin{eqnarray*}
+f(x) & = & \sum_{n=0}^{\infty} \frac{(x-h)^{n}f^{(n)}(h)}{n!}\\
+f^{'}(x) & = & -2x^{-3}\\
+f^{''}(x) & = & 3!(x^{-4})\\
+f^{'''}(x) & = & -4!(x^{-5})\\
+f^{(iv)}(x) & = & 5!(x^{-6})\\
+f^{(v)}(x) & = & -6!(x^{-7})\\
+\\
+f^{(n)}(x) & = & (-1)^{n}(n+1)!x^{-(n+2)}\\
+\\
+\Rightarrow\sum_{n=0}^{\infty} \frac{(x-h)^{n}f^{(n)}(h)}{n!} & = & \sum_{n=0}^{\infty} \frac{(x-h)^{n}(-1)^{n}(n+1)!h^{-(n+2)}}{n!}\\
+& = & \sum_{n=0}^{\infty} (x-h)^{n}(-1)^{n}(n+1)h^{-(n+2)}\\
+\end{eqnarray*}
+\underline{h = 1}\\
+\begin{eqnarray*}
+\Rightarrow\sum_{n=0}^{\infty} (x-h)^{n}(-1)^{n}(n+1)h^{-(n+2)} & = & \sum_{n=0}^{\infty} (x-1)^{n}(-1)^{n}(n+1)\\
+\\
+\Rightarrow P_{4}(x) & = &\sum_{n=0}^{4} (x-1)^{n}(-1)^{n}(n+1)\\
+& = & 1 - 2(x-1) + 3(x-1)^{2} - 4(x-1)^{3} + 5(x-1)^{4}\\
+\end{eqnarray*}
+
+\subsection*{Part b)}
+\begin{eqnarray*}
+f(0.9) & = & 1 - 2(0.9-1) + 3(0.9-1)^{2} - 4(0.9-1)^{3} + 5(0.9-1)^{4}\\
+& = & 1 - 2(-\frac{1}{10}) + 3(-\frac{1}{10})^{2} - 4(-\frac{1}{10})^{3} + 5(-\frac{1}{10})^{4}\\
+& = & \frac{1}{10^{4}}(10^4 + 2(10^{3}) + 3(10^{2}) + 4(10^{1}) + 5)\\
+& = & \frac{1}{10^{4}}(10^4 + 2(10^{3}) + 3(10^{2}) + 4(10^{1}) + 5)\\
+& = & \frac{1}{10^{4}}(12345)\\
+& = & 1.2345\\
+\\
+f(1.1) & = & 1 - 2(1.1-1) + 3(1.1-1)^{2} - 4(1.1-1)^{3} + 5(1.1-1)^{4}\\
+& = & 1 - 2(\frac{1}{10}) + 3(\frac{1}{10})^{2} - 4(\frac{1}{10})^{3} + 5(\frac{1}{10})^{4}\\
+& = & \frac{1}{10^{4}}(10^4 - 2(10^{3}) + 3(10^{2}) - 4(10^{1}) + 5)\\
+& = & \frac{1}{10^{4}}(10^4 - 2(10^{3}) + 3(10^{2}) - 4(10^{1}) + 5)\\
+& = & \frac{1}{10^{4}}(10305 - 2040)\\
+& = & \frac{1}{10^{4}}(8265)\\
+& = & .8265\\
+\end{eqnarray*}
+
+\subsection*{Part c)}
+\begin{eqnarray*}
+\frac{(x-1)^{5}6!(c^{-7})}{5!} & = & (x-1)^5(6)(c^{-7}) = \frac{6(x-1)^5}{c^{7}}\\
+\end{eqnarray*}
+\(x = .9, c \in [.9, 1]\)
+\begin{eqnarray*}
+\left|\frac{6(.9 - 1)^5}{c^{7}}\right| & = & \left|\frac{6(-1)\frac{1}{10^{5}}}{c^{7}}\right|\\
+& \leq & \left|\frac{6(-1)\frac{1}{10^{5}}}{.9^{7}}\right|\\
+& = & \frac{6}{(9/10)^{7}(10^{5})}\\
+& = & \frac{6}{9^{7}/10^{2}}\\
+& = & 10^{2}\frac{6}{9^{7}}\\
+& \approx & 1.2545\times10^{-4}\\
+\end{eqnarray*}
+\(x = 1.1, c \in [1, 1.1]\)
+\begin{eqnarray*}
+\left|\frac{6(1.1 - 1)^5}{c^{7}}\right| & = & \left|\frac{6\frac{1}{10^{5}}}{c^{7}}\right|\\
+& \leq & \left|\frac{6\frac{1}{10^{5}}}{1^{7}}\right|\\
+& = & \frac{6}{(10^{5})}\\
+& = & 6\times10^{-5}\\
+\end{eqnarray*}
+Since \(6\times10^{-5} < 10^{2}\frac{6}{9^{7}}\), I would expect the approximation for f(1.1) to be closer than that of f(0.9).\\
+\subsection*{Part d)}
+\(x = 1.1\)\\
+\[\left|f(x)-f(x)_{c}\right| \approx -5.379\times10^{-5} < 6\times10^{-5}\]\\
+\\
+\(x = 0.9\)\\
+\[\left|f(x)-f(x)_{c}\right| \approx 6.7901\times10^{-5} < 10^{2}\frac{6}{9^{7}}\]\\
+
+\section*{Problem 1.1.4}
+
+\subsection*{Part a)}
+\(f(x) = x^{5} + x - 1\), for \( x \in [0, 1]\)\\
+
+\begin{eqnarray*}
+f|_{0} & = & -1\\
+f|_{1} & = & 1\\
+\\
+c & = & \frac{1}{2}\\
+f(\frac{1}{2}) & = & \frac{1 + 2^{4} - 2^{5}}{2^{5}}\\
+& = & \frac{1 + 2^{4}(1 - 2)}{2^{5}} = \frac{1 - 2^{4}}{2^5} = \frac{-15}{32}\\
+f(c)f(b) & < & 0
+\Rightarrow a = c\\
+c & = &\frac{3}{4}\\
+f(3/4) & = & (\frac{3}{4})^{5} + \frac{3}{4} - 1\\
+& = & (\frac{3}{4})^{5} - \frac{1}{4}\\
+& = & \frac{3^{5} - 4^{4}}{4^{5}}\\
+& = & \frac{-13}{1024}\\
+\end{eqnarray*}
+
+\subsection*{Part b)}
+\(f(x) = -\sin(x) + 6x + 5\), for \(x \in [-1, 0]\)\\
+\begin{eqnarray*}
+f|_{-1} & < & 0\\
+f|_{0} & > & 0\\
+f(-1/2) = -\sin(1/2) - 3 + 5
+f(-1/2)f(-1) & < & 0 \Rightarrow b = c\\
+f((-1 - \frac{1}{2})/2) & = & -sin(3/4) - 18/4 + 5\\
+& \approx & 1.1816\\
+\end{eqnarray*}
+
+\subsection*{Part c)}
+\(f(x) = \ln(x) + x^{2} - 3\), for \(x \in [1,2]\)\\
+\begin{eqnarray*}
+f(3/2) & = & ln(3/2) + 9/4 - 3 < 0\\
+f(c)f(b) & < & 0 \Rightarrow a = c\\
+f((\frac{3}{2} + 2)/2) & = & ln(7/4) + 49/16 - 3\\
+& \approx & 0.6221\\
+\end{eqnarray*}
+\section*{Problem 1.1.6}
+\(f(x) = \frac{1}{x}\), for \(x \in [-2, 1]\)\\
+\(f(x) = 0 \Rightarrow \frac{1}{x} = 0\)\\
+
+In the interval \([-2, 1]\) there is no root--\(f \rightarrow -\infty\) as \(x \rightarrow 0\) from the left and \(f \rightarrow \infty\) as \(x \rightarrow 0\) from the right--thus the bisection method (which never leaves \([-2, 1]\)) couldn't possibly find a correct root for the function \(f(x) = \frac{1}{x}\).
+\section*{Problem 1.3.4}
+\(f(x) = x^{2}\sin(x^{2})\)\\
+\subsection*{Part a)}
+\(r = 0\)\\
+\begin{eqnarray*}
+f^{'}(x) & = & 2x\sin(x^{2}) + 4x^{3}\cos(x^2)\\
+f^{''}(x) & = & 2\sin(x^{2}) + 4x^{2}\cos(x^{2}) + 12x^{2}\cos(x^{2}) - 8x^{4}\sin(x^{2})\\
+f^{'''}(x) & = & 4x\cos(x^{2}) + 8x\cos(x^{2}) - 8x^{3}\sin(x^{2}) + 24x\cos(x^{2}) - 24x^{3}\sin(x^{2}) - 32x^{3}\cos(x^{2}) - 16x^{5}\cos(x^{2})\\
+f^{(iv)}(x) & = & 4\cos(x^{2}) + \ldots\\
+f^{'}(x)|_{0} & = & 0\\
+f^{''}(x)|_{0} & = & 0\\
+f^{'''}(x)|_{0} & = & 0\\
+f^{(iv)}(x)|_{0} & \not= & 0\\
+\end{eqnarray*}
+\(\Rightarrow\)r has multiplicity 4.
+
+\subsection*{Part b)}
+\(x_{c} = 0.0001 = 10^{-4}\)
+Backward Error:
+\begin{eqnarray*} 
+\left|f(x_{c})\right| & = & \left|(0.01)^2\sin(0.01^2)\right|\\
+& = & \frac{1}{10^4}\sin(\frac{1}{10^4})\\
+& \approx & 10^{-8}\\
+\end{eqnarray*}
+Forward Error:
+\begin{eqnarray*} 
+\left|r - x_{c}\right| & = & \left|0 - 0.01\right|\\
+& = & 10^{-2}\\
+\end{eqnarray*}
+\section*{Problem 1.4.2}
+\(x_{0} = 1\)
+\subsection*{Part a)}
+\(f(x) = x^3 + x^2 - 1 = 0\)\\
+\(f^{'}(x) = 3x^2 + 2x\)\\
+\begin{eqnarray*}
+x_{1} & = & 1 - \frac{f|_{1}}{f^{'}|_{1}}\\
+& = & 1 - 3/5 = 2/5\\
+x_{2} & = & 2/5 - \frac{f|_{2/5}}{f^{'}|_{2/5}}\\
+& \approx & 0.9062\\
+\end{eqnarray*}
+
+\subsection*{Part b)}
+\(f(x) = \frac{x^2 + 1}{x + 1} - 3x\)\\
+\(f^{'}(x) = \frac{2x(x+1) - (x^2 + 1)}{(x+1)^2} - 3\)\\
+\begin{eqnarray*}
+x_{1} & = & 1 - \frac{f|_{1}}{f^{'}|_{1}}\\
+& = & 1 - 4/5 = 1/5\\
+x_{2} & = & 1/5 - \frac{f|_{1/5}}{f^{'}|_{1/5}}\\
+& \approx & .2787\\
+\end{eqnarray*}
+\section*{Problem 1.4.6}
+See attached sketch.
+\section*{Problem 1.5.4}
+Want: \(40^{{\circ}}\)
+\(38^{{\circ}}F\) at 12 meters
+\(46^{{\circ}}F\) at 5 meters
+
+Let \(f\) be defined:
+\begin{eqnarray*}
+f: \mathbb{R} \rightarrow \mathbb{R}\\
+12 \mapsto 38\\
+5 \mapsto 46\\
+\\
+\end{eqnarray*}
+Then, using the Secant Method:
+\begin{eqnarray*}
+x_{2} & = & x_{1} - \frac{f(x_{1})(x_{1} - x_{0})}{f(x_{1}) - f(x_{0})}\\
+& = & 5 - \frac{46(5 - 12)}{46-38}\\
+& = & 5 + \frac{46(7)}{8}\\
+& = & \frac{40 + 46(7)}{8}\\
+& = & \frac{362}{8}\\
+& = & 45.25m\\
+\end{eqnarray*}
+\end{document}
