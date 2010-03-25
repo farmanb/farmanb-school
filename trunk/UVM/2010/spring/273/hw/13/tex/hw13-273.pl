@@ -53,9 +53,9 @@ print ptex::thm($name, $name, $thm . ptex::pf($pf));
 
 $name = "3.3.7";
 $thm = "\n";
-$pf = "Let \\(k\\) be even and let \\(G\\) be the union of at least 3 copies of \\(K_{k+1}\\).\n" . 
-    "  Let \\(S\\) be any two vertices from the same copy of \\(K_{k+1}\\)." . 
-    "  Then, \\(G-S\\) has at least 3 odd components.\n" . 
+$pf = "Let \\(k\\) be even and let \\(G\\) be \\(K_{k+1}\\).\n" . 
+    "  Let \\(S = \\phi\\).\n" . 
+    "  Then, \\(o(G-S) = 1 > 0\\).\n" . 
     "  Therefore, by Tutte's condition, \\(G\\) does not have a 1-factor.\n\n". 
     "  Let \\(k\\) be odd and construct \\(G\\) in the following way.\n" . 
     "  Start with \\(K_{k+1}\\) and remove a perfect matching.\n" . 
