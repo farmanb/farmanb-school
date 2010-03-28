@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
-NUM="11"
+NUM="13"
 NAME="hw$NUM-273"
 PDFDIR=../pdf/
+IMGDIR=./imgs
 SCRIPT="$NAME.pl"
 
 #PDF the thing
@@ -16,6 +17,14 @@ mkdir -p ./$NUM
 
 #Get the PDF
 cp $PDFDIR/* ./$NUM/
+
+#snag the images if they exist
+if [ -d ./$IMGDIR ]; then
+    tar -cf imgs.tar $IMGDIR
+    mv imgs.tar ./$NUM
+    cd ./$NUM && tar -xf imgs.tar && rm imgs.tar && cd ..
+fi
+
 
 #Pack it
 tar -cf $NUM.tar ./$NUM
