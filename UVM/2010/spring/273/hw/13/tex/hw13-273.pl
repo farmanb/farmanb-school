@@ -82,7 +82,9 @@ $pf = "Let \\(G\\) be such that \\(G\\) decomposes into 1-factors, \\(G_1, \\ldo
     "  Since \\(G_1, \\ldots, G_n\\) decompose \\(G\\), then for some \\(G_i\\), \\(uv \\in E(G_i)\\).\n" . 
     "  However, by hypothesis, \\(G_i\\) is necessarily a 1-factor and so \\(ux \\in E(G_i)\\).\n" . 
     "  Then \\(\\deg(v) > 1\\), but this contradicts the definition of a 1-factor.\n" . 
-    "  Therefore, \\(G\\) does not have a cut vertex.\n";
+    "  Therefore, \\(G\\) does not have a cut vertex.\n" . 
+    ptex::center(ptex::graphic("./imgs/graph.png") . "\n\n" . 
+		 ptex::graphic("./imgs/match.png"));
 
 print ptex::thm($name, $name, $thm . ptex::pf($pf));
 

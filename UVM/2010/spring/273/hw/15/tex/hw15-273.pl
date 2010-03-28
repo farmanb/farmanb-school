@@ -12,7 +12,7 @@ my @texPackages = ("graphicx","enumerate", "amsmath", "amsthm");
 
 #Cover Page info.
 my ($num,
-    $course) = (14, 
+    $course) = (15, 
 		"Math-273");
 
 #Title page
