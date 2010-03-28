@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+NUM="12"
+NAME="hw$NUM-273"
+PDFDIR=../pdf/
+IMGDIR=./imgs
+SCRIPT="$NAME.pl"
+
+#PDF the thing
+./pdf
+
+#Make a directory
+mkdir -p ./$NUM
+
+#Prep the tex
+./$SCRIPT > ./$NUM/$NAME.tex
+
+#Get the PDF
+cp $PDFDIR/* ./$NUM/
+
+#snag the images if they exist
+if [ -d ./$IMGDIR ]; then
+    tar -cf imgs.tar $IMGDIR
+    mv imgs.tar ./$NUM
+    cd ./$NUM && tar -xf imgs.tar && rm imgs.tar && cd ..
+fi
+
+
+#Pack it
+tar -cf $NUM.tar ./$NUM
+
+#Put it on the desktop
+mv $NUM.tar ~/Desktop/ 
+
+rm -fr *~
+rm -fr ./$NUM
