@@ -12,7 +12,7 @@ my @texPackages = ("graphicx","enumerate", "amsmath", "amsthm", "amssymb");
 
 #Cover Page info.
 my ($num,
-    $course) = (5, 
+    $course) = (6, 
 		"Math-242");
 
 #Title page
@@ -36,62 +36,60 @@ my ($beq, $eeq) = ("\\begin{eqnarray*}", "\\end{eqnarray*}");
 print ptex::preamble($p);
 
 my $name = "1\n";
-my $thm = "Let \\(\\{a_n\\}_{n=1}^{\\infty}\\) and \\(\\{b_n\\}_{n=1}^{\\infty}\\) be bounded sequences of real numbes.\n" . 
-    "  Let \\(c_n = a_n + b_n\\) for all \\(n\\).\n\n" . 
-    "  (a) Prove that \\(\\limsup c_n \\leq \\limsup a_n + \\limsup b_n\\).\n\n" . 
-    "  (b) Give an explicit example of two sequences where you do \\emph{not} get equality in part (a).\n\n". 
-    "  (c)  Prove that if \\(\\{a_n\\}_{n=1}^{\\infty}\\) converges, then you always get \\emph{equality} in part (a).\n";
-my $pf = "Let \\(A_n = \\{a_n, a_{n+1}, \\ldots\\}\\), \\(B_n = \\{b_n, b_{n+1}, \\ldots\\}\\) and \\(C_n = \\{c_n, c_{n+1}, \\ldots\\}\\).\n" . 
-    "  Let \\(x_n = \\sup A_n\\), \\(y_n = \\sup B_n\\) and \\(z_n = \\sup C_n\\) so that \\(\\limsup a_n = \\lim_{n \\rightarrow \\infty} x_n\\), \\(\\limsup b_n = \\lim_{n \\rightarrow \\infty} y_n\\) and \\(\\limsup c_n = \\lim_{n \\rightarrow \\infty} z_n\\).\n\n" . 
-    "  (a)  Then for \\(n \\geq N\\), \\(a_n \\leq x_N\\) and \\(b_n \\leq y_N\\), so \\(c_n = a_n + b_n \\leq x_N + y_N\\) implies that \\(z_N \\leq x_N + y_N\\).\n". 
-    "  Hence, by the order limit theorem, \\(\\lim_{n \\rightarrow \\infty} z_n \\leq \\lim_{n \\rightarrow \\infty} x_n + \\lim_{n \\rightarrow \\infty} y_n\\).\\\\\n\n" . 
-    "  (b) Let \\(a_{2n} = 1, a_{2n+1} = -1, b_{2n} = -1, b_{2n+1} = " . ptex::frac(1,2) . "\\).\n".
-    "  Then \\(c_{2n} = 0, c_{2n+1} = " . ptex::frac("-1",2) ."\\) and \\(\\limsup c_n = 0 < \\limsup a_n + \\limsup b_n = " .  ptex::frac(3,2). ".\\)\\\\\n\n" . 
-    "  (c) Let \\(a = \\lim_{n \\rightarrow \\infty} a_n\\) and let \\(b = \\limsup b_n\\).  Let \\(\\{b_{n_k}\\} \\subseteq \\{b_n\\}\\) be such that \\(\\lim_{n \\rightarrow \\infty} b_n  = b\\).\n" . 
-    "  Let \\(C_{n_k} = \\{a_{n_k} + b_{n_k}, a_{n_{k+1}} + b_{n_{k+1}}, \\ldots\\} \\subseteq C_n\\) and let \\(z_{n_k} = \\sup C_{n_k}\\).\n" . 
-    "  Since \\(C_{n_k} \\subseteq C_n\\), \\(z_{n_k} \\leq z_n\\) for all \\(n\\), which implies that \\(\\lim_{n \\rightarrow \\infty} z_{n_k} \\leq \\lim_{n \\rightarrow \\infty} z_n\\).\n" . 
-    "  Since \\(\\lim_{n \\rightarrow \\infty} a_n = a\\), any subsequence of \\(\\{a_n\\}\\) converges to the same limit." .
-    "  Hence, \\[\\lim_{n \\rightarrow \\infty} c_{n_k} = \\lim_{n \\rightarrow \\infty} (a_{n_k} + b_{n_k}) = \\lim_{n \\rightarrow \\infty} a_{n_k} + \\lim_{n \\rightarrow \\infty} b_{n_k} = a + b.\\]" . 
-    "  Then since \\(\\{c_{n_k}\\}\\) converges, \\[\\lim_{n \\rightarrow \\infty} z_{n_k} = a + b.\\]\n" . 
-    "  Therefore, combining this lower bound with the result from part (a) yields \\[a+b \\leq \\lim_{n \\rightarrow \\infty} z_n \\leq a+b.\\] which implies that \\(\\limsup c_n = \\limsup a_n + \\limsup b_n\\).\n";
+my $thm = "";
+my $pf = "(a) By definition of \\(D\\), every point of \\(P_n\\), except for 0 and 1, has been removed from \\(D\\).\n" . 
+    "  Hence, for every subset of \\(P, [x_i, x_{i+1}]\\), at least one of \\(x_i\\) and \\(x_{i+1}\\) is not an element of \\(D\\) and thus\n" . 
+    "  \\[\\inf \\{f(x) \\mid x \\in [x_i, x_{i+1}]\\} = 0, \\text{ for every } [x_i, x_{i+1}] \\subseteq P_n.\\]" . 
+    "  Therefore, \\[L(f,P_n) = 0, \\text {for all } n.\\]\n\n" . 
+    "  (b)  Let \\(M_i = \\sup \\{f(x) \\mid x \\in [x_i, x_{i+1}]\\}\\).\n" .
+    "  For every \\(P_n\\), there are \\(2^n\\) intervals of length " . ptex::inlineMath(ptex::frac(1,"3^n")) . " which contain points of \\(D\\).\n" . 
+    "  Therefore, \\[U(f,P_n) = \\sum_{i=1}^{2^n} M_i\\left(".ptex::frac(1,3)."\\right)^n = \\left(" . ptex::frac(2,3) ."\\right)^n.\\]" . 
+    "  (c)  Let \\(\\varepsilon > 0\\) be given.  Since \\(\\left(".ptex::frac(2,3)."\\right)^n \\rightarrow 0 \\text{ as } n \\rightarrow \\infty\\), there exists an \\(N \\in \\mathbb{N}\\) such that \\[U(f,P_n) - L(f,P_n) = U(f,P_n) < \\varepsilon.\\]\n" .
+    "  Therefore, by Riemann's condition \\(f\\) is Riemann integral and, since \\(U(f,P_n)\\) is monotone decreasing, \\[\\int_a^b f = \\inf_p \\{U(f,P_n)\\} = \\lim_{n \\rightarrow \\infty} \\left(".ptex::frac(2,3)."\\right)^n = 0.\\]";
 
 print ptex::thm($name, $name, $thm . ptex::pf($pf));
 
+my $eps = "\\varepsilon";
+
 $name = "2\n";
-$thm = "Let \\(\\{a_n\\}_{n=1}^{\\infty}\\) be a bounded sequence of real numbers.  Prove that the real number \\(L\\) equals \\(\\limsup a_n\\) if and only if \\(L\\) has both of the following properties:\n\n" . 
-    "(i) For every \\(\\varepsilon > 0\\) there are only finitely many terms \\(a_n\\) in the sequence with \\(a_n > L + \\varepsilon,\\) and\n\n" . 
-    "(ii) For every \\(\\varepsilon > 0\\) there are infinitely many terms \\(a_m\\) in the sequence with \\(a_m > L - \\varepsilon\\).\n";
-$pf = "Let \\(A_n = \\{a_n, a_{n+1}, \\ldots\\}\\) and let \\(x_n = \\sup A_n\\).\n" . 
-    "  Then \\[L = \\lim_{n \\rightarrow \\infty} x_n = \\limsup a_n.\\]\n" . 
-    "  Let \\(\\varepsilon > 0\\) be given.  There exists some \\(N \\in \\mathbb{N}\\) such that \\(x_n \\in B_{\\varepsilon}(L)\\) whenever \\(n \\geq N\\).\n" . 
-    "  Then since \\(x_n\\) is necessarily decreasing, only a finite number of terms, \\(a_1, \\ldots, a_{N-1}\\), are larger than \\(L + \\varepsilon\\)." . 
-    "  Now, take \\(N_2 > " . ptex::frac(1,"\\varepsilon") . "\\).\n". 
-    "  Since \\(x_n\\) is a limit point of \\(A_n\\) for every \\(n\\), \\(B_{" . ptex::frac(1,"n") . "}(x_N) \\cap A_N \\not = \\phi\\) and \\(B_{" . ptex::frac(1,"n") . "}(x_N) \\subseteq B_{\\varepsilon}(L)\\), whenever \\(n \\geq N_2\\)." . 
-    "  So for each \\(n \\geq N_2\\), select some element of \\(B_{" . ptex::frac(1,"n") . "}(x_N)\\), forming a sequence of terms, each larger than \\(L - \\varepsilon\\) and infinite in number.\n\n" . 
-    "  Conversely, assume properties (i) and (ii) hold for \\(L\\).\n" . 
-    "  Let \\(\\varepsilon > 0\\) be given.\n" .
-    #"  Property (i) implies that there exists some \\(N_1 \\in \\mathbb{N}\\) such that \\(a_n < L + \\varepsilon\\) whenever \\(n \\geq N_1\\).\n" . 
-    "  Property (ii) combined with the Bolzano-Weierstrass theorem implies that there exists some \\(\\{a_{n_k}\\} \\subseteq \\{a_n\\}_{n=1}^{\\infty}\\) such that \\(\\lim_{n_k \\rightarrow \\infty} a_{n_k}= L\\).\n" . 
-    "  Hence \\(L\\) is a limit point of \\(\\{a_n\\}_{n=1}^{\\infty}\\).\n\n".
-    "  Using that \\(\\limsup a_n = \\sup \\{x \\mid x \\text{ a limit point of }\\{a_{n_k}\\}\\subseteq\\{a_n\\}\\}\\), assume there exists a limit point of some subsequence, \\(L_2 > L\\).\n" . 
-    "  Then \\(B_{|L_2 - (L+\\varepsilon)|}(L_2)\\) contains an infinite number of points of \\(\\{a_n\\}\\).\n" . 
-    "  However, this contradicts property (i) and so it must be that there is no limit point larger than \\(L\\).\n" . 
-    "  Therefore, \\(L = \\limsup a_n\\).\n";
+$thm = "Let \\(f\\) and \\(g\\) be (bounded) Riemann integrable functions on \\([a,b]\\).\n\n" . 
+    "  (a) Prove that if \\(f(x) < g(x)\\) for all \\(x \\in [a,b]\\), then \\(\\int_a^b f \\leq \\int_a^b g\\).\n\n" . 
+    "  (b) Use Riemann's Condition to prove \\(f + g\\) is also Riemann integrable and \\[\\int_a^b (f+g) = \\int_a^b f + \\int_a^b g.\\]\n";
+$pf = "(a) Since \\(f(x) < g(x)\\) for all \\(x \\in [a,b]\\), it follows that for any choice of a partition \\(P\\) of \\([a,b]\\), \\(U(f,P) \\leq U(g,P)\\).\n" . 
+    "  Since both \\(f\\) and \\(g\\) are Riemann integrable functions on \\([a,b]\\), it must be that \\[\\inf_P \\{U(f,P)\\} = \\int_a^b f \\leq \\int_a^b g = \\inf_P \\{U(g,P)\\}.\\]\n\n" . 
+    "  (b) Let \\(\\varepsilon > 0\\) be given.  By Riemann's condition there exist partitions \\(P_1\\) and \\(P_2\\) of \\([a,b]\\) corresponding to \\(f\\) and \\(g\\) respectively such that on the common refinement \\(P_{\\varepsilon} = P_1 \\cup P_2\\) " .
+    "  \\[U(f,P_{\\varepsilon}) - L(f,P_{\\varepsilon}) <" . ptex::frac("\\varepsilon",2) . " \\text{\\quad and\\quad} U(g,P_{\\varepsilon}) - L(g,P_{\\varepsilon}) < " .ptex::frac("\\varepsilon",2) . ".\\]\n" . 
+    "  Since \\(\\sup f+g = \\sup f + \\sup g\\) and \\(\\inf f+g = \\inf f + \\inf g\\), it follows that " . 
+    "  \\[U(f+g,P_{\\varepsilon}) - L(f+g,P_{\\varepsilon}) < \\varepsilon.\\]\n" . 
+    "  Therefore, by Riemann's condition, \\(f + g\\) is Riemann integrable.\n\n" . 
+    "  Continuing to use the same partition \\(P_{\\varepsilon}\\), " . 
+    "$beq\n". 
+    ptex::printEqnArray([["\\int_a^b (f+g)","U(f+g,P_{\\varepsilon})"]],"\\leq") . 
+    ptex::printEqnArray([["", "L(f+g, P_{\\varepsilon}) + \\varepsilon"]],"<") .
+    ptex::printEqnArray([["", "L(f,P_{\\varepsilon}) + L(g,P_{\\varepsilon}) + \\varepsilon"]], "=") .
+    ptex::printEqnArray([["", "\\int_a^b f + \\int_a^b g + $eps."]], "\\leq") . 
+    "$eeq\n" .
+    "  Which implies that \\(\\int_a^b (f+g) \\leq \\int_a^b f + \\int_a^b g\\).\n" .
+    "$beq\n" . 
+    ptex::printEqnArray([["\\int_a^b f + \\int_a^b g", "U(f,P_{\\varepsilon}) + U(g,P_{\\varepsilon})"]],"\\leq") . 
+    ptex::printEqnArray([["", "L(f,P_{\\varepsilon}) + L(g,P_{\\varepsilon}) + \\varepsilon"]],"<") .
+    ptex::printEqnArray([["", "L(f+g, P_{\\varepsilon})  + \\varepsilon"]], "=") .
+    ptex::printEqnArray([["", "\\int_a^b (f+g) + $eps."]], "\\leq") . 
+    "$eeq\n" . 
+    "  Which implies that \\(\\int_a^b f + \\int_a^b g \\leq \\int_a^b (f+g)\\).  Therefore, \\[\\int_a^b (f+g) = \\int_a^b f + \\int_a^b g.\\]\n";
 
 print ptex::thm($name, $name, $thm . ptex::pf($pf));
 
 $name = "3\n";
-$thm = "Prove that \\[\\limsup \\sin(n)  \\not = \\liminf \\sin(n)\\] so that the sequence \\(\\{\\sin(n)\\}_{n=1}^{\\infty}\\) does not converge.\n";
-$pf = "Let \\(S_n = \\{sin(n), sin(n+1), \\ldots\\}\\).\n" . 
-    "  Let \\(s_n = \\sup S_n\\) and let \\(i_n = \\inf S_n\\).\n". 
-    "  First note that \\(\\sin(\\theta) > 0\\) when \\(\\theta \\in (2n\\pi, 2n\\pi + \\pi)\\) and that \\(\\sin(\\theta) < 0\\) when \\(\\theta \\in (2n\\pi + \\pi, 2n\\pi + 2\\pi)\\), for all \\(n \\in \\mathbb{N}\\).\n\n" . 
-    #"  Also note that for any \\(n \\in \\mathbb{N}\\), \\(2n\\pi \\geq n\\).\n\n" . 
-    "  Let \\(n \\in \\mathbb{N}\\) be given.  Notice then that \\[n \\leq 2n\\pi \\leq \\lceil 2n\\pi\\rceil < 2n\\pi + 1 < 2n\\pi + \\pi.\\]\n" . 
-    "  So it follows that for any \\(n \\in \\mathbb{N}\\), there exists an integer, \\(\\lceil 2n\\pi \\rceil > n\\) such that \\(\\sin(\\lceil 2n\\pi \\rceil) > 0\\).\n" . 
-    "  Hence, \\(s_n > 0\\).\n" . 
-    "  Similarly, there exists an integer \\(\\lceil 2n\\pi+\\pi \\rceil \\in (2n\\pi + \\pi, 2n\\pi + 2\\pi)\\) such that \\(\\sin(\\lceil 2n\\pi+\\pi \\rceil) < 0\\), which implies that \\(i_n < 0\\).\n" . 
-    "  Hence by the order limit theorem, \\[\\limsup \\sin(n) = \\lim_{n \\rightarrow \\infty} i_n < 0 < \\lim_{n \\rightarrow \\infty} s_n = \\limsup \\sin(n).\\]\n" . 
-    "  Therefore, the sequence \\(\\{\\sin(n)\\}_{n=1}^{\\infty}\\) does not converge.";
+$thm = "Let \\(f:[a,b] \\rightarrow \\mathbb{R}\\) be continuous and assume \\(f \\geq 0\\) on \\([a,b]\\), where \\(a<b\\).  Let \\(M\\) be the maximum value of \\(f\\) on \\([a,b]\\).  Prove that \\[\\lim_{n \\rightarrow \\infty} \\left(\\int_a^b f^n\\right)^{".ptex::frac(1,"n")."} = M.\\]\n";
+$pf = "Let \\(g_n(x) = x^n\\) and let \\(h = g \\circ f = f^n\\).  Since both \\(f\\) and \\(g\\) are continuous on \\([a,b]\\), then so is \\(h\\) and thus \\(\\int_a^b h = \\int_a^b f^n\\) exists for each \\(n \\in \\mathbb{N}\\setminus\\{0\\}\\).\n\n" . 
+    "  Noting that \\(f \\geq 0\\) for all \\(x \\in [a,b]\\), it follows that for \\([c,d] \\subseteq [a,b]\\), \\(\\int_c^d f \\leq \\int_a^b f\\).\n" . 
+    "  Then let \\(\\varepsilon > 0\\) be given and let \\(c \\in [a,b]\\) be such that \\(f(c) = M\\).\n" .
+    "  Since \\(f\\) is uniformly continuous, there exists some \\(\\delta > 0\\) such that for each \\(x \\in [c - \\delta, c+\\delta] \\cup [a,b]\\), \\(|f(x) - M| < \\varepsilon\\).\n" . 
+    "  Hence, \\(\\sup \\{f(x) \\mid x \\in [c-\\delta, c+\\delta] \\cup [a,b]\\} \\geq M - $eps\\).\n" . 
+    "  Then, \\[(M-$eps)(\\text{len}([c-\\delta, c+\\delta]\\cap [a,b])^{". ptex::frac(1,"n")."} \\leq \\int_{\\max\\{a,c-\\delta\\}}^{\\min\\{b,c+\\delta\\}} f^n \\leq \\int_a^b f^n \\leq M(b-a)^{".ptex::frac(1,"n")."}.\\]" . 
+    "  So, we have that for arbitrary \\($eps\\), \\(M-$eps \\leq \\lim_{n \\rightarrow \\infty} \\left(\\int_a^b f^n\\right)^{".ptex::frac(1,"n")."} \\leq M\\)." . 
+    "  Therefore, \\[\\lim_{n \\rightarrow \\infty} \\left(\\int_a^b f^n\\right)^{".ptex::frac(1,"n")."} = M.\\]";
 
 print ptex::thm($name, $name, $thm . ptex::pf($pf));
 
