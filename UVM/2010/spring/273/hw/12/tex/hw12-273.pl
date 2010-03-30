@@ -8,7 +8,7 @@ use ptex;
 #Preamble
 my $documentClass = "article";
 my @docClassArgs = ("10pt");
-my @texPackages = ("graphicx","enumerate", "amsmath", "amsthm");
+my @texPackages = ("graphicx","enumerate", "amsmath", "amsthm","fancyhdr");
 
 #Cover Page info.
 my ($num,
@@ -18,8 +18,10 @@ my ($num,
 #Title page
 my $school = "University of Vermont";
 my ($author,
-    $title) = ("Blake Farman", 
-	       "$course: Homework $num\\\\\n");
+    $date,
+    $title) = ("", 
+	       "Tuesday, March 2, 2010",
+	       "$course: Homework $num\\\\\n$school\\\\\nSolutions");
 
 my $p = {
     "docClass" => $documentClass,
@@ -27,8 +29,10 @@ my $p = {
     "pkgs" => \@texPackages,
     "title" => $title,
     "author" => $author,
-    #"date" => $date,
-    "isCP" => 0
+    "date" => $date,
+    "isCP" => 0,
+    "other" => "\\pagestyle{fancy}" . 
+	"\\rfoot{Blake Farman}"
 };
 
 
@@ -59,7 +63,7 @@ $pf = "Transform the decision problem for a system of distinct representatives i
     
 print ptex::thm($name, $name, $thm . ptex::pf($pf));
 
-$name = "3.1.24\n";
+$name = "3.1.24";
 $thm = "A {\\bf permutation matrix} \\(P\\) is a \\(0,1\\)-matrix having exactly one 1 in each row and column.\n" . 
     "  Prove that a square matrix of nonnegative integers can be expressed as the sum of \\(k\\) permutation matrices if and only if all row sums and column sums equal \\(k\\).\n";
 $pf = "Let \\(M\\) be an \\(n \\times n\\) matrix of nonnegative integers.\n\n" . 
