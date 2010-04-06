@@ -36,10 +36,11 @@ my $p = {
 
 print ptex::preamble($p);
 
-my $name = "4.2.12";
-my $thm = "Use Menger's Theorem to prove that \\(\\kappa(G) = \\kappa'(G)\\) when \\(G\\) is 3-regular.\n";
-my $pf = "\n";
-print ptex::thm($name, $name, $thm . ptex::pf($pf));
+my $name = "4.2.12"; my $thm = "Use Menger's Theorem to prove that
+\\(\\kappa(G) = \\kappa'(G)\\) when \\(G\\) is 3-regular.\n"; my $pf =
+"Let \\(G\\) be a 3-regular graph.\n" .  "  Let \\(S\\) be a minimum
+vertex cut and let \\(H_1, H_2 \\subset G\\) be the two connected
+components "; print ptex::thm($name, $name, $thm . ptex::pf($pf));
 
 $name = "4.2.14";
 $thm = "A \\(u,v\\)-necklace is a list of cycles \\(C_1, \\ldots, C_k\\) such that \\(u \\in C_1\\), \\(v \\in C_k\\), consecutive cycles share one vertex, and non-consecutive cycles are disjoint.\n" . 
