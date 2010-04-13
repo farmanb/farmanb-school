@@ -20,7 +20,7 @@ my $school = "University of Vermont";
 my ($author,
     $date,
     $title) = ("Blake Farman", 
-	       "Tuesday, March 23, 2010",
+	       "Tuesday, April 6, 2010",
 	       "$course: Homework $num\\\\\n");
 
 my $p = {
@@ -51,7 +51,7 @@ $pf = "First, add a super source adjacent to the two tanks with edges equal to t
     "  Then, use the Ford-Fulkerson algorithm, which yields the graph below.\n" . 
     "  Circled is the minimum cut, across which the flow is 34, which is equal to the flow into the sink.\n" . 
     "  This proves the flow is the maximum flow.\n" . 
-    ptex::center(ptex::graphic("imgs/4-3-3.png"));
+    ptex::center(ptex::graphic("imgs/4-3-3.png",.6));
 
 print ptex::thm($name, $name, $thm . ptex::pf($pf));
 
