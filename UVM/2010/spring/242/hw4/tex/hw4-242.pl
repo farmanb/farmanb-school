@@ -8,7 +8,7 @@ use ptex;
 #Preamble
 my $documentClass = "article";
 my @docClassArgs = ("10pt");
-my @texPackages = ("graphicx","enumerate", "amsmath", "amsthm");
+my @texPackages = ("graphicx","enumerate", "amsmath", "amsthm","amssymb");
 
 #Cover Page info.
 my ($num,
