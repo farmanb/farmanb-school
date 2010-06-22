@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+NUM="23"
+NAME="hw$NUM-273"
+PDFDIR=../pdf/
+SCRIPT="$NAME.pl"
+
+#PDF the thing
+./pdf
+
+#Make a directory
+mkdir -p ./$NUM
+
+#Prep the tex
+./$SCRIPT > ./$NUM/$NAME.tex
+
+#Get the PDF
+cp $PDFDIR/* ./$NUM/
+
+#Pack it
+tar -cf $NUM.tar ./$NUM
+
+#Put it on the desktop
+mv $NUM.tar ~/Desktop/ 
+
+rm -fr *~
+rm -fr ./$NUM
