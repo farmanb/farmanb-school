@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+NAME="project-255"
+PDFDIR=../pdf/
+SCRIPT="$NAME.pl"
+
+./$SCRIPT > $NAME.tex && texi2pdf $NAME.tex
+
+if [ ! -d ../pdf ]; then
+    mkdir ../pdf
+fi
+
+mv $NAME.pdf ../pdf
+
+rm -fr *.log
+rm -fr *.aux
+rm -fr *.tex
+rm -fr *.bbl
+rm -fr *.blg
+rm -fr *~
