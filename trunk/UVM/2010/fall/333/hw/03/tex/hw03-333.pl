@@ -8,12 +8,12 @@ use ptex;
 #Preamble
 my $documentClass = "amsart";
 my @docClassArgs = ("10pt");
-my @texPackages = ("graphicx","enumerate", "amsmath", "amsthm","amssymb");
+my @texPackages = ("graphicx","enumerate", "amsmath", "amsthm","amssymb","calrsfs");
 
 #Cover Page info.
 my ($num,
     $course) = (3, 
-		"Math-251");
+		"Math-333");
 
 #Title page
 my $school = "University of Vermont";
@@ -38,204 +38,123 @@ my $p = {
 print ptex::preamble($p);
 
 my ($beq,$eeq) = ("\\begin{eqnarray*}\n", "\\end{eqnarray*}\n");
+my $mb = "\\bar\\mu";
 
 my $name = "1"; 
-my $thm = "For each fixed non-zero \\(k \\in \\mathbb{Q}\\), the map" . 
-    "\\[\\varphi : \\mathbb{Q} \\rightarrow \\mathbb{Q}\\]" . 
-    "\\[q \\mapsto kq\\]" . 
-    "is an automorphism of \\(\\mathbb{Q}\\).\n"; 
-my $pf = "Let \\(p,q \\in \\mathbb{Q}\\) be distinct.\n" . 
-    "Since \\(k\\) is fixed, by the left cancellation law \\(\\varphi(p)  = \\varphi(q)\\) only if \\(p = q\\).\n" . 
-    "Hence \\(\\varphi\\) is injective.\n\n" . 
-    "To see that \\(\\varphi\\) is surjective, let \\(p\\) be given and observe that there exists some \\(q \\in \\mathbb{Q}\\) such that \\(\\varphi(q) = p\\).\n" . 
-    "Since \\(k\\) is non-zero, take \\(q = " . ptex::frac("p","k") . "\\).\n" . 
-    "Then \\(\\varphi(q) = p\\).  Therefore \\(\\varphi\\) is a bijection.\n\n" . 
-    "It remains only to show that \\(\\varphi\\) is a homomorphism.\n" . 
-    "Let \\(p,q \\in \\mathbb{Q}\\) be given.\n" . 
-    "Then" . 
+my $thm = "If \\(E\\) is a \\($mb\\)-measurable subset of \\(X\\), then show that for every \\(A \\subseteq X\\) we have \\[$mb(E \\cup A) + $mb(E \\cap A) = $mb(A) + $mb(A).\\]\n";
+my $pf = "Observe that since \\(E\\) is \\($mb\\)-measurable\n" . 
     $beq .
-    ptex::printEqnArray([["\\varphi(p+q)", "k(p+q)"],
-				    ["", "kp + kq"],
-				    ["", "\\varphi(p) + \\varphi(q)."]] , "=") . 
-    $eeq . "\n". 
-    "Therefore, \\(\\varphi\\) is an automorphism of \\(\\mathbb{Q}\\).\n";
+    ptex::printEqnArray([["$mb(E \\cup A)", "$mb((E \\cup A) \\cap E) + $mb((E \\cup A) \\cap E^{c})"],
+				    ["", "$mb(E) + $mb(A \\cap E^{c}),"]], "=") . 
+    $eeq . 
+    "and\n" . 
+    "\\[$mb(A) = $mb(A \\cap E) + $mb(A \\cap E^{c}).\\]" .
+    "Hence the desired equality follows directly" . 
+    $beq .
+    ptex::printEqnArray([["$mb(E \\cup A) + $mb(A \\cap E)", "$mb(E) + $mb(A \\cap E^{c}) + $mb(A \\cap E)"],
+			 ["", "$mb(E) + $mb(A)."]], "=") . 
+    $eeq;
 
 print ptex::thm($name, $name, $thm . ptex::pf($pf));
 
 $name = "2"; 
-$thm = "Let \\(G\\) be any group and let \\(A = G\\).  Show that the maps defined by \\(g \\cdot a = gag^{-1}\\) do satisfy the axioms of a (left) group action.\n"; 
-$pf = "i) Let \\(g_1, g_2 \\in G\\) and \\(a \\in A\\) be given.\n" . 
-    "Then\n" . 
+$thm = "Show that a subset \\(E\\) of \\(X\\) is \\($mb\\)-measurable if and only if for each \\(\\varepsilon > 0\\)  there is a measurable set \\(F\\) such that \\(F \\subseteq E\\) and \\($mb(E \\setminus F) < \\varepsilon\\).";
+$pf = "Suppose \\(E \\subseteq X\\) is \\($mb\\)-measurable.\n" . 
+    "Let \\(\\varepsilon > 0\\) be given and take \\(F = E\\).\n" .
+    "Then \\($mb(E \\setminus F) = 0 < \\varepsilon\\), as desired.\n\n" . 
+    "Conversely, assume for each \\(\\varepsilon > 0\\) there exists a \\($mb\\)-measurable set \\(F\\) such that \\(F \\subseteq E\\) and \\($mb(E \\setminus F) < \\varepsilon\\).\n" . 
+    "Observe that \\(E = F \\cup (E \\setminus F)\\) and \\(E^c \\subseteq F^c\\), so that by the sub-additivity of \\($mb\\)" . 
     $beq .
-    ptex::printEqnArray([["(g_1g_2)\\cdot a", "g_1g_2a(g_1g_2)^{-1}"],
-				    ["", "g_1(g_2ag_2^{-1})g_1^{-1}"],
-				    ["", "g_1 \\cdot (g_2 \\cdot a)."]] , "=") . 
-    $eeq . "\n" . 
-    "ii) Let \\(a \\in A\\) be given.\n".
-    "Since \\(A = G\\), observe that \\(1a = a1 = a\\) and \\(1^{-1} = 1\\).\n" .
-    "So it follows that\n" . 
-    $beq .
-    ptex::printEqnArray([["1 \\cdot a", "1a1^{-1}"],
-				    ["", "1a1"],
-				    ["", "a."]] , "=") . 
-    $eeq . "\n";
+    ptex::printEqnArray([["$mb(A)", "$mb((A \\cap E) \\cup (A \\cap E^{c}))"]], "=") . 
+    ptex::printEqnArray([["", "$mb(A \\cap E) + $mb(A \\cap E^{c})"]], "\\leq") . 
+    ptex::printEqnArray([["", "$mb(A \\cap F) + $mb(A \\cap (F \\setminus E)) + $mb(A \\cap E^{c})"], 
+			 ["", "$mb(A \\cap F) + $mb(F \\setminus E) + $mb(A \\cap F^{c})."]],"\\leq") .
+    $eeq . 
+    "Now, since \\(F\\) is \\($mb\\)-measurable \\[$mb(A \\cap F) + $mb(F \\setminus E) + $mb(A \\cap F^{c}) = $mb(A) + $mb(F \\setminus E),\\]\n" . 
+    "so it follows that \\[$mb(A) \\leq $mb(A \\cap E) + $mb(A \\cap E^{c}) < $mb(A) + \\varepsilon.\\]\n" . 
+    "Since this inequality holds for all \\(\\varepsilon > 0\\), \\($mb(A) = $mb(A \\cap E) + $mb(A \\cap E^{c})\\).\n" . 
+    "Therefore \\(E\\) is \\($mb\\)-measurable by Theorem 14.2.";
 
 print ptex::thm($name, $name, $thm . ptex::pf($pf));
 
 $name = "3"; 
-$thm = "Let \\(G\\) be a group and let \\(G\\) act on itself by left conjugation, so each \\(g\\in G\\) maps \\(G\\) to \\(G\\) by \\[x \\mapsto gxg^{-1}.\\]\n" . 
-    "For fixed \\(g \\in G\\), prove that conjugation by \\(g\\) is an automorphism of \\(G\\).\n" . 
-    "Deduce that \\(x\\) and \\(gxg^{-1}\\) have the same order for all \\(x\\) in \\(G\\) and that for any subset \\(A\\) of \\(G\\), \\(|A| = |gAg^{-1}|\\), where \\(gAg^{-1} = \\{gag^{-1} \\mid a \\in A\\}\\).\n"; 
-$pf = "Fix \\(g \\in G\\) and let \\(\\varphi\\) be defined by\n" . 
-    "\\[\\varphi : G \\rightarrow G\\]\n" .
-    "\\[x \\mapsto gxg^{-1}.\\]\n" . 
-    "Let \\(\\alpha,\\beta \\in G\\) be distinct.\n" . 
-    "Since \\(g\\) is fixed, by the cancellation laws \\(\\varphi(\\alpha) = \\varphi(\\beta)\\) only if \\(\\alpha = \\beta\\).\n" . 
-    "Hence \\(\\varphi\\) is injective.\n\n" . 
-    "Now let \\(\\beta \\in G\\) be given.  To see \\(\\varphi\\) is surjective, observe that there exists some \\(\\alpha \\in G\\) such that \\(\\varphi(\\alpha) = \\beta\\).\n" .
-    "Namely take \\(\\alpha = g^{-1}{\\beta}g\\).\n" .
-    "Then \\(\\varphi(\\alpha) = \\beta\\).\n" .
-    "Therefore \\(\\varphi\\) is a bijection.\n\n" . 
-    "It remains only to show that \\(\\varphi\\) is a homomorphism.\n". 
-    "Let \\(\\alpha, \\beta \\in G\\) be given.  Then\n" . 
+$thm = "Let \\(X = \\{1,2,3,4\\}\\) and let \\(S = \\{\\emptyset,X,\\{1,2\\},\\{3,4\\}\\}\\).\\\\\n" . 
+    "(a) Show that \\(S\\) is a \\(\\sigma\\)-algebra.\\\\\n" . 
+    "(b) Let \\(\\mu : S \\rightarrow [0,\\infty]\\) by \\(\\mu(A) = |A|\\) for all \\(A \\in S\\).  Prove that \\(\\mu\\) is a measure on \\(S\\).\\\\\n" . 
+    "(c) Let \\(\\mu^{*}\\) be the Carath\\\'eodory extension of \\(\\mu\\).  Find \\(\\mu^{*}(\\{1\\})\\) and \\(\\mu^{*}(\\{2,3,4\\})\\).  Deduce that \\(\\{1\\}\\) is not a \\(\\mu^{*}\\)-measurable set.\n";
+$pf = "(a) Since \\(\\emptyset^c = X \\) and \\(\\{1,2\\}^c = \\{3,4\\} \\), \\(S\\) is closed under complements.\n\n" . 
+    "Let \\(\\{A_i\\}_{i=1}^{\\infty} \\subseteq S\\) be given.\n" . 
+    "Since \\(S\\) is a finite set, the union \\(\\bigcup_{i=1}^{\\infty} A_i\\) reduces, in all cases, to a finite union.\n" . 
+    "Hence, to see \\(S\\) is closed under countable unions, it suffices to show \\(\\{1,2\\} \\cup \\{3,4\\} = X \\in S\\).\n\n" . 
+    "Closure under intersections follows directly from closure under unions and complements.\n  Therefore, \\(S\\) is a \\(\\sigma\\)-algebra.\n\n" . 
+    "(b) To see \\(\\mu\\) is a measure on \\(S\\), observe first \\(\\mu(\\emptyset) = 0\\).\n" . 
+    "Now let \\(\\{A_i\\}_{i=1}^{\\infty} \\subseteq S\\) be a disjoint sequence satisfying \\(\\bigcup_{i=1}^{\\infty}A_i \\in S.\\)\n" . 
+    "Since \\(\\{1,2\\}\\) and \\(\\{3,4\\}\\) are the only disjoint, non-empty elements of \\(S\\), in order to show additivity it suffices to show that \\[\\mu(\\{1,2\\} \\cup \\{3,4\\}) = 4 = \\mu(\\{1,2\\}) + \\mu(\\{3,4\\}).\\]" . 
+    "Therefore, \\(\\mu\\) is a measure on \\(S\\).\n\n" . 
+    "(c) The smallest possible covers of \\(\\{1\\} \\text{ and } \\{2,3,4\\}\\) are \\(\\{1,2\\}\\) and \\(X\\), respectively.\n" . 
+    "Hence, \\[\\mu^{*}(\\{1\\}) = 2 \\quad \\text{and} \\quad \\mu^{*}(\\{2,3,4\\}) = 4.\\]\n" .
+    "Now, to see \\(\\{1\\}\\) is not \\(\\mu^*\\)-measurable, consider\n" . 
     $beq .
-    ptex::printEqnArray([["\\varphi(\\alpha\\beta)", "g\\alpha \\beta g^{-1}"],
-				    ["", "(g\\alpha g^{-1})(g\\beta g^{-1})"],
-				    ["", "\\varphi(\\alpha)\\varphi(\\beta)."]] , "=") . 
+    ptex::printEqnArray([["\\mu^{*}(X \\cap \\{1\\}) + \\mu^{*}(X \\cap \\{1\\}^c)", "\\mu^{*}(\\{1\\}) + \\mu^{*}(\\{2,3,4\\}"], 
+			 ["", "6"]], "=") .
+			 ptex::printEqnArray([["", "\\mu(X)."]], ">") . 
     $eeq . 
-    "Therefore \\(\\varphi\\) is an automorphism of \\(G\\).\n\n" . 
-    "That \\(|A| = |gAg^{-1}|\\) follows immediately from the bijective property of \\(\\varphi\\).\n" . 
-    "To see \\(x\\) and \\(gxg^{-1}\\) have the same order for all \\(x\\) in \\(G\\), let \\(n = |x|\\) and consider \\(\\varphi(x^n)\\).\n" . 
-    "From the previous homework set, \\(\\varphi(x^n) = \\varphi(x)^n\\) implies \\((gxg^{-1})^n\\) = 1 and thus \\(|gxg^{-1}| \\leq n\\).\n" . 
-    "Now suppose there exists some \\(k<n\\) such that \\((gxg^{-1})^k = 1\\).\n" . 
-    "Then\n" . 
-    $beq .
-    ptex::printEqnArray([["\\varphi(x^k)", "(gxg^{-1})^k"],
-			 ["", "1"],
-			 ["", "\\varphi(1)."]] , "=") . 
-    $eeq . 
-    "Since \\(\\varphi\\) is injective, this implies \\(x^k = 1\\).\n" . 
-    "This is a contradiction.\n" . 
-    "Therefore, \\(x\\) and \\(gxg^{-1}\\) have the same order.\n";
+    "Therefore, by Theorem 15.2, \\(\\{1\\}\\) is not \\(\\mu^*\\)-measurable.\n";
 
 print ptex::thm($name, $name, $thm . ptex::pf($pf));
 
 $name = "4"; 
-$thm = "Show that the specified subset is or is not a subgroup of the given group.\n"; 
-$pf = "a)\\(H = \\{a + ai \\mid a \\in \\mathbb{R}\\} \\subseteq \\mathbb{C}\\).\n" . 
-    "Let \\(a = \\alpha + i\\alpha, b = \\beta + i\\beta\\) be given.  Then \\(ab = (\\alpha + \\beta) + i(\\alpha + \\beta)\\).\n" .
-    "Hence \\(H\\) is closed under addition.\n" . 
-    "Furthermore, for any \\(a \\in H\\), its inverse \\(-a = (-\\alpha) + i(-\\alpha) \\in H\\) implies \\(H \\leq \\mathbb{C}\\).\n\n" . 
-    "b) \\(H = \\{\\alpha + i\\beta \\mid \\alpha^2 + \\beta^2 = 1\\} \\subseteq \\mathbb{C}\\).\n" .
-    "Let \\(a = \\alpha + i\\beta, b = \\gamma + i\\delta\\) be given.\n" .
-    "Then\n". 
-        $beq .
-    ptex::printEqnArray([["|ab|", "(\\alpha\\gamma - \\beta\\delta)^2 + (\\alpha\\delta + \\beta\\gamma)^2"],
-			 ["", "(\\alpha\\gamma)^2 - 2\\alpha\\beta\\gamma\\delta + (\\beta\\delta)^2 + (\\alpha\\delta)^2 + 2\\alpha\\beta\\gamma\\delta + (\\beta\\gamma)^2"],
-			 ["", "\\gamma^2(\\alpha^2 + \\beta^2) + \\delta^2(\\alpha^2 + \\beta^2)"],
-			 ["", "\\gamma^2 + \\delta^2"],
-			 ["", "1."]], "=") . 
-    $eeq . 
-    "Hence \\(H\\) is closed under addition.  So for any \\(a \\in H\\) consider \\(a^{-1} = " . ptex::frac("\\alpha - i\\beta", "\\alpha^2 + \\beta^2") ."\\).  Then \\(a^{-1} = \\bar{a} \\in H\\) implies \\(H\\) is closed under inverses.\n" . 
-    "Therefore, \\(H \\leq \\mathbb{C}\\).\n\n" . 
-    "c) \\(H = \\{".ptex::frac("p","q") . " \\in \\mathbb{Q} \\mid (q,n) = q, \\text{fixed } n \\in \\mathbb{Z}^+\\} \\subseteq \\mathbb{Q}\\).\n" . 
-    "Let \\(x,y \\in H\\) be given.\n" .
-    "Then \\[x+y = " . ptex::frac("p","q") . "+" . ptex::frac('r','s') . " = " . ptex::frac('ps + rq', 'qs') . ".\\]\n" .
-    "If \\(qs \\leq n\\), then \\(qs\\) divides \\(n\\).\n" . 
-    "So, assume that \\(qs > n\\).\n" . 
-    "If this is the case, then it must be that there is some repeated factor of \\(n\\), g = \\((q,s) > 1\\).\n" . 
-    "Then \\[" . ptex::frac('ps + rq', 'qs') . " = " . ptex::frac('gjp + gkr', 'g^2jk') . "\\text{, for some } j,k \\in \\mathbb{Z}.\\]\n" . 
-    "So the denominator becomes \\(gjk\\), where \\(g, j \\text{ and } k\\) are all necessarily relatively prime factors of \\(n\\) and thus \\(gjk \\leq n\\).\n" . 
-    "Therefore, \\(H\\) is closed under addition.\n" . 
-    "Furthermore, for any \\(x \\in H\\), \\(x^{-1} = -x \\in H\\) implies that \\(H\\) is closed under inverses.\n" . 
-    "Therefore, \\(H \\leq \\mathbb{Q}\\).\n\n" . 
-    "d) \\(H = \\{".ptex::frac("p","q")."\\in \\mathbb{Q} \\mid (n,q) = 1, \\text{fixed } n \\in \\mathbb{Z}^+\\} \\subseteq \\mathbb{Q}\\)". 
-    "Let \\(x,y \\in H\\) be given.\n" . 
-    "Then \\[x+y = " . ptex::frac("p","q") . "+" . ptex::frac('r','s') . " = " . ptex::frac('ps + rq', 'qs') . ".\\]\n" . 
-    "Since \\((q,n) = 1\\) and \\((s,n) = 1\\), \\((qs,n) = 1\\) which implies \\(x+y \\in H\\).\n" .
-    "Hence \\(H\\) is closed under addition.\n" .
-    "Furthermore, for any \\(x \\in H\\), \\(x^{-1} = -x \\in H\\) implies \\(H\\) is closed under inverse.\n" .
-    "Therefore, \\(H \\leq \\mathbb{Q}\\).\n\n" .
-    "e) \\(H = \\{a > 0 \\in \\mathbb{R} \\mid a^2 \\in \\mathbb{Q}\\} \\subseteq \\mathbb{R}\\).\n". 
-    "Let \\(x,y\\in H\\) be given.  Then since \\(\\mathbb{Q}\\) is closed under the commutiative multiplication operation, \\((xy)^2 = x^2y^2 \\in \\mathbb{Q}\\).\n" . 
-    "Hence \\(xy \\in H\\) implies \\(H\\) is closed under multiplication.\n" . 
-    "Furthermore, since each \\(x\\in H\\) is non-zero, it is invertible and its inverse \\(" . ptex::frac(1,"x") . " \\in H\\).\n" . 
-    "Therefore \\(H \\leq \\mathbb{R}\\).\n\n" . 
-    "a) The set of 2-cycles in \\(S_n\\) for \\(n \\geq 3\\) is not closed under composition.\n". 
-    "Let \\(\\sigma = (1 \\quad 2)\\) and let \\(\\tau = (2 \\quad 3)\\).\n" .
-    "Then\n" . 
+$thm = "Let \\(X\\) be an uncountable set and, as in Homework Set \\#2, let \\[S = \\{E \\subseteq X \\mid E or E^{c} \\text{ is finite or countable}\\},\\]" . 
+    "\\[\\mu:S \\rightarrow [0,\\infty] \\qquad \\text{ by } \\qquad \\mu(E) = \\left\\{\n" .
+    "\\begin{array}{ll}\n" . 
+    "0 & \\text{if } E \\text{ is countable or finite,}\\\\ \n" .
+    "1 & \\text{if } E \\text{ is uncountable}.\n" .
+    "\\end{array}\n" .
+    "\\right.\\]\n" . 
+    "You may assume \\(S\\) is a \\(\\sigma\\)-algebra and \\(\\mu\\) is a measure on \\(S\\).  Let \\(\\mu^{*}\\) be the Carath\\'eodory extension of \\(\\mu\\).\\\\\n" . 
+    "(a) Find the value of \\(\\mu^{*}(A)\\) for every subset \\(A\\) of \\(X\\).\\\\\n" . 
+    "(b) Find all \\(\\mu^{*}\\)-measurable subsets of \\(X\\).\\\\\n";
+$pf = "(a) Let \\(A \\subseteq X\\) be given.\n" . 
+    "If \\(A \\in S\\), then \\(\\mu^*(A) = \\mu(A)\\) as in the previous homework, so assume \\(A \\not \\in S\\).\n" . 
+    "Then \\(A\\) must necessarily be an uncountable set, which means \\(A\\) cannot possibly be covered by countable sets.\n" . 
+    "So the smallest cover is necessarily the union of the fewest uncountable sets in which \\(A\\) is contained.\n" . 
+    "Since all uncountable sets have the same measure, it suffices to choose \\(X\\) as a cover; so it must be the case that \\(\\mu^{*}(A) = 1\\).\n\n" . 
+    "(b) From our work in class, \\(S \\subseteq \\Lambda_{\\mu*}\\).\n" . 
+    "So consider any set \\(A \\not \\in S\\).\n" . 
+    "Then both \\(A\\) and \\(A^c\\) are uncountable and by the argument above,\n" .
     $beq .
-    ptex::printEqnArray([["\\sigma \\tau", "(1 \\quad 2)(2 \\quad 3)"],
-			 ["", "(1 \\quad 2 \\quad 3)."]], "=") . 
+    ptex::printEqnArray([["\\mu^{*}(X \\cap A) + \\mu^{*}(X \\cap A^c)", "\\mu^{*}(A) + \\mu^{*}(A^c)"], 
+			 ["", "\\mu(X) + \\mu(X)"]], "=") .
+			 ptex::printEqnArray([["", "\\mu(X)."]], ">") . 
     $eeq . 
-    "Therefore the set of 2-cycles in \\(S_n\\) for \\(n \\geq 3\\) is not a subgroup.\n\n" . 
-    "b) The set of reflections in \\(D_{2n}\\) for \\(n \\geq 3\\) is not closed under the group operation.\n" .
-    "Take \\(s\\) and \\(sr^2\\) for example:" .
-    "\\[s(sr^2) = r^2.\\]\n" .
-    "Therefore the set of reflections in \\(D_{2n}\\) for \\(n \\geq 3\\) is not a subgroup.\n\n" . 
-    "c) \\(H = \\{x \\in G \\mid |x| = n\\} \\cup \\{1\\} \\subseteq G\\).\n" . 
-    "Let \\(x\\in H\\) be given.  In order to be closed, \\(x^2\\) must be an element of \\(G\\).\n" .
-    "However, \\((x^2)^" . ptex::frac("n",2) ." = 1\\) implies that the order of \\(x^2\\) is strictly less than \\(n\\).\n" .
-    "Therefore \\(H\\) is not a subgroup of \\(G\\).\n\n" . 
-    "d)\\(H = \\{x \\in \\mathbb{Z} \\mid x \\equiv 1 (2)\\} \\cup \\{0\\} \\subseteq \\mathbb{Z}\\).\n" .
-    "Since the sum of any two odd integers is always even, \\(H\\) is not closed under addition.  Therefore \\(H\\) is not a subgroup.\n" . 
-    "\n\n" . 
-    "e)\\(H = \\{x \\in \\mathbb{R} \\mid x^2 \\in \\mathbb{Q}\\} \\subseteq \\mathbb{R}^+\\).\n" . 
-    "Take the two elements \\(\\sqrt(2),\\sqrt(3)\\in H\\).  The square of their sum is the irrational number \\[(\\sqrt(2) + \\sqrt(3))^2 = 2 + 2\\sqrt(2)\\sqrt(3) + 3.\\]\n" . 
-    "Hence \\(H\\) is not a subgroup.\n";
+    "Hence, by Theorem 15.2, \\(A \\not \\in \\Lambda_{\\mu*}\\) for any \\(A \\not \\in S\\).\n  Therefore, \\(\\Lambda_{\\mu*} = S.\\)";
 
 print ptex::thm($name, $name, $thm . ptex::pf($pf));
 
 $name = "5"; 
-$thm = "Let \\(A\\) and \\(B\\) be groups.  Prove that the following sets are subgroiups of the direct product \\(A \\times B\\):\n\n" . 
-    "a)\\(\\{(a,1) \\mid a \\in A\\}\\)\n\n" . 
-    "b)\\(\\{(1,b) \\mid b \\in B\\}\\)\n\n" . 
-    "c)\\(\\{(a,a) \\mid a \\in A\\}\\), where here we assume \\(B = A\\).\n\n"; 
-$pf = "Since \\(A\\) and \\(B\\) are both groups, for any two elements \\((x_1,1)\\) and \\((x_2,1)\\), \\((1,y_1)\\) and \\((1,y_2)\\) or \\((x_1,y_2)\\) and \\((x_2,y_2)\\)\n" . 
-    "of the subsets, their respective products \\((x_1x_2,1), (1,y_1y_2), (x_1x_2,y_1y_2)\\) are clearly an element of their respective subset.\n" . 
-    "Hence the subsets are closed under addition.\n\n" . 
-    "Moreover, any such elements have inverses which are elements of their respective subsets,\n" . 
-    "\\((x,1)^{-1} = (x^{-1},1)\\),\n" . 
-    "\\((1,y)^{-1} = (1,y^{-1})\\), and\n" . 
-    "\\((x,y)^{-1} = (x^{-1}, y^{-1})\\).\n" . 
-    "Therefore, all three sets are subgroups of \\(A \\times B\\).\n";
-       
-print ptex::thm($name, $name, $thm . ptex::pf($pf));
-
-$name = "6 a)"; 
-$thm = "Prove that if \\(H\\) and \\(K\\) are subgroups of \\(G\\) then so is their intersection, \\(H \\cap K\\).\n"; 
-$pf = "For any element \\(x \\in H \\cap K\\), \\(x \\in H\\) and \\(x \\in K\\) by definition.\n" . 
-    "Since \\(H\\) and \\(K\\) are both subgroups of \\(G\\), \\(x^{-1} \\in H\\) and \\(x^{-1} \\in K\\) implies \\(H \\cap K\\) is closed under inverses.\n\n" . 
-    "Similarly, for any \\(x,y \\in H \\cap K\\), \\(xy \\in K\\) and \\(xy \\in H\\) implies \\(H \\cap K\\) is closed under multiplication.\n" . 
-    "Therefore \\(H \\cap K\\) is a subgroup of \\(G\\).\n";
-
-print ptex::thm($name, $name, $thm . ptex::pf($pf));
-
-$name = "b)"; 
-$thm = "Prove that the intersection of arbitrary non-empty subgroups of \\(G\\) is a subgroup.\n"; 
-$pf = "\n";
+$thm = "Let \\(S = \\{[n,m) \\mid n,m \\in \\mathbb{Z} \\text{ with } n \\leq m\\}\\) and let\n". 
+    "\\[\\mu : S \\rightarrow [0,\\infty) \\qquad \\text { by } \\qquad \\mu([n,m)) = m - n.\\]\n" . 
+    "You may assume \\(S\\) is a semiring and \\(\\mu\\) is a measure on \\(S\\).  Let \\(\\mu^{*}\\) be the Carath\\'eodory extension of \\(\\mu\\) to an outer measure on all subsets of \\(\\mathbb{R}\\).\\\\\n" . 
+    "(a) Find the value of \\(\\mu^{*}([a,b])\\) for every closed interval \\([a,b]\\) of \\(\\mathbb{R}\\).\\\\\n" . 
+    "(b) Show that \\([0,1]\\) is not \\(\\mu^{*}-measurable\\).\\\\\n";
+$pf = "(a) For any closed interval, the value of \\(\\mu^{*}([a,b])\\) is determined by \\(\\mu([m,n))\\), where \\([m,n)\\) is the smallest cover of \\([a,b]\\) with integer endpoints.\n" . 
+    "For \\(b \\not \\in \\mathbb{Z}\\), \\([\\lfloor a \\rfloor, \\lceil b \\rceil )\\) is just such a cover.\n" . 
+    "For \\(b \\in \\mathbb{Z}\\), \\([\\lfloor a \\rfloor, b+1 )\\) is the smallest cover, since \\(b\\) must be covered.\n" . 
+    "Hence, \\[\\mu^*([a,b]) = \\left\\{" . 
+    "\\begin{array}{ll}\n" . 
+    "b+1-\\lfloor a \\rfloor & \\text{if } b \\in \\mathbb{Z},\\\\\n" .
+    "\\lceil b \\rceil - \\lfloor a \\rfloor & \\text{if } b \\not \\in \\mathbb{Z}.\n" .
+    "\\end{array}\n" .
+    "\\right. \\]\n\n" . 
+    "(b) To see that \\([0,1]\\) is not \\(\\mu^{*}\\)-measurable, consider the interval \\([0,2) \\in S\\).\n" . 
+    $beq .
+    ptex::printEqnArray([["\\mu^{*}([0,2) \\cap [0,1]) + \\mu^{*}([0,2) \\cap [0,1]^c)", "\\mu^{*}([0,1]) + \\mu^{*}((1,2))"], 
+			 ["", "\\mu([0,2)) + \\mu([1,3))"]], "=") .
+			 ptex::printEqnArray([["", "\\mu([0,2))."]], ">") . 
+    $eeq . 
+    "Therefore, by Theorem 15.2, \\([0,1]\\) is not \\(\\mu^{*}\\)-measurable.\n";
 
 print ptex::thm($name, $name, $thm . ptex::pf($pf));
-
-$name = "7"; 
-$thm = "Let \\(H\\) and \\(K\\) be subgroups of \\(G\\).  Prove that \\(H \\cup K\\) is a subgroup if and only if either \\(H \\subseteq K\\) or \\(K \\subseteq H\\).\n"; 
-$pf = "To show that \\(H \\cup K \\leq G\\) implies \\(H \\subseteq K\\) or \\(K \\subseteq H\\), it suffices to show the contrapositive.\n" . 
-    "So suppose it is not the case that \\(H \\subseteq K\\) or \\(K \\subseteq H\\).\n" . 
-    "Then there exist elements of \\(H \\cup K\\), \\(x \\in H\\) and \\(y \\in K\\)  such that \\(x,y \\not \\in H \\cap K\\).\n" . 
-    #"In order for \\(H \\cup K\\) to be a subgroup of \\(G\\) the set must be closed under multiplication.\n" . 
-    #"It then follows that at least one of \\(xy \\in H\\) or \\(xy \\in K\\) must hold.\n" . 
-    #"Suppose \\(xy \\in H\\).  
-    "Note then that \\[x^{-1}(xy) = y \\not \\in H\\]  implies \\(xy \\not \\in H\\).  Furthermore,  \\[(xy)y^{-1} = x \\not \\in K\\] implies \\(xy \\not \\in K\\).\n" . 
-    "Hence \\(H \\cup K\\) is not closed under multiplication.\n" . 
-    "Therefore \\(H \\cup K \\leq G\\) implies either \\(H \\subseteq K\\) or \\(K \\subseteq H\\).\n\n" . 
-    "Conversely, suppose without loss of generality that \\(H \\subseteq K\\).\n" . 
-    "Then, by definition, for any \\(x,y \\in H \\cup K\\), \\(x,y \\in K\\).\n" . 
-    "Since \\(K\\) is a subgroup of \\(G\\), \\(H \\cup K\\) is closed under multiplication and under inverses.\n" . 
-    "Hence \\(H \\cup K\\) is a subgroup of \\(G\\).\n" . 
-    "Therefore, \\(H \\cup K\\) is a subgroup of \\(G\\) if and only if either \\(H \\subseteq K\\) or \\(K \\subseteq H\\).";
-
-print ptex::thm($name, $name, $thm . ptex::pf($pf));
-
 #print "\\bibliographystyle{plain}" .
 #    "\\bibliography{refs}";
 print ptex::endDoc();
