@@ -143,8 +143,8 @@ $pf = "a)\\(H = \\{a + ai \\mid a \\in \\mathbb{R}\\} \\subseteq \\mathbb{C}\\).
     "Then \\[x+y = " . ptex::frac("p","q") . "+" . ptex::frac('r','s') . " = " . ptex::frac('ps + rq', 'qs') . ".\\]\n" .
     "If \\(qs \\leq n\\), then \\(qs\\) divides \\(n\\).\n" . 
     "So, assume that \\(qs > n\\).\n" . 
-    "If this is the case, then it must be that there is some repeated factor of \\(n\\), g = \\((q,s) > 1\\).\n" . 
-    "Then \\[" . ptex::frac('ps + rq', 'qs') . " = " . ptex::frac('gjp + gkr', 'g^2jk') . "\\text{, for some } j,k \\in \\mathbb{Z}.\\]\n" . 
+    "If this is the case, then it must be that g = \\((q,s) > 1\\).\n" . 
+    "Then \\[" . ptex::frac('ps + rq', 'qs') . " = " . ptex::frac('(gj)p + (gk)r', 'g^2(jk)') . "\\text{, for some } j,k \\in \\mathbb{Z}.\\]\n" . 
     "So the denominator becomes \\(gjk\\), where \\(g, j \\text{ and } k\\) are all necessarily relatively prime factors of \\(n\\) and thus \\(gjk \\leq n\\).\n" . 
     "Therefore, \\(H\\) is closed under addition.\n" . 
     "Furthermore, for any \\(x \\in H\\), \\(x^{-1} = -x \\in H\\) implies that \\(H\\) is closed under inverses.\n" . 
@@ -187,13 +187,13 @@ $pf = "a)\\(H = \\{a + ai \\mid a \\in \\mathbb{R}\\} \\subseteq \\mathbb{C}\\).
 print ptex::thm($name, $name, $thm . ptex::pf($pf));
 
 $name = "5"; 
-$thm = "Let \\(A\\) and \\(B\\) be groups.  Prove that the following sets are subgroiups of the direct product \\(A \\times B\\):\n\n" . 
-    "a)\\(\\{(a,1) \\mid a \\in A\\}\\)\n\n" . 
-    "b)\\(\\{(1,b) \\mid b \\in B\\}\\)\n\n" . 
-    "c)\\(\\{(a,a) \\mid a \\in A\\}\\), where here we assume \\(B = A\\).\n\n"; 
-$pf = "Since \\(A\\) and \\(B\\) are both groups, for any two elements \\((x_1,1)\\) and \\((x_2,1)\\), \\((1,y_1)\\) and \\((1,y_2)\\) or \\((x_1,y_2)\\) and \\((x_2,y_2)\\)\n" . 
-    "of the subsets, their respective products \\((x_1x_2,1), (1,y_1y_2), (x_1x_2,y_1y_2)\\) are clearly an element of their respective subset.\n" . 
-    "Hence the subsets are closed under addition.\n\n" . 
+$thm = "Let \\(A\\) and \\(B\\) be groups.  Prove that the following sets are subgroups of the direct product \\(A \\times B\\):\n\n" . 
+    "a) \\(G_1 = \\{(a,1) \\mid a \\in A\\}\\)\n\n" . 
+    "b) \\(G_2 = \\{(1,b) \\mid b \\in B\\}\\)\n\n" . 
+    "c) \\(G_3 = \\{(a,a) \\mid a \\in A\\}\\), where here we assume \\(B = A\\).\n\n"; 
+$pf = "Since \\(A\\) and \\(B\\) are both groups, for any two elements \\((x_1,1),(x_2,1) \\in G_1\\), \\((1,y_1),(1,y_2) \\in G_2\\) or \\((x_1,y_2),(x_2,y_2) \\in G_3\\)\n" . 
+    "of the above subsets, their respective products \\((x_1x_2,1), (1,y_1y_2), (x_1x_2,y_1y_2)\\) are clearly an element of their respective subset.\n" . 
+    "Hence the subsets are closed under the group operation.\n\n" . 
     "Moreover, any such elements have inverses which are elements of their respective subsets,\n" . 
     "\\((x,1)^{-1} = (x^{-1},1)\\),\n" . 
     "\\((1,y)^{-1} = (1,y^{-1})\\), and\n" . 
@@ -213,25 +213,29 @@ print ptex::thm($name, $name, $thm . ptex::pf($pf));
 
 $name = "b)"; 
 $thm = "Prove that the intersection of arbitrary non-empty subgroups of \\(G\\) is a subgroup.\n"; 
-$pf = "\n";
+$pf = "Let \\(I\\) be an arbitrary index set and let \\(G_i \\leq G\\), for each \\(i \\in I\\).\n" . 
+    "Let \\(g_1,g_2 \\in \\bigcap_{i \\in I}G_i\\).\n" . 
+    "Then by definition \\(g_1, g_2 \\in G_i\\), for each \\(i \\in I\\).\n" . 
+    "Since each \\(G_i\\) is a subgroup it's necessarily closed under multiplication and inverses, so \\(g_1g_2 \\in \\bigcap_{i \\in I}G_i\\) and \\(g_1^{-1} \\bigcap_{i \\in I}G_i\\) implies \\(\\bigcap_{i \\in I}G_i \\leq G\\).\n";
 
 print ptex::thm($name, $name, $thm . ptex::pf($pf));
 
 $name = "7"; 
 $thm = "Let \\(H\\) and \\(K\\) be subgroups of \\(G\\).  Prove that \\(H \\cup K\\) is a subgroup if and only if either \\(H \\subseteq K\\) or \\(K \\subseteq H\\).\n"; 
 $pf = "To show that \\(H \\cup K \\leq G\\) implies \\(H \\subseteq K\\) or \\(K \\subseteq H\\), it suffices to show the contrapositive.\n" . 
-    "So suppose it is not the case that \\(H \\subseteq K\\) or \\(K \\subseteq H\\).\n" . 
+    "Assume it is not the case that \\(H \\subseteq K\\) or \\(K \\subseteq H\\).\n" . 
     "Then there exist elements of \\(H \\cup K\\), \\(x \\in H\\) and \\(y \\in K\\)  such that \\(x,y \\not \\in H \\cap K\\).\n" . 
     #"In order for \\(H \\cup K\\) to be a subgroup of \\(G\\) the set must be closed under multiplication.\n" . 
     #"It then follows that at least one of \\(xy \\in H\\) or \\(xy \\in K\\) must hold.\n" . 
     #"Suppose \\(xy \\in H\\).  
-    "Note then that \\[x^{-1}(xy) = y \\not \\in H\\]  implies \\(xy \\not \\in H\\).  Furthermore,  \\[(xy)y^{-1} = x \\not \\in K\\] implies \\(xy \\not \\in K\\).\n" . 
-    "Hence \\(H \\cup K\\) is not closed under multiplication.\n" . 
-    "Therefore \\(H \\cup K \\leq G\\) implies either \\(H \\subseteq K\\) or \\(K \\subseteq H\\).\n\n" . 
-    "Conversely, suppose without loss of generality that \\(H \\subseteq K\\).\n" . 
+    #"Note then that \\[x^{-1}(xy) = y \\not \\in H\\]  implies \\(xy \\not \\in H\\).  Furthermore,  \\[(xy)y^{-1} = x \\not \\in K\\] implies \\(xy \\not \\in K\\).\n" . 
+    "Observe that \\[x^{-1}(xy) = y \\not \\in H \\qquad \\text{and} \\qquad (xy)y^{-1} = x \\not \\in K.\\]\n" .
+    "Since \\(H\\) and \\(K\\) are both subgroups of \\(G\\), it follows that \\(xy \\not \\in H\\) and \\(xy \\not \\in K\\).\n" .
+    "Hence \\(H \\cup K\\) is not closed under multiplication and thus it is not a subgroup of \\(G\\), as desired.\n\n" . 
+    #"Therefore \\(H \\cup K \\leq G\\) implies either \\(H \\subseteq K\\) or \\(K \\subseteq H\\).\n\n" . 
+    "Conversely, it suffices to assume that \\(H \\subseteq K\\).\n" . 
     "Then, by definition, for any \\(x,y \\in H \\cup K\\), \\(x,y \\in K\\).\n" . 
-    "Since \\(K\\) is a subgroup of \\(G\\), \\(H \\cup K\\) is closed under multiplication and under inverses.\n" . 
-    "Hence \\(H \\cup K\\) is a subgroup of \\(G\\).\n" . 
+    "Since \\(K\\) is a subgroup of \\(G\\), \\(H \\cup K\\) is closed under multiplication and under inverses.  Hence \\(H \\cup K\\) is a subgroup of \\(G\\).\n" . 
     "Therefore, \\(H \\cup K\\) is a subgroup of \\(G\\) if and only if either \\(H \\subseteq K\\) or \\(K \\subseteq H\\).";
 
 print ptex::thm($name, $name, $thm . ptex::pf($pf));
