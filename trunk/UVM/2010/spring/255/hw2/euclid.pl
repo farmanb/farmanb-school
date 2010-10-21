@@ -1,30 +1,31 @@
 #!/usr/bin/env perl
-
 use strict;
 use warnings;
 
 sub euclid{
-    my ($a,$b) = (@_);
+    my ($a,$b,$href) = (@_);
 
     if ($b == 0){
 	return $a;
     }
     
-    return euclid($b,$a%$b);
+    my $q = ($a - $a%$b)/$b;
+    my $r = $a%$b;
+
+    #print "$a = ($q)$b + " . $r . "\n";
+
+    if (!defined $href){
+	$href = {$r=>"$a - ($q)$b"};
+    }
+    else{
+	$href->{$r} = "$a - ($q)$b";
+    }
+
+    print $href->{$r} . "\n";
+
+    return euclid($b,$a%$b,$href);
 }
-#    my $r = $a % $b;
-#    my $d = ($a - $r) / $b;
-
-#    print "$a = $b($d) + $r\n";
-
-#    if ($r == 0){
-#	return;
-#    }
-#    else{
-#	euclid($b,$r);
-#    }
-#}
 
 my ($a,$b) = ($ARGV[0], $ARGV[1]);
 
-print euclid($a,$b) . "\n";
+print "gcd($a,$b) = " . euclid($a,$b) . "\n";
