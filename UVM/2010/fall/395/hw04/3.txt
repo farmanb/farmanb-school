@@ -1,0 +1,133 @@
+Frequencies for 'misxlprxaisvseiealewkfixmslyjhrerwiiyf':
+a:2
+e:4
+f:2
+h:1
+i:6
+j:1
+k:1
+l:3
+m:2
+p:1
+r:3
+s:4
+v:1
+w:2
+x:3
+y:2
+Frequencies for 'gdaurrqubeengagqbryurvpfyaryfraybccjoe':
+a:4
+b:3
+c:2
+d:1
+e:3
+f:2
+g:3
+j:1
+n:1
+o:1
+p:1
+q:2
+r:6
+u:3
+v:1
+y:4
+Frequencies for 'oakkcthuxkkhlougzzkbotuuocxtuokruuzerg':
+a:1
+b:1
+c:2
+e:1
+g:2
+h:2
+k:6
+l:1
+o:5
+r:2
+t:3
+u:7
+x:2
+z:3
+Frequencies for 'dpocsrcqwtlwzyajsjytepxqktppwycpeeeztc':
+a:1
+c:4
+d:1
+e:4
+j:2
+k:1
+l:1
+o:1
+p:5
+q:2
+r:1
+s:2
+t:4
+w:3
+x:1
+y:3
+z:2
+Frequencies for 'tswiotetdsderlaoapglcsfcatssiaedhehrcy':
+a:4
+c:3
+d:3
+e:4
+f:1
+g:1
+h:2
+i:2
+l:2
+o:2
+p:1
+r:2
+s:5
+t:4
+w:1
+y:1
+Frequencies for 'bguayunugnzfnbfeavyybgbvgugfgzdorkrxy':
+a:2
+b:4
+d:1
+e:1
+f:3
+g:6
+k:1
+n:3
+o:1
+r:2
+u:4
+v:2
+x:1
+y:4
+z:2
+Frequencies for 'elhwhdghkplspyvwwfldpkuylwirxdxbufqsl':
+b:1
+d:3
+e:1
+f:2
+g:1
+h:3
+i:1
+k:2
+l:5
+p:3
+q:1
+r:1
+s:2
+u:2
+v:1
+w:4
+x:2
+y:2
+
+Key: england
+
+Deciphered message:
+itistobequestionedwhetherinthewholelengthandbreadthoftheworldthereisamoreadmirablespotforamaninlovetopassadayortwothanthetypicalenglishvillageitcombinesthecomfortsofcivilizationwiththerestfulnessofsolitudeinamannerequalledbynootherspotexceptthenewyorkpubliclibrary
+
+it is to be questioned whether in the whole
+length and breadth of the world there is a 
+more admirable spot for a man in love to 
+pass a day or two than the typical english
+village it combines the comforts of 
+civilization with the restfulness
+of solitude in a manner equalled by no other
+spot except the new york public library
