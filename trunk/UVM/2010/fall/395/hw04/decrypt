@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+NAME="vigenere"
+CIPHERTXT="ciphertext.txt"
+
+./$NAME.pl $CIPHERTXT
