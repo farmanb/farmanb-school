@@ -1,0 +1,119 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts}
+\openup 5pt
+\author{Blake Farman}
+\title{Math-351:\\Homework 1}
+\date{January 31, 2010}\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\begin{document}
+
+\maketitle
+
+\renewcommand{\qedsymbol}{\(\blacksquare\)}
+\newcommand{\znz}[1]{\mathbb{Z} / #1\mathbb{Z}}
+\newcommand{\mznz}[1]{(\mathbb{Z} / #1\mathbb{Z})^*}
+
+\newtheorem*{1}{2.2.2}
+\begin{1}
+  Prove that if \(p\) is a positive prime, then there exists an element \(x \in  \znz{p}\) such that \(x^2 \equiv -1 \pmod{p}\) if and only if either \(p = 2\) or \(p \equiv 1 \pmod{4}\).
+  \begin{proof}
+    Both directions of the case where \(p = 2\) are immediate, so assume that \(p \equiv 1 \pmod{4}\).  
+    Let \(x \in \znz{p}\) be such that \(x^2 \equiv -1 \pmod{4}\).
+    The order of \(x\) in \(\mznz{p}\) is 4 and so it follows as a consequence of Lagrange's Theorem that \(4 | (p-1)\).
+    Therefore \(p \equiv 1 \pmod{4}\).
+
+    Conversely, let the prime \(p \equiv 1 \pmod{4}\) be given and consider the cyclic group \(G = \mznz{p}\).
+    Let \(g\) generate \(G\) and write \(p = 4n + 1\) for some integer \(n\).
+    Observe that \(G\) has elements of all orders diving \(4n\) and thus \(G\) has an element of order four, namely \(g^n\).
+    From this observation it now follows directly that \[g^{2n} \equiv \pm 1 \pmod{p}.\]
+    However, \(g\) was assumed to be a generator of \(G\), hence it must be the case that \[(g^n)^2 \equiv -1 \pmod{p}\] and the proof is finished.
+  \end{proof}
+\end{1}
+
+\newtheorem*{2}{2.2.3}
+\begin{2}
+  Find all integer solutions to \(y^2 + 1 = x^3\) with \(x,y \not = 0\)
+  \begin{proof}
+    First observe that in the integers \(y^2 + 1 \geq 1\) and thus \(x \geq 1\) must hold.
+    Hence, it suffices only to check solutions in the natural numbers.
+    Now rearranging the equation yields \[x^3 - y^2 = 1.\]
+    By Catalan's Conjecture, \(2^3\) and \(3^2\) are the only consecutive powers over the natural numbers.
+    However, 9 is not a cube and 8 is not a square.
+    Therefore the only solution is the trivial solution, \(x = 1\), \(y = 0\).
+  \end{proof}
+\end{2}
+
+\newpage
+
+\newtheorem*{3}{2.3.2}
+\begin{3}
+  (a) Show that \(\mathbb{Z}[\rho]\) is Euclidean.\\
+  (b) Show that only units in \(\mathbb{Z}[\rho]\) are \(\pm 1, \pm \rho,\) and \(\pm \rho^2\).
+  \begin{proof}
+    (a) To see \(\mathbb{Z}[\rho]\) is Euclidean, it suffices to show that for some norm, \(N\), any two elements of \(\mathbb{Z}[\rho]\), \(\alpha\) and \(\beta\), can be written as \(\alpha = q\beta + \gamma\) for some \(q,\gamma \in \mathbb{Z}[\rho]\) with \(N(\gamma) < N(b)\).
+  To that end, define the map
+  \begin{align*}
+      N: \mathbb{Z}[\rho] & \longrightarrow \mathbb{Z}\\ 
+      a + \rho b & \longmapsto (a + \rho b)(a + \overline{\rho}b)
+    \end{align*}
+    and write the quotient of \(\alpha\) and \(\beta\) as
+    \begin{align*}
+      \frac{\alpha\overline{\beta}}{\beta\overline{\beta}} = r + {\rho}s,
+    \end{align*}
+    for some \(r,s \in \mathbb{Q}\).
+    Take \(m,n \in \mathbb{Z}\) to be the integers closest to \(r\) and \(s\), respectively, so that
+    \begin{align*}
+      |r - m| \leq \frac{1}{2} \quad \text{and} \quad  |s - n| \leq \frac{1}{2}.
+    \end{align*}
+    Let \(q = m + {\rho}n\) and observe that
+    \begin{equation}
+      \label{norm}
+      \begin{split}
+        N(\frac{\alpha}{\beta} - q) &= (r - m)^2 - (r-m)(s-n) + (s-n)^2\\
+        & \leq \frac{1}{4} + \frac{1}{4} + \frac{1}{4}\\
+        & < 1.
+      \end{split}
+    \end{equation}
+    Let \(\gamma = {\beta}(\frac{\alpha}{\beta} - q)\) and observe that by \eqref{norm}
+    \begin{equation*}
+      \begin{split}
+        N(\gamma) &= N(\beta)N(\frac{\alpha}{\beta} - q)\\
+        &< N(\beta).
+      \end{split}
+    \end{equation*}
+    Hence \(\alpha = q\beta + \gamma\) with \(N(\gamma) < N(\beta)\), as desired.
+    Therefore \(\mathbb{Z}[\rho]\) is Euclidean.
+
+    (b) Assume \(u = a + {\rho}b\) is a unit and thus
+    \begin{align*}
+      N(u) - 1 = a^2 - ab + b^2 - 1 = 0.
+    \end{align*}
+    Taking the above to be a polynomial in \(b\) and applying the quadratic formula, it follows that
+    \begin{align*}
+      b = \frac{a \pm \sqrt{4 - 3a^2}}{2}.
+    \end{align*}
+    Since \(b\) was assumed to be an integer, it is clear that \(|a| \leq 1\).
+    Fixing \(a = 0, \pm 1\) then determines the six values of \(b\) corresponding to \(\pm 1, \pm \rho,\) and \(\pm \overline{\rho}\) as desired.
+  \end{proof}
+\end{3}
+
+\newpage
+
+\newtheorem*{4}{2.3.3}
+\begin{4}
+  Let \(\lambda = 1 - \rho\).  
+  Show that \(\lambda\) is irreducible, so we have a factorization of 3 (unique up to unit).
+  \begin{proof}
+    Using \(N\) as defined in the previous exercise, observe that 
+    \begin{align*}
+      N(\lambda) = (1 - \rho)(1 - \overline{\rho}) = 3.
+    \end{align*}
+    For any \(\alpha,\beta \in \mathbb{Z}[\rho]\), if \(\lambda = \alpha\beta\), then 
+    \begin{align*}
+      N(\lambda) = N(\alpha)N(\beta) = 3.
+    \end{align*}
+    Hence one of \(\alpha\) or \(\beta\) must be a unit.
+    Therefore \(\lambda\) is irreducible.
+  \end{proof}
+\end{4}
+\end{document}
