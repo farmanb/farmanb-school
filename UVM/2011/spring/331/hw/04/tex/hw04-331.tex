@@ -1,0 +1,176 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,wasysym}
+\openup 5pt
+\author{Blake Farman}
+\title{Math-331:\\Homework 4}
+\date{February 25, 2010}\pdfpagewidth 8.5in
+\usepackage[margin=1in]{geometry}
+\pdfpageheight 11in
+\begin{document}
+\maketitle
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+
+\renewcommand{\qedsymbol}{\(\blacksquare\)}
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+
+\newenvironment{alphaenum}{
+  \begin{enumerate}
+    \renewcommand{\theenumi}{(\alph{enumi})}
+    \renewcommand{\labelenumi}{\theenumi}
+  }
+  {\end{enumerate}}
+\newenvironment{as}{\begin{align*}}{\end{align*}}
+
+\newtheorem{thm}{}
+
+\begin{thm}
+  \label{Ex1}
+  \begin{alphaenum}
+  \item
+    Suppose $f: \C \longrightarrow \C$ is continuous everywhere and is holomorphic at every point except possibly the points in the interval $[2,5]$ on the real axis.  
+    Prove that $f$ must be holomorphic at every point of $\C$.
+    \item
+      Give an example (with justification) of a function $g$ that is holomorphic
+      at every point except the points in the interval [2,5] on the real axis,
+      and that 
+      $$
+      \lim_{\substack{z \rightarrow a\\ z \not\in \R}} |g(z)|
+      \quad \text{does not exist (as a complex number), for \it every } a \in [2,5].
+      $$
+      (Your example may have the limits $= \infty$ for some or all $a$, just no ``removable'' singularities
+      at any $a \in [2,5]$.)
+  \end{alphaenum}
+  \begin{proof}
+    \begin{alphaenum}
+    \item
+      Suppose to the contrary that $f$ is not entire.  
+      By Morera's Theorem, there exists some rectangle $R$ such that $\int_R f \not = 0$.
+      Consider any rectangle, $R$, that intersects the interval $[2,5]$.
+      Using Goursat's construction we can split $R$ into two parts, $R_1$ and $R_2$ which each share the real axis as a boundary and $\int_R f = \int_{R_1} f + \int_{R_2}$.
+      Thus it suffices by symmetry to consider $R$ as a rectangle contained in the upper half-plane.
+
+      
+      Now construct a sequence of rectangles $R_n$ which are $R$ shifted in the positive imaginary direction by $1/n$, i.e. if we let $\gamma:[a,b]\rightarrow \C$ parameterize $R$, then $\gamma + 1/n$ parametrizes $R_n$.
+      Observe that as $n \rightarrow \infty$ we have $R_n \rightarrow R$.
+      Moreover, from Goursat we have that $\int_{R_n} f = 0$ for each $n$ because each $R_n$ does not contain $[2,5]$ and $f$ is holomorphic by assumption on $\C\setminus[2,5]$.
+      
+      Let $\epsilon > 0$ be given and take $N$ such that $1/n < \epsilon/2$.
+      Let $\gamma_i:[a_i,a_{i+1}]\rightarrow \C$ be the restriction of $\gamma$ to the subinterval $[a_i,a_{i+1}]$
+      Observing that $\gamma$ is continous, there exists a $\delta$ such that if we let $P = a = a_0 \leq \ldots \leq a_n = b$ be a partition of $[a,b]$ with $|a_i - a_{i+1}| < \delta$, then any ball $D_i = D(\gamma_i(a_i),\epsilon)$ contains the image of $[a_i,a_{i+1}]$ under $\gamma$.
+      Moreover, by construction these $D_i$ also contain the image of $[a_i,a_{i+1}]$ under $\gamma_i + 1/n$, the parametrization of $R_n$.
+      Hence $R$ and $R_n$ satisfy our definition of closeness in $\C$ and thus their integrals must agree.
+      However, $\int_R f$ was assumed to be non-zero, but $\int_{R_n}f = 0$ for every $n$.
+      This is a contradiction.
+      Therefore, $f$ is entire, as desired.
+    \item
+      \frownie
+    \end{alphaenum}
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  \label{Ex2}
+  In each of the parts (a) to (d) let $g$ be the specified continuous function, and let $C$ be the unit circle centered at the origin (oriented counterclockwise).
+  For all $z$ inside $C$ define $$f(z) = \frac{1}{2\pi i}\int_C \frac{g(u)}{u-z}\,du$$
+  so that $f$ is analytic inside $C$ by out Theorem from class.
+  In each case explicity describe $f$ (in terms of power series) and explain why $f$ does or does not equal the given $g$.\\
+  \begin{align*}
+    \begin{split}
+      &(a)\, g(u) = \overline{u} \qquad \qquad \qquad \qquad \,\,\,\,\,(b)\, g(u) = | u |\\
+      &(c)\, g(u) = 1/u \qquad \qquad \qquad \qquad (d)\, g(u) = u^7.
+    \end{split}
+  \end{align*}
+  
+  \begin{proof}
+    As a Corollary to the aforementioned Theorem, for each $f$ we have $f(z) = \sum_{n=0}^{\infty} c_nz^n$ where $$c_n = \frac{1}{2\pi i} \int_C \frac{g(u)}{u^{n+1}}\,du$$ which converges at least for all $z$ on the interior of $C$.
+    Parameterize the unit circle by $C(\theta) = e^{i\theta}$ for $\theta \in [0,2\pi]$.
+    \begin{alphaenum}
+    \item
+      For $g(u) = \overline{u}$, the constants in the power series expansion of $f$ are given by
+      \begin{align*}
+        \begin{split}
+          c_n = \frac{1}{2\pi i}\int_C \frac{\overline{u}}{u^{n+1}}\,du = \frac{1}{2\pi}\int_0^{2\pi} \frac{d\theta}{e^{i(n+1)\theta}} = 0.
+        \end{split}
+      \end{align*}
+      Hence the power series of $f$ defines the zero function, which does not equal $g$ because is not analytic on $C$.
+      % &= \\
+    \item
+      From the first homework set we know that $g$ is nowhere analytic and thus we expect that the power series expansion of $f$ will not agree with $g$.
+      The coefficients of the expansion are given by
+      \begin{align*}
+        \begin{split}
+          c_n = \frac{1}{2\pi i}\int_C \frac{|u|}{u^{n+1}}\,du = \frac{1}{2\pi}\int_0^{2\pi} \frac{d\theta}{e^{in\theta}}.
+        \end{split}
+      \end{align*}
+      For each $n \not = 0$, we have nearly the same integral as above and $c_n = 0$.
+      The coefficient $c_0$ can be handled separately, namely
+      $$c_0 = \frac{1}{2\pi}\int_0^{2\pi}d\theta = 1.$$
+      Hence the power series expansion of $f$ is given by $f(z) = 1$, which does not equal $g$ anywhere except on the unit circle.
+      Therefore $f \not = g$, as expected.
+    \item
+      The function $g(u) = 1/u$ is not analytic at 0, so we expect $f \not = g$.
+      The coefficients of the power series are given by
+      \begin{align*}
+        c_n = \frac{1}{2\pi i}\int_C \frac{1}{u^{n+2}}\,du.
+      \end{align*}
+      For each $n$, $1/u^{n+2}$ has a primitive hence $c_n = 0$ and thus $f$ is just the zero series.
+      Therefore $f \not = g$.
+    \item
+      The function $g(u) = u^7$ a polynomial, hence entire, so we expect $f = g$ on $C$.
+      The coefficients are given by
+      \begin{align*}
+        c_n = \frac{1}{2\pi i}\int_C \frac{1}{u^{n-6}}\,du
+      \end{align*}
+      For each $n \not = 7$, $1/u^{n+2}$ has a primitive hence $c_n = 0$.
+      The seventh coefficient is given by $$c_7 = \frac{1}{2\pi i}\int_0^{2\pi}\frac{1}{u}\,du = 1.$$ 
+      Therefore the power series is $f(z) = z^7$, and $f = g$ as expected.
+    \end{alphaenum}
+  \end{proof}
+\end{thm}
+  
+\begin{thm}
+  \label{Ex3}
+  Let $g:[-\pi,\pi] \longrightarrow \R$ be a continuous function.
+  Define the ``Fourier Transform'' of $g$ as $$G(z) = \int_{\pi}^{\pi} e^{zt}g(t)\,dt, \quad \text{for all } z \in \C.$$
+  Prove that $G(z)$ is an entire function.
+  
+  \begin{proof}
+    Observe that $|g(t) |$ is bounded on $[-\pi,\pi]$ and that the power series for $e^{zt}$ converges absolutely and uniformly everywhere, thus
+    $G(z) = \sum_{n=0}^{\infty}a_nz^n$ for all $z \in \C$, where $$a_n = \frac{1}{n!}\int_{-\pi}^{\pi}t^ng(t)\,dt.$$
+    Observing that the integrand above is always continuous we know from Math 242 that $a_n$ always exists.
+    Therefore $G(z)$ is everywhere analytic and thus entire.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  \label{Ex4}
+  Let $f$ be analytic on an open set $U$, let $z_0 \in U$ and let $f^{\prime}(z_0) \not = 0$.
+  Show that $$\frac{2\pi i}{f^{\prime}(z_0)} = \int_C \frac{1}{f(z) - f(z_0)}\,dz,$$ where $C$ is some small circle centered at $z_0$.
+  
+  \begin{proof}
+    Since $f$ is analytic, write $f(z) - f(z_0) = f^{\prime}(z_0)(z-z_0) + h(z)(z-z_0),$ where $h$ accounts for the higher order terms in the Taylor series for $f$ expanded about $z_0$.
+    Then we have
+    \begin{align*}
+      \begin{split}
+        \frac{1}{f(z)-f(z_0)} &= \frac{1}{f^{\prime}(z_0)(z-z_0)(1 + \frac{h(z)}{f^{\prime}(z_0)})}\\ 
+        %&= \frac{1}{f^{\prime}(z_0)(z-z_0)} \sum_{n=0}^{\infty}(-1)^n\left(\frac{h(z)}{f^{\prime}(z_0)}\right)^n\\
+        &= \frac{1}{f^{\prime}(z_0)(z-z_0)} + \frac{1}{f^{\prime}(z_0)(z-z_0)}\sum_{n=1}^{\infty}(-1)^n\left(\frac{h(z)}{f^{\prime}(z_0)}\right)^n.
+      \end{split}
+    \end{align*}
+    Note that $h(z) \rightarrow 0$ as $z \rightarrow z_0$, so we can take $C$ small enough to ensure $||h(z)||_C < |f^{\prime}(z_0)|$ and thus the composition series $\sum_{n=0}^{\infty} (-1)^n\frac{h(z)}{f^{\prime}(z_0)}$ converges on $C$.
+    Taking the integral of both sides, we observe that the integral of the sum is zero on any disk contained in its radius of convergence and thus
+    \begin{equation}
+      \label{Ex4:1}
+      \int_C \frac{1}{f(z) - f(z_0)}\,dz = \frac{1}{f^{\prime}(z_0)}\int_C\frac{1}{(z-z_0)}\,dz.
+    \end{equation}
+    Then the integral on the right-hand side of \eqref{Ex4:1} is just $\eta(C,z_0)$ and thus we have
+    $$\frac{2\pi i}{f^{\prime}(z_0)} = \int_C \frac{1}{f(z) - f(z_0)}\,dz,$$
+    as desired.
+  \end{proof}
+\end{thm}
+\end{document}
