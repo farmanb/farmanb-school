@@ -1,0 +1,72 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,wasysym}
+\openup 5pt
+\author{Blake Farman}
+\title{Math-331:\\Homework 4}
+\date{February 25, 2010}\pdfpagewidth 8.5in
+\usepackage[margin=1in]{geometry}
+\pdfpageheight 11in
+\begin{document}
+\maketitle
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+
+\renewcommand{\qedsymbol}{\(\blacksquare\)}
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+
+\newenvironment{alphaenum}{
+  \begin{enumerate}
+    \renewcommand{\theenumi}{(\alph{enumi})}
+    \renewcommand{\labelenumi}{\theenumi}
+  }
+  {\end{enumerate}}
+\newenvironment{as}{\begin{align*}}{\end{align*}}
+
+\newtheorem{thm}{}
+
+\begin{thm}
+  \label{Ex1}
+  Prove that if $f$ is meromorphic on an open set $U \subseteq \C$ with only 
+a finite number of poles, then $f = g/h$ where $g$ and $h$ are analytic on 
+$U$. 
+\end{thm}
+
+\begin{thm}
+  \label{Ex2}
+  Let $$f(z) = \sum\limits_{n=1}^\infty \dfrac{1}{(z+n)^2}.$$
+Prove that $f$ is meromorphic on $\C$ and determine its poles and their orders.
+\end{thm}
+
+\begin{thm}
+  \label{Ex3}
+  A set $S$ is called {\it star shaped} if there is a point $z_0 \in S$ such that
+the line segment between $z_0$ and any point in $S$ is contained in $S$.
+Prove that a star shaped set is simply connected.
+\end{thm}
+
+\begin{thm}
+  \label{Ex4}
+  Let $\gamma_0, \gamma_1$ and $\delta_0,\delta_1$ be four closed curves in $U$,
+all of which have the same initial point $z_0$ (for some parameterizations).  
+Assume that $\gamma_0$ and $\delta_0$ are
+homotopic in $U$ with homotopy given by $\Gamma_0$;
+and assume that $\gamma_1$ and $\delta_1$ are homotopic in $U$ with homotopy
+given by $\Gamma_1$.
+Prove that the product curves $\gamma_0 \gamma_1$ and $\delta_0 \delta_1$ are also homotopic
+in $U$ by exhibiting an explicit homotopy in terms of $\Gamma_0$ and $\Gamma_1$
+(and showing it is a homotopy).
+\end{thm}
+
+\begin{thm}
+  \label{Ex5}
+  Let $\gamma$ be a closed curve in $U$ with initial point $z_0$, and let
+$\gamma^{-}$ denote its reverse curve.
+Prove that $\gamma \gamma^{-}$ is null homotopic
+in $U$ (exhibit and verify an explicit homotopy).
+\end{thm}
+
+\end{document}

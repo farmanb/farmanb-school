@@ -4,17 +4,122 @@
 \author{Blake Farman}
 \title{Math-333: Homework 3\\}
 \date{Friday, September 24, 2010}\pdfpagewidth 8.5in
+\usepackage[margin=1in]{geometry}
 \pdfpageheight 11in
 \begin{document}
 
 \maketitle
+\renewcommand{\qedsymbol}{\(\blacksquare\)}
 
-\newtheorem*{1}{1}
-\begin{1}
-  Theorem Goes Here.
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+
+\renewcommand{\phi}{\varphi}
+\newenvironment{alphaenum}{
+  \begin{enumerate}
+    \renewcommand{\theenumi}{(\alph{enumi})}
+    \renewcommand{\labelenumi}{\theenumi}
+  }
+  {\end{enumerate}}
+\newtheorem{thm}{}
+
+\begin{thm}
+  \label{Ex1}
+  Verify the Cauchy-Riemann equations for $f(z) = z^2 + z^3$.
   \begin{proof}
-    Proof Goes Here.
+    Let $z = x+iy$, so then $f$ can be rewritten as 
+    $$f(z) = u(x,y) + iv(x,y) = x^3 + x^2 - y^2(3x+1) + i(y(2x+3x^2) - y^3).$$
+    Then taking the necessary partials, we get
+    \begin{align*}
+      \begin{split}
+        u_x &= 3x^2 + 2x - 3y^2 \quad  v_x = 2y + 6ay\\
+        u_y &= -(2y + 6xy)  \quad \quad v_y = 3x^2 + 2x - 3y^2
+      \end{split}
+    \end{align*}
+    Therefore $u_x = v_y$ and $u_y = -v_x$ as desired.
   \end{proof}
-\end{1}
+\end{thm}
 
+\begin{thm}
+  \label{Ex2}
+  Let $f(z) = u(x,y) + iv(x,y)$ where $z = x+iy$ and $u,v$ are the real and imaginary parts of $f$.
+  Suppose $f$ satisfies the Cuachy-Riemann equations at the point $z = x_0+iy_0.$
+  Verify the Cauchy-Riemann equations for the function $f^2$ at $x_0 + iy_0$.
+  \begin{proof}
+    Using the component functions of $f$, rewrite $f^2$ as 
+    \begin{equation}
+      \label{Ex1:1}
+      f^2(z) = u^2(x,y) - v^2(x,y) + i2u(x,y)v(x,y).
+    \end{equation}
+    Let $U(x,y) = u^2(x,y) - v^2(x,y)$ and $V(x,y) = 2u(x,y)v(x,y)$ so that \eqref{Ex1:1} reduces to $f^2(z) = U(x,y) + iV(x,y)$.
+    To see that $f^2(z)$ satisfies the Cauchy-Riemann equations, take the appropriate partial derivatives to obtain
+    \begin{align*}
+      \begin{split}
+        U_x(x_0,y_0) &= 2u(x_0,y_0)u_x(x_0,y_0) - 2v(x_0,y_0)v_x(x_0,y_0),\\
+        U_y(x_0,y_0) &= 2u(x_0,y_0)u_y(x_0,y_0) - 2v(x_0,y_0)v_y(x_0,y_0),\\
+        V_x(x_0,y_0) &= 2u(x_0,y_0)v_x(x_0,y_0) - 2u_x(x_0,y_0)v(x_0,y_0), \,\text{and}\\
+        V_y(x_0,y_0) &= 2u(x_0,y_0)v_y(x_0,y_0) + 2u_y(x_0,y_0)v(x_0,y_0).
+      \end{split}
+    \end{align*}
+    By hypothesis, we know that $f$ satisfies the Cuachy-Riemann equations for every $z \in \C$, so by substituting the Cauchy-Riemann equations for $f$ into the equations for $V_x$ and $V_y$ we obtain
+    \begin{align*}
+      \begin{split}
+        -V_x(x_0,y_0) &= 2u(x_0,y_0)u_y(x_0,y_0) - 2v_y(x_0,y_0)v(x_0,y_0)\\
+        &= U_y(x_0,y_0),
+    \end{split}
+    \end{align*}
+    and
+    \begin{align*}
+      \begin{split}
+        V_y(x_0,y_0) &= 2u(x_0,y_0)u_x(x_0,y_0) - 2v_x(x_0,y_0)v(x_0,y_0)\\
+        &= U_x(x_0,y_0),
+    \end{split}
+    \end{align*}
+    Therefore $f^2$ satisfies the Cauchy-Riemann equations, as desired.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  \label{Ex3}
+  Prove that if $f:\C \rightarrow \C$ is entire, then so is the function $F(z) = \overline{f(\overline{z})}$.
+\end{thm}
+
+\begin{thm}
+  \label{Ex4}
+  Assume $f$ is holomorphic on an open disk, $D$, and is real valued on $D$.  
+  Prove that $f$ is constant on $D$.
+  \begin{proof}
+    Let $f= u + iv$.  
+    Since $f$ is real-valued on $D$, we have that $v$ is identically the zero function and so must $v_x$ and $v_y$ be.
+    Now, because $f$ is holomorphic, $f$ satisfies the Cauchy-Riemann equations and we have $u_x = u_y = 0$.
+
+    To see that $f$ is constant on $D$ it remains only to show that $u$ is a constant function.
+    Take $z_0 = (x_0,y_0)$ to be the center of D and let $z = (x,y)$ be an arbitrary point on the interior of D and consider the partials.
+    By the Mean-Value Theorem from Real Analysis and the convexity of $D$, there exists $c$ between $x_0$ and $x$ such that 
+    \begin{equation}
+      \label{Ex4:1}
+      u(x,y_0) - u(x_0,y_0) = (x - x_0)u_x(d,y_0) = 0
+    \end{equation}
+    Similarly, there exists a point $d$ between $y_0$ and $y$ such that 
+    \begin{equation}
+      \label{Ex4:2}
+      u(x,y) - u(x,y_0) = (y - y_0)u_y(x_0,c) = 0.
+    \end{equation}
+    Hence by \eqref{Ex4:1} and \eqref{Ex4:2} we have $u(x,y_0) = u(x_0,y_0)$ and  $u(x,y) = u(x,y_0)$, thus $u(x,y) = u(x_0,y_0)$.
+    Therefore, since the choice of $z$ was arbitrary, $u$ is constant on $D$, as desired.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  \label{Ex5}
+  Show that $f(z) = |z|$ is not holomorphic at any point.
+\end{thm}
+
+\begin{thm}
+  \label{Ex6}
+  Show that complex conjugation is the only continuous non-identity automorphism of $\C$.
+\end{thm}
 \end{document}

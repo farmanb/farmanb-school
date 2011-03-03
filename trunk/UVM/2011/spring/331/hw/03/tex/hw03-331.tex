@@ -1,0 +1,186 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts}
+\openup 5pt
+\author{Blake Farman}
+\title{Math-331:\\Homework 3}
+\date{February 11, 2010}\pdfpagewidth 8.5in
+\usepackage[margin=1in]{geometry}
+\pdfpageheight 11in
+\begin{document}
+\maketitle
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+
+\renewcommand{\qedsymbol}{\(\blacksquare\)}
+\newcommand{\znz}[1]{\Z / #1\Z}
+\newcommand{\mznz}[1]{(\Z / #1\Z)^*}
+
+\renewcommand{\phi}{\varphi}
+\newenvironment{alphaenum}{
+  \begin{enumerate}
+    \renewcommand{\theenumi}{(\alph{enumi})}
+    \renewcommand{\labelenumi}{\theenumi}
+  }
+  {\end{enumerate}}
+
+\newenvironment{as}{\begin{align*}}{\end{align*}}
+
+\newcommand{\quadeq}[3]{\frac{-(#2) \pm \sqrt{(#2)^2 - 4(#1)(#3)}}{2(#3)}}
+
+\newtheorem{thm}{}
+
+\begin{thm}
+  \label{Ex1}
+  Find the integral of each one of the following functions over each of the two curves
+  $\gamma_1(t) = e^{\pi i t}$ and $\gamma_2(t) = 1 + it + t^2$ for $0 \le t \le 1$:
+\item\item{(a)}
+  $f(z) = z^3$ \qquad\qquad  (b) $f(z) = \overline z$ \qquad\qquad  (c) $f(z) = 1/z$.
+  \begin{proof}
+    First observe that $\gamma_1'(t) = i\pi\gamma(t)$.
+    For the following integrals, each is computed by the formula derived in class for integration over a path, 
+    \begin{equation}
+      \label{Ex1:1}
+      \int_{\gamma} f(z)\,dz = \int_0^1f(\gamma(t))\cdot\gamma'(t)\,dt.
+    \end{equation}
+    \begin{alphaenum}
+    \item
+      By making the substitution $u = \gamma_i(t)$, we have $\,du = \gamma_i'(t)\,dt$ and thus
+      \begin{align*}
+        \begin{split}
+          \int_{\gamma_2}z^3\,dz &= \int_{\gamma_i(0)}^{\gamma_i(1)}u^3\,du\\
+          &= \frac{1}{4}(\gamma_i(1)^4 - \gamma_i(0)^4).
+        \end{split}
+      \end{align*}
+      Then by \eqref{Ex1:1} we have
+      $$\int_{\gamma_1} z^3\,dz = \frac{1}{4}(e^{i4\pi} - e^0) = 0 \quad \text{and} \quad \int_{\gamma_2}z^3\,dz = \frac{1}{4}((2+i)^4 - 1) = -2 + 6i.$$
+    \item
+      For this integral, simply parameterize the integral as above and separate into the real and complex pieces to obtain
+      \begin{align*}
+        \begin{split}
+          \int_{\gamma_1} \overline{z}\,dz &= \int_0^1\overline{e^{i\pi t}}\cdot i\pi e^{i\pi t}\,dt\\
+          &= i\pi \int_0^1 \,dt\\
+          &= i\pi.
+        \end{split}
+      \end{align*}
+      Using the same technique for the second curve, with some routine algebra omitted, we obtain
+      \begin{align*}
+        \begin{split}
+          \int_{\gamma_2}\overline{z}\,dz &= \int_0^1 \overline{1 + it + t^2}\cdot(2t+i)\,dt\\
+          &= 2\int_0^1t^3\,dt + 3 \int_0^1t\,dt + i\left[\int_0^1\,dt -\int_0^1t^2\,dt\right] = 2 - \frac{2}{3}i.\\
+        \end{split}
+      \end{align*}
+    \item
+      Parameterizing the integral we have
+      \begin{align*}
+        \begin{split}
+          \int_{\gamma_1}\frac{1}{z}\,dz &= \int_0^1\frac{1}{e^{i\pi t}}i\pi e^{i\pi t}\,dt\\
+          &= \int_0^1 i\pi \,dt\\
+          &= i\pi.
+        \end{split}
+      \end{align*}
+      Parameterizing the integral in the same fashion, we handle the real and imaginary parts as separate Riemann Integrals,
+      \begin{align*}
+        \begin{split}
+          \int_{\gamma_2}\frac{1}{z}\,dz &= \int_0^1 \frac{1}{1+it+t^2}(2t+i)\,dt\\
+          &= \int_0^1\frac{2t^3 + 3t\,dt}{t^4+3t^2+1} + i\int_0^1\frac{1-t^2}{(t^2+1)^2 + t^2}\\
+        \end{split}
+      \end{align*}
+      First we handle the real case.  By making the substitution $u = t^4 + 3t^2 + 1$, we have $\frac{1}{2}\,du = 2t^3 + 3t\,dt$ and thus
+      \begin{align*}
+        \begin{split}
+          \int_0^1\frac{2t^3 + 3t\,dt}{t^4+3t^2+1} &= \frac{1}{2}\int_1^5 \frac{1}{u}\,du = \frac{1}{2}\log{\left(5\right)}.
+        \end{split}
+      \end{align*}
+      For the imaginary part, by factoring $(t^2+1)^2$ out of the denominator and making the substitution $u = \frac{t}{t^2+1}$, we have $du = \frac{1-t^2}{(t^2+1)^2}\,dt$ and thus
+      $$\int_0^1\frac{1-t^2}{(t^2+1)^2 + t^2}\,dt = i\int_0^{\frac{1}{2}}\frac{1}{1+u^2}\,du = i\arctan(\frac{1}{2}).$$
+      % \int_0^1\frac{1-t^2}{(t^2+1)^2(1 + (\frac{t}{t^2+1})^2)}\,dt.$$
+      Putting the pieces back together, the integral is $$\int_{\gamma_2}\frac{1}{z}\,dz = \frac{1}{2}\log(5) + i\arctan\left(\frac{1}{2}\right).$$
+    \end{alphaenum}
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  \label{Ex2}
+  Find (for each specified path $\gamma$) the integral 
+  $$
+  \int_\gamma z e^{z^2} \, \,dz
+  $$
+\item\item{(a)}
+  from the point $i$ to the point $-i + 2$, taken along a straight line segment, and
+\item\item{(b)}
+  from 0 to $1 + i$ along the parabola $y = x^2$.
+  \begin{proof}
+    First we observe that by defining the appropriate curve $\gamma:[a,b] \longrightarrow \C$ and making the substitution $u = \gamma(t)^2$, we have $\frac{1}{2}du = \gamma(t)\cdot\gamma'(t)\,dt$ and thus the integral is transformed to yield
+    \begin{equation}
+      \label{Ex2:1}
+      \int_\gamma z e^{z^2}\,dz = \frac{1}{2}\int_{\gamma(a)^2}^{\gamma(b)^2} e^u\,du = \frac{1}{2}(e^{\gamma(b)^2} - e^{\gamma(a)^2}).
+    \end{equation}
+    \begin{alphaenum}
+    \item
+      Parameterizing the line from $i$ to $-i + 2$, we have $\gamma(t) =  2t + i(1-2t)$ and by \eqref{Ex2:1} the integral is
+      $$\int_{\gamma}ze^{z^2}\,dz = \frac{1}{2} (e^{3-4i} - e^{-1}).$$
+    \item
+      Now parameterizing the parabola $y = x^2$, we have $\gamma(t) = t + it^2$.  By \eqref{Ex2:1}, the integral is
+      $$\int_{\gamma}ze^{z^2}\,dz = \frac{1}{2} (e^{2i} - 1).$$
+    \end{alphaenum}
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  \label{Ex3}
+  Let $\gamma$ be the unit circle in $\C$ (oriented counterclockwise).  
+  Compute the integral of each of 
+  the following functions around $\gamma$.
+  \medskip
+  \begin{align*}
+    (a) \frac{e^z}{z}     & & (b) \frac{\cos z}{z}\\
+    (c) \frac{\sin z}{z}  & & (d) \frac{\cos z^2}{z}
+  \end{align*}
+  \begin{proof}
+    \begin{alphaenum}
+    \item
+      Since we know $e^z$ is everywhere analytic, expand $e^z$ about 0 and multiply through by $\frac{1}{z}$.
+      The resulting series is $\frac{1}{z}e^z = \frac{1}{z} + \sum_{n=0}^{\infty} \frac{z^n}{(n+1)!}$.
+      By the Ratio Test, $R = \lim_{n\rightarrow\infty} \frac{(n+1)!}{n!} = \infty$ and thus $\sum_{n=0}^{\infty} \frac{z^n}{(n+1)!}$ converges everywhere.
+      Then by the Corollary from class, the integral of the series is 0 over any closed path.
+      Hence the integral is $$\int_\gamma\frac{e^z}{z}\,dz = \int_{\gamma}\frac{1}{z}\,dz + \int_{\gamma}\sum_{n=0}^{\infty} \frac{z^n}{(n+1)!} = i2\pi.$$
+    \item
+      Expanding $\cos(z)$ about 0 and multiplying through by $\frac{1}{z}$ we have the series representation $\frac{\cos(z)}{z} = \frac{1}{z} + \sum_{n=0}^{\infty} \frac{(-1)^n}{(2n)!} z^{2n+1}$.
+      The series on the right-hand side converges for $R = \lim_{n\rightarrow\infty} \frac{(2n+1)!}{(2n)!} = \infty$, so, by the same Corollary, its integral over any closed path is 0.
+      Hence the integral is $$\int_{\gamma}\frac{\cos(z)}{z}\,dz = \int_{\gamma}\frac{1}{z}\,dz + \int_{\gamma}\sum_{n=0}^{\infty} \frac{(-1)^n}{(2n)!} z^{2n+1}\,dz = i2\pi.$$
+    \item
+      Expressing $\sin(z)$ as $\frac{e^{iz} - e^{-iz}}{2i}$, so the integral can be rexpressed as
+      \begin{equation}
+        \label{Ex3:1}
+        \int_{\gamma}\frac{\sin(z)}{z}\,dz = \frac{1}{2}\left[ \int_\gamma \frac{e^{iz}}{iz}\,dz - \int_{\gamma}\frac{e^{-iz}}{iz}\,dz\right].
+      \end{equation}
+      Now, write $\gamma = \gamma_1 + \gamma_2 + \gamma_3 + \gamma_4$, where $\gamma_i$ is the segment of $\gamma$ through the $i^{th}$ quadrant.
+      Observing that multiplication by $i$ and $-i$ merely rotates the parametrization by $\frac{\pi}{2}$ and $\frac{3\pi}{2}$, respectively, we can rewrite the right hand side of \eqref{Ex3:1} as
+      $$\frac{1}{2i}\left[ \int_\gamma \frac{e^{iz}}{z}\,dz - \int_{\gamma}\frac{e^{-iz}}{z}\,dz\right] = \frac{1}{2}\left[\int_{\gamma_2 + \gamma_3 + \gamma_4 + \gamma_1} \frac{e^{z}}{z}\,dz - \int_{\gamma_4 + \gamma_1 + \gamma_2 + \gamma_3}\frac{e^{z}}{z}\,dz\right].$$ 
+      Since we showed in class that the integral is invariant under reordering of a path, it follows that $$\int_{\gamma}\frac{\sin(z)}{z}\,dz = 0.$$
+    \item
+      Expanding $\cos(z^2)$ about 0 and multiplying through by $\frac{1}{z}$ we have the series representation $\frac{\cos(z^2)}{z} = \frac{1}{z} + \sum_{n=0}^{\infty} \frac{(-1)^n}{(2n)!} z^{4n+1}$.
+      Just as in part (a), we have the series on the right-hand side converging for all $z \in \C$, so its integral is zero over any closed path.  Therefore
+      $$\int_{\gamma}\frac{\cos(z^2)}{z}\,dz = \int_{\gamma}\frac{1}{z}\,dz + \int_{\gamma}\sum_{n=0}^{\infty} \frac{(-1)^n}{(2n)!} z^{4n+1}\,dz = i2\pi.$$
+    \end{alphaenum}
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  \label{Ex4}
+  Let $\gamma$ be the circle of radius 2 centered at the origin in $\C$
+  (oriented counterclockwise).  
+  Compute the integral 
+  $$
+  {\int_\gamma}\; \dfrac{\,dz}{z^2 + 1}.
+  $$
+\end{thm}
+
+\begin{proof}
+  Start first by factoring $z^2$ from the denominator of the integrand to obtain $$\frac{1}{z^2+1} = \frac{1}{z^2}\left(\frac{1}{1-{\frac{-1}{z^2}}}\right) = \sum_{n=0}^{\infty}\frac{(-1)^n}{z^{2(n+1)}}.$$
+  This series converges on the open set $|z| > 1$, so by the Corollary from class, every integral over a closed curve contained in $|z| > 1$ is zero.  Therefore, $${\int_\gamma}\; \dfrac{\,dz}{z^2 + 1} = \int_\gamma \sum_{n=0}^{\infty}\frac{(-1)^n}{z^{2(n+1)}}\,dz = 0.$$
+\end{proof}
+\end{document}
