@@ -1,0 +1,127 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts}
+\openup 5pt
+\author{Blake Farman}
+\title{Math-351:\\Homework 3}
+\date{March 2, 2011}
+\usepackage[margin=1in]{geometry}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\begin{document}
+\maketitle
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+
+\renewcommand{\qedsymbol}{\(\blacksquare\)}
+\newcommand{\znz}[1]{\Z / #1\Z}
+\newcommand{\mznz}[1]{(\Z / #1\Z)^*}
+
+\renewcommand{\phi}{\varphi}
+\newenvironment{alphaenum}{
+  \begin{enumerate}
+    \renewcommand{\theenumi}{(\alph{enumi})}
+    \renewcommand{\labelenumi}{\theenumi}
+  }
+  {\end{enumerate}}
+
+\newcommand{\quadeq}[3]{\frac{-(#2) \pm \sqrt{(#2)^2 - 4(#1)(#3)}}{2(#3)}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\tor}[1]{\operatorname{Tor}(#1)}
+\newcommand{\real}[1]{\operatorname{Re}(#1)}
+\newcommand{\imag}[1]{\operatorname{Im}(#1)}
+
+\newcommand{\A}{\mathfrak{a}}
+\newcommand{\N}[1]{\mathit{N}(#1)}
+\newcommand{\OO}{\mathcal{O}}
+
+\newtheorem{thm}{}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}
+
+\begin{defn}
+  We define the {\it norm} of a nonzero ideal in $\OO_K$ to be its index in $\OO_K$.
+  We will denote the norm of an ideal by $\N{\A}$.
+
+\end{defn}
+
+\begin{thm}
+  \label{Ex1}
+  Let $\mathfrak{a}$ be an integral ideal with basis $\alpha_1, \ldots, \alpha_n$.
+  Show that $$[\det(\alpha_i^{(j)})]^2 = (\N\A)^2d_K.$$
+  \begin{proof}
+    Observe that by definition $[\det(\alpha_i^{(j)})]^2 = d_{K/\Q}(\alpha_1, \ldots, \alpha_n)$.
+    Therefore it follows from Exercise 4.2.8 that $d_{K/\Q}(\alpha_1,\ldots,\alpha_n) = m^2d_K$, where $m = [\OO_K:\A] = \N{\A}$.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  \newcommand{\AL}{{\alpha^{(i)}}}
+  \label{Ex2}
+  If the minimal polynomial of $\alpha$ is $f(x) = x^n + ax +b$, show that for $K = \Q(\alpha)$, 
+  $$d_{K/\Q}(\alpha) = (-1)^{n \choose 2}(n^nb^{n-1} + a^n(1-n)^{n-1}).$$
+  \begin{proof}
+    We first observe that $f(\AL) = 0$ and thus we can easily obtain $\AL^{n} = -a\AL -b$.
+    Now we take the first derivative of $f$ and make the substitution above.  
+    After some routine algebra we obtain
+    \begin{equation}
+      \begin{split}
+        \label{2.1}
+        f'(\alpha^{(i)}) &= n\AL^{n-1} + a\\
+        &= \frac{n\AL^{n} + a\AL}{\AL}\\
+        &= \frac{a\AL(1-n) - bn}{\AL}\\
+        &= \frac{-a(1-n)}{\AL}\left[\frac{bn}{a(1-n)} - \AL \right].
+      \end{split}
+    \end{equation}
+    We now observe that, because the collection of $\AL$ are the roots of $f$, we can express $f$ as 
+    \begin{equation}
+      \label{2.2}
+      f(x) = \Pi_{i=1}^n (x - \AL).
+    \end{equation}
+    Seeing as $\Pi_{i=1}^n -\AL$ accounts for the the constant term on the right-hand side, we conclude 
+    \begin{equation}
+      \label{2.3}
+      b = (-1)^n\cdot \Pi_{i=1}^n \AL.
+    \end{equation}
+    Hence by \eqref{2.1}, \eqref{2.2} and \eqref{2.3} $$\Pi_{i=1}^{n}f^{\prime}(\alpha^{(i)}) = \frac{a^n(1-n)^n}{b}f\left(\frac{bn}{a(1-n)}\right)$$
+    Therefore by Exercise 4.3.3 we have after expanding the right-hand side
+    $$d_{K/\Q}(\alpha) = (-1)^{n \choose 2}\Pi_{i=1}^{n}f^{\prime}(\alpha^{(i)}) = (-1)^{n \choose 2}(n^nb^{n-1} + a^n(1-n)^{n-1}),$$
+    as desired.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  \label{Ex3}
+  Determine an integral basis for $K = \Q(\theta)$ where $\theta^3 + 2\theta + 1 = 0$.
+  \begin{proof}
+    From the previous Exercise, we know $d_{K/\Q}(\theta) = d_{K/\Q}(1,\theta,\theta^2) = (-1)^{3}(27 + 8(2)^{2}) = - 59 = m^2d_K,$ where $m = [\OO_K : \Z[\theta]]$.
+    Since 59 is a prime, we have $m = 1$ and thus $\OO_K = \Z[\theta]$.
+    Therefore $1, \theta, \theta^2$ is an integral basis for $K$.
+  \end{proof}
+\end{thm}
+
+%\begin{thm}
+%  \label{Ex4}
+%  Let $K$ and $L$ be algebraic number fields of degree $m$ and $n$, respectively, over $\Q$. 
+%  Let $d = gcd(d_K, d_L)$.
+%  Show that if $[KL:\Q] = mn$, then $\OO_{KL} \subseteq 1/d\OO_K\OO_L$.
+%  \begin{proof}
+%    
+%  \end{proof}
+%\end{thm}
+
+\begin{thm}
+  \label{Ex5}
+  Let $p$ and $q$ be distrinct primes congruent to 1 modulo 4.
+  Let $K = \Q(\sqrt{p})$, $L = \Q(\sqrt{q})$.
+  Find a $\Z$-basis for $\Q(\sqrt{p},\sqrt{q})$.
+  
+  \begin{proof}
+    By the result of Exercise 4.3.4, $\{1, (1 + \sqrt{p})/2\}$ and $\{1, (1 + \sqrt{q})/2\}$ are bases for $\OO_K$ and $\OO_L$ respectively.
+    Observing that $(d_K,d_L) = (p,q) = 1$ we have, by Exercise 4.5.13, the basis $\{1, (1 + \sqrt{p})/2, (1 + \sqrt{q})/2, (1 + \sqrt{q})(1 + \sqrt{p})/2\}$.
+  \end{proof}
+\end{thm}
+\end{document}
