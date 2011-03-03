@@ -1,0 +1,216 @@
+\documentclass[10pt]{beamer}
+\usetheme{Copenhagen}
+\usepackage{amsmath,amsthm,amssymb,amsfonts}
+% \openup 5pt
+\author{Blake Farman}
+\title{Intermediate Asymptotics\\
+  Sections 2.3 and 2.4\\
+  Scaling\\
+  G.I. Barenblatt\\
+}
+\institute{
+  Department of Mathematics and Statistics\\
+  University of Vermont\\
+  Burlington, Vermont 05405\\[1ex]
+  \texttt{bfarman@cems.uvm.edu}
+}
+\date{March 01, 2011}
+
+\begin{document}
+
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\FF}{\mathbb{F}}
+\newcommand{\F}{\mathbb{F}}
+
+\renewcommand{\qedsymbol}{\(\blacksquare\)}
+\newcommand{\znz}[1]{\Z / #1\Z}
+\newcommand{\mznz}[1]{(\Z / #1\Z)^*}
+
+\renewcommand{\phi}{\varphi}
+\newenvironment{alphaenum}{
+  \begin{enumerate}
+    \renewcommand{\theenumi}{(\alph{enumi})}
+    \renewcommand{\labelenumi}{\theenumi}
+  }
+  {\end{enumerate}}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[section]
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+\begin{frame}{Overview}
+  Our aim is to revisit the groundwater example from the last lecture and determine the itermediate asymptotics for the example.
+  We will also take a look at the intermediate asymptotics of another, albeit similar, example and determine the range of the intermediate asymptotics for that problem.
+\end{frame}
+
+\begin{frame}{Asymptotics}
+  \begin{defn}
+    An asymptotic representation, or simply an {\it asymptotics}, is an approximate representation of a function that is valid in a certain range of the independent variables.
+  \end{defn}
+  (I know what you are thinking: Why, yes, that is a singular article attached to a seemingly plural noun.  No, it is apparently not a typo.  Yes, it is driving me nuts, too.)
+\end{frame}
+
+\begin{frame}{Intermediate Asymptotics}
+  \begin{defn}
+    We say two values of an independent variable $x$, $x_1$ and $x_2$, have widely different magnitudes if 
+    $$x_1 \ll x \ll x_2$$ 
+    and we write $x_1 \lll x_2$ to denote this relationship.
+    The aysmptotics in such a range is called the {\it intermediate asymptotics}.  
+  \end{defn}
+\end{frame}
+
+\begin{frame}{Recapitulation}
+  Recall the groundwater flow example from the last lecture:
+  \begin{itemize}
+  \item
+    We assumed the pressure obeys the hydrostatic law $p = \rho g(h-z)$, where $h$ is the groundwater level, $\rho$ is the fluid density, $g$ is the gravitational acceleration and $z$ is the usual vertical co-ordinate.
+  \item
+    The 'head' is given by $H(x,t) = p + \rho gh = \rho gh(x,t)$, by the assumption above.
+  \item
+    We defined $$\kappa = \frac{k}{2m\mu},$$ where $k$ is the permeability coefficient, $m$ is the porosity and $\mu$ is the the fluid viscosity.
+    \item
+      The value $2\ell$ is the width of the dome.
+  \end{itemize}
+\end{frame}
+\begin{frame}{More Recapitulation}
+  Using some dimensional analysis, we determined the dimensionless quantities
+  $$\Pi_1 = \frac{x}{(I\kappa t)^{1/3}}, \quad \Pi_2 = \frac{\ell}{(I\kappa t)^{1/3}}, \quad \Pi_3 = \frac{H_i}{I^{2/3}(\kappa t)^{-1/3}}$$
+  and, for some function $\Phi$,
+  $$H = \frac{I^{2/3}}{(\kappa t)^{1/3}} \Phi(\Pi_1, \Pi_2, \Pi_3).$$
+  %$$H = \frac{I^{2/3}}{(\kappa t)^{-1/3}}F(\xi), \quad \xi = \frac{x}{(I\kappa t)^{1/3}}$$
+  Dismayed by the added complexity resulting from our analysis we sent $\ell$ and $H_i$ to 0 in an attempt to obtain a simple solution for $H$.  
+  In particular, we recovered an expression for the co-ordinate of the extending water front, $$x_f(t) = (9I\kappa t)^{1/3}.$$
+\end{frame}
+
+\begin{frame}{What changed?}
+  \begin{itemize}
+  \item
+    As opposed to the ideal problem, where we assumed the flooding was concentrated at the single point, $x=0$, we now assume it takes place in a section of width $2\ell$.
+  \item
+    We have reintroduce the dimensionless quantities $\Pi_2$ and $\Pi_3$.
+  \item
+    We now direct our attention to the dome spreading only when the fluid front, $x_f(t)$, has travelled large distances when compared to $\ell$.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Determining the Intermediate Asymptotics}
+  Recall that $x_f(t) = (9I\kappa t)^{1/3} \approx (I\kappa t)^{1/3}$.
+  Since we are only concerned with $x_f(t) \gg \ell$, we have that $(I\kappa t)^{1/3} \gg \ell$.
+  With some routine algebra, this rearranges to $$T_1 = \frac{\ell^3}{I\kappa} \ll t.$$
+  We now observe that 
+  \begin{align*}
+    \begin{split}
+      \Pi_2 \ll \frac{\ell}{(I\kappa T_1)^{1/3}} = 1.
+    \end{split}
+  \end{align*}
+  In such a case it is assumed that the similarity parameter, and hence the corresponding dimensional parameter, can be neglected.
+\end{frame}
+
+\begin{frame}{Continued}
+  Now observe that, because we assumed the flooding to be 'very intense,' the head in the dome is much larger than the initial head, $H_i$.
+  That is to say, $H_i \ll I^{2/3}\kappa^{-1/3}t^{-1/3} \approx H$.
+  We obtain by rearrangement
+  $$t \ll \frac{I^2}{\kappa H_i^3} = T_2.$$
+  Then we can infer that 
+  $$\Pi_3 \ll \frac{H_i}{(\kappa t)^{1/3}(t\kappa  H_i^3)^{1/3}} = 1$$ 
+  implies by the same logic as above that $\Pi_3$ as well as $H_i$ are both negligible when $t \ll T_2$.
+  Finally, when $t \ll T_2$, we have $$x_f(t) \ll x_f(T_2) = \frac{I}{H_i}.$$
+\end{frame}
+
+\begin{frame}{Continued}
+  We can now conclude that the self-similar solution to the groundwater problem from the last lecture is valid for $$\frac{\ell^3}{I\kappa} \ll t \ll \frac{I^2}{\kappa H_i^3}$$ and $$\ell \ll x \ll \frac{I}{H_i}.$$
+  In other words, these are the ranges of time and the corresponding distances for which the time is large enough to neglect the initial width of the dome and small enough to neglect the initial groundwater head.
+
+\end{frame}
+
+\begin{frame}{Very intense groundwater pulse flow - the self-similar intermade-asymptotic solution}
+  Consider the groundwater flow at a bank of a river or channel after a short intense surge.  
+  The bank is considered as a horizontal porous stratum lying on an impermeable bed, its horizontal extent being large.
+  At the vertical boundary $x = 0$ the river or channel contacts the stratum, which is assumed to be semi-infinite, $0 \leq x < \infty$.
+\end{frame}
+
+\begin{frame}{Formulation}
+  The problem is schematically formulated as follows.
+  At the initial moment, which we select as $t = -\tau$, the water level at the vertical boundary $x=0$ starts to grow and quickly reaches a maximum level $h_0$ much larger than the initial groundwater level in the stratum.
+  After a short time $\tau$, i.e. at $t=0$, the water level at the boundary $x=0$ has returned to its initial value.
+\end{frame}
+
+\begin{frame}{Solution}
+  The solution is similar, although not quite identical, to the previous example.
+  Recall the flow equation from last time: 
+  \begin{equation}
+    \label{2.3}
+    D_tH(x,t) = \kappa D_x^2H(x,t)^2.
+  \end{equation}
+  
+  We again assume $H = \rho g h$ and we have a boundary condition on the vertical boundary of the stratum $x=0$, 
+  $$H(0,t)=\rho g h_0f(t/\tau) = \rho g h_of(\theta),$$
+  where $f(\theta)$ is an arbitrary dimensionless function for which $f(-\tau/\tau) = f(0/\tau) = 0$, $f$ is non-negative for $-1 < \theta < 0$ and reaches a maximum somewhere on this interval.
+  We also assume $f$ vanishes off this interval.
+\end{frame}
+
+\begin{frame}{Continued}
+  As before, we assume the initial water head in the stratum to be negligible and thus we have the initial condition $$H(x,-\tau) \equiv 0, \quad 0 \leq x < \infty.$$
+  Since we are interested only in the flow at times $t$ such that $t \gg \tau$, but not so large that the water front has left the outer boundary, an accurate description of $f$ is not necessary.
+\end{frame}
+
+\begin{frame}{Continued}
+  Multiply \eqref{2.3} by $x$ and integrate from $x = 0$ to $x = \infty$, or simply to the water front, to obtain using the boundary conditions that the 'dipole moment' of the water head distribution
+  $$J(t) = \int_0^{x_f(t)} xH(x,t)\,dx,$$
+  remains invariant for $t > 0$, so that $J(t) = J(0) = J$, where 
+  $$J(0) = \int_0^{x_f(0)} xH(x,0)\,dx.$$
+  Here $H(x,0)$ and $x_f(0)$ are determined by the fluid inflow into the stratum during the surge time $-\tau \leq t \leq 0$.
+\end{frame}
+
+\begin{frame}{Continued}
+  Here we have the divergence from the previous problem.
+  In the original, we assume the weight of the dome $$I(t) = \int_{-x_f}^{x_f} H(x,t)\,dx$$ is constant in time.
+  In this problem, $I$ is not conserved at $t > 0$ due to the outflow of the fluid through the boundary $x = 0$.
+  Essentially, where we used $I$ before, we now use $J$ in its place.
+\end{frame}
+
+\begin{frame}{Continued}
+  By arguments completely analogous to the derivation of the previous solution, we have the self-similar intermediate-asymptotics solution
+  \begin{equation}
+    \label{2.36}
+    H = \left(\frac{J}{(\kappa t)^{1/3}}\right)^{1/2}\Phi(\zeta), \quad \zeta = \frac{x}{x_f(t)},
+  \end{equation}
+  where
+  $$
+  \Phi(\zeta) = \begin{cases}
+    \frac{\sqrt{5}}{3}\zeta^{1/2}(1-\zeta^{3/2}), & 0 \leq \zeta \leq 1,\\
+    0, & \zeta \geq 1
+  \end{cases}
+  $$
+  and $$x_f(t) = 2(5J\kappa t)^{1/4}.$$
+\end{frame}
+
+\begin{frame}{Intermediate Asymptotics}
+  We endeavour to determine the range for which the previous solution is an intermediate asymptotics and to this end we begin with some dimensional analysis.
+  Recall that $$J(t) = \int_0^{x_f(t)} xH(x,t)\,dx.$$
+  Observe that $[H(x,t)] = ML^{-1}T^{-2}$, so the dimension of the integrand above is $MT^{-2}$.
+  The integral is taken with respect to the dimension $L$ and hence it is natural to assume  $$[J(t)]  = \frac{LM}{T^2}.$$ 
+\end{frame}
+
+\begin{frame}{Continued}
+  We are interested in times $t \gg \tau$, so we have $$x_f(t) \gg x_f(\tau) \approx (J\kappa\tau)^{1/4}.$$
+  As in the previous example, we assume that the head dominates the initial head for these values of $x$ and $t$ and thus we have by \eqref{2.36} 
+  $$H_i \ll H \approx J^{1/2}(t\kappa)^{-1/2},$$ 
+  from which it follows by some routine algebra that
+  $$t \ll \frac{J}{\kappa H_i^2}.$$
+  Finally we have $$x_f(t) \ll x_f\left(\frac{J}{\kappa H_i^2}\right) = \left(\frac{J}{H_i}\right)^{1/2}.$$
+\end{frame}
+
+\begin{frame}{Continued}
+  We now have our ranges
+  $$\tau \ll t \ll \frac{J}{\kappa H_i^2}$$
+  and
+  $$(J\kappa\tau)^{1/4} \ll x \ll \left(\frac{J}{H_i}\right)^{1/2}.$$
+\end{frame}
+\end{document}

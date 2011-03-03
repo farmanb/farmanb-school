@@ -1,0 +1,264 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts}
+\openup 5pt
+\author{Blake Farman}
+\title{Math-252:\\Homework 4}
+\date{February 23, 2010}\pdfpagewidth 8.5in
+\usepackage[margin=1in]{geometry}
+\pdfpageheight 11in
+\begin{document}
+\maketitle
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+
+\renewcommand{\qedsymbol}{\(\blacksquare\)}
+\newcommand{\znz}[1]{\Z / #1\Z}
+\newcommand{\mznz}[1]{(\Z / #1\Z)^*}
+
+\renewcommand{\phi}{\varphi}
+\newenvironment{alphaenum}{
+  \begin{enumerate}
+    \renewcommand{\theenumi}{(\alph{enumi})}
+    \renewcommand{\labelenumi}{\theenumi}
+  }
+  {\end{enumerate}}
+
+\newcommand{\quadeq}[3]{\frac{-(#2) \pm \sqrt{(#2)^2 - 4(#1)(#3)}}{2(#3)}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\tor}[1]{\operatorname{Tor}(#1)}
+\newcommand{\real}[1]{\operatorname{Re}(#1)}
+\newcommand{\imag}[1]{\operatorname{Im}(#1)}
+
+\newtheorem{thm}{}
+
+\begin{thm}
+  \label{Ex1}
+  Let $M$ be the module $R^n$ described in example 3 and let $I_1, I_2, \ldots I_n$ be left ideals of $R$.  
+  Prove that the following are submodules of $M$
+  \begin{alphaenum}
+  \item
+    $N_1 = \left\{(x_1,x_2,\ldots,x_n) \mid\,x_i \in I_i\right\}$,
+  \item
+    $N_2 = \left\{(x_1,x_2,\ldots,x_n) \mid\,x_i \in R \text{ and } x_1 + x_2 + \ldots x_n = 0\right\}$.
+  \end{alphaenum}
+  \begin{proof}
+    \begin{alphaenum}
+    \item
+      Let $a,b \in N_1$ be given and consider their difference
+      $$ a - b = (a_1 - b_1, a_2 - b_2, \ldots, a_n-b_n).$$
+      Clearly $a_i - b_i \in I_i$ for each $i$.
+      Hence $N_1$ is a subgroup of $M$ by the subgroup criterion.
+      Finally $N_1$ is trivially closed under left multiplication from $R$ because each $I_i$ is a left ideal.
+      Therefore $N_1$ is a submodule.
+    \item
+      Let $a,b \in N_2$ be given and consider their difference
+      $$ a- b = (a_1 - b_1, a_2 - b_2, \ldots, a_n - b_n).$$
+      Since $M$ is an abelian group, we can rewrite the sum of the components as 
+      $$ a_1 + a_2 + \ldots + a_n - (b_1 + b_2 + \ldots + b_n) = 0.$$
+      Hence $a-b \in N_2$ and it follows from the subgroup criterion that $N_2$ is a subgroup of $M$.
+      Now let $r \in R$ be given and observe that 
+      $$r(a_1 + a_2 + \ldots + a_n) = r0 = 0$$
+      implies $ra \in N_2$.
+      Therefore $N_2$ is a submodule.
+    \end{alphaenum}
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  \label{Ex2}
+  For any ideal $I$ of $R$ define
+  \begin{align*}
+    IM = \left\{ \sum_{i=1}^n a_im_i \,\middle\vert\, a_i \in I, m_i \in M, n < \infty \right\}
+  \end{align*}
+  to be the collection of all finite sums of elements of the form $am$ where $a\in I$ and $m\in M$.  Prove that $IM$ is a submodule of $M$.
+  \begin{proof}
+    Let $\alpha,\beta \in IM$ be given and write 
+    \begin{align*}
+      {\alpha = \sum_{i=1}^r a_im_i} \quad \text{and} \quad {\beta = \sum_{i = 1}^s b_in_i},
+    \end{align*}
+    where $a_i,b_i \in I$ and $m_i,n_i \in M$.
+    Now consider the difference 
+    $$\alpha - \beta = {\sum_{i=1}^r a_im_i} + {\sum_{i = 1}^s (-b_i)n_i}.$$
+    Both sums are finite and the terms of each are of the desired form, so clearly $\alpha - \beta \in IM$.
+    Hence $IM$ is a subgroup of $M$ by the subgroup criterion.
+    Finally let $\gamma \in R$ be given and observe that $\gamma a_i \in I$ because $I$ is an ideal of $R$.  
+    Hence $\gamma a = \sum_{i=1}^r (\gamma a_i)m_i \in IM$.
+    Therefore $IM$ is a submodule.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  \label{Ex3}
+  \begin{enumerate}
+  \item
+    An element $m$ of the $R$-module $M$ is called a torsion element if $rm = 0$ for some non-zero element $r \in R$.
+    The set of torsion elements is denoted 
+    $$\tor{M} = \left\{m \in M \mid\, rm = 0 \text{ for some } 0 \not = r \in R\right\}.$$
+    \begin{enumerate}
+    \item
+      Prove that if $R$ is an integral domain, then $\tor{M}$ is a submodule of $M$ (called the Torsion submodule of $M$).
+    \item
+      Give an example of a ring $R$ and an $R$-module $M$ such that $\tor{M}$ is not a submodule.
+    \item
+      Show that if $R$ has zero divisors, then every non-zero module has non-zero torsion elements.
+    \end{enumerate}
+  \item
+    Let $\phi: M \longrightarrow N$ be an $R$-module homomorphism.
+    Prove that $\phi(\tor{M}) \subseteq \tor{N}$.
+  \end{enumerate}
+
+  \begin{proof}
+    \begin{enumerate}
+    \item
+      \begin{enumerate}
+      \item
+        Let $R$ be an integral domain and let $M$ be an $R$-module.  
+        Let $a,b \in \tor{M}$ be given and let $r_a,r_b$ be the elements of $R$ such that $r_a a = 0$ and $r_b b = 0$.
+        Observe that $R$ is necessarily commutative because it is an integral domain, so we have 
+        $$r_ar_b(a - b) = r_b(r_a r_a) - r_a(r_b b) = 0.$$
+        Hence  $\tor{M}$ is a subgroup by the subgroup criterion.
+        Moreover, for any $r \in R$ we have $r_a(ra) = r(r_aa) = 0$.  
+        This shows $\tor{M}$ is closed under multiplication from $R$.
+        Therefore $\tor{M}$ is a submodule.
+      \item
+        Let $R = \Z/6\Z$ and consider $R$ as an $R$-module.
+        Then $2 \in \tor{M}$ and $3 \in \tor{M}$, but $2 + 3 = 5 \not \in \tor{M}$ since 5 is a unit in $R$.
+      \item
+        Let $M$ be a non-zero $R$-module and let $0 \not = a \in M$ be given.  
+        Let $q,r \in R$ be zero divisors of $R$.
+        Since $M$ is a module, $ra \in M$ and thus 
+        $$q(ra) = (qr)a = 0$$
+        implies either $a \in \tor{M}$ or $ra \in \tor{M}$.
+        Therefore $\tor{M}$ contains at least one non-zero element.
+      \end{enumerate}
+    \item
+      Let $m \in \tor{M}$ be given and let $0 \not = r \in R$ be such that $rm = 0$.
+      Since $\phi$ is an $R$-module homomorphism we have 
+      $$0 = \phi(rm) = r\phi(m),$$
+      which implies $\phi(m) \in \tor{N}$.
+      Therefore $\phi(\tor{M}) \subseteq \tor{N}$.
+    \end{enumerate}
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  \label{Ex4}
+  \begin{enumerate}
+  \item
+    If $N$ is a submodule of $M$, the annihilator of $N$ in $R$ is defined to be 
+    $$\left\{r \in R \mid\, rm=0 \text{ for all } n \in N\right\}.$$
+    Prove that the annihilator of $N$ is a two sided ideal of $R$.
+  \item
+    If $I$ is a right ideal of $R$, the annihilator of $I$ in $M$ is defined to be 
+    $$\left\{m \in M \mid\, am=0 \text{ for all } a \in I\right\}.$$
+    Prove that the annihilator of $I$ in $M$ is a submodule of $M$.
+  \item
+    Let $M$ be the abelian group (i.e. $\Z$-module)
+    $$\Z/24\Z \times \Z/15\Z \times \Z/50\Z.$$
+    \begin{enumerate}
+    \item
+      Find the annihilator of $M$ in $\Z$ (i.e. a generator for this principal ideal).
+    \item
+      Let $I = 2\Z$.
+      Describe the annihilator of $I$ in $M$ as a direct product of cyclic groups.
+    \end{enumerate}
+  \end{enumerate}
+  
+  \begin{proof}
+    \begin{enumerate}
+    \item
+      Let $r,s$ be elements of the annihilator of $N$ in $R$.
+      First observe that for any $m \in M$ we have that $0m = (0+0)m = 0m + 0m$ implies $0m = 0$ and thus  $0$ is an element of the annihilator of $N$ in $R$.
+      Now if $n$ is any element of $N$, then 
+      $$(r+s)n = rn + sn = 0 \quad \text{and} \quad (rs)n = r(sn) = r(0) = 0.$$
+      Hence the annihilator is closed under the ring operations and so inherits associativity and distributivity from $R$.
+      To see the annihilator is an ideal, let $q \in R$ be given.
+      Then 
+      $$(qr)n = q(rn) = q(0) = 0 \quad \text{and} \quad (rq)n = r(qn) = 0,$$
+      where the second equality holds by virtue of $N$ being a submodule of $M$.
+      Therefore the annihilator of $N$ is an ideal of $R$.
+    \item
+      Let $\alpha,\beta$ be elements of the annihilator of $I$ in $M$.  Consider for any $a \in I$ 
+      $$a(\alpha - \beta) = a\alpha - a\beta = 0,$$
+      which follows from the definition of the annihilator.
+      Hence $\alpha - \beta$ is an element of the annihilator of $I$ in $M$ and thus it is a subgroup of $M$ by the subgroup criterion.
+      
+      Now let $r \in R$ be given.  
+      To see closure under multiplicatoin from $R$, we let $a$ act on $r\alpha$ and observe $(ar)\alpha = 0$ because $ar \in I$ by virtue of $I$ being a right ideal.
+      Therefore the annihilator of $I$ in $M$ is a submodule of $M$, as desired.
+    \item
+      \begin{enumerate}
+      \item
+        Let $a = (a_1, a_2, a_2) \in M$ be given.  
+        If $r\in R$ is an element of the annihilator of $M$ in $\Z$, then $ra_1 \equiv 0 \pmod{24}$, $ra_2 \equiv 0 \pmod{15}$ and $ra_3 \equiv 0 \pmod{50}$ holds for all such $a_1,a_2,a_3$.
+        Since each ring contains units, $r \equiv 0 \pmod{24}$, $r \equiv 0 \pmod{15}$ and $r \equiv 0 \pmod{50}$.
+        Hence $r$ must be a multiple of $2^3\cdot 3\cdot 5^2 = 600$.
+        Therefore the annihilator of $M$ in $\Z$ is the ideal $600\Z$.
+      \item
+        The annihilator of $I$ in $M$ is given by $<12>\times<0>\times<25>.$
+      \end{enumerate}
+    \end{enumerate}
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  \label{Ex5}
+  \begin{alphaenum}
+    \item
+      Let $F=\R$, let $V = \R^2$ and let $T$ be the linear transformation from $V$ to $V$ which is rotation clockwise about the origin by $\pi/2$ radians.
+      Show that $V$ and $0$ are the only $F[x]$-submodules for this $T$.
+    \item
+      Let $F=\R$, let $V = \R^2$ and let $T$ be the linear transformation from $V$ to $V$ which is projection onto the $y$-axis.
+      Show that $V,0$, the $x$-axis and the $y$-axis are the only $F[x]$-submodules for this $T$.
+    \item
+      Let $F = \R$, let $V = \R^2$ and let $T$ be the linear transformation from $V$ to $V$ that is rotation clockwise about the origin by $\pi$ radians.
+      Show that every subspace of $V$ is an $F[x]$-module for this $T$.
+    \item
+      Give an explicit example of a map from one $R$-module to another that is a group homomorphism but not an $R$-module homomorphism.
+    \end{alphaenum}
+    \begin{proof}
+      \begin{alphaenum}
+      \item
+        Observe that $V \cong \C$, so $T$ can be considered as the linear map $v \mapsto -iv$ for any $v \in V$.
+        Clearly rotating the complex plane by $\pi/2$ radians returns the complex plane, so $V$ is invariant under $T$.
+        Trivially, $0$ is also invariant under $T$ since $T(0) = 0$.
+
+        Let $W$ be a non-trivial submodule of $V$ and suppose $W$ is invariant under $T$. 
+        If $w = x + iy \in W$, then $$w^{\prime} = T(w) - (y/x)\cdot w = i(-x - y^2/x)$$ lies on the imaginary axis.
+        Seeing as $W$ is a submodule of $V$ we have $w^{\prime}/\imag{w^{\prime}} = i \in W$, from which it now follows that $T(i) = 1 \in W$.
+        %Seeing as $W$ is a submodule of $V$, we have $1/y\cdot iy = i \in W$ and thus $T(i) = 1 \in W$.
+        Therefore $W = \C$ is the only non-trivial $F[x]$-submodule for this $T$.
+      \item
+        Again, observe that $V \cong \C$, so now $T$ can be considered as the linear map $v = x+iy \mapsto iy$ for any $v \in V$.
+        First observe that $T$ collapses the entire real axis onto the origin and that $T$ is just the identity map on the imaginary axis, hence both are invariant under $T$.
+        Trivially, $0$ and $V$ are also invariant under $T$ since $T(0) = 0$ and the $y$-axis is contained in $V$.
+        
+        Let $W$ be a non-trivial submodule of $V$  and suppose $W$ is invariant under $T$.
+        If $W$ contains both the axes, then $W = V$ because it contains both $1$ and $i$.
+        Assume $W$ contains points not on the axes and let $w = x + iy \in W$ be one of the aforementioned points.
+        Since $x$ and $y$ are both units in $\R$, we have $1/y \cdot T(w) = i \in W$ and $1/x \cdot (w - T(w)) = 1\in W$, from which it follows that $W = V$.
+        Therefore  $V,0$, the $x$-axis and the $y$-axis are the only $F[x]$-submodules for this $T$.
+      \item
+        Again, observe that $V \cong \C$ and that rotation by $\pi$ radians correspond to multiplication by $e^{i\pi} = -1$.
+        Hence $T$ is just the map $v \mapsto -v$ .
+        Since any submodule, $W$, of $V$ is necessarily an abelian group under addition, $W$ is trivially invariant under $T$.
+      \item
+        Consider $\C$ as a $\C$-module.  
+        Let $\phi$ be complex conjugation, which is a field automorphism, but not a $\C$-module homomorphism.
+        In particular, if $i$ is considered as an element of the field of scalars and as an element of the module, then $\phi(i\cdot i) = -1 \not = 1 = i\phi(i) $.
+      \end{alphaenum}
+    \end{proof}
+\end{thm}
+\end{document}
+
+
+%Let $W$ be a non-trivial submodule of $V$ and suppose $W$ is invariant under $T$.
+%        If $i \not \in W$, then the imaginary axis cannot be contained in $W$ because for any $y \in \R$, there exists $1/y \in \R$ such that $1/y\cdot iy = i$.
+%        Moreover, the real axis cannot be contained in $W$ since $T(1) = -i \not \in W$.
+%        But this is absurd; consider $w + T(w)$ for any $w \in W$.
+%        This sum lies either on the real or imaginary axis, both of which were supposed not to be contained by $W$.
+%        Hence $i \in W$ and $T(i) = 1 \in W$.
+%        Therefore $W = \C$ as desired.

@@ -1,0 +1,56 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts}
+\openup 5pt
+\author{Blake Farman}
+\title{Math-351:\\4.4.1}
+\date{February 16, 2010}\pdfpagewidth 8.5in
+\usepackage[margin=1in]{geometry}
+\pdfpageheight 11in
+\begin{document}
+\maketitle
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+
+\renewcommand{\qedsymbol}{\(\blacksquare\)}
+\newcommand{\znz}[1]{\Z / #1\Z}
+\newcommand{\mznz}[1]{(\Z / #1\Z)^*}
+
+\renewcommand{\phi}{\varphi}
+\newenvironment{alphaenum}{
+  \begin{enumerate}
+    \renewcommand{\theenumi}{(\alph{enumi})}
+    \renewcommand{\labelenumi}{\theenumi}
+  }
+  {\end{enumerate}}
+
+\newcommand{\quadeq}[3]{\frac{-(#2) \pm \sqrt{(#2)^2 - 4(#1)(#3)}}{2(#3)}}
+% \newcommand{quadeq}[3]{}
+
+\newtheorem{thm}{}
+
+\newcommand{\A}{\mathfrak{a}}
+\begin{thm}
+  Let $\A$ be a non-zero ideal of $\mathcal{O}_K$.  Show that $\mathfrak{a} \cap \Z \not = \left\{ 0 \right\}$.
+  \begin{proof}
+    Let $0 \not =\alpha \in \A$ be given and let $m_{\alpha}(x) = x^n + a_{n-1}x^{n-1} + \ldots + a_1x + a_0$ be the minimal, monic polynomial with integer coefficients such that $\alpha$ is a root.
+    Then we have 
+    \begin{equation}
+      \label{1}
+      \alpha^n + a_{n-1}\alpha^{n-1} + \ldots + a_1\alpha + a_0 = 0.
+    \end{equation}
+    Now observe that if $a_0 = 0$, then 
+    $$\alpha(\alpha^{n-1} + a_{n-1}\alpha^{n-2} \ldots + a_2\alpha + a_1) = 0.$$
+    Since $\alpha$ was assumed to be non-zero, it follows that $\alpha^{n-1} + a_{n-1}\alpha^{n-2} \ldots + a_2\alpha + a_1 = 0$, which contradicts the minimality of $m_{\alpha}$.
+    Hence it suffices to assume $a_0 \not = 0$ and thus we can rearrange \eqref{1} to obtain
+    \begin{equation}
+      \label{2}
+      -a_0 = {\alpha}^{n} + a_{n-1}{\alpha}^{n-1} + \ldots + a_1\alpha.
+    \end{equation}
+    Now observe that since the coefficients are elements of the ring $\mathcal{O}_K$ and $\mathfrak{a}$ is an ideal, the right-hand side of \eqref{2} is an element of $\mathfrak{a}$.
+    Therefore $\mathfrak{a} \cap \Z \not = \left\{0\right\}$, as desired.
+  \end{proof}
+\end{thm}
+
+\end{document}

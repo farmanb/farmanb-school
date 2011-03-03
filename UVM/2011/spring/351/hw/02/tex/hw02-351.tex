@@ -1,0 +1,61 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts}
+\openup 5pt
+\author{Blake Farman}
+\title{Math-351:\\Homework 2}
+\date{February 7, 2011}\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\begin{document}
+
+\maketitle
+
+\renewcommand{\qedsymbol}{\(\blacksquare\)}
+\newcommand{\znz}[1]{\mathbb{Z} / #1\mathbb{Z}}
+\newcommand{\mznz}[1]{(\mathbb{Z} / #1\mathbb{Z})^*}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+
+\newtheorem*{1}{1}
+\begin{1}
+  Let $D$ be a square-free integer.  If $K = \Q(\sqrt{D})$, then the ring of integers of $K$, $\mathcal{O}_K$, is precisely $\Z[\omega],$ where 
+  \begin{align*}
+    \omega = \begin{cases}
+      \sqrt{D} & \text{if $D \equiv 2,3 \pmod{4}$},\\
+      \frac{1 + \sqrt{D}}{2}& \text{if $D \equiv 1 \pmod{4}$}.
+      \end{cases}
+  \end{align*}
+  \begin{proof}
+    Observe first that the monomials
+    \begin{align*}
+      x^2 - D \quad \text{and} \quad x^2 - x + \frac{1 - D}{4}
+    \end{align*}
+    have $\omega$ as a root when $D \equiv 2,3 \pmod{4}$ and $D \equiv 1 \pmod{4}$, respectively, and thus $\omega$ is an algebraic integer.
+    By results from class we know that $\Z[\omega] \subseteq \mathcal{O}_K$ and hence it remains to show the reverse inclusion.
+    
+    Let $\alpha = a + b\sqrt{D} \in \Q$ be a given algebraic integer.  
+    If $b = 0$, then $\alpha \in \Q$ and so $a \in \Z$.
+    Assume that $b \not = 0$.
+    Let $p(x) = x^2 + a_1x + a_0 = 0$ and solve $p(\alpha) = 0$ to obtain 
+    \begin{align*}
+      m_{\alpha}(x) = x^2 -2ax + (a^2 - b^2D).
+    \end{align*}
+    By results from class we know $m_{\alpha}$ has integer coefficients, so it follows that $2a, a^2 - b^2D \in \Z.$
+    Moreover $4(a^2 - b^2D) = (2a)^2 - (2b^2)D \in \Z$ and thus $(2b)^2D$ must also be an integer.
+    Indeed, since $D$ was assumed to be square-free, it must be the case that $2b$ is an integer.
+    Now write $a = \frac{x}{2}$ and $b = \frac{y}{2}$ for some $x,y \in \Z$.
+    Then since $a^2 - b^2D \in \Z$, it follows that $x^2 - y^2D \equiv 0 \pmod{4}.$ 
+    Observe that $0$ and $1$ are the only squares modulo 4 and $D$ is not divisible by 4 because it was assumed to be square-free. 
+    Hence either
+    \begin{enumerate}
+    \item
+      $D \equiv 2,3 \pmod{4}$ and $x \equiv y \equiv 0\pmod{2}$, or
+    \item
+      $D \equiv 1 \pmod{4}$ and $x \equiv y \pmod{2}$.
+    \end{enumerate}
+    If (1), then $a,b \in \Z$ and thus $\alpha \in \Z[\omega]$.  
+    If (2), then $a + b\sqrt{D} = \frac{x - y}{2} + y\omega$ with $\frac{x-y}{2}$ and $y$ both integers and thus $\alpha \in \Z[\omega]$.
+    Therefore, $\Z[\alpha] = \mathcal{O}_K$, as desired.
+  \end{proof}
+\end{1}
+
+\end{document}
