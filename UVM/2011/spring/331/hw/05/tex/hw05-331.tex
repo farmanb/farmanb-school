@@ -1,5 +1,5 @@
 \documentclass[10pt]{amsart}
-\usepackage{amsmath,amsthm,amssymb,amsfonts,wasysym}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,wasysym,mymath}
 \openup 5pt
 \author{Blake Farman}
 \title{Math-331:\\Homework 4}
@@ -9,30 +9,32 @@
 \begin{document}
 \maketitle
 
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\C}{\mathbb{C}}
-
-\renewcommand{\qedsymbol}{\(\blacksquare\)}
-\renewcommand{\phi}{\varphi}
-\renewcommand{\epsilon}{\varepsilon}
-
-\newenvironment{alphaenum}{
-  \begin{enumerate}
-    \renewcommand{\theenumi}{(\alph{enumi})}
-    \renewcommand{\labelenumi}{\theenumi}
-  }
-  {\end{enumerate}}
-\newenvironment{as}{\begin{align*}}{\end{align*}}
-
 \newtheorem{thm}{}
 
 \begin{thm}
   \label{Ex1}
-  Prove that if $f$ is meromorphic on an open set $U \subseteq \C$ with only 
-a finite number of poles, then $f = g/h$ where $g$ and $h$ are analytic on 
-$U$. 
+  Prove that if $f$ is meromorphic on an open set $U \subseteq \C$ with only a finite number of poles, then $f = g/h$ where $g$ and $h$ are analytic on $U$. 
+\begin{proof}
+  Let $S$ be the set of singularities of $f$.  
+  Each $s \in S$ is a pole, hence we have by our Theorem from class that $f$ has a convergent Laurent series expansion for some deleted neighborhood of $s$,
+  \begin{equation}
+    \label{1.1}
+    f(z) = \frac{c_{-n}}{(z-s)^n} + \frac{c_{-n+1}}{(z-s)^{n-1}} + \ldots + c_0 + c_1(z-s) + \ldots\,.
+  \end{equation}
+  Multiplying \eqref{1.1} by $(z-s)^n$, which is entire, we obtain
+  $$(z-s)^nf(z) = c_{-n} + c_{-n+1}(z-s) + \ldots + c_0(z-s)^n + c_1(z-s)^{n+1} + \ldots\,.$$
+  We observe that $(z-s)^nf(z)$ now converges not just on the deleted neighborhood, but at $s$ as well; indeed it takes on the value $c_{-n}$ at $z = s$.
+  Hence $(z-s)^nf(z)$ is analytic at $s$.
+  
+  Let $s_1, s_2, \ldots, s_k$ be an enumeration of $S$ and define the function 
+  \begin{equation}
+    \label{1.2}
+    g(z) = f(z)\cdot\prod_{i=1}^k(z-s_i)^{n_i}, \quad  n_i = -\ord_{s_i}{f}.
+  \end{equation}
+  If we rewrite \eqref{1.2} as $g(z) = (z-s_i)^{n_i}f(z){\cdot}\prod_{j=1,j \not = i}^k(z-s_j)^{n_j}$, then it is clear by the argument above that $g$ is analytic at each $s_i$.
+  Since $f$ was assumed to be meromorphic on $U$, we have shown that $g$ is analytic on $U$.
+  Moreover, if we take $h(z) = \prod_{i=1}^k(z-s_i)^{n_i}$, then $f = g/h$ is the ratio of functions analytic on $U$, as was to be shown.
+\end{proof}
 \end{thm}
 
 \begin{thm}
