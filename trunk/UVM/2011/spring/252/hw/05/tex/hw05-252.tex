@@ -1,0 +1,293 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,mymath}
+\openup 5pt
+\author{Blake Farman}
+\title{Math-252:\\Homework 5}
+\date{March 16, 2011}\pdfpagewidth 8.5in
+\usepackage[margin=1in]{geometry}
+\pdfpageheight 11in
+\begin{document}
+\maketitle
+
+\newtheorem{thm}{}
+
+\begin{thm}
+  \label{Ex1}
+  Prove that similar linear transformations of $V$ (or $n \times n$ matrices) have the same characteristic and the same minimal polynomial.
+  \begin{proof}
+    Let $S$ and $T$ be similar linear operators on $V$.  
+    By Theorem 15, the $F[x]$-modules they generate are isomorphic to one another and thus they have the same invariant factors.
+    Hence by Proposition 13, $m_S(x) = m_T(x)$.
+    
+    Let $U$ be the nonsingular operator on $V$ such that $S = UTU^{-1}$.
+    The characteristic polynomial of $S$ is given by 
+    \begin{align*}
+      \begin{split}
+        c_S(x) &= \det(xI - S)\\
+        & = \det(xI - UTU^{-1})\\
+        & = \det(U(xI - T)U^{-1})\\
+        & = \det(U)c_T(x)\det(U^{-1})\\
+        & = c_T(x).
+        \end{split}
+      \end{align*}
+      Therefore the characteristic and minimal polynomials are the same.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  \label{Ex2}
+  \begin{alphaenum}
+  \item
+    Prove that two $2 \times 2$ matrices over $F$ which are not scalar matrices are similar if and only if they have the same characteristic polynomial.
+  \item
+    Prove that two $3 \times 3$ matrices over $F$ are similar if and only if they have the same characterstic and same minimal polynomials.
+    Give an explicit counterexample to this assertion for $4 \times 4$ matrices.
+  \end{alphaenum}
+  \begin{proof}
+    \begin{alphaenum}
+    \item
+      Let $A$ and $B$ be non-scalar $2 \times 2$ matrices.
+      Assume $A$ and $B$ are similar.
+      It follows from the previous exercise that the characteristic polynomials are the same.
+      
+      Conversely, suppose that $c_A(x) = c_B(x)$.
+      Note that the degree of the characteristic polynomial is 2.
+      Suppose that the degree of the minimal polynomial were degree 1.
+      Then $m_A(x) = x - I\alpha$, for some $\alpha$ and $m_A(A) = A - I\alpha = 0$.
+      This contradicts the assumption that $A$ is a non-scalar matrix.
+      Hence the degree of the minimal polynomial must be 2 and thus equals the characteristic polynomial.
+      A similar argument for $B$ shows that $m_A(x) = m_B(x) = c_A(x) = c_B(x)$.
+      Therefore they have the same rational canonical form, proving their similarity.
+    \item
+      Let $A$ and $B$ be $3 \times 3$ matrices.
+      Assume $A$ and $B$ are similar.
+      By the result of the previous exercise, the minimal and characteristic polynomials are equal.
+      
+      Conversely, suppose that $c_A(x) = c_B(x)$ and $m_A(x) = m_B(x)$.
+      There are three possibilities for the characteristic polynomial; either it is irreducible of degree 3, it factors into an irreducible quadratic and a linear term or it factors into three linear terms.
+      Since the minimal and characterstic polynomials must share the same factors up to multiplicity, the only case of interest is the latter since $m_A(x) = m_B(x) = c_A(x) = c_B(x)$ in all other cases.
+      In particular, we are concerned only with the case where at least two linear factors are the same and the minimal polynomial is of degree 2.
+      We observe that because  $m_A(x) = m_B(x)$, there is no choice for the remaining invariant factor.
+      Therefore $A$ and $B$ have the same rational canonical form, proving they are similar.
+    \end{alphaenum}
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  \label{Ex3}
+  Determine the eigenvalues of the matrix
+  $$
+  \begin{pmatrix}
+    0 & 1 & 0 & 0\\
+    0 & 0 & 1 & 0\\
+    0 & 0 & 0 & 1\\
+    1 & 0 & 0 & 0
+  \end{pmatrix}.
+  $$
+  \begin{proof}
+    Taking the determinant of the matrix
+    $$
+  \begin{pmatrix}
+    \lambda & 1 & 0 & 0\\
+    0 & \lambda & 1 & 0\\
+    0 & 0 & \lambda & 1\\
+    1 & 0 & 0 & \lambda
+  \end{pmatrix}
+  $$
+  we obtain the polynomial  $\lambda^4 - 1 = (\lambda+i)(\lambda - i )(\lambda+1)(\lambda-1)$.
+  Therefore the eigenvalues are $\pm i$ and $\pm 1$.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  \label{Ex4}
+  Find the rational canonical forms of
+  $$
+  \begin{pmatrix}
+    0 & -1 & -1\\
+    0 & 0 & 0 \\
+    -1 & 0 & 0
+  \end{pmatrix},
+  \begin{pmatrix}
+    c & 0 &-1\\
+    0 & c & 1\\
+    -1 & 1 & c
+  \end{pmatrix}
+  \quad
+  \text{and}
+  \quad
+  \begin{pmatrix}
+    422 & 465 & 15 & -30\\
+    -420 & -463 & -15 & 30\\
+    840 & 930 & 32 & -60\\
+    -140 & -155 & -5 & 12
+  \end{pmatrix}.
+  $$
+  \begin{proof}
+    Let the matrices above be $A, B$ and $C$ respectively.
+    The characteristic polynomial of $A$ is given by $c_A(x) = x(x+1)(x-1) = x^3 - x$.
+    Since the factors are all different, the divisibility condition of the invariant factors allows us to conclude that $c_A(x) = m_A(x)$ thus the rational canonical form is 
+    $$
+    \begin{pmatrix}
+      0 & 0 & 0\\
+      1 & 0 & 1\\
+      0 & 1 & 0
+    \end{pmatrix}.
+    $$
+    
+    The characteristic polynomial of $B$ can be calculated as $c_B(x) = (x-c)((x-c)^2 - 2) = x^3 - 3cx^2 + (3c^2-2)x + 2c - c^3$.
+    Consider $(x-c)^2 - 2$; we aim to show this is irreducible.
+    Suppose to the contrary that $(x+a)(x+b) = (x-c)^2 - 2$.
+    Then $a+b = -2c$ and $ab = c^2 - 2$.
+    Solving the first equation for $c$ yields $c = -(a+b)/2,$ from which it follows by some routine algebra that $4ab + 8 = (a+b)^2$.
+    We observe that by subtracting $4ab$ from both sides we obtain $8 = (a-b)^2$.
+    However, $8$ is not a square in $\Q$, a contradiction.
+    Therefore we have $c_B(x) = m_B(x)$ and thus the rational canonical form is given by 
+    $$
+    \begin{pmatrix}
+      0 & 0 & c^3 - 2c\\
+      1 & 0 & 2 - 3c^2\\
+      0 & 1 & 3c
+    \end{pmatrix}.
+    $$
+    
+    Finally, computing the characteristic polynomial of $C$ yields $c_C(x) = (x-2)^3(x+3)$.
+    There are then three possibilities for the minimal polynomial: $$(x-2)(x+3), \quad (x-2)^2(x+3) \quad \text{or} \quad (x-2)^3(x+3).$$
+    A quick check by hand shows that $(A-I2)(A+I3) = 0$ and so the invariant factors are $(x-2)(x+3),(x-2),(x-2).$
+    Hence the rational canonical form is 
+    $$
+    \begin{pmatrix}
+      2 & 0 & 0 & 0\\
+      0 & 2 & 0 & 0\\
+      0 & 0 & 0 & 6\\
+      0 & 0 & 1 & -1
+    \end{pmatrix}.
+    $$
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  \label{Ex5}
+  Find all similarity classes of $6 \times 6$ matrices over $\Q$ with minimal polynomial $(x+2)^2(x-1)$ (it suffices to give all lists of invariant factors and write out some of their corresponding matrices).
+  \begin{proof}
+    The list of invariant factors is as follows
+    \begin{align*}
+      (x+2)^2(x-1), (x-1), (x-1), (x-1),\\
+      (x+2)^2(x-1), (x+2)(x-1), (x-1),\\
+      (x+2)^2(x-1), (x+2)^2(x-1),\\
+      (x+2)^2(x-1), (x+2)(x-1), (x+2),\\
+      (x+2)^2(x-1), (x+2)^2, (x+2), \, \text{and}\\
+      (x+2)^2(x-1), (x+2), (x+2), (x+2).
+    \end{align*}
+    The rational canonical form of the first is
+    $$
+    \begin{pmatrix}
+      1 & 0 & 0 & 0 & 0 & 0\\
+      0 & 1 & 0 & 0 & 0 & 0\\
+      0 & 0 & 1 & 0 & 0 & 0\\
+      0 & 0 & 0 & 0 & 0 & 4\\
+      0 & 0 & 0 & 1 & 0 & 0\\
+      0 & 0 & 0 & 0 & 1 & -3\\
+    \end{pmatrix}.
+    $$
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  \label{Ex6}
+  Determine up to similarity all $2 \times 2$ rational matrices of precise order 4.  
+  Do the same if the matrix has entries from $\C$.
+  \begin{proof}
+    The polynomial $x^4 - 1$ factors as $(x^2 + 1)(x+1)(x-1)$ over $\Q$.
+    The possibilities for the minimal polynomial are $x+1, x-1, x^2+1, (x+1)(x-1)$.
+    The lists of invariant factors are 
+    \begin{align*}
+      x+1, x+1,\\
+      x-1, x-1,\\
+      x^2+1,\\
+      (x+1)(x-1)
+    \end{align*}
+    respectively.
+    Computing the rational canonical forms, it is easy to check by hand that $x^2+1$ is the only element up to similarity of order 4, whose rational canonical form is 
+    $$
+    \begin{pmatrix}
+      0 & -1\\
+      1 & 0\\
+    \end{pmatrix}.
+    $$
+    
+    Over $\C$, we have the factorization $x^4 - 1 = (x+i)(x-i)(x+1)(x-1)$.
+    This yields the new possibilities for the minimal polynomial: $x+i, x-i, (x+i)(x+1), (x+i)(x-1), (x-i)(x+1)$ and $(x-i)(x-1)$.
+    The corresponding invariant factors are then 
+    \begin{align*}
+      x+i, x+i,\\ 
+      x-i, x-i,\\ 
+      (x+i)(x+1),\\ 
+      (x+i)(x-1),\\ 
+      (x-i)(x+1),\\
+      (x-i)(x-1).
+    \end{align*}
+    The corresponding canonical rational forms are 
+    $$
+    iI, -iI, 
+    \begin{pmatrix}
+      0 & -i\\
+      1 & -(1+i)
+    \end{pmatrix},
+    \begin{pmatrix}
+      0 & i\\
+      1 & 1-i
+    \end{pmatrix},
+    \begin{pmatrix}
+      0 & i\\
+      1 & i-1
+    \end{pmatrix},
+    \quad \text{and} \quad
+    \begin{pmatrix}
+      0 & -i\\
+      1 & 1+i
+    \end{pmatrix}.
+    $$
+    It is easily checked by hand that each of the newly introduced classes are of order 4.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  \label{Ex7}
+  Show that $x^5 - 1 = (x-1)(x^2 - 4x + 1)(x^2 + 5x + 1)$ in $\mathbb{F}_{19}[x]$.
+  Use this to determine up to similarity all $2 \times 2$ matrices with entries from $\mathbb{F}_{19}$ of order 5.
+  \begin{proof}
+    Expanding the right hand side of the equation above we have $$(x-1)(x^2 - 4x + 1)(x^2 + 5x + 1) = x^5 -19x^3 + 19x^2 - 1 \equiv x^5 - 1 \pmod{19}.$$
+    Then the possibilities for the minimum polynomial are $x-1, x^2 - 4x +1 $ and $x^2 + 5x + 1$.
+    The corresponding invariant factors are 
+    \begin{align*}
+      x-1, x-1,\\
+      x^2 - 4x + 1,\\
+      x^2 + 5x + 1
+    \end{align*}
+    and their associated rational canonical forms are 
+    \begin{align*}
+      I, \quad
+      \begin{pmatrix}
+        0 & -1\\
+        1 & 4
+      \end{pmatrix},
+      \quad \text{and} \quad
+      \begin{pmatrix}
+        0 & -1\\
+        1 & -5
+      \end{pmatrix}.
+    \end{align*}
+    Checking again by hand it is easy to see that the first is of order 1 and the other two are of order 5.
+  \end{proof}
+\end{thm}
+\end{document}
+
+
+%Let $W$ be a non-trivial submodule of $V$ and suppose $W$ is invariant under $T$.
+%        If $i \not \in W$, then the imaginary axis cannot be contained in $W$ because for any $y \in \R$, there exists $1/y \in \R$ such that $1/y\cdot iy = i$.
+%        Moreover, the real axis cannot be contained in $W$ since $T(1) = -i \not \in W$.
+%        But this is absurd\\ consider $w + T(w)$ for any $w \in W$.
+%        This sum lies either on the real or imaginary axis, both of which were supposed not to be contained by $W$.
+%        Hence $i \in W$ and $T(i) = 1 \in W$.
+%        Therefore $W = \C$ as desired.
