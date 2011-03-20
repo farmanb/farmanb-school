@@ -1,0 +1,72 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,mymath}
+\openup 5pt
+\author{Blake Farman}
+\title{Math-351:\\Homework 5}
+\date{March 14, 2011}
+\usepackage[margin=1in]{geometry}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\begin{document}
+\maketitle
+
+\newtheorem{thm}{}
+
+\newcommand{\OO}{\mathcal{O}}
+
+\begin{thm}
+  \label{Ex1}
+  Show that the sum and product of two fractional ideals are again fractional ideals.
+  \begin{proof}
+    Let $A$ and $B$ be fractional ideals of $\OO_K$ for some algebraic number field $K$ and let $m,n \in \Z$ be such that $mA \subseteq \OO_K$ and $nB \subseteq \OO_K$.
+    
+    Consider first the product ideal $AB$.  
+    Seeing as both are modules, so too is their product.
+    Consider $nmAB$.
+    Since $mA \subseteq \OO_K$ by assumption and $B$ is an $\OO_K$-module, $nmAB \subseteq nB \subseteq \OO_K$.
+    Hence $AB$ is a fractional ideal.
+    
+    Now consider their sum, $A + B$.
+    Again, $A + B$ is an $\OO_K$-module since both $A$ and $B$ are $\OO_K$-modules.
+    Consider $mn(A + B) = n(mA) + m(nB)$.
+    By assumption $mA \subseteq \OO_K$, so it follows that $nmA \subseteq O_K$.
+    Similarly, $mnB \subset \OO_K$.
+    Hence $mn(A+B) \subseteq \OO_K$.
+    Therefore $A+B$ is a fractional ideal.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  \label{Ex2}
+  Show that, given any fractional ideal $A \not = 0$ in $K$, there exists a fractional ideal $A^{-1}$ such that $AA^{-1} = \OO_K$.
+  \begin{proof}
+    By the result of Exercise 5.3.7, we can write $A$ and $A^{-1}$ as the ratio of prime ideals as follows
+    $$A = \frac{p_1p_2\ldots p_r}{p_1^{\prime}p_2^{\prime}\ldots p_s^{\prime}} \quad \text{and} \quad A^{-1} = \frac{p_1^{\prime}p_2^{\prime}\ldots p_s^{\prime}}{p_1p_2\ldots p_r}.$$
+    Hence $AA^{-1} = (p_1^{\prime})^{-1}(p_2^{\prime}){-1}\ldots (p_s^{\prime})^{-1}p_1p_2\ldots p_r (p_1)^{-1}(p_2)^{-1}\ldots (p_r)^{-1} p_1^{\prime}p_2^{\prime}\ldots p_s^{\prime}$.
+    Therefore, by Theorem 5.3.5, the product above telescopes and we obtain $AA^{-1} = \OO_K$, as desired.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  \label{Ex3}
+  \newcommand{\A}{\mathfrak{a}}
+  \newcommand{\B}{\mathfrak{b}}
+  \renewcommand{\C}{\mathfrak{c}}
+  \newcommand{\D}{\mathfrak{d}}
+  \newcommand{\E}{\mathfrak{e}}
+  Suppose $\A,\B,\C$ are ideals of $\OO_K$.
+  Show that if $\A\B = \C^g$ and $(\A,\B) = 1$, then $\A = \D^g$ and $\B = \E^g$ for some ideals $\D$ and $\E$ of $\OO_K$.
+  \begin{proof}
+    Factor the ideals $\A$ and $\B$ into primes as 
+    $$\A = \prod_{i=1}^r p_i^{\alpha_i} \quad \text{and} \quad \B = \prod_{i=1}^s q_i^{\beta_i}.$$
+    Seeing as we assumed $(\A,\B) = 1$, we know that $p_i \not = q_j$ for any $i,j$.
+    If we write
+    $$\C^g = p_1^{\alpha_1}\ldots p_r^{\alpha_r}q_1^{\beta_1}\ldots q_s^{\beta_s},$$
+    then $\C$ must factor as 
+    $$\C = p_1^{\gamma_1} \ldots p_r^{\gamma_r}q_1^{\delta_1}\ldots q_s^{\delta_s}.$$
+    It then follows that $\alpha_i = g\gamma_i$ and $\beta_i = g\delta_i$.
+    Hence if we take $\D = p_1^{\gamma_1}\ldots p_r^{\gamma_r}$ and $\E = q_1^{\delta_1}\ldots q_s^{\delta_s}$, we have $\A = \D^g$ and $\B = \E^g$, as desired.
+  \end{proof}
+\end{thm}
+
+\end{document}
