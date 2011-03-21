@@ -2,8 +2,8 @@
 \usepackage{amsmath,amsthm,amssymb,amsfonts,wasysym,mymath}
 \openup 5pt
 \author{Blake Farman}
-\title{Math-331:\\Homework 4}
-\date{February 25, 2010}\pdfpagewidth 8.5in
+\title{Math-331:\\Homework 5}
+\date{March 11, 2011}\pdfpagewidth 8.5in
 \usepackage[margin=1in]{geometry}
 \pdfpageheight 11in
 \begin{document}
@@ -41,6 +41,29 @@
   \label{Ex2}
   Let $$f(z) = \sum\limits_{n=1}^\infty \dfrac{1}{(z+n)^2}.$$
 Prove that $f$ is meromorphic on $\C$ and determine its poles and their orders.
+\begin{proof}
+  Let $R>0$ be the given radius of a disc, $D$, centered at zero.
+  Take $N > 2R$ and define the functions
+  \begin{align*}
+    g(z) = \sum_{n=1}^N \frac{1}{(z+n)^2} \quad \text{and} \quad h(z) = \sum_{n=N+1}^{\infty} \frac{1}{(z+n)^2}.
+  \end{align*}
+  Since $g$ is a finite sum it is apparent that it has poles of order 2 at each integer $-N \leq n < 0$.
+  Hence $g$ is meromorphic.
+  
+  On $D$ we have that the terms of $h$ satisfy
+  $$\frac{1}{(z+n)^2} \leq \frac{1}{R^2 + n^2} = \frac{1}{n^2\left(1 + \left(\frac{R}{n}\right)^2\right)}.$$
+  From $n \geq 2R$ we obtain, with a little algebra, the inequality $$1 + \left(\frac{R}{n}\right)^2 \geq \frac{5}{4}.$$
+  Whence the inequality 
+  \begin{equation}
+    \label{2.1}
+    \frac{1}{(z+n)^2} \leq \frac{4}{5n^2}.
+  \end{equation}
+  The series comprised of the terms on the right hand side of \eqref{2.1} converge by results from Math 333 and thus $h$ converges uniformly by the Weierstrass M-test.
+  Now let $\gamma$ be any closed rectangle contained in $D$.
+  If $h_m(z) = \sum_{n=N+1}^m 1/(z+n)^2$ is the $m^{th}$ partial sum, then by a result from class we know that 
+  $$\int_\gamma h(z)\,dz = \lim_{m\rightarrow\infty} \int_{\gamma} h_m(z)\,dz = 0.$$
+  Therefore $h$ is holomorphic by Morera's Theorem on every such disc, $D$, and so $f = g + h$ is meromorphic on $\C$, as was to be shown.
+\end{proof}
 \end{thm}
 
 \begin{thm}
@@ -48,6 +71,15 @@ Prove that $f$ is meromorphic on $\C$ and determine its poles and their orders.
   A set $S$ is called {\it star shaped} if there is a point $z_0 \in S$ such that
 the line segment between $z_0$ and any point in $S$ is contained in $S$.
 Prove that a star shaped set is simply connected.
+\begin{proof}
+  Let $S$ be a star shaped set and let $z_0$ be the point contained therein to which every other point in the set can be straight-line connected.
+  Let $\gamma(t)$ be any closed curve contained in $S$ and reparameterize as necessary so that $\gamma$ is defined on the interval $[0,1]$.
+  Consider the function $\Gamma:[0,1]\times[0,1] \longrightarrow S$ defined by $\Gamma(t,u) = u(z_0 - \gamma(t)) + \gamma(t)$.
+  It is clear that $\Gamma$ is continuous and satisfies both 
+  $$\Gamma(t,0) = \gamma(t) \quad \text{and} \quad \Gamma(t,1) = z_0.$$
+  Moreover, for any fixed $t_0 \in [0,1]$ the curve $\Gamma(t_0,u) = u(z_0 - \gamma(t_0)) + \gamma(t_0)$ is the line from $z_0$ to $\gamma(t_0)$, which is contained in $S$ by assumption.
+  Therefore $\Gamma$ is a homotopy and $S$ is simply connected, as desired.
+\end{proof} 
 \end{thm}
 
 \begin{thm}
@@ -61,6 +93,14 @@ given by $\Gamma_1$.
 Prove that the product curves $\gamma_0 \gamma_1$ and $\delta_0 \delta_1$ are also homotopic
 in $U$ by exhibiting an explicit homotopy in terms of $\Gamma_0$ and $\Gamma_1$
 (and showing it is a homotopy).
+\begin{proof}
+  Seeing as we have proven in class that homotopy is independent of parameterization, we can reparameterize $\Gamma_0$ and $\Gamma_1$ as necessary so that they are both defined on the same rectangle, say $[a,b] \times [c,d]$.
+  Now define the function $\Gamma: [a,b]\times[c,d] \longrightarrow U$ by $\Gamma(t,u) = \Gamma_0(t,u)\Gamma_1(t,u)$.
+  Since $\Gamma_0$ and $\Gamma_1$ are homotopies, we know they are both continuous and they satisfy
+  $$\Gamma(t,c) = \gamma_0\delta_0(t) \quad \text{and} \quad \Gamma(t,d) = \gamma_1\delta_1(t).$$
+  Moreover, for any $u_0 \in [c,d]$, these homotopies must fix the endpoints and both $\Gamma_0(t,u_0)$ and $\Gamma_1(t,u_0)$ are closed curves, so we know that the product curve $\Gamma(t,u_0)$ is well defined.
+  Therefore $\Gamma$ is a homotopy, as desired.
+\end{proof}
 \end{thm}
 
 \begin{thm}
@@ -69,6 +109,17 @@ in $U$ by exhibiting an explicit homotopy in terms of $\Gamma_0$ and $\Gamma_1$
 $\gamma^{-}$ denote its reverse curve.
 Prove that $\gamma \gamma^{-}$ is null homotopic
 in $U$ (exhibit and verify an explicit homotopy).
+\begin{proof}
+  Begin by reparameterizing as necessary so that $\gamma$ is defined on the interval $[0,1]$.  
+  Consider the continuous function $\Gamma: [0,1]\times[0,1] \longrightarrow U$ defined by
+  $$\Gamma(t,u) = \gamma((1-u)t)\gamma((1-t)(1-u)).$$
+  Using the equality $\gamma^-(t) = \gamma(1-t)$, we have that $\Gamma(t,0) = \gamma\gamma^-(t)$ and that $\Gamma(t,1)$ is the just the point curve $z_0$.
+    
+  To see $\Gamma$ is a homotopy it remains to show that for any fixed ${u_0} \in [0,1]$ the function $\Gamma_{u_0}(t) = \Gamma(t,{u_0})$ is a closed curve.
+  Observe that as $t$ varies over $[0,1]$, the function $\Gamma_{u_0}(t)$ first sweeps out the portion of the the original curve, $\gamma$, between  $z_0$ and $\gamma(1-u_0)$ and then sweeps out the same segment in the reverse direction.
+  Since $\Gamma_{u_0}(0) = \Gamma_{u_0}(1)$, it follows from the definition that $\Gamma_{u_0}(t)$ is a closed curve.
+  Therefore $\gamma\gamma^-$ is null homotopic.
+\end{proof}
 \end{thm}
 
 \end{document}

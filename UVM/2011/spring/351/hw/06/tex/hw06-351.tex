@@ -1,0 +1,90 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,mymath,amscd}
+\openup 5pt
+\author{Blake Farman}
+\title{Math-351:\\Homework 6}
+\date{March 21, 2011}
+\usepackage[margin=1in]{geometry}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\begin{document}
+\maketitle
+
+\newtheorem{thm}{}
+
+\newcommand{\OO}{\mathcal{O}}
+
+\begin{thm}
+  \label{Ex1}
+  If in the previous theorem we do not assume that $\OO_K = \Z[\theta]$ but instead that $p \nmid [\OO_K : \Z[\theta]]$, show that the same result holds.
+  \begin{proof}
+    Let $f(x) \equiv f_1(x)^{e_1}\ldots f_g(x)^{e_g} \pmod{p}$ be the minimal polynomial of $\theta$ as in the previous theorem.
+    We first note that the only usage of the equivalence $\OO_K = \Z[\theta]$ occurs in the course of proving $\Z[x]/(p,f_i(x)) \cong \Z[\theta]/(p,f_i(\theta))$.
+    % the map $\varphi: \Z[x] \longrightarrow \Z[\theta]/(p,f_i(\theta))$ has $(p, f_i(x))$ as its kernel.
+    Hence it suffices to show that same result holds under this weaker assumption.
+    
+    We start by defining the two maps
+  \begin{align*}
+    \begin{split}
+      \psi:\,& \Z[x] \longrightarrow \Z[\theta]\\
+      &a(x) \mapsto a(\theta),
+    \end{split}
+  \end{align*}
+  evaluation at $\theta$, and $\pi: \Z[\theta] \longrightarrow \Z[\theta]/(p,f_i(\theta))$, the natural projection homomorphism.  
+  It is clear from the basic properties of functions that $\psi$ is a homomorphism and that it is surjective.
+  Moreover, the composition of these homomorphisms yields the surjective homomorphism $\pi \circ \psi: \Z[x] \longrightarrow \Z[\theta]/(p,f_i(\theta))$, so we aim to show $\ker{\pi \circ \psi} = (p,f_i(x))$.
+  %us an equivalent route to the quotient, namely $\varphi = \pi \circ \psi$.
+  
+  Clearly $(p, f_i(x)) \subseteq \ker{\pi \circ \psi}$, so it remains only to show the reverse inclusion.
+  Let $n \in \ker{\pi \circ \psi}$ be given.
+  By the definitions above $\ker{\pi} = (p, f_i(\theta))$ and $\ker{\psi} = (f(x))$.
+  Seeing as $\psi(n) \in \ker{\pi}$, we must have $\psi(n) = p\alpha(\theta) + f_i(\theta)\beta(\theta)$, for some $\alpha,\beta \in \Z[\theta]$.
+  %It is important to note that $p\alpha(\theta) = 0$ if and only if $\alpha(\theta) = 0$ since otherwise Lagrange's Theorem would then imply $p$ divides $[\OO_K : \Z[\theta]]$, which would contradict our assumption.
+  %This guarantees that the image of $\psi$ contains the kernel of $\pi$.
+  Using the kernel of $\psi$, we can explicitly write $n$ as an element of $\Z[x]$.
+  Indeed $n = \gamma + f\delta$ for some $\gamma,\delta \in \Z[x]$ such that 
+  \begin{equation}
+    \label{1.1}
+     \alpha(\theta) + f_i(\theta)\beta(\theta) = \psi(n) = \psi(\gamma + f\delta) = \gamma(\theta).
+  \end{equation}
+  Hence it follows from \eqref{1.1} that $n(x) = p\alpha(x) + f_i(x)\beta(x) + f(x)\delta(x)$.
+  
+  It remains only to show $f(x) \in (p, f_i(x))$.
+  To that end, let $\mu: \Z[x] \rightarrow \Z/p\Z[x]$ be the usual reduction homomorphism.
+  Since $\Z[x]$ is a U.F.D. we know $f$ factors uniquely over $\Z[x]$ as, say, $$f(x) = h_1(x)^{k_1}\ldots h_m(x)^{k_m},$$
+  for some $m \in \Z$.
+  Then by hypothesis
+  \begin{align*}
+    \begin{split}
+      \mu(f(x)) &= \mu(h_1(x))^{k_1}\ldots \mu(h_m(x))^{k_m} \\
+      &= f_1(x)^{e_1}\ldots f_g(x)^{e_g}.
+    \end{split}
+  \end{align*}
+  Since each $f_i$ was assumed to be irreducible, it follows that each must be the image of some $h_j$ under $\mu$.
+  %Hence the factorization above can be rearranged so that $\mu(h_i(x)) = f_i(x)$.
+  Furthermore, we can rewrite that $h_j$ in terms of $\ker{\mu}$, namely $h_j = p\nu_j + \xi_j$ for some $\nu_j, \xi_j \in \Z[x]$.
+  Observing that the coefficients of $\xi_j$ must necessarily be stricly smaller than $p$ by construction, it follows that 
+  $$f_i = \mu(h_j) = \mu(p\nu_j) +\mu(\xi_j) = \mu(\xi_j) = \xi_j.$$
+  Therefore $h_j(x) = \mu(p\nu_j) + f_i(x) \in (p, f_i(x))$ implies $f(x) \in (p,f_i(x))$ and thus $n(x) \in (p, f_i(x))$, as desired.
+\end{proof}
+\end{thm}
+
+\begin{thm}
+  \newcommand{\pp}{\mathfrak{p}}
+  \label{Ex2}
+  Show that if $p$ ramifies in $K$, then it ramifies in each of the conjugate fields of $K$.
+  \begin{proof}
+    Let $(p) = \pp_1^{e_1}\ldots\pp_n^{e_n}.$
+    Since each embedding $\sigma_i$ is a field isomorphism, 
+    \begin{align*}
+      \begin{split}
+        \sigma_i((p)) &= \sigma_i(\pp_1^{e_1}\ldots\pp_n^{e_n})\\
+        &= \sigma_i(\pp_1)^{e_1}\ldots\sigma_i(\pp_n)^{e_n},
+        \end{split}
+      \end{align*}
+      where $\sigma_i(\pp_j)$ is a prime ideal in the conjugate field.
+      Therefore if $p$ ramifies in $K$, then it ramifies in the conjugate fields of $K$.
+  \end{proof}
+\end{thm}
+
+\end{document}
