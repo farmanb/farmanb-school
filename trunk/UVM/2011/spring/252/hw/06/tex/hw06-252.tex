@@ -1,0 +1,297 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,mymath}
+\openup 5pt
+\author{Blake Farman}
+\title{Math-252:\\Homework 6}
+\date{March 23, 2011}\pdfpagewidth 8.5in
+\usepackage[margin=1in]{geometry}
+\pdfpageheight 11in
+\begin{document}
+\maketitle
+
+\newtheorem{thm}{}
+
+\begin{thm}
+  \label{Ex1}
+  Prove that if $\lambda_1, \ldots \lambda_n$ are the eigenvalues of the $n \times n$ matrix $A$ then $\lambda_1^k, \ldots, \lambda_n^k$ are the eigenvalues of $A^k$ for any $k \geq 0$.
+    \begin{proof}
+    By assumption, $c_A(x) = (x - \lambda_1)\ldots(x - \lambda_n)$ and thus $m_A(x)$, which must divide $c_a(x)$, does not have repeated roots.
+    Hence by Corollary 25, $A$ is diagonalizable and the Jordan canonical form is 
+    $$
+    \begin{pmatrix}
+      \lambda_1  & & \text{\huge{0}}\\
+       & \ddots & \\ 
+      \text{\huge{0}} & & \lambda_n
+    \end{pmatrix}.
+    $$
+    Therefore the Jordan canonical form of $A^k$ is 
+    $$
+    \begin{pmatrix}
+      \lambda_1^k  & & \text{\huge{0}}\\
+       & \ddots & \\ 
+      \text{\huge{0}} & & \lambda_n^k
+    \end{pmatrix}
+    $$
+    and the eigenvalues are $\lambda_1^k, \ldots, \lambda_n^k$.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  \label{Ex2}
+  Compute the Jordan canonical form for the matrix
+  $$
+  A =  \begin{pmatrix}
+    1 & 0 & 0\\
+    0 & 0 & -2\\
+    0 & 1 & 3
+  \end{pmatrix}.
+  $$
+  \begin{proof}
+    The characteristic polynomial of $A$ is $c_A(x) = (x-1)^2(x-2)$ and the minimal polynomial is $m_A(x) = (x-1)(x-2)$, which does not have repeated roots.
+    Therefore it follows from Corollary 25 that the Jordan canonical form for $A$ is 
+    $$
+    \begin{pmatrix}
+      1 & 0 & 0\\
+      0 & 1 & 0\\
+      0 & 0 & 2
+    \end{pmatrix}.
+    $$
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  \label{Ex3}
+  Determine which of the following matrices are similar:
+  $$
+  A = \begin{pmatrix}
+    -1 & 4 & -4\\
+    2 & -1 & 3\\
+    0 & -4 & 3
+  \end{pmatrix}
+  \quad
+  B = \begin{pmatrix}
+    -3 & -4 & 0\\
+    2 & 3 & 0\\
+    8 & 8 & 1
+  \end{pmatrix}
+  \quad
+  C = \begin{pmatrix}
+    -3 & 2 & -4\\
+    2 & 1 & 0\\
+    3 & -1 & 3
+  \end{pmatrix}
+  \quad
+  D = \begin{pmatrix}
+    -1 & 4 & -4\\
+    0 & -3 & 2\\
+    0 & -4 & 3
+  \end{pmatrix}.
+  $$
+  \begin{proof}
+    The characteristic polynomials of the matrices are $c_A(x) = c_B(x) = c_C(x) = c_D(x) = (x+1)(x-1)^2$.
+    The minimal polynomials are $m_A(x) = m_C(x) = m_D(x) = (x+1)(x-1)^2$ and $m_B(x) = (x+1)(x-1)$.
+    The Jordan canonical forms for the similar matrices $A, C$ and $D$ are 
+    $$
+    \begin{pmatrix}
+      -1 & 0 & 0\\
+      0 & 1 & 1\\
+      0 & 0 & 1\\
+    \end{pmatrix}
+    $$
+    and the Jordan canonical form for $B$ is 
+    $$
+    \begin{pmatrix}
+      -1 & 0 & 0\\
+      0 & 1 & 0\\
+      0 & 0 & 1
+    \end{pmatrix}.
+    $$
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  \label{Ex4}
+  Prove that the matrices 
+  $$
+  A = \begin{pmatrix}
+    -8 & -10 & -1\\
+    7 & 9 & 1\\
+    3 & 2 & 0
+  \end{pmatrix}
+  \quad
+  B = \begin{pmatrix}
+    -3 & 2 & -4\\
+    4 & -1 & 4\\
+    4 & -2 & 5
+  \end{pmatrix}
+  $$
+  both have $(x-1)^2(x+1)$ as characteristic polynomial but that one can be diagonalized and the other cannot.
+  Determine the Jordan canonical form for both matrices.
+  \begin{proof}
+    Computing $\det(xI - A)$ and $\det(xI - B)$ then factoring, we obtain the characteristic polynomials $c_A(x) = c_B(x) = (x-1)^2(x+1)$.
+    The minimal polynomial of $A$ is $m_A(x) = c_A(x)$ and the minimal polynomial for $B$ is $m_B(x) = (x-1)(x+1)$.
+    By Corollary 25, $B$ is diagonalizable, but $A$ is not.  
+    Hence the matrices are not similar.
+    The Jordan canonical forms for $A$ and $B$ are given, in that order, by
+    $$
+    \begin{pmatrix}
+      -1 & 0 & 0\\
+      0 & 1 & 1\\
+      0 & 0 & -1
+    \end{pmatrix}
+    \quad \text{and} \quad
+    \begin{pmatrix}
+      1 & 0 & 0\\
+      0 & 1 & 0\\
+      0 & 0 & -1
+    \end{pmatrix}.
+    $$
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  \label{Ex5}
+  Verify that the characteristic polynomial of 
+  $$
+  A = \begin{pmatrix}
+    1 & 0 & 0 & 0\\
+    0 & 1 & 0 & 0\\
+    -2 & -2 & 0 & 1\\
+    -2 & 0 & -1 & -2
+  \end{pmatrix}
+  $$
+  is a product of linear factors over $\Q$.  Determine the rational and Jordan canonical forms for $A$ over $\Q$.
+  \begin{proof}
+    Working out the characteristic polynomial of $A$, we have $c_A(x) = (x-1)^2(x+1)^2$.
+    Then it is easy enough to check that $m_a(x) = (x-1)(x+1)^2 = x^3 + x^2 - x - 1$.
+    The invariant factors are $(x-1)(x+1)^2, x-1$ and the elementary divisors are $x-1, x-1, (x+1)^2$.
+    The rational and Jordan canonical forms are given, in that order, by
+    $$
+    \begin{pmatrix}
+      1 & 0 & 0 & 0\\
+      0 & 0 & 0 & 1\\
+      0 & 1 & 0 & 1\\
+      0 & 0 & 1 & -1
+    \end{pmatrix}
+    \quad \text{and} \quad
+    \begin{pmatrix}
+      1 & 0 & 0 & 0\\
+      0 & 1 & 0 & 0\\
+      0 & 0 & -1 & 1\\
+      0 & 0 & 0 & -1
+    \end{pmatrix}.
+    $$
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  \label{Ex6}
+  Determine all possible Jordan canonical forms for a linear transofmration with characteristic polynomial $(x-2)^3(x-3)^2$.
+  \begin{proof}
+    We begin by determining the possible elementary divisors, which are as follows
+    \begin{enumerate}
+    \item
+      $(x-2)^3, (x-3)^2$
+    \item
+      $(x-2)^3, (x-3), (x-3)$
+    \item
+      $(x-2)^2, (x-2), (x-3)^2$
+    \item
+      $(x-2)^2, (x-2), (x-3), (x-3)$
+    \item
+      $(x-2), (x-2), (x-2), (x-3)^2$
+    \item
+      $(x-2), (x-2), (x-2), (x-3), (x-3)$.
+    \end{enumerate}
+    The Jordan canonical forms for each are as follows
+    \begin{enumerate}
+    \item
+      $
+      \begin{pmatrix}
+        2 & 1 & 0 & 0 & 0\\
+        0 & 2 & 1 & 0 & 0\\
+        0 & 0 & 2 & 0 & 0\\
+        0 & 0 & 0 & 3 & 1\\
+        0 & 0 & 0 & 0 & 3
+      \end{pmatrix}
+      $
+    \item
+      $
+      \begin{pmatrix}
+        2 & 1 & 0 & 0 & 0\\
+        0 & 2 & 1 & 0 & 0\\
+        0 & 0 & 2 & 0 & 0\\
+        0 & 0 & 0 & 3 & 0\\
+        0 & 0 & 0 & 0 & 3
+      \end{pmatrix}
+      $
+    \item
+      $
+      \begin{pmatrix}
+        2 & 1 & 0 & 0 & 0\\
+        0 & 2 & 0 & 0 & 0\\
+        0 & 0 & 2 & 0 & 0\\
+        0 & 0 & 0 & 3 & 1\\
+        0 & 0 & 0 & 0 & 3
+      \end{pmatrix}
+      $
+    \item
+      $
+      \begin{pmatrix}
+        2 & 1 & 0 & 0 & 0\\
+        0 & 2 & 0 & 0 & 0\\
+        0 & 0 & 2 & 0 & 0\\
+        0 & 0 & 0 & 3 & 0\\
+        0 & 0 & 0 & 0 & 3
+      \end{pmatrix}
+      $
+    \item
+      $
+      \begin{pmatrix}
+        2 & 0 & 0 & 0 & 0\\
+        0 & 2 & 0 & 0 & 0\\
+        0 & 0 & 2 & 0 & 0\\
+        0 & 0 & 0 & 3 & 1\\
+        0 & 0 & 0 & 0 & 3
+      \end{pmatrix}
+      $
+    \item
+      $
+      \begin{pmatrix}
+        2 & 0 & 0 & 0 & 0\\
+        0 & 2 & 0 & 0 & 0\\
+        0 & 0 & 2 & 0 & 0\\
+        0 & 0 & 0 & 3 & 0\\
+        0 & 0 & 0 & 0 & 3
+      \end{pmatrix}.
+      $
+    \end{enumerate}
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  \label{Ex7}
+  Show that if $A^2 = A$ then $A$ is similar to a diagonal matrix which has only 0's and 1's along the diagonal.
+  \begin{proof}
+    If $A^2 = A$, then $A^2 - A = 0$ and so $m_A(x) | x(x-1)$.
+    Then $m_A(x)$ does not have any repeated roots and hence $A$ is diagonalizable by Corollary 25.
+    Moreover, the only eigenvalues of $A$ are 0 and 1.
+    Therefore $A$ must have 0's and 1's on the diagonal.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  \label{Ex8}
+  Prove that an $n \times n$ matrix $A$ with entries from $\C$ satisfying $A^3 = A$ can be diagonalized.
+  Is the same statement true over {\it any} field $F$?
+  \begin{proof}
+    If $A^3 = A$, then $A^3 - A = 0$ and thus $m_A(x) | x^3 - x = x(x+1)(x-1)$.
+    Then $m_A(x)$ does not have any repeated roots (over $\C$) and $A$ is diagonalizable by Corollary 25.
+
+    This result does not hold for an arbitrary field, $F$.
+    In particular, consider $\mathbb{F}_2$.
+    Then $x^3 - x = x(x+1)^2$ and $m_A(x)$ may have repeated roots.
+  \end{proof}
+\end{thm}
+
+\end{document}
