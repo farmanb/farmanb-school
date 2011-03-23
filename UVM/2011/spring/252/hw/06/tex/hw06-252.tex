@@ -88,9 +88,9 @@
   \end{pmatrix}.
   $$
   \begin{proof}
-    The characteristic polynomials of the matrices are $c_A(x) = c_B(x) = c_C(x) = c_D(x) = (x+1)(x-1)^2$.
-    The minimal polynomials are $m_A(x) = m_C(x) = m_D(x) = (x+1)(x-1)^2$ and $m_B(x) = (x+1)(x-1)$.
-    The Jordan canonical forms for the similar matrices $A, C$ and $D$ are 
+    The characteristic polynomials of the matrices are $c_A(x) = c_B(x) = c_C(x) =  (x+1)(x-1)^2$ and $c_D(x) = (x-1)(x+1)^2$.
+    The minimal polynomials are $m_A(x) = m_C(x) = (x+1)(x-1)^2$ and $m_B(x) = m_D(x) = (x+1)(x-1)$.
+    The Jordan canonical form for the similar matrices $A$ and $C$ is 
     $$
     \begin{pmatrix}
       -1 & 0 & 0\\
@@ -98,12 +98,18 @@
       0 & 0 & 1\\
     \end{pmatrix}
     $$
-    and the Jordan canonical form for $B$ is 
+    and the Jordan canonical forms for the dissimilar matrices $B$ and $D$ are 
     $$
     \begin{pmatrix}
       -1 & 0 & 0\\
       0 & 1 & 0\\
       0 & 0 & 1
+    \end{pmatrix}
+    \quad \text{and} \quad
+    \begin{pmatrix}
+      1 & 0 & 0\\
+      0 & -1 & 0\\
+      0 & 0 & -1
     \end{pmatrix}.
     $$
   \end{proof}
@@ -137,13 +143,13 @@
     \begin{pmatrix}
       -1 & 0 & 0\\
       0 & 1 & 1\\
-      0 & 0 & -1
+      0 & 0 & 1
     \end{pmatrix}
     \quad \text{and} \quad
     \begin{pmatrix}
-      1 & 0 & 0\\
+      -1 & 0 & 0\\
       0 & 1 & 0\\
-      0 & 0 & -1
+      0 & 0 & 1
     \end{pmatrix}.
     $$
   \end{proof}
@@ -186,7 +192,7 @@
 
 \begin{thm}
   \label{Ex6}
-  Determine all possible Jordan canonical forms for a linear transofmration with characteristic polynomial $(x-2)^3(x-3)^2$.
+  Determine all possible Jordan canonical forms for a linear transformation with characteristic polynomial $(x-2)^3(x-3)^2$.
   \begin{proof}
     We begin by determining the possible elementary divisors, which are as follows
     \begin{enumerate}
@@ -195,9 +201,9 @@
     \item
       $(x-2)^3, (x-3), (x-3)$
     \item
-      $(x-2)^2, (x-2), (x-3)^2$
+      $(x-2), (x-2)^2, (x-3)^2$
     \item
-      $(x-2)^2, (x-2), (x-3), (x-3)$
+      $(x-2), (x-2)^2, (x-3), (x-3)$
     \item
       $(x-2), (x-2), (x-2), (x-3)^2$
     \item
@@ -228,8 +234,8 @@
     \item
       $
       \begin{pmatrix}
-        2 & 1 & 0 & 0 & 0\\
-        0 & 2 & 0 & 0 & 0\\
+        2 & 0 & 0 & 0 & 0\\
+        0 & 2 & 1 & 0 & 0\\
         0 & 0 & 2 & 0 & 0\\
         0 & 0 & 0 & 3 & 1\\
         0 & 0 & 0 & 0 & 3
@@ -238,8 +244,8 @@
     \item
       $
       \begin{pmatrix}
-        2 & 1 & 0 & 0 & 0\\
-        0 & 2 & 0 & 0 & 0\\
+        2 & 0 & 0 & 0 & 0\\
+        0 & 2 & 1 & 0 & 0\\
         0 & 0 & 2 & 0 & 0\\
         0 & 0 & 0 & 3 & 0\\
         0 & 0 & 0 & 0 & 3
