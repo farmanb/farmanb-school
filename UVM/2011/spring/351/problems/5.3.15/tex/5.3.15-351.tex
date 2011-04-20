@@ -1,0 +1,97 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,mymath}
+\openup 5pt
+\author{Blake Farman}
+\title{Math-351:\\5.3.15}
+\date{March 18, 2011}\pdfpagewidth 8.5in
+\usepackage[margin=1in]{geometry}
+\pdfpageheight 11in
+\begin{document}
+\maketitle
+
+\newtheorem{thm}{}
+
+\newcommand{\OO}{\mathcal{O}}
+\newcommand{\BB}{\mathcal{B}}
+\newcommand{\EE}{\mathcal{E}}
+\newcommand{\DD}{\mathcal{D}}
+
+\begin{thm}
+  Show that, for $\alpha \not = 0$ in $\OO_K$, $N((\alpha)) = |N_K(\alpha)|$.
+  \begin{proof}
+    Let $\BB = \{\omega_1, \ldots, \omega_n\}$ be an integral basis of $\OO_K$.
+    Since $(\alpha)$ is an ideal we can rewrite it as $\alpha\OO_K$ and thus $\DD = \{\alpha\omega_1, \ldots, \alpha\omega_n\}$ is an integral basis for $(\alpha)$.
+    Moreover, by exercise 4.4.3 $(\alpha)$ has finite index in $\OO_K$.
+    Then by Theorem 4.2.2 there exists an integral basis of $(\alpha)$, $\EE = \{\beta_1, \ldots, \beta_n\}$, where $\beta_i = \sum_{j \geq i} p_{ij}\omega_j$ with $p_{ij} \in \Z$.
+    Let $P = (p_{ij})$ so by 4.4.2(b) $N((\alpha)) = \det(P) = \prod_{i=1}^n p_{ii}$.
+    
+    Now consider the map 
+    \begin{align*}
+      \begin{split}
+      \phi_{\alpha}:\,& K \longrightarrow K\\
+      &k \mapsto \alpha k.
+    \end{split}
+  \end{align*}
+  It is clear that $\ker{\phi_{\alpha}} = 0$, so the matrix $C = M_{\BB}^{\BB}(\phi_{\alpha}) = (c_{ij}),$ obtained from  $\alpha\omega_i = \sum_{j=1}^n c_{ij}\omega_j$, is non-singular.
+  %Moreover, $N_K(\alpha) = \det(C)$ by definition.
+  %Since $(\alpha)$ is an ideal, $\alpha\omega_i \in (\alpha)$ and so we can rewrite the columns of $C$ as  $\alpha\omega_i = \sum_{j=1}^n r_{ij}\beta_j, r_{ij} \in \Z$.
+  Now rewrite $\DD$ in terms of $\EE$ as $\alpha\omega_i = \sum_{j=1}^n r_{ij}\beta_j$, with $r_{ij} \in \Z$ and let $R = (r_{ij})$, $P = (p_{ij})$.
+  These relationships can be re-expressed in terms of matrices as follows
+  $$
+  \begin{pmatrix}
+    \alpha\omega_1\\
+    \vdots\\
+    \alpha\omega_n\\
+  \end{pmatrix}
+  = 
+  C\begin{pmatrix}
+    \omega_1\\
+    \vdots\\
+    \omega_n\\
+  \end{pmatrix}
+  = 
+  R
+  \begin{pmatrix}
+    \beta_1\\
+    \vdots\\
+    \beta_n\\
+  \end{pmatrix}
+  = RP
+  \begin{pmatrix}
+    \omega_1\\
+    \vdots\\
+    \omega_n\\
+  \end{pmatrix}
+  $$
+  Then $0 \not = \det(C) = \det(R)\det(P)$ implies that both $R$ and $P$ are non-singular and thus invertible.
+  So if we rewrite $\EE$ in terms of $\DD$ as $\beta_i = \sum_{j=1}^n {r_{ij}}^{\prime}\alpha\omega_j$, with ${r_{ij}}^{\prime} \in \Z$, then 
+  $$
+  \begin{pmatrix}
+    \beta_1\\
+    \vdots\\
+    \beta_n\\
+  \end{pmatrix}
+  =
+  ({r_{ij}}^{\prime})
+  \begin{pmatrix}
+    \alpha\omega_1\\
+    \vdots\\
+    \alpha\omega_n\\
+  \end{pmatrix}
+  = 
+  ({r_{ij}}^{\prime})
+  R
+  \begin{pmatrix}
+    \beta_1\\
+    \vdots\\
+    \beta_n\\
+  \end{pmatrix}
+  $$
+  implies $ ({r_{ij}}^{\prime}) = R^{-1}$ and so, since $R,R^{-1} \in GL_n(\Z)$, it follows that $\det(R) = \pm 1$.
+  Therefore $|N_K(\alpha)| = |\det(C)| = |\det(R)\det(P)| = \det(P) = N((\alpha))$.
+\end{proof}
+\end{thm}
+
+\end{document}
+
+%Finally note that $(\alpha) = \alpha\OO_K$ implies $\DD = \{\alpha\omega_1, \ldots, \alpha\omega_n\}$ forms an integral basis for $(\alpha)$. 
