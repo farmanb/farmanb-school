@@ -1,0 +1,214 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,mymath}
+\openup 5pt
+\author{Blake Farman}
+\title{Math-252:\\Exam 2}
+\date{April 18, 2011}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+\begin{document}
+\maketitle
+
+\newtheorem{thm}{}
+
+\begin{thm}
+  \label{Ex1}
+  The matrices 
+  $$
+  A = \begin{pmatrix}
+    8 & -17 & -25\\
+    -4 & 9 & 16\\
+    5 & -11 & -18
+  \end{pmatrix}
+  \quad \text{and} \quad
+  B= \begin{pmatrix}
+    3 & -2 & 2\\
+    0 & -1 & 0\\
+    -4 & 2 & -3
+  \end{pmatrix}
+  $$
+  have the same characteristic polynomial $(x-1)(x+1)^2$.
+  Determine the rational and JOrdan canonical forms for both $A$ and $B$, whether $A$ and $B$ are similar, and whether the matrices can be daigonalized.
+  \begin{proof}
+    It is an easy check by hand to calculate $m_A(x) = (x-1)(x+1)^2 = x^3 + x^2 - x - 1$ and $m_B(x) = (x-1)(x+1) = x^2 - 1$.
+    Hence the invariant factors for $A$ and $B$ are $x^3 + x^2 - x - 1$ and $x^2-1, x+1$, respectively.
+    Thus the rational canonical forms for $A$ and $B$ are
+    $$
+    \begin{pmatrix}
+      0 & 0  & 1\\
+      1 & 0 & 1\\
+      0 & 1 & -1
+    \end{pmatrix}
+    \quad \text{and} \quad
+    \begin{pmatrix}
+      -1 & 0 & 0\\
+      0 & 0 & 1\\
+      0 & 1 & 0
+    \end{pmatrix},
+    $$
+    respectively.
+    The elementary divisors for $A$ and $B$ are $x-1,(x+1)^2$ and $x-1, x+1, x+1$, respectively.
+    Thus the Jordan canonical forms for $A$ and $B$ are 
+    $$
+    \begin{pmatrix}
+      1 & 0 & 0\\
+      0 & -1 & 1\\
+      0 & 0 & -1
+    \end{pmatrix}
+    \quad \text{and} \quad
+    \begin{pmatrix}
+      1 & 0 & 0\\
+      0 & -1 & 0\\
+      0 & 0 & -1
+    \end{pmatrix},
+    $$
+    respectively.
+    Since the canonical forms are not the same, $A$ and $B$ are not similar.
+    Moreover, $B$ is the only matrix of the two which can be diagonalized, since its Jordan canonical form is diagonal.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  \label{Ex2}
+  Determine the Jordan canonical form for the matrix
+  $$
+  \begin{pmatrix}
+    1 & 2 & 0 & 0\\
+    0 & 1 & 2 & 0\\
+    0 & 0 & 1 & 2\\
+    0 & 0 & 0 & 1
+  \end{pmatrix}.
+  $$
+  \begin{proof}
+    By simply subtracting twice the fourth fourth row from the third, then twice the third from the second and finally twice the second from the first we obtain the diagonal matrix
+    $$
+    \begin{pmatrix}
+      1 & 0 & 0 & 0\\
+      0 & 1 & 0 & 0\\
+      0 & 0 & 1 & 0\\
+      0 & 0 & 0 & 1
+    \end{pmatrix}.
+    $$
+    Since this diagonal matrix is similar to the one we started with, it must be the Jordan canonical form.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  \label{Ex3}
+  Suppose $A$ is an $8 \times 8$ matrix with rational entries and 
+  \begin{enumerate}
+    \renewcommand{\theenumi}{\roman{enumi}.}
+    \renewcommand{\labelenumi}{\theenumi}
+  \item
+    The row reduced form of $A + I$ has 5 non-zero rows,
+  \item
+    The row reduced form of $(A+I)^2$ has 2 non-zero rows,
+  \item
+    The row reduced form of $(A+I)^3$ has 1 non-zero row, and
+  \item
+    $(A+I)^4 = 0$.
+    Find the Jordan canonical form for $A$.
+  \end{enumerate}
+  \begin{proof}
+    If $(A+I)^4 = 0$, then $m_A(x) \mid (x+1)^4$.
+    Since neither $A+I$, $(A+I)^2$, nor $(A+I)^3$ are zero we have that $m_A(x) = (x+1)^4$ and thus $c_A(x) = (x+1)^8$.
+    Hence the Jordan canonical form has eight diagonal entries, all $-1$.
+    Let $P$ be the matrix such that the Jordan canonical form of $A$ is given by $PAP^{-1}$.
+    Using the fact that $A+I$ has five non-zero rows and so must $PAP^{-1} +I = P(A+I)P^{-1}$, it is clear that two of the elementary divisors must have degree 2.
+    Hence the elementary divisors $(x+1)^4, (x+1)^2, (x+1)^2$ give rise to the Jordan canonical form
+    $$
+    \begin{pmatrix}
+      -1 & 1 & 0 & 0 & 0 & 0 & 0 & 0\\
+      0 & - 1 & 1 & 0 & 0 & 0 & 0 & 0\\
+      0 & 0 & -1 & 1 & 0 & 0 & 0 & 0\\
+      0 & 0 & 0 & -1 & 0 & 0 & 0 & 0\\
+      0 & 0 & 0 & 0  & -1 & 1 & 0 & 0\\
+      0 & 0 & 0 & 0  & 0 & -1 & 0 & 0\\
+      0 & 0 & 0 & 0  & 0 & 0 & -1 & 1\\
+      0 & 0 & 0 & 0  & 0 & 0 & 0 & -1\\
+    \end{pmatrix}
+    $$
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  \label{Ex4}
+  Determine whether there are any $3\times3$ matrices $A$ with entries from $\Q$ of (multiplicative) order 8 (i.e., $A^8 = I$ but $A^4 \neq I$) and, if there are, determine how many such matrices there are up to similarity, with an example of each.
+  \begin{proof}
+    By the result of exercise 24, section 12.3, there are no $3\times3$ matrices $A$ over $\Q$ with $A^8 = I$ but $A^4 \neq I$.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  \label{Ex5}
+  Suppose $F$ is a field and $\alpha$ is an algebraic element over $F$ with $[F(\alpha):F]$ odd.
+  Prove that $F(\alpha) = F(\alpha^2)$.
+  
+  \begin{proof}
+    It is clear that $F(\alpha^2) \subseteq F(\alpha)$.  
+    Hence it suffices to show the reverse inclusion.
+    To that end, let $2k+1 = [F(\alpha):F]$, $m_{\alpha,F}(x) = x^{2k+1} + a_{2k}x^{2k} + \ldots + a_1x + a_0$ and consider the minimal polynomial over $F(\alpha^2)$. 
+    Since the field now contains the element $\alpha^2$, we can rewrite the minimal polynomial as
+    $$m_{\alpha,F(\alpha^2)}(x) = \alpha^{2k}x + a_{2k}\alpha^{2k} + \ldots + a_2\alpha^2 + a_1x + a_0.$$
+    Collecting like terms, we see that $\alpha$ is a root of a degree 1 polynomial over $F(\alpha^2)$.
+    Therefore we have the reverse containment $F(\alpha) \subseteq F(\alpha^2)$, completing the proof.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  \label{Ex6}
+  Suppose $f(x) \in \Q[x]$ is an irreducible polynomial of degree 5 and let $\alpha$ be a root of $f(x)$.
+  \begin{alphaenum}
+    \item
+      Determine $[\Q(\alpha):\Q]$.
+    \item
+      Prove that $f(x)$ is still irreducible over $F = \Q\left(\sqrt{2},\sqrt{3}\right)$, i.e. is still an irreducible when viewed in $F[x]$.
+  \end{alphaenum}
+  
+  \begin{proof}
+    \begin{alphaenum}
+    \item
+      Since $\alpha$ is the root of an irreducible degree 5 polynomial, $[\Q(\alpha): \Q] = 5$.
+    \item
+      Let $K = \Q(\alpha)$.
+      As we have proven, $[\Q\left(\sqrt{2},\sqrt{3}\right):\Q] = 4$.
+      Consider the composite field $KF = F(\alpha) \cong F/(f(x))$.
+      Since $(4,5) = 1$, it follows from Corollary 22 that $[KF:\Q] = 20$ and $[F(\alpha):F] = 5$.
+      Therefore $f(x)$ is an irreducible polynomial of degree 5 over $F$.
+    \end{alphaenum}
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  \label{Ex7}
+  Show that $\Q\left(\sqrt{2 + \sqrt{2}}\right)$ is a cyclic quartic field, i.e., is a Galois extension of degree 4 with cyclic Galois group.
+  \begin{proof}
+    First, observe that 
+    $$f(x) = x^4 - 4x^2 -2 = \left(x+\sqrt{2 + \sqrt{2}}\right)\left(x-\sqrt{2 + \sqrt{2}}\right)\left(x+\sqrt{2 - \sqrt{2}}\right)\left(x-\sqrt{2 - \sqrt{2}}\right)$$ 
+    is irreducible over $\Q$ by Eisenstein's criterion using the prime 2.
+    Hence the field $K = \Q\left(\sqrt{2 + \sqrt{2}}, \sqrt{2 - \sqrt{2}}\right)$ is a splitting field for $f$ and thus Galois.
+    Let $D_1 =2 + \sqrt{2}, D_2 = 2 - \sqrt{2}$ and let $\alpha_1 = \sqrt{D_1}$ and $\alpha_2 = \sqrt{D_2}$.
+    Observe that $\sqrt{2}$ is an element of both $K_1 = \Q(\alpha_1)$ and $K_2 = \Q(\alpha_2)$, and neither $D_1$ nor $D_2$ is a square in $L = Q\left(\sqrt{2}\right)$.
+    So, we consider $K_1/L$ and $K_2/L$.
+    Since $D_1D_2 = 2$ is a square in $L$, we have $[K:L] = 2$ and thus $K = L(\alpha_1) = K_1/L$ by the proof Exercise 8 of Section 13.2.
+    This proves $K_1$ is Galois of degree 4.
+    Consider an automorphism that sends $\sqrt{2}$ to $-\sqrt{2}$,
+    $$
+    \sigma: \begin{cases}
+      \alpha_1 &\longmapsto -\alpha_2\\
+      \alpha_2 &\longmapsto \alpha_1
+    \end{cases}
+    $$
+    and note that $\sigma$ has order 4.
+    Hence $\Gal(K_1/\Q)$ is not the Klein 4-group.
+    Therefore $\Gal(K_1/\Q) \cong Z_4$
+  \end{proof}
+\end{thm}
+
+I certify that I have neither given nor received any assistance on this exam.
+
+\vspace{.75in}
+
+Blake Farman
+\end{document}

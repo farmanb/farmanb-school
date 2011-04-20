@@ -1,0 +1,92 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,mymath}
+\openup 5pt
+\author{Blake Farman}
+\title{Math-252:\\Homework 10}
+\date{April 20, 2011}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+\begin{document}
+\maketitle
+
+\newtheorem{thm}{}
+
+\begin{thm}
+  \label{Ex1}
+  Let $\alpha = \sqrt{(2 + \sqrt{2})(3 + \sqrt{3})}$ and consider the extension $E = \Q(\alpha)$.
+  \begin{alphaenum}
+    \item
+      Show that $a = (2+\sqrt{2})(3 + \sqrt{3})$ is not a square in $F = \Q(\sqrt{2},\sqrt{3})$.
+    \item
+      Conclude from (a) that $[E:\Q] = 8$.
+      Prove that the roots of the minimal polynomial over $\Q$ for $\alpha$ are the 8 elements $\pm\sqrt{(2 \pm \sqrt{2})(3 \pm \sqrt{3})}$.
+    \item
+      Let $\beta = \sqrt{(2 - \sqrt{2})(3 +\sqrt{3})}$.
+      Show that $\alpha\beta = \sqrt{2}(3 + \sqrt{3}) \in F$ so that $\beta \in E$.
+      Show similarly that the other roots are also elements of $E$ so that $E$ is a Galois extension of $\Q$.
+      Show the elements of the Galois group are precisely the maps determined by mapping $\alpha$ to one of the eight elements in $(b)$.
+    \item
+      Let $\sigma \in \Gal(E/\Q)$ be the automorphism which maps $\alpha$ to $\beta$.
+      Show that since $\sigma(\alpha^2) = \beta^2$ that $\sigma(\sqrt{2}) = -\sqrt{2}$ and $\sigma(\sqrt{3}) = \sqrt{3}$.
+      From $\alpha\beta = \sqrt{2}(3 + \sqrt{3})$ conclude that $\sigma(\alpha\beta) = -\alpha\beta$ and hence $\sigma(\beta) = -\alpha$.
+      Show that $\sigma$ is an element of order 4 in $\Gal(E/\Q)$.
+    \item
+      Show similarly that the map $\tau$ defined by $\tau(\alpha) = \sqrt{(2 + \sqrt{2})(3 - \sqrt{3})}$ is an element of order 4 in $\Gal(E/Q)$.
+      Prove that $\sigma$ and $\tau$ generate the Galois group, $\sigma^4 = \tau^4 = 1$, $\sigma^2 = \tau^2$ and that $\sigma\tau = \tau\sigma^3$.
+    \item
+      Conclude that $\Gal(E/\Q) \cong Q_8$, the quaternion group of order 8.
+  \end{alphaenum}
+  
+  \begin{proof}
+    \begin{alphaenum}
+    \item
+      Suppose to the contrary that $a = c^2$ for some $c \in \F$.
+      Let $\sigma \in \Gal(F/\Q)$ be the automorphism fixing $\Q\left(\sqrt{2}\right)$ and consider $a\sigma a = (c\sigma c)^2$.
+      Since $c\sigma c = N_{F/\Q\left(\sqrt{2}\right)}(c)$, we have that $c\sigma c \in \Q\left(\sqrt{2}\right)$.
+      However, that $c\sigma c = (2+\sqrt{2})\sqrt{6} \in \Q\left(\sqrt{2}\right)$ implies $\sqrt{6} \in \Q\left(\sqrt{2}\right)$ is a contradiction.
+      Therefore $a$ is not a square.
+    \item
+      By the results of (a) and Exercise 8 of section 13.2 we know $[E:F] = 2$.
+      Hence $[E:\Q] = [E:F][F:\Q] = 2\cdot 4 = 8$.
+      If $\sigma, \tau, \sigma\tau$ are the automorphisms of $F$ that fix $\sqrt{2}$, $\sqrt{3}$, and $\sqrt{6}$ respectively, then $\pm\sigma\alpha$, $\pm\tau\alpha$ and $\pm\sigma\tau\alpha$ are eight distinct conjugates $\pm\sqrt{(2 \pm \sqrt{2})(3 \pm \sqrt{3})}$.
+      Since $[E:\Q] = 8$, these are all the distinct roots of the minimal polynomial.
+    \item
+      Multiplying $\alpha\beta$ out gives $\sqrt{2}(3 + \sqrt{3})$, so by the result of Exercise 8, Section 13.2, we know that $\Q(\alpha)$ contains $\beta$.
+      Similarly, let $\gamma = \sqrt{(2 + \sqrt{2})(3 - \sqrt{3})}$ and $\delta = \sqrt{(2 - \sqrt{2})(3 - \sqrt{3})}$.
+      Observe that $\alpha\gamma = \sqrt{6}(2 + \sqrt{2})\in F$ and $\alpha\delta = \sqrt{2}\sqrt{6} \in F$.
+      By the same argument, $\gamma,\delta \in E$.
+      Therefore $E$ is a splitting field for the minimal polynomial of $\alpha$ and thus Galois.
+      
+      By the proof of Theorem 13, the Galois conjugates are precisely the roots of $m_\alpha(x)$, thus the maps must be 
+      $$\alpha \mapsto \pm \alpha, \quad \alpha \mapsto \pm\beta, \quad \alpha \mapsto \pm \gamma \quad \text{and} \quad \alpha \mapsto \pm\delta.$$
+    \item
+      Observe that $\sigma(\alpha^2) = (2 + \sigma(\sqrt{2}))(3 + \sigma(\sqrt{3})) = (2 - \sqrt{2})(3 + \sqrt{3})$ implies $\sigma(\sqrt{2}) = - \sqrt{2}$ and $\sigma(\sqrt{3}) = \sqrt{3}$.
+      Thus $\sigma(\alpha\beta) =  -\sqrt{2}(3 + \sqrt{3}) = -\alpha\beta$ and $\sigma(\alpha\beta)  = \beta\sigma(\beta)$ implies $\sigma(\beta) = -\alpha$.
+      Therefore 
+      $$\alpha \overset{\sigma}{\longmapsto} \beta \overset{\sigma}{\longmapsto} - \alpha \overset{\sigma}{\longmapsto} -\beta \overset{\sigma}{\longmapsto} \alpha$$
+      shows that $\sigma$ has order 4.
+    \item
+      By the same argument, mutatis mutundis, $\tau(\alpha^2) = \gamma^2$ implies $\tau(\sqrt{2}) = \sqrt{2}$ and $\tau(\sqrt{3}) = -\sqrt{3}$.
+      Similarly, $\tau(\alpha\gamma) = -\sqrt{6}(2+\sqrt{2}) = -\alpha\gamma$ implies $\tau(\gamma) = -\alpha$.
+      Therefore $$\alpha \overset{\tau}{\longmapsto} \gamma \overset{\tau}{\longmapsto} -\alpha \overset{\tau}{\longmapsto} -\gamma \overset{\tau}{\longmapsto} \alpha$$
+      shows $\tau$ has order 4.
+      
+      We observe that $\alpha\delta = \beta\gamma$ then use
+      $$\sigma(\alpha\delta) =  \beta\sigma(\delta) = \alpha\delta =  \beta\gamma =  -\alpha\sigma(\gamma) = \sigma(\beta\gamma)$$ 
+      and 
+      $$\tau(\alpha\delta) = \gamma\tau(\delta) = -\alpha\delta = -\beta\gamma = -\alpha\tau(\beta) = \tau(\beta\gamma)$$ to obtain $\sigma(\gamma) = -\delta$, $\sigma(\delta) = \gamma$, $\tau(\delta) = -\beta$,  and $\tau(\beta) = \delta$.
+      Hence the remaining maps from $\alpha$ to $\pm\delta$ are formed from $\sigma$ and $\gamma$ as
+      $$\alpha \overset{\tau}{\longmapsto} \gamma \overset{\sigma}{\longmapsto} - \delta \overset{\tau}{\longmapsto} \beta \overset{\sigma}{\longmapsto} - \alpha \overset{\tau}{\longmapsto} -\gamma \overset{\sigma}{\longmapsto} \delta \overset{\tau}{\longmapsto} -\beta \overset{\sigma}{\longmapsto} \alpha.$$
+      Moreover, we have 
+      $$\alpha \overset{\tau}{\longmapsto} \gamma \overset{\sigma}{\longmapsto} - \delta \quad \text{and} \quad \alpha \overset{\sigma^3}{\longmapsto} -\beta \overset{\tau}{\longmapsto} -\delta$$
+      which implies $\sigma\tau = \tau\sigma^3$.
+    \item
+      We now have $\sigma^4 = \tau^4 = 1$, $\sigma^2 = \tau^2$ and $\sigma\tau = \tau\sigma^3$ shows that $\Gal(E/\Q)$ satisfies the relations in the presentation of $Q_8$.
+      Moreover, we have the automorphisms $\{1, \sigma, \tau, \sigma^2 = \tau^2, \sigma^3, \tau^3, \sigma\tau = \tau\sigma^3, (\sigma\tau)^3 = (\tau\sigma^3)^3\}$ which make up the Galois group.
+      Of these elements, there is an element of order 1, an element of order 2 and six elements of order 4.
+      Therefore $\Gal(E/\Q) \cong Q_8$.
+    \end{alphaenum}
+  \end{proof}
+\end{thm}
+\end{document}
