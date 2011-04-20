@@ -1,0 +1,131 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,mymath}
+\openup 5pt
+\author{Blake Farman}
+\title{Math-252:\\Homework 8}
+\date{April 6, 2011}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+\begin{document}
+\maketitle
+
+\newtheorem*{thm}{1}
+
+\begin{thm}{}
+  \label{Ex1}
+  Suppose $m$ and $n$ are relatively prime positive integers.
+  Let $\zeta_m$ be a primitive $m^{\text{th}}$ root of unity and let $\zeta_n$ be an $n^{\text{th}}$ root of unity.
+  Prove that $\zeta_m\zeta_n$ is a primitive $mn^{\text{th}}$ root of unity.
+
+  \begin{proof}
+    Consider $\zeta = \zeta_m\zeta_n$.  
+    Clearly, $(\zeta)^{mn} = 1$ implies that it is an $mn^{\text{th}}$ root of unity.
+    %First we show $\zeta \not = 1$ holds for any such product of primitive roots of unity.
+    Since $e^{i2\pi/n}$ and $e^{i2\pi/m}$ both generate the $n^{\text{th}}$ and $m^{\text{th}}$ roots of unity, $\zeta_n = e^{i2\pi a/n}$ and $\zeta_m = e^{i2\pi b/m}$ for some $a,b$ satisfying $(a,n) = (b,m) = 1$.
+    Hence $\zeta = e^{(i2\pi/mn)(am+bn)}$, which is 1 if and only if $am + bn = kmn$, for some $k \in \Z$.
+    But this can't happen since $(m,n) = (a,n) = (b,n) = 1$.
+    Moreover, for any $(c,mn) = 1$, $\zeta^c \not = 1$.
+    Therefore $\zeta$ is an $mn^{\text{th}}$ primitive root.
+  \end{proof}
+
+  Let $\zeta_n$ be a primitive $n^{\text{th}}$ root of unity and let $d$ be a divisor of $n$.
+  Prove that $\zeta_n^d$ is a primitive $(n/d)^{\text{th}}$ root of unity.
+  
+  \begin{proof}
+    Again, let $\zeta_n = e^{i2\pi a/n}$ for some $a \in \Z$ satisfying $(a,n) = 1$.
+    Let $g = (n,d)$ and write $\zeta_n^d = e^{i2\pi a/g}$.
+    Observe that $(a,g) = 1$ so $(\zeta_n^d)^b = e^{i2\pi ab/g}$ if and only if $b \equiv 0 \pmod{g}$.
+  \end{proof}
+  
+  Prove that if a field contains the $n^{\text{th}}$ roots of unity for $n$ odd, then it also contains the $2n^{\text{th}}$ roots of unity.
+  
+  \begin{proof}
+    If $n$ is odd, then observe that $\zeta_n = e^{i2\pi/n}$ generates the $n^{\text{th}}$ roots of unity and $\zeta_{2n} = e^{i\pi/n}$ generates the $2n^{\text{th}}$ roots of unity.
+    Since $n$ was assumed to be odd, $\zeta_n^2 = \zeta_{2n}^4 = e^{i4\pi/n}$ is a primitive $2n^{\text{th}}$ root of unity.
+    Therefore if a field contains the $n^{\text{th}}$ roots of unity for $n$ odd, then it also contains the $2n^{\text{th}}$ roots of unity.
+  \end{proof}
+\end{thm}
+
+\newtheorem*{4}{4}
+
+\begin{4}
+  \label{Ex4}
+  Let $\tau$ be the map $\tau:\C \longrightarrow \C$ defined by $\tau(a + bi) = a - bi$ (complex conjugation).
+  Prove that $\tau$ is an automorphism of $\C$.
+  
+  \begin{proof}
+    Let $z_1, z_2$ be elements of $\C$.
+    From basic complex analysis, $\overline{z_1 + z_2} = \overline{z_1} + \overline{z_2}$ and $\overline{z_1 \cdot z_2} = \overline{z_1}\cdot\overline{z_2}$.
+    Hence complex conjugation is a homomorphism.
+    Moreover, it is clear that $\tau$ is surjective since the preimage under $\tau$ of any point $z = x + iy$ is just $\overline{z} = x - iy$.
+    To see $\tau$ is injective, suppose $$\tau(a+ib) = a - ib = c - id= \tau(c + id).$$
+    Since $1$ and $i$ are a basis of $\C$, it follows that $a = c$ and $b = d$.
+    Therefore $\tau$ is an automorphism of $\C$.
+  \end{proof}
+
+  Determine the fixed field of complex conjugation on $\C$.
+  
+  \begin{proof}
+    The fixed field for complex conjugation on $\C$ is $\R$.
+    This is immediate by writing any element $x$ of $\R$ as $x + i0$.
+  \end{proof}
+\end{4}
+
+\newtheorem*{5}{5}
+
+\begin{5}
+  \label{Ex5}
+  Prove that $\Q(\sqrt{2})$ and $\Q(\sqrt{3})$ are not isomorphic.
+  
+  \begin{proof}
+    The discriminant of $\Q(\sqrt{2})$ is 8 and the discriminant of $\Q(\sqrt{3})$ is 12.
+    Hence the fields are not isomorphic.
+
+    (I realize this probably isn't what you were looking for, however I just had my comprehensive oral exam yesterday, so I was a bit pressed for time and I didn't want to hand in an incomplete set.  My apologies in general for the quality (or lack thereof) of this set.)
+  \end{proof}
+\end{5}
+
+\newtheorem*{6}{6}
+
+\begin{6}
+  \newcommand{\Aut}{\operatorname{Aut}}
+  \label{Ex6}
+  This exercise determines $\Aut(\R/\Q)$
+  \begin{alphaenum}
+    \item
+      Prove that any $\sigma \in \Aut(\R/\Q)$ takes squares to squares and takes positive reals to positive reals.
+      Conclude that $a < b$ implies $\sigma a < \sigma b$ for every $a,b \in R$.
+    \item
+      Prove that $|a - b| < 1/m$ implies $|\sigma a - \sigma b|< 1/m$ for every positive integer $m$. 
+      Conclude that $\sigma$ is a continuous map on $\R$.
+    \item
+      Prove that any continuous map on $\R$ which is the identity on $\Q$ is the identity map, hence $\Aut(\R/\Q) = 1$.
+  \end{alphaenum}
+
+  \begin{proof}
+    \begin{alphaenum}
+    \item
+      Since $\sigma \in \Aut(\R/\Q)$, we have $\sigma(x^2) = (\sigma x)^2$.
+      Hence $\sigma$ takes squares to squares.
+      Then it follows that since each element $x$ of $\R^+$ can be written as a square, $\sigma x$ is also a square.
+      Hence positive reals map to positive reals.
+      Since $\sigma \in \Aut(\R/\Q)$, it must then be the case that no element of $\R^{\leq 0}$ maps into $R^+$. 
+      Then for $a < b$, we have $a - b < 0$ and thus $\sigma (a - b) = \sigma a - \sigma b < 0$.
+      Therefore $\sigma a < \sigma b$.
+    \item
+      Let $\varepsilon = 1/m$ be given and suppose $-\varepsilon < a-b < \varepsilon$.
+      By assumption, $\varepsilon$ is fixed under $\sigma$.
+      It now follows from the result of part (a) that $-\varepsilon < \sigma a - \sigma b < \varepsilon$.
+      Therefore $\sigma$ is continuous on $R$.
+    \item
+      Observe that by the construction of $R$, any element $x$ is the limit of some rational Cauchy sequence.
+      Let $\{q_n\}_{n=1}^{\infty}$ one such rational Cauchy sequence.
+      The result of part (b) implies that the sequence $\{\sigma q_n\}_{n=1}^{\infty} = \{q_n\}_{n=1}^{\infty}$ converges to $\sigma x$.
+      Hence $\sigma x = x$ implies that $\sigma$ is the identity.
+      Therefore, since the choice of $\sigma$ was arbitrary, $\Aut(\R/\Q) = 1$.
+    \end{alphaenum}
+  \end{proof}
+\end{6}
+
+\end{document}
