@@ -1,0 +1,168 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,wasysym,mymath}
+\openup 5pt
+\author{Blake Farman}
+\title{Math-331:\\Homework 7}
+\date{April 11, 2011}\pdfpagewidth 8.5in
+\usepackage[margin=1in]{geometry}
+\pdfpageheight 11in
+\begin{document}
+\maketitle
+
+\newtheorem{thm}{}
+\newtheorem{lem}{Lemma}[thm]
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\HH}{\mathcal{H}}
+\begin{thm}
+  \label{Ex1}
+  Let $u(x,y) = \dfrac{y}{x^2+y^2}$.
+
+  \begin{alphaenum}
+  \item
+    Prove that $u$ is harmonic on $\C^{\times}$.
+  \item
+    Find a holomorphic $f$ on $\C^{\times}$ whose real part is $u$.
+  \end{alphaenum}
+  
+  \begin{proof}
+    \begin{alphaenum}
+    \item
+      Taking the partial derivatives in the usual manner, we have for the first partials
+      $$\frac{\partial u(x,y)}{\partial x} =  \frac{-2xy}{(x^2+y^2)^2} \quad \text{and} \quad \frac{\partial u(x,y)}{\partial y} = \frac{x^2 - y^2}{(x^2 + y^2)^2}.$$
+      For the second partials
+      $$\frac{\partial^2 u(x,y)}{\partial x^2} =  \frac{2y(3x^2 - y^2)}{(x^2+y^2)^3} \quad \text{and} \quad \frac{\partial^2 u(x,y)}{\partial y^2} = \frac{-2y(3x^2 - y^2)}{(x^2 + y^2)^3}.$$
+      Since $u$ has continuous first and second partials and satisfies $$\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} = 0,$$
+      $u$ is harmonic.
+    \item
+      In order for $f$ to be differentiable, we must find a $v$ that at least satisfies the Cauchy-Riemann Equations.
+      Hence $\partial u/\partial x = \partial v/\partial y$ implies
+      $$v(x,y) = \int \frac{\partial u}{\partial x}\,dy = \frac{x}{x^2 + y^2}  + g(x,y),$$
+      for some function $g$ such that 
+      $$\frac{\partial v}{\partial x} = \frac{-x^2 - y^2}{(x^2 + y^2)^2} + \frac{\partial g}{\partial x}  =  \frac{x^2 - y^2}{(x^2 + y^2)^2} = -\frac{\partial u}{\partial y}.$$
+    \end{alphaenum}
+    Taking $g(x,y) = 0$ we obtain a function $$f(x+iy) = u(x,y) + iv(x,y) = \frac{y + ix}{x^2 + y^2}.$$
+    This can be rewritten as 
+    $$f(z) = \frac{i\overline{z}}{z\overline{z}} = \frac{i}{z}$$
+    which is holomorphic on $\C^{\times}$ and has $u$ as its real part.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  \renewcommand{\D}{\mathbb{D} \setminus \{0\}}
+  \label{Ex2}
+  Prove that the annulus $A = \left\{z \mid \, 1 < |z| < 2 \right\}$ and the punctured disk $\D$ are not analytically isomorphic.
+
+  \begin{proof}
+    Suppose to the contrary that $f:\D \longrightarrow A$ were an analytic isomorphism.
+    Observe that the point $z = 0$ is an isolated singularity of $f$.
+    Since $\left\vert\left\vert f \right\vert\right\vert_{\D}$ is bounded above by 2, $z = 0$ is neither a pole nor an essential singularity, hence it must be a removable singularity.
+    Let $z_0 = \lim_{z \rightarrow 0} f(z)$ and define the function
+    $$
+    f^*(z) = \begin{cases}
+      f(z) & \text{if} \,z \in \D,\\
+      z_0 & \text{if} \,z = 0
+    \end{cases}
+    $$ 
+    which is holomorphic on $\mathbb{D}$ and agrees with $f$ on $\D$.
+    We show $z_0$ cannot adhere to $A$ and thus $f$ is not an analytic isomorphism.
+    
+    Suppose $z_0 \in A$ and note that $f$ maps some $\beta$ in $\D$ to $z_0$.
+    If $\{a_n\}_{n=0}^{\infty}$ and $\{b_n\}_{n=0}^{\infty}$ are sequences in $\D$ whose limits are $0$ and $\beta$, respectively, then $\{f(a_n)\}_{n=0}^{\infty}$ and $\{f(b_n)\}_{n=0}^{\infty}$ are sequences in $A$ converging to $z_0$.
+    However, $f^{-1}(f(a_n)) \rightarrow 0$ and $f^{-1}(f(b_n))\rightarrow \beta$ contradicts the continuity of $f^{-1}$.
+    Therefore $z_0$ must lie on the boundary of $A$.  
+    But then by Theorem 6.2, for any open neighborhood, $V$, of $z = 0$, $f^*$ is analytic and non-constant, and thus must be an open mapping.
+    However, the image of $V$ under $f$ contains a boundary point, $z_0$, and thus is not open.
+    This contradiction implies $z_0$ cannot be contained in the closure of $A$ and hence does not adhere to $A$.
+    %Since $z_0$ being adherent to $A$ followed from the supposition that $f$ was an analytic isomorphism, this contradiction implies $f$ cannot be an analytic isomorphism.
+    Therefore $\D$ and $A$ are not analytically isomorphic.
+    
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  \label{Ex3}
+  Prove that the most general analytic isomorphism of the (open) upper half plane, $\HH$, onto the (open) unit disc, $\D$, is of the form
+  $$T(z) = e^{i\phi}\frac{z-a}{z-\overline{a}}$$
+  for some $\phi \in \R$ and some $a \in \C$ with $\im a > 0$.
+
+  \begin{lem}
+    \label{lem3}
+    The map
+    \begin{align*}
+      S:\HH \longrightarrow \D \\
+      z \mapsto \frac{z-a}{z-\overline{a}}
+    \end{align*}
+    is an analytic isomorphism for any $a \in \C$ with $\im a>0$.
+    \begin{proof}
+      Since $a$ is fixed, $S$ is meromorphic on $\C$ with a simple pole at $\overline{a}$, which is not in the upper half-plane.  Hence $S$ is holomorphic on $\HH$.
+      To see that $S$ is surjective, take any point $w$ in the disc and consider its pre-image, $$z_0 = \frac{w\overline{a} - a}{w - 1}.$$
+      It suffices to show that $z_0$ lies in the upper half-plane.  
+      Using $z_0 - \overline{z_0} = 2i\im z_0$ and $z_0 + \overline{z_0} = 2\re z_0$, by routine algebra we obtain
+      \begin{equation}
+        \label{3.1}
+        \im z_0 = \im a\left(\frac{1 - |w|^2}{(\re w - 1)^2 + (\im w)^2} \right).
+      \end{equation}
+      Since $w$ lies in the open unit disc, we know $0 \leq |w|^2 < 1$ and hence  $0 < 1 - |w|^2$ holds.
+      Moreover, it was assumed that $\im a > 0$ and thus by \eqref{3.1} $\im z_0 > 0$, as desired.
+      
+      It remains only to show that $S$ is injective.  To that end, suppose $S(z_1) = S(z_2)$ for some $z_1, z_2 \in \HH$.
+      Using the definition of $S$, we obtain
+      $$(z_1 - a)(z_2 - \overline{a}) = (z_2 - a)(z_1 - \overline{a}).$$
+      Expanding these linear terms and performing some routine algebra yields the equivalence $z_1 = z_2$.
+      Therefore $S$ is an analytic isomorphism, as desired.
+    \end{proof}
+  \end{lem}
+  \begin{proof}
+    Let $T: \HH \longrightarrow \D$ be any analytic isomorphism of the upper half-plane onto the unit disk.
+    We observe that $T$ can be written as the composition of another such analytic isomorphism with an element of $\aut(\D)$.
+    Let $a\in \HH$ be such that $T(a) = 0$ and define $S: \HH \longrightarrow \D$ by $$S(z) = \frac{z-a}{z-\overline{a}}.$$
+    By Lemma \ref{lem3}, $S$ is an analytic isomorphism of $\HH$ onto $\D$ and hence there exists an element $R \in \aut(\D)$ such that $T = R \circ S$.
+    However, $R$ must fix 0 and thus $R = e^{i\phi}z$ for some $\phi \in \R$.
+    Therefore $$T(z) = (R \circ S)(z)= e^{i\phi}\frac{z-a}{z - \overline{a}},$$ as desired.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  \label{Ex4}
+  Find necessary and sufficient conditions on the real numbers $a$, $b$, $c$, $d$, such that the fractional linear transformation 
+  $$f(z) = \frac{az + b}{cz+d}$$
+  maps the upper half plane into itself.
+  
+  \begin{proof}
+    Define the function
+    $$g(w) = \frac{b - w d}{w c -a}.$$
+    It is easy to see that $f$ and $g$ are analytic and $f\circ g = g \circ f$ is the identity map on $\HH$ provided $cz + d \neq 0$ and $wc - a \neq 0$.
+    By virtue of $w$ and $z$ both lying in the upper half plane, $cz + d = 0$ if and only if $c = d = 0$ and $wc - a = 0$ if and only if $a = c = 0$.
+    Hence it is necessary that neither $c = d = 0$ nor $c = a = 0$.
+    %Hence it suffices to impose conditions on $f$ and $g$ such that both are analytic and that $\im \,f(z), \im g(w) > 0$ for all $z,w \in \HH$.
+    
+    Letting $z = x+iy$ and using the identities $2i\im z = z - \overline{z}$ and $2\re z = z + \overline{z}$, we obtain
+    $$
+    \im f(z) = \frac{1}{2i}\left(\frac{az + b}{cz + d} - \frac{a\overline{z} + b}{c\overline{z} + d}\right) = \frac{(ad-bc)y}{(cx + d)^2 + c^2y^2}
+    $$
+    Similarly, by letting $w = \alpha + i\beta$ we obtain
+    $$
+    \im g = \frac{1}{2i}\left(\frac{b - wd}{wc - a} - \frac{b - \overline{w}d}{\overline{w}c - a}\right) = \frac{(ad-bc)\beta}{(c\alpha - a)^2 + c^2\beta^2}
+    $$
+    It is clear that still neither $c = d = 0$ nor $a = c = 0$ may hold, but we impose the condition $ad - bc > 0$ so that $\im f > 0$ and $\im g > 0$.
+    Since this new requirement subsumes the previous condition, it is sufficient to require $ad - bc > 0$.
+    
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  \label{Ex5}
+  Describe the image of the strip $\left\{z \mid\, -1 < \im z < 1\right\}$ under the map $z \longmapsto \dfrac{z}{z+i}$.
+  
+  \begin{proof}
+    Define the maps $g(z) = z + i/2$ and $f(z) = \dfrac{z-i/2}{z + i/2}$.
+    The composition is $(f\circ g)(z) = \dfrac{z}{z+i}$, so it suffices to consider the strip $\{z \mid\, -1/2 < \im z < 3/2\}$ under $f(z)$.
+    Since $f$ is of the form in Lemma \ref{lem3}, $f$ maps the strip $\{z \mid\, 0<\im z < 3/2\}$ into the unit disk.
+    The real axis is mapped to the unit circle, which is seen by considering 
+    $$\left\vert\frac{2x - i}{2x+i}\right\vert = \left\vert \frac{4x^2 - 1 - i4x}{4x^2 + 1} \right\vert= \frac{\sqrt{(4x^2 +1)^2}}{4x^2+1} = 1.$$
+    Since $f$ is a fractional linear transformation, the region $\{z \mid\, -1/2 < \im z < 0\}$ maps to eccentric circles whose radius grow arbitrarily large.
+    So the image is the entire left half-plane except for a circle centered about $3/4$ of radius $1/4$.
+  \end{proof}
+\end{thm}
+
+\end{document}
