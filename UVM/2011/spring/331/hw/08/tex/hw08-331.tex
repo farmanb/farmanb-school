@@ -1,0 +1,120 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,wasysym,mymath}
+\openup 5pt
+\author{Blake Farman}
+\title{Math-331:\\Homework 8}
+\date{April 25, 2011}\pdfpagewidth 8.5in
+\usepackage[margin=1in]{geometry}
+\pdfpageheight 11in
+\begin{document}
+\maketitle
+
+\newtheorem{thm}{}
+\newtheorem{lem}{Lemma}[thm]
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\HH}{\mathcal{H}}
+
+\begin{thm}
+  \label{Ex1}
+  \begin{alphaenum}
+    \item
+      Exhibit a function $f$ such that at each positive integer $n$, $f$ has a pole of order $n$, and $f$ is analytic and non-zero at every other complex number.
+    \item
+      Let $f$ be any function that satisfies the conditions of part (a).
+      For each positive integer $N$ find $\displaystyle{\int_{C_N} \frac{f^{\prime}(z)}{f(z)}\,dz}$, where $C_N$ is the circle of radius $N + \frac{1}{2}$ centered at 0.
+    \end{alphaenum}
+  \begin{proof}
+    \begin{alphaenum}
+    \item
+      Let $\{z_n\}_{n=1}^{\infty}$ be the sequence $1,2,2,3,3,3,4,4,4,4,\ldots$ and let $k_n = 3$ for all $n$.
+      Consider the sum $$\sum_{n=1}^{\infty}\left(\frac{1}{|z|^n}\right)^{k_n}.$$
+      We observe that the partial sums can be expressed as 
+      $$1 + 2(\frac{1}{2^3}) + \ldots + n(\frac{1}{n^3}) = 1 + \frac{1}{2^2} + \ldots + \frac{1}{n^2}.$$
+      These are exactly the partial sums of the convergent series $\sum_{n=1}^{\infty} \frac{1}{n^2}$ and thus the series converges.
+      It now follows from the Weierstrass Products Theorem that 
+      $$g(z) = \prod_{n=1}^{\infty}\left(1 - \frac{z}{z_n}\right)e^{(z/z_n) + \frac{1}{2}(z/z_n)^2}$$
+      defines an entire function with zeroes of order $n$ at the integers.
+      Therefore $f = 1/g$ is meromorphic with poles of order $n$ at the integers. 
+    \item
+      Since $f$, by construction, does not have any zeroes or poles on $C_N$, we have from Lang p. 180 that
+      $$\int_{C_N} f^{\prime}/f = 2\pi i(0 - N) = -2\pi iN,$$
+      where $N$ is the number of poles with modulus less than $N+\frac{1}{2}$.
+    \end{alphaenum}
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  \label{Ex2}
+  Let $f(z) = \prod_{n=1}^{\infty} (1 - nz^n)$.
+  \begin{alphaenum}
+  \item
+    Show that $f$ converges to a holomorphic function on the open unit disc $D(0,1)$.
+  \item
+    Prove that each point on the unit circle is an accumulation point of zeroes of $f$.
+  \end{alphaenum}
+  
+  \begin{proof}
+    \begin{alphaenum}
+    \item
+      Let $h_n(z) = nz^n$ and observe that by the ratio test the power series $\sum_{n=1}^{\infty}h_n(z)$ converges absolutely on the open unit disc and uniformly on compact subsets thereof.
+      Let $K$ be a closed disc, on which $\sum_{n=1}^{\infty} h_n(z)$ converges uniformly.
+      By the proof of Lemma 1.1 of Chapter 10, Section 1, we have that for some constant $C$, independent of $n$, $$|\log(1 - h_n(z))| \leq C|h_n(z)|.$$
+      Hence the convergence of $\sum_{n=1}^{\infty} \log(1 - h_n(z))$ is uniform and the product converges on all closed discs.
+      Therefore we have that the function $f$ is holomorphic by a Corollary from class.
+    \item
+      Let $\epsilon > 0$ be given and let $z_0 = e^{i\theta_0}$ be an arbitrary point on the unit circle.
+      Choose $N_1$ sufficiently large to assure that  $2\pi/{N_1} < \epsilon/2$.
+      Then for $\zeta_{N_1}$ a primitive ${N_1}^{\text{th}}$ root of unity, there exists some integer $a$ such that $\zeta_{N_1}^a$ lies inside an $\epsilon$-neighborhood about $z_0$.
+      Now choose $N_2$ sufficiently large so that $1 - \sqrt[N_2]{1/N_2} < \epsilon$. 
+      If we let $N = \max\{N_1,N_2\}$, then for some integer $a$ we have $\alpha = \zeta_N^a\sqrt[N]{1/N}$ inside the $\epsilon$-neighborhood about $z_0$.
+      Moreover, $1 - N\alpha^N = 0$ shows that $\alpha$ is a zero of $f$.
+      Since the choices of $\epsilon$ and $z_0$ were arbitrary, we have that each point on the unit circle is an accumulation point of zeroes of $f$, as desired.
+    \end{alphaenum}
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  \label{Ex3}
+  Show that the infinite product $f(z) = \prod_{n=0}^{\infty}(1 + z^{2^n})$ converges on the open unit disc, $D(0,1)$, to the function $1/(1-z)$.
+  Is this convergence uniform on compact subsets of the disc?
+  
+  \begin{proof}
+    We show by induction that the products are given by $P_N = \prod_{n=0}^{N} (1 + z^{2^n}) = (1- z^{2^{n+1}})/(1-z)$.
+    When $n=0$, we have as a base case $1 + z = (1-z^2)/(1-z)$.
+    If we now assume the result holds for all $n$ up to $N > 0$, then we can factor $1 - z^{2^{N+1}}$ and use the induction hypothesis to obtain
+    $$\frac{1-z^{2^{N+1}}}{1-z} = 1 + z^{2^{N}}\left(\frac{1 - z^{2^{N}}}{1 - z}\right) = (1+z^{2^N})P_{N-1} = P_N.$$
+    Therefore the partial products are $P_N = (1- z^{2^{n+1}})/(1-z)$ and this sequence converges to $1/(1-z)$ on $\D$.
+    
+    Let $\epsilon > 0$ be given and let $K \subset \D$ be compact.
+    Since $K$ is compact there exists an $M \in (0,1)$ such that $|z| < M$ holds for all $z \in K$.
+    Then since $\lim_{n\rightarrow\infty}M^{2^n} = 0$, there exists an $N$ such that $M^{2^n} < |1 - M| \epsilon$ for all $n \geq N$ and thus
+    $$\left|\frac{1 - z^{2^n}}{1-z} - \frac{1}{1-z}\right| = \left| \frac{z^{2^n}}{1-z}\right| <  \frac{M^{2^n}}{|1-M|} < \epsilon$$
+    whenever $n \geq N$.
+    Since the choice of $N$ is independent of $z$, the convergence of the partial products, and thus the product, is uniform on $K$.
+   \end{proof}
+\end{thm}
+
+\begin{thm}
+  \label{Ex4}
+  Compute the residue of $\Gamma(z)$ at each of its poles.
+  \begin{proof}
+    Using the identities $\Gamma(z)\Gamma(1-z) = \pi/\sin(\pi z)$ and $\sin(\pi z) = (-1)^n\sin(\pi (z + n))$ we multiply both sides by $z+n$ to obtain
+    $$(z + n)\Gamma(z) = \frac{\pi(z+n)}{\sin(\pi(z+n))} \frac{(-1)^n}{\Gamma(1-z)}.$$
+    Letting $z$ tend to $-n$ we obtain, by our Lemma about simple poles, the residue
+    $$\lim_{n\rightarrow -n} (z+n)\Gamma(z) = \left(\lim_{n\rightarrow -n} \frac{\pi(z+n)}{\sin(\pi(z+n))}\right) \frac{(-1)^n}{n!} = \frac{(-1)^n}{n!}.$$
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  \label{Ex5}
+  Prove that ${\displaystyle{\sum_{n=1}^{\infty} \frac{1}{n^2}} = \frac{\pi^2}{6}}$ using the series for $(\pi\cot(\pi z))^{\prime}$ at $z = 0$.
+  \begin{proof}
+    Using the series expansion for $(\pi\cot(\pi z))^{\prime}$ we obtain
+    $$\frac{\pi^2}{\sin^2(\pi z)} - \frac{1}{z^2} = \frac{(\pi z)^2 - \sin^2(\pi z)}{z^2\sin^2(\pi z)} = \sum_{n \neq 0} \frac{1}{(z-n)^2}.$$
+    Letting $z$ tend to zero we obtain after four applications of L'H\^opital's rule
+    $$\lim_{z\rightarrow 0} \frac{(\pi z)^2 - \sin^2(\pi z)}{z^2\sin^2(\pi z)} = \frac{\pi^4}{3\pi^2} = 2 \sum_{n=0}^{\infty}\frac{1}{n^2}.$$
+    Dividing both sides by $2$ we obtain $\displaystyle{\sum_{n=1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6}}$, as desired.
+  \end{proof}
+\end{thm}
+
+\end{document}
