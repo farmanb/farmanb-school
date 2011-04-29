@@ -1,0 +1,85 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,mymath}
+\openup 5pt
+\author{Blake Farman}
+\title{Math-252:\\Homework 11}
+\date{April 29, 2011}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+\begin{document}
+\maketitle
+
+\newtheorem{thm}{}
+
+\begin{thm}
+  \label{Ex1}
+  Prove that $\Q(\sqrt[3]{2})$ is not a subfield of any cyclotomic field over $\Q$.
+  
+  \begin{proof}
+    Since cyclotomic fields over $\Q$ are abelian extensions, all the subgroups of the Galois group are normal.
+    Hence all the subfields are Galois over $\Q$ by the Fundamental Theorem of Galois Theory.
+    Since $\Q(\sqrt[3]{2})/\Q$ is not Galois, it cannot be a subfield of any cyclotomic field over $\Q$.
+%    Suppose to the contrary that for some primitive $n^{\text{th}}$ root of unity, $\zeta_n$, we have $\Q(\sqrt[3]{2}) \subseteq \Q(\zeta_n).$
+%    Since $\Q(\zeta_n)$ is Galois it contains the splitting field for $\Q(\sqrt[3]{2})$, whose Galois group is isomorphic to $S_3$.
+%    However, this implies that $S_3$ is a subgroup of the abelian group $(\Z/n\Z)^{\times}$.
+%    This contradiction implies that $\Q(\sqrt[3]{2})$ is not a subfield of any cyclotomic field over $\Q$.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  \label{Ex2}
+  Determine the Galois groups of the following polynomials:
+  \begin{alphaenum}
+  \item
+    $x^3 - x^2 - 4$,
+  \item
+    $x^3 - 2x + 4$,
+  \item
+    $x^3 - x + 1$,
+  \item
+    $x^3 + x^2 - 2x - 1$.
+  \end{alphaenum}
+  \begin{proof}
+    \begin{alphaenum}
+    \item
+      Observe that $x^3 - x^2 - 4 = (x-2)(x^2+x+2)$ and the quadratic factor is irreducible by the rational root test.
+      Hence the Galois group is $\Z/2\Z$.
+    \item
+      Factor $x^3 - 2x + 4 = (x+2)(x^2-2x+2)$ and observe that the quadratic factor is irreducible by Eisenstein's criterion applied with the prime 2.
+      Hence the Galois group is $\Z/2\Z$.
+    \item
+      The polynomial $x^3 - x + 1$ is irreducible by the rational root test and the discriminant is $D = -23$, which is not a square.
+      Hence the Galois group is $S_3$.
+    \item
+      The polynomial $x^3 + x^2 - 2x - 1$ is irreducible by the rational root test and the discriminant is $D = 49 = 7^2$.
+      Hence the Galois group is $A_3$.
+    \end{alphaenum}
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  \label{Ex3}
+  Let $F$ be an extension of $\Q$ of degree 4 that is not Galois over $\Q$.
+  Prove that the Galois closure of $F$ has Galois group either $S_4$, $A_4$ or the dihedral group $D_8$ of order 8.
+  Prove that the Galois group is dihedral if and only if $F$ contains a quadratic extension of $\Q$.
+  
+  \begin{proof}
+    Let $\widetilde{F}$ be the Galois closure of $F$ and let $G = \Gal(\widetilde{F}/\Q)$.
+    By the Primitive Element Theorem, there exists an element $\theta$ such that $F = \Q(\theta)$ and thus $m_{\theta,\Q}(x) = (x - \theta)(x - \theta_1)(x-\theta_2)(x-\theta_3)$ has degree 4.
+    Hence the only possibilities for the isomorphism type of $G$ are then $S_4$, $A_4$, $D_8$, $V_4$ and $C$, the cyclic group.
+    If the Galois group were either $V_4$ or $C$, which are both abelian, all the subgroups would be normal and thus the corresponding subfields of $\widetilde{F}$ would all necessarily be Galois.
+    Since $F$ was assumed not to be Galois, the ismorphism type must be one of $S_4$, $A_4$ or $D_8$.
+    
+    Suppose the Galois group is dihedral.
+    By the Fundamental Theorem of Galois Theory, the subgroup $H$ of $G$ fixing $F$ must have index 4.
+    Since each such subgroup of $D_8$ lies beneath a subgroup of index 2, $F$ must contain a quadratic subfield by the inclusion reversing nature of the correspondence of subgroups of $G$ and subfields of $\widetilde{F}$.
+    
+    Conversely, suppose $F$ contains a quadratic subfield and suppose $F$ is fixed by $H \leq G$.
+    By the Fundamental Theorem of Galois Theory, the index of $H$ in $G$ is 4.
+    Since there are no subgroups that lie between $A_4$ and any subgroup of $A_4$ with index 4, $G$ cannot be isomorphic to $A_4$.
+    Moreover, as was shown in Exercise 2 of Homework 9, if $G \cong S_4$, then $F = \Q(\theta)$ does not have any proper subfields.
+    Therefore, by the process of elimination, we have $G \cong D_8$.
+  \end{proof}
+\end{thm}
+\end{document}
