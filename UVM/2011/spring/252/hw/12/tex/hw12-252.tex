@@ -1,0 +1,59 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,mymath}
+\openup 5pt
+\author{Blake Farman}
+\title{Math-252:\\Homework 12}
+\date{May 4, 2011}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+\begin{document}
+\maketitle
+
+\newtheorem{thm}{}
+
+\begin{thm}
+  \label{Ex1}
+  Use Cardano's Formulas to solve the equation $x^3 + x^2 -2 = 0$.
+  In particular, show that the equation has the real root
+  $$\frac{1}{3}\left( \sqrt[3]{26 + 15\sqrt{3}} + \sqrt[3]{26 - 15\sqrt{3}} - 1\right).$$
+  Show directly that the roots of this cubic are $1, -1 \pm i$.
+  Explain this by proving that 
+  $$\sqrt[3]{26 + 15\sqrt{3}} = 2 + \sqrt{3} \quad \text{and} \quad \sqrt[3]{26 - 15\sqrt{3}} = 2 - \sqrt{3}$$
+  so that
+  $$\sqrt[3]{26 + 15\sqrt{3}} + \sqrt[3]{26 - 15\sqrt{3}} = 4.$$
+  
+  \begin{proof}
+    Let $x = y - 1/3$ so that $g(y) = y^3 - (1/3)x - (52/27)$.  
+    The discriminant is then $D = -100$ and by Cardano's Formulas we have
+    $$A = \sqrt[3]{26 + 15\sqrt{3}} \quad \text{and} \quad B = \sqrt[3]{26 - 15\sqrt{3}}.$$
+    A simple check by hand shows that taking the positive real roots yields $AB = -3\cdot(-1/3) = 1$.
+    It is then easy to see that $1^3 +1^2 -2 = 0$, as well as $$(-1+i)^3 + (-1 + i)^2 -2 = 2 + 2i - 2i - 2 = 0 \quad \text{and} \quad (-1-i)^3 + (-1 - i)^2 - 2 = 2 - 2i + 2i - 2 = 0.$$
+    Then with an expansion we obtain $(2 \pm \sqrt{3})^3 = 26 \pm 15\sqrt{3}$.
+    Hence $$\frac{1}{3}\left( \sqrt[3]{26 + 15\sqrt{3}} + \sqrt[3]{26 - 15\sqrt{3}} - 1\right) = 1,$$
+    a root of $x^3 + x^2 - 2$.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  \label{Ex2}
+  \begin{proof}
+    \begin{alphaenum}
+    \item
+      A quick check shows $40^6 - 40^6 + 1000(40^4) - 20000(40^3) + 250000(40^2) - 66400000(40) + 976000000 = 0$, so $f(x) = x^5 - 5x + 12$ is solvable and its Galois group is contained in the Frobenius group of order 20.
+      By basic calculus, $f$ has relative extrema at the points $(-1,16)$ and $(1,8)$, so it has only one real root and two non-real, complex conjugate pairs.
+      This shows that the Galois group contains an automorphism of order 2, namely complex conjugation.
+      Moreover, by the rational root test, $f$ is irreducible over $\Q$ and thus the order of its Galois group is divisible by 10.
+      
+      Since complex conjugation interchanges the two complex conjugate pairs and fixes the real root, its representation is a $(2,2)$-cycle.
+      The $(2,2)$-cycles in $F_{20}$ are $(2\,3\,5\,4)^2 = (2\,5)(3\,4)$ and its conjugates.
+      Taking $r = (1\,2\,3\,4\,5)$ and $s = (2\,5)(3\,4)$, it is easy to check by hand that $sr, sr^2, sr^3 \text{ and } sr^4$ are the conjugates of $(2\,5)(3\,4)$ and that $r,s$ satisfy the necessary relations on $D_{10}$.
+    \item
+      Using the criterion above we have $g(x) = x^6 - 8x^5 + 40x^4 - 160x^3 + 400x^2 - 3637x + 9631$, where 9631 is a prime.
+      Evaluating $g(9631)$ we obtain a non-zero value.
+      Therefore, by the rational root test, $x^5 - x - 1$ is not solvable by radicals.
+    \end{alphaenum}
+  \end{proof}
+\end{thm}
+
+\end{document}
