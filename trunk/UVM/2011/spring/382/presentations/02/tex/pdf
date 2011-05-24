@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+NUM="02"
+NAME="pres$NUM-382"
+PDFDIR=../pdf/
+FILE="$NAME.tex"
+
+texi2pdf $FILE
+
+if [ ! -d ../pdf ]; then
+    mkdir ../pdf
+fi
+
+mv $NAME.pdf ../pdf
+
+rm -fr *.log
+rm -fr *.aux
+rm -fr *.bbl
+rm -fr *.blg
+rm -fr *~
+rm -fr *.nav
+rm -fr *.out
+rm -fr *.snm
+rm -fr *.toc
+
+
