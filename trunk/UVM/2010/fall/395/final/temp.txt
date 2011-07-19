@@ -1,0 +1,81 @@
+#Pass in a binary string and convert it to a decimal
+sub bin2dec{
+    my $b = shift(@_);
+    #Split the string into an array
+    $b = [split '', $b];
+
+    #Reverse it to avoid awkward indexing.
+    $b = [reverse @{$b}];
+    
+    my $dec = 0;
+    foreach my $i (0..$#{$b}){
+	$dec += 2**$i * $b->[$i];
+    }
+    
+    return $dec
+}
+
+
+#Pass in a decimal value, a, and a base, r.
+#Return the value in base r.
+sub rAdic{
+    my ($a,$r) = (@_);
+    if ($a == 0){
+	return '';
+    }
+
+    return rAdic(($a - $a%$r)/$r, $r) . $a%$r;
+}
+
+#Pad a bit string with leading zeroes so its
+#length is a multiple of 8
+sub padBitString{
+    my $bits = shift(@_);
+    
+    my $l = length($bits);
+
+    #Pad the string with zeros to make sure its 
+    #length is a multiple of 8
+    if ($l%8 != 0){
+	my $r = $l%8;
+	foreach my $i (1..(8-$r)){
+	    $bits = '0' . $bits;
+	}
+    }
+    
+    return $bits;
+}
+
+#Group an arbitrary bit string into a 
+#collection of bytes
+sub bits2bytes{
+    my $bits = shift(@_);
+    my $bytes;
+
+    #Pad the bits
+    $bits = padBitString($bits);
+
+    #Split the bits into an array
+    $bits = [split '', $bits];
+
+    #Reverse the bits and collect in groups of 8
+    $bits = [reverse @{$bits}];
+
+    my $byte;
+    foreach my $i (0..$#{$bits}){
+	push @{$byte}, $bits->[$i];
+	
+	#If i is a multiple of 8
+	if ($i != 0 and $i % 8 == 7 ){
+	    #Reverse the byte and push it into
+	    #the collection of bytes
+	    push @{$bytes}, join '', reverse @{$byte};
+
+	    #Clear the current byte
+	    $byte = ();
+	}
+    }
+
+    #Put the bytes in the correct order.
+    return reverse @{$bytes};
+}
