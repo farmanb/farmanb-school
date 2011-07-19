@@ -1,0 +1,74 @@
+% LaTeX resume using res.cls
+\documentclass[margin]{res} 
+%\usepackage{helvetica} % uses helvetica postscript font (download helvetica.sty)
+%\usepackage{newcent}   % uses new century schoolbook postscript font 
+
+\begin{document}
+
+% Center the name over the entire width of resume:
+\moveleft.5\hoffset\centerline{\large\bf Blake A. Farman}
+% Draw a horizontal line the whole width of resume:
+\moveleft\hoffset\vbox{\hrule width\resumewidth height 1pt}\smallskip
+% \address used twice to have two lines of address
+%\address{{\bf Present Address}\\BARH C308\\1999 Burdett Ave\\Troy, NY 12180\\(802) 282-8205}
+%{\bf Permanent Address}
+\address{\\PO Box 1331\\Castleton, VT 05735\\bfarman@uvm.edu\\(802) 282-8205}
+%\address{}
+%\address{(802) 282-8205}
+
+\begin{resume}
+\section{\sl  Objective}  % with postscript font \sl produces bold italic
+%                           with default font (CM) \sl produces slanted type
+I am looking for summer employment during my transition between my undergraduate and graduate degree programs.
+
+\section{\sl  Education}
+\begin{ncolumn}{2}
+{\it University of Vermont, Burlington, VT} &  August 2009
+\end{ncolumn}\\
+Pursuing M.S. Mathematics.
+
+\begin{ncolumn}{2}
+{\it Rensselaer Polytech. Institute, Troy, NY} &  August 2005 - May 16, 2009
+\end{ncolumn}\\
+Received B.S. Computer Science, with minors in Mathematics and French, GPA 3.13/4.0.
+
+\section{\sl  Related Experience}
+\begin{ncolumn}{2}
+{\it Undergraduate Research Experience} & May 2008 - August 2008
+\end{ncolumn}\\
+Rensselaer Polytechnic Institute, Troy, NY\\
+Assisted Professor Jeffrey C. Trinkle \& Steven Berard  with development of the daVinci Code physical simulator (http://www.robotics.cs.rpi.edu/dvc).
+
+\begin{ncolumn}{2}
+{\it Software Development Intern} & June 2007 - August 2007
+\end{ncolumn}\\  
+Vermont Electric Power Company (VELCO), Rutland, VT \\
+Assisted VELCO's Information Systems group with development of stand alone and Microsoft SharePoint composite software for dynamic tracking of network hosts and a Virtual Help Desk solution.
+
+\begin{ncolumn}{2} 
+{\it System Protection Intern} &  May 2006 - August 2006
+\end{ncolumn}\\
+Vermont Electric Power Company (VELCO), Rutland, VT\\
+Assisted VELCO's System Protection group with software maintenance and development including preparation for installing software for automatic retrieval of information from Digital Fault Recorders and Relays.
+
+\begin{ncolumn}{2}
+{\it Information Systems Intern}  &   June 2005 - August 2005 
+\end{ncolumn}\\
+Vermont Electric Power Company (VELCO), Rutland, VT\\
+Assisted the VELCO IS department with network maintenance, PC preparation, operating systems \& software installation and maintenance.
+
+\section{\sl  Other Experience}
+\begin{ncolumn}{2}
+{\it Mountain Ambassador} & November 2004 - May 2008
+\end{ncolumn}\\
+Killington Ltd., Killington, Vermont\\
+The Killington Ambassador Program is an on-slope volunteer program designed to improve the experience of guests by providing local knowledge, information, directions, safety tips, and just about any other help a guest might need.
+
+\section{\sl  Honors}
+Rensselaer Medalist
+ 
+\section{\sl  Activities}
+Snowboarding, Mountain Biking, Baseball, Reading
+ 
+\end{resume}
+\end{document}
