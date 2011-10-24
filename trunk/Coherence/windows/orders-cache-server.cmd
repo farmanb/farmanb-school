@@ -2,7 +2,7 @@
 @setlocal
 
 if (%COHERENCE_HOME%) == () (
-  set COHERENCE_HOME=C:\Oracle\Middleware\coherence_3.7
+  set COHERENCE_HOME=C:\Oracle\Middleware\coherence
 )
 
 set PROJ=C:\JDeveloper\mywork\Coherence
