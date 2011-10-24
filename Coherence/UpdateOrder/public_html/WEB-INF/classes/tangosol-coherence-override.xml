@@ -4,7 +4,7 @@
            xmlns="http://xmlns.oracle.com/coherence/coherence-operational-config">
    <cluster-config>
       <member-identity>
-         <cluster-name>OrderCluster</cluster-name>
+         <cluster-name system-property="tangosol.coherence.cluster">OrderCluster</cluster-name>
       </member-identity>
       <multicast-listener>
          <address>231.1.1.1</address>
