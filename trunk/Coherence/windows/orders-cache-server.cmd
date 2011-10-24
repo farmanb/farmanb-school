@@ -2,12 +2,12 @@
 @setlocal
 
 if (%COHERENCE_HOME%) == () (
-  set COHERENCE_HOME=C:\Oracle\Middleware\coherence
+  set COHERENCE_HOME=C:\Oracle\Middleware\coherence_3.6
 )
 
 set PROJ=C:\JDeveloper\mywork\Coherence
-set CONFIG=${PROJ}\UpdateOrder\Coherence.Schemas
+set CONFIG=%PROJ%\UpdateOrder\Coherence.Schemas
 
-"%JAVA_HOME%\bin\java" -cp %CONFIG%:%COHERENCE_HOME%\lib\coherence.jar;%PROJ%;%PROJ%\UpdateOrder\classes com.tangosol.net.DefaultCacheServer
+"%JAVA_HOME%\bin\java" -cp %CONFIG%;%COHERENCE_HOME%\lib\coherence.jar;%PROJ%;%PROJ%\UpdateOrder\classes com.tangosol.net.DefaultCacheServer
 
 :exit
