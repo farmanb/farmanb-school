@@ -22,36 +22,27 @@ public class OrderService {
      * @return
      */
     @WebMethod
-    public void putOrder(int orderID, int customerID){   
-        CacheFactory.ensureCluster();
-        NamedCache orders = CacheFactory.getCache("orders");
-        
+    public String putOrder(int orderID, int customerID) {
         Order o = new Order(orderID, customerID);
         
-        /*try{
-                         
-        }
-        catch(Exception e){
+        try {
+            orders.put(o.getOrderID(), o);
+        } 
+        catch (Exception e) {
             StringWriter writer = new StringWriter();
             e.printStackTrace(new PrintWriter(writer));
             return writer.toString();
         }
-        finally{
-                CacheFactory.shutdown();    
-        }*/       
-        orders.put(o.getOrderID(), o);    
         
-        //CacheFactory.shutdown();
-    }
-    
-    @WebMethod
-    public String getOrder(int orderID){
-        CacheFactory.ensureCluster();
-        NamedCache orders = CacheFactory.getCache("orders");
-        
-        Order o = (Order)orders.get(orderID);
-        
-        //CacheFactory.shutdown();
         return o.toString();
     }
+
+    @WebMethod
+    public String getOrder(int orderID) {
+        Order o = (Order)orders.get(orderID);
+
+        return o.toString();
+    }
+    
+    private static NamedCache orders = CacheFactory.getCache("orders");
 }
