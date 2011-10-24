@@ -16,7 +16,7 @@
       <init-params>
          <init-param>
             <param-type>java.lang.String</param-type>
-            <param-value system-property="tangosol.coherence.cacheconfig">example-config.xml</param-value>
+            <param-value system-property="tangosol.coherence.cacheconfig">coherence-cache-config.xml</param-value>
          </init-param>
       </init-params>
    </configurable-cache-factory-config>
