@@ -2,6 +2,8 @@ package com.princeton;
 
 import com.tangosol.net.CacheFactory;
 import com.tangosol.net.Cluster;
+import com.tangosol.net.DefaultCacheServer;
+import com.tangosol.net.DefaultConfigurableCacheFactory;
 import com.tangosol.net.NamedCache;
 
 import java.io.PrintWriter;
@@ -23,6 +25,7 @@ public class OrderService {
      */
     @WebMethod
     public String putOrder(int orderID, int customerID) {
+        NamedCache orders = CacheFactory.getCache("orders");
         Order o = new Order(orderID, customerID);
         
         try {
@@ -34,15 +37,19 @@ public class OrderService {
             return writer.toString();
         }
         
+        CacheFactory.shutdown();
         return o.toString();
     }
 
     @WebMethod
     public String getOrder(int orderID) {
+        NamedCache orders = CacheFactory.getCache("orders");
         Order o = (Order)orders.get(orderID);
 
+        CacheFactory.shutdown();
         return o.toString();
     }
     
-    private static NamedCache orders = CacheFactory.getCache("orders");
+    //private static NamedCache orders = CacheFactory.getCache("orders");
+    
 }
