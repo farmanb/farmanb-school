@@ -195,7 +195,7 @@
    <hash n="oracle.jdevimpl.config.JProjectLibraries">
       <list n="exportedReferences">
          <hash>
-            <value n="id" v="Coherence.Schemas"/>
+            <value n="id" v="Classes"/>
             <value n="isJDK" v="false"/>
          </hash>
          <hash>
@@ -231,18 +231,18 @@
             </hash>
             <hash>
                <list n="classPath">
-                  <url path="Coherence.Schemas/"/>
+                  <url path="public_html/WEB-INF/classes/"/>
                </list>
                <value n="deployedByDefault" v="true"/>
-               <value n="description" v="Coherence.Schemas"/>
-               <value n="id" v="Coherence.Schemas"/>
+               <value n="description" v="Classes"/>
+               <value n="id" v="Classes"/>
                <value n="locked" v="true"/>
             </hash>
          </list>
       </hash>
       <list n="libraryReferences">
          <hash>
-            <value n="id" v="Coherence.Schemas"/>
+            <value n="id" v="Classes"/>
             <value n="isJDK" v="false"/>
          </hash>
          <hash>
