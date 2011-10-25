@@ -1,12 +1,5 @@
 package com.princeton;
 
-import com.tangosol.io.pof.PofReader;
-import com.tangosol.io.pof.PofWriter;
-import com.tangosol.io.pof.PortableObject;
-
-import com.tangosol.util.HashHelper;
-
-import java.io.IOException;
 import java.io.Serializable;
 
 /**
@@ -64,23 +57,6 @@ public class Order implements Serializable{
     
     /*Functions*/
 
-    /**
-     * @param reader
-     * @throws IOException
-     */
-    public void readExternal(PofReader reader) throws java.io.IOException{
-        this.setOrderID(reader.readInt(0));
-        this.setCustomerID(reader.readInt(1));
-    }
-
-    /**
-     * @param writer
-     * @throws IOException
-     */
-    public void writeExternal(PofWriter writer) throws java.io.IOException{
-        writer.writeInt(0, this.getOrderID());
-        writer.writeInt(1, this.getCustomerID());
-    }
 
     /**
      * @param object
@@ -109,8 +85,13 @@ public class Order implements Serializable{
      */
     @Override
     public int hashCode() {
-        return HashHelper.hash(this.getOrderID(), 0);
+        final int PRIME = 37;
+        int result = 1;
+        result = PRIME * result + orderID;
+        result = PRIME * result + customerID;
+        return result;
     }
+
 
     /**
      * @return
