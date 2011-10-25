@@ -215,7 +215,7 @@
          <list n="libraryDefinitions">
             <hash>
                <list n="classPath">
-                  <url path="../../../../Oracle/Middleware/coherence_3.6/lib/coherence.jar" jar-entry=""/>
+                  <url path="public_html/WEB-INF/lib/coherence.jar" jar-entry=""/>
                </list>
                <value n="description" v="Coherence"/>
                <value n="id" v="Coherence"/>
