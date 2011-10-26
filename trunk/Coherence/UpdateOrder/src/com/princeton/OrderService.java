@@ -23,7 +23,7 @@ public class OrderService {
      * @return
      */
     @WebMethod
-    public String putOrder(int orderID, int customerID) {
+    public String putOrder(Integer orderID, Integer customerID) {
         //NamedCache orders = CacheFactory.getCache("orders");
         Order o = new Order(orderID, customerID);
         
@@ -41,7 +41,7 @@ public class OrderService {
     }
 
     @WebMethod
-    public Order getOrder(int orderID) {
+    public Order getOrder(Integer orderID) {
         //NamedCache orders = CacheFactory.getCache("orders");
         Order o = (Order)orders.get(orderID);
 
