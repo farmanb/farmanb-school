@@ -184,7 +184,7 @@
             <value n="custom" v="false"/>
             <value n="javaOptions" v=""/>
             <value n="name" v="Default"/>
-            <url n="targetURL" path="src/com/princeton/OrderDriver.java"/>
+            <value n="targetURL"/>
             <value n="VMName" v="client"/>
          </hash>
       </hash>

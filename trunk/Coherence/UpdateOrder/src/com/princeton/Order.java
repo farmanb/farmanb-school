@@ -3,21 +3,15 @@ package com.princeton;
 import java.io.Serializable;
 
 /**
+ * A simple, serializable class used to test the Coherence cache.
  */
 public class Order implements Serializable{
     
     /*Constructors*/
-
-    /**
-     */
     public Order() {
         super();
     }
 
-    /**
-     * @param orderID
-     * @param customerID
-     */
     public Order(Integer orderID, Integer customerID) {
         super();
         this.orderID = orderID;
@@ -26,56 +20,28 @@ public class Order implements Serializable{
 
 
     /*Accessors*/
-
-    /**
-     * @param orderID
-     */
     public void setOrderID(Integer orderID) {
         this.orderID = orderID;
     }
 
-    /**
-     * @return
-     */
     public Integer getOrderID() {
         return orderID;
     }
 
-    /**
-     * @param customerID
-     */
     public void setCustomerID(Integer customerID) {
         this.customerID = customerID;
     }
 
-    /**
-     * @return
-     */
     public Integer getCustomerID() {
         return customerID;
     }
     
     /*Functions*/
-
-
-    /**
-     * @return
-     */
     @Override
     public String toString(){
         return "Order #: " + this.getOrderID() + "\n" + 
             "Customer #: " + this.getCustomerID();
     }
-    
-    /*Members*/
-
-    /**
-     */
-    private Integer orderID;
-
-    /**
-     */
-    private Integer customerID;
 
     @Override
     public boolean equals(Object object) {
@@ -103,4 +69,9 @@ public class Order implements Serializable{
         result = PRIME * result + ((customerID == null) ? 0 : customerID.hashCode());
         return result;
     }
+    
+    /*Members*/
+
+    private Integer orderID;
+    private Integer customerID;
 }
