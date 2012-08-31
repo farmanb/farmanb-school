@@ -1,0 +1,100 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate}
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 703:\\Homework 01}
+\date{August 30, 2012}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+\begin{document}
+\maketitle
+
+\newtheorem{thm}{}
+\begin{thm}
+	Suppose that $G$ has subgroups $H$ and $K$, and that $G = H \cup K$.  Prove that either $H = G$ or $K = G$.
+	\begin{proof}
+		Observe that if $H \subseteq K$ or $K \subseteq H$, then the result follows directly.
+		Hence it suffices to assume the existence of elements $h \in H$ and $k \in K$ such that $h \not\in K$ and $k \not\in H.$
+		
+		Consider the product $hk \in G = H \cup G$ and observe that $h^{-1}(hk) = h$ and $(hk)k^{-1} = k$ imply $hk \not\in H \cup K = G,$ a contradiction.  Therefore either $H = G$ or $K = G,$ as desired.
+	\end{proof}
+\end{thm}
+
+\begin{thm}
+	Suppose that $H$ is finite, non-empty subset of $G.$  Show that $H$ is a subgroup if and only if $H$ is closed under the  binary operation $G.$
+	\begin{proof}
+	Assume $H \leq G$ and note that $H$ is closed by definition.  
+	Conversely, assume $H$ is closed under the operation in $G.$
+	Observe that if $H = \left< 1 \right> ,$ then $H \leq G.$
+	Hence it suffices to assume the existence of $1 \not = h \in H.$  
+	Since $H$ is finite, there exist $0< i < j$ such that $h^i = h^j.$  
+	Multiplying both sides by $(h^{-1})^i$ on the left we obtain
+		$$1 = h^{j-i} = h^{j-i-1}h.$$
+	Observe that by the choice of $h$ we have $0 < j-i-1$, from which $h^{j-i-1} = h^{-1}$ follows.  
+	Moreover, since $H$ is closed we have $1, h^{-1} \in H.$  
+	Therefore $H \leq G,$ as desired.
+	\end{proof}
+\end{thm}
+
+\begin{thm}
+	Suppose that for all $g \in G$, we have $g^2 = 1_G.$  Show that $G$ is abelian.
+	\begin{proof}
+	Let $g,h \in G$ be given and observe that $gh \in G$ implies $(gh)^2 = 1.$  
+	Multiplying both sides by $(gh)^{-1} = hg$ yields $gh = hg.$ 
+	Therefore $G$ is abelian.
+	\end{proof}
+\end{thm}
+
+\begin{thm}
+	Suppose that $G$ is finite with even order.  Show that there exists $g \in G$ such that $o(g) = 2.$
+	\begin{proof}
+	Let $2n$ be the order of $G$ and consider the set of pairs of elements with order strictly larger than two, 
+		$$A = \left\{ (g,g^{-1}) \mid g \not = g^{-1} \in G \right\}.$$
+	Since $G$ must have an identity, this set contains at most $n - 1$ distinct elements. 
+	Hence there are at most $2n-2$ elements of order strictly larger than two.
+	In particular, the remaining non-identity element, say $h,$ must satisfy $h = h^{-1}$.
+	Therefore $G$ contains an element of order two, as desired.
+	\end{proof}
+\end{thm}
+
+\begin{thm}
+	Let $a,b \in G$, and suppose that there exists $r \geq 1$ with $bab^{-1} = a^r.$
+	Show, for all $j \geq 1$, that $b^jab^{-j} = a^{r^j}$.
+	\begin{proof}
+	\end{proof}
+\end{thm}
+
+\begin{thm}
+	Suppose that $g \in G$ has finite order $n$.
+	\begin{enumerate}[(a)]
+			\item Let $t \in \mathbb{Z}$.  Show that $o(g^t) = \displaystyle{\frac{n}{\gcd(n,t)}}.$
+			\item Suppose that $0 \leq r \leq n-1$ has $\gcd(r,n) = 1$.  Show that $o(g^r) = n$.
+			\item Let $0 < d \mid n$.  Show that $g^{n/d}$ has order $d$ in $G$.
+	\end{enumerate}
+	\begin{proof}
+	\end{proof}
+\end{thm}
+
+\begin{thm}
+	Suppose that $x,y \in G$ commute: $xy = yx$.  Suppose also that $o(x) = m, o(y) = n$, and $o(xk) = k$ are finite.
+	\begin{enumerate}[(a)]
+		\item Show that $k \mid \text{lcm}(m,n).$
+		\item Suppose that $\left< x \right> \cap \left< y \right> = \left< 1_G \right>.$  Show that $k = \text{lcm}(m,n).$
+		\item Suppose that $\gcd(m,n) = 1.$
+		\begin{enumerate}[i.]
+			\item Show that $\left< x \right> \cap \left< y \right> = \left< 1_G \right>.$
+			\item Now, suppose you know for all $a,b \in \mathbb{Z}$, that $\text{lcm}(a,b) = \displaystyle{\frac{ab}{\gcd(a,b)}.}$  Use this fact, together with (b) and (c,i) to show that $k = mn.$
+		\end{enumerate}
+	\end{enumerate}
+	\begin{proof}
+	\end{proof}
+\end{thm}
+
+\begin{thm}
+	Suppose that $G \not = \left< 1_G \right>$ is finite and has no proper subgroups.  Show that there exists a prime $p$ such that $G$ is cyclic and $|G| = p$.
+	\begin{proof}
+	\end{proof}
+\end{thm}
+
+\end{document}
