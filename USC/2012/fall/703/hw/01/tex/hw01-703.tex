@@ -1,0 +1,107 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,mymath,enumerate}
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 703:\\Homework 01}
+\date{August 30, 2012}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+\begin{document}
+\maketitle
+
+\newtheorem{thm}{}
+\begin{thm}{p. 78, Problem 4:}
+  For any two sequences $\{a_n\}$ and $\{b_n\}$ in $\R$, prove that $\limsup{(a_n + b_n)} \leq \limsup{a_n} + \limsup{b_n},$ provided that the two terms on the right side are not $+\infty$ and $-\infty$ in some order. 
+  \begin{proof}
+    Let $x_n = \sup_{k>n}{a_k}, x_n = \sup_{k>n}{b_k}, \text{ and } x_n = \sup_{k>n}{a_k + b_k}.$
+    First observe that if one or both of $x_n$ and $y_n$ tend to $\pm\infty$, then both sides of the inequality are $\pm\infty$ and it is satisfied trivially.
+
+    Assume both $x_n$ and $y_n$ converge in $\R.$
+    Fix $n$ and observe that $a_k \leq x_n$ and $b_k \leq y_n$ hold for each $k > n,$ hence $a_k + b_k \leq x_n + y_n$.
+    It is then immediate from the definition of the supremum that $z_n \leq x_n + y_n.$
+    Letting $n$ tend to infinity, the inequality follows directly.
+    \end{proof}
+\end{thm}
+
+\begin{thm}{p. 78, Problem 7:}
+  Suppose that $f_n:[a,b] \longrightarrow \R$ is continuous and that $f_1 \leq f_2 \leq f_3 \leq \ldots.$
+  Suppose also that $f(x) = \lim f_n(x)$ is continuous and is nowhere $+\infty.$
+  Use the Bolzano-Weierstrass Theorem to prove that $f_n$ converges uniformly for $a \leq x \leq b.$
+  \begin{proof}
+    Let $\varepsilon > 0 $ be given and start by making two reductions.
+    First, define the sequence of functions $g_n(x) = (f - f_n)(x)$ then observe that $g_n$ is continuous for each n, $\{g_n\}$ is non-increasing, and $\{g_n\}$ converges pointwise to $0$ on $[a,b]$, all of which follow from the assumptions on $f_n$ and $f$.
+    It suffices to show that $g_n$ converges uniformly to $0$ on $[a,b].$  
+
+    To that end, consider the sets $A_n = \{x \in [a,b] \mid g_n(x) \geq \varepsilon\}$ and observe that if, for any fixed $N$, $x \in A_N$, then for all smaller $n$, $g_n(x) \geq g_N(x) \geq \varepsilon$ implies $x \in A_n.$
+    Hence the $A_n$ form a nested family of sets, namely $A_1 \subseteq A_2 \subseteq \ldots$.
+    It is then clear that if there exists an  $N \in \N$ such that $A_n = \emptyset$ holds for all $n \geq N$, then $g_n$ converges uniformly.
+
+    Assume to the contrary that no such $N$ exists and form a sequence $\{x_n\}$ by choosing for each $n$ an element of $A_n.$
+    The Bolzano-Weierstrass Theorem guarantees the existence of a convergent subsequence $\{x_{n_k}\}$ of $\{x_n\}.$
+    Since $x_{n_k} \in [a,b]$ for all $n_k$, we have $x = \lim_{k \rightarrow \infty} x_{n_k}$ for some $x \in [a,b].$
+    Fix $n$ and observe that $g_n(x_{n_k}) \geq \varepsilon$ holds for all except possibly finitely many values of $n_k$ by construction. 
+    By the continuity of $g_n$, we then have $$\lim_{k \rightarrow \infty} g_n(x_{n_k}) = g_n(x) \geq \varepsilon.$$
+    Since the choice of $n$ was arbitrary, it follows that $x \in A_n$ holds for all values of $n.$  
+    However, $g_n$ converges pointwise for all elements of $[a,b],$ a contradiction.
+  \end{proof}
+\end{thm}
+
+\begin{thm}{p. 79, Problem 16:}
+  Verify the following calculations of Fourier series:
+  \begin{enumerate}[(a)]
+    \item
+      $\displaystyle{f(x) = \left\{
+      \begin{array}{ll}
+        +1 & \text{for } 0 < x < \pi,\\
+        -1 & \text{for } -\pi < x < 0
+      \end{array}\right. \text{ has } f(x) \sim \frac{4}{\pi} \sum_{n=1}^{\infty} \frac{\sin{(2n-1)x}}{2n-1}}.$
+    \item
+      $f(x) = e^{-i\alpha x}$ on $(0,2\pi)$ has $f(x) \sim \displaystyle{\frac{e^{-i\pi\alpha}\sin{\pi\alpha}}{\pi} \sum_{n=-\infty}^{\infty} \frac{e^{inx}}{\alpha+n}},$ provided $\alpha$ is not an integer.
+  \end{enumerate}
+  
+  \begin{proof}
+    \begin{enumerate}[(a)]
+      \item
+        To find the coefficents for the series, use the substitution $u=nx$ to compute the following integrals,
+        $$\pi a_n = -\int_{-\pi}^{0} \cos(nx)\,dx + \int_{0}^{\pi} \cos(nx)\,dx \text{ and } \pi b_n = -\int_{-\pi}^{0} \sin(nx)\,dx + \int_{0}^{\pi} \sin(nx)\,dx.$$
+        With some simple calculus one obtains $a_n = 0$ and $b_n = 2(1 - \cos(n\pi)).$
+        Observe that for $k \in \N$, we have $b_{2k} = 0$ and $b_{2k-1} = 4/(2k-1)\pi.$ 
+        Therefore $$f(x) \sim \frac{4}{\pi} \sum_{n=1}^{\infty} \frac{\sin{(2n-1)x}}{2n-1},$$ as desired. 
+      \item
+        To find the coefficients for the series, use the substitution $u = -i(\alpha+n)x$ and compute the following integral,
+        $$c_n = \frac{1}{2\pi}\int_{0}^{2\pi}e^{-i(\alpha + n)x}\,dx = \frac{i(e^{-i2\pi\alpha} - 1)}{2\pi(\alpha+n)}.$$
+        Write $e^{-i2\pi\alpha} = (\cos(\pi\alpha) - i\sin(\pi\alpha))^2$ and use the identity $\sin^2(\pi\alpha) + \cos^2(\pi\alpha)$ to perform some routine algebra in order to obtain $$i(e^{-i2\pi\alpha} - 1) = 2\sin(\pi\alpha)e^{-i\pi\alpha}.$$
+        Substituting back into the expression for $c_n$ above yields $$c_n = \frac{\sin(\pi\alpha)e^{-i\pi\alpha}}{\pi(\alpha + n)},$$
+        whence the desired relation  $$f(x) \sim \sum_{n=-\infty}^{\infty}c_ne^{inx} = \frac{\sin(\pi\alpha)e^{-i\pi\alpha}}{\pi} \sum_{n = -\infty}^{\infty} \frac{e^{inx}}{(\alpha + n)}.$$
+      \end{enumerate}
+  \end{proof}
+\end{thm}
+
+\begin{thm}{p. 79, Problem 17:}
+  Combining Parseval's Theorem (Theorem 1.61) with the results of Problem 16, prove the following identities:
+    \begin{enumerate}[(a)]
+    \item
+      $\displaystyle{\sum_{n=1}^{\infty} \frac{1}{(2n-1)^2} = \frac{\pi^2}{8}},$
+    \item
+      $\displaystyle{\sum_{n=-\infty}^{\infty} \frac{1}{(n+\alpha)^2} = \frac{\pi^2}{sin^2{\pi\alpha}}}.$
+    \end{enumerate}
+  \begin{proof}
+    \begin{enumerate}[(a)]
+      \item
+        Using $f(x)$ and $b_{2n-1}$ as in Problem 16, part (a) with Parseval's Identity we obtain 
+        $$\frac{16}{\pi^2} \sum_{n=1}^{\infty}\frac{1}{(2n-1)^2} = \frac{1}{\pi} \int_{-\pi}^{\pi}dx = 2.$$
+        Rearranging the equation above we have 
+        $$\sum_{n=1}^{\infty}\frac{1}{(2n-1)^2} = \frac{\pi^2}{8},$$
+        as desired.
+      \item
+        Using $f(x)$ and $c_{n}$ as in Problem 16, part (b) with Parseval's Identity we obtain 
+        \begin{equation}\label{mess}
+          \frac{\sin^2(\pi\alpha)}{\pi^2} \sum_{n=1}^{\infty}\frac{1}{(\alpha+n)^2} = \frac{1}{2\pi} \int_{0}^{2\pi} \left|e^{-i\alpha x}\right|^2\,dx.
+        \end{equation}
+        Observing that $\left|e^{-i\alpha x}\right| = 1$, it is clear that the right hand side of \eqref{mess} evaluates to $(2\pi - 0)/2\pi = 1$.
+        With this in mind, some routine algebra yields $$\sum_{n=1}^{\infty}\frac{1}{(\alpha+n)^2} = \frac{\pi^2}{\sin^2(\pi\alpha)},$$ as desired.
+    \end{enumerate}
+  \end{proof}
+\end{thm}
+\end{document}
