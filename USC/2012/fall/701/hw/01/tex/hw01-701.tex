@@ -1,9 +1,9 @@
 \documentclass[10pt]{amsart}
-\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath}
 \openup 5pt
 \author{Blake Farman\\University of South Carolina}
-\title{Math 703:\\Homework 01}
-\date{August 30, 2012}
+\title{Math 701:\\Homework 01}
+\date{September 5, 2012}
 \pdfpagewidth 8.5in
 \pdfpageheight 11in
 \usepackage[margin=1in]{geometry}
@@ -17,7 +17,7 @@
 		Observe that if $H \subseteq K$ or $K \subseteq H$, then the result follows directly.
 		Hence it suffices to assume the existence of elements $h \in H$ and $k \in K$ such that $h \not\in K$ and $k \not\in H.$
 		
-		Consider the product $hk \in G = H \cup G$ and observe that $h^{-1}(hk) = h$ and $(hk)k^{-1} = k$ imply $hk \not\in H \cup K = G,$ a contradiction.  Therefore either $H = G$ or $K = G,$ as desired.
+		Consider the product $hk \in G = H \cup G$ and observe that $h^{-1}(hk) = k$ and $(hk)k^{-1} = h$ imply $hk \not\in H$ and $hk \not \in K$, respectively.  Hence $hk \not \in H \cup K = G,$ a contradiction.  Therefore either $H = G$ or $K = G,$ as desired.
 	\end{proof}
 \end{thm}
 
@@ -134,7 +134,7 @@
           \begin{equation}\label{comm}
             ba^{r^n} = a^{r^{n+1}}b.
           \end{equation}
-          It is then clear that, for fixed $j \geq 1,$ the identity $b^ja = a^{r^j}b^j$ follows from $j$ applications of \eqref{comm} to the left hand side, where $n$ ranges from zero to $j$.
+          It is then clear that, for fixed $j \geq 1,$ the identity $b^ja = a^{r^j}b^j$ follows from $j$ applications of \eqref{comm} to the left hand side, where $n$ ranges from zero to $j - 1$.
 	\end{proof}
 \end{thm}
 
