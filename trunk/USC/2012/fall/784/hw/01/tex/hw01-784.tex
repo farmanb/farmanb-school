@@ -13,73 +13,79 @@
 \newtheorem{thm}{}
 
 \begin{thm}
-	Prove that $\sin(1^\circ)$ is algebraic.
-	\begin{proof}
-	Observe that $2\sin(\pi/180) = 2\cos(89\pi/180)$ is an algebraic integer by the remarks in the notes that follow the first lemma.
-	Let $f(x) = \sum_{k=0}^n a_nx^n \in \mathbb{Z}[x]$ be the minimal polynomial for $2\sin(\pi/180)$.
-	Consider the polynomial $g(x) = f(2x) = \sum_{k=0}^n 2^na_nx^n \in \mathbb{Z}[x].$  
-        Evaluating at $\sin(\pi/180)$, we have 
-        $$g(\sin(\pi/180)) = \sum_{k=0}^n a_n2^n\sin(\pi/180)^n = \sum_{k=0}^n a_n(2\sin(\pi/180))^n = f(2\sin(\pi/180)) = 0$$
-	Therefore $\sin(1^\circ) = \sin(\pi/180)$ is algebraic.
-	\end{proof}
+  Prove that $\sin(1^\circ)$ is algebraic.
+  \begin{proof}
+    Observe that $2\sin(\pi/180) = 2\cos(89\pi/180)$ is an algebraic integer by the remarks in the notes that follow the first lemma.
+    Let $f(x) = \sum_{k=0}^n a_nx^n \in \mathbb{Z}[x]$ be the minimal polynomial for $2\sin(\pi/180)$.
+    Consider the polynomial $g(x) = f(2x) = \sum_{k=0}^n 2^na_nx^n \in \mathbb{Z}[x].$  
+    Evaluating at $\sin(\pi/180)$, we have 
+    $$g(\sin(\pi/180)) = \sum_{k=0}^n a_n2^n\sin(\pi/180)^n = \sum_{k=0}^n a_n(2\sin(\pi/180))^n = f(2\sin(\pi/180)) = 0$$
+    Therefore $\sin(1^\circ) = \sin(\pi/180)$ is algebraic.
+  \end{proof}
 \end{thm}
 
 \begin{thm}
-	Let $n$ denote a positive integer.  
-	Prove that $\displaystyle{\frac{1}{\pi}\cos^{-1}\left(\frac{1}{\sqrt{n}}\right)}$ is rational if and only if $n \in \{1,2,4\}$.
-	\begin{proof}
-          Let $\pi\alpha = \cos^{-1}(1/\sqrt{n})$ and, for simplicity, assume $0 \leq \alpha \leq 2$.
-          Assume $n \in \{1,2,4\}$.  
-          Then $\cos(\pi\alpha) \in \{1, \sqrt{2}/2, 1/2\}$ implies $\alpha \in \{0, 1/4, 7/4, 1/3, 5/3\}$ is rational.
-          
-          Conversely, assume $\alpha \in \mathbb{Q}$.
-          Then taking the cosine of both sides and squaring we have $\cos^2(\pi\alpha) = 1-\sin^2(\pi\alpha) = 1/n$.
-          Hence $\sin^2(\pi\alpha) = (n-1)/n \in \mathbb{Q}$ implies, by Theorem 1, that $\sin^2(\pi\alpha) \in \{0,1/4,1/2,3/4,1\}$.
-          Now observe that  $(n-1)/n \in \{0,1/4,1/2,3/4,1\}$ only occurs when $n \in \{1,2,4\}$, as desired.
-	\end{proof}
+  Let $n$ denote a positive integer.  
+  Prove that $\displaystyle{\frac{1}{\pi}\cos^{-1}\left(\frac{1}{\sqrt{n}}\right)}$ is rational if and only if $n \in \{1,2,4\}$.
+  \begin{proof}
+    Let $\pi\alpha = \cos^{-1}(1/\sqrt{n})$.
+    With some routine trigonometry, we have 
+    $$\sin^2(\pi\alpha) = 1 - \cos^2(\pi\alpha)= (n-1)/n \in \mathbb{Q}.$$
+    For simplicity, assume $0 \leq \alpha \leq 1/2$ and observe that it suffices to show $\alpha$ is rational if and only if $n \in \{1,2,4\}$.
+    
+    Assume $n \in \{1,2,4\}$ and thus $\sin^2(\pi\alpha) \in \{0, 1/2, 3/4\}$.
+    Hence $\alpha \in \{0, 1/6, 3/4\}$ is rational.  Conversely, assume $\alpha \in \mathbb{Q}$.
+    By Theorem 1, $\sin^2(\pi\alpha) \in \{0,1/4,1/2,3/4,1\}$.
+    Now observe that  $(n-1)/n \in \{0,1/4,1/2,3/4,1\}$ implies $n \in \{1,2,4\}$, as desired.
+  \end{proof}
 \end{thm}
 
 \begin{thm}
-	Using Theorem 2, prove that if $m$ is a positive integer for which $\sqrt{m} \in \mathbb{Q}$, then $m$ is a square (i.e., $m = k^2$ for some $k \in \mathbb{Z}$).
-	\begin{proof}
-          Observe that $f(x) = x^2 - m \in \Z[x]$ has $\sqrt{m}$ as a root and thus $\sqrt{m}$ is an algebraic integer.  
-          By Theorem 2, $\sqrt{m} = k$ for some $k \in \mathbb{Z}$.
-          Squaring both sides yields $m = k^2$, as desired.
-	\end{proof}
+  Using Theorem 2, prove that if $m$ is a positive integer for which $\sqrt{m} \in \mathbb{Q}$, then $m$ is a square (i.e., $m = k^2$ for some $k \in \mathbb{Z}$).
+  \begin{proof}
+    Observe that $f(x) = x^2 - m \in \mathbb{Z}[x]$ has $\sqrt{m}$ as a root and thus $\sqrt{m}$ is an algebraic integer.  
+    By Theorem 2, $\sqrt{m} = k$ for some $k \in \mathbb{Z}$.
+    Squaring both sides yields $m = k^2$, as desired.
+  \end{proof}
 \end{thm}
 
 \begin{thm}
-	Show that the average of the $x_j^2$'s is independent of the line and find its value.
-	\begin{proof}
-	With a little computation, we have the identity $$x_1^2 + x_2^2 + x_3^2 + x_4^2 = \sigma_1^2 - 2\sigma_2.$$
-	Using that $\sigma_1 = -a_{n-1}/a_n = -7/2$ and $\sigma_2 = a_{n-2}/a_n = 0$ we obtain $$\frac{1}{4}(x_1^2 + x_2^2 + x_3^2 + x_4^2) = \frac{49}{8}.$$
-	\end{proof}
+  Show that the average of the $x_j^2$'s is independent of the line and find its value.
+  \begin{proof}
+    With a little computation, we have the identity $$x_1^2 + x_2^2 + x_3^2 + x_4^2 = \sigma_1^2 - 2\sigma_2.$$
+    Using that $\sigma_1 = -a_{n-1}/a_n = -7/2$ and $\sigma_2 = a_{n-2}/a_n = 0$ we obtain $$\frac{1}{4}(x_1^2 + x_2^2 + x_3^2 + x_4^2) = \frac{49}{8}.$$
+  \end{proof}
 \end{thm}
 
 \begin{thm}
-	Prove or disprove that the average of the $y_j$'s is independent of the line.
-	\begin{proof}
-	With a bit of computation, it can be shown that the following identities hold:
-		$$x_1^4 + x_2^4 + x_3^4 + x_4^4 = \sigma_{1}^{4} - 4 \sigma_{1}^{2} \sigma_{2} + 2 \sigma_{2}^{2} + 4
-\sigma_{1} \sigma_{3} - 4 \sigma_{4} \text{ and }
-		x_1^3 + x_2^3 + x_3^3 + x_4^3 = \sigma_{1}^{3} - 3 \sigma_{1} \sigma_{2} + 3 \sigma_{3}$$
-	Using these identities in the equation for the sum of the $y_i$'s and that $\sigma_1 = -7/2,\, \sigma_2 = 0,\\ \sigma_3 = -(3-m)/2, \text{ and } \sigma_4 = -(5 + b)/2$ we obtain
-	$$\sum_{i=1}^4 y_i= 2(\sigma_{1}^{4} - 4 \sigma_{1}^{2} \sigma_{2} + 2 \sigma_{2}^{2} + 4
-\sigma_{1} \sigma_{3} - 4 \sigma_{4}) + 7(\sigma_{1}^{3} - 3 \sigma_{1} \sigma_{2} + 3 \sigma_{3}) + 3(\sigma_1) - 5 = -\frac{7}{2} m + 4 b + 15.$$
-	Since $m$ and $b$ vary with the choice of $y_j$, it is clear that the average of the $y_j$'s is not independent of the line chosen.
+  Prove or disprove that the average of the $y_j$'s is independent of the line.
+  \begin{proof}
+    Fix a line $y = mx + b$ passing through $2x^4 + 7x^3 + 3x -5$ at four points and consider the roots of $2x^4 + 7x^3 + (3-m)x - (5+b)$.
+    With a bit of computation, it can be shown that the following identities hold:
+    \begin{enumerate}
+    \item
+      $x_1^4 + x_2^4 + x_3^4 + x_4^4 = \sigma_{1}^{4} - 4 \sigma_{1}^{2} \sigma_{2} + 2 \sigma_{2}^{2} + 4
+      \sigma_{1} \sigma_{3} - 4 \sigma_{4}, \text{ and }$
+    \item
+      $x_1^3 + x_2^3 + x_3^3 + x_4^3 = \sigma_{1}^{3} - 3 \sigma_{1} \sigma_{2} + 3 \sigma_{3}$
+    \end{enumerate}
+    Using these identities in the equation for the sum of the $y_i$'s and that $\sigma_1 = -7/2,\, \sigma_2 = 0,\\ \sigma_3 = -(3-m)/2, \text{ and } \sigma_4 = -(5 + b)/2$ we obtain
+    $$\sum_{i=1}^4 y_i= 2(\sigma_{1}^{4} - 4 \sigma_{1}^{2} \sigma_{2} + 2 \sigma_{2}^{2} + 4
+    \sigma_{1} \sigma_{3} - 4 \sigma_{4}) + 7(\sigma_{1}^{3} - 3 \sigma_{1} \sigma_{2} + 3 \sigma_{3}) + 3(\sigma_1) - 5 = -\frac{7}{2} m + 4 b + 15.$$
+    Since the sum of the $y_j$'s depend on $m$ and $b$, it is clear that the average of the $y_j$'s is not independent of the line chosen.
 
-	\end{proof}
+  \end{proof}
 \end{thm}
 
 \begin{thm}
-	Prove that $\displaystyle{\frac{1}{\pi}\sin^{-1}\left(\frac{\sqrt[3]{2}}{3}\right)}$ is irrational.
-	\begin{proof}
-	Let $\pi\alpha = \sin^{-1}(\sqrt[3]{2}/3)$ so that $2\sin(\pi\alpha) = 2\cos(\pi(1-\alpha)/2) = 2\sqrt[3]{2}/3$.
-	Suppose $\alpha$ were rational and observe then that $2\sqrt[3]{2}/3$ would be an algebraic integer.
-	Then by Theorems 2 and 5, we have $(2\sqrt[3]{2}/3)^3 = 16/27 \in \mathbb{Z}$, a contradiction.
-	Therefore $\alpha$ is irrational.
-	
-	\end{proof}
+  Prove that $\displaystyle{\frac{1}{\pi}\sin^{-1}\left(\frac{\sqrt[3]{2}}{3}\right)}$ is irrational.
+  \begin{proof}
+    Let $\pi\alpha = \sin^{-1}(\sqrt[3]{2}/3)$ so that $2\sin(\pi\alpha) = 2\cos(\pi(1-\alpha)/2) = 2\sqrt[3]{2}/3$.
+    Suppose $\alpha$ were rational and observe then that $2\sqrt[3]{2}/3$ would be an algebraic integer.
+    Then by Theorems 2 and 5, we have $(2\sqrt[3]{2}/3)^3 = 16/27 \in \mathbb{Z}$, a contradiction.
+    Therefore $\alpha$ is irrational.
+    
+  \end{proof}
 \end{thm}
 
 \end{document}
