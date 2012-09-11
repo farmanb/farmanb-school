@@ -1,0 +1,185 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate}
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 701:\\Homework 02}
+\date{September 12, 2012}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+\maketitle
+
+\newcommand{\Inn}[1]{\mathop{Inn}(#1)}
+\newcommand{\Aut}[1]{\mathop{Aut}(#1)}
+\newcommand{\cntr}[1]{\mathbf{Z}(#1)}
+
+\newtheorem{thm}{}
+\newtheorem{lem}{Lemma}
+\begin{lem}
+  If $H$ is a non-empty subset of $G$, then $H$ is a subgroup of $G$ if and only if $h_1h_2^{-1} \in H$ holds for every $h_1,h_2 \in H$.
+  \begin{proof}
+    If $H \leq G$ holds, then $h_1h_2^{-1} \in H$ follows directly from the group axioms.  
+    Conversely, suppose $h_1h_2^{-1} \in H$ holds for every $h_1,h_2 \in H$.
+    By hypothesis $1_G = h_1h_1^{-1} \in H$ and thus $h_1^{-1} = 1_Gh_1^{-1} \in H$.
+    Lastly, we have $h_1h_2 = h_1(h_2^{-1})^{-1} \in H$, which shows $H$ is closed under the operation in $G$.
+    Therefore, $H$ is a subgroup of $G$.
+  \end{proof}
+\end{lem}
+
+\begin{thm}
+  Let $g \in G$.  Show that $C_G(g)$, the centralizer of $g$ in $G$, is a subgroup of $G$.
+  \begin{proof}
+    Let $h \in C_G(g)$ be given.
+    Observe that if $h,h^{\prime} \in C_G(g)$, then $$hh^{\prime}g = hgh^{\prime} = ghh^{\prime}.$$
+    To see that $C_G(g)$ is closed under inverses, take $gh = hg$ and multiply both sides by $h^{-1}$ on the left and the right to obtain $h^{-1}g = gh^{-1}$.
+    Therefore $C_G(g)$ is a subgroup of $G$.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Suppose that $\theta:G \rightarrow H$ is a group isomorphism.  Show that $\theta(\cntr{G}) = \cntr{H}$.
+  \begin{proof}
+    Fix $z \in \cntr{G}$ and let $g \in G$ be given.
+    Since $\theta$ is surjective and $g$ was chosen arbitrarily $$\theta(g)\theta(z) = \theta(gz) = \theta(zg) = \theta(z)\theta(g)$$
+    implies that $\theta(z) \in \cntr{H}$.
+    Moreover, this holds for all $z$.
+    Hence $\theta(\cntr{G}) \subseteq \cntr{H}$.
+    
+    To see the reverse containment, fix $z \in \cntr{H}$ and let $h \in H$ be given.  
+    Since $\theta$ is an isomorphism, there exist unique elements $g$ and $g^{\prime}$ of $G$ such that $g = \theta^{-1}(z)$ and $g^{\prime} = \theta^{-1}(h)$.
+    Then we have by injectivity of $\theta$ that
+    $$\theta(gg^{\prime}) = zh = hz = \theta(g^{\prime}g)$$
+    implies $gg^{\prime} = g^{\prime}g$.
+    Since $g^{\prime}$ ranges over all of $G$ as $h$ ranges over $H$, $g \in \cntr{G}$.
+    Moreover, since the choice of $z$ was arbitrary, we have the reverse containment, $\cntr{H} \subseteq \theta(\cntr{G})$.
+    Therefore $\theta(\cntr{G}) = \cntr{H}$.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Show that $\Inn{G} \lhd \Aut{G}$.
+  \begin{proof}
+    
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Suppose that $H,K$ are subgroups of $G$ and that $HK = KH$.  Show that $HK$ is a subgroup of $G$.
+  \begin{proof}
+    
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Suppose that $\sigma \in \Aut{G}$.
+  \begin{enumerate}[(a)]
+  \item
+    Suppose that for all $x \in G$, we have $\sigma(x) = x^{-1}.$  Show that $G$ is abelian.
+  \item
+    Suppose that for all $x \in G$, $\sigma^2(x) = x$ and $\sigma(x) = x$ if and only if $x = 1_G$.
+    Suppose also that $G$ is finite.
+    Show that $G$ is abelian.
+  \end{enumerate}
+  \begin{proof}
+    \begin{enumerate}[(a)]
+    \item
+      Let $g_1,g_2 \in G$ be given.
+      By hypothesis $$g_1g_2 = \sigma(g_2^{-1}g_1^{-1}) = \sigma(g_2^{-1})\sigma(g_1^{-1}) = g_2g_1.$$
+      Therefore $G$ is abelian.
+    \item
+      First we show that every element of $G$ can be written as $g^{-1}\sigma(g)$ for some $g \in G$.
+      It suffices to exhibit a bijection between $G$ and the set $\left\{g^{-1}\sigma(g) \mid g \in G\right\}$.
+      Define the map
+      \begin{align*}
+        \psi \colon G & \rightarrow G\\
+        g & \mapsto g^{-1}\sigma(g)
+      \end{align*}
+      and suppose for some $g_1, g_2 \in G$ that $\psi(g_1) = g_1^{-1}\sigma(g_1) = g_2^{-1}\sigma(g_2) = \psi(g_2)$.
+      With some minor rearrangement we obtain $g_2g_1^{-1} = \sigma(g_2g_1^{-1})$, which holds if and only if $g_1 = g_2$.
+      Then $\psi$ is an injection between two sets of equal cardinality, hence a bijection.
+      
+      Now let $g,h \in G$ be given.
+      Write $g = g_1^{-1}\sigma(g_1)$, and $h = g_2^{-1}\sigma(g_2)$ for some $g_1,g_2 \in G$, then observe that $\sigma(g) = \sigma(g_1)^{-1}g_1 = g^{-1}$.
+      To see that $G$ is abelian, consider the element $ghg^{-1}$ of $G$.
+      Manipulating the properties of $\sigma$, we obtain
+      $$ghg^{-1} = \sigma(h^{-1}g^{-1})\sigma(g) = \sigma(h^{-1}) = h.$$
+      Therefore $G$ is abelian.
+      
+    \end{enumerate}
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Suppose that $H$ is a subgroup of $G$ with $[G : H] = 2$.  Show that $H \lhd G$.
+  \begin{proof}
+    Observe that, since $H$ is one of the two cosets that partition the group, we can write $G = H \cup G \setminus H$.  
+    For any $g \in H$, we have $gH = H = Hg$.
+    Now consider any $g \not \in H$.
+    Since $gH \not = H$ and $Hg \not = H$, we have $gH = G \setminus H = Hg.$ 
+    Therefore $H \lhd G$.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Let $H$ be a subgroup of $G$, and let $\mathcal{R}$ and $\mathcal{L}$ denote the sets of all distinct right and left cosets of $H$ in $G$, respectively. 
+  Find a bijection between $\mathcal{R}$ and $\mathcal{L}$.
+  \begin{proof}
+    
+  \end{proof}
+\end{thm}
+
+\begin{lem}\label{lemma:aut}
+  Let $G= \mathbb{Z}/n\mathbb{Z}$ and let $1 = g_1, g_2, \ldots, g_{\phi(n)}$ be the generators for $G$.
+  The collection of maps 
+  \begin{align*}
+    \varphi_i \colon G &\rightarrow G\\
+    \alpha &\mapsto \alpha g_i
+  \end{align*}
+  forms the automorphism group of $G$.
+  \begin{proof}
+    Fix $\varphi = \varphi_i$ for some $1 \leq i \leq \phi(n)$ and let $a,b \in \mathbb{Z}/n\mathbb{Z}$ be given.
+    Observe that because $g_i$ generates $G$, $\varphi$ is a bijection.
+    Now consider $\varphi(a+b)$, which can be rewritten as $$\varphi(a+b) = (a+b)g_i = ag_i + bg_i = \varphi(a) + \varphi(b).$$
+    Hence $\varphi$ is a homomorphism, which shows $\left\{\varphi_i \mid 1 \leq i \leq \phi(n)\right\} \subseteq \Aut{G}$.
+    
+    To see the reverse containment, let $\sigma \in \Aut{G}$ be given and consider $\sigma(1)$.
+    Suppose $\sigma(1)$ has order $0 < m$.
+    Then we have 
+    \begin{equation}\label{eq:1}
+      \sigma(m) = \sigma\left(\sum_{k=1}^m 1\right) = \sum_{k=1}^m\sigma(1) = m\sigma(1) = 0.
+    \end{equation}
+    Now, take any other $a \in G$ and observe that $\sigma(a) = \sigma(0 + a) = \sigma(0) + \sigma(a)$ implies $\sigma(0) = 0$.
+    By the injectivity of $\sigma$ we have $m = n$, hence $\sigma(1)$ is a generator for $G$.
+    Moreover, by the same argument used to obtain equation~\ref{eq:1} we have for general $a \in G$ that $\sigma(a) = a\sigma(1) = ag_i = \varphi_i(a)$ for some $1 \leq i \leq \phi(n)$.
+    Hence $\Aut{G} \subseteq  \left\{\varphi_i \mid 1 \leq i \leq \phi(n)\right\}$.
+  \end{proof}
+\end{lem}
+\begin{thm}
+  Let $C$ be a cyclic group of order $n$.  Show that $\Aut{C} \cong \left(\mathbb{Z}/n\mathbb{Z}\right)^\times$.
+  \begin{proof}
+    First, observe that $C \cong \mathbb{Z}/n\mathbb{Z}$. Let $1=c_1, c_2, \ldots, c_{\phi(n)}$ be the generators for $C$.  By Lemma~\ref{lemma:aut} and the fact that the generators for $C$ are exactly the $\phi(n)$ elements of $(\mathbb{Z}/n\mathbb{Z})^{\times}$, we can define the map 
+    \begin{align*}
+      \psi \colon \Aut{C} & \rightarrow (\mathbb{Z}/n\mathbb{Z})^{\times}\\
+      \varphi_i & \mapsto c_i
+    \end{align*}
+    We note that, by construction, the map is an injection between sets of equal cardinality, hence a bijection.
+    Let $\varphi_i, \varphi_j \in \Aut{C}$ be given.
+    We first observe that $\varphi_i\varphi_j$ is determined by the image of $1_C$, namely $\varphi_i\varphi_j(1) = \varphi_i(c_j) = c_jc_i = c_ic_j$.
+    It now follows directly that $\psi(\varphi_i\varphi_j) = c_ic_j = \psi(\varphi_i)\psi(\varphi_j)$, and thus $\psi$ is a homomorphism.
+    Therefore $\Aut{C} \cong (\mathbb{Z}/n\mathbb{Z})^{\times}$.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Let $n \geq 1$.  Show that $$n = \sum_{d \mid n} \phi(d).$$
+  \begin{proof}
+    Consider the group $\mathbb{Z}/n\mathbb{Z}$.  
+    Observe that as a corollary to Lagrange's Theorem we can write 
+    $$G = \dot{\cup}_{d \mid n} \left\{g \in G \mid o(g) = d\right\}.$$
+    Moreover, every element of order $d$ is a generator for the unique cyclic subgroup of order $d$, of which there are $\phi(n).$
+    Therefore $$\left| G \right| = \sum_{d \mid n} \left| \left\{g \in G \mid o(g) = d\right\} \right| = \sum_{d \mid n} \phi(d).$$
+  \end{proof}
+\end{thm}
+\end{document}
