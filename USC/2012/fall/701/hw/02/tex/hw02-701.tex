@@ -1,5 +1,5 @@
 \documentclass[10pt]{amsart}
-\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath}
 \openup 5pt
 \author{Blake Farman\\University of South Carolina}
 \title{Math 701:\\Homework 02}
@@ -11,28 +11,18 @@
 \begin{document}
 \maketitle
 
-\newcommand{\Inn}[1]{\mathop{Inn}(#1)}
-\newcommand{\Aut}[1]{\mathop{Aut}(#1)}
+\newcommand{\Inn}[1]{\operatorname{Inn}(#1)}
+\newcommand{\Aut}[1]{\operatorname{Aut}(#1)}
 \newcommand{\cntr}[1]{\mathbf{Z}(#1)}
 
 \newtheorem{thm}{}
 \newtheorem{lem}{Lemma}
-\begin{lem}
-  If $H$ is a non-empty subset of $G$, then $H$ is a subgroup of $G$ if and only if $h_1h_2^{-1} \in H$ holds for every $h_1,h_2 \in H$.
-  \begin{proof}
-    If $H \leq G$ holds, then $h_1h_2^{-1} \in H$ follows directly from the group axioms.  
-    Conversely, suppose $h_1h_2^{-1} \in H$ holds for every $h_1,h_2 \in H$.
-    By hypothesis $1_G = h_1h_1^{-1} \in H$ and thus $h_1^{-1} = 1_Gh_1^{-1} \in H$.
-    Lastly, we have $h_1h_2 = h_1(h_2^{-1})^{-1} \in H$, which shows $H$ is closed under the operation in $G$.
-    Therefore, $H$ is a subgroup of $G$.
-  \end{proof}
-\end{lem}
 
 \begin{thm}
   Let $g \in G$.  Show that $C_G(g)$, the centralizer of $g$ in $G$, is a subgroup of $G$.
   \begin{proof}
     Let $h \in C_G(g)$ be given.
-    Observe that if $h,h^{\prime} \in C_G(g)$, then $$hh^{\prime}g = hgh^{\prime} = ghh^{\prime}.$$
+    Observe that if $h,h^{\prime} \in C_G(g)$, then $$hh^{\prime}g = h(h^{\prime}g) = (hg)h^{\prime} = ghh^{\prime}.$$
     To see that $C_G(g)$ is closed under inverses, take $gh = hg$ and multiply both sides by $h^{-1}$ on the left and the right to obtain $h^{-1}g = gh^{-1}$.
     Therefore $C_G(g)$ is a subgroup of $G$.
   \end{proof}
@@ -61,14 +51,36 @@
 \begin{thm}
   Show that $\Inn{G} \lhd \Aut{G}$.
   \begin{proof}
-    
+	\newcommand{\p}{\varphi \circ \theta_g \circ \varphi^{-1}}
+	Let $g \in G$ and $\varphi \in \Aut{G}$ be given.
+	Consider $\p \in \Aut{G}$.
+	For each $h \in G$ we have $$\p (h) = \varphi(g\varphi^{-1}(h)g^{-1}) = \varphi(g)h\varphi(g)^{-1}.$$
+	Hence $\p = \theta_{\varphi(g)} \in \Inn{G}$ implies that for each $\varphi \in \Aut{G}$, $\Inn{G}^{\varphi} \subseteq \Inn{G}$.
+	Therefore $\Inn{G} \lhd \Aut{G}$.
   \end{proof}
 \end{thm}
 
+\begin{lem}\label{lem:sgc}
+  If $H$ is a non-empty subset of $G$, then $H$ is a subgroup of $G$ if and only if $h_1h_2^{-1} \in H$ holds for every $h_1,h_2 \in H$.
+  \begin{proof}
+    If $H \leq G$ holds, then $h_1h_2^{-1} \in H$ follows directly from the group axioms.  
+    Conversely, suppose $h_1h_2^{-1} \in H$ holds for every $h_1,h_2 \in H$ and note that $H$ inherits associativity from $G$.
+    By hypothesis $1_G = h_1h_1^{-1} \in H$ and thus $h_1^{-1} = 1_Gh_1^{-1} \in H$.
+    Lastly, we have $h_1h_2 = h_1(h_2^{-1})^{-1} \in H$, which shows $H$ is closed under the operation in $G$.
+    Therefore, $H$ is a subgroup of $G$.
+  \end{proof}
+\end{lem}
 \begin{thm}
   Suppose that $H,K$ are subgroups of $G$ and that $HK = KH$.  Show that $HK$ is a subgroup of $G$.
   \begin{proof}
-    
+    By Lemma~\ref{lem:sgc} it suffices to show that for any $h_1k_1,h_2k_2 \in HK$ that 
+	\begin{equation}\label{eq:sgc}
+		h_1k_1k_2^{-1}h_1^{-1} \in HK.
+	\end{equation}
+    First observe that $k_3 = k_1k_2^{-1} \in K$, so we may rewrite equation~\ref{eq:sgc} as $h_1(k_1k_2^{-1})h_1^{-1} = h_1k_3h_1^{-1}$.
+    Now we observe that $k_3h_1^{-1} \in KH = HK$ implies that there exists some $h_3k = k_3h_1^{-1} \in HK$.
+	Hence $h_1(k_3h_1^{-1}) = h_1h_3k = (h_1h_3)k$, which can be rewritten as $hk \in HK$, where $h = h_1h_3 \in H$.
+	Therefore $HK$ is a subgroup of $G$, as desired.
   \end{proof}
 \end{thm}
 
@@ -126,7 +138,19 @@
   Let $H$ be a subgroup of $G$, and let $\mathcal{R}$ and $\mathcal{L}$ denote the sets of all distinct right and left cosets of $H$ in $G$, respectively. 
   Find a bijection between $\mathcal{R}$ and $\mathcal{L}$.
   \begin{proof}
-    
+    Define the map
+	\begin{align*}
+		\varphi \colon \mathcal{L} &\rightarrow \mathcal{R}\\
+		gH &\mapsto Hg^{-1},
+	\end{align*}
+	where $g \in G$.
+	To see that $\varphi$ is well defined, consider two representatives $g_1, g_2$ for a coset in $\mathcal{L}$.
+	For some $h_1, h_2 \in H$ we have $$g_1 = g_2h_1 \text{ and } g_2 = g_1h_2.$$
+	Taking inverses of both sides we have $g_1^{-1} = h_1^{-1}g_2^{-1}$ and $g_2^{-1} = h_2^{-1}g_1^{-1}$.
+	Hence $\varphi(g_1H) = \varphi(g_2H)$.
+	That $\varphi$ is injective follows from the same argument, mutatis mutandis, in reverse.
+	Moreover, for any $g \in G$, $Hg$ is the image of $g^{-1}H$ under $\varphi$, which shows that $\varphi$ is surjective.
+	Therefore $\varphi$ is a bijection.
   \end{proof}
 \end{thm}
 
