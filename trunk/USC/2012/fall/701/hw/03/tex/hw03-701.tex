@@ -1,0 +1,318 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate}
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 701:\\Homework 03}
+\date{September 19, 2012}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+\maketitle
+
+\newcommand{\Inn}[1]{\operatorname{Inn}\left(#1\right)}
+\newcommand{\Aut}[1]{\operatorname{Aut}\left(#1\right)}
+\newcommand{\cntr}[1]{\mathbf{Z}\left(#1\right)}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\SL}[2]{\operatorname{SL}_#1\left(#2\right)}
+\newcommand{\Mat}[2]{\operatorname{Mat}_{#1}\left(#2\right)}
+\renewcommand{\qedsymbol}{\ensuremath{\blacksquare}}
+
+\newtheorem{thm}{}
+\newtheorem{lem}{Lemma}
+
+\begin{thm}
+  Suppose that $H$ and $N$ are subgroups of $G$ with $N \lhd G$.
+  Show that $H \cap N \lhd H$.
+  \begin{proof}
+	Let $n \in H \cap N$ and $h \in H$ be given and observe that $n \in N$.
+	Therefore, by normality of $N$ in $G$, $hnh^{-1} \in N$ implies $H \cap N \lhd H$.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Define $\SL{2}{\mathbb{Z}} = \left\{ M \in \Mat{2 \times 2}{\mathbb{Z}} \mid \det(M) = 1 \right\}$.
+  It is a group, a fact that you do not have to prove.
+  Let $N$ be a positive integer and define
+  \begin{align*}
+	\Gamma_0(N) & := \left\{ \left(
+								\begin{array}{cc}
+									a & b\\
+									c & d
+								\end{array}
+								\right) \in \SL{2}{\mathbb{Z}}
+								\;\middle\vert\; c \equiv 0\, (\text{mod } N)
+							\right\}\\
+	\Gamma_1(N) & := \left\{ \left(
+								\begin{array}{cc}
+									a & b\\
+									c & d
+								\end{array}
+								\right) \in \SL{2}{\mathbb{Z}}
+								\;\middle\vert\; a \equiv d \equiv 1,\, c \equiv 0\, (\text{mod } N)
+							\right\}\\
+  \end{align*}
+  Observe that $\Gamma_1(N) \subseteq \Gamma_0(N) \SL{2}{\mathbb{Z}}$.
+  \begin{enumerate}[(a)]
+	\item
+		Prove that $\Gamma_0(N)$ is a subgroup of $\SL{2}{\mathbb{Z}}$.
+	\item
+		Prove that $\Gamma_1(N) \lhd \Gamma_0(N)$ and that $\Gamma_0(N) / \Gamma_1(N) \cong (\mathbb{Z}/N\mathbb{Z})^{\times}$.
+	\item
+		Let $S = \left(
+					\begin{array}{cc}
+						0 & -1\\
+						1 & 0
+					\end{array}
+				 \right)$,
+				 $T = \left(
+					\begin{array}{cc}
+						1 & 1\\
+						0 & 1
+					\end{array}
+				 \right)$.
+				 Show that $\SL{2}{\mathbb{Z}} = \left<S,T\right>$.
+  \end{enumerate}
+  
+  \begin{proof}
+	\begin{enumerate}
+		\item
+			Let $A = \left(
+					\begin{array}{cc}
+						a & b\\
+						c & d
+					\end{array}
+				 \right)$,
+				$B = \left(
+					\begin{array}{cc}
+						e & f\\
+						g & h
+					\end{array}
+				 \right) \in \Gamma_0(N)$ be given.
+				 Observe that, modulo $N$, we have
+					$$AB^{-1} = 
+					\left(
+					\begin{array}{cc}
+						a & b\\
+						0 & d
+					\end{array}
+					\right)
+					\left(
+					\begin{array}{cc}
+						h & -f\\
+						0 & e
+					\end{array}
+					\right)
+					=
+					\left(
+					\begin{array}{cc}
+						ah & be - af\\
+						0 & de
+					\end{array}
+				 \right) \in \Gamma_0(N).$$
+			Therefore $\Gamma_0(N) \leq \SL{2}{\mathbb{Z}}$.
+		\item
+			Let $A = \left(
+					\begin{array}{cc}
+						a & b\\
+						c & d
+					\end{array}
+				 \right)$,
+				$B = \left(
+					\begin{array}{cc}
+						e & f\\
+						g & h
+					\end{array}
+				 \right) \in \Gamma_1(N)$ be given.
+				 Observe that, modulo $N$, we have
+					$$AB^{-1} = 
+					\left(
+					\begin{array}{cc}
+						1 & b\\
+						0 & 1
+					\end{array}
+					\right)
+					\left(
+					\begin{array}{cc}
+						1 & -f\\
+						0 & 1
+					\end{array}
+					\right)
+					=
+					\left(
+					\begin{array}{cc}
+						1 & b - f\\
+						0 & 1
+					\end{array}
+				 \right) \in \Gamma_1(N).$$
+			Therefore $\Gamma_1(N) \leq \Gamma_0(N)$.
+			
+			To see that $\Gamma_1(N)$ is normal in $\Gamma_0(N)$, let $A = \left(
+					\begin{array}{cc}
+						a & b\\
+						c & d
+					\end{array}
+				 \right) \in \Gamma_0(N)$, and
+				$B = \left(
+					\begin{array}{cc}
+						e & f\\
+						g & h
+					\end{array}
+				 \right) \in \Gamma_1(N)$
+			be given.
+			Then, modulo N, we have
+			$$ABA^{-1} = \left(
+					\begin{array}{cc}
+						a & b\\
+						0 & d
+					\end{array}
+					\right)
+					\left(
+					\begin{array}{cc}
+						1 & f\\
+						0 & 1
+					\end{array}
+				 \right)
+				 \left(
+					\begin{array}{cc}
+						d & -b\\
+						0 & a
+					\end{array}
+					\right) = 
+				\left(
+					\begin{array}{cc}
+						ad & a^2f\\
+						0 & ad
+					\end{array}
+					\right)
+				$$
+			Since $\det(A) = ad - bc$ and $bc \equiv 0 (\text{mod }\, N)$, it follows that $ad \equiv 1 (\text{mod }\, N)$.
+			Therefore $ABA^{-1} \in \Gamma_1(N)$ implies that $\Gamma_1(N) \lhd \Gamma_0(N)$.
+		\item
+	\end{enumerate}
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Recall that $\cntr{Z} = \left\{ g \in G \mid \forall\, x \in G, \, xg = gx \right\}$.
+  \begin{enumerate}[(a)]
+	\item
+		Suppose that $G/\cntr{G}$ is cyclic.  Show that $G$ is abelian.
+	\item
+		Show that $G/\cntr{Z} \cong \Inn{G}$.  Conclude that $\Inn{G}$ cannot be cyclic unless it is the trivial group, $\left<1\right>$.
+	\item
+		Suppose that there exist primes $p,q$ (not necessarily distinct) such that $\abs{G} = pq$.
+		Prove that $G$ is either abelian or $\cntr{G} = 1$.
+  \end{enumerate}
+  \begin{proof}
+	\begin{enumerate}[(a)]
+		\item
+			Let $\pi: G \rightarrow G/\cntr{G}$ be the canonical projection homomorphism.
+			Since $\pi$ is surjective, we may assume the existence of a $g_0 \in G$ such that $\left< \pi(g_0) \right> = G/\cntr{G}$.
+			Let $g,h \in G$ be given.
+			By assumption there exist integers $\alpha, \beta$ such that $\pi(g) = \pi(g_0^{\alpha})$ and $\pi(h) = \pi(g_0^{\beta})$.
+			Hence there exist elements $z, z^{\prime} \in \cntr{G}$ such that $g = g_0^{\alpha}z$ and $h = g_0^{\beta}z^{\prime}$.
+			Therefore
+				$$gh = (g_0^{\alpha}z)(g_0^{\beta}z^{\prime})
+					= g_0^{\alpha}g_0^{\beta}zz^{\prime}
+					= g_0^{\beta}g_0^{\alpha}zz^{\prime}
+					= (g_0^{\beta}z^{\prime})(g_0^{\alpha}z)
+					= hg.$$
+		\item
+			Define the map
+				\begin{align*}
+					\varphi \colon G &\rightarrow \Inn{G}\\
+					g & \mapsto gxg^{-1} = \theta_g.
+				\end{align*}
+			Let $g,h \in G$ be given and observe that $\varphi(gh) = ghxh^{-1}g^{-1} = \theta_g\theta_h = \varphi(g)\varphi(h)$ implies $\varphi$ is a homomorphism.
+			Furthermore, observe that $\cntr{G} \subseteq \ker \varphi$.
+			Fix $k \in \ker\varphi$, hence $kxk^{-1} = x$ holds for all $x \in G$.
+			This shows the reverse containment and so, by the First Isomorphism Theorem, we have $G/\cntr{G} \cong \Inn{G}$.
+			
+			It now follows that $\Inn{G}$ is cyclic if and only if $G/\cntr{G}$ is cyclic.
+			Moreover, if it were cyclic, then by part (a) we have $G = \cntr{G}$ and thus $\Inn{G}$ is trivial.
+		\item
+			By Lagrange's Theorem, the order of $\cntr{G}$ divides either $1$, $pq$, $p$, or $q$.
+			The former two cases imply that either $\cntr{G}$ is trivial or $G$ is abelian, so it suffces to show $\cntr{G}$ does not have prime order.
+			
+			Suppose $\cntr{G}$ were to have prime order.
+			Then $G/\cntr{G}$ would have prime order, and thus would be cyclic.
+			Moreover, by part (a), $G$ would be abelian.
+			However, $\cntr{G}$ was supposed to have order strictly smaller than that of $G$, a contradiction.
+			Therefore either $G$ is abelian or $\cntr{G}$ is trivial.
+			
+	\end{enumerate}
+  \end{proof}
+\end{thm}
+\begin{thm}
+  Let $G = \left\{f \colon \mathbb{R} \rightarrow \mathbb{R} \mid \exists\, a \not = 0,\, b \in \mathbb{R} \text{ such that } \forall\, x\in \mathbb{R},\, f(x) = ax + b\right\}$.
+  The set $G$ is the group of affine transformations of $\mathbb{R}$.  
+  Show that $G$ has a subgroup $H$ and an element $g$ such that $H^{g}$ is a proper subgroup of $H$.
+  \begin{proof}
+	Let 
+		$$H = \left\{ f \colon \mathbb{R} \rightarrow \mathbb{R} 
+			\mid \exists\, b \in \mathbb{Z} \text{ such that } \forall\, x \in \mathbb{R},\, f(x) = x + b\right\}.$$ 
+	Let $h_1(x) = x + b_1, h_2(x) = x + b_2 \in G$ be given.
+	Then we have $h_1h_2^{-1}(x) = x + (b_2 - b_1)\in H$, which shows $H$ is a subgroup of $G$.
+	
+	Now let $g = 2x \in G$ and let $h = x + b \in H$ be given.
+	With some minor computation, it is easy to see that $ghg^{-1}(x) = x + 2b$.
+	Hence $H^{g} = \left\{ f \colon \mathbb{R} \rightarrow \mathbb{R} \mid \exists\, b \in 2\mathbb{Z} \text{ such that } \forall\, x \in \mathbb{R},\, f(x) = x+b\right\} < H$.
+  \end{proof}
+\end{thm}
+\begin{thm}
+  Let $G$ be finite, and let $H, K$ be subgroups of $G$.  Suppose that $\gcd(\abs{H}, \abs{K}) = 1$.
+  Show that $H \cap K = \left<1\right>$.
+  \begin{proof}
+	By Lagrange's Theorem, $\abs{H \cap K}$ divides both $\abs{H}$ and $\abs{K}$, both of which are finite by assumption.
+	Moreover, it was assumed that $\gcd(\abs{H}, \abs{K}) = 1$, hence $\abs{H \cap K} = 1$.
+	Therefore $H \cap K = \left< 1_G\right>$.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Let $G$ be finite.
+  \begin{enumerate}[(a)]
+	\item
+		Suppose that $H$ is a subgroup, that $N \lhd G$, and that $\gcd(\abs{H}, [G:N]) = 1$.
+		Prove that $H \subseteq N$.
+	\item
+		Suppose that $N \lhd G$ and $\gcd(\abs{N}, [G:N]) = 1$.
+		Prove that $N$ is the unique subgroup of order $\abs{N}$.
+  \end{enumerate}
+  \begin{proof}
+	Observe that $NH$ is a subgroup by the normality of $N$ in $G$.
+	Consider the index of $NH$ in $G$, $$[G : NH] = \frac{\abs{G}}{\abs{NH}} = \frac{[G:N]\abs{N \cap H}}{\abs{H}}.$$
+	By assumption, $\abs{H}$ does not divide $[G:N]$, and so $\abs{H}$ must divide $\abs{H \cap N}$.
+	Moreover, since $H \cap N \leq H$, Lagrange's Theorem implies $\abs{H \cap N}$ divides $\abs{H}$, hence $\abs{H} = \abs{H \cap N}$.
+	Therefore $H = H \cap N$ implies $H \subseteq N$.
+  \end{proof}
+\end{thm}
+\begin{thm}
+  Let $G$ be finite, let $H$ be a subgroup, and let $\phi \colon G \rightarrow K$ be a homomorphism.
+  \begin{enumerate}[(a)]
+	\item
+		Show that $[\phi(G) : \phi(H)]$ divides $[G : H]$.
+	\item
+		Show that $\abs{\phi(H)}$ divides $\abs{H}$.
+  \end{enumerate}
+  \begin{proof}
+	\begin{enumerate}[(a)]
+		\item
+			Observe that by the First Isomorphism Theorem we have $\abs{G} = \abs{\phi(G)}\abs{ker\phi}$ and $\abs{H} = \abs{\phi(H)}\abs{\ker\phi|_H}$, all of which are finite.
+			Hence $$[G : H] = \frac{\abs{G}}{\abs{H}} 
+							= \frac{\abs{\phi(G)}}{\abs{\phi(H)}}\frac{\abs{\ker\phi}}{\abs{\ker\phi|_H}}
+							= [\phi(G) : \phi(H)]\frac{\abs{\ker\phi}}{\abs{\ker\phi|_H}}.$$
+			
+			It remains only to show that $\abs{\ker\phi|_H}$ divides $\abs{\ker\phi}$.
+			Let $h_1, h_2 \in \ker\phi|_H$ be given.
+			Then we have 
+				$$\phi(h_1h_2^{-1}) = \phi(h_1)\phi(h_2)^{-1} = 1_G,$$
+			which implies $\ker\phi|_H \leq \ker\phi$, and the result follows from Lagrange's Theorem.  
+		\item
+			That $\abs{\phi(H)}$ divides $\abs{H}$ follows directly from the equation $\abs{H} = \abs{\phi(H)}\abs{\ker\phi|_H}$, obtained in part (a).
+	\end{enumerate}
+  \end{proof}
+\end{thm}
+\end{document}
