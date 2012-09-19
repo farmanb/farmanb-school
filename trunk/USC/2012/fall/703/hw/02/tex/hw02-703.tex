@@ -1,5 +1,5 @@
 \documentclass[10pt]{amsart}
-\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,paralist}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,paralist,mymath}
 \openup 5pt
 \author{Blake Farman\\University of South Carolina}
 \title{Math 703:\\Homework 01}
@@ -20,78 +20,116 @@
 \newtheorem*{ex25}{p. 535, 25}
 
 \begin{ex3a}
-	Suppose that $(A,\rho)$ is a metric space, and define 
-		$$\rho_1(u,v) = \frac{\rho(u,v)}{1 + \rho(u,v)}.$$
-	Show that $(A, \rho_1)$ is a metric space.
-	
-	\begin{proof}
-	Let $u,v \in A$ be given.
-		Since $\rho$ is a metric, we have $\rho(u,v) \geq 0$ and $1 + \rho(u,v) \geq 1$.
-		Hence $\rho_1(u,v) \geq 0 / 1 = 0$.
-		Moreover, observe that since $1 + \rho(u,v) \geq 1$, $\rho_1(u,v) = 0$ if and only if $u = v$.
-		
-		Since $\rho$ is a metric, we have
-			$$\rho_1(u,v) = \frac{\rho(u,v)}{1 + \rho(u,v)} = \frac{\rho(v,u)}{1 + \rho(v,u)} = \rho_1(v,u).$$
-		Finally, to see the triangle inequality, let $w \in A$ be given and define $A = \rho(u,w)$, $B = \rho(w,v)$, $C = \rho(u,v)$.
-		Consider the sum
-			$$ \frac{A}{1+A} + \frac{B}{1 + B} - \frac{C}{1+C} = \frac{A + B - C + 2AB + ABC}{(1+A)(1+B)(1+C)}.$$
-		Since $A$, $B$, and $C$ are all positive, it is clear that the denominator of the right hand side is strictly positive, hence it suffices to show that the numerator is non-negative.
-		Observe that $$A + B - C + 2AB + ABC \geq 2AB(1 + C)$$ holds by the triangle inequality for $\rho$ and that $2AB(1+C) \geq 0$ follows from $A,B,C$ all non-negative.
-		Therefore the triangle inequality holds for $\rho_1$ and $(A,\rho_1)$ is a metric space.
-	\end{proof}
+  Suppose that $(A,\rho)$ is a metric space, and define 
+  $$\rho_1(u,v) = \frac{\rho(u,v)}{1 + \rho(u,v)}.$$
+  Show that $(A, \rho_1)$ is a metric space.
+  
+  \begin{proof}
+    Let $u,v \in A$ be given.
+    Since $\rho$ is a metric, we have $\rho(u,v) \geq 0$ and $1 + \rho(u,v) \geq 1$.
+    Hence $\rho_1(u,v) \geq 0 / 1 = 0$.
+    Moreover, observe that since $1 + \rho(u,v) \geq 1$, $\rho_1(u,v) = 0$ if and only if $u = v$.
+    
+    Since $\rho$ is a metric, we have
+    $$\rho_1(u,v) = \frac{\rho(u,v)}{1 + \rho(u,v)} = \frac{\rho(v,u)}{1 + \rho(v,u)} = \rho_1(v,u).$$
+    Finally, to see the triangle inequality, let $w \in A$ be given and define $A = \rho(u,w)$, $B = \rho(w,v)$, $C = \rho(u,v)$.
+    Consider the sum
+    $$ \frac{A}{1+A} + \frac{B}{1 + B} - \frac{C}{1+C} = \frac{A + B - C + 2AB + ABC}{(1+A)(1+B)(1+C)}.$$
+    Since $A$, $B$, and $C$ are all positive, it is clear that the denominator of the right hand side is strictly positive, hence it suffices to show that the numerator is non-negative.
+    Observe that $$A + B - C + 2AB + ABC \geq 2AB(1 + C)$$ holds by the triangle inequality for $\rho$ and that $2AB(1+C) \geq 0$ follows from $A,B,C$ all non-negative.
+    Therefore the triangle inequality holds for $\rho_1$ and $(A,\rho_1)$ is a metric space.
+  \end{proof}
 \end{ex3a}
 
 \begin{ex4}{}
-	Let $(A,\rho)$ be a metric space, and let 
-		$$\sigma(u,v) = \frac{\rho(u,v)}{1 + \rho(u,v)}.$$
-	Show that a subset $A$ is open in $(A,\rho)$ if and only if it is open in $(A,\sigma)$.
-	
-	\begin{proof}
-		Let $U \subseteq A$ be given and assume $U$ is open in $(A,\sigma)$.
-		Let $u \in U$ be given.
-		Since $U$ is open, there exists an $\varepsilon > 0$ such that $B_\sigma(u,\varepsilon) = \left\{a \in A \mid \sigma(a,u) < \varepsilon\right\} \subseteq U$.
-		Consider the $\varepsilon$-neighborhood $B_\rho(u,\varepsilon) = \left\{ a \in A \mid \rho(a,u) < \varepsilon\right\}$.
-		Let $a \in B_\rho(u,\varepsilon)$ be given and observe that$\sigma(a,u) = \rho(a,u)/(1 + \rho(a,u)) \leq \rho(a,u) < \varepsilon$.
-		Hence $a \in B_\sigma(u,\varepsilon)$ implies $B_\rho(u,\varepsilon) \subseteq B_\sigma(u,\varepsilon) \subseteq U$.
-		Therefore $U$ is open in $(A,\rho)$.
-		
-		Conversely, assume $U$ is open in $(A,\rho)$.
-		Let $u \in U$ be given.
-		Since $U$ is open, there exists an $\varepsilon > 0$ such that $B_\rho(u,\varepsilon) = \left\{a \in A \mid \rho(a,u) < \varepsilon\right\} \subseteq U$.
-		Let $\epsilon^{\prime} = \varepsilon/(1 + \varepsilon)$ and consider the $\varepsilon^{\prime}$-neighborhood, $B_\sigma(u, \varepsilon^{\prime}) = \left\{a \in A \mid \sigma(a,u) < \varepsilon^{\prime} \right\}$.
-		Let $a \in B_\sigma(a,\varepsilon^{\prime})$ be given and observe that $\sigma(a,u) = \rho(a,u)/(1 + \rho(a,u)) < \varepsilon^{\prime}$.
-		Since $1 + \rho(a,u) \geq 1$, it follows that $\rho(a,u) < \varepsilon^{\prime}(1 + \rho(a,u)) < \varepsilon^{\prime}(1 + \varepsilon) = \varepsilon$.
-		Hence $a \in B_\rho(u,\varepsilon)$ implies $B_\sigma(u,\varepsilon^{\prime}) \subseteq B_\rho(u,\varepsilon) \subseteq U$.
-		Therefore $A$ is open in $(A,\sigma)$.
-	\end{proof}
+  Let $(A,\rho)$ be a metric space, and let 
+  $$\sigma(u,v) = \frac{\rho(u,v)}{1 + \rho(u,v)}.$$
+  Show that a subset $A$ is open in $(A,\rho)$ if and only if it is open in $(A,\sigma)$.
+  
+  \begin{proof}
+    Let $U \subseteq A$ be given and assume $U$ is open in $(A,\sigma)$.
+    Let $u \in U$ be given.
+    Since $U$ is open, there exists an $\varepsilon > 0$ such that $B_\sigma(u,\varepsilon) = \left\{a \in A \mid \sigma(a,u) < \varepsilon\right\} \subseteq U$.
+    Consider the $\varepsilon$-neighborhood $B_\rho(u,\varepsilon) = \left\{ a \in A \mid \rho(a,u) < \varepsilon\right\}$.
+    Let $a \in B_\rho(u,\varepsilon)$ be given and observe that$\sigma(a,u) = \rho(a,u)/(1 + \rho(a,u)) \leq \rho(a,u) < \varepsilon$.
+    Hence $a \in B_\sigma(u,\varepsilon)$ implies $B_\rho(u,\varepsilon) \subseteq B_\sigma(u,\varepsilon) \subseteq U$.
+    Therefore $U$ is open in $(A,\rho)$.
+    
+    Conversely, assume $U$ is open in $(A,\rho)$.
+    Let $u \in U$ be given.
+    Since $U$ is open, there exists an $\varepsilon > 0$ such that $B_\rho(u,\varepsilon) = \left\{a \in A \mid \rho(a,u) < \varepsilon\right\} \subseteq U$.
+    Let $\epsilon^{\prime} = \varepsilon/(1 + \varepsilon)$ and consider the $\varepsilon^{\prime}$-neighborhood, $B_\sigma(u, \varepsilon^{\prime}) = \left\{a \in A \mid \sigma(a,u) < \varepsilon^{\prime} \right\}$.
+    Let $a \in B_\sigma(a,\varepsilon^{\prime})$ be given and observe that $\sigma(a,u) = \rho(a,u)/(1 + \rho(a,u)) < \varepsilon^{\prime}$.
+    Since $1 + \rho(a,u) \geq 1$, it follows that $\rho(a,u) < \varepsilon^{\prime}(1 + \rho(a,u)) < \varepsilon^{\prime}(1 + \varepsilon) = \varepsilon$.
+    Hence $a \in B_\rho(u,\varepsilon)$ implies $B_\sigma(u,\varepsilon^{\prime}) \subseteq B_\rho(u,\varepsilon) \subseteq U$.
+    Therefore $A$ is open in $(A,\sigma)$.
+  \end{proof}
 \end{ex4}{}
 
 \begin{ex13}{}
-	Prove\\
-	\begin{inparaenum}[(a)]
-		\item\label{13a}
-			$(S_1 \cap S_2)^0 = S_1^0 \cap S_2^0$\hspace{10mm}
-		\item\label{13b}
-			$S_1^0 \cup S_2^0 \subset (S_1 \cup S_2)^0$
-	\end{inparaenum}
-	
-	\begin{proof}
-	\end{proof}
+  Prove\\
+  \begin{inparaenum}[(a)]
+  \item\label{13a}
+    $(S_1 \cap S_2)^0 = S_1^0 \cap S_2^0$\hspace{10mm}
+  \item\label{13b}
+    $S_1^0 \cup S_2^0 \subset (S_1 \cup S_2)^0$
+  \end{inparaenum}
+  
+  \begin{proof}
+  \end{proof}
 \end{ex13}{}
 
 \begin{ex25}{}
-	\begin{enumerate}[(a)]
-		\item\label{25a}
-			Show that 
-			$$\norm{f} = \int_a^b \abs{f(x)}dx$$
-			is a norm on $C[a,b]$.
-		\item\label{25b}
-			Show that the sequence $\left\{f_n\right\}$ defined by 
-				$$f_n(x) = \left(\frac{x-a}{b-a}\right)^n$$
-			is a Cauchy sequence in $(C[a,b], \norm{\cdot})$.
-		\item\label{25c}
-			Show that $(C[a,b], \norm{\cdot})$ is not complete.
-	\end{enumerate}
+  \begin{enumerate}[(a)]
+  \item\label{25a}
+    Show that 
+    $$\norm{f} = \int_a^b \abs{f(x)}dx$$
+    is a norm on $C[a,b]$.
+  \item\label{25b}
+    Show that the sequence $\left\{f_n\right\}$ defined by 
+    $$f_n(x) = \left(\frac{x-a}{b-a}\right)^n$$
+    is a Cauchy sequence in $(C[a,b], \norm{\cdot})$.
+  \item\label{25c}
+    Show that $(C[a,b], \norm{\cdot})$ is not complete.
+  \end{enumerate}
+
+  \begin{proof}
+    \begin{enumerate}[(a)]
+    \item
+      
+    \item
+      Let $\varepsilon > 0$ be given and take $N > 2(b-a)/\varepsilon$.
+      Observe that $0 \leq f_n(x) \leq 1$, hence by the triangle inequality
+      \begin{eqnarray*}
+        \norm{f_n - f_m} &\leq& \int_a^b \frac{(x-a)^n}{(b-a)^n}dx + \int_a^b\frac{(x-a)^m}{(b-a)^m}dx\\
+        &=& (b-a)(\frac{1}{n+1} + \frac{1}{m+1})\\
+        &<& (b-a)\left(\frac{2\varepsilon}{2(b-a)}\right) = \varepsilon
+        \end{eqnarray*}
+      holds whenever $m,n \geq N$.
+      Therefore $f_n$ is Cauchy in $(C[a,b], \norm{\cdot})$.
+    \item
+      Let $\varepsilon > 0$ be given and take $N > 2(b-a)/\varepsilon$.
+      Define the function
+      $$g(x) = 
+      \left\{
+      \begin{array}{ll}
+        1 & \text{if } x = b,\\
+        0 & \text{if } a \leq x < b.
+      \end{array}
+      \right.$$
+      Then by the triangle inequality
+      \begin{eqnarray*}
+        \norm{f_n - g} &\leq& \int_a^b \frac{(x-a)^n}{(b-a)^n}dx + \int_a^b g(x)dx\\
+        &=& \frac{(b-a)}{n+1} + \int_{b-\varepsilon/2}^bg(x)dx\\
+        &\leq& \frac{b-a}{n+1} + \int_{b-\varepsilon/2}^bdx\\
+        &=& \frac{b-a}{n+1} + \frac{\varepsilon}{2}\\
+        &<& \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon
+      \end{eqnarray*}
+      holds whenever $n \geq N$.
+      Hence $f_n$ converges in $(C[a,b], \norm{\cdot})$ to $g$, which is discontinuous at $b$.
+      Therefore $(C[a,b], \norm{\cdot})$ is not complete.
+    \end{enumerate}
+  \end{proof}
 \end{ex25}{}
 
 \end{document}
