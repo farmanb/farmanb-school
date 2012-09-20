@@ -1,5 +1,5 @@
 \documentclass[10pt]{amsart}
-\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,paralist,mymath}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,paralist}
 \openup 5pt
 \author{Blake Farman\\University of South Carolina}
 \title{Math 703:\\Homework 01}
@@ -28,7 +28,8 @@
     Let $u,v \in A$ be given.
     Since $\rho$ is a metric, we have $\rho(u,v) \geq 0$ and $1 + \rho(u,v) \geq 1$.
     Hence $\rho_1(u,v) \geq 0 / 1 = 0$.
-    Moreover, observe that since $1 + \rho(u,v) \geq 1$, $\rho_1(u,v) = 0$ if and only if $u = v$.
+    Moreover, $\rho_1(u,v) = 0$ if and only if $\rho(u,v) = 0$.  
+	Hence $\rho_1(u,v) = 0$ if and only if $u = v$.
     
     Since $\rho$ is a metric, we have
     $$\rho_1(u,v) = \frac{\rho(u,v)}{1 + \rho(u,v)} = \frac{\rho(v,u)}{1 + \rho(v,u)} = \rho_1(v,u).$$
@@ -51,7 +52,7 @@
     Let $u \in U$ be given.
     Since $U$ is open, there exists an $\varepsilon > 0$ such that $B_\sigma(u,\varepsilon) = \left\{a \in A \mid \sigma(a,u) < \varepsilon\right\} \subseteq U$.
     Consider the $\varepsilon$-neighborhood $B_\rho(u,\varepsilon) = \left\{ a \in A \mid \rho(a,u) < \varepsilon\right\}$.
-    Let $a \in B_\rho(u,\varepsilon)$ be given and observe that$\sigma(a,u) = \rho(a,u)/(1 + \rho(a,u)) \leq \rho(a,u) < \varepsilon$.
+    Let $a \in B_\rho(u,\varepsilon)$ be given and observe that $\sigma(a,u) = \rho(a,u)/(1 + \rho(a,u)) \leq \rho(a,u) < \varepsilon$.
     Hence $a \in B_\sigma(u,\varepsilon)$ implies $B_\rho(u,\varepsilon) \subseteq B_\sigma(u,\varepsilon) \subseteq U$.
     Therefore $U$ is open in $(A,\rho)$.
     
@@ -70,12 +71,31 @@
   Prove\\
   \begin{inparaenum}[(a)]
   \item\label{13a}
-    $(S_1 \cap S_2)^0 = S_1^0 \cap S_2^0$\hspace{10mm}
+    $(S_1 \cap S_2)^\circ = S_1^\circ \cap S_2^\circ$\hspace{10mm}
   \item\label{13b}
-    $S_1^0 \cup S_2^0 \subset (S_1 \cup S_2)^0$
+    $S_1^\circ \cup S_2^\circ \subseteq (S_1 \cup S_2)^\circ$
   \end{inparaenum}
   
   \begin{proof}
+  \begin{enumerate}[(a)]
+	\item
+		Let $s \in (S_1 \cap S_2)^\circ$ be given.
+		Then there exists an $\varepsilon > 0$ such that the $\varepsilon$-neighborhood about s, $B(s,\varepsilon)$, is contained in $S_1 \cap S_2$.
+		From the definition of the intersection, we have $B(s,\varepsilon) \subseteq S_1$ and $B(s,\varepsilon) \subseteq S_2$.
+		Hence, $s \in S_1^\circ \cap S_2^\circ$ implies $(S_1 \cap S_2)^\circ \subseteq S_1^\circ \cap S_2^\circ$
+		
+		To see the reverse containment, let $s \in S_1^\circ \cap S_2^\circ$ be given.
+		There exist $\varepsilon_1, \varepsilon_2 > 0$ such that $B(s,\varepsilon_1) \subseteq S_1$ and $B(s,\varepsilon_2) \subseteq S_2$.
+		Let $U = B(s,\varepsilon_1) \cap B(s,\varepsilon_2)$, then observe that $U$ is an open neighborhood of $s$ and $U \subseteq S_1 \cap S_2$.
+		Therefore $s \in (S_1 \cap S_2)^\circ$ implies $S_1^\circ \cap S_2^\circ \subseteq (S_1 \cap S_2)^\circ$, as desired.
+	\item
+		Let $s \in S_1^\circ \cup S_2^\circ$ be given.
+		Then there exists an $\varepsilon > 0$ for which either $B(s,\varepsilon) \subseteq S_1$ or $B(s,\varepsilon) \subseteq S_2$ holds.
+		Hence $B(s,\varepsilon) \subseteq S_1 \cup S_2$ implies $s \in (S_1 \cup S_2)^\circ$, and thus $S_1^\circ \cup S_2^\circ \subseteq (S_1 \cup S_2)^\circ$.
+		
+		To see that the reverse containment does not hold in general, consider $\mathbb{R}$ with the usual metric and the sets $S_1 = [-1,0]$ and $S_2 = [0,1]$.  
+		Then $0 \in (S_1 \cup S_2)^\circ = (-1,1)$, but $0 \not \in S_1^\circ \cup S_2^\circ = (-1,0) \cup (0,1)$.
+  \end{enumerate}
   \end{proof}
 \end{ex13}{}
 
@@ -96,15 +116,36 @@
   \begin{proof}
     \begin{enumerate}[(a)]
     \item
+	  Let $f \in C[a,b]$ be given.
+      We first show that $\norm{f} \geq 0$, with equality if and only if $f \equiv 0$.
+      Let $m = \min \left\{ \abs{f(x)} \mid x \in [a,b] \right\}$ and $M = \max \left\{ \abs{f(x)} \mid x \in [a,b] \right\}$.
+	  Observe that
+	  \begin{equation}\label{bound}
+		0 \leq m(b-a) \leq \int_a^b \abs{f(x)}dx \geq m(b-a) \leq M(b-a).
+	  \end{equation}
+      From this inequality it follows that if $f \equiv 0$, then $\norm{f} = 0$ holds.
+	  Hence it suffices to show that if $f \not \equiv 0$, then the left-most inequality in \eqref{bound} is strict.
       
+	  To that end, assume the existence of some $c \in [a,b]$ such that $\abs{f(c)} > 0$ and let $\varepsilon = |f(c)|/2$.
+      Note that since $f$ is continuous on $[a,b]$ and $\abs{\cdot}$ is continuous on $\mathbb{R}$, $\abs{f(x)}$ is continuous on $[a,b]$, hence there exists some $\delta > 0$ such that $|f(B(c,\delta) \cap [a,b])| \subseteq B(|f(c)|,\varepsilon)$.
+      If $B(c,\delta) \cap [a,b]^c \not = \emptyset$, then we may choose a smaller $\delta$ such that $B(c,\delta) \subset [a,b]$.
+      Hence it suffices to assume that $B(c,\delta) \subset [a,b]$.
+      
+      Now, it follows from \eqref{bound} that
+      $$\int_{c-\delta/2}^{c+\delta/2} \abs{f(x)}dx \leq \int_a^{c-\delta/2} \abs{f(x)}dx + \int_{c-\delta/2}^{c+\delta/2} \abs{f(x)}dx + \int_{c+\delta/2}^b \abs{f(x)}dx = \int_a^b \abs{f(x)}dx.$$
+      By the construction above, we have $\abs{f(\overline{B}(c,\delta/2))} \subseteq B(\abs{f(c)},\varepsilon)$, from which it follows that $0 < \varepsilon \leq \inf \left\{\abs{f(x)} | x \in \overline{B}(c,\delta/2) \right\}$.
+      Therefore
+      $$0 < \int_{c-\delta/2}^{c+\delta/2} \abs{f(x)}dx \leq \int_a^b \abs{f(x)}dx,$$
+      holds by \eqref{bound}, as desired.
+      
+      The remaining axioms follow from the triangle inequality for $\abs{\cdot}$ and calculus.
+      Namely, $\abs{(f + g)(x)} \leq \abs{f(x)} + \abs{g(x)}$ implies 
+	  $$\norm{f+g} = \int_a^b\abs{(f+g)(x)}dx \leq \int_a^b\abs{f(x)}dx + \int_a^b\abs{g(x)}dx = \norm{f} + \norm{g},$$
+	  and for any $a \in \mathbb{R}$, $$\norm{af} = \abs{a}\int_a^b\abs{f(x)}dx = \abs{a}\norm{f}.$$
     \item
       Let $\varepsilon > 0$ be given and take $N > 2(b-a)/\varepsilon$.
       Observe that $0 \leq f_n(x) \leq 1$, hence by the triangle inequality
-      \begin{eqnarray*}
-        \norm{f_n - f_m} &\leq& \int_a^b \frac{(x-a)^n}{(b-a)^n}dx + \int_a^b\frac{(x-a)^m}{(b-a)^m}dx\\
-        &=& (b-a)(\frac{1}{n+1} + \frac{1}{m+1})\\
-        &<& (b-a)\left(\frac{2\varepsilon}{2(b-a)}\right) = \varepsilon
-        \end{eqnarray*}
+      $$\norm{f_n - f_m} \leq \int_a^b \frac{(x-a)^n}{(b-a)^n}dx + \int_a^b\frac{(x-a)^m}{(b-a)^m}dx = \frac{b-a}{n+1} + \frac{b-a}{m+1} < \frac{\varepsilon}{2} + \frac{\varepsilon}{2}= \varepsilon$$
       holds whenever $m,n \geq N$.
       Therefore $f_n$ is Cauchy in $(C[a,b], \norm{\cdot})$.
     \item
@@ -117,17 +158,15 @@
         0 & \text{if } a \leq x < b.
       \end{array}
       \right.$$
-      Then by the triangle inequality
-      \begin{eqnarray*}
-        \norm{f_n - g} &\leq& \int_a^b \frac{(x-a)^n}{(b-a)^n}dx + \int_a^b g(x)dx\\
-        &=& \frac{(b-a)}{n+1} + \int_{b-\varepsilon/2}^bg(x)dx\\
-        &\leq& \frac{b-a}{n+1} + \int_{b-\varepsilon/2}^bdx\\
-        &=& \frac{b-a}{n+1} + \frac{\varepsilon}{2}\\
-        &<& \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon
-      \end{eqnarray*}
+      Observe that by the argument in (\ref{25a}), we have
+	  $$\int_a^b g(x)dx\\ = \int_a^{b-\varepsilon/2} g(x)dx\\ + \int_{b-\varepsilon/2}^bg(x)dx = \int_{b-\varepsilon/2}^bg(x)dx \leq \int_{b-\varepsilon/2}^b dx = \frac{\varepsilon}{2}.$$
+      Hence by the triangle inequality 
+      $$
+        \norm{f_n - g} \leq \frac{b-a}{n+1} + \frac{\varepsilon}{2} < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon
+      $$
       holds whenever $n \geq N$.
       Hence $f_n$ converges in $(C[a,b], \norm{\cdot})$ to $g$, which is discontinuous at $b$.
-      Therefore $(C[a,b], \norm{\cdot})$ is not complete.
+	  Therefore $(C[a,b], \norm{\cdot})$ is not complete.
     \end{enumerate}
   \end{proof}
 \end{ex25}{}
