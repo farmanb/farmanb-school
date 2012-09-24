@@ -1,0 +1,37 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate}
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 784:\\Homework 01}
+\date{August 30, 2012}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+
+\renewcommand{\qedsymbol}{\ensuremath{\blacksquare}}
+\newcommand{\abs}[1]{\left| #1 \right|}
+
+\begin{document}
+\maketitle
+
+\newtheorem{thm}{}
+
+\begin{thm}
+	
+\end{thm}
+
+\begin{thm}
+Let $[x]$ denote the greatest integer $\leq x$. Determine whether the inequality
+	\begin{equation}\label{ineq}
+		\left[\frac{\pi}{2}b\right] < \frac{\pi}{2}b^2\sin\left(\frac{1}{b}\right) \leq \frac{\pi}{2}
+	\end{equation}
+holds for every positive integer b. If it does, supply a proof. If it doesn't, determine the
+least six postive integers $b$ for which \eqref{ineq} does not hold.
+	\begin{proof}
+		Observe that for some convergents $a/b$ of $\pi/2$, with some rearrangement, we have
+		$$\abs{\frac{\pi}{2}b - a} \leq \frac{1}{2b}.$$
+		Using the denominators of the convergents, the first six for which \eqref{ineq} is not satisified are
+		$340262731$, $1963319607$, $574364584667$, $47337186164411$, $136308121570117$, $158084910090576507$.
+	\end{proof}
+\end{thm}
+\end{document}
