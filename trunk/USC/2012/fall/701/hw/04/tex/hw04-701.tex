@@ -20,6 +20,8 @@
 \newcommand{\orbit}[1]{\mathcal{O}_{#1}}
 \newcommand{\real}[1]{\operatorname{\mathfrak{Re}}\left(#1\right)}
 \newcommand{\imag}[1]{\operatorname{\mathfrak{Im}}\left(#1\right)}
+\newcommand{\uhp}{\mathfrak{h}}
+
 \renewcommand{\qedsymbol}{\ensuremath{\blacksquare}}
 
 \newtheorem{thm}{}
@@ -52,7 +54,52 @@
 
 \begin{thm}
   \begin{proof}
-    
+	Let $\gamma = \left(\begin{array}{cc} a & b\\c & d\end{array}\right) \in \SL{2}{\mathbb{Z}}$ and $z \in \uhp$ be given.
+    \begin{enumerate}[(a)]
+		\item
+			We first show that $\gamma \cdot z \in \uhp$.
+			Multiplying $\gamma\cdot z$ by $c\overline{z} + d$, some routine algebra and the observation that $ad-bc = 1$ yields
+			$$\gamma\cdot z = \frac{ac\abs{z}^2 + bd + (ad + bc)\real{z}}{\abs{cz+d}^2} + i\frac{(ad - bc)\imag{z}}{\abs{cz+d}^2} = \frac{ac\abs{z}^2 + bd + (ad + bc)\real{z}}{\abs{cz+d}^2} + i\frac{\imag{z}}{\abs{cz+d}^2}.$$
+			That $\gamma\cdot z \in \uhp$ now follows from the fact that $\imag{z} > 0$ by assumption.
+			
+			Note that $z \in \uhp$, $I\cdot z = z + 0 / (0 + 1) = z$.
+			Now let $\delta = \left(\begin{array}{cc} e & f\\g & h\end{array}\right) \in \SL{2}{\mathbb{Z}}$ be given.			
+			Computing $\gamma\delta$, we have $$\gamma\delta = \left(\begin{array}{cc} ae + bg & af + bh\\ce + dg & cf + dh\end{array}\right).$$
+			Let $\omega = \delta\cdot z$ and write $\gamma\omega = (a\omega + b)/(c\omega + d)$.
+			By obtaining common denominators in the numerator and denominator, we may rewrite each as
+			$$\begin{array}{lcr}
+				a\omega + b = \displaystyle{\frac{a(ez + f) + b(gz+h)}{gz+h}} &\text{and}& c\omega + d = \displaystyle{\frac{c(ez + f) + d(gz+h)}{gz+h}}.
+			\end{array}$$
+			Combining these observations and performing some routine algebra, we have $$\gamma\cdot(\delta\cdot\ z) = \frac{(ae + bg)z + (af + bh)}{(ce + dg)z + (cf + dh)} = (\gamma\delta)\cdot z.$$
+			Hence the map is an action of $\SL{2}{\mathbb{Z}}$ on $\uhp$.
+		\item
+			Assume that $\gamma$ is an element of the kernel, namely for each $z \in \uhp$
+			\begin{equation}\label{kernel}
+				\gamma\cdot z = \frac{ac\abs{z}^2 + bd + (ad + bc)\real{z}}{\abs{cz+d}^2} + i\frac{\imag{z}}{\abs{cz+d}^2} = z.
+			\end{equation}
+			We observe that $\imag{z} = \imag{z}/\abs{cz + d}^2$ and thus $\abs{cz + d}^2 = 1$.
+			Moreover, since $d$ is fixed and $z$ may be made arbitrarily large, we have $c = 0$ and $d = \pm1$.
+			Now it follows from $ad - bc = ad = 1$, that $a = d$.
+			
+			It remains only to determine $b$.  
+			To that end, observe that, by \eqref{kernel} and the argument above, $\real{z} = \real{z} + bd$ holds for all $z \in \uhp$, hence $b = 0$.
+			Therefore the kernel of the action is the subgroup $\left<S^2\right> = \left\{\pm I \right\}$.
+		\item
+			Assume that $\gamma$ fixes $i$.
+			By \eqref{kernel} with $z = i$ and the observations that $\abs{i}^2 = 1$ and $\abs{ci + d}^2 = c^2 + d^2$, we have 
+				$$\frac{ac + bd}{c^2+d^2} + i\frac{1}{c^2+d^2} = i.$$
+			Hence $c^2 + d^2 = 1$ implies either $c = 0$ and $d = \pm 1$ or $c = \pm 1$ and $d = 0$.
+			We now note that $ad - bc = 1$.
+			By the argument in part (b), $c = 0$ implies $a = d$ and $d = 0$ implies $b = -c$.
+			Moreover, we also have that $ac + bd = 0$.
+			Hence if $c = 0$, then $ac + bd = b(\pm 1) = 0$ implies $b = 0$, and if $d = 0$, then $ac + bd = a(\pm1) = 0$ implies $a = 0$.
+			Therefore the stabilizer of $i$ are the four elements, $$\left<S\right> = \left\{
+			\left(\begin{array}{cc} 0 & -1\\1 & 0\end{array}\right), 
+			\left(\begin{array}{cc} -1 & 0\\0 & -1\end{array}\right),
+			\left(\begin{array}{cc} 0 & 1\\-1 & 0\end{array}\right),
+			\left(\begin{array}{cc} 1 & 0\\0 & 1\end{array}\right)\right\}$$
+			
+	\end{enumerate}
   \end{proof}
 \end{thm}
 
