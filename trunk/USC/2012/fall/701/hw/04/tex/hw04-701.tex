@@ -1,5 +1,5 @@
 \documentclass[10pt]{amsart}
-\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate}
 \openup 5pt
 \author{Blake Farman\\University of South Carolina}
 \title{Math 701:\\Homework 04}
@@ -18,6 +18,8 @@
 \newcommand{\SL}[2]{\operatorname{SL}_#1\left(#2\right)}
 \newcommand{\Mat}[2]{\operatorname{Mat}_{#1}\left(#2\right)}
 \newcommand{\orbit}[1]{\mathcal{O}_{#1}}
+\newcommand{\real}[1]{\operatorname{\mathfrak{Re}}\left(#1\right)}
+\newcommand{\imag}[1]{\operatorname{\mathfrak{Im}}\left(#1\right)}
 \renewcommand{\qedsymbol}{\ensuremath{\blacksquare}}
 
 \newtheorem{thm}{}
@@ -28,22 +30,32 @@
     \begin{enumerate}[(a)]
       \item
         Let $N_G(H)$ act on $H$ by conjugation.
-        Since $N_G(H)$ normalizes $H$, the action is clearly well defined and the axioms for the action are immediate from the group structure.
+        Since $N_G(H)$ normalizes $H$, the action is well defined and that the axioms for the action are satisfied follows from the group structure in $G$.
         The kernel of this action is, by definition, 
-        $$K = \left\{n \in N_G(H) \mid \forall h \in H, nhn^{-1} = h\right\} = \left\{n \in N_G(H) \mid \forall h \in H, nh = hn\right\} = C_G(H).$$
-        Therefore $C_G(H) = K \unlhd N_G(H)$.
+        $$K = \left\{n \in N_G(H) \mid \forall h \in H, nhn^{-1} = h\right\}.$$ 
+        Observing that $nhn^{-1} = h$ implies $nh = hn$, it is clear that $C_G(H) = K \unlhd N_G(H)$.
       \item
         Observe that conjugation by the elements of $N_G(H)$ are precisely the inner automorphisms of $H$.
-        Hence we may define the homomorphism
+        Hence we may define the map
         \begin{align*}
-          \phi \colon N_G(H) &\rightarrow \Aut{H}\\
-          n &\mapsto nhn^{-1}.
+          \varphi \colon N_G(H) &\rightarrow \Aut{H}\\
+          n &\mapsto \theta_n.
         \end{align*}
-        By the argument in part (a), $\ker\phi = C_G(H)$.
+        To see that $\varphi$ is a homomorphism, let $n_1,n_2 \in N_G(H)$ and $h \in H$ be given.
+        Observe that by associativity, $$\theta_{n_1n_2}(h) = (n_1n_2)h(n_1n_2)^{-1} = (n_1n_2) h (n_2^{-1}n_1^{-1}) = n_1(n_2 h n_2^{-1})n_1^{-1} = \theta_{n_1}\theta_{n_2}(h).$$
+        Hence $\varphi(n_1n_2) = \varphi(n_1)\varphi(n_2)$ implies $\varphi$ is a homomorphism.
+        By the argument in part (a), $\ker\varphi = C_G(H)$.
         Therefore, by the First Isomorphism Theorem, $N_G(H)/C_G(H) \cong \varphi(N_G(H)) \leq \Aut{H}$.
     \end{enumerate}
   \end{proof}
 \end{thm}
+
+\begin{thm}
+  \begin{proof}
+    
+  \end{proof}
+\end{thm}
+
 
 \begin{thm}
   \begin{proof}
@@ -52,7 +64,7 @@
       H \times \mathcal{L} &\rightarrow \mathcal{L}\\
       (h,gK) &\mapsto hgK.
     \end{align*}
-    Observe that for fixed $g$, the orbit of $gK$ is $\orbit{gK} = \left\{hgK \middle\vert h \in H\right\} = HgK.$
+    Observe that for fixed $g$, the orbit of $gK$ is $\orbit{gK} = \left\{hgK \;\middle\vert\; h \in H\right\} = HgK.$
     Hence we may write $$HgK = \bigcup_{hgK \in \orbit{gK}} hgK,$$
     and thus $\abs{HgK} = \sum_{hgK \in \orbit{gK}} \abs{hgK} = \abs{\orbit{gK}}\abs{gK} = \abs{\orbit{gK}}\abs{K}.$
     Rearranging, we obtain 
@@ -60,13 +72,14 @@
           \abs{\orbit{gK}} = \frac{\abs{HgK}}{\abs{K}}.
     \end{equation}
     
-    Counting in another way, we observe that $H_{gK} = \left\{h \in H \middle\vert hgK = gK\right\}$.
+    Counting in another way, we observe that $H_{gK} = \left\{h \in H \;\middle\vert\; hgK = gK\right\}$.
     Then for any such $h$, there exists an element $k$ of $K$ such that $hg = gk$, from which it follows that $h = gkg^{-1}$.
     Hence, by the Orbit Stabilizer Theorem, 
     \begin{equation}\label{morecrap}
       \abs{\orbit{gK}} = [H : G_{gK}] = \frac{\abs{H}}{\abs{H \cap gKg^{-1}}}.
     \end{equation}
     Equating \eqref{crap} and \eqref{morecrap}, we obtain $\abs{HgK} = \frac{\abs{K}\abs{H}}{\abs{H \cap gKg^{-1}}}$.
+    Note that we obtain the usual order for the set $HK$ whenever any of $g \in K$, $g \in N_G(K)$, or $K \unlhd G$ hold.
   \end{proof}
 \end{thm}
 
@@ -80,7 +93,7 @@
 %    \end{align*}
     For each $g \in G$, the probability that $g$ is chosen is $1/\abs{G}$.
     The probability that the next element chosen commutes with $g$ is $\chi(g)/\abs{G}$.
-    Using this and the Cauchy-Frobenius Theorem, we have the probability that two randomly selected elements commute is given by 
+    Then by the Cauchy-Frobenius Theorem, we have the probability that two randomly selected elements commute is given by 
     $$\sum_{g \in G} \frac{1}{\abs{G}} \frac{\chi(g)}{\abs{G}} = \frac{1}{\abs{G}} \left(\frac{1}{\abs{G}} \sum_{g \in G} \chi(g) \right) = \frac{k}{\abs{G}},$$
     where $k$ is the number of conjugacy classes of $G$.
   \end{proof}
@@ -103,11 +116,11 @@
         Apply the result of problem 3(c) on Homework 3 with $q = p$ to see that either $\cntr{P} = 1$ or $P$ is abelian.
         The former does not hold by part (\ref{5b}), hence $P$ is abelian.
       \item\label{5d}
-        Observe that $\Z(P)$ is normal in $P$ and, by part (\ref{5b}), non-trivial.
+        Observe that $\mathbb{Z}(P)$ is normal in $P$ and, by part (\ref{5b}), non-trivial.
         Since $P$ is simple, it must be the case that $\cntr{P} = P$ and thus abelian.
-        Now observe that by Cauchy's Theorem, $P$ has an element of order $p$, say $\rho$, and thus a subgroup $\left<\rho\right> \cong \Z/p\Z$.
+        Now observe that by Cauchy's Theorem, $P$ has an element of order $p$, say $\rho$, and thus a subgroup $\left<\rho\right> \cong \mathbb{Z}/p\mathbb{Z}$.
         Since $P$ is abelian, $\rho \unlhd P$.
-        Moreover, since $P$ is simple and $\Z/p\Z$ is non-trivial, it follows that  $P = \left<\rho\right> \cong \Z/p\Z$.
+        Moreover, since $P$ is simple and $\mathbb{Z}/p\mathbb{Z}$ is non-trivial, it follows that  $P = \left<\rho\right> \cong \mathbb{Z}/p\mathbb{Z}$.
       \item\label{5e}
         Let $H$ be a proper subgroup of $P$ of maximal order.
         Since $P$ is a $p$-group, $H < N_P(H)$.
@@ -115,7 +128,7 @@
         Consider the quotient, $P/H$.
         The Third Isomorphism Theorem implies that the quotient has no non-trivial subgroups and thus is simple.
         However, by Lagrange's Theorem and the fact that $H$ is a proper subgroup, $P/H$ must be a $p$-group.
-        It then follows from part (\ref{5d}) that $P/H \cong \Z/p\Z$, hence $[P:H] = p$, as desired. 
+        It then follows from part (\ref{5d}) that $P/H \cong \mathbb{Z}/p\mathbb{Z}$, hence $[P:H] = p$, as desired. 
     \end{enumerate}
   \end{proof}
 \end{thm}
