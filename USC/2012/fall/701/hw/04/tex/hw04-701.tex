@@ -1,5 +1,5 @@
 \documentclass[10pt]{amsart}
-\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath}
 \openup 5pt
 \author{Blake Farman\\University of South Carolina}
 \title{Math 701:\\Homework 04}
@@ -28,102 +28,138 @@
 \newtheorem{lem}{Lemma}
 
 \begin{thm}
+  Let $H$ be a subgroup of $G$.
+  \begin{enumerate}[(a)]
+  \item
+    Show that $C_G(H) \unlhd N_G(H)$.
+  \item
+    Show that $N_G(H)/C_G(H)$ is isomorphic to a subgroup of $\Aut{H}$.
+  \end{enumerate}
   \begin{proof}
+    Observe that conjugation of $H$ by any element of $N_G(H)$ defines an inner automorphism of $H$.
+    Hence the map
+    \begin{align*}
+      \varphi \colon N_G(H) &\rightarrow \Aut{H}\\
+      n &\mapsto \theta_n
+    \end{align*}
+    is well defined.
+    To see that $\varphi$ is a homomorphism, let $n_1,n_2 \in N_G(H)$ and $h \in H$ be given.
+    Observe that by associativity, $$\theta_{n_1n_2}(h) = (n_1n_2)h(n_1n_2)^{-1} = (n_1n_2) h (n_2^{-1}n_1^{-1}) = n_1(n_2 h n_2^{-1})n_1^{-1} = \theta_{n_1}\theta_{n_2}(h).$$
+    Hence $\varphi(n_1n_2) = \varphi(n_1)\varphi(n_2)$ implies $\varphi$ is a homomorphism.
+    %      By the argument in part (a), $\ker\varphi = C_G(H)$.
+    Now observe that $$ker\varphi = \left\{n \in N_G(H) \mid \forall h \in H, nhn^{-1} = h\right\} = \left\{n \in N_G(H) \mid \forall h \in H, nh = hn\right\} = C_G(H).$$
+    Hence $C_G(H) \unlhd N_G(H)$.  
+    Moreover, by the First Isomorphism Theorem, $N_G(H)/C_G(H) \cong \varphi(N_G(H)) \leq \Aut{H}$.
+    %    \begin{enumerate}[(a)]
+    %    \item
+    %      Let $N_G(H)$ act on $H$ by conjugation.
+    %      Since $N_G(H)$ normalizes $H$, the action is well defined and that the axioms for the action are satisfied follows from the group structure in $G$.
+    %      The kernel of this action is, by definition, 
+    %      $$K = \left\{n \in N_G(H) \mid \forall h \in H, nhn^{-1} = h\right\}.$$ 
+    %      Observing that $nhn^{-1} = h$ implies $nh = hn$, it is clear that $C_G(H) = K \unlhd N_G(H)$.
+    %    \item
+    %      Observe that conjugation by any element of $N_G(H)$ is an inner automorphism of $H$.
+    %      Hence we may define the map
+    %      \begin{align*}
+    %        \varphi \colon N_G(H) &\rightarrow \Aut{H}\\
+    %        n &\mapsto \theta_n.
+    %      \end{align*}
+    %      To see that $\varphi$ is a homomorphism, let $n_1,n_2 \in N_G(H)$ and $h \in H$ be given.
+    %      Observe that by associativity, $$\theta_{n_1n_2}(h) = (n_1n_2)h(n_1n_2)^{-1} = (n_1n_2) h (n_2^{-1}n_1^{-1}) = n_1(n_2 h n_2^{-1})n_1^{-1} = \theta_{n_1}\theta_{n_2}(h).$$
+    %      Hence $\varphi(n_1n_2) = \varphi(n_1)\varphi(n_2)$ implies $\varphi$ is a homomorphism.
+    %      By the argument in part (a), $\ker\varphi = C_G(H)$.
+    %      Therefore, by the First Isomorphism Theorem, $N_G(H)/C_G(H) \cong \varphi(N_G(H)) \leq \Aut{H}$.
+    %    \end{enumerate}
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Recall that $\SL{2}{\Z} = \displaystyle{\left\{ \left(\begin{array}{cc} a & b\\ c & d \end{array}\right) \;\middle\vert\; ad-bc=1\right\}}$ is a group.
+  Let $\uhp = \left\{z \in \C \;\middle\vert\; \imag{z} > 0\right\}$ denote the complex upper half-plane.
+  Define a map $\SL{2}{\Z} \times \uhp \rightarrow \C$ for all $\gamma =\left(\begin{array}{cc} a & b\\c & d\end{array}\right)$ and all $z \in \uhp$ by $(\gamma, z) \mapsto \gamma\cdot z := \displaystyle{\frac{az + b}{cz + d}}$.
     \begin{enumerate}[(a)]
-      \item
-        Let $N_G(H)$ act on $H$ by conjugation.
-        Since $N_G(H)$ normalizes $H$, the action is well defined and that the axioms for the action are satisfied follows from the group structure in $G$.
-        The kernel of this action is, by definition, 
-        $$K = \left\{n \in N_G(H) \mid \forall h \in H, nhn^{-1} = h\right\}.$$ 
-        Observing that $nhn^{-1} = h$ implies $nh = hn$, it is clear that $C_G(H) = K \unlhd N_G(H)$.
-      \item
-        Observe that conjugation by the elements of $N_G(H)$ are precisely the inner automorphisms of $H$.
-        Hence we may define the map
-        \begin{align*}
-          \varphi \colon N_G(H) &\rightarrow \Aut{H}\\
-          n &\mapsto \theta_n.
-        \end{align*}
-        To see that $\varphi$ is a homomorphism, let $n_1,n_2 \in N_G(H)$ and $h \in H$ be given.
-        Observe that by associativity, $$\theta_{n_1n_2}(h) = (n_1n_2)h(n_1n_2)^{-1} = (n_1n_2) h (n_2^{-1}n_1^{-1}) = n_1(n_2 h n_2^{-1})n_1^{-1} = \theta_{n_1}\theta_{n_2}(h).$$
-        Hence $\varphi(n_1n_2) = \varphi(n_1)\varphi(n_2)$ implies $\varphi$ is a homomorphism.
-        By the argument in part (a), $\ker\varphi = C_G(H)$.
-        Therefore, by the First Isomorphism Theorem, $N_G(H)/C_G(H) \cong \varphi(N_G(H)) \leq \Aut{H}$.
+    \item
+      Show that this map is an action of $\SL{2}{\Z}$ on $\uhp$.
+    \item
+      Is the action faithful?  If not, what is its kernel?
+    \item
+      Compute the stabilizer of the point $i \in \uhp$.
     \end{enumerate}
-  \end{proof}
-\end{thm}
-
-\begin{thm}
   \begin{proof}
-	Let $\gamma = \left(\begin{array}{cc} a & b\\c & d\end{array}\right) \in \SL{2}{\mathbb{Z}}$ and $z \in \uhp$ be given.
-    \begin{enumerate}[(a)]
-		\item
-			We first show that $\gamma \cdot z \in \uhp$.
-			Multiplying $\gamma\cdot z$ by $c\overline{z} + d$, some routine algebra and the observation that $ad-bc = 1$ yields
-			$$\gamma\cdot z = \frac{ac\abs{z}^2 + bd + (ad + bc)\real{z}}{\abs{cz+d}^2} + i\frac{(ad - bc)\imag{z}}{\abs{cz+d}^2} = \frac{ac\abs{z}^2 + bd + (ad + bc)\real{z}}{\abs{cz+d}^2} + i\frac{\imag{z}}{\abs{cz+d}^2}.$$
-			That $\gamma\cdot z \in \uhp$ now follows from the fact that $\imag{z} > 0$ by assumption.
-			
-			Note that $z \in \uhp$, $I\cdot z = z + 0 / (0 + 1) = z$.
-			Now let $\delta = \left(\begin{array}{cc} e & f\\g & h\end{array}\right) \in \SL{2}{\mathbb{Z}}$ be given.			
-			Computing $\gamma\delta$, we have $$\gamma\delta = \left(\begin{array}{cc} ae + bg & af + bh\\ce + dg & cf + dh\end{array}\right).$$
-			Let $\omega = \delta\cdot z$ and write $\gamma\omega = (a\omega + b)/(c\omega + d)$.
-			By obtaining common denominators in the numerator and denominator, we may rewrite each as
-			$$\begin{array}{lcr}
-				a\omega + b = \displaystyle{\frac{a(ez + f) + b(gz+h)}{gz+h}} &\text{and}& c\omega + d = \displaystyle{\frac{c(ez + f) + d(gz+h)}{gz+h}}.
-			\end{array}$$
-			Combining these observations and performing some routine algebra, we have $$\gamma\cdot(\delta\cdot\ z) = \frac{(ae + bg)z + (af + bh)}{(ce + dg)z + (cf + dh)} = (\gamma\delta)\cdot z.$$
-			Hence the map is an action of $\SL{2}{\mathbb{Z}}$ on $\uhp$.
-		\item
-			Assume that $\gamma$ is an element of the kernel, namely for each $z \in \uhp$
-			\begin{equation}\label{kernel}
-				\gamma\cdot z = \frac{ac\abs{z}^2 + bd + (ad + bc)\real{z}}{\abs{cz+d}^2} + i\frac{\imag{z}}{\abs{cz+d}^2} = z.
-			\end{equation}
-			We observe that $\imag{z} = \imag{z}/\abs{cz + d}^2$ and thus $\abs{cz + d}^2 = 1$.
-			Moreover, since $d$ is fixed and $z$ may be made arbitrarily large, we have $c = 0$ and $d = \pm1$.
-			Now it follows from $ad - bc = ad = 1$, that $a = d$.
-			
-			It remains only to determine $b$.  
-			To that end, observe that, by \eqref{kernel} and the argument above, $\real{z} = \real{z} + bd$ holds for all $z \in \uhp$, hence $b = 0$.
-			Therefore the kernel of the action is the subgroup $\left<S^2\right> = \left\{\pm I \right\}$.
-		\item
-			Assume that $\gamma$ fixes $i$.
-			By \eqref{kernel} with $z = i$ and the observations that $\abs{i}^2 = 1$ and $\abs{ci + d}^2 = c^2 + d^2$, we have 
-				$$\frac{ac + bd}{c^2+d^2} + i\frac{1}{c^2+d^2} = i.$$
-			Hence $c^2 + d^2 = 1$ implies either $c = 0$ and $d = \pm 1$ or $c = \pm 1$ and $d = 0$.
-			We now note that $ad - bc = 1$.
-			By the argument in part (b), $c = 0$ implies $a = d$ and $d = 0$ implies $b = -c$.
-			Moreover, we also have that $ac + bd = 0$.
-			Hence if $c = 0$, then $ac + bd = b(\pm 1) = 0$ implies $b = 0$, and if $d = 0$, then $ac + bd = a(\pm1) = 0$ implies $a = 0$.
-			Therefore the stabilizer of $i$ are the four elements, $$\left<S\right> = \left\{
-			\left(\begin{array}{cc} 0 & -1\\1 & 0\end{array}\right), 
-			\left(\begin{array}{cc} -1 & 0\\0 & -1\end{array}\right),
-			\left(\begin{array}{cc} 0 & 1\\-1 & 0\end{array}\right),
-			\left(\begin{array}{cc} 1 & 0\\0 & 1\end{array}\right)\right\}$$
-			
-	\end{enumerate}
+    Let $\gamma = \left(\begin{array}{cc} a & b\\c & d\end{array}\right) \in \SL{2}{\mathbb{Z}}$ and $z \in \uhp$ be given.
+      \begin{enumerate}[(a)]
+      \item
+	We first show that $\gamma \cdot z \in \uhp$.
+	Multiplying the numerator and denominator of $\gamma\cdot z$ by $c\overline{z} + d$, some routine algebra and the observation that $ad-bc = 1$ yields
+	$$\gamma\cdot z = \frac{ac\abs{z}^2 + bd + (ad + bc)\real{z}}{\abs{cz+d}^2} + i\frac{(ad - bc)\imag{z}}{\abs{cz+d}^2} = \frac{ac\abs{z}^2 + bd + (ad + bc)\real{z}}{\abs{cz+d}^2} + i\frac{\imag{z}}{\abs{cz+d}^2}.$$
+	That $\gamma\cdot z \in \uhp$ now follows from the fact that $\imag{z} > 0$ holds by assumption and that $\abs{cz+d}^2 > 0$.
+	
+	Note that $z \in \uhp$, $I\cdot z = z + 0 / (0 + 1) = z$.
+	Now let $\delta = \left(\begin{array}{cc} e & f\\g & h\end{array}\right) \in \SL{2}{\mathbb{Z}}$ be given.			
+	  Computing $\gamma\delta$, we have $$\gamma\delta = \left(\begin{array}{cc} ae + bg & af + bh\\ce + dg & cf + dh\end{array}\right).$$
+	    Let $\omega = \delta\cdot z$ and write $\gamma\omega = (a\omega + b)/(c\omega + d)$.
+	    By obtaining common denominators in the numerator and denominator, we may rewrite each as
+	    $$\begin{array}{lcr}
+	      a\omega + b = \displaystyle{\frac{a(ez + f) + b(gz+h)}{gz+h}} &\text{and}& c\omega + d = \displaystyle{\frac{c(ez + f) + d(gz+h)}{gz+h}}.
+	    \end{array}$$
+	    Combining these observations and performing some routine algebra, we have $$\gamma\cdot(\delta\cdot\ z) = \frac{(ae + bg)z + (af + bh)}{(ce + dg)z + (cf + dh)} = (\gamma\delta)\cdot z.$$
+	    Hence the map is an action of $\SL{2}{\mathbb{Z}}$ on $\uhp$.
+	  \item
+	    Assume that $\gamma$ is an element of the kernel, namely for each $z \in \uhp$
+	    \begin{equation}\label{kernel}
+	      \gamma\cdot z = \frac{ac\abs{z}^2 + bd + (ad + bc)\real{z}}{\abs{cz+d}^2} + i\frac{\imag{z}}{\abs{cz+d}^2} = z.
+	    \end{equation}
+	    We observe that $\imag{z} = \imag{z}/\abs{cz + d}^2$ and thus $\abs{cz + d}^2 = 1$.
+	    Moreover, since $d$ is fixed and $z$ may be made arbitrarily large, we have $c = 0$ and $d = \pm1$.
+	    Now it follows from $ad - bc = ad = 1$, that $a = d$.
+	    
+	    It remains only to determine $b$.  
+	    To that end, observe that, by \eqref{kernel} and the argument above, $\real{z} = \real{z} + bd$ holds for all $z \in \uhp$, hence $b = 0$.
+	    Therefore the action is not faithful and the kernel of the action is the subgroup $\left<S^2\right> = \left\{\pm I \right\}$.
+	  \item
+	    Assume that $\gamma$ fixes $i$.
+	    By \eqref{kernel} with $z = i$ and the observations that $\abs{i}^2 = 1$ and $\abs{ci + d}^2 = c^2 + d^2$, we have 
+	    $$\frac{ac + bd}{c^2+d^2} + i\frac{1}{c^2+d^2} = i.$$
+	    Hence $c^2 + d^2 = 1$ implies either $c = 0$ and $d = \pm 1$ or $c = \pm 1$ and $d = 0$.
+	    We now note that $ad - bc = 1$.
+	    By the argument in part (b), $c = 0$ implies $a = d$ and $d = 0$ implies $b = -c$.
+	    Moreover, we also have that $ac + bd = 0$.
+	    Hence if $c = 0$, then $ac + bd = b(\pm 1) = 0$ implies $b = 0$, and if $d = 0$, then $ac + bd = a(\pm1) = 0$ implies $a = 0$.
+	    Therefore the stabilizer of $i$ are the four elements, $$\left<S\right> = \left\{
+	    \left(\begin{array}{cc} 0 & -1\\1 & 0\end{array}\right), 
+	      \left(\begin{array}{cc} -1 & 0\\0 & -1\end{array}\right),
+		\left(\begin{array}{cc} 0 & 1\\-1 & 0\end{array}\right),
+		  \left(\begin{array}{cc} 1 & 0\\0 & 1\end{array}\right)\right\}$$
+		    
+      \end{enumerate}
   \end{proof}
 \end{thm}
 
 
 \begin{thm}
+  Let $H, K$ be finite subgroups of $G$.  
+  We define the double coset $$HgK = \left\{hgk \;\middle\vert\; h\in H, k \in K\right\}.$$
+  Prove that $$\abs{HgK} = \frac{\abs{H}\abs{K}}{H \cap gKg^{-1}}$$.
   \begin{proof}
     Let $\mathcal{L}$ be the left cosets of $K$ in $G$ and define the action
     \begin{align*}
       H \times \mathcal{L} &\rightarrow \mathcal{L}\\
-      (h,gK) &\mapsto hgK.
+      (h,gK) &\mapsto hgK,
     \end{align*}
+    which has been shown to be a well defined group action in class.
     Observe that for fixed $g$, the orbit of $gK$ is $\orbit{gK} = \left\{hgK \;\middle\vert\; h \in H\right\} = HgK.$
     Hence we may write $$HgK = \bigcup_{hgK \in \orbit{gK}} hgK,$$
     and thus $\abs{HgK} = \sum_{hgK \in \orbit{gK}} \abs{hgK} = \abs{\orbit{gK}}\abs{gK} = \abs{\orbit{gK}}\abs{K}.$
     Rearranging, we obtain 
     \begin{equation}\label{crap}
-          \abs{\orbit{gK}} = \frac{\abs{HgK}}{\abs{K}}.
+      \abs{\orbit{gK}} = \frac{\abs{HgK}}{\abs{K}}.
     \end{equation}
     
-    Counting in another way, we observe that $H_{gK} = \left\{h \in H \;\middle\vert\; hgK = gK\right\}$.
-    Then for any such $h$, there exists an element $k$ of $K$ such that $hg = gk$, from which it follows that $h = gkg^{-1}$.
+    Counting in another way, we observe that $H_{gK} = \left\{h \in H \;\middle\vert\; hgK = gK\right\} \subseteq gKg^{-1}$.
+    Then for any such $h$, there exists an element $k$ of $K$ such that $hg = gk$, from which it follows that $h = gkg^{-1} \in gKg^{-1}$ and $gKg^{-1} \subseteq H_{gK}$.
     Hence, by the Orbit Stabilizer Theorem, 
     \begin{equation}\label{morecrap}
-      \abs{\orbit{gK}} = [H : G_{gK}] = \frac{\abs{H}}{\abs{H \cap gKg^{-1}}}.
+      \abs{\orbit{gK}} = [H : H_{gK}] = \frac{\abs{H}}{\abs{H \cap gKg^{-1}}}.
     \end{equation}
     Equating \eqref{crap} and \eqref{morecrap}, we obtain $\abs{HgK} = \frac{\abs{K}\abs{H}}{\abs{H \cap gKg^{-1}}}$.
     Note that we obtain the usual order for the set $HK$ whenever any of $g \in K$, $g \in N_G(K)$, or $K \unlhd G$ hold.
@@ -131,13 +167,15 @@
 \end{thm}
 
 \begin{thm}
+  Let $G$ be finite.
+  Prove that the probability that two elements of $G$ chosen at random (with replacement) commute is $k/\abs{G}$, where $k$ is the number of conjugacy classes of $G$.
   \begin{proof}
-    Let $G$ act on itself by conjugation.
-% and let $\chi$ be the map
-%    \begin{align*}
-%      \chi \colon G &\rightarrow \mathbb{N}\cup\left\{0\right\}\\
-%      g & \mapsto \abs{\left\{ G_g \right\}}
-%    \end{align*}
+    Let $G$ act on itself by conjugation, which we have shown in class to be a well-defined group action.
+    % and let $\chi$ be the map
+    %    \begin{align*}
+    %      \chi \colon G &\rightarrow \mathbb{N}\cup\left\{0\right\}\\
+    %      g & \mapsto \abs{\left\{ G_g \right\}}
+    %    \end{align*}
     For each $g \in G$, the probability that $g$ is chosen is $1/\abs{G}$.
     The probability that the next element chosen commutes with $g$ is $\chi(g)/\abs{G}$.
     Then by the Cauchy-Frobenius Theorem, we have the probability that two randomly selected elements commute is given by 
@@ -147,35 +185,54 @@
 \end{thm}
 
 \begin{thm}
-  
+  \begin{enumerate}[(a)]
+    Let $p$ be prime, let $a \geq 1$, and let $P$ be a group with order $\abs{P} = p^a$.
+    \item
+      Let $\Omega$ be a non-empty finite set, and suppose that $P$ acts on $\Omega$:  $ P \times \Omega \rightarrow \Omega$.
+      Let $$\Omega^{P} = \left\{\alpha \in \Omega \;\middle\vert\; \forall x \in P, x \cdot \alpha = \alpha\right\}.$$
+      Prove that $\abs{\Omega} \equiv \abs{\Omega^{P}} (\text{mod } p)$.
+    \item
+      Show that $\cntr{P} \not = \left<1\right>$.
+    \item
+      Suppose that $\abs{P} = p^2$.  
+      Show that $P$ is abelian.
+      You may use results from previous homework.
+    \item
+      Suppose that $P$ is simple.
+      Show that $P \equiv \Z/p\Z$.
+    \item
+      Show that there exists a subgroup $H \subseteq P$ with $[P : H] = p$.
+      Conclude that every such $H$ must be normal in $P$.
+  \end{enumerate}
   \begin{proof}
     \begin{enumerate}[(a)]
-      \item\label{5a}
-        Observe that if $\alpha \in \Omega^P$, then $\orbit{\alpha} = \left\{\alpha\right\}$.
-        Since the orbits partition $\Omega$, we have by the Orbit Stabilizer Theorem $\abs{\Omega} = \abs{\Omega^P} + \sum_{\alpha \not \in \Omega^P} [P : P_\alpha]$.
-        By Lagrange's Theorem, $\sum_{\alpha \not \in \Omega^P} [P : P_\alpha] \equiv 0\, (\text{mod }P)$.
-        Therefore $\abs{\Omega} \equiv \abs{\Omega^P}\, (\text{mod } P)$.
-      \item\label{5b}
-        Let $P$ act on itself by conjugation and observe that $P^P = \cntr{P}$.
-        It is immediate from part (\ref{5a}) that $\abs{\cntr{P}} \equiv p^a \equiv 0 \, (\text{mod } p)$.
-        Therefore $\cntr{P}$ is not trivial.
-      \item\label{5c}
-        Apply the result of problem 3(c) on Homework 3 with $q = p$ to see that either $\cntr{P} = 1$ or $P$ is abelian.
-        The former does not hold by part (\ref{5b}), hence $P$ is abelian.
-      \item\label{5d}
-        Observe that $\mathbb{Z}(P)$ is normal in $P$ and, by part (\ref{5b}), non-trivial.
-        Since $P$ is simple, it must be the case that $\cntr{P} = P$ and thus abelian.
-        Now observe that by Cauchy's Theorem, $P$ has an element of order $p$, say $\rho$, and thus a subgroup $\left<\rho\right> \cong \mathbb{Z}/p\mathbb{Z}$.
-        Since $P$ is abelian, $\rho \unlhd P$.
-        Moreover, since $P$ is simple and $\mathbb{Z}/p\mathbb{Z}$ is non-trivial, it follows that  $P = \left<\rho\right> \cong \mathbb{Z}/p\mathbb{Z}$.
-      \item\label{5e}
-        Let $H$ be a proper subgroup of $P$ of maximal order.
-        Since $P$ is a $p$-group, $H < N_P(H)$.
-        Moreover, by the maximality of $H$, we have $N_P(H) = P$.
-        Consider the quotient, $P/H$.
-        The Third Isomorphism Theorem implies that the quotient has no non-trivial subgroups and thus is simple.
-        However, by Lagrange's Theorem and the fact that $H$ is a proper subgroup, $P/H$ must be a $p$-group.
-        It then follows from part (\ref{5d}) that $P/H \cong \mathbb{Z}/p\mathbb{Z}$, hence $[P:H] = p$, as desired. 
+    \item\label{5a}
+      Observe that if $\alpha \in \Omega^P$, then $\orbit{\alpha} = \left\{\alpha\right\}$.
+      Since the orbits partition $\Omega$, we have by the Orbit Stabilizer Theorem $\abs{\Omega} = \abs{\Omega^P} + \sum_{\alpha \not \in \Omega^P} [P : P_\alpha]$.
+      Note that, by assumption, if $\alpha \not \in \Omega^P$, then $[P : P_\alpha] > 1$.
+      Hence by Lagrange's Theorem, $p \mid [P : P_\alpha]$ implies $\sum_{\alpha \not \in \Omega^P} [P : P_\alpha] \equiv 0\, (\text{mod } p)$.
+      Therefore $\abs{\Omega} \equiv \abs{\Omega^P}\, (\text{mod } p)$.
+    \item\label{5b}
+      Let $P$ act on itself by conjugation and observe that $P^P = \cntr{P}$.
+      It is immediate from part (\ref{5a}) that $\abs{\cntr{P}} \equiv \abs{P} = p^a \equiv 0 \, (\text{mod } p)$.
+      Therefore $\cntr{P}$ is not trivial.
+    \item\label{5c}
+      Apply the result of problem 3(c) on Homework 3 with $q = p$ to see that either $\cntr{P} = 1$ or $P$ is abelian.
+      The former does not hold by part (\ref{5b}), hence $P$ is abelian.
+    \item\label{5d}
+      Observe that $\mathbb{Z}(P)$ is normal in $P$ and, by part (\ref{5b}), non-trivial.
+      Since $P$ is simple, it must be the case that $\cntr{P} = P$ and thus abelian.
+      Now observe that by Cauchy's Theorem, $P$ has an element of order $p$, say $\rho$, and thus a subgroup $\left<\rho\right> \cong \mathbb{Z}/p\mathbb{Z}$.
+      Since $P$ is abelian, $\rho \unlhd P$.
+      Moreover, since $P$ is simple and $\mathbb{Z}/p\mathbb{Z}$ is non-trivial, it follows that  $P = \left<\rho\right> \cong \mathbb{Z}/p\mathbb{Z}$.
+    \item\label{5e}
+      Let $H$ be a proper subgroup of $P$ of maximal order.
+      Since $P$ is a $p$-group, $H < N_P(H)$.
+      Moreover, by the maximality of $H$, we have $N_P(H) = P$.
+      Consider the quotient, $P/H$.
+      The Third Isomorphism Theorem implies that the quotient has no non-trivial subgroups and thus is simple.
+      However, by Lagrange's Theorem and the fact that $H$ is a proper subgroup, $P/H$ must be a $p$-group.
+      It then follows from part (\ref{5d}) that $P/H \cong \mathbb{Z}/p\mathbb{Z}$, hence $[P:H] = p$, as desired. 
     \end{enumerate}
   \end{proof}
 \end{thm}
