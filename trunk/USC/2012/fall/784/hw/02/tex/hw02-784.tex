@@ -1,37 +1,109 @@
 \documentclass[10pt]{amsart}
-\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath}
 \openup 5pt
 \author{Blake Farman\\University of South Carolina}
-\title{Math 784:\\Homework 01}
-\date{August 30, 2012}
+\title{Math 784:\\Homework 02}
+\date{September 28, 2012}
 \pdfpagewidth 8.5in
 \pdfpageheight 11in
 \usepackage[margin=1in]{geometry}
 
 \renewcommand{\qedsymbol}{\ensuremath{\blacksquare}}
 \newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\Tr}[2]{\operatorname{Tr}_{#1}\left(#2\right)}
+\newcommand{\Norm}[2]{\operatorname{N}_{#1}\left(#2\right)}
 
 \begin{document}
 \maketitle
 
-\newtheorem{thm}{}
+\newtheorem*{ex1}{p. 12, 1}
+\newtheorem*{ex2}{p. 30, 2}
+\newtheorem*{ex3}{p. 34, 1}
+\newtheorem{lem}{Lemma}
 
-\begin{thm}
-	
-\end{thm}
+\begin{lem}
+  An element $\varepsilon = (a + b\sqrt{5})/2$ is a unit in $\Z[(1 + \sqrt{5})/2]$ if and only if $a^2 - 5b^2 = \pm 4$.
+  \begin{proof}
+    Let $\varepsilon = (a + b\sqrt{5})/2$ be a unit in $\Z[(1 + \sqrt{5})/2]$.
+    Since $\varepsilon$ is a unit, $$\varepsilon^{-1} = \frac{\frac{4a}{a^2 - 5b^2} - \frac{4b}{a^2 - 5b^2}}{2} \in \Z[\frac{1 + \sqrt{5}}{2}],$$
+    implies $a^2 - 5b^2 \mid 4a$ and $a^2 - 5b^2 \mid 4b$.
+    Observe that by Theorem 10, $a \equiv b (\text{mod } 4)$ and thus $a^2 - 5b^2 \equiv 0 (\text{mod } 4)$.
+    If $a^2 - 5b^2 \mid a$ and $a^2 - 5b^2 \mid b$, then by the same argument as in the Good Rational Approximations and Units section, $a^2 - 5b^2 = 1$.
+    However, by the observation above this cannot be, since $4$ does not divide $1$.
+    Hence $a^2 - 5b^2$ does not divide at least one of $a$ or $b$, say $a$.
+    Then $a^2 - 5b^2$ must divide four and is also divisible by four, which implies $a^2 - 5b^2 = \pm 4$. 
+    
+    Conversely, observe that if $a,b$ are integers such that $a^2 - 5b^2 = \pm 4$, then $(a + b\sqrt{5})/2$ is a unit in $\Z[(1 + \sqrt{5})/2]$.
+    Namely, up to a factor of $-1$, $$\frac{a + b\sqrt{5}}{2}\frac{a - b\sqrt{5}}{2} = \frac{a^2 - b\sqrt{5}}{4} = 1.$$
+  \end{proof}
+\end{lem}
+\begin{ex1}
+  Let $u = (1 + \sqrt{5})/2$.
+  Prove that the units in the ring of algebraic integers in $\Q(\sqrt{5})$ are precisely those numbers of the form $\pm u^n$ where $n \in \Z$. 
+  \begin{proof}
+    First we show that $u$ is the only unit in the interval $(1,u]$.
+      Let $v = (a+b\sqrt{5})/2$ in $(1,u]$ with $a,b \in \Z$.  
+        Observe that $4 = \abs{a^2 - 5b^2} = \abs{a - b\sqrt{5}}(a + b\sqrt{5})$ and $2 < a + b\sqrt{5}$, hence $\abs{a - b\sqrt{5}} = 4/(a + b\sqrt{5}) < 2$.
+        Adding this inequality to $2 < a + b\sqrt{5} \leq 1 + \sqrt{5}$, we obtain $0 < 2a \leq 3 + \sqrt{5}$, hence $a = 1$.
+        Then $2 < 1 + b\sqrt{5} < 1 + \sqrt{5}$ implies that $1 < b\sqrt{5} \leq \sqrt{5}$ and thus $b = 1$.
+        Therefore $u$ is the only unit in $(1,u]$.
+          
+          Now let $v$ be any unit in $\Z[(1 + \sqrt{5})/2]$.
+          Note $-v$ is also a unit, so it suffices to assume $v > 0$.
+          Choose $n$ to be the smallest integer for which $v \leq u^n$.
+          Then by the minimality of $n$, $v \in (u^{n-1}, u^n]$.
+          Moreover, by the lemma before Theorem 11,
+          $$v(u^{n-1})^{-1} = \frac{v}{u^{n-1}}$$
+          is also a unit with $1 < v/u^{n-1} \leq u$.
+          Therefore $v/u^{n-1} = u$ implies $v = u^n$.
+  \end{proof}
+\end{ex1}
 
-\begin{thm}
-Let $[x]$ denote the greatest integer $\leq x$. Determine whether the inequality
-	\begin{equation}\label{ineq}
-		\left[\frac{\pi}{2}b\right] < \frac{\pi}{2}b^2\sin\left(\frac{1}{b}\right) \leq \frac{\pi}{2}
-	\end{equation}
-holds for every positive integer b. If it does, supply a proof. If it doesn't, determine the
-least six postive integers $b$ for which \eqref{ineq} does not hold.
-	\begin{proof}
-		Observe that for some convergents $a/b$ of $\pi/2$, with some rearrangement, we have
-		$$\abs{\frac{\pi}{2}b - a} \leq \frac{1}{2b}.$$
-		Using the denominators of the convergents, the first six for which \eqref{ineq} is not satisified are
-		$340262731$, $1963319607$, $574364584667$, $47337186164411$, $136308121570117$, $158084910090576507$.
-	\end{proof}
-\end{thm}
+\begin{ex2}
+  Find the three ``smallest'' positive integer solutions to $x^2 - 29y^2 = 1$.
+  \begin{proof}
+    With some help from Sage, the continued fraction for $\sqrt{29} = [5, \overline{2, 1, 1, 2, 10}]$.
+    The solutions to $x^2 - 29y^2 = 1$ come from the equation $a_{kn-1}^2 - 29b_{kn-1}^2 = (-1)^{kn}$, where $n$ is $5$ and $k\in \Z$.
+    Hence $k=2$ yields the smallest solution, $(x,y) = (9801,1820)$. 
+    The next two solutions are given by $(9801 + 1820\sqrt{29})^2 = 192119201 + 35675640 \, \sqrt{29}$ and $(9801 + 1820\sqrt{29})^3 = 3765920568201 + 699313893460 \, \sqrt{29}$.
+    Thus the three smallest solutions are $(9801,1820)$, $(192119201, 35675640)$, and $(3765920568201, 699313893460)$.
+  \end{proof}
+\end{ex2}
+
+\begin{ex3}
+  \begin{enumerate}[(a)]
+    \item
+      Prove that $\Q(\sqrt{2}, \sqrt{3}) = \Q(\sqrt{2} + \sqrt{3})$.
+    \item
+      Since $\sqrt{2} \in \Q(\sqrt{2} + \sqrt{3})$, there is an $h(x) \in \Q[x]$ such that $\sqrt{2} = h(\sqrt{2} + \sqrt{3})$.
+      Find such an $h(x)$.
+    \item
+      What is the field polynomial for $\sqrt{2}$ in $\Q(\sqrt{2} + \sqrt{3})$?
+      Simplify your answer.
+    \item
+      Calculate $\Norm{\Q(\sqrt{2} + \sqrt{3})}{\sqrt{2}}$ and $\Tr{\Q(\sqrt{2} + \sqrt{3})}{\sqrt{2}}$
+  \end{enumerate}
+  \begin{proof}
+    \begin{enumerate}[(a)]
+    \item
+      Observe that $\sqrt{2} + \sqrt{3} \in \Q(\sqrt{2}, \sqrt{3})$ implies $\Q(\sqrt{2} + \sqrt{3}) \subseteq \Q(\sqrt{2}, \sqrt{3})$.
+      To see the reverse containment, compute
+      $$\frac{1}{2} \left( (\sqrt{2} + \sqrt{3}) - \frac{1}{\sqrt{2} + \sqrt{3}} \right) = \frac{1}{2}(\sqrt{2} + \sqrt{3} - \sqrt{2} + \sqrt{3}) = \sqrt{3} \in \Q(\sqrt{2} + \sqrt{3}).$$
+      Then $(\sqrt{2} + \sqrt{3}) - \sqrt{3} = \sqrt{2} \in \Q(\sqrt{2} + \sqrt{3})$ completes the reverse containment.
+      Therefore $\Q(\sqrt{2}, \sqrt{3}) = \Q(\sqrt{2} + \sqrt{3})$.
+    \item
+      Observe that $(\sqrt{2} + \sqrt{3})^3 = 2\sqrt{2} + 9(\sqrt{2} + \sqrt{3})$ and thus
+      $$h(x) = \frac{1}{2}x^3 - \frac{9}{2}x$$
+      has $h(\sqrt{2} + \sqrt{3}) = \sqrt{2}$.
+    \item
+      First observe that $$f(x) = x^4 - 10x^2 + 1 = (x - (\sqrt{2} + \sqrt{3}))(x + (\sqrt{2} + \sqrt{3}))(x - (\sqrt{2} - \sqrt{3}))(x + (\sqrt{2} + \sqrt{3}))$$
+      is the minimal polynomial for $\sqrt{2} + \sqrt{3}$ and that $h$ has odd degree.
+      Hence the field polynomial is given by $F(x) = (x - h(\sqrt{2} + \sqrt{3}))^2(x - h(\sqrt{2} - \sqrt{3}))^2 = (x-\sqrt{2})^2(x + \sqrt{2})^2 = x^4 - 4x^2 + 4$.
+    \item
+      The norm and trace are given by the product and the sum of the conjugates of $\sqrt{2}$, respectively:
+      $$\Norm{\Q(\sqrt{2} + \sqrt{3})}{\sqrt{2}} = \sqrt{2}\sqrt{2}(-\sqrt{2})(-\sqrt{2}) = 4 \text{ and } \Tr{\Q(\sqrt{2} + \sqrt{3})}{\sqrt{2}} = \sqrt{2} + \sqrt{2} - \sqrt{2} - \sqrt{2} = 0$$
+    \end{enumerate}
+  \end{proof}
+\end{ex3}
+
 \end{document}
