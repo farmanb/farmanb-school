@@ -1,0 +1,214 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath,mathabx}
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 701:\\Homework 05}
+\date{October 5, 2012}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+\maketitle
+
+\newcommand{\Inn}[1]{\operatorname{Inn}\left(#1\right)}
+\newcommand{\Aut}[1]{\operatorname{Aut}\left(#1\right)}
+\newcommand{\cntr}[1]{\mathbf{Z}\left(#1\right)}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\SL}[2]{\operatorname{SL}_#1\left(#2\right)}
+\newcommand{\Mat}[2]{\operatorname{Mat}_{#1}\left(#2\right)}
+\newcommand{\orbit}[1]{\mathcal{O}_{#1}}
+\newcommand{\real}[1]{\operatorname{\mathfrak{Re}}\left(#1\right)}
+\newcommand{\imag}[1]{\operatorname{\mathfrak{Im}}\left(#1\right)}
+\newcommand{\uhp}{\mathfrak{h}}
+\newcommand{\Syl}[2]{\operatorname{Syl}_{#1}\left(#2\right)}
+
+\renewcommand{\qedsymbol}{\ensuremath{\blacksquare}}
+
+\newtheorem{thm}{}
+\newtheorem{lem}{Lemma}
+
+\begin{thm}
+  The commutator subgroup of $G$ is $G^{\prime} = [G,G] = \left\{[g_1,g_2] = g_1^{-1}g_2^{-1}g_1g_2 \mid g_1,g_2 \in G\right\}$.
+  \begin{enumerate}[(a)]
+  \item
+    Let $N \unlhd G$.  Prove that $G/N$ is abelian if and only if $G^\prime \subseteq N$.
+  \item
+    Suppose that $P$ is a non-abelian group with $\abs{P} = p^3$.
+    Prove that $\cntr{P} = P^\prime$.
+  \end{enumerate}
+  \begin{proof}
+    \begin{enumerate}[(a)]
+    \item\label{1a}
+      Let $\overline{G} = G/N$ and let $\overline{g_1}, \overline{g_2} \in \overline{G}$ be given.
+      Assume $\overline{G}$ is abelian.
+      By assumption and the definition of multiplication in the quotient group, $$[g_1,g_2]N = \overline{g_1}^{-1}\overline{g_2}^{-1}\overline{g_1}\,\overline{g_2} = \overline{g_1}^{-1}\overline{g_1}\,\overline{g_2}^{-1}\overline{g_2} = \overline{1} = N.$$
+      Since the choice of $g_1$ and $g_2$ was arbitrary, $[g_1,g_2] \in N$ implies $[G,G] \subseteq N$.
+      
+      Conversely, assume $[G,G] \subseteq N$.
+      Then by assumption and the definition of multiplication in the quotient group, $$\overline{g_1}^{-1}\overline{g_2}^{-1}\overline{g_1}\,\overline{g_2} = [g_1,g_2]N = N = \overline{1}.$$
+      Multiplying both sides by $\overline{g_2}\,\overline{g_1}$ on the left we obtain $\overline{g_1}\,\overline{g_2} = \overline{g_2}\,\overline{g_1}$.
+      Hence $\overline{G}$ is abelian.
+      Therefore $G/N$ is abelian if and only if $[G,G] \subseteq N$.
+    \item
+      First observe that by the previous homework set, $\cntr{P}$ is non-trivial. 
+      By the assumption that $P$ is non-abelian, $P^\prime$ is not trivial and $\cntr{P}$ has order strictly smaller than $p^3$.
+      Hence it follows from Lagrange's Theorem that $\cntr{P}$ has order either $p$ or $p^2$.
+      Furthermore, if $\cntr{P}$ were to have order $p^2$, then $P/\cntr{P}$ would be cyclic and, by the third homework set, $P$ would be abelian.
+      Since this would contradict the assumption that $P$ is non-abelian, $\cntr{P}$ has order $p$.
+      
+      Now consider the quotient of $P$ by $\cntr{P}$, which, by the argument above, has order $p^2$.
+      By the previous homework set, all such $p$-groups are abelian.
+      It now follows from (\ref{1a}) that $P^\prime$ is a non-trivial subgroup of a group of order $p$.
+      Therefore $\cntr{P} = P^\prime$ follows from Lagrange's Theorem.
+    \end{enumerate}
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  \begin{enumerate}[(a)]
+    \item
+      Suppose that $\abs{G} = 148$.  Prove that $G$ has a normal Sylow 37-subgroup.
+    \item
+      Suppose that $\abs{G} = 1452$.  Prove that $G$ is not simple.
+    \item
+      Suppose that $\abs{G} = 280$.  Prove that $G$ has a normal Sylow subgroup.
+  \end{enumerate}
+  \begin{proof}
+    \begin{enumerate}[(a)]
+    \item
+      Observe that $148 = 2^2\cdot37$ implies $n_{37}(G)$ divides 4 and is congruent to 1 modulo 37.
+      Hence, of possible choices $1$, $2$, or $4$, only $n_{37}(G) = 1$ satisfies both conditions.
+      Therefore $G$ has a normal Sylow 37-subgroup.
+    \item
+      Observe that $1452 = 2^2\cdot3\cdot11^2$.
+      Then $n_{11}(G)$ is one of $1, 2,3,4,6,$ and $12$, of which only $1$ and $12$ are congruent to 1 modulo 11.
+      If $n_{11}(G) = 1$, then the result follows immediately.  
+      Hence it suffices to suppose, by way of contradiction, that $n_{11}(G) = 12$ and $1 < n_2(G), n_3(G)$.
+      The choices for $n_2(G)$ and $n_3(G)$ are 1, 3, 11, 33, 363 and 1, 4, 22, 484, respectively.
+      Observe that the any given Sylow 2-, 3-, or 11-subgroup has 3, 2, and 120 non-identity elements, respectively, and are pairwise disjoint.
+      Counting elements we have at least 9 non-identity elements in the Sylow 2-subgroups, at least 8 elements in the Sylow 3-subgroups, and 1440 non-identity elements in the Sylow 11-subgroups.
+      However, this implies there are at least 1458 total elements in a group of order 1452, a contradiction.
+      Hence at least one of $n_2(G)$ or $n_3(G)$ is 1.
+      Therefore $G$ is has a normal Sylow subgroup and is not simple.
+    \item
+      Observe that $280 = 2^3\cdot5\cdot7$.
+      The possible choices for $n_5(G)$ are 1, 2, 4, 7, 8, 14, 28, and 56, of which only 1 and 56 are congruent to 1 modulo 5.
+      The possible choices for $n_7(G)$ are 1, 2, 4, 5, 8, 10, 20, and 40, of which only 1 and 8 are congruent to 1 modulo 7.
+      The possible choices for $n_2(G)$ are 1, 5, 7, and 35.
+      If $n_5(G) = 1$, then the result follows immediately.
+      Assume, by way of contradiction, that $n_5(G) = 56$ and $1 < n_2(G), n_7(G)$.
+      Observe that any given Sylow 2-, 5-, or 7-subgroup has 7, 4, and 6 non-identity elements, respectively, and are pairwise disjoint.
+      Counting elements we have observe that there are at least 35 non-identity elements in the Sylow 2-subgroups, 224 non-identity elements in the Sylow 5-subgroups, and at least 48 non-identity elements in the Sylow 7-subgroups.
+      This implies there are at least 308 total elements in a group of order 280, a contradiction.
+      Hence one of $n_2(G)$ or $n_7(G)$ must be 1.
+      Therefore $G$ has a normal Sylow subgroup.
+    \end{enumerate}
+  \end{proof}
+\end{thm}
+\begin{thm}
+  Suppose that $p$ is prime with $p \divides \abs{G}$, let $P \in \Syl{p}{G}$, and let $N \unlhd G$.
+  Prove that $P \cap N \in \Syl{p}{N}$.
+  Deduce that $PN/N \in \Syl{p}{G/N}$.
+  \begin{proof}
+    Let $p^{\alpha}n = \abs{G}$, $p^\alpha = \abs{P}$, and $p^\beta m = \abs{N}$, where $n$ is some $p$-free integer, $m$ is a divisor of $n$ and $\beta \leq \alpha$.
+    Since $P \cap N$ is a subgroup of $P$, Lagrange's Theorem implies $\abs{P \cap N}$ divides $p^\alpha$.
+    Hence $\abs{P \cap N} = p^\gamma$ for some integer $\gamma \leq \beta$.
+    Now observe that the normality of $N$ implies $PN$ is a subgroup of $G$ of order $$\abs{PN} = \frac{\abs{P}\abs{N}}{\abs{P \cap N}} = p^{\alpha + \beta - \gamma}m.$$
+    Moreover, since $p^\alpha$ is the maximal $p$-power divisor of $\abs{G}$ and $\abs{PN}$ must divide $\abs{G}$, $\gamma = \beta$ must hold.
+    Therefore $P \cap N$ is a Sylow $p$-subgroup of $N$.
+
+    Finally, consider the quotient $G/N$, which is of order $p^{\alpha-\beta}n/m$.
+    By the Diamond Isomorphism Theorem, we have $PN/N \cong  P/(P\cap N)$ and thus $\abs{PN/N} =  \abs{P/(P\cap N)} = p^{\alpha-\beta}$.
+    Therefore $PN/N$ is a Sylow $p$-subgroup of $G/N$.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Suppose that $p$ is prime with $p \divides \abs{G}$, and suppose that $P \in \Syl{p}{G}$.
+  Show that $N_G(N_G(P)) = N_G(P)$.
+  \begin{proof}
+    Let $H = N_G(N_G(P))$ and let $N = N_G(P)$.
+    Observe that $P \leq N \leq H$ implies $\abs{P} \divides \abs{H}$.
+    Furthermore, since $H \leq G$ and $\abs{P}$ is the maximal $p$-power dividing $\abs{G}$, $\abs{H} = \abs{P}m$, where $m$ is $p$-free.
+    It follows from the definition that $P \in \Syl{p}{H}$.
+    Let $P^\prime \in \Syl{p}{H}$ be given and observe that by exercise 3, $P^\prime \cap N \in \Syl{p}{N}$.
+    However, $P \unlhd N$ implies $P$ is the only element of $\Syl{p}{N}$.
+    Hence $P^\prime = P$ implies $\Syl{p}{H} = \left\{P\right\}$.
+    Therefore $P \unlhd H$ implies $N = H$, as desired.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Suppose that $p$ is prime with $p \divides \abs{G}$. 
+  Suppose that $P \in \Syl{p}{G}$, that $N$ is a subgroup of $G$, and that $P \subseteq N \unlhd G$.
+  Prove that $n_p(N) = n_p(G)$.
+  \begin{proof}
+    First observe that $\abs{P}$ is the maximal $p$-power dividing $\abs{G}$ and $P \leq N$ implies, by Lagrange's Theorem, that $\abs{P} \divides \abs{N}$.
+    Hence $\Syl{p}{N} \subseteq \Syl{p}{G}$, and thus it suffices to show the reverse containment.
+    
+    Towards that end, let $P^\prime \in \Syl{p}{G}$ be given.
+    By exercise 3, $P^\prime \cap N \in \Syl{p}{N}$.
+    By the observation above, every element of $\Syl{p}{N}$ has order equal to that of $P$.
+    Hence $\abs{P^\prime \cap N}$ is a subgroup of $P^\prime$ of identical order, whence $P^\prime = P \cap N \leq N$, completing the reverse containment.
+    %= \abs{P} = \abs{P^\prime}$ and $P^\prime \cap N \leq P^\prime$ implies $P^{\prime} = P^\prime \cap N$.
+    Therefore $n_p(N) = n_p(G)$.
+
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Suppose that $p$, $q$, and $r$ are primes with $p < q < r$ and $\abs{G} = pqr$.
+  \begin{enumerate}[(a)]
+    \item
+      Let $\in \Syl{r}{G}$, and let $Q \in \Syl{q}{G}$.
+      Prove that at least one of $R$ and $Q$ is normal in $G$.
+    \item
+      Conclude that $QR$ is a normal subgroup of $G$.
+    \item
+      Use the result of Problem 5 to conclude that $R$ is a normal subgroup of $G$.
+    \item
+      Suppose that $q \notdivides  r - 1$.
+      \begin{enumerate}[(i)]
+      \item
+        Use the result of Problem 5 to show that $Q$ is a normal subgroup of $G$.
+      \item
+        Conclude also that $QR \cong \Z/qr\Z$.
+      \end{enumerate}
+  \end{enumerate}
+  \begin{proof}
+    \begin{enumerate}[(a)]
+    \item
+      Suppose $1 < n_1(G), n_r(G)$.
+      Observe that by the Sylow Counting Theorem, $n_r(G) \in \left\{1, p, r, pr\right\}$ and $n_r(G) \in \left\{1, p, q, pq\right\}$.
+      However, $p < q < r$ implies $q \notdivides p - 1$ and $r \notdivides q-1$.
+      Hence $r \leq n_q(G)$ and $pq \leq n_r(G)$.
+      Now observe that elements of $\Syl{q}{G}$ have $q-1$ elements of order $q$ and elements of $\Syl{r}{G}$ have $r - 1$ elements of order $r$.
+      Counting these elements, we have at least $r(q-1) + pq(r-1)$ non-identity elements in $G$.
+      Using that $q - 1 \geq p$ and $pr - pq > 0$, we have $$r(q-1) + pq(r-1) \geq pqr + pr - pq > prq,$$
+      a contradiction.
+      Therefore, one of $Q$ and $R$ must be normal in $G$.
+    \item
+      Observe that because one of $Q$ and $R$ is normal in $G$, $QR$ is a subgroup of $G$.
+      Let $t$ be either $q$ or $r$, according to whichever is normal, and let $N$ be the normal Sylow $t$-subgroup. 
+      Now consider the quotient $G/N$, which has order $p(qr / t)$.
+      By exercise 3, $QR/N \in \Syl{qr/t}{G/N}$ and, as was shown in class, $qr/t > p$ implies $n_{qr/t}(G/N) = 1$.
+      Hence $QR/N \unlhd G/N$, and the result follows from the Lattice Isomorphism Theorem.
+    \item
+      Observe that since $QR$ is a group of order $qr$, the same result cited above implies $n_r(QR) = 1$.
+      Then by exercise 5, $n_r(G) = n_r(QR) = 1$ implies $R$ is normal in $G$.
+    \item
+      \begin{enumerate}[(i)]
+        \item
+          By the Sylow Counting Theorem, $n_q(QR) \in \left\{1,r\right\}$.
+          However, since $q$ divides $n_q(QR) - 1$, but does not divide $r-1$, we have $n_q(QR) = 1$.
+          Hence the result of exercise 5 implies $n_q(G) = n_q(QR) = 1$.
+          Therefore $Q \unlhd G$.
+        \item
+          The result follows directly from the Theorem proven in class.  Namely, if $q < r$ are primes, $\abs{QR} = qr$, and $q \notdivides r-1$, then $QR \cong \Z/qr\Z$.
+      \end{enumerate}
+    \end{enumerate}
+  \end{proof}
+\end{thm}
+
+\end{document}

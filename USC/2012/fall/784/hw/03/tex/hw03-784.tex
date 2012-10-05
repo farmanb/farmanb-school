@@ -1,0 +1,65 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath}
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 784:\\Homework 03}
+\date{October 5, 2012}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+
+\renewcommand{\qedsymbol}{\ensuremath{\blacksquare}}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\Tr}[2]{\operatorname{Tr}_{#1}\left(#2\right)}
+\newcommand{\Norm}[2]{\operatorname{N}_{#1}\left(#2\right)}
+\newcommand{\BigO}[1]{\operatorname{O}\left(#1\right)}
+
+\begin{document}
+\maketitle
+
+\newtheorem*{ex1}{p. 18, 3}
+\newtheorem*{ex2}{p. 36, 2}
+\newtheorem{lem}{Lemma}
+
+\begin{ex1}
+  Let $\left[x\right]$ denote the greatest integer $\leq x$.
+  Determine whether the inequality
+  %\renewcommand{\theequation}{*}
+  \begin{equation}\label{star}\tag{$\ast$}
+    \left[\frac{\pi}{2}b\right] < \frac{\pi}{2}b^2\sin(1/b) \leq \frac{\pi}{2}b
+  \end{equation}
+  holds for every positive integer $b$.
+  If it does, supply a proof.
+  If it doesn't, determine the least six integers $b$ for which \eqref{star} does not hold.
+  \begin{proof}
+    Observe that the even convergents, $c_{2n} = a_{2n}/b_{2n}$, of $\pi/2$ satisfy  $\pi/2 - a_{2n}/b_{2n} \leq 1/b_{2n}^2$.
+    Multiplying through by $b_{2n}$ we obtain $\frac{\pi}{2}b_{2n} - a_{2n} \leq 1/b_{2n}$.
+    Since $1/b_{2n} \leq 1$, it must be the case that $a_{2n} = \left[\frac{\pi}{2}b_{2n}\right]$.
+    With some help from Sage, it is easily verified that the denominators of the $14^{th}$, $16^{th}$, $18^{th}$, $20^{th}$, $24^{th}$, and $28^{th}$ convergents are six counter-examples that disprove the inequality $\left[\frac{\pi}{2}b\right] < \frac{\pi}{2}b^2\sin(1/b)$.
+    
+    To find the six smallest, we first show that any integer, $b$, such that $\frac{\pi}{2}b^2\sin(1/b) \leq [\frac{\pi}{2}b]$ holds must be the denominator of a fraction $a/b$, with $\gcd(a,b)$ not necessarily 1, equivalent to a convergent for $\pi/2$.
+    To that end, assume $0 \leq \left[\frac{\pi}{2}b\right] - \frac{\pi}{2}b^2\sin(1/b)$ and  observe that 
+    $$0 \leq \left[ \frac{\pi}{2}b \right] - \frac{\pi}{2}b^2\sin(1/b) = \left[ \frac{\pi}{2}b \right] - \sum_{n=0}^{\infty} \frac{1}{(2n+1)!\,b^{2n-1}} = \left[\frac{\pi}{2}b\right] - \frac{\pi}{2}b + \frac{\pi}{2}\frac{1}{12b} - \BigO{\frac{1}{b^3}}.$$
+    Hence, if we subtract $\left[\frac{\pi}{2}b\right] - \frac{\pi}{2}b$ from both sides and divide through by $b$, we have
+    $$\frac{\pi}{2} - \frac{\left[\frac{\pi}{2}b\right]}{b} \leq \frac{\pi}{2}\frac{1}{6b^2} - \BigO{\frac{1}{b^4}} \leq \frac{1}{2b^2},$$
+    which shows $\left[\frac{\pi}{2}b\right]/b$ is a convergent for $\pi/2$, as desired.
+    
+    Now we note that multiplying $\left[\frac{\pi}{2}b\right]/b$ by $k/k$ for some integer $k > 1$, we preserve the inequality above.
+    Let $b_1 = 78256779$, $b_2 = 340262731$, $b_3 = 1963319607$, $b_4 = 13402974518$, $b_5 = 5703436923116$, and $b_6 = 136308121570117$, the denominators of the convergents mentioned above.
+    For $1 \leq i < 6$ we check the inequality $\left[\frac{\pi}{2}bk\right] < \frac{\pi}{2}(bk)^2\sin(\frac{1}{bk})$, where $2 \leq k \leq \left[b_{i+1}/b_{i}\right]$ and produce the following smaller set of counter-examples:
+    $b_1 = 78256779$, $b_2 = 340262731$, $b_3 = 1963319607$, $b_4 = 13402974518$, $b_5 = 2b_4 = 26805949036$, and $b_6 = 3b_4 = 40208923554$.
+    It is then easy to check explicitly for $1 \leq i < 4$ whether $\left[\frac{\pi}{2}bk\right] < \frac{\pi}{2}(bk)^2\sin(\frac{1}{bk})$ is satisified for all $2 \leq k \leq \left[b_{6}/b_{i}\right]$.
+    This search yields no new counter-examples.
+  \end{proof}
+\end{ex1}
+
+\begin{ex2}
+  Compute $\Delta(1,\alpha)$ where $\alpha$ is the root of $ax^2 + bx + c = 0$ where $a$, $b$, and $c$ are in $\Z$ and $\alpha$ is irrational.
+  \begin{proof}
+    Let $\alpha_1 = \alpha$ and let $\alpha_2$ be the conjugate of $\alpha$.
+    Using the definition of the discriminant we have $$\Delta(1,\alpha) = \det\left(\begin{array}{cc} 1 & \alpha_1\\1 & \alpha_2\end{array}\right)^2 = \alpha_1^2 + \alpha_2^2 - 2\alpha_1\alpha_2.$$
+      Rewriting this expression using the elementary symmetric functions in $\alpha_1$ and $\alpha_2$, we have $$\Delta(1,\alpha) = \sigma_1^2 - 4\sigma_2 = \left(\frac{-b}{a}\right)^2 - 4\frac{c}{a} = \frac{b^2 - 4ac}{a^2}.$$
+  \end{proof}
+\end{ex2}
+
+\end{document}
