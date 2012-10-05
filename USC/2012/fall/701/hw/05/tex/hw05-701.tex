@@ -83,26 +83,30 @@
     \item
       Observe that $1452 = 2^2\cdot3\cdot11^2$.
       Then $n_{11}(G)$ is one of $1, 2,3,4,6,$ and $12$, of which only $1$ and $12$ are congruent to 1 modulo 11.
-      If $n_{11}(G) = 1$, then the result follows immediately.  
-      Hence it suffices to suppose, by way of contradiction, that $n_{11}(G) = 12$ and $1 < n_2(G), n_3(G)$.
-      The choices for $n_2(G)$ and $n_3(G)$ are 1, 3, 11, 33, 363 and 1, 4, 22, 484, respectively.
-      Observe that the any given Sylow 2-, 3-, or 11-subgroup has 3, 2, and 120 non-identity elements, respectively, and are pairwise disjoint.
+      The choices for $n_2(G)$ and $n_3(G)$ are 1, 3, 11, 33, 121, 363 and 1, 2, 4, 11, 22, 44, 121, 242, and 484, respectively.
+      Of the choices for $n_3(G)$, only 1, 4, 22, 121, and 484 are congruent to 1 modulo 3.
+      If $n_{11}(G) = 1$, then the result follows immediately.  Hence it suffices to show that if $n_{11}(G) = 12$, then one of $n_2(G)$ and $n_3(G)$ is one.
+
+      Suppose, by way of contradiction, that $n_{11}(G) = 12$ and $1 < n_2(G), n_3(G)$.
+      Observe that any given Sylow 2-, 3-, or 11-subgroup has 3, 2, and 120 non-identity elements, respectively, and the Sylow $p$-subgroups are pairwise disjoint.
       Counting elements we have at least 9 non-identity elements in the Sylow 2-subgroups, at least 8 elements in the Sylow 3-subgroups, and 1440 non-identity elements in the Sylow 11-subgroups.
       However, this implies there are at least 1458 total elements in a group of order 1452, a contradiction.
       Hence at least one of $n_2(G)$ or $n_3(G)$ is 1.
-      Therefore $G$ is has a normal Sylow subgroup and is not simple.
+      Therefore $G$ has a normal Sylow subgroup and is not simple.
     \item
       Observe that $280 = 2^3\cdot5\cdot7$.
       The possible choices for $n_5(G)$ are 1, 2, 4, 7, 8, 14, 28, and 56, of which only 1 and 56 are congruent to 1 modulo 5.
       The possible choices for $n_7(G)$ are 1, 2, 4, 5, 8, 10, 20, and 40, of which only 1 and 8 are congruent to 1 modulo 7.
       The possible choices for $n_2(G)$ are 1, 5, 7, and 35.
       If $n_5(G) = 1$, then the result follows immediately.
-      Assume, by way of contradiction, that $n_5(G) = 56$ and $1 < n_2(G), n_7(G)$.
-      Observe that any given Sylow 2-, 5-, or 7-subgroup has 7, 4, and 6 non-identity elements, respectively, and are pairwise disjoint.
-      Counting elements we have observe that there are at least 35 non-identity elements in the Sylow 2-subgroups, 224 non-identity elements in the Sylow 5-subgroups, and at least 48 non-identity elements in the Sylow 7-subgroups.
+      Hence it suffices to show that if $n_5(G) = 56$, then one of $n_2(G)$ and $n_7(G)$ is one.
+      
+      Suppose, by way of contradiction, that $n_5(G) = 56$ and $1 < n_2(G), n_7(G)$.
+      Observe that any given Sylow 2-, 5-, or 7-subgroup has 7, 4, and 6 non-identity elements, respectively, and the Sylow $p$-subgroups are pairwise disjoint.
+      Counting elements we observe that there are at least 35 non-identity elements in the Sylow 2-subgroups, 224 non-identity elements in the Sylow 5-subgroups, and at least 48 non-identity elements in the Sylow 7-subgroups.
       This implies there are at least 308 total elements in a group of order 280, a contradiction.
       Hence one of $n_2(G)$ or $n_7(G)$ must be 1.
-      Therefore $G$ has a normal Sylow subgroup.
+      Therefore $G$ has a normal Sylow $p$-subgroup.
     \end{enumerate}
   \end{proof}
 \end{thm}
