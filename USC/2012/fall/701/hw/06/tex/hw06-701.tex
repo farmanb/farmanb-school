@@ -1,0 +1,250 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath,mathabx}
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 701:\\Homework 06}
+\date{October 12, 2012}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+\maketitle
+
+\newcommand{\Inn}[1]{\operatorname{Inn}\left(#1\right)}
+\newcommand{\Aut}[1]{\operatorname{Aut}\left(#1\right)}
+\newcommand{\cntr}[1]{\mathbf{Z}\left(#1\right)}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\SL}[2]{\operatorname{SL}_#1\left(#2\right)}
+\newcommand{\Mat}[2]{\operatorname{Mat}_{#1}\left(#2\right)}
+\newcommand{\orbit}[1]{\mathcal{O}_{#1}}
+\newcommand{\real}[1]{\operatorname{\mathfrak{Re}}\left(#1\right)}
+\newcommand{\imag}[1]{\operatorname{\mathfrak{Im}}\left(#1\right)}
+\newcommand{\uhp}{\mathfrak{h}}
+\newcommand{\Syl}[2]{\operatorname{Syl}_{#1}\left(#2\right)}
+
+\renewcommand{\qedsymbol}{\ensuremath{\blacksquare}}
+
+\newtheorem{thm}{}
+\newtheorem{lem}{Lemma}
+
+\begin{thm}
+  \begin{enumerate}[(a)]
+    \item
+      Find all numbers $n$ such that $S_{10}$ contains an element of order $n$.
+    \item
+      Find all numbers $n$ such that $A_8$ contains an element of order $n$.
+  \end{enumerate}
+  \begin{proof}
+    \begin{enumerate}[(a)]
+    \item
+      Observe that $S_n$ has cycles of all lengths $m \leq 10$.  
+      Namely, the identity and the cycles $\left(1 \, 2 \, \ldots \, m\right)$ for $2 \leq m \leq 10$ serve as explicit examples.
+      Furthermore, the remaining elements are formed by taking products of disjoint cycles.
+      The orders for pairwise products of distinct $i$-cycles with $j$-cycles are given in the table below.
+      For any such $i,j$-cycle, a representative can easily be constructed as $(1 \, 2 \, \ldots \, i)(i+1 \; i+2 \; \ldots \; j)$.
+      \begin{center}
+      \begin{tabular}{| c || c | c | c | c | c | c | c | c | c | c |}
+        \hline
+        & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10\\
+        \hline
+        \hline
+        1 & id &  &  &  &  &  &  &  & &\\ 
+        \hline
+        2 & 2 & 2 &  &  &  &  &  &  & &\\ 
+        \hline
+        3 & 3 & 6 & 3 &  &  &  &  &  & &\\ 
+        \hline
+        4 & 4 & 4 & 12 & 4 &  &  &  &  & &\\ 
+        \hline
+        5 & 5 & 10 & 15 & 20 & 5 &  &  &  & &\\ 
+        \hline
+        6 & 6 & 6 & 6 & 12 & - & - &  &  & &\\ 
+        \hline
+        7 & 7 & 14 & 21 & - & - & - & - &  & &\\ 
+        \hline
+        8 & 8 & -  & - & - & - & - & - & - & & \\ 
+        \hline
+        9 & 9 & - & - & - & - & - & - & - & - & \\ 
+        \hline
+        10 & 10 & - & - & - & - & - & - & - & - & -\\
+        \hline
+      \end{tabular}
+      \end{center}
+      We now observe that the only elements of odd order larger than 10 are 15 and 21.
+      Any other constructions would have to be produced from the product of an element of one of those orders with a cycle of relatively prime length.
+      Since an element of order 21 already contains 10 elements (it is the product of disjoint 3- and 7-cycles), there are no elements of $S_{10}$ from which it is disjoint.
+      However, an element of order 15 may be constructed from a 5-cycle and a 3-cycle.
+      Hence $S_{10}$ admits an element of order 30, say $(1\, 2)(3\, 4\, 5a)(6\, 7\, 8\, 9\, 10)$.
+      Therefore the $n$ are 1, 2, 3, \ldots, 10, 12, 14, 15, 20, 21, 30.
+    \item
+    \end{enumerate}
+  \end{proof}
+\end{thm}
+
+%\begin{lem}\label{pcycles}
+%  Let $p$ be a prime dividing $n$.  A permutation $\sigma \in S_n$ has order $p$ if and only if it is the product of disjoint $p$-cycles.
+%  \begin{proof}
+%    Let $\sigma = \sigma_1\sigma_2\cdots\sigma_n$ be the cycle decomposition for $\sigma$ with 1-cycles ommitted.
+%    Assume $\sigma$ has order $p$.
+%    As was shown in class, the order of $\sigma$ is the least common multiple of the lengths of the $\sigma_i$'s, hence the order of each $\sigma_i$ divides $p$.
+%    Since the $\sigma_i$ were assumed not to be 1-cycles, each have length $p$.
+%    Therefore $\sigma$ is the product of $p$-cycles.
+%    
+%    Conversely, assume $\sigma$ is a product of disjoint $p$-cycles.
+%    Then, by the same result mentioned above, the order of $\sigma$ is the least common multiple of the lengths of the $\sigma_i$.
+%    Since each has length $p$, the order of $\sigma$ is $p$.
+%  \end{proof}
+%\end{lem}
+\begin{thm}
+  \begin{enumerate}[(a)]
+    \item
+      For all $n \geq 2$, show that $S_n = \left<(1\, 2), (1\, 2\, 3\, \ldots\, n)\right>$.
+    \item
+      Suppose that $p$ is prime, that $\sigma \in S_p$ is a transposition and that $\tau \in S_p$ is a $p$-cycle.
+      Show that $S_p = \left<\sigma, \tau\right>$.
+  \end{enumerate}
+  \begin{proof}
+    \begin{enumerate}[(a)]
+    \item
+      Let $\sigma = \left(1\; 2\; 3\; \ldots n\right)$ and $\tau = \left(1\; 2\right)$.
+      Observe that, as was shown in class, every element of $S_n$ may be written as the product of transpositions.
+      Hence it suffices to show that $\sigma$ and $\tau$ generate all the transpositions.
+      To that end, consider the transposition $\left(i\; j\right)$ and observe that if we conjugate it by $\sigma^{-1}$ then we have
+      $$\left(\sigma^{-1}\right)^{-1} \left(i\; j\right) \sigma^{-1} = \sigma \left(i\; j\right) \sigma^{-1} = \left(\sigma\left(i\right)\; \sigma\left(j\right)\right) = \left(i+1\; j+1\right).$$
+      Hence we may generate the transpositions of the form $\left(i\; i+1\right)$ by successive conjugation.
+      Namely, if we let $\tau_1 = \tau$, and define $\tau_i = \sigma\tau_{i-1}\sigma^{-1}$, then we have $\tau_2 = \left(2\; 3\right), \tau_3 = \left(3\; 4\right), \ldots, \tau_{n-1} = \left(n-1\; n\right)$.\footnote[1]{Note also, that these could be generated by conjugation with powers of $\sigma$.  Indeed, it is immediate from the observation that $\sigma^j(i) = i+j$.  Recursion just seemed slightly more natural here.}
+
+      It remains only to show that $\sigma$ and $\tau$ generate the transpositions of the form $\left(i\; i + j\right)$, where $1 \leq i \leq n$ and $1 < j \leq n - i$.
+      These transpositions may be constructed in the following way.
+      %Observe first that if $j > i$, then $\tau_j$ fixes $i$.
+      Let $i$ and $j$ be given.
+      Consider the element $\tau_i = \left(i\; i+1\right)$ and observe that for all $1 < k \leq j$, $\tau_{i+k}(i) = i$.
+      By associativity and the fact that transpositions are involutary, we may conjugate $\tau_i$ by the elements $\tau_{i+1}, \tau_{i+2}, \ldots, \tau_{i+j-1}$ in the following way:
+      $$\tau_{i+j} \left( \ldots \left( \tau_{i+2} \left(\tau_{i+1} \tau_i\tau_{i+1} \right) \tau_{i+2}\right) \ldots \right) \tau_{i+j} = \left(i\; \tau_{i+j}\ldots\tau_{i+2}\tau_{i+1}\left(i + 1\right) \right).$$
+      Now we observe that, by construction, $\tau_{i + k} = \left(i + k \;\; i+k+1\right)$ for $k = 1, \ldots, j$. 
+      Hence $\tau_{i+j}\ldots\tau_{i+2}\tau_{i+1}\left(i + 1\right) = i+j$, thereby completing the construction.
+      Therefore $S_n = \left<\left(1\; 2\right), \left(1\; 2\; 3\; \ldots\; n\right)\right>$. 
+    \item
+      First relabel the elements being permuted in such a way that $\tau = (\alpha_1\; \alpha_2\; \ldots\; \alpha_p)$.
+      Fix $i,j$ such that $\sigma = (i\; j)$ and observe that if $i > j$, then we may rewrite $\sigma$ as $(j\; i)$.
+      Hence it suffices to assume $i < j$.
+      As in part (a), we may conjugate $\sigma$ by $\tau$ a total of $n - i + 1$ times to obtain the transposition $\sigma_1 = (\alpha_1\; \alpha_{k})$ where $k = j + n - i + 1$.
+      
+      Now cycle through the conjugates to obtain the collection of transpositions $$\sigma_1, \sigma_2 = (\alpha_2\; \alpha_{k+1}), \ldots, \sigma_{p} = (\alpha_p\; \alpha_{k-1}).$$
+      %\ldots, \sigma_{n-k} = (\alpha_{n-k}\; \alpha_{n}), \sigma_{n-k+1} = (\alpha_{n-k+1}\; \alpha_1), \ldots, 
+      Observe that for each $i$, if $\sigma_i$ does not fix $\alpha_j$, then it moves the subscript forward $k - 1$ places, modulo $p$.
+      Since every non-zero element of $\Z/p\Z$ generates the group, it is clear that one may then produce a collection of transpositions for which their product applied to $\alpha_k$ is $\alpha_2$.
+      Conjugating $\sigma_1$ by those transpositions as in (a) returns us to the case where we have $\tau = (\alpha_1\; \alpha_2\; \ldots\; \alpha_p)$ and $\sigma = (\alpha_1\; \alpha_2)$.
+    \end{enumerate}
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  \begin{proof}
+    First let $\psi$ be the isomorphism between the multiplicative and additive groups of order 2,
+    \begin{align*}
+      \psi \colon \left\{\pm 1\right\} & \rightarrow \left\{0,1\right\}\\
+        -1 & \mapsto 1\\
+        1 & \mapsto 0.\\
+    \end{align*}
+    Then observe that there is a natural embedding of $S_{n-2}$ into $S_n$ under the inclusion map, so it makes sense to define the map 
+    \begin{align*}
+      \varphi \colon S_{n-2} & \rightarrow A_n\\
+      \sigma & \mapsto \sigma \left( n-1\; n \right)^{\psi\circ\varepsilon(\sigma)},
+    \end{align*}
+    where $(n-1\; n)^{0} = 1_{A_n}$.
+    This map appends a disjoint transposition to any element not in $A_{n-2}$, thus making it an element of $A_{n-2}$, as well as $A_n$ under the aforementioned inclusion map.
+    To see that $\varphi$ is well defined, first observe that if $\varepsilon(\sigma_1) = \varepsilon(\sigma_2) = 1$, then $\varphi(\sigma_1) = \sigma_1 = \sigma_2 = \varphi(\sigma_2)$.
+    If $\varepsilon(\sigma_1) = \varepsilon(\sigma_2) = -1$, then  we have by the group structure in $A_n$ that $\sigma_1(n-1\; n) = \sigma_2(n-1\; n)$ if and only if $\sigma_1 = \sigma_2$.
+
+    To see that $\varphi$ is a homomorphism, let $\sigma_1, \sigma_2 \in S_{n-2}$ be given.
+    If both are elements of $A_{n-2}$, then, trivially, $\varphi(\sigma_1\sigma_2) = \sigma_1\sigma_2 = \varphi(\sigma_1)\varphi(\sigma_2)$.
+    If only one is an element of $A_{n-2}$, say $\sigma_1$, then it follows from the fact that disjoint cycles commute that
+    $$\varphi(\sigma_1\sigma_2) = \sigma_1\sigma_2(n-1\; n) = \sigma_1(n-1\; n)\sigma_2 = \varphi(\sigma_1)\varphi(\sigma_2).$$
+    Similarly, if neither is an element of $A_{n-2}$, then
+    $$\varphi(\sigma_1\sigma_2) = \sigma_1\sigma_2 = \sigma_1\sigma_2(n-1\; n)^2 = \sigma_1(n-1\; n)\sigma_2(n-1\; n) = \varphi(\sigma_1)\varphi(\sigma_2).$$
+    
+    It remains only to show that $\ker\varphi$ is trivial.  
+    To that end, let $\sigma \in \ker\varphi$ be given.
+    If $\varepsilon(\sigma) = -1$, then $\varphi(\sigma) = \sigma(n-1\; n) = 1$ implies $\sigma = (n-1\; n)$, which is not an element of $S_{n-2}$.
+    Hence $\varepsilon(\sigma) = 1$, from which it follows that $\varphi(\sigma) = \sigma = 1$ and $\ker\varphi$ is trivial, as desired.
+    Therefore, by the First Isomorphism Theorem, $S_{n-2} \cong Im(\varphi) \leq A_n$.
+    
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Let $a \in S_n$ be an $n$-cycle.  Show that $C_{S_n}(a) = \left< a \right>$.
+  \begin{proof}
+    Since $\left< a \right>$ is cyclic, it is certainly contained in $C_{S_n}(a)$.
+    To see that it is equal, observe that because elements of $S_n$ are conjugate if and only if they are of the same cycle type, the size of the conjugacy class is $(n-1)!$.
+    Then by the Orbit-Stabilizer Theorem, we have $$\abs{C_{S_n}(a)} = \frac{\abs{S_n}}{\abs{cl(a)}} = \frac{n!}{(n-1)!} = n = \abs{\left<a\right>}.$$
+    Therefore $\left<a\right>$ is a subgroup of $C_{S_n}(a)$ of the same order, which implies $C_{S_n}(a) = \left< a \right>$.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Suppose that $1 < m < n$.  Let $G = \left<\sigma = (1\; 2\; 3\; \ldots\; m), \tau = (1\; 2\; 3\; \ldots\; n)\right>$.
+  Prove that $G$ contains a 3-cycle.
+  \begin{proof}
+    First, start by conjugating $\sigma^{-1}$ by $\tau^{-1}$ to obtain
+    $$\tau\sigma^{-1}\tau^{-1} = (1\; 2\; 3\; \ldots\; n)(1\; m\; m-1\; \ldots 2)(1\; n\; n-1\; \ldots\; 2) = (2\; m+1\; m\; \ldots\; 3).$$
+    Now, multiply on the left by $\sigma$ to obtain
+    $$\sigma\tau\sigma^{-1}\tau^{-1} = (1\; 2\; 3\; \ldots\; m)(2\; m+1\; m\; \ldots\; 3) = (1\; 2\; m+1).$$
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Write down the conjugacy classes in $A_4$.
+  \begin{proof}
+    The conjugacy classes in $A_4$ are $\left\{(1\; 2\; 3), (1\; 3\; 4), (1\; 4\; 2), (2\; 4\; 3)\right\}$, $\left\{(1\; 2\; 4), (1\; 2\; 4), (1\; 4\; 3)\right\}$,\\ $\left\{(1\; 2)(3\; 4), (1\; 3)(2\; 4), (1\; 4)(2\; 3)\right\}$, and $\left\{1\right\}$.
+    These can be checked easily by hand by first computing the conjugates of $(1\; 2\; 3)$, then ensuring the last four 3-cycles are truly conjugate and that the 2,2-cycles are conjugate.
+    The computations are listed in the table below.
+    The column indicates the element which was conjugated by the inverse of the row (i.e. $(\sigma^{-1})^{-1}\tau\sigma^{-1}$).\\
+    \begin{center}
+      \begin{tabular}{| c || c | c | c |}
+        \hline
+        & (1\; 2\; 3) & (1\; 2\; 4) & (1\; 2)(3\; 4)\\
+        \hline
+        \hline
+        (1\; 2)(3\; 4) & (1\; 4\; 2) & (1\; 3\; 2) &\\
+        \hline
+        (1\; 3)(2\; 4) & (1\; 3\; 4) & (2\; 3\; 4) &\\
+        \hline
+        (1\; 4)(2\; 3) & (2\; 4\; 3) & (1\; 4\; 3) &\\
+        \hline
+        (1\; 2\; 4) & (1\; 4\; 2) & (1\; 2\; 4) &\\
+        \hline
+        (1\; 2\; 3) & (1\; 2\; 3) & & (1\; 4)(2\; 3)\\ 
+        \hline
+        (2\; 4\; 3) & (1\; 4\; 2) & & (1\; 3)(2\; 4)\\
+        \hline
+        (1\; 3\; 2) & (1\; 2\; 3) & &\\
+        \hline
+        (1\; 4\; 2) & (1\; 3\; 4) & &\\
+        \hline
+        (1\; 3\; 4) & (2\; 3\; 4) & &\\
+        \hline
+        (1\; 4\; 3) & (2\; 4\; 3) & &\\
+        \hline
+        (2\; 3\; 4) & (1\; 3\; 4) & &\\
+        \hline
+      \end{tabular}
+    \end{center}
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Prove that $A_4$ has no subgroup of order 6.
+  \begin{proof}
+    Suppose to the contrary that $A_4$ contained a subgroup, $N$, of order 6.
+    Then $[A_4: N] = 2$ implies $N$ is normal in $A_4$.
+    Let $\sigma$ be any 3-cycle and consider the group it generates, $\left<\sigma\right>$.
+    Observe that by the result of Homework 3, exercise 6 (a), $\gcd(\abs{\left<\sigma\right>}, [G : N]) = \gcd(3, 2) = 1$ implies $\left<\sigma\right> \subseteq N$.
+    Hence $N$ contains all eight elements of order 3.
+    However, $N$ was supposed to have order 6, a contradiction.
+    Therefore $A_4$ does not have a subgroup of order 6.
+  \end{proof}
+\end{thm}
+\end{document}

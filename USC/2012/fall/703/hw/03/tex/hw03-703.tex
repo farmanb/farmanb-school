@@ -1,10 +1,10 @@
-\documentclass[10pt]{amsart}
+\documentclass[12pt]{amsart}
 \renewcommand{\baselinestretch}{1.5}
 \usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,paralist}
 \openup 5pt
 \author{Blake Farman\\University of South Carolina}
 \title{Math 703:\\Homework 03}
-\date{October 9, 2012}
+\date{October 11, 2012}
 \pdfpagewidth 8.5in
 \pdfpageheight 11in
 \usepackage[margin=1in]{geometry}
@@ -58,11 +58,12 @@
       ((a_1, a_2), (b_1, b_2)) &\mapsto \rho(a_1, b_1) + \rho(a_2, b_2)
     \end{align*}
     then $(A \times A, \rho_2)$ is a metric space.
+    Moreover, observe that $\dist{S}{T} = \inf \rho(S \times T)$ and thus by Corollary 2.39, it suffices to show that $\rho$ is continuous and $S\times T$ is compact.
     We first show that $\rho$ is continuous on $(A \times A, \rho_2)$.
     Towards that end, let $\varepsilon > 0$ be given, fix $a = (a_1, a_2) \in A \times A$ and let $b = (b_1,b_2) \in A \times A$ be such that $\rho_2(a,b) < \varepsilon$.
     Observe that after two applications of the triangle inequality for $\rho$ we have 
     $$\rho(b_1, b_2) \leq \rho(a_1, b_1) + \rho(a_1, a_2) + \rho(a_2, b_2) = \rho_2(a,b) + \rho(a) < \rho(a) + \varepsilon.$$
-    By the same argument, mutatis mutandis, we find $\rho(a) < \rho(b) + \varepsilon$.
+    By the same argument, mutatis mutandis, we find $\rho(a) < \rho(b) + \varepsilon$, hence $\rho(a) - \varepsilon < \rho(b)$.
     Combining these two inequalities, we have $\rho(a) - \varepsilon < \rho(b) < \rho(a) + \varepsilon$.
     Hence $\rho_2(a,b) < \delta = \varepsilon$ implies $\abs{\rho(a) - \rho(b)} < \varepsilon$, and $\rho$ is continuous, as desired.
     
@@ -73,8 +74,6 @@
     Now, since $\left\{s_{n_j}\right\}_{j=1}^{\infty}$ converges to $s$, so too does $\left\{s_{n_{j_k}}\right\}_{k=1}^{\infty}$.
     Hence $\left\{ \left(s_{n_{j_k}}, t_{n_{j_k}}\right) \right\}_{k=1}^{\infty}$ is a convergent subsequence of $\left\{ \left(s_n, t_n\right) \right\}_{n=1}^{\infty}$, with limit $(s,t) \in S \times T$.
     Therefore $S \times T$ is sequentially compact, hence compact by Theorem 2.36 (Knapp).
-    
-    Finally, we observe that $\dist{S}{T} = \inf \rho(S \times T)$ and the result then follows from Corollary 2.39.
   \end{proof}
 \end{ex3}
 
