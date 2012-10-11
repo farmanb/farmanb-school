@@ -1,5 +1,5 @@
 \documentclass[10pt]{amsart}
-\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath,mathabx}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate}
 \openup 5pt
 \author{Blake Farman\\University of South Carolina}
 \title{Math 701:\\Homework 06}
@@ -25,62 +25,67 @@
 
 \renewcommand{\qedsymbol}{\ensuremath{\blacksquare}}
 
-\newtheorem{thm}{}
-\newtheorem{lem}{Lemma}
+\newtheorem*{ex2}{2}
+\newtheorem*{ex3}{3}
+\newtheorem*{ex4}{4}
+\newtheorem*{ex5}{5}
+\newtheorem*{ex6}{6}
+\newtheorem*{ex7}{7}
+\newtheorem*{lem}{Lemma}
 
-\begin{thm}
-  \begin{enumerate}[(a)]
-    \item
-      Find all numbers $n$ such that $S_{10}$ contains an element of order $n$.
-    \item
-      Find all numbers $n$ such that $A_8$ contains an element of order $n$.
-  \end{enumerate}
-  \begin{proof}
-    \begin{enumerate}[(a)]
-    \item
-      Observe that $S_n$ has cycles of all lengths $m \leq 10$.  
-      Namely, the identity and the cycles $\left(1 \, 2 \, \ldots \, m\right)$ for $2 \leq m \leq 10$ serve as explicit examples.
-      Furthermore, the remaining elements are formed by taking products of disjoint cycles.
-      The orders for pairwise products of distinct $i$-cycles with $j$-cycles are given in the table below.
-      For any such $i,j$-cycle, a representative can easily be constructed as $(1 \, 2 \, \ldots \, i)(i+1 \; i+2 \; \ldots \; j)$.
-      \begin{center}
-      \begin{tabular}{| c || c | c | c | c | c | c | c | c | c | c |}
-        \hline
-        & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10\\
-        \hline
-        \hline
-        1 & id &  &  &  &  &  &  &  & &\\ 
-        \hline
-        2 & 2 & 2 &  &  &  &  &  &  & &\\ 
-        \hline
-        3 & 3 & 6 & 3 &  &  &  &  &  & &\\ 
-        \hline
-        4 & 4 & 4 & 12 & 4 &  &  &  &  & &\\ 
-        \hline
-        5 & 5 & 10 & 15 & 20 & 5 &  &  &  & &\\ 
-        \hline
-        6 & 6 & 6 & 6 & 12 & - & - &  &  & &\\ 
-        \hline
-        7 & 7 & 14 & 21 & - & - & - & - &  & &\\ 
-        \hline
-        8 & 8 & -  & - & - & - & - & - & - & & \\ 
-        \hline
-        9 & 9 & - & - & - & - & - & - & - & - & \\ 
-        \hline
-        10 & 10 & - & - & - & - & - & - & - & - & -\\
-        \hline
-      \end{tabular}
-      \end{center}
-      We now observe that the only elements of odd order larger than 10 are 15 and 21.
-      Any other constructions would have to be produced from the product of an element of one of those orders with a cycle of relatively prime length.
-      Since an element of order 21 already contains 10 elements (it is the product of disjoint 3- and 7-cycles), there are no elements of $S_{10}$ from which it is disjoint.
-      However, an element of order 15 may be constructed from a 5-cycle and a 3-cycle.
-      Hence $S_{10}$ admits an element of order 30, say $(1\, 2)(3\, 4\, 5a)(6\, 7\, 8\, 9\, 10)$.
-      Therefore the $n$ are 1, 2, 3, \ldots, 10, 12, 14, 15, 20, 21, 30.
-    \item
-    \end{enumerate}
-  \end{proof}
-\end{thm}
+%\begin{thm}
+%  \begin{enumerate}[(a)]
+%    \item
+%      Find all numbers $n$ such that $S_{10}$ contains an element of order $n$.
+%    \item
+%      Find all numbers $n$ such that $A_8$ contains an element of order $n$.
+%  \end{enumerate}
+%  \begin{proof}
+%    \begin{enumerate}[(a)]
+%    \item
+%      Observe that $S_n$ has cycles of all lengths $m \leq 10$.  
+%      Namely, the identity and the cycles $\left(1 \, 2 \, \ldots \, m\right)$ for $2 \leq m \leq 10$ serve as explicit examples.
+%      Furthermore, the remaining elements are formed by taking products of disjoint cycles.
+%      The orders for pairwise products of distinct $i$-cycles with $j$-cycles are given in the table below.
+%      For any such $i,j$-cycle, a representative can easily be constructed as $(1 \, 2 \, \ldots \, i)(i+1 \; i+2 \; \ldots \; j)$.
+%      \begin{center}
+%      \begin{tabular}{| c || c | c | c | c | c | c | c | c | c | c |}
+%        \hline
+%        & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10\\
+%        \hline
+%        \hline
+%        1 & id &  &  &  &  &  &  &  & &\\ 
+%        \hline
+%        2 & 2 & 2 &  &  &  &  &  &  & &\\ 
+%        \hline
+%        3 & 3 & 6 & 3 &  &  &  &  &  & &\\ 
+%        \hline
+%        4 & 4 & 4 & 12 & 4 &  &  &  &  & &\\ 
+%        \hline
+%        5 & 5 & 10 & 15 & 20 & 5 &  &  &  & &\\ 
+%        \hline
+%        6 & 6 & 6 & 6 & 12 & - & - &  &  & &\\ 
+%        \hline
+%        7 & 7 & 14 & 21 & - & - & - & - &  & &\\ 
+%        \hline
+%        8 & 8 & -  & - & - & - & - & - & - & & \\ 
+%        \hline
+%        9 & 9 & - & - & - & - & - & - & - & - & \\ 
+%        \hline
+%        10 & 10 & - & - & - & - & - & - & - & - & -\\
+%        \hline
+%      \end{tabular}
+%      \end{center}
+%      We now observe that the only elements of odd order larger than 10 are 15 and 21.
+%      Any other constructions would have to be produced from the product of an element of one of those orders with a cycle of relatively %prime length.
+%      Since an element of order 21 already contains 10 elements (it is the product of disjoint 3- and 7-cycles), there are no elements of %$S_{10}$ from which it is disjoint.
+%      However, an element of order 15 may be constructed from a 5-cycle and a 3-cycle.
+%      Hence $S_{10}$ admits an element of order 30, say $(1\, 2)(3\, 4\, 5a)(6\, 7\, 8\, 9\, 10)$.
+%      Therefore the $n$ are 1, 2, 3, \ldots, 10, 12, 14, 15, 20, 21, 30.
+%    \item
+%    \end{enumerate}
+%  \end{proof}
+%\end{thm}
 
 %\begin{lem}\label{pcycles}
 %  Let $p$ be a prime dividing $n$.  A permutation $\sigma \in S_n$ has order $p$ if and only if it is the product of disjoint $p$-cycles.
@@ -96,7 +101,7 @@
 %    Since each has length $p$, the order of $\sigma$ is $p$.
 %  \end{proof}
 %\end{lem}
-\begin{thm}
+\begin{ex2}
   \begin{enumerate}[(a)]
     \item
       For all $n \geq 2$, show that $S_n = \left<(1\, 2), (1\, 2\, 3\, \ldots\, n)\right>$.
@@ -134,13 +139,13 @@
       Now cycle through the conjugates to obtain the collection of transpositions $$\sigma_1, \sigma_2 = (\alpha_2\; \alpha_{k+1}), \ldots, \sigma_{p} = (\alpha_p\; \alpha_{k-1}).$$
       %\ldots, \sigma_{n-k} = (\alpha_{n-k}\; \alpha_{n}), \sigma_{n-k+1} = (\alpha_{n-k+1}\; \alpha_1), \ldots, 
       Observe that for each $i$, if $\sigma_i$ does not fix $\alpha_j$, then it moves the subscript forward $k - 1$ places, modulo $p$.
-      Since every non-zero element of $\Z/p\Z$ generates the group, it is clear that one may then produce a collection of transpositions for which their product applied to $\alpha_k$ is $\alpha_2$.
+      Since every non-zero element of $\mathbb{Z}/p\mathbb{Z}$ generates the group, it is clear that one may then produce a collection of transpositions for which their product applied to $\alpha_k$ is $\alpha_2$.
       Conjugating $\sigma_1$ by those transpositions as in (a) returns us to the case where we have $\tau = (\alpha_1\; \alpha_2\; \ldots\; \alpha_p)$ and $\sigma = (\alpha_1\; \alpha_2)$.
     \end{enumerate}
   \end{proof}
-\end{thm}
+\end{ex2}
 
-\begin{thm}
+\begin{ex3}
   \begin{proof}
     First let $\psi$ be the isomorphism between the multiplicative and additive groups of order 2,
     \begin{align*}
@@ -172,9 +177,9 @@
     Therefore, by the First Isomorphism Theorem, $S_{n-2} \cong Im(\varphi) \leq A_n$.
     
   \end{proof}
-\end{thm}
+\end{ex3}
 
-\begin{thm}
+\begin{ex4}
   Let $a \in S_n$ be an $n$-cycle.  Show that $C_{S_n}(a) = \left< a \right>$.
   \begin{proof}
     Since $\left< a \right>$ is cyclic, it is certainly contained in $C_{S_n}(a)$.
@@ -182,20 +187,26 @@
     Then by the Orbit-Stabilizer Theorem, we have $$\abs{C_{S_n}(a)} = \frac{\abs{S_n}}{\abs{cl(a)}} = \frac{n!}{(n-1)!} = n = \abs{\left<a\right>}.$$
     Therefore $\left<a\right>$ is a subgroup of $C_{S_n}(a)$ of the same order, which implies $C_{S_n}(a) = \left< a \right>$.
   \end{proof}
-\end{thm}
+\end{ex4}
 
-\begin{thm}
+\begin{ex5}
   Suppose that $1 < m < n$.  Let $G = \left<\sigma = (1\; 2\; 3\; \ldots\; m), \tau = (1\; 2\; 3\; \ldots\; n)\right>$.
   Prove that $G$ contains a 3-cycle.
   \begin{proof}
     First, start by conjugating $\sigma^{-1}$ by $\tau^{-1}$ to obtain
-    $$\tau\sigma^{-1}\tau^{-1} = (1\; 2\; 3\; \ldots\; n)(1\; m\; m-1\; \ldots 2)(1\; n\; n-1\; \ldots\; 2) = (2\; m+1\; m\; \ldots\; 3).$$
+    %(1\; 2\; 3\; \ldots\; n)(1\; m\; m-1\; \ldots 2)(1\; n\; n-1\; \ldots\; 2) = 
+    $$\tau\sigma^{-1}\tau^{-1} = (\tau(1)\;\; \tau(m)\;\; \tau(m-1)\;\; \ldots\; \tau(2)) =(2\; m+1\; m\; \ldots\; 3).$$
     Now, multiply on the left by $\sigma$ to obtain
-    $$\sigma\tau\sigma^{-1}\tau^{-1} = (1\; 2\; 3\; \ldots\; m)(2\; m+1\; m\; \ldots\; 3) = (1\; 2\; m+1).$$
+    $$\sigma\tau\sigma^{-1}\tau^{-1} = (1\; 2\; 3\; \ldots\; m)(2\; m+1\; m\; \ldots\; 3).$$% = .$$
+    For ease of notation, let $\delta = \tau\sigma^{-1}\tau^{-1}$.
+    Observe that for $i = 3, 4, \ldots, m$, we have $\delta(i) = i-1$ and $\sigma(i-1) = i$, hence $\sigma\delta$ fixes $i = 3, 4, \ldots, m$.
+	Also observe that $\delta$ fixes 1 and $\sigma$ fixes $m+1$.
+    Hence $\sigma\delta(1) = \sigma(1) = 2$, $\sigma\delta(2) = \sigma(m+1) = m+1$, and $\sigma\delta^{-1}(m+1) = \sigma(m) = 1$.
+    Therefore $\sigma\delta = [\sigma,\tau] = (1\; 2\; m+1)$, a 3-cycle, as desired.
   \end{proof}
-\end{thm}
+\end{ex5}
 
-\begin{thm}
+\begin{ex6}
   Write down the conjugacy classes in $A_4$.
   \begin{proof}
     The conjugacy classes in $A_4$ are $\left\{(1\; 2\; 3), (1\; 3\; 4), (1\; 4\; 2), (2\; 4\; 3)\right\}$, $\left\{(1\; 2\; 4), (1\; 2\; 4), (1\; 4\; 3)\right\}$,\\ $\left\{(1\; 2)(3\; 4), (1\; 3)(2\; 4), (1\; 4)(2\; 3)\right\}$, and $\left\{1\right\}$.
@@ -233,9 +244,9 @@
       \end{tabular}
     \end{center}
   \end{proof}
-\end{thm}
+\end{ex6}
 
-\begin{thm}
+\begin{ex7}
   Prove that $A_4$ has no subgroup of order 6.
   \begin{proof}
     Suppose to the contrary that $A_4$ contained a subgroup, $N$, of order 6.
@@ -246,5 +257,5 @@
     However, $N$ was supposed to have order 6, a contradiction.
     Therefore $A_4$ does not have a subgroup of order 6.
   \end{proof}
-\end{thm}
+\end{ex7}
 \end{document}
