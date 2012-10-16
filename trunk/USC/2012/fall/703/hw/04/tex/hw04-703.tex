@@ -1,0 +1,205 @@
+\documentclass[12pt]{amsart}
+\renewcommand{\baselinestretch}{1.5}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,paralist,mymath}
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 703:\\Homework 03}
+\date{October 16, 2012}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+\begin{document}
+\maketitle
+
+\providecommand{\norm}[1]{\lVert#1\rVert}
+\renewcommand{\qedsymbol}{\ensuremath{\blacksquare}}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\dist}[2]{\operatorname{dist}\left(#1,#2\right)}
+
+\newtheorem{setup}{}
+\setcounter{setup}{12}
+\newtheorem{ex}{}[setup]
+\newtheorem{lem}{Lemma}
+
+\begin{setup}
+  Let $(X, d)$ and $(Y,\rho)$ be metric spaces.
+  Consider a function $f \colon X \rightarrow Y$.
+  \begin{ex}
+    Prove or give a counterexample.
+    The function $f$ preserves convergent sequences if and only if, when $\left\{x_n\right\}_{n=1}^\infty$ is a convergent sequence in $X$, then $\left\{f(x_n)\right\}_{n=1}^\infty$ is a convergent sequence in $Y$.
+    \begin{proof}
+      Assume $f$ preserves convergent sequences.
+      By the definition, if $\left\{x_n\right\}_{n=1}^\infty$ converges to $x$ in $X$, then $\left\{f(x_n)\right\}_{n=1}^\infty$ converges to $f(x)$ in $Y$.
+      
+      Conversely, suppose to the contrary that $f$ satisfies the hypotheses, but there exists some sequence $\left\{x_n\right\}_{n=1}^\infty$ converging to $x$ in $X$ with $\left\{f(x_n)\right\}_{n=1}^\infty$ converging to $y \not = f(x)$ in $Y$.
+      Construct the sequence $\left\{\tilde{x}_n\right\}_{n=1}^\infty$ by $\tilde{x}_{2n-1} = x_n$ and $\tilde{x}_{2n} = x$.
+      Observe that for every $\delta > 0$, there exists some $N \in \N$ such that $d(\tilde{x}_{2n-1},x) = d(x_n, x) < \delta$ holds for all $n \geq N$.
+      Moreover observe that $d(\tilde{x}_{2n}, x) = 0$ for all $n \in \N$.
+      Hence for every $\delta > 0$, there exists $N \in N$ such that $d(\tilde{x}_n, x) < \delta$ holds for all $n \geq N$.
+      Therefore $\lim_{n\rightarrow\infty} \tilde{x}_n = x$.
+      
+      Now consider the sequence $\rho(f(\tilde{x}_{2n-1}), f(\tilde{x}_{2n})) = \rho(f(x_n), f(x))$.
+      Since $\left\{f(x_n)\right\}_{n=1}^\infty$ was supposed not to converge to $f(x)$, there exists some $\epsilon > 0$ such that for each $N \in \N$ there exists $n \geq N$ with 
+      $$\rho(f(\tilde{x}_{2n-1}), f(\tilde{x}_{2n})) = \rho(f(x_n), f(x)) \geq \varepsilon.$$
+      Hence $\left\{f(\tilde{x}_n)\right\}_{n=1}^\infty$ is not Cauchy and, by the contrapositive of the next exercise, is not convergent.
+      %In particular, note that by construction $\left\{f(\tilde{x}_{2n})\right\}_{n=1}^\infty$ converges to $f(x)$ and  $\left\{f(\tilde{x}_{2n-1})\right\}_{n=1}^\infty$ converges to $y \not = f(x)$.
+      However, it was assumed that, since $\left\{\tilde{x}_n\right\}_{n=1}^\infty$ converges in $X$, $\left\{f(\tilde{x}_n)\right\}_{n=1}^\infty$ converges in $Y$, a contradiction.
+      Therefore the function $f$ preserves convergent sequences if and only if, when $\left\{x_n\right\}_{n=1}^\infty$ is a convergent sequence in $X$, then $\left\{f(x_n)\right\}_{n=1}^\infty$ is a convergent sequence in $Y$.
+    \end{proof}
+  \end{ex}
+
+  \begin{ex}
+    Show that a convergent sequence $\left\{x_n\right\}_{n=1}^\infty$ in $X$ is Cauchy.
+    \begin{proof}
+      Let $\varepsilon > 0$ be given and take $N \in \N$ such that $d(x_n, x) \leq \varepsilon/2$ holds for all $n \geq N$.  
+      Then by the triangle inequality 
+      $$d(x_n, x_m) \leq d(x_n, x) + d(x_m, x) \leq \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon$$
+      holds for all $n,m \geq N$.
+      Therefore $\left\{x_n\right\}_{n=1}^\infty$ is Cauchy.
+    \end{proof}
+  \end{ex}
+
+  \begin{ex}
+    Give an example of a metric space $(X,d)$ and a Cauchy sequence $\left\{x_n\right\}_{n=1}^\infty$ from $X$ that does not converge.
+    \begin{proof}
+      By exercise 25 (a) from the second homework set, the sequence $f_n(x) = \left(\frac{x-a}{b-a}\right)^n$ is Cauchy in the metric space $(C[a,b],\norm{\cdot})$, where $\norm{\cdot}$ is the metric induced by the norm $\norm{f} = \int_a^b \abs{f(x)}dx$, but does not converge.
+    \end{proof}
+  \end{ex}
+
+  \begin{ex}
+    Give an example of a continuous $f \colon x \rightarrow Y$ that does \underline{not} preserve Cauchy sequences.
+    \begin{proof}
+      Take the metric space $(\R^{>0}, \abs{\cdot})$, where $\abs{\cdot}$ is the usual metric.
+      The function $f(x) = 1/x$ is continuous, but the sequence $\left\{f(1/n)\right\}_{n=1}^\infty = \left\{n\right\}_{n=1}^\infty$ does not converge, hence is not Cauchy.
+    \end{proof}
+  \end{ex}
+  
+  \begin{ex}
+    Show that if $f$ is uniformly continuous, then $f$ preserves Cauchy sequences.
+    \begin{proof}
+      Let $f \colon X \rightarrow Y$ be a uniformly continuous function and let $\left\{x_n\right\}_{n=1}^\infty$ be a Cauchy sequence in $X$.
+      Let $\varepsilon > 0$ be given.
+      Since $f$ is uniformly continuous and $\left\{x_n\right\}_{n=1}^\infty$ is Cauchy, there exist $\delta > 0$ and $N_\delta \in N$ such that for all $n,m \geq N_\delta$, $d(x_n, x_m) < \delta$ and thus $\rho(f(x_n), f(x_m)) < \varepsilon$.
+      Therefore $\left\{f(x_n)\right\}_{n=1}^\infty$ is Cauchy, as desired.
+    \end{proof}
+  \end{ex}
+  
+  \begin{ex}
+    Prove or give a counterexample.
+    If $f$ preserves Cauchy sequences, then $f$ is uniformly continuous.
+    \begin{proof}
+      Consider the space $\R$ equipped with the usual metric.
+      The function $f \colon \R \rightarrow \R$, $x \mapsto x^2$ is continuous, but not uniformly so.
+      By the corollary to Proposition 2.25, $f$ preserves convergent sequences.
+      Moreover, since $\R$ is complete, all Cauchy sequences are convergent sequences and thus it also preserves Cauchy sequences.
+    \end{proof}
+  \end{ex}
+
+  \begin{ex}
+    Show the following.
+    The function $f$ is uniformly continuous if and only if, when $\left\{x_n\right\}_{n=1}^\infty$ and $\left\{z_n\right\}_{n=1}^\infty$ are sequences from $X$ such that $d(x_n, z_n) \rightarrow 0$, then $\rho(f(x_n), f(z_n)) \rightarrow 0$.
+    \begin{proof}
+      Assume that $f$ is uniformly continuous and $\left\{x_n\right\}_{n=1}^\infty$ and $\left\{z_n\right\}_{n=1}^\infty$ are sequences from $X$ such that $d(x_n, z_n) \rightarrow 0$.
+      Let $\varepsilon > 0$ be given and choose $\delta, N_\delta \in N$ such that for all $n \geq N_\delta$ $d(x_n, z_n) \leq \delta$ and thus $\rho(f(x_n), f(z_n)) < \varepsilon$.
+      Hence $\rho(f(x_n), f(z_n)) \rightarrow 0$ as $n \rightarrow \infty$.
+      
+      Convserely, assume that $f$ is such that when $\left\{x_n\right\}_{n=1}^\infty$ and $\left\{z_n\right\}_{n=1}^\infty$ are sequences from $X$ such that $d(x_n, z_n) \rightarrow 0$, then $\rho(f(x_n), f(z_n)) \rightarrow 0$.
+      Suppose to the contrary that $f$ is not uniformly continuous.
+      Then there exists $\varepsilon > 0$ such that for each $\delta = 1/n$, there exists $x_n, z_n$ such that $d(x_n, z_n) < 1/n$, but $\rho(f(x_n), f(z_n)) \geq \varepsilon.$
+      Then the sequence $d(x_n, z_n) \rightarrow 0$ as $n \rightarrow \infty$, but $\rho(f(x_n), f(z_n)) \not \rightarrow 0$ as $n \rightarrow \infty$, a contradiction.
+      Therefore $f$ is uniformly continuous.
+    \end{proof}
+  \end{ex}
+
+\end{setup}
+
+\begin{setup}
+  Let $(X,d)$ be a metric space.
+  Show that a Cauchy sequence from $X$ with a convergent subsequence converges to the same limit as the subsequence.
+  \begin{proof}
+    Let $\left\{x_n\right\}$ be a Cauchy sequence with a convergent subsequence, $\left\{x_{n_k}\right\}_{k=1}^\infty$.
+    Let $x = \lim_{k \rightarrow \infty} x_{n_k}$ and let $\varepsilon > 0$ be given.
+    Choose $N_1, N_2 \in \N$ such that $d(x,x_{n_k}) < \varepsilon/2$ and $d(x_n, x_m) < \varepsilon/2$ hold for all $n_k \geq N_1$ and $n,m \geq N_2$.
+    Let $N = \max\left\{N_1, N_2\right\}$.
+    Now observe that since $\left\{x_{n_k}\right\}_{n=1}^\infty$ is a subsequence of $\left\{x_n\right\}_{n=1}^\infty$, $d(x_n, x_{n_k}) < \varepsilon/2$ holds for all $n, n_k \geq N$.
+    Hence by the triangle inequality $$d(x_n, x) \leq d(x_n, x_{n_k}) + d(x_{n_k}, x) < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon$$
+    holds for all $n, n_k \geq N$.
+    Therefore $x_n \rightarrow x$ as $n \rightarrow \infty$.
+  \end{proof}
+\end{setup}
+
+\begin{setup}
+  Let $(X,d)$ be a metric space and $0 \not = A \subseteq X$.
+  Consider the metic space $(A, d_A)$, where we define $d_A = d\restriction_{A \times A}$
+  \begin{ex}
+    Show that if $A$ is complete, then $A$ is closed in $X$.
+    \begin{proof}
+      By Corollary 2.23 it suffices to show that every convergent sequence from $A$ has its limit in $A$.
+      By definition, every Cauchy sequence from $A$ converges in $A$.
+      Moreover, by 13.2, every convergent sequence from $A$ is Cauchy.
+      Therefore every convergent sequence has its limit in $A$.
+    \end{proof}
+  \end{ex}
+
+  \begin{ex}
+    Show that if $A$ is totally bounded, then $A$ is bounded.
+    \begin{proof}
+      Since $A$ is totally bouned, for $\varepsilon = 1$, there exist finitely many 1-balls that cover $A$.
+      Let $a_1, a_2, \ldots, a_n$ be the centers of those 1-balls.
+      Let $M = \max \left\{d(a_1, a_i) \;\middle\vert\; 1 \leq i \leq n\right\}$ and consider the $M+1$-ball, $B_d(a_1, M+1) = \left\{a \in A \;\middle\vert\; d(a_1, a) < M + 1\right\}$.
+      Let $a \in A$ be given and observe that it must lie in a ball of radius $1$ centered about $a_i$ for some $1 \leq i \leq n$.
+      Then by the triangle inequality $d(a_1, a) \leq d(a_1, a_i) + d(a_i, a) \leq M + d(a_i, a) < M + 1$ implies $a \in B_d(a_1, M+1)$ and thus $A \subseteq B_d(a_1, M+1)$.
+      Therefore $A$ is bounded.
+    \end{proof}
+  \end{ex}
+\end{setup}
+
+\begin{lem}\label{maxint}
+  Let $U$ be an open subset of $\R$.  For every $u \in U$ there exists a unique maximal interval, $I_u \subseteq U$, containining $u$.
+  \begin{proof}
+    Define the collections $A = \left\{a \in \R \;\middle\vert\; (a,u) \subseteq U \right\}$ and $B = \left\{ b \in \R \;\middle\vert\; (u,b) \subseteq U \right\}$.
+    Let $\ell(u) = \inf A$ and let $r(u) = \sup B$.
+    Fix some $u \in U$ and consider the interval $(\ell(u), r(u))$.  
+    Observe that by the definition of $\ell(u)$, for every $a \in (\ell(u), u)$, $a \in U$ and, similarly, for every $b \in (u, r(u))$, $b \in U$.
+    Hence $(\ell(u), r(u)) \subseteq U$.
+    
+    Suppose that there exists some interval $(a,b)$ such that $I_u \subseteq (a,b) \subsetneq U$.
+    Observe that $(a,b) = (a,u) \cup (u, b)$, hence $(a,u) \in A$ and $(u,b) \in B$.
+    Moreover, $a \leq \ell(u)$, and $r(u) \leq b$.
+    Then it follows from the definition of $\inf$ and $\sup$ that $a = \ell(u)$ and $b = r(u)$, and $I_u$ is maximal.
+
+    Now consider two maximal intervals $I_u$ and $J_u$ containing $u$.
+    Then $I_u \subseteq I_u \cup J_u$ and $J_u \subseteq I_u \cup J_u$ implies, by maximality, that $I_u = I_u \cup J_u$ and $J_u = I_u \cup J_u$.
+    Therefore $I_u = J_u$ shows uniqueness.
+  \end{proof}
+  
+\end{lem}
+
+\begin{setup}
+  Let $U$ be an open subset of $\R$.
+  Show that there exists a finite or countably infinite indexing set $A$ and intervals $\left\{A_j\right\}_{j \in A}$ such that 
+  \begin{enumerate}
+  \item
+    $I_j$ is open for each $j \in A$,
+  \item
+    $I_{j_1} \cap I_{j_2} = \emptyset$ if $j_1 \not = j_2$, and
+  \item
+    $\cup_{j \in A} I_j = U$.
+  \end{enumerate}
+
+  \begin{proof}
+    Let $\mathcal{I} = \left\{I_u \;\middle\vert\; u \in U\right\}$.
+    Observe by Lemma~\ref{maxint} we can write $$U = \bigcup_{I \in \mathcal{I}} I.$$
+    Moreover, if any two intervals, $I$ and $I^\prime$, intersect non-trivially, then let $v \in I \cap I^\prime$.
+    Then by the argument in the Lemma~\ref{maxint}, $I = I^\prime = I_v$.  
+    Hence the intervals are pairwise disjoint.
+    To see that the collection is finite or countably infinte, let $\left\{q_1, q_2, \ldots\right\}$ be an enumeration of $\Q$.
+    Observe that since $\Q$ is dense in $\R$, every non-empty interval contains an element of $\Q$.
+    Now define a function $f$ such that for $I \in \mathcal{I}$, $f$ maps $I$ to the rational with smallest index in the enumeration.
+    Since the elements of $\mathcal{I}$ are pairwise disjoint, this map is injective.
+    If $f$ is surjective, then $\mathcal{I}$ is countable.
+    Otherwise, $\mathcal{I}$ is finite.
+  \end{proof}
+\end{setup}
+
+\end{document}
