@@ -1,0 +1,98 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath}
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 784:\\Homework 04}
+\date{October 17, 2012}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+
+\renewcommand{\qedsymbol}{\ensuremath{\blacksquare}}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\Tr}[2]{\operatorname{Tr}_{#1}\left(#2\right)}
+\newcommand{\Norm}[2]{\operatorname{N}_{#1}\left(#2\right)}
+\newcommand{\BigO}[1]{\operatorname{O}\left(#1\right)}
+
+\begin{document}
+\maketitle
+
+\newtheorem*{ex1}{p. 43, 1}
+\newtheorem*{ex2}{p. 43, 4}
+\newtheorem*{ex3}{p. 47, 2}
+\newtheorem{lem}{Lemma}
+
+\begin{ex1}
+  Prove that if $u$ is a unit in $R$ and $\beta$ is irreducible, then $u\beta$ is irreducible.
+  
+  \begin{proof}
+    Assume $u\beta = \gamma\delta$ for some $\gamma, \delta \in R$.
+    Then $\beta = u^{-1}u\beta = u^{-1}\gamma\delta$.
+    Observe that if $\gamma\delta$ were a unit, then $u^{-1}\gamma\delta$ would be a unit.
+    Since $\beta$ is irreducible, hence not a unit, $\gamma\delta$ is not a unit.
+    Hence one $u^{-1}\gamma$, $u^{-1}\delta$ is a unit and thus either $\gamma = u(u^{-1}\gamma)$ or $\delta = u(u^{-1}\delta)$ is a unit.
+    Therefore $u\beta$ is irreducible.
+  \end{proof}
+\end{ex1}
+
+\begin{ex2}
+  Let $\beta \in R$.
+  Prove that if $N(\beta)$ is a prime, then $\beta$ is irreducible in $R$.
+  
+  \begin{proof}
+    Let $\beta = \gamma\delta$ for some $\gamma,\delta \in R$.
+    Taking the norm of both sides we obtain for some prime $p \in \Z$, $p = N(\gamma)N(\delta)$.
+    Since both $N(\gamma)$ and $N(\delta)$ are rational integers, one of $N(\gamma), N(\delta)$ must be 1.
+    Therefore one of $\gamma, \delta$ is a unit and $\beta$ is irreducible.
+  \end{proof}
+\end{ex2}
+
+\begin{ex3}
+  Determine the primes $p > 3$ which can be expressed in the form $a^2 + 3b^2$ for some integers $a$ and $b$.
+  
+  \begin{proof}
+    First observe that if $p = a^2 + 3b^2$, then $p \equiv a^2 (\operatorname{mod} 3)$, hence $p \equiv 1 (\operatorname{mod} 3)$ follows from $p$ prime and $p > 3$.
+    Conversely, suppose $p \equiv 1 (\operatorname{mod} 3)$.
+    Observe that either $p \equiv 1 (\operatorname{mod} 4)$ or $p \equiv 3 (\operatorname{mod} 4)$ and that $1^2 \equiv p \equiv 1 (\operatorname{mod} 3)$.
+    If $p \equiv 3 (\operatorname{mod} 4)$, then $$\left(\frac{-3}{p}\right) = \left(\frac{-1}{p}\right)\left(\frac{3}{p}\right) = \left(\frac{-1}{p}\right)(-1)\left(\frac{p}{3}\right) = -1(-1)(1) = 1$$
+    and if $p \equiv 1 (\operatorname{mod} 4)$, then $$\left(\frac{-3}{p}\right) = \left(\frac{-1}{p}\right)\left(\frac{3}{p}\right) = \left(\frac{-1}{p}\right)\left(\frac{p}{3}\right) = 1(1) = 1.$$
+    Hence there exists $a \in \Z$ such that $p$ divides $a^2 + 3 = (a + \sqrt{-3})(a - \sqrt{-3})$.
+    Consider $R = \Z\left[\frac{1 + \sqrt{-3}}{2}\right]$, the ring of integers in $\Q\left(\sqrt{-3}\right)$.
+    Observe that $a \pm \sqrt{-3} = (a - 1) + 2\left(\frac{1 \pm \sqrt{-3}}{2}\right) \in R$.
+    Suppose that $p$ were prime in $R$ and thus $p$ divides either $a - \sqrt{-3}$ or $a + \sqrt{-3}$.
+    However, neither $\frac{a + \sqrt{-3}}{p}$ nor $\frac{a + \sqrt{-3}}{p}$ is in $R$, hence $p$ is not prime.
+    
+    Let $\alpha, \beta \in R$ be such that $p = \alpha\beta$ and neither $\alpha$ nor $\beta$ is a unit.
+    Taking norms of both sides, we have $p^2 = N(\alpha)N(\beta)$ and thus $N(\alpha) = N(\beta) = p$.
+    Note that by exercise 4 on p. 43 and Theorems 57, 53, and 52, $\alpha, \beta$ are both prime and this factorization is unique up to units.
+    Then if $\alpha = \frac{a + b\sqrt{-3}}{2}$, we have $p = \frac{a^2 + 3b^2}{4}$.
+    Now observe that 
+    \begin{equation}\label{first}
+      \alpha = \frac{1 + \sqrt{-3}}{1 + \sqrt{-3}}\left(\frac{a + b\sqrt{-3}}{2}\right) = \frac{1 - \sqrt{-3}}{2}\frac{(a - 3b) + (a + b)\sqrt{-3}}{4}
+    \end{equation}
+    and, similarly,
+    \begin{equation}\label{second}
+      \alpha = \frac{-1 + \sqrt{-3}}{-1 + \sqrt{-3}}\left(\frac{a + b\sqrt{-3}}{2}\right) = \frac{-1 - \sqrt{-3}}{2}\frac{-(a + 3b) + (a - b)\sqrt{-3}}{4}.
+    \end{equation}
+    Since $\frac{\pm1 + \sqrt{-3}}{2}$ is a unit in $R$, taking norms of equations~\eqref{first} and \eqref{second}, we have, after a slight rearrangement, the following three equalities:
+    \begin{equation}\label{even}
+      p = \left(\frac{a}{2}\right)^2 + 3\left(\frac{b}{2}\right)^2,
+    \end{equation}
+    \begin{equation}\label{odd}
+      p = \left(\frac{a - 3b}{4}\right)^2 + 3\left(\frac{a + b}{4}\right)^2,
+    \end{equation}
+    and
+    \begin{equation}\label{equal}
+      p = \left(\frac{a + 3b}{4}\right)^2 + 3\left(\frac{a - b}{4}\right)^2.
+    \end{equation}
+
+    We observe now that by the definition of $R$, $a \equiv b (\operatorname{mod} 2)$.
+    If $a \equiv b \equiv 0 (\operatorname{mod} 2)$, then $a/2, b/2 \in \Z$ and equation~\eqref{even} provides the desired form for $p$.
+    If $a \equiv b \equiv 1(\operatorname{mod} 2)$, then there are two cases.
+    If $a \not \equiv b (\operatorname{mod} 4)$, then $a$ and $b$ are 1 and 3 modulo 4 in some order, hence $a - 3b \equiv a + b \equiv 0 (\operatorname{mod} 4)$ implies $(a - 3b)/4, (a + b)/4 \in \Z$ and equation~\eqref{odd} provides the desired form for $p$.
+    Finally, if $a \equiv b (\operatorname{mod} 4)$, then $a + 3b \equiv a - b \equiv 0 (\operatorname{mod} 4)$ implies $(a + 3b)/4, (a-b)/4 \in \Z$ and equation~\eqref{equal} provides the desired form for $p$.
+    Therefore $p = a^2 + 3b^2$ if and only if $p \equiv 1 (\operatorname{mod} 3)$.
+  \end{proof}
+\end{ex3}
+
+\end{document}
