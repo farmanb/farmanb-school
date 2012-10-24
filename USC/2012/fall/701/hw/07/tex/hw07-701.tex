@@ -1,13 +1,24 @@
 \documentclass[10pt]{amsart}
-\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate}
 \openup 5pt
 \author{Blake Farman\\University of South Carolina}
-\title{Math 701:\\Homework 06}
-\date{October 12, 2012}
+\title{Math 701:\\Homework 07}
+\date{October 26, 2012}
 \pdfpagewidth 8.5in
 \pdfpageheight 11in
 \usepackage[margin=1in]{geometry}
-
+\newcommand{\Inn}[1]{\operatorname{Inn}\left(#1\right)}
+\newcommand{\Aut}[1]{\operatorname{Aut}\left(#1\right)}
+\newcommand{\cntr}[1]{\mathbf{Z}\left(#1\right)}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\SL}[2]{\operatorname{SL}_#1\left(#2\right)}
+\newcommand{\Mat}[2]{\operatorname{Mat}_{#1}\left(#2\right)}
+\newcommand{\orbit}[1]{\mathcal{O}_{#1}}
+\newcommand{\real}[1]{\operatorname{\mathfrak{Re}}\left(#1\right)}
+\newcommand{\imag}[1]{\operatorname{\mathfrak{Im}}\left(#1\right)}
+\newcommand{\uhp}{\mathfrak{h}}
+\newcommand{\Syl}[2]{\operatorname{Syl}_{#1}\left(#2\right)}
+\renewcommand{\qedsymbol}{\ensuremath{\blacksquare}}
 \begin{document}
 \maketitle
 
@@ -64,10 +75,10 @@
 
 \begin{thm}
   Let $G$ be a finite abelian group, let $p$ be a prime, and suppose that for all $g \in G$, we have $g^p = 1$.
-  Show that there exists an integer $s \geq 0$ with $G$ isomorphic to the direct product of $s$ copies of $\Z/p\Z$.
+  Show that there exists an integer $s \geq 0$ with $G$ isomorphic to the direct product of $s$ copies of $\mathbb{Z}/p\mathbb{Z}$.
   \begin{proof}
     Observe that for all $g \in G$, the order of $g$ divides $p$ and thus is either 1 or $p$.
-    If the order of each element is 1, then $G$ is trivial and $G$ is isomorphic to zero copies of $\Z/p\Z$.
+    If the order of each element is 1, then $G$ is trivial and $G$ is isomorphic to zero copies of $\mathbb{Z}/p\mathbb{Z}$.
     Assume $G$ is non-trivial and then the order of each element of $G$ is $p$.
     Hence each non-identity element generates a subgroup of order $p$.
     
@@ -80,7 +91,7 @@
     Since $G$ is abelian, $\left<g_i\right> \unlhd G$ holds for each $1 \leq i \leq s$, and thus $\left< g_1 \right>\left< g_2 \right> \cdots \left< g_s \right> \leq G$.
     Observe that for each $1 \leq i \leq s$ that $1 \in \left<g_i\right>$.
     Hence for each $1 \leq i \leq s$, we may write $g_i = 1 \cdot 1 \cdots g_i \cdots 1$, from which it follows that $g_i \in \left< g_1 \right> \cdots \left< g_s \right>$.
-    Therefore $$G =  \left< g_1 \right> \cdots \left< g_s \right> \cong \underbrace{\Z/p\Z \times \ldots \times \Z/p\Z}_s.$$
+    Therefore $$G =  \left< g_1 \right> \cdots \left< g_s \right> \cong \underbrace{\mathbb{Z}/p\mathbb{Z} \times \ldots \times \mathbb{Z}/p\mathbb{Z}}_s.$$
   \end{proof}
 \end{thm}
 
@@ -130,42 +141,42 @@
   
   \begin{enumerate}[(a)]
   \item
-    Prove that every finitely generated subgroup of $(\Q, +)$ is cyclic.
-    Conclude that $\Q$ is not finitely generated.
+    Prove that every finitely generated subgroup of $(\mathbb{Q}, +)$ is cyclic.
+    Conclude that $\mathbb{Q}$ is not finitely generated.
   \item
-    Use the first part of (a) to show that $\Q \not \cong \Q \times \Q$.
+    Use the first part of (a) to show that $\mathbb{Q} \not \cong \mathbb{Q} \times \mathbb{Q}$.
   \end{enumerate}
   \begin{proof}
     \begin{enumerate}[(a)]
     \item
-      Let $A = \left\{\frac{a_1}{b_1}, \frac{a_2}{b_2}, \ldots, \frac{a_n}{b_n} \;\middle\vert\; a_i, b_i \in \mathbb{Z}, \gcd(a_i,b_i) = 1\right\} \subset \Q$.
-      Consider the element $1/d \in \Q$, where $d = b_1 b_2 \ldots b_n$.
-      Observe that for any $1 \leq i \leq n$, $\ell = a_i(d/b_i) \in \Z$ and thus the elment $1/d$ can be used to generate the elements of $A$ by adding $1/d$ to itself $\ell$ times.
+      Let $A = \left\{\frac{a_1}{b_1}, \frac{a_2}{b_2}, \ldots, \frac{a_n}{b_n} \;\middle\vert\; a_i, b_i \in \mathbb{Z}, \gcd(a_i,b_i) = 1\right\} \subset \mathbb{Q}$.
+      Consider the element $1/d \in \mathbb{Q}$, where $d = b_1 b_2 \ldots b_n$.
+      Observe that for any $1 \leq i \leq n$, $\ell = a_i(d/b_i) \in \mathbb{Z}$ and thus the elment $1/d$ can be used to generate the elements of $A$ by adding $1/d$ to itself $\ell$ times.
       Namely,
       $$\sum_{k=1}^{\ell} \frac{1}{d} = \left(\frac{a_i d}{b_i}\right)\frac{1}{d} = \frac{a_i}{b_i}.$$
       
-      To see that $\Q$ is not finitely generated, observe that since $\Q \leq \Q$ holds trivially.
-      Hence if $\Q$ were finitely generated, then $\Q$ would be cyclic.
-      Therefore It suffices, by the contrapositive, to show that $\Q$ is not cyclic.
+      To see that $\mathbb{Q}$ is not finitely generated, observe that since $\mathbb{Q} \leq \mathbb{Q}$ holds trivially.
+      Hence if $\mathbb{Q}$ were finitely generated, then $\mathbb{Q}$ would be cyclic.
+      Therefore It suffices, by the contrapositive, to show that $\mathbb{Q}$ is not cyclic.
 
-      Towards that end, suppose to the contrary that $\Q$ were cyclic.
-      Then there exist relatively prime integers $a$ and $b$ such that $\left<a/b\right> = \Q$.
-      Let $q \in \Z$ be a prime such that $\gcd(q,b) = 1$.
-      Since $\Q$ is generated by $a/b$, there exists some integer $c$ such that 
+      Towards that end, suppose to the contrary that $\mathbb{Q}$ were cyclic.
+      Then there exist relatively prime integers $a$ and $b$ such that $\left<a/b\right> = \mathbb{Q}$.
+      Let $q \in \mathbb{Z}$ be a prime such that $\gcd(q,b) = 1$.
+      Since $\mathbb{Q}$ is generated by $a/b$, there exists some integer $c$ such that 
       $$c\left(\frac{a}{b}\right) = \underbrace{\frac{a}{b} + \frac{a}{b} + \ldots + \frac{a}{b}}_c = \frac{1}{q}.$$
       Then adding $c(a/b)$ to itself $b$ times, we we obtain 
       $$ca = \underbrace{c\left(\frac{a}{b}\right) +  c\left(\frac{a}{b}\right) + \ldots + c\left(\frac{a}{b}\right)}_b =  \frac{b}{q}.$$
-      Since $ca \in \Z$, this implies $q$ divides $b$, contradicting the choice of $q$.
-      Therefore $\Q$ is not cyclic.
+      Since $ca \in \mathbb{Z}$, this implies $q$ divides $b$, contradicting the choice of $q$.
+      Therefore $\mathbb{Q}$ is not cyclic.
     \item
-      Observe that if $\Q$ were isomorphic to $\Q \times \Q$, then finitely generated subsets of $\Q \times \Q$ would be cyclic.
-      Suppose this were the case and consider $A = \left\{(1/p, 0), (0, 1/q)\right\} \subseteq \Q \times \Q$, where $p, q \in \Z$ are prime.
-      Suppose further for some $a,b,c,d \in \Z$ with $\gcd(a,b) = 1$ and $\gcd(c,d) = 1$ that $\left<(\frac{a}{b}, \frac{c}{d})\right> = \left<A\right>$.
+      Observe that if $\mathbb{Q}$ were isomorphic to $\mathbb{Q} \times \mathbb{Q}$, then finitely generated subsets of $\mathbb{Q} \times \mathbb{Q}$ would be cyclic.
+      Suppose this were the case and consider $A = \left\{(1/p, 0), (0, 1/q)\right\} \subseteq \mathbb{Q} \times \mathbb{Q}$, where $p, q \in \mathbb{Z}$ are prime.
+      Suppose further for some $a,b,c,d \in \mathbb{Z}$ with $\gcd(a,b) = 1$ and $\gcd(c,d) = 1$ that $\left<(\frac{a}{b}, \frac{c}{d})\right> = \left<A\right>$.
       Then there exist non-zero integers $m$ and $n$ such that 
       $$m\left(\frac{a}{b}, \frac{c}{d}\right) = \left(\frac{ma}{b}, \frac{mc}{d}\right) = \left(\frac{1}{p},0\right) \;\text{ and }\; n\left(\frac{a}{b}, \frac{c}{d}\right) = \left(\frac{na}{b}, \frac{nc}{d}\right) = \left(0,\frac{1}{q}\right).$$
       However, this implies $mc = na = 0$, from which it follows that $a = c = 0$.
       But $(0,0)$ generates only the trivial group, a contradiction.
-      Therefore $\Q \not \cong \Q \times \Q$.
+      Therefore $\mathbb{Q} \not \cong \mathbb{Q} \times \mathbb{Q}$.
     \end{enumerate}
   \end{proof}
 \end{thm}
@@ -257,8 +268,38 @@
       Therefore $\overline{N}$ is normal.
       
     \item
+		Define the surjective map
+		\begin{align*}
+			\varphi \colon NH &\rightarrow N \rtimes_\phi H\\
+			nh & \mapsto (n, h).
+		\end{align*}
+		Let $n_1, n_2 \in N$ and $h_1, h_2 \in H$ be given.
+		To see that $\varphi$ is well-defined, observe that if $n_1h_1 = n_2h_2$, then $n_1h_1h_2^{-1}n_2^{-1} = 1$.
+		Since $N \cap H = \left< 1 \right>$, $h_1h_2^{-1} = 1$ and $n_1n_2^{-1} = 1$ must hold, and thus $n_1 = n_2$ and $h_1 = h_2$.
+		Hence $\varphi(n_1h_1) = (n_1,h_1) = (n_2, h_2) = \varphi(n_2h_2)$ implies $\varphi$ is well-defined.
+		
+		Now, to see that $\varphi$ is a homomorphism, observe that 
+		$$(n_1h_1)(n_2h_2) = n_1(h_1n_2h_1^{-1})h_1h_2 = (n_1\phi_{h_1})(h_1h_2).$$
+		Hence it follows that
+		$$\varphi(n_1h_1)\varphi(n_2h_2) = (n_1, h_1)(n_2,h_2) = (n_1\phi_{h_1}(n_2), h_1h_2) = \varphi(n_1\phi_{h_1}(n_2)h_1h_2) = \varphi(n_1h_1n_2h_2)$$
+		and thus $\varphi$ is a homomorphism.
+		Moreover, observe that $\varphi(nh) = (n,h) = (1,1) = 1_{N \rtimes_phi H}$ if and only if $n = 1_N$ and $h = 1_H$.
+		Therefore $\varphi$ is an ismomorphism and $NH \cong N \rtimes_{\phi} H$, as desired.
     \item
+		First observe that $D_{2n} = \left< r, s \;\middle\vert\; r^n = s^2 = 1, sr = rs^{-1}\right> = \left\{r^\alpha s^\beta \;\middle\vert\; 0 \leq \alpha \leq n-1,\; 0 \leq \beta \leq 1\right\}$.
+		Then from the commutation relation $rs = sr^{-1}$ and $s = s^{-1}$, we obtain $srs = r^{-1} \in \left<r\right>$.
+		Hence $\left<r\right> \unlhd D_{2n}$ and $\left<r\right>\left<s\right> \leq D_{2n}$.
+		Observe further that by the definition of the product group
+		$$<r><s> = \left\{xy \;\middle\vert\; x \in \left<r\right>,\; y \in \left<s\right>\right\} = \left\{r^\alpha s^\beta \;\middle\vert\; 0 \leq \alpha \leq n-1,\; 0 \leq \beta \leq 1\right\} = D_{2n}.$$ 
+		Therefore by part (d), $D_{2n} \cong \left<r\right> \rtimes_{\phi} \left<s\right>$, where $\phi \colon \left<s\right> \rightarrow \Aut{\left<r\right>}, s^\beta \mapsto \phi_{s^\beta}$ and $\phi_{s^\beta}(r^\alpha) = s^\beta r^\alpha s^\beta$.
     \item
+		As was shown in class, if $\abs{G} = pq$ and $G \not \cong \mathbb{Z}/pq\mathbb{Z}$, then for some $x,y \in G$
+			$$G = \left< x, y \mid x^p = y^q = 1_G, yxy^{-1} = x^s\right>.$$
+		First observe that $G = \left\{x^\alpha y^\beta \;\middle\vert\; 0 \leq \alpha \leq p-1,\; 0 \leq \beta \leq q-1\right\}$.
+		Then from the relation $yxy^{-1} = x^s$ in the presentation and exercise 6 of Homework 1, it is clear that $\left<x\right> \unlhd G$ and $\left<x\right>\left<y\right> \leq D_{2n}$.
+		Observe further that by the definition of the product group
+		$$<x><y> = \left\{ab \;\middle\vert\; a \in \left<x\right>,\; b \in \left<y\right>\right\} = \left\{x^\alpha y^\beta \;\middle\vert\; 0 \leq \alpha \leq p-1,\; 0 \leq \beta \leq q-1\right\} = G.$$ 
+		Therefore by part (d), $G \cong \left<x\right> \rtimes_{\phi} \left<y\right>$, where $\phi \colon \left<y\right> \rightarrow \Aut{\left<x\right>}, y^\beta \mapsto \phi_{y^\beta}$ and $\phi_{y^\beta}(x^\alpha) = y^\beta x^\alpha y^\beta$.
     \end{enumerate}
   \end{proof}
 \end{thm}
