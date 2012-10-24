@@ -119,9 +119,9 @@
     Observe that $r^\alpha s = s(r^\alpha)^{-1}$ if and only if $r^\alpha$ has order 2.
     By Homework 1, exercise 7, the order of $r^\alpha$ is $n/\gcd(\alpha,n)$, which is 2 if and only if $n = 2k$ and $\alpha = k$.
     Therefore   $$\cntr{D_{2n}} = \left\{\begin{array}{ll}
-  \left<1\right> & n \text{ odd},\\
-  \left\{1, r^k\right\} & n = 2k \text{ (even) }.
-  \end{array}\right.$$
+    \left<1\right> & n \text{ odd},\\
+    \left\{1, r^k\right\} & n = 2k \text{ (even) }.
+    \end{array}\right.$$
   \end{proof}
 \end{thm}
 
@@ -233,7 +233,29 @@
       imply $(\phi_{h^{-1}}(n^{-1}), h^{-1}) = (n,h)^{-1}$.
       Therefore $G$ is a group.
     \item
+      Define the surjective maps 
+      \begin{align*}
+        \varphi \colon \overline{N} & \rightarrow N && \text{and} & \psi \colon \overline{H} & \rightarrow H\\
+        (n, 1_H) & \mapsto (n, 1_H) && & (1_N, h) & \mapsto h.
+      \end{align*}
+      Let $(n_1, 1_H),(n_2, 1_H) \in \overline{N}$ and $(1_N, h_1), (1_N, h_2) \in \overline{H}$ be given.
+      To see that these maps are well-defined, assume $(n_1, 1_H) = (n_2, 1_H)$ and $(1_N, h_1) = (1_N, h_2)$.
+      Then $\varphi(n_1,1_H) = n_1 = n_2 = \varphi(n_2,1_H)$ and $\psi(1_N, h_1) = h_1 = h_2 = \psi(1_N, h_2)$.
+      
+      To see that these are both homomorphisms, observe
+      $$\varphi(n_1n_2, 1_H) = n_1n_2 = \varphi(n_1, 1_H)\varphi(n_2, 1_H)$$
+      and
+      $$\psi(1_N, h_1h_2) = h_1h_2 = \psi(1_N, h_1)\psi(1_N, h_2).$$
+      Finally, observe that $\varphi(n,1_H) = 1_N$ and $\psi(1_N, h) = 1_H$ if and only if $n = 1_N$ and $h = 1_H$ imply $\ker\varphi = \ker\psi = 1_G$.
+      Hence $\varphi$ and $\psi$ are both isomorphisms.
+      Therefore $\overline{N} \cong N$ and $\overline{H} \cong H$.
     \item
+      Let $(n_1, 1_H) \in \overline{N}$ be given and $(n_2, h) \in G$ be given.
+      Conjugating by $(n_2, h)^{-1}$ we have
+      $$(n_2, h)(n_1, 1_H)(\phi_{h^{-1}}(n_2^{-1}), h^{-1}) = (n_2, h)(n_1\phi_{h^{-1}}(n_2^{-1}), h^{-1}) = (n_2\phi_h(n_1\phi_{h^{-1}}(n_2^{-1})), 1_H) = (n_2\phi_h(n_1)n_2^{-1}, 1_H).$$
+      Since $\phi_h(n_1) \in N$, it follows that $n_2\phi_h(n_1)n_2^{-1} \in N$, and thus $(n_2\phi_h(n_1)n_2^{-1}, 1_H) \in \overline{N}$ implies $\overline{N}$ is closed under conjugation from $G$.
+      Therefore $\overline{N}$ is normal.
+      
     \item
     \item
     \item
