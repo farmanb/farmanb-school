@@ -1,5 +1,5 @@
 \documentclass[10pt]{amsart}
-\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath}
 \openup 5pt
 \author{Blake Farman\\University of South Carolina}
 \title{Math 701:\\Homework 07}
@@ -7,23 +7,24 @@
 \pdfpagewidth 8.5in
 \pdfpageheight 11in
 \usepackage[margin=1in]{geometry}
-\newcommand{\Inn}[1]{\operatorname{Inn}\left(#1\right)}
-\newcommand{\Aut}[1]{\operatorname{Aut}\left(#1\right)}
-\newcommand{\cntr}[1]{\mathbf{Z}\left(#1\right)}
-\newcommand{\abs}[1]{\left| #1 \right|}
-\newcommand{\SL}[2]{\operatorname{SL}_#1\left(#2\right)}
-\newcommand{\Mat}[2]{\operatorname{Mat}_{#1}\left(#2\right)}
-\newcommand{\orbit}[1]{\mathcal{O}_{#1}}
-\newcommand{\real}[1]{\operatorname{\mathfrak{Re}}\left(#1\right)}
-\newcommand{\imag}[1]{\operatorname{\mathfrak{Im}}\left(#1\right)}
-\newcommand{\uhp}{\mathfrak{h}}
-\newcommand{\Syl}[2]{\operatorname{Syl}_{#1}\left(#2\right)}
-\renewcommand{\qedsymbol}{\ensuremath{\blacksquare}}
+
+%\newcommand{\Inn}[1]{\operatorname{Inn}\left(#1\right)}
+%\newcommand{\Aut}[1]{\operatorname{Aut}\left(#1\right)}
+%\newcommand{\cntr}[1]{\mathbf{Z}\left(#1\right)}
+%\newcommand{\abs}[1]{\left| #1 \right|}
+%\newcommand{\SL}[2]{\operatorname{SL}_#1\left(#2\right)}
+%\newcommand{\Mat}[2]{\operatorname{Mat}_{#1}\left(#2\right)}
+%\newcommand{\orbit}[1]{\mathcal{O}_{#1}}
+%\newcommand{\real}[1]{\operatorname{\mathfrak{Re}}\left(#1\right)}
+%\newcommand{\imag}[1]{\operatorname{\mathfrak{Im}}\left(#1\right)}
+%\newcommand{\uhp}{\mathfrak{h}}
+%\newcommand{\Syl}[2]{\operatorname{Syl}_{#1}\left(#2\right)}
+%\renewcommand{\qedsymbol}{\ensuremath{\blacksquare}}
 \begin{document}
 \maketitle
 
 \newtheorem{thm}{}
-\newtheorem*{lem}{Lemma}
+\newtheorem{lem}{Lemma}
 
 \begin{thm}
   Determine how many non-isomorphic abelian groups there are of order 360.
@@ -127,9 +128,12 @@
   \begin{proof}
     Since $D_{2n} = \left<r,s \;\middle\vert\; r^n = s^2 = 1, rs = sr^{-1} = sr^{n-1} \right>$, and since $n - 1 > 1$ by assumption, the commutation relation $rs = sr^{n-1}$ implies $s$ does not commute with $r$.
     Hence it suffices to show that some power of $r$ commutes with $s$.
-    Observe that $r^\alpha s = s(r^\alpha)^{-1}$ if and only if $r^\alpha$ has order 2.
-    By Homework 1, exercise 7, the order of $r^\alpha$ is $n/\gcd(\alpha,n)$, which is 2 if and only if $n = 2k$ and $\alpha = k$.
-    Therefore   $$\cntr{D_{2n}} = \left\{\begin{array}{ll}
+    Observe that for some $0 \leq \alpha \leq n-1$, $r^\alpha s = s(r^\alpha)^{-1}$ if and only if $r^\alpha$ has order 2.
+    By Homework 1, exercise 7, the order of $r^\alpha$ is $n/\gcd(\alpha,n)$.
+    If $n$ is odd, then clearly $n/\gcd(\alpha,n) \not = 2$.
+    If $n = 2k$ for some $k \in \Z$, then $n/\gcd(\alpha,n)= 2$ if and only if $n = 2k$ and $\alpha = k$.
+    Therefore   
+    $$\cntr{D_{2n}} = \left\{\begin{array}{ll}
     \left<1\right> & n \text{ odd},\\
     \left\{1, r^k\right\} & n = 2k \text{ (even) }.
     \end{array}\right.$$
@@ -155,9 +159,9 @@
       Namely,
       $$\sum_{k=1}^{\ell} \frac{1}{d} = \left(\frac{a_i d}{b_i}\right)\frac{1}{d} = \frac{a_i}{b_i}.$$
       
-      To see that $\mathbb{Q}$ is not finitely generated, observe that since $\mathbb{Q} \leq \mathbb{Q}$ holds trivially.
+      To see that $\mathbb{Q}$ is not finitely generated, observe that $\mathbb{Q} \leq \mathbb{Q}$ holds trivially.
       Hence if $\mathbb{Q}$ were finitely generated, then $\mathbb{Q}$ would be cyclic.
-      Therefore It suffices, by the contrapositive, to show that $\mathbb{Q}$ is not cyclic.
+      Therefore it suffices, by the contrapositive, to show that $\mathbb{Q}$ is not cyclic.
 
       Towards that end, suppose to the contrary that $\mathbb{Q}$ were cyclic.
       Then there exist relatively prime integers $a$ and $b$ such that $\left<a/b\right> = \mathbb{Q}$.
@@ -181,6 +185,25 @@
   \end{proof}
 \end{thm}
 
+\begin{lem}\label{normal}
+  Let $G$ be a finite group and let $g \in G$ be given.  
+  If $h \in G$, then $h$ normalizes $\left<g\right>$ if and only if $hgh^{-1} = g^\alpha$ for some $\alpha \in \Z$.
+  
+  \begin{proof}
+    First assume $h$ normalizes $\left<g\right>$.
+    Then by definition, $hgh^{-1} \in \left<g\right>$.
+    Hence $hgh^{-1} = g^\alpha$ for some $\alpha \in \Z$.
+    
+    Conversely, assume $hgh^{-1} = g^\alpha$ for some $\alpha \in \Z$.
+    Consider any element $g^\beta \in \left< g \right>$ for some $\beta \in \Z$.
+    Then $$hg^\beta h^{-1} = h(\underbrace{gg \ldots g}_{\beta}) h^{-1} = h(\underbrace{g(h^{-1}h)g(h^{-1}h) \ldots (h^{-1}h)g}_{\beta}) h^{-1} = \underbrace{(hgh^{-1})(hgh^{-1})\ldots (hgh^{-1})}_{\beta} = g^{\alpha\beta}.$$
+    Hence $h\left<g\right>h^{-1} \leq \left<g\right>$.
+    Now let $\gamma \in \Z$ and consider the two elements $g^\beta, g^\gamma$ of $\left<g\right>$.
+    If $hg^\beta h^{-1} = hg^\gamma h^{-1}$, then by left and right cancellation we have $g^\beta = g^\gamma$.
+    Hence $\abs{h\left<g\right>h^{-1}} = \abs{\left<g\right>}$ and $h\left<g\right>h^{-1} \leq \left<g\right>$ imply $h\left<g\right>h^{-1} = \left<g\right>$.
+    Therefore $h$ normalizes $\left<g\right>$, as desired.
+  \end{proof}
+\end{lem}
 \begin{thm}
   {\bf Semi-direct products.}
   Let $H$ and $N$ be finite groups.
@@ -188,7 +211,7 @@
   Let $G = \left\{ (n,h) \;\middle\vert\; n \in N, h \in H \right\}$, and define an operation $\cdot$ on $G$ by $(n_1,h_1)\cdot(n_2,h_2) = (n\phi_{h1}(n_2), h_1h_2)$.
   \begin{enumerate}[(a)]
   \item
-    Show that $G$ is a group of size $\abs{G} = \abs{N}\cdot\abs{N}$.
+    Show that $G$ is a group of size $\abs{G} = \abs{N}\cdot\abs{H}$.
   \item
     Let $\overline{N} = \left\{(n, 1_H) \;\middle\vert\; n \in N \right\}$, and let $\overline{H} = \left\{(1_N, h) \;\middle\vert\; h \in H \right\}$.
     Show that $\overline{N} \cong N$ and $\overline{H} \cong H$.
@@ -215,6 +238,11 @@
   \begin{proof}
     \begin{enumerate}[(a)]
     \item
+      Let $(n_1, h_1), (n_2, h_2) \in G$ be given.
+      First we show that $G$ is closed under the group operation.
+      Then observe that $\phi_{h_1}(n_2) \in N$ by assumption.
+      Hence $(n_1\phi_{h_1}(n_2), h_1h_2) \in G$.
+      
       Consider the element $(1_N, 1_H) \in G$.
       First observe that since $\phi$ is a homomorphism, for any $h \in H$ it follows from 
       $$\phi(1_Hh) = \phi(1_H)\phi(h) = \phi_{1_H}\phi_h = \phi_h = \phi(h)$$
@@ -227,22 +255,27 @@
       $$(n,h) \cdot (1_N,1_H) = (n \phi_{h}(1_N), h1_H) = (n, h).$$
       Hence $1_G = (1_N, 1_H)$.
       
-      To see that $G$ is associative, let $(n_1, h_1), (n_2,_h2), (n_3, h_3) \in G$ be given.
+      To see that $G$ is associative, let $(n_1, h_1), (n_2,h_2), (n_3, h_3) \in G$ be given.
       Consider 
       $$\left((n_1,h_1) \cdot (n_2, h_2)\right) \cdot (n_3,h_3) = (n_1\phi_{h_1}(n_2), h_1h_2) \cdot (n_3,h_3) = (n_1\phi_{h_1}(n_2)\phi_{h_1h_2}(n_3), h_1h_2h_3)$$
       and
       $$(n_1,h_1) \cdot \left( (n_2, h_2) \cdot (n_3,h_3)\right) = (n_1,h_1) \cdot (n_2 \phi_{h_2}(n_3), h_2h_3) = (n_1 \phi_{h_1}(n_2\phi_{h_2}(n_3)), h_1h_2h_3).$$
-      Now observe that $\phi_{h_1}\phi_{h_2} = \phi(h_1)\phi(h_2) = \phi(h_1h_2)$.
+      Observe that because $\phi$ is a homomorphism, $\phi_{h_1}\phi_{h_2} = \phi(h_1)\phi(h_2) = \phi(h_1h_2)$.
       Hence $$n_1 \phi_{h_1}(n_2\phi_{h_2}(n_3)) = n_1\phi_{h_1}(n_2)(\phi_{h_1}\phi_{h_2})(n_3) = n_1\phi_{h_1}(n_2)\phi_{h_1h_2}(n_3)$$
-      and thus $\left((n_1,h_1) \cdot (n_2, h_2)\right) \cdot (n_3,h_3) = (n_1,h_1) \cdot \left( (n_2, h_2) \cdot (n_3,h_3)\right)$.
+      implies $\left((n_1,h_1) \cdot (n_2, h_2)\right) \cdot (n_3,h_3) = (n_1,h_1) \cdot \left( (n_2, h_2) \cdot (n_3,h_3)\right)$, and $G$ is associative.
       
-      Finally, consider for any $(n,h) \in G$, its product with the element $(1_N, h^{-1}) \cdot (n^{-1}, 1_H) = (1_N\phi_{h^{-1}}(n^{-1}), h^{-1}1_H) = (\phi_{h^{-1}}(n^{-1}), h^{-1})$.
-      Then
+      Finally consider for any $(n,h) \in G$, its product with the element $(1_N, h^{-1}) \cdot (n^{-1}, 1_H) = (1_N\phi_{h^{-1}}(n^{-1}), h^{-1}1_H) = (\phi_{h^{-1}}(n^{-1}), h^{-1}) \in G$.
+      Carrying out the group operation yields
       $$(n,h) \cdot (\phi_{h^{-1}}(n^{-1}), h^{-1}) = (n \phi_h\phi_{h^{-1}}(n^{-1}), hh^{-1}) = (nn^{-1}, 1_H) = (1_N, 1_H) = 1_G$$
       and
-      $$(\phi_{h^{-1}}(n^{-1}), h^{-1}) \cdot (n,h) = (\phi_{h^{-1}}(n^{-1})\phi_{h^{-1}}(n), h^{-1}h) = (\phi_{h^{-1}}(nn^{-1}), 1_H) = (1_N, 1_H) = 1_G$$
-      imply $(\phi_{h^{-1}}(n^{-1}), h^{-1}) = (n,h)^{-1}$.
+      $$(\phi_{h^{-1}}(n^{-1}), h^{-1}) \cdot (n,h) = (\phi_{h^{-1}}(n^{-1})\phi_{h^{-1}}(n), h^{-1}h) = (\phi_{h^{-1}}(nn^{-1}), 1_H) = (1_N, 1_H) = 1_G,$$
+      which imply $(\phi_{h^{-1}}(n^{-1}), h^{-1}) = (n,h)^{-1}$, and $G$ is closed under inverses.
       Therefore $G$ is a group.
+      
+      To see that $\abs{G} = \abs{N}\abs{H}$, observe that by assumption, as sets, $N \times H \subseteq G$.
+      Moreover, since $G$ is closed under the group operation and thus every element of $G$ has a representation as $(n,h)$ for some $n \in N$ and $h \in H$, which implies $G \subseteq N \times H$.
+      Hence as sets $G = N \times H$.
+      Therefore $\abs{G} = \abs{N}\abs{H}$.
     \item
       Define the surjective maps 
       \begin{align*}
@@ -257,7 +290,7 @@
       $$\varphi(n_1n_2, 1_H) = n_1n_2 = \varphi(n_1, 1_H)\varphi(n_2, 1_H)$$
       and
       $$\psi(1_N, h_1h_2) = h_1h_2 = \psi(1_N, h_1)\psi(1_N, h_2).$$
-      Finally, observe that $\varphi(n,1_H) = 1_N$ and $\psi(1_N, h) = 1_H$ if and only if $n = 1_N$ and $h = 1_H$ imply $\ker\varphi = \ker\psi = 1_G$.
+      Finally, observe that $\varphi(n,1_H) = 1_N$ and $\psi(1_N, h) = 1_H$ if and only if $n = 1_N$ and $h = 1_H$, from which it follows that $\ker\varphi = \ker\psi = 1_G$.
       Hence $\varphi$ and $\psi$ are both isomorphisms.
       Therefore $\overline{N} \cong N$ and $\overline{H} \cong H$.
     \item
@@ -268,38 +301,57 @@
       Therefore $\overline{N}$ is normal.
       
     \item
-		Define the surjective map
-		\begin{align*}
-			\varphi \colon NH &\rightarrow N \rtimes_\phi H\\
-			nh & \mapsto (n, h).
-		\end{align*}
-		Let $n_1, n_2 \in N$ and $h_1, h_2 \in H$ be given.
-		To see that $\varphi$ is well-defined, observe that if $n_1h_1 = n_2h_2$, then $n_1h_1h_2^{-1}n_2^{-1} = 1$.
-		Since $N \cap H = \left< 1 \right>$, $h_1h_2^{-1} = 1$ and $n_1n_2^{-1} = 1$ must hold, and thus $n_1 = n_2$ and $h_1 = h_2$.
-		Hence $\varphi(n_1h_1) = (n_1,h_1) = (n_2, h_2) = \varphi(n_2h_2)$ implies $\varphi$ is well-defined.
-		
-		Now, to see that $\varphi$ is a homomorphism, observe that 
-		$$(n_1h_1)(n_2h_2) = n_1(h_1n_2h_1^{-1})h_1h_2 = (n_1\phi_{h_1})(h_1h_2).$$
-		Hence it follows that
-		$$\varphi(n_1h_1)\varphi(n_2h_2) = (n_1, h_1)(n_2,h_2) = (n_1\phi_{h_1}(n_2), h_1h_2) = \varphi(n_1\phi_{h_1}(n_2)h_1h_2) = \varphi(n_1h_1n_2h_2)$$
-		and thus $\varphi$ is a homomorphism.
-		Moreover, observe that $\varphi(nh) = (n,h) = (1,1) = 1_{N \rtimes_phi H}$ if and only if $n = 1_N$ and $h = 1_H$.
-		Therefore $\varphi$ is an ismomorphism and $NH \cong N \rtimes_{\phi} H$, as desired.
+      Define the surjective map
+      \begin{align*}
+	\varphi \colon NH &\rightarrow N \rtimes_\phi H\\
+	nh & \mapsto (n, h).
+      \end{align*}
+      Let $n_1, n_2 \in N$ and $h_1, h_2 \in H$ be given.
+      To see that $\varphi$ is well-defined, observe that if $n_1h_1 = n_2h_2$, then $n_1h_1h_2^{-1}n_2^{-1} = 1$.
+      Since $N \cap H = \left< 1 \right>$, $h_1h_2^{-1} = 1$ and $n_1n_2^{-1} = 1$ must hold, and thus $n_1 = n_2$ and $h_1 = h_2$.
+      Hence $\varphi(n_1h_1) = (n_1,h_1) = (n_2, h_2) = \varphi(n_2h_2)$ implies $\varphi$ is well-defined.
+      
+      Now, to see that $\varphi$ is a homomorphism, observe that 
+      $$(n_1h_1)(n_2h_2) = n_1(h_1n_2h_1^{-1})h_1h_2 = (n_1\phi_{h_1})(h_1h_2).$$
+      Hence it follows that
+      $$\varphi(n_1h_1)\varphi(n_2h_2) = (n_1, h_1)(n_2,h_2) = (n_1\phi_{h_1}(n_2), h_1h_2) = \varphi(n_1\phi_{h_1}(n_2)h_1h_2) = \varphi(n_1h_1n_2h_2)$$
+      and thus $\varphi$ is a homomorphism.
+      Moreover, observe that $\varphi(nh) = (n,h) = (1,1) = 1_{N \rtimes_phi H}$ if and only if $n = 1_N$ and $h = 1_H$.
+      Therefore $\varphi$ is an ismomorphism and $NH \cong N \rtimes_{\phi} H$, as desired.
     \item
-		First observe that $D_{2n} = \left< r, s \;\middle\vert\; r^n = s^2 = 1, sr = rs^{-1}\right> = \left\{r^\alpha s^\beta \;\middle\vert\; 0 \leq \alpha \leq n-1,\; 0 \leq \beta \leq 1\right\}$.
-		Then from the commutation relation $rs = sr^{-1}$ and $s = s^{-1}$, we obtain $srs = r^{-1} \in \left<r\right>$.
-		Hence $\left<r\right> \unlhd D_{2n}$ and $\left<r\right>\left<s\right> \leq D_{2n}$.
-		Observe further that by the definition of the product group
-		$$<r><s> = \left\{xy \;\middle\vert\; x \in \left<r\right>,\; y \in \left<s\right>\right\} = \left\{r^\alpha s^\beta \;\middle\vert\; 0 \leq \alpha \leq n-1,\; 0 \leq \beta \leq 1\right\} = D_{2n}.$$ 
-		Therefore by part (d), $D_{2n} \cong \left<r\right> \rtimes_{\phi} \left<s\right>$, where $\phi \colon \left<s\right> \rightarrow \Aut{\left<r\right>}, s^\beta \mapsto \phi_{s^\beta}$ and $\phi_{s^\beta}(r^\alpha) = s^\beta r^\alpha s^\beta$.
+      First observe that $D_{2n} = \left< r, s \;\middle\vert\; r^n = s^2 = 1, sr = r^{-1}s\right>$ and $\left<r\right> \cap \left<s\right> = \left<1\right>$.
+      %= \left\{r^\alpha s^\beta \;\middle\vert\; 0 \leq \alpha \leq n-1,\; 0 \leq \beta \leq 1\right\}$.
+      Then from the commutation relation $rs = sr^{-1}$ and $s = s^{-1}$, we obtain $sr^\alpha s = (r^{-1})^\alpha \in \left<r\right>$.
+      Hence by Lemma~\ref{normal} $D_{2n} = \left<r, s\right> \leq N_{D_{2n}}(\left<r\right>)$ implies $\left<r\right> \unlhd D_{2n}$ and thus $\left<r\right>\left<s\right> \leq D_{2n}$.
+      Observe further that $r = r1 \in \left<r\right>\left<s\right>$ and $s = 1s \in \left<r\right>\left<s\right>$ implies $D_{2n} \leq \left<r\right>\left<s\right>$.
+      Hence $D_{2n} = \left<r\right>\left<s\right>$.
+      %$$<r><s> = \left\{xy \;\middle\vert\; x \in \left<r\right>,\; y \in \left<s\right>\right\} = \left\{r^\alpha s^\beta \;\middle\vert\; 0 \leq \alpha \leq n-1,\; 0 \leq \beta \leq 1\right\} = D_{2n}.$$ 
+      Therefore by part (d), $D_{2n} \cong \left<r\right> \rtimes_{\phi} \left<s\right>$, where 
+      \begin{align*}
+        \phi \colon \left<s\right> &\rightarrow \Aut{\left<r\right>}\\
+        s &\mapsto \phi_{s}\\ 
+        1 &\mapsto id_{\Aut{\left<r\right>}},
+      \end{align*}
+      where $\phi_{s}(r^\alpha) = s r^\alpha s$.
     \item
-		As was shown in class, if $\abs{G} = pq$ and $G \not \cong \mathbb{Z}/pq\mathbb{Z}$, then for some $x,y \in G$
-			$$G = \left< x, y \mid x^p = y^q = 1_G, yxy^{-1} = x^s\right>.$$
-		First observe that $G = \left\{x^\alpha y^\beta \;\middle\vert\; 0 \leq \alpha \leq p-1,\; 0 \leq \beta \leq q-1\right\}$.
-		Then from the relation $yxy^{-1} = x^s$ in the presentation and exercise 6 of Homework 1, it is clear that $\left<x\right> \unlhd G$ and $\left<x\right>\left<y\right> \leq D_{2n}$.
-		Observe further that by the definition of the product group
-		$$<x><y> = \left\{ab \;\middle\vert\; a \in \left<x\right>,\; b \in \left<y\right>\right\} = \left\{x^\alpha y^\beta \;\middle\vert\; 0 \leq \alpha \leq p-1,\; 0 \leq \beta \leq q-1\right\} = G.$$ 
-		Therefore by part (d), $G \cong \left<x\right> \rtimes_{\phi} \left<y\right>$, where $\phi \colon \left<y\right> \rightarrow \Aut{\left<x\right>}, y^\beta \mapsto \phi_{y^\beta}$ and $\phi_{y^\beta}(x^\alpha) = y^\beta x^\alpha y^\beta$.
+      As was shown in class, if $\abs{G} = pq$ and $G \not \cong \mathbb{Z}/pq\mathbb{Z}$, then for some $x,y \in G$
+      $$G = \left< x, y \mid x^p = y^q = 1_G,\; yxy^{-1} = x^s\right>,$$
+      where $s \not \equiv 1 \pmod{p}$ and $s^q \equiv 1 \pmod{p}$.
+      First consider an element $z \in \left<x\right> \cap \left<y\right>$.
+      The order of $z$ is either 1 or $pq$.
+      Since $G \not \cong \Z/pq\Z$, $o(z) = 1$ implies $\left<x\right> \cap \left<y\right> = \left< 1 \right>$
+      %First observe that $G = \left\{x^\alpha y^\beta \;\middle\vert\; 0 \leq \alpha \leq p-1,\; 0 \leq \beta \leq q-1\right\}$.
+
+      Now from the relation $yxy^{-1} = x^s$ in the presentation and Lemma~\ref{normal}, it is clear that $G = \left<x, y\right> \leq N_G(\left<x\right>)$ implies $\left<x\right> \unlhd G$ and thus $\left<x\right>\left<y\right> \leq G$.
+      Observe further that $x = x1 \in \left<x\right>\left<y\right>$ and $y = 1y \in \left<x\right>\left<y\right>$ implies $G \leq \left<x\right>\left<y\right>$.
+      %$$<x><y> = \left\{ab \;\middle\vert\; a \in \left<x\right>,\; b \in \left<y\right>\right\} = \left\{x^\alpha y^\beta \;\middle\vert\; 0 \leq \alpha \leq p-1,\; 0 \leq \beta \leq q-1\right\} = G.$$ 
+      Hence $\left<x\right>\left<y\right> = G$.
+      Therefore by part (d), $G \cong \left<x\right> \rtimes_{\phi} \left<y\right>$, where 
+      \begin{align*}
+        \phi \colon \left<y\right> &\rightarrow \Aut{\left<x\right>}\\
+        y^\beta &\mapsto \phi_{y^\beta},
+      \end{align*} 
+      and $\phi_{y^\beta}(x^\alpha) = y^\beta x^\alpha (y^\beta)^{-1}$.
     \end{enumerate}
   \end{proof}
 \end{thm}
