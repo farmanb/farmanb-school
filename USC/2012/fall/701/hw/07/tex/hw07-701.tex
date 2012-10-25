@@ -1,5 +1,5 @@
 \documentclass[10pt]{amsart}
-\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate}
 \openup 5pt
 \author{Blake Farman\\University of South Carolina}
 \title{Math 701:\\Homework 07}
@@ -8,18 +8,18 @@
 \pdfpageheight 11in
 \usepackage[margin=1in]{geometry}
 
-%\newcommand{\Inn}[1]{\operatorname{Inn}\left(#1\right)}
-%\newcommand{\Aut}[1]{\operatorname{Aut}\left(#1\right)}
-%\newcommand{\cntr}[1]{\mathbf{Z}\left(#1\right)}
-%\newcommand{\abs}[1]{\left| #1 \right|}
-%\newcommand{\SL}[2]{\operatorname{SL}_#1\left(#2\right)}
-%\newcommand{\Mat}[2]{\operatorname{Mat}_{#1}\left(#2\right)}
-%\newcommand{\orbit}[1]{\mathcal{O}_{#1}}
-%\newcommand{\real}[1]{\operatorname{\mathfrak{Re}}\left(#1\right)}
-%\newcommand{\imag}[1]{\operatorname{\mathfrak{Im}}\left(#1\right)}
-%\newcommand{\uhp}{\mathfrak{h}}
-%\newcommand{\Syl}[2]{\operatorname{Syl}_{#1}\left(#2\right)}
-%\renewcommand{\qedsymbol}{\ensuremath{\blacksquare}}
+\newcommand{\Inn}[1]{\operatorname{Inn}\left(#1\right)}
+\newcommand{\Aut}[1]{\operatorname{Aut}\left(#1\right)}
+\newcommand{\cntr}[1]{\mathbf{Z}\left(#1\right)}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\SL}[2]{\operatorname{SL}_#1\left(#2\right)}
+\newcommand{\Mat}[2]{\operatorname{Mat}_{#1}\left(#2\right)}
+\newcommand{\orbit}[1]{\mathcal{O}_{#1}}
+\newcommand{\real}[1]{\operatorname{\mathfrak{Re}}\left(#1\right)}
+\newcommand{\imag}[1]{\operatorname{\mathfrak{Im}}\left(#1\right)}
+\newcommand{\uhp}{\mathfrak{h}}
+\newcommand{\Syl}[2]{\operatorname{Syl}_{#1}\left(#2\right)}
+\renewcommand{\qedsymbol}{\ensuremath{\blacksquare}}
 \begin{document}
 \maketitle
 
@@ -36,6 +36,7 @@
   \end{enumerate}
   
   \begin{proof}
+	First observe that $360 = 2^3 \cdot 3^2 \cdot5$.
     \begin{enumerate}[(a)]
     \item
       The elementary divisors are given by the table below.\\
@@ -126,12 +127,12 @@
   \end{array}\right.$$
   where $r$ has order $n$.
   \begin{proof}
-    Since $D_{2n} = \left<r,s \;\middle\vert\; r^n = s^2 = 1, rs = sr^{-1} = sr^{n-1} \right>$, and since $n - 1 > 1$ by assumption, the commutation relation $rs = sr^{n-1}$ implies $s$ does not commute with $r$.
+    Since $D_{2n} = \left<r,s \;\middle\vert\; r^n = s^2 = 1, rs = sr^{-1} \right>$, and since $n - 1 > 1$ by assumption, the commutation relation $rs = sr^{n-1}$ implies $s$ does not commute with $r$.
     Hence it suffices to show that some power of $r$ commutes with $s$.
     Observe that for some $0 \leq \alpha \leq n-1$, $r^\alpha s = s(r^\alpha)^{-1}$ if and only if $r^\alpha$ has order 2.
     By Homework 1, exercise 7, the order of $r^\alpha$ is $n/\gcd(\alpha,n)$.
     If $n$ is odd, then clearly $n/\gcd(\alpha,n) \not = 2$.
-    If $n = 2k$ for some $k \in \Z$, then $n/\gcd(\alpha,n)= 2$ if and only if $n = 2k$ and $\alpha = k$.
+    If $n = 2k$ for some $k \in \mathbb{Z}$, then $n/\gcd(\alpha,n)= 2$ if and only if $n = 2k$ and $\alpha = k$.
     Therefore   
     $$\cntr{D_{2n}} = \left\{\begin{array}{ll}
     \left<1\right> & n \text{ odd},\\
@@ -170,7 +171,7 @@
       $$c\left(\frac{a}{b}\right) = \underbrace{\frac{a}{b} + \frac{a}{b} + \ldots + \frac{a}{b}}_c = \frac{1}{q}.$$
       Then adding $c(a/b)$ to itself $b$ times, we we obtain 
       $$ca = \underbrace{c\left(\frac{a}{b}\right) +  c\left(\frac{a}{b}\right) + \ldots + c\left(\frac{a}{b}\right)}_b =  \frac{b}{q}.$$
-      Since $ca \in \mathbb{Z}$, this implies $q$ divides $b$, contradicting the choice of $q$.
+      Since $ca \in \mathbb{Z}$, $ca = \frac{b}{q}$ implies $q$ divides $b$, contradicting the choice of $q$.
       Therefore $\mathbb{Q}$ is not cyclic.
     \item
       Observe that if $\mathbb{Q}$ were isomorphic to $\mathbb{Q} \times \mathbb{Q}$, then finitely generated subsets of $\mathbb{Q} \times \mathbb{Q}$ would be cyclic.
@@ -187,21 +188,23 @@
 
 \begin{lem}\label{normal}
   Let $G$ be a finite group and let $g \in G$ be given.  
-  If $h \in G$, then $h$ normalizes $\left<g\right>$ if and only if $hgh^{-1} = g^\alpha$ for some $\alpha \in \Z$.
+  If $h \in G$, then $h$ normalizes $\left<g\right>$ if and only if $hgh^{-1} = g^\alpha$ for some $\alpha \in \mathbb{Z}$.
   
   \begin{proof}
     First assume $h$ normalizes $\left<g\right>$.
     Then by definition, $hgh^{-1} \in \left<g\right>$.
-    Hence $hgh^{-1} = g^\alpha$ for some $\alpha \in \Z$.
+    Hence $hgh^{-1} = g^\alpha$ for some $\alpha \in \mathbb{Z}$.
     
-    Conversely, assume $hgh^{-1} = g^\alpha$ for some $\alpha \in \Z$.
-    Consider any element $g^\beta \in \left< g \right>$ for some $\beta \in \Z$.
+    Conversely, assume $hgh^{-1} = g^\alpha$ for some $\alpha \in \mathbb{Z}$.
+    Consider any element $g^\beta \in \left< g \right>$ for some $\beta \in \mathbb{Z}$.
     Then $$hg^\beta h^{-1} = h(\underbrace{gg \ldots g}_{\beta}) h^{-1} = h(\underbrace{g(h^{-1}h)g(h^{-1}h) \ldots (h^{-1}h)g}_{\beta}) h^{-1} = \underbrace{(hgh^{-1})(hgh^{-1})\ldots (hgh^{-1})}_{\beta} = g^{\alpha\beta}.$$
     Hence $h\left<g\right>h^{-1} \leq \left<g\right>$.
-    Now let $\gamma \in \Z$ and consider the two elements $g^\beta, g^\gamma$ of $\left<g\right>$.
-    If $hg^\beta h^{-1} = hg^\gamma h^{-1}$, then by left and right cancellation we have $g^\beta = g^\gamma$.
-    Hence $\abs{h\left<g\right>h^{-1}} = \abs{\left<g\right>}$ and $h\left<g\right>h^{-1} \leq \left<g\right>$ imply $h\left<g\right>h^{-1} = \left<g\right>$.
-    Therefore $h$ normalizes $\left<g\right>$, as desired.
+    
+	Now let $\gamma \in \mathbb{Z}$ be given and consider the two elements $g^\beta$ and $g^\gamma$ of $\left<g\right>$.
+    Observe that if $g^\beta = g^\gamma$, then $hg^\beta h^{-1} = hg^\gamma h^{-1}$.
+    Moreover, if $hg^\beta h^{-1} = hg^\gamma h^{-1}$, then by left and right cancellation we have $g^\beta = g^\gamma$.
+    Hence $hg^\alpha h^{-1} = hg^\beta h^{-1}$ if and only if $g^\alpha = g^\beta$, from which it follows that $\abs{h\left<g\right>h^{-1}} = \abs{\left<g\right>}$.
+	Therefore $h\left<g\right>h^{-1} \leq \left<g\right>$ and $\abs{h\left<g\right>h^{-1}} = \abs{\left<g\right>}$ imply $h\left<g\right>h^{-1} = \left<g\right>$, and $h$ normalizes $\left<g\right>$, as desired.
   \end{proof}
 \end{lem}
 \begin{thm}
@@ -221,18 +224,18 @@
     \setcounter{saveenum}{\value{enumi}}
   \end{enumerate}
   The group $G$ is the semi-direct product of $N$ and $H$ with respect to $\phi$.
-  We write $G = N \rtimes_\phi H$.
+  We write $G = N \rtimes_{\phi} H$.
   \begin{enumerate}[(a)]
     \setcounter{enumi}{\value{saveenum}}
   \item
     Let $N \unlhd G$.
     Suppose that $H \subseteq G$ is a subgroup with $H \cap N = \left< 1 \right>$ and $NH = G$.
-    Show that $G \cong N \rtimes_\phi H$ with $\phi \colon H \rightarrow \Aut{N}$ defined by $\phi \colon h \mapsto \phi_h$ such that $\phi_h(n) = hnh^{-1}$.
+    Show that $G \cong N \rtimes_{\phi} H$ with $\phi \colon H \rightarrow \Aut{N}$ defined by $\phi \colon h \mapsto \phi_h$ such that $\phi_h(n) = hnh^{-1}$.
   \item
     Let $n \geq 3$ be an integer.
     Express the dihredral group, $D_{2n}$, as a semi-direct product.
   \item
-    Let $p \not = q$ be primes
+    Let $p \not = q$ be primes.
     Classify groups of order $pq$ up to isomorphism (we have done most of the work already; I am asking you to recognize the non-abelian isomorphism class as a semi-direct product).
   \end{enumerate}
   \begin{proof}
@@ -240,8 +243,8 @@
     \item
       Let $(n_1, h_1), (n_2, h_2) \in G$ be given.
       First we show that $G$ is closed under the group operation.
-      Then observe that $\phi_{h_1}(n_2) \in N$ by assumption.
-      Hence $(n_1\phi_{h_1}(n_2), h_1h_2) \in G$.
+      Observe that $\phi_{h_1} \in \Aut{N}$ implies $\phi_{h_1}(n_2) \in N$.
+      Hence $(n_1,h_1)\cdot (n_2, h_2) = (n_1\phi_{h_1}(n_2), h_1h_2) \in G$.
       
       Consider the element $(1_N, 1_H) \in G$.
       First observe that since $\phi$ is a homomorphism, for any $h \in H$ it follows from 
@@ -264,7 +267,8 @@
       Hence $$n_1 \phi_{h_1}(n_2\phi_{h_2}(n_3)) = n_1\phi_{h_1}(n_2)(\phi_{h_1}\phi_{h_2})(n_3) = n_1\phi_{h_1}(n_2)\phi_{h_1h_2}(n_3)$$
       implies $\left((n_1,h_1) \cdot (n_2, h_2)\right) \cdot (n_3,h_3) = (n_1,h_1) \cdot \left( (n_2, h_2) \cdot (n_3,h_3)\right)$, and $G$ is associative.
       
-      Finally consider for any $(n,h) \in G$, its product with the element $(1_N, h^{-1}) \cdot (n^{-1}, 1_H) = (1_N\phi_{h^{-1}}(n^{-1}), h^{-1}1_H) = (\phi_{h^{-1}}(n^{-1}), h^{-1}) \in G$.
+	  %(1_N\phi_{h^{-1}}(n^{-1}), h^{-1}1_H) = 
+      Finally consider for any $(n,h) \in G$, its product with the element $(1_N, h^{-1}) \cdot (n^{-1}, 1_H) = (\phi_{h^{-1}}(n^{-1}), h^{-1})$ of $G$.
       Carrying out the group operation yields
       $$(n,h) \cdot (\phi_{h^{-1}}(n^{-1}), h^{-1}) = (n \phi_h\phi_{h^{-1}}(n^{-1}), hh^{-1}) = (nn^{-1}, 1_H) = (1_N, 1_H) = 1_G$$
       and
@@ -296,14 +300,18 @@
     \item
       Let $(n_1, 1_H) \in \overline{N}$ be given and $(n_2, h) \in G$ be given.
       Conjugating by $(n_2, h)^{-1}$ we have
-      $$(n_2, h)(n_1, 1_H)(\phi_{h^{-1}}(n_2^{-1}), h^{-1}) = (n_2, h)(n_1\phi_{h^{-1}}(n_2^{-1}), h^{-1}) = (n_2\phi_h(n_1\phi_{h^{-1}}(n_2^{-1})), 1_H) = (n_2\phi_h(n_1)n_2^{-1}, 1_H).$$
+      \begin{eqnarray*}
+      (n_2, h)(n_1, 1_H)(\phi_{h^{-1}}(n_2^{-1}), h^{-1}) &=& (n_2, h)(n_1\phi_{h^{-1}}(n_2^{-1}), h^{-1})\\
+	   &=& (n_2\phi_h(n_1\phi_{h^{-1}}(n_2^{-1})), 1_H)\\
+       &=& (n_2\phi_h(n_1)n_2^{-1}, 1_H).
+      \end{eqnarray*}
       Since $\phi_h(n_1) \in N$, it follows that $n_2\phi_h(n_1)n_2^{-1} \in N$, and thus $(n_2\phi_h(n_1)n_2^{-1}, 1_H) \in \overline{N}$ implies $\overline{N}$ is closed under conjugation from $G$.
       Therefore $\overline{N}$ is normal.
       
     \item
       Define the surjective map
       \begin{align*}
-	\varphi \colon NH &\rightarrow N \rtimes_\phi H\\
+	\varphi \colon NH &\rightarrow N \rtimes_{\phi} H\\
 	nh & \mapsto (n, h).
       \end{align*}
       Let $n_1, n_2 \in N$ and $h_1, h_2 \in H$ be given.
@@ -316,7 +324,7 @@
       Hence it follows that
       $$\varphi(n_1h_1)\varphi(n_2h_2) = (n_1, h_1)(n_2,h_2) = (n_1\phi_{h_1}(n_2), h_1h_2) = \varphi(n_1\phi_{h_1}(n_2)h_1h_2) = \varphi(n_1h_1n_2h_2)$$
       and thus $\varphi$ is a homomorphism.
-      Moreover, observe that $\varphi(nh) = (n,h) = (1,1) = 1_{N \rtimes_phi H}$ if and only if $n = 1_N$ and $h = 1_H$.
+      Moreover, observe that $\varphi(nh) = (n,h) = (1_N,1_H) = 1_{N \rtimes_{\phi} H}$ if and only if $n = 1_N$ and $h = 1_H$.
       Therefore $\varphi$ is an ismomorphism and $NH \cong N \rtimes_{\phi} H$, as desired.
     \item
       First observe that $D_{2n} = \left< r, s \;\middle\vert\; r^n = s^2 = 1, sr = r^{-1}s\right>$ and $\left<r\right> \cap \left<s\right> = \left<1\right>$.
@@ -332,14 +340,14 @@
         s &\mapsto \phi_{s}\\ 
         1 &\mapsto id_{\Aut{\left<r\right>}},
       \end{align*}
-      where $\phi_{s}(r^\alpha) = s r^\alpha s$.
+      and $\phi_{s}(r^\alpha) = s r^\alpha s$.
     \item
       As was shown in class, if $\abs{G} = pq$ and $G \not \cong \mathbb{Z}/pq\mathbb{Z}$, then for some $x,y \in G$
       $$G = \left< x, y \mid x^p = y^q = 1_G,\; yxy^{-1} = x^s\right>,$$
       where $s \not \equiv 1 \pmod{p}$ and $s^q \equiv 1 \pmod{p}$.
       First consider an element $z \in \left<x\right> \cap \left<y\right>$.
       The order of $z$ is either 1 or $pq$.
-      Since $G \not \cong \Z/pq\Z$, $o(z) = 1$ implies $\left<x\right> \cap \left<y\right> = \left< 1 \right>$
+      Since $G \not \cong \mathbb{Z}/pq\mathbb{Z}$, $o(z) = 1$ implies $\left<x\right> \cap \left<y\right> = \left< 1 \right>$
       %First observe that $G = \left\{x^\alpha y^\beta \;\middle\vert\; 0 \leq \alpha \leq p-1,\; 0 \leq \beta \leq q-1\right\}$.
 
       Now from the relation $yxy^{-1} = x^s$ in the presentation and Lemma~\ref{normal}, it is clear that $G = \left<x, y\right> \leq N_G(\left<x\right>)$ implies $\left<x\right> \unlhd G$ and thus $\left<x\right>\left<y\right> \leq G$.
