@@ -81,19 +81,20 @@
   \begin{proof}
     Observe that for all $g \in G$, the order of $g$ divides $p$ and thus is either 1 or $p$.
     If the order of each element is 1, then $G$ is trivial and $G$ is isomorphic to zero copies of $\mathbb{Z}/p\mathbb{Z}$.
-    Assume $G$ is non-trivial and then the order of each element of $G$ is $p$.
+    Assume $G$ is non-trivial and then the order of each non-identity element of $G$ is $p$.
     Hence each non-identity element generates a subgroup of order $p$.
     
     Consider two non-identity elements $g,h \in G$.
     If $1 \not = \alpha \in \left<g\right> \cap \left<h\right>$, then it follows from closure under the group operation that $\left<\alpha\right> \leq \left<g\right> \cap \left<h\right>$ is a subgroup of order $p$ contained in the intersection of two groups of order $p$.
     Hence $\left<\alpha\right> = \left<g\right> = \left<h\right>$.
     
-    Consider for some integer $s \geq 1$ the list of all elements of $G$, $g_1, g_2, \ldots, g_s$, that generate pairwise disjoint subgroups.
+    Consider for some integer, $s \geq 1$, the list of all elements of $G$, $g_1, g_2, \ldots, g_s$, that generate subgroups which, pairwise, intersect trivially.
     Note that by the argument above, these elements necessarily generate all the elements of $G$.
-    Since $G$ is abelian, $\left<g_i\right> \unlhd G$ holds for each $1 \leq i \leq s$, and thus $\left< g_1 \right>\left< g_2 \right> \cdots \left< g_s \right> \leq G$.
+    Since $G$ is abelian, $\left<g_i\right> \unlhd G$ holds for each $1 \leq i \leq s$, thus $\left< g_1 \right>\left< g_2 \right> \cdots \left< g_s \right> \leq G$.
+    %Moreover, $\left<g_i\right> \cap \left<g_j\right> = \left< 1 \right>$ holds for each $1 \leq i \not = j \leq s$, and 
     Observe that for each $1 \leq i \leq s$ that $1 \in \left<g_i\right>$.
     Hence for each $1 \leq i \leq s$, we may write $g_i = 1 \cdot 1 \cdots g_i \cdots 1$, from which it follows that $g_i \in \left< g_1 \right> \cdots \left< g_s \right>$.
-    Therefore $$G =  \left< g_1 \right> \cdots \left< g_s \right> \cong \underbrace{\mathbb{Z}/p\mathbb{Z} \times \ldots \times \mathbb{Z}/p\mathbb{Z}}_s.$$
+    Therefore $$G =  \left< g_1 \right> \left< g_2 \right> \cdots \left< g_s \right> \cong \underbrace{\mathbb{Z}/p\mathbb{Z} \times \ldots \times \mathbb{Z}/p\mathbb{Z}}_s.$$
   \end{proof}
 \end{thm}
 
@@ -106,8 +107,8 @@
     Since $U$ and $V$ are both simple, both imply $N = \left< 1_G \right>$.
 
     Assume $N \not = \left< 1_G \right>$, and let $u \in U$ and $v \in V$ be such that $1_G \not = n = (u,v) \in N$.
-    Observe that $\cntr{U} \unlhd U$ and $\cntr{V} \unlhd V$ imply, by the same argument above, that $\cntr{U} = \left< 1_U \right>$ and $\cntr{V} = \left< 1_V \right>$.
-    If $u \not = 1_U$, then there exists some element $u^\prime \in U$ such that $[n,\overline{u}] \not = 1_G$, where $\overline{u} = (u^\prime, 1_V)$.
+    Observe that since $U$ and $V$ are both non-abelian, $\cntr{U} \unlhd U$ and $\cntr{V} \unlhd V$ imply, by the same argument above, that $\cntr{U} = \left< 1_U \right>$ and $\cntr{V} = \left< 1_V \right>$.
+    Hence if $u \not = 1_U$, then there exists some element $u^\prime \in U$ such that $[n,\overline{u}] \not = 1_G$, where $\overline{u} = (u^\prime, 1_V)$.
     Now it follows from the normality of $N$ and $\overline{U}$ that $$[n,\overline{u}] = (n\overline{u}n^{-1})\overline{u}^{-1} = n(\overline{u}n^{-1}\overline{u}^{-1}) \in \overline{U} \cap N.$$
     By the Diamond Isomorphism Theorem, we have that $\left<1_G\right> \not = N \cap \overline{U} \unlhd \overline{U}$, which implies, by the simplicity of $\overline{U}$, that $N \cap \overline{U} = \overline{U} \leq N$.
     Now by the Lattice Isomorphism Theorem, we have that $N/\overline{U} \unlhd G/\overline{U} \cong \overline{V}$.
@@ -127,9 +128,12 @@
   \end{array}\right.$$
   where $r$ has order $n$.
   \begin{proof}
-    Since $D_{2n} = \left<r,s \;\middle\vert\; r^n = s^2 = 1, rs = sr^{-1} \right>$, and since $n - 1 > 1$ by assumption, the commutation relation $rs = sr^{n-1}$ implies $s$ does not commute with $r$.
+    Since $D_{2n} = \left<r,s \;\middle\vert\; r^n = s^2 = 1, rs = sr^{-1} \right>$, and $n - 1 > 1$ by assumption, the commutation relation $rs = sr^{n-1}$ implies $s$ does not commute with $r$.
     Hence it suffices to show that some power of $r$ commutes with $s$.
-    Observe that for some $0 \leq \alpha \leq n-1$, $r^\alpha s = s(r^\alpha)^{-1}$ if and only if $r^\alpha$ has order 2.
+    Consider for some $0 \leq \alpha \leq n-1$, the identity 
+    $$r^\alpha s = s(r^{-1})^\alpha = sr^{-\alpha} = sr^{n-\alpha} = s(r^\alpha)^{-1},$$
+    which follows from $\alpha$ applications of the commutation relation and that elements of the cyclic group $\left<r\right>$ are equal if and only if their exponents are congruent modulo $n$.
+    Observe then that $r^\alpha$ commutes with $s$ if and only if $r^\alpha$ has order 2.
     By Homework 1, exercise 7, the order of $r^\alpha$ is $n/\gcd(\alpha,n)$.
     If $n$ is odd, then clearly $n/\gcd(\alpha,n) \not = 2$.
     If $n = 2k$ for some $k \in \mathbb{Z}$, then $n/\gcd(\alpha,n)= 2$ if and only if $n = 2k$ and $\alpha = k$.
@@ -345,11 +349,8 @@
       As was shown in class, if $\abs{G} = pq$ and $G \not \cong \mathbb{Z}/pq\mathbb{Z}$, then for some $x,y \in G$
       $$G = \left< x, y \mid x^p = y^q = 1_G,\; yxy^{-1} = x^s\right>,$$
       where $s \not \equiv 1 \pmod{p}$ and $s^q \equiv 1 \pmod{p}$.
-      First consider an element $z \in \left<x\right> \cap \left<y\right>$.
-      The order of $z$ is either 1 or $pq$.
-      Since $G \not \cong \mathbb{Z}/pq\mathbb{Z}$, $o(z) = 1$ and thus $\left<x\right> \cap \left<y\right> = \left< 1 \right>$
+      First observe that $\gcd(p,q) = 1$ implies $\left<x\right> \cap \left<y\right> = 1$.
       %First observe that $G = \left\{x^\alpha y^\beta \;\middle\vert\; 0 \leq \alpha \leq p-1,\; 0 \leq \beta \leq q-1\right\}$.
-
       Now from the relation $yxy^{-1} = x^s$ in the presentation and Lemma~\ref{normal}, it is clear that $G = \left<x, y\right> \leq N_G(\left<x\right>)$ implies $\left<x\right> \unlhd G$ and thus $\left<x\right>\left<y\right> \leq G$.
       Observe further that $x = x1 \in \left<x\right>\left<y\right>$ and $y = 1y \in \left<x\right>\left<y\right>$ implies $G = \left<x, y\right>\leq \left<x\right>\left<y\right>$.
       %$$<x><y> = \left\{ab \;\middle\vert\; a \in \left<x\right>,\; b \in \left<y\right>\right\} = \left\{x^\alpha y^\beta \;\middle\vert\; 0 \leq \alpha \leq p-1,\; 0 \leq \beta \leq q-1\right\} = G.$$ 
