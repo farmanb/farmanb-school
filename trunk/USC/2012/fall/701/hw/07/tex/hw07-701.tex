@@ -329,8 +329,8 @@
     \item
       First observe that $D_{2n} = \left< r, s \;\middle\vert\; r^n = s^2 = 1, sr = r^{-1}s\right>$ and $\left<r\right> \cap \left<s\right> = \left<1\right>$.
       %= \left\{r^\alpha s^\beta \;\middle\vert\; 0 \leq \alpha \leq n-1,\; 0 \leq \beta \leq 1\right\}$.
-      Then from the commutation relation $rs = sr^{-1}$ and $s = s^{-1}$, we obtain $sr^\alpha s = (r^{-1})^\alpha \in \left<r\right>$.
-      Hence by Lemma~\ref{normal} $D_{2n} = \left<r, s\right> \leq N_{D_{2n}}(\left<r\right>)$ implies $\left<r\right> \unlhd D_{2n}$ and thus $\left<r\right>\left<s\right> \leq D_{2n}$.
+      Then from the commutation relation $rs = sr^{-1}$ and $s = s^{-1}$, we obtain $srs = r^{-1} \in \left<r\right>$.
+      Hence by Lemma~\ref{normal}, $D_{2n} = \left<r, s\right> \leq N_{D_{2n}}(\left<r\right>)$ implies $\left<r\right> \unlhd D_{2n}$ and thus $\left<r\right>\left<s\right> \leq D_{2n}$.
       Observe further that $r = r1 \in \left<r\right>\left<s\right>$ and $s = 1s \in \left<r\right>\left<s\right>$ implies $D_{2n} \leq \left<r\right>\left<s\right>$.
       Hence $D_{2n} = \left<r\right>\left<s\right>$.
       %$$<r><s> = \left\{xy \;\middle\vert\; x \in \left<r\right>,\; y \in \left<s\right>\right\} = \left\{r^\alpha s^\beta \;\middle\vert\; 0 \leq \alpha \leq n-1,\; 0 \leq \beta \leq 1\right\} = D_{2n}.$$ 
@@ -347,11 +347,11 @@
       where $s \not \equiv 1 \pmod{p}$ and $s^q \equiv 1 \pmod{p}$.
       First consider an element $z \in \left<x\right> \cap \left<y\right>$.
       The order of $z$ is either 1 or $pq$.
-      Since $G \not \cong \mathbb{Z}/pq\mathbb{Z}$, $o(z) = 1$ implies $\left<x\right> \cap \left<y\right> = \left< 1 \right>$
+      Since $G \not \cong \mathbb{Z}/pq\mathbb{Z}$, $o(z) = 1$ and thus $\left<x\right> \cap \left<y\right> = \left< 1 \right>$
       %First observe that $G = \left\{x^\alpha y^\beta \;\middle\vert\; 0 \leq \alpha \leq p-1,\; 0 \leq \beta \leq q-1\right\}$.
 
       Now from the relation $yxy^{-1} = x^s$ in the presentation and Lemma~\ref{normal}, it is clear that $G = \left<x, y\right> \leq N_G(\left<x\right>)$ implies $\left<x\right> \unlhd G$ and thus $\left<x\right>\left<y\right> \leq G$.
-      Observe further that $x = x1 \in \left<x\right>\left<y\right>$ and $y = 1y \in \left<x\right>\left<y\right>$ implies $G \leq \left<x\right>\left<y\right>$.
+      Observe further that $x = x1 \in \left<x\right>\left<y\right>$ and $y = 1y \in \left<x\right>\left<y\right>$ implies $G = \left<x, y\right>\leq \left<x\right>\left<y\right>$.
       %$$<x><y> = \left\{ab \;\middle\vert\; a \in \left<x\right>,\; b \in \left<y\right>\right\} = \left\{x^\alpha y^\beta \;\middle\vert\; 0 \leq \alpha \leq p-1,\; 0 \leq \beta \leq q-1\right\} = G.$$ 
       Hence $\left<x\right>\left<y\right> = G$.
       Therefore by part (d), $G \cong \left<x\right> \rtimes_{\phi} \left<y\right>$, where 
