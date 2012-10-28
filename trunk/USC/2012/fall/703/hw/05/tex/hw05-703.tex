@@ -1,0 +1,104 @@
+\documentclass[12pt]{amsart}
+\renewcommand{\baselinestretch}{1.5}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,paralist,mymath}
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 703:\\Homework 05}
+\date{October 30, 2012}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+\begin{document}
+\maketitle
+
+\newtheorem{setup}{}
+\setcounter{setup}{16}
+\newtheorem{ex}{}[setup]
+\newtheorem{lem}{Lemma}
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}
+
+\begin{lem}\label{min-radius}
+  Let $A$ be an open, connected subset of $\C$ with $\card{A} \geq 2$.
+  Let $\gamma \colon [a, b] \rightarrow A$ be a path connecting two distinct points, $a_1, a_2$, of $A$.
+  Then there exists some radius $r > 0$ such that for each $x \in [a,b]$, the open disc of radius $r$ about $\gamma(x)$ lies in $A$.
+  
+  \begin{proof}
+    First observe that $\gamma$ continuous and $[a,b]$  compact imply $\gamma([a,b])$ is compact and thus there exists some $M \in \R$ such that $\gamma([a,b])$ is contained in an open disc, $D$, of radius $M$.
+    If $A$ is not bounded, then consider the smaller open, connected set $D \cap A \subseteq A$.
+    Clearly if there exists an $r \in \R$ such that for every $t \in [a,b]$, the disc of radius $r$ about $\gamma(t)$ lies in $D \cap A$, then that same disc lies in $A$.
+    Hence it suffices to assume $A$ is bounded.
+    
+    Since $A$ is assumed to be bounded, there exists some open disc, $D$, of finite radius $M$ such that $A$ lies in the closure of $D$, $\overline{D}$.
+    %Since $A$ is open in $X$ and $D \cap A = A$, $A$ is open in $D$.
+    Hence $\overline{D} \cap (X \setminus A)$ is closed and bounded, thus compact.
+    Then consider $$\dist{\overline{D} \cap (X \setminus{A})}{\gamma([a,b])} = \inf \left\{\abs{\gamma(t) - d} \;\middle\vert\; x \in [a,b], d \in \overline{D} \cap (X \setminus{A})\right\}.$$
+    By Exercise 3 on page 542 (Trench), there exist elements $t_0 \in [a,b]$ and $d_0 \in \overline{D} \cap (X \setminus{A})$ such that $\abs{\gamma(t_0) - d_0} = \dist{\overline{D} \cap (X \setminus{A})}{\gamma([a,b])}$.
+    Moreover, $\gamma(t_0) \in A$ and $d_0 \not \in A$ imply $d_0 \not = t_0$ and thus this distance is non-zero.
+    Take $r = \dist{\overline{D} \cap (X \setminus{A})}{\gamma([a,b])}$.
+  \end{proof}
+\end{lem}
+
+\begin{lem}\label{partition}
+  Let $A$ be an open, connected subset of $\C$ with $\card{A} \geq 2$.
+  If $\gamma \colon [a, b] \rightarrow A$ is a path connecting two distinct points, $a_1$ and $a_2$, of $A$, then there exists a partition $P = [t_1, t_2, \ldots, t_n]$ of $[a,b]$ with
+  $$a = t_1 \leq t_2 \leq \ldots \leq t_n = b$$
+  such that $\gamma([t_i, t_{i+1}])$ is contained in an open disc, $D_i$, with $D_i \subseteq A$.
+  \begin{proof}
+    %First observe that since $\gamma$ is continuous, $\gamma([a,b])$ is compact, and thus totally bounded.
+    By Lemma~\ref{min-radius}, there exists some $r > 0$ such that for every $x \in [a,b]$, the disc of radius $r$ about $\gamma(t)$ lies in $A$.
+    %Since $\gamma([a,b])$ is totally bounded, there exist finitely many discs of radius $r$, $D_1, D_2, \ldots, D_n$, such that 
+    %$$\gamma([a,b]) \subseteq \bigcup_{i=1}^n D_i.$$
+    Since $[a,b]$ is compact, $\gamma$ is uniformly continuous on $[a,b]$.
+    Hence there exists some $\delta$ such that for any $t_1, t_2 \in [a,b]$, $$\abs{\gamma(t_1) - \gamma(t_2)} \leq r$$ holds whenever $\abs{t_1 - t_2} \leq \delta$.
+    Then take, for some $n$, a partition $a = t_1 \leq t_2 \leq \ldots \leq t_n = b$ such that $t_{i+1} - t_i < \delta$.
+    Therefore $\gamma([t_i, t_{i+1}])$ lies in the open disc $D_i \subseteq A$ of radius $r$ centered about $\gamma(t_i)$ for each $1 \leq i \leq n$.
+  \end{proof}
+\end{lem}
+
+\begin{defn}
+  Let $A$ be an open, connected subset of $\C$ and let $\gamma_1 \colon [a_1,b_1] \rightarrow A, \gamma_2 \colon [a_2,b_2] \rightarrow A, \ldots, \gamma_n \colon [a_n,b_n] \rightarrow A$ be a finite collection of paths with $\gamma_i(b_i) = \gamma_{i+1}(a_i)$.
+  Define $$\gamma = \gamma_1 + \gamma_2 + \ldots + \gamma_n$$ to be a parametrization that traces out $\gamma_1, \gamma_2, \ldots, \gamma_n$ in order.
+\end{defn}
+
+\begin{setup}
+  Let $(X,d)$ be the usual metric on $\C$.
+  Let $A$ be an open connected subset of $X$ with $\card{A} \geq 2$.
+  Let $a_1, a_2 \in A$ such that $a_1 \not = a_2$.
+  Show that $a_1$ and $a_2$ can be connected by a polygonal path that stays inside $A$ and has sides parallel to the axis.
+
+  \begin{proof}
+    %Observe that since $A$ is open and connected, $A$ is path connected.
+    Let $\gamma \colon [a,b] \rightarrow A$ be a path connecting $a_1$ and $a_2$.
+    Let $r$ be as in Lemma~\ref{min-radius} and let $P = [t_1, t_2, \ldots, t_n]$ be a partition of $[a,b]$ as in Lemma~\ref{partition}.
+    Let $z_i = x_i + iy_i = \gamma(t_i)$ for each $1 \leq i \leq n$ and let $D_i \subseteq A$ be the disc of radius $r$ centered about $z_i$.
+    For each pair $z_i, z_{i+1}$, let $\omega_i = x_{i+1} + iy_i$.
+    Define the rectilinear path $\eta_i : [a_i, b_i] \rightarrow A$ which parametrizes the straight line from $z_i$ to $\omega_i$, then the straight line from $\omega_i$ to $z_{i+1}$.
+    Let $z = x + iy \in \eta_i([a_i, b_i])$ and observe 
+    %that $\abs{z_i - \omega_i} = \abs{x_i - x_{i+1}}$ and $\abs{z_{i+1} - \omega_i} = \abs{y_i - y_{i+1}}$
+    $$\abs{z_i - z} = \sqrt{(x_i - x)^2 + (y_i - y)^2} \leq \sqrt{(x_i - x_{i+1})^2 + (y_i - y_{i+1})^2} = \abs{z_i - z_{i+1}} < r.$$
+    %Then by the Pythagorean Theorem we have
+    %\sqrt{\abs{z_i - \omega_i}^2 + \abs{\omega_i - z_{i+1}}^2} =
+    %$$ \abs{z_i - z}\leq \sqrt{(x_i - x_{i+1})^2 + (y_i - y_{i+1})^2} = \abs{z_i - z_{i+1}} < r $$
+    Hence $\eta_i([a_i, b_i])$ lies inside $A$.
+    Therefore the curve $$\eta = \eta_1 + \eta_2 + \ldots + \eta_n$$ is a rectilinear path that stays inside $A$ with sides parallel to the axis.
+    
+  \end{proof}
+\end{setup}
+
+\begin{setup}
+  
+\end{setup}
+
+\begin{setup}
+  Give an example of a continuous function between two metric spaces that fails to carry some Cauchy sequence to a Cauchy Sequence.
+  \begin{proof}
+    Take the metric space $(\mathbb{R}^{>0}, \abs{\cdot})$, where $\abs{\cdot}$ is the usual metric.
+    The function $f(x) = 1/x$ is continuous, but the sequence $\left\{f(1/n)\right\}_{n=1}^\infty = \left\{n\right\}_{n=1}^\infty$ does not converge, hence is not Cauchy.
+  \end{proof}
+\end{setup}
+
+\begin{setup}
+\end{setup}
+
+\end{document}
