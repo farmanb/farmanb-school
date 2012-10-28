@@ -7,7 +7,7 @@
 \date{October 30, 2012}
 \pdfpagewidth 8.5in
 \pdfpageheight 11in
-\usepackage[margin=1in]{geometry}
+\usepackage[margin=.75in]{geometry}
 \begin{document}
 \maketitle
 
@@ -87,7 +87,45 @@
 \end{setup}
 
 \begin{setup}
-  
+  Let $F \colon X \times Y \rightarrow Z$ be a function from the product of two metric spaces into a metric space.
+  \begin{enumerate}[(a)]
+  \item
+    Suppose that $(x,y) \mapsto F(x,y)$ is continuous and that $Y$ is compact.
+    Prove that $F(x,\cdot)$ tends to $F(x_0, \cdot)$ uniformly on $Y$ as $x$ tends to $x_0$.
+  \item
+    Conversely suppose $(x,y) \mapsto F(x,y)$ is continuous except possibly at points $(x,y) = (x_0, y)$, and suppose that $F(x, \cdot) \rightarrow F(x_0, \cdot)$ uniformly.
+    Prove that $F$ is continuous everywhere.
+    \begin{proof}
+      \begin{enumerate}[(a)]
+        \item
+          Let $d_X$, $d_Y$, and $d_Z$ be the metrics on $X$, $Y$, and $Z$, respectively, and let $d$ be the usual product metric, $d((x_1,y_1), (x_2,y_2)) = \max \left\{d_X(x_1, x_2), d_Y(y_1, y_2)\right\}$.
+          Let $\varepsilon > 0$ be given and fix some $x_0 \in X$.
+          Since $F$ is continuous, there exists for each point $(x_0, y)$ a $\delta_y > 0$ such that 
+          $$F\left(B_d \left( \left(x_0,y\right), \delta_y\right)\right)\subseteq B_{d_Z}\left(F \left(x_0, y\right), \frac{\varepsilon}{2}\right).$$
+          Observe that the collection of open balls $\mathcal{B} = \left\{B_{d_Y}(y, \delta_y) \;\middle\vert\; y \in Y\right\}$ is an open cover of $Y$.
+          Since $Y$ is compact, there exists a finite subcover 
+          $$B_1 = B_{d_Y}\left(y_1, \delta_{y_1}\right), B_2 = B_{d_Y}\left(y_2, \delta_{y_2}\right), \ldots, B_k = B_{d_Y}\left(y_k, \delta_{y_k}\right),$$ 
+          for some $y_1, y_2, \ldots, y_k \in Y$.
+          
+          Let $\left\{x_n\right\}_{n=1}^{\infty}$ be a sequence in $X$ such that $x_n \rightarrow x_0$ and take $\delta = \min \left\{\delta_{y_1}, \delta_{y_2}, \ldots, \delta_{y_k}\right\}$.
+          Choose $N \in \N$ such that $d(x_n, x_0) < \delta$ holds whenever $n \geq N$.
+          Assume $n \geq N$ and consider the element $(x_n, y)$ of  $X \times Y$.
+          Observe that $y \in B_i$ for some $1 \leq i \leq k$ and $d(x_n, x_0) < \delta \leq \delta_{y_i}$.
+          Hence $(x_n, y)$ and $(x_0, y)$ both lie in the open ball $B_d\left(\left(x_0, y_i\right), \delta_{y_i}\right)$, from which it follows that          
+          \begin{align*}
+            d_Z\left(F\left(x_n, y\right), F\left(x_0, y_i\right)\right) &< \frac{\varepsilon}{2} & \text{and}&& d_Z\left(F\left(x_0, y_i\right), F\left(x_0, y\right)\right) &< \frac{\varepsilon}{2}.
+          \end{align*}
+          Therefore by the triangle inequality 
+          $$d_Z(F(x_n, y), F(x_0, y)) < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon$$
+          holds for all $y \in Y$, and the convergence is uniform, as desired.
+          %Since $x_n \rightarrow x$, there exists some $N \in \N$ such that $d(x_n, x_0) < \delta$ whenever $n \geq N$.
+          %and assume $n \geq N$.
+          %For any  $(x_n, y) \in X \times Y$.
+          %By the definition of $\delta$ and the choice of $N$, we have $d(x_n, x_0) < \delta \leq \delta(y_i)$ whenever $n \geq N$.
+        \item
+      \end{enumerate}
+    \end{proof}
+  \end{enumerate}
 \end{setup}
 
 \begin{setup}
@@ -99,6 +137,8 @@
 \end{setup}
 
 \begin{setup}
+  {\bf (Contraction mapping principle)} Let $(X,d)$ be a complete metric space, let $r$ be a number with $0 \leq r < 1$, and let $f \colon X \rightarrow X$ be a {\bf contraction mapping}, i.e., a function such that $d(f(x), f(y) \leq rd(x,y)$ for all $x$ and $y$ in $X$.
+  Prove that there exists a unique $x_0$ in $X$ such that $f(x_0) = x_0$.
 \end{setup}
 
 \end{document}
