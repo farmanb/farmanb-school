@@ -24,7 +24,8 @@
   Then there exists some radius $r > 0$ such that for each $x \in [a,b]$, the open disc of radius $r$ about $\gamma(x)$ lies in $A$.
   
   \begin{proof}
-    First observe that $\gamma$ continuous and $[a,b]$  compact imply $\gamma([a,b])$ is compact and thus there exists some $M \in \R$ such that $\gamma([a,b])$ is contained in an open disc, $D$, of radius $M$.
+    First observe that $\gamma$ continuous and $[a,b]$  compact imply $\gamma([a,b])$ is compact hence totally bounded by Theorem 2.46 and bounded by exercise 15 on Homework 4.
+    Thus there exists some $M \in \R$ such that $\gamma([a,b])$ is contained in an open disc, $D$, of radius $M$.
     If $A$ is not bounded, then consider the smaller open, connected set $D \cap A \subseteq A$.
     Clearly if there exists an $r \in \R$ such that for every $t \in [a,b]$, the disc of radius $r$ about $\gamma(t)$ lies in $D \cap A$, then that same disc lies in $A$.
     Hence it suffices to assume $A$ is bounded.
@@ -71,17 +72,17 @@
     %Observe that since $A$ is open and connected, $A$ is path connected.
     Let $\gamma \colon [a,b] \rightarrow A$ be a path connecting $a_1$ and $a_2$.
     Let $r$ be as in Lemma~\ref{min-radius} and let $P = [t_1, t_2, \ldots, t_n]$ be a partition of $[a,b]$ as in Lemma~\ref{partition}.
-    Let $z_i = x_i + iy_i = \gamma(t_i)$ for each $1 \leq i \leq n$ and let $D_i \subseteq A$ be the disc of radius $r$ centered about $z_i$.
-    For each pair $z_i, z_{i+1}$, let $\omega_i = x_{i+1} + iy_i$.
-    Define the rectilinear path $\eta_i : [a_i, b_i] \rightarrow A$ which parametrizes the straight line from $z_i$ to $\omega_i$, then the straight line from $\omega_i$ to $z_{i+1}$.
-    Let $z = x + iy \in \eta_i([a_i, b_i])$ and observe 
+    Let $z_j = x_j + iy_j = \gamma(t_j)$ for each $1 \leq j \leq n$ and let $D_j \subseteq A$ be the disc of radius $r$ centered about $z_j$.
+    For each pair $z_j, z_{j+1}$, let $\omega_j = x_{j+1} + iy_j$.
+    Define the rectilinear path $\eta_j : [a_j, b_j] \rightarrow A$ which parametrizes the straight line from $z_j$ to $\omega_j$, then the straight line from $\omega_j$ to $z_{j+1}$.
+    Let $z = x + iy \in \eta_j([a_j, b_j])$ and observe 
     %that $\abs{z_i - \omega_i} = \abs{x_i - x_{i+1}}$ and $\abs{z_{i+1} - \omega_i} = \abs{y_i - y_{i+1}}$
-    $$\abs{z_i - z} = \sqrt{(x_i - x)^2 + (y_i - y)^2} \leq \sqrt{(x_i - x_{i+1})^2 + (y_i - y_{i+1})^2} = \abs{z_i - z_{i+1}} < r.$$
+    $$\abs{z_j - z} = \sqrt{(x_j - x)^2 + (y_j - y)^2} \leq \sqrt{(x_j - x_{i+j})^2 + (y_j - y_{j+1})^2} = \abs{z_j - z_{j+1}} < r.$$
     %Then by the Pythagorean Theorem we have
     %\sqrt{\abs{z_i - \omega_i}^2 + \abs{\omega_i - z_{i+1}}^2} =
     %$$ \abs{z_i - z}\leq \sqrt{(x_i - x_{i+1})^2 + (y_i - y_{i+1})^2} = \abs{z_i - z_{i+1}} < r $$
-    Hence $\eta_i([a_i, b_i])$ lies inside $A$.
-    Therefore the curve $$\eta = \eta_1 + \eta_2 + \ldots + \eta_n$$ is a rectilinear path that stays inside $A$ with sides parallel to the axis.
+    Hence $\eta_j([a_j, b_j])$ lies inside $D_j \subseteq A$.
+    Therefore the curve $$\eta = \eta_1 + \eta_2 + \ldots + \eta_n$$ is a rectilinear path that stays inside $A$ with sides parallel to the axes.
     
   \end{proof}
 \end{setup}
@@ -136,7 +137,7 @@
       Take $\delta = \min \left\{\delta_1, \delta_2\right\}$ and consider some $(x,y)$ in the open ball $B_d((x_0, y_0), \delta)$.
       It then follows from the definition of the metric that $d_X(x, x_0) < \delta \leq \delta_1$ and $d_Y(y,y_0) < \delta \leq \delta_2$.
       Hence by \eqref{18.2}, \eqref{18.3}, and the triangle inequality,
-      $$d_z(F(x,y), F(x_0,y_0) < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon,$$
+      $$d_z\left(F\left(x,y\right), F\left(x_0,y_0\right)\right) < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon,$$
       and $F$ is continuous on $X \times Y$, as desired.
     \end{enumerate}
   \end{proof}
@@ -162,47 +163,50 @@
     Take $\delta = \varepsilon/r$ and then for $d(x,y) < \delta$, we have $$d(f(x), f(y)) \leq rd(x,y) < r\left(\frac{\varepsilon}{r}\right) = \varepsilon.$$
     Therefore $f$ is continuous.
     
-    Fix some $x \in X$ and construct the sequence $y_1 = x$, and $y_{n+1} = f(y_n)$.
+    Fix some $x \in X$ and construct the sequence $y_1 = x$, $y_{n+1} = f(y_n)$.
     We now show $\left\{y_n\right\}_{n=1}^\infty$ is Cauchy.
     Towards that end, observe that if $n=2$, then 
-    $$d(y_n, y_n+1) = d(y_2, y_3) \leq rd(y_1, y_2) = r^{n-1}d(x,f(x)).$$
-    Suppose that $d(y_n, y_{n+1}) \leq r^{n-1} d(x,f(x))$ holds up to some $n$.
+    $$d(y_n, y_{n+1}) = d(y_2, y_3) \leq rd(y_1, y_2) = r^{n-1}d(x,f(x)).$$
+    Assume that $d(y_n, y_{n+1}) \leq r^{n-1} d(x,f(x))$ holds up to some $n$.
     Then we have $$d\left(y_{n+1}, y_{n+2}\right) \leq r d\left(y_n, y_{n+1}\right) \leq r\left(r^{n-1}d\left(x, f\left(x\right)\right)\right) = r^n d\left(x, f\left(x\right)\right),$$
     and the inequality holds for all $n \in \N$.
     Now consider for $m < n \in \N$ the distance $d\left(y_m, y_n\right)$.
     Apply the triangle inequality $n-m$ times and rearrange using $d(y_n, y_{n+1}) \leq r^{n-1} d\left(x,f\left(x\right)\right)$ to obtain the inequality 
     $$d(y_m, y_n) \leq d(y_m, y_{m+1}) + d(y_{m+1}, y_{m+2}) + \ldots + d(y_{n-1}, y_n) \leq d(x,f(x)) \sum_{j=m-1}^{n-2}r^j$$
-    Since $r < 1$, one may use the usual argument for a geometric sum to obtain
+    Let $s = \sum_{j=m-1}^{n-2}r^j$ and observe that the difference $s - rs = s(1-r)$ telescopes to the closed form $s(1-r) = r^{m-1} - r^{n-1}$. 
+    Since $0 \leq r < 1$, it follows that  $$s = \frac{r^{m-1} - r^{n-1}}{1-r} = r^{m-1}\left(\frac{1 - r^{n-m}}{1-r}\right) \leq r^{m-1}\left(\frac{1}{1-r}\right).$$ 
+    Hence %one may use the usual argument for a geometric sum to obtain
     \begin{equation}\label{19.1}
-      d(y_m, y_n) \leq d(x,f(x))\left(\frac{r^{m-1} - r^{n-1}}{1-r}\right) = d(x,f(x))r^{m-1}\left(\frac{1 - r^{n-m}}{1-r}\right) \leq r^{m-1}\left(\frac{d(x,f(x))}{1-r}\right).
+      d(y_m, y_n) \leq d(x,f(x))s \leq r^{m-1}\left(\frac{d(x,f(x))}{1-r}\right).
+      %\left(\frac{r^{m-1} - r^{n-1}}{1-r}\right) = d(x,f(x))r^{m-1}\left(\frac{1 - r^{n-m}}{1-r}\right) \leq r^{m-1}\left(\frac{d(x,f(x))}{1-r}\right).
     \end{equation}
     Now let $\varepsilon > 0$ be given.
     Observe that $r^n \rightarrow 0$ as $n \rightarrow \infty$ implies we may choose $N \in \N$ such that 
     $$r^{n} < \frac{1-r}{d(x,f(x))}\varepsilon$$
     holds for all $n \geq N$.
-    Therefore, if $N+1 < m < n$, then by \eqref{19.1}
+    Therefore, if $N < m < n$, then by \eqref{19.1}
     $$d(y_m, y_n) \leq r^{m-1}\left(\frac{d(x,f(x))}{1-r}\right) < \left(\frac{1-r}{d(x,f(x))}\right)\left(\frac{d(x,f(x))}{1-r}\right)\varepsilon = \varepsilon,$$
-    and $\left\{y_n\right\}_{n=1}^{\infty}$ is Cauchy.
-    Moreover, since $(X,d)$ is compact, there exist some $y \in X$ such that $y = \lim_{n \rightarrow \infty} y_n$.
+    implies $\left\{y_n\right\}_{n=1}^{\infty}$ is Cauchy.
+    Moreover, since $(X,d)$ is complete, there exists some $y \in X$ such that $y = \lim_{n \rightarrow \infty} y_n$.
     
     To see that $f$ has a fixed point, let $\varepsilon > 0$ be given.
-    Since $f$ is continuous, we may choose some $\delta > 0$ such that $d(f(x), f(y)) < \varepsilon/2$ holds for all $x \in X$ such that $d(x,y) < \delta$.
+    Since $f$ is continuous, we may choose some $\delta > 0$ such that $d(f(x), f(y)) < \varepsilon/2$ holds for all $x \in X$ satisfying $d(x,y) < \delta$.
     If necessary, reduce $\delta$ so that $\delta \leq \varepsilon/2$.
-    Choose $N \in \N$ such that $d(y_n, y) < \delta \leq \varepsilon/2$ holds for all $n \geq N$ and consider the distance $d(y,f(y))$.
+    Choose $N \in \N$ such that $d(y_n, y) < \delta$ holds for all $n \geq N$ and consider the distance $d(y,f(y))$.
     By the triangle inequality, we have 
     $$d(y, f(y)) \leq d(y, y_{N+1}) + d(y_{N+1}, f(y)) = d(y, y_{N+1}) + d(f(y_N), f(y))< \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon.$$
-    Since the choice of $\varepsilon$ was arbitrary, we have $f = f(y)$.
+    Since the choice of $\varepsilon$ was arbitrary, it follows that $y = f(y)$.
     
     Finally, we show that the fixed point $y$ is unique.
-    Observe that the choice of $x$ in the original construction was arbitrary and thus such a construction works with any choice of $x$.
-    Take any two points fixed points, $y_1$ and $y_1$, obtained from the construction above.
-    Consider the distance $d(y_1, y_2)$.
-    Since $y_1 = f(y_1)$ and $y_2 = f(y_2)$, we have 
-    $$d(y_1, y_2) = d(f(y_1), f(y_2)) \leq rd(y_1,y_2).$$
-    Subtracting $rd(y_1, y_2)$ from both sides of the equation and rearranging yields
-    $$d(y_1, y_2)(1-r) \leq 0.$$
-    Noting that $0 < 1 - r \leq 1$ and $d(y_1,y_2) \geq 0$, divide both sides by $1-r$ to obtain $d(y_1, y_2) \leq 0$, which implies $d(y_1, y_2) = 0$.
-    Therefore $y_1 = y_2$ and $f$ has a unique fixed point.
+    %Observe that the choice of $x$ in the original construction was arbitrary and thus such a construction works with any choice of $x$.
+    Assume $y^\prime$ is another fixed point of $f$.
+    Consider the distance $d(y, y^\prime)$.
+    Since $y = f(y)$ and $y^\prime = f(y^\prime)$, it follows that 
+    $$d(y, y^\prime) = d(f(y), f(y^\prime)) \leq rd(y,y^\prime).$$
+    Subtracting $rd(y, y^\prime)$ from both sides of the inequality and rearranging yields
+    $$d(y, y^\prime)(1-r) \leq 0.$$
+    Noting that $0 < 1 - r \leq 1$ and $0 \leq d(y, y^\prime)$, divide both sides by $1-r$ to obtain $0 \leq d(y, y^\prime) \leq 0$.
+    Therefore $d(y, y^\prime) = 0$ implies $y = y^\prime$ and $y$ is unique, as desired.
   \end{proof}
 \end{setup}
 
