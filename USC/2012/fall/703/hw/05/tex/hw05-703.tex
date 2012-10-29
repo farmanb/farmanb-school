@@ -95,37 +95,51 @@
   \item
     Conversely suppose $(x,y) \mapsto F(x,y)$ is continuous except possibly at points $(x,y) = (x_0, y)$, and suppose that $F(x, \cdot) \rightarrow F(x_0, \cdot)$ uniformly.
     Prove that $F$ is continuous everywhere.
-    \begin{proof}
-      \begin{enumerate}[(a)]
-        \item
-          Let $d_X$, $d_Y$, and $d_Z$ be the metrics on $X$, $Y$, and $Z$, respectively, and let $d$ be the usual product metric, $d((x_1,y_1), (x_2,y_2)) = \max \left\{d_X(x_1, x_2), d_Y(y_1, y_2)\right\}$.
-          Let $\varepsilon > 0$ be given and fix some $x_0 \in X$.
-          Since $F$ is continuous, there exists for each point $(x_0, y)$ a $\delta_y > 0$ such that 
-          $$F\left(B_d \left( \left(x_0,y\right), \delta_y\right)\right)\subseteq B_{d_Z}\left(F \left(x_0, y\right), \frac{\varepsilon}{2}\right).$$
-          Observe that the collection of open balls $\mathcal{B} = \left\{B_{d_Y}(y, \delta_y) \;\middle\vert\; y \in Y\right\}$ is an open cover of $Y$.
-          Since $Y$ is compact, there exists a finite subcover 
-          $$B_1 = B_{d_Y}\left(y_1, \delta_{y_1}\right), B_2 = B_{d_Y}\left(y_2, \delta_{y_2}\right), \ldots, B_k = B_{d_Y}\left(y_k, \delta_{y_k}\right),$$ 
-          for some $y_1, y_2, \ldots, y_k \in Y$.
-          
-          Let $\left\{x_n\right\}_{n=1}^{\infty}$ be a sequence in $X$ such that $x_n \rightarrow x_0$ and take $\delta = \min \left\{\delta_{y_1}, \delta_{y_2}, \ldots, \delta_{y_k}\right\}$.
-          Choose $N \in \N$ such that $d(x_n, x_0) < \delta$ holds whenever $n \geq N$.
-          Assume $n \geq N$ and consider the element $(x_n, y)$ of  $X \times Y$.
-          Observe that $y \in B_i$ for some $1 \leq i \leq k$ and $d(x_n, x_0) < \delta \leq \delta_{y_i}$.
-          Hence $(x_n, y)$ and $(x_0, y)$ both lie in the open ball $B_d\left(\left(x_0, y_i\right), \delta_{y_i}\right)$, from which it follows that          
-          \begin{align*}
-            d_Z\left(F\left(x_n, y\right), F\left(x_0, y_i\right)\right) &< \frac{\varepsilon}{2} & \text{and}&& d_Z\left(F\left(x_0, y_i\right), F\left(x_0, y\right)\right) &< \frac{\varepsilon}{2}.
-          \end{align*}
-          Therefore for all $y \in Y$
-          $$d_Z(F(x_n, y), F(x_0, y)) < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon$$
-          follows from the triangle inequality and the convergence is uniform, as desired.
-          %Since $x_n \rightarrow x$, there exists some $N \in \N$ such that $d(x_n, x_0) < \delta$ whenever $n \geq N$.
-          %and assume $n \geq N$.
-          %For any  $(x_n, y) \in X \times Y$.
-          %By the definition of $\delta$ and the choice of $N$, we have $d(x_n, x_0) < \delta \leq \delta(y_i)$ whenever $n \geq N$.
-        \item
-      \end{enumerate}
-    \end{proof}
   \end{enumerate}
+  \begin{proof}
+    Let $d_X$, $d_Y$, and $d_Z$ be the metrics on $X$, $Y$, and $Z$, respectively, and let $d$ be the product metric defined by $d((x_1,y_1), (x_2,y_2)) = \max \left\{d_X(x_1, x_2), d_Y(y_1, y_2)\right\}$.
+    \begin{enumerate}[(a)]
+    \item
+      Let $\varepsilon > 0$ be given and fix some $x_0 \in X$.
+      Since $F$ is continuous, there exists for each point $(x_0, y)$ a $\delta_y > 0$ such that 
+      \begin{equation}\label{18.1}
+        F\left(B_d \left( \left(x_0,y\right), \delta_y\right)\right)\subseteq B_{d_Z}\left(F \left(x_0, y\right), \frac{\varepsilon}{2}\right).
+      \end{equation}
+      Observe that the collection of open balls $\mathcal{B} = \left\{B_{d_Y}(y, \delta_y) \;\middle\vert\; y \in Y\right\}$ is an open cover of $Y$.
+      Since $Y$ is compact, there exists a finite subcover 
+      $$B_1 = B_{d_Y}\left(y_1, \delta_{y_1}\right), B_2 = B_{d_Y}\left(y_2, \delta_{y_2}\right), \ldots, B_k = B_{d_Y}\left(y_k, \delta_{y_k}\right),$$ 
+      for some $y_1, y_2, \ldots, y_k \in Y$.
+
+      Take $\delta = \min \left\{\delta_{y_1}, \delta_{y_2}, \ldots, \delta_{y_k}\right\}$.
+      Observe that for each $y \in Y$,  $y \in B_i$ for some $1 \leq i \leq k$ and thus, so long as $d(x, x_0) < \delta \leq \delta_{y_i}$, both $(x, y)$ and $(x_0, y)$ lie in the open ball $B_d\left(\left(x_0, y_i\right), \delta_{y_i}\right)$.
+      Hence by \eqref{18.1}, $d_X(x,x_0) < \delta$ implies
+      \begin{align*}\label{inequalities}\tag{$\ast$}
+        d_Z\left(F\left(x, y\right), F\left(x_0, y_i\right)\right) &< \frac{\varepsilon}{2} & \text{and}&& d_Z\left(F\left(x_0, y_i\right), F\left(x_0, y\right)\right) &< \frac{\varepsilon}{2}.
+      \end{align*}
+      Therefore if $d_X(x,x_0) < \delta$, then for all $y \in Y$ it follows from \eqref{inequalities} and the triangle inequality that
+      $$d_Z(F(x, y), F(x_0, y)) < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon$$
+      and the convergence is uniform, as desired.
+    \item
+      Let $\varepsilon > 0$ be given.
+      Observe that since $F$ is continuous except possibly at $(x,y) = (x_0, y)$, the function $F(x_0, \cdot)$ is the uniform limit of continuous functions.
+      Hence by Proposition 2.21, $F(x_0, \cdot)$ is continuous.
+      By uniform convergence, there exists some $\delta_1 > 0$ such that for all $y \in Y$
+      \begin{equation}\label{18.2}
+        d_Z\left(F\left(x,y\right), F\left(x_0, y\right)\right) < \frac{\varepsilon}{2}
+      \end{equation}
+      holds whenever $d(x, x_0) < \delta_1$.
+      By continuity, there exists some $\delta_2 > 0$ such that if $d_Y(y,y_0) < \delta_2$, then
+      \begin{equation}\label{18.3}
+        d_Z\left(F\left(x_0,y\right), F\left(x_0, y_0\right)\right) < \frac{\varepsilon}{2}
+      \end{equation}
+
+      Take $\delta = \min \left\{\delta_1, \delta_2\right\}$ and consider some $(x,y)$ in the open ball $B_d((x_0, y_0), \delta)$.
+      It then follows from the definition of the metric that $d_X(x, x_0) < \delta \leq \delta_1$ and $d_Y(y,y_0) < \delta \leq \delta_2$.
+      Hence by \eqref{18.2}, \eqref{18.3}, and the triangle inequality,
+      $$d_z(F(x,y), F(x_0,y_0) < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon,$$
+      and $F$ is continuous on $X \times Y$, as desired.
+    \end{enumerate}
+  \end{proof}
 \end{setup}
 
 \begin{setup}
@@ -137,8 +151,59 @@
 \end{setup}
 
 \begin{setup}
-  {\bf (Contraction mapping principle)} Let $(X,d)$ be a complete metric space, let $r$ be a number with $0 \leq r < 1$, and let $f \colon X \rightarrow X$ be a {\bf contraction mapping}, i.e., a function such that $d(f(x), f(y) \leq rd(x,y)$ for all $x$ and $y$ in $X$.
+  {\bf (Contraction mapping principle)} Let $(X,d)$ be a complete metric space, let $r$ be a number with $0 \leq r < 1$, and let $f \colon X \rightarrow X$ be a {\bf contraction mapping}, i.e., a function such that $d(f(x), f(y)) \leq rd(x,y)$ for all $x$ and $y$ in $X$.
   Prove that there exists a unique $x_0$ in $X$ such that $f(x_0) = x_0$.
+  
+  \begin{proof}
+    First we show that $f$ is continuous.
+    Let $\varepsilon > 0$ be given.
+    Observe that if $r = 0$, then for $x,y \in X$, $d(f(x),f(y)) \leq rd(x,y) = 0 < \varepsilon$ implies $f$ is continuous.
+    Hence we may assume $0 < r < 1$.
+    Take $\delta = \varepsilon/r$ and then for $d(x,y) < \delta$, we have $$d(f(x), f(y)) \leq rd(x,y) < r\left(\frac{\varepsilon}{r}\right) = \varepsilon.$$
+    Therefore $f$ is continuous.
+    
+    Fix some $x \in X$ and construct the sequence $y_1 = x$, and $y_{n+1} = f(y_n)$.
+    We now show $\left\{y_n\right\}_{n=1}^\infty$ is Cauchy.
+    Towards that end, observe that if $n=2$, then 
+    $$d(y_n, y_n+1) = d(y_2, y_3) \leq rd(y_1, y_2) = r^{n-1}d(x,f(x)).$$
+    Suppose that $d(y_n, y_{n+1}) \leq r^{n-1} d(x,f(x))$ holds up to some $n$.
+    Then we have $$d\left(y_{n+1}, y_{n+2}\right) \leq r d\left(y_n, y_{n+1}\right) \leq r\left(r^{n-1}d\left(x, f\left(x\right)\right)\right) = r^n d\left(x, f\left(x\right)\right),$$
+    and the inequality holds for all $n \in \N$.
+    Now consider for $m < n \in \N$ the distance $d\left(y_m, y_n\right)$.
+    Apply the triangle inequality $n-m$ times and rearrange using $d(y_n, y_{n+1}) \leq r^{n-1} d\left(x,f\left(x\right)\right)$ to obtain the inequality 
+    $$d(y_m, y_n) \leq d(y_m, y_{m+1}) + d(y_{m+1}, y_{m+2}) + \ldots + d(y_{n-1}, y_n) \leq d(x,f(x)) \sum_{j=m-1}^{n-2}r^j$$
+    Since $r < 1$, one may use the usual argument for a geometric sum to obtain
+    \begin{equation}\label{19.1}
+      d(y_m, y_n) \leq d(x,f(x))\left(\frac{r^{m-1} - r^{n-1}}{1-r}\right) = d(x,f(x))r^{m-1}\left(\frac{1 - r^{n-m}}{1-r}\right) \leq r^{m-1}\left(\frac{d(x,f(x))}{1-r}\right).
+    \end{equation}
+    Now let $\varepsilon > 0$ be given.
+    Observe that $r^n \rightarrow 0$ as $n \rightarrow \infty$ implies we may choose $N \in \N$ such that 
+    $$r^{n} < \frac{1-r}{d(x,f(x))}\varepsilon$$
+    holds for all $n \geq N$.
+    Therefore, if $N+1 < m < n$, then by \eqref{19.1}
+    $$d(y_m, y_n) \leq r^{m-1}\left(\frac{d(x,f(x))}{1-r}\right) < \left(\frac{1-r}{d(x,f(x))}\right)\left(\frac{d(x,f(x))}{1-r}\right)\varepsilon = \varepsilon,$$
+    and $\left\{y_n\right\}_{n=1}^{\infty}$ is Cauchy.
+    Moreover, since $(X,d)$ is compact, there exist some $y \in X$ such that $y = \lim_{n \rightarrow \infty} y_n$.
+    
+    To see that $f$ has a fixed point, let $\varepsilon > 0$ be given.
+    Since $f$ is continuous, we may choose some $\delta > 0$ such that $d(f(x), f(y)) < \varepsilon/2$ holds for all $x \in X$ such that $d(x,y) < \delta$.
+    If necessary, reduce $\delta$ so that $\delta \leq \varepsilon/2$.
+    Choose $N \in \N$ such that $d(y_n, y) < \delta \leq \varepsilon/2$ holds for all $n \geq N$ and consider the distance $d(y,f(y))$.
+    By the triangle inequality, we have 
+    $$d(y, f(y)) \leq d(y, y_{N+1}) + d(y_{N+1}, f(y)) = d(y, y_{N+1}) + d(f(y_N), f(y))< \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon.$$
+    Since the choice of $\varepsilon$ was arbitrary, we have $f = f(y)$.
+    
+    Finally, we show that the fixed point $y$ is unique.
+    Observe that the choice of $x$ in the original construction was arbitrary and thus such a construction works with any choice of $x$.
+    Take any two points fixed points, $y_1$ and $y_1$, obtained from the construction above.
+    Consider the distance $d(y_1, y_2)$.
+    Since $y_1 = f(y_1)$ and $y_2 = f(y_2)$, we have 
+    $$d(y_1, y_2) = d(f(y_1), f(y_2)) \leq rd(y_1,y_2).$$
+    Subtracting $rd(y_1, y_2)$ from both sides of the equation and rearranging yields
+    $$d(y_1, y_2)(1-r) \leq 0.$$
+    Noting that $0 < 1 - r \leq 1$ and $d(y_1,y_2) \geq 0$, divide both sides by $1-r$ to obtain $d(y_1, y_2) \leq 0$, which implies $d(y_1, y_2) = 0$.
+    Therefore $y_1 = y_2$ and $f$ has a unique fixed point.
+  \end{proof}
 \end{setup}
 
 \end{document}
