@@ -19,29 +19,30 @@
 \newtheorem{defn}{Definition}
 
 \begin{lem}\label{min-radius}
-  Let $A$ be an open, connected subset of $\C$ with $\card{A} \geq 2$.
+  Let $(X,d)$ be the usual metric on $\C$.  Let $A$ be an open, connected subset of $X$ with $\card{A} \geq 2$.
   Let $\gamma \colon [a, b] \rightarrow A$ be a path connecting two distinct points, $a_1, a_2$, of $A$.
   Then there exists some radius $r > 0$ such that for each $x \in [a,b]$, the open disc of radius $r$ about $\gamma(x)$ lies in $A$.
   
   \begin{proof}
     First observe that $\gamma$ continuous and $[a,b]$  compact imply $\gamma([a,b])$ is compact hence totally bounded by Theorem 2.46 and bounded by exercise 15 on Homework 4.
     Thus there exists some $M \in \R$ such that $\gamma([a,b])$ is contained in an open disc, $D$, of radius $M$.
-    If $A$ is not bounded, then consider the smaller open, connected set $D \cap A \subseteq A$.
+    If $A$ is not bounded, then consider the smaller open set $D \cap A \subseteq A$.
     Clearly if there exists an $r \in \R$ such that for every $t \in [a,b]$, the disc of radius $r$ about $\gamma(t)$ lies in $D \cap A$, then that same disc lies in $A$.
     Hence it suffices to assume $A$ is bounded.
     
     Since $A$ is assumed to be bounded, there exists some open disc, $D$, of finite radius $M$ such that $A$ lies in the closure of $D$, $\overline{D}$.
     %Since $A$ is open in $X$ and $D \cap A = A$, $A$ is open in $D$.
     Hence $\overline{D} \cap (X \setminus A)$ is closed and bounded, thus compact.
-    Then consider $$\dist{\overline{D} \cap (X \setminus{A})}{\gamma([a,b])} = \inf \left\{\abs{\gamma(t) - d} \;\middle\vert\; x \in [a,b], d \in \overline{D} \cap (X \setminus{A})\right\}.$$
-    By Exercise 3 on page 542 (Trench), there exist elements $t_0 \in [a,b]$ and $d_0 \in \overline{D} \cap (X \setminus{A})$ such that $\abs{\gamma(t_0) - d_0} = \dist{\overline{D} \cap (X \setminus{A})}{\gamma([a,b])}$.
-    Moreover, $\gamma(t_0) \in A$ and $d_0 \not \in A$ imply $d_0 \not = t_0$ and thus this distance is non-zero.
+    Then consider $$\dist{\overline{D} \cap (X \setminus{A})}{\gamma([a,b])} = \inf \left\{d(\gamma(t),\delta) \;\middle\vert\; t \in [a,b],\; \delta \in \overline{D} \cap (X \setminus{A})\right\}.$$
+    By Exercise 3 on page 542 (Trench), there exist elements $t_0 \in [a,b]$ and $\delta_0 \in \overline{D} \cap (X \setminus{A})$ such that $d(\gamma(t_0),\delta_0) = \dist{\overline{D} \cap (X \setminus{A})}{\gamma([a,b])}$.
+    Moreover, $\gamma(t_0) \in A$ and $\delta_0 \not \in A$ imply $\delta_0 \not = \gamma(t_0)$ and thus this distance is non-zero.
     Take $r = \dist{\overline{D} \cap (X \setminus{A})}{\gamma([a,b])}$.
   \end{proof}
 \end{lem}
 
 \begin{lem}\label{partition}
-  Let $A$ be an open, connected subset of $\C$ with $\card{A} \geq 2$.
+  Let $(X,d)$ be the usual metric on $\C$.  Let $A$ be an open, connected subset of $X$ with $\card{A} \geq 2$.
+%  Let $A$ be an open, connected subset of $\C$ with $\card{A} \geq 2$.
   If $\gamma \colon [a, b] \rightarrow A$ is a path connecting two distinct points, $a_1$ and $a_2$, of $A$, then there exists a partition $P = [t_1, t_2, \ldots, t_n]$ of $[a,b]$ with
   $$a = t_1 \leq t_2 \leq \ldots \leq t_n = b$$
   such that $\gamma([t_i, t_{i+1}])$ is contained in an open disc, $D_i$, with $D_i \subseteq A$.
@@ -51,14 +52,14 @@
     %Since $\gamma([a,b])$ is totally bounded, there exist finitely many discs of radius $r$, $D_1, D_2, \ldots, D_n$, such that 
     %$$\gamma([a,b]) \subseteq \bigcup_{i=1}^n D_i.$$
     Since $[a,b]$ is compact, $\gamma$ is uniformly continuous on $[a,b]$.
-    Hence there exists some $\delta$ such that for any $t_1, t_2 \in [a,b]$, $$\abs{\gamma(t_1) - \gamma(t_2)} < r$$ holds whenever $\abs{t_1 - t_2} \leq \delta$.
+    Hence there exists some $\delta$ such that for any $t_1, t_2 \in [a,b]$, $$d(\gamma(t_1),\gamma(t_2)) < r$$ holds whenever $\abs{t_1 - t_2} \leq \delta$.
     Then take, for some $n$, a partition $a = t_1 \leq t_2 \leq \ldots \leq t_n = b$ such that $t_{i+1} - t_i < \delta$.
     Therefore $\gamma([t_i, t_{i+1}])$ lies in the open disc $D_i \subseteq A$ of radius $r$ centered about $\gamma(t_i)$ for each $1 \leq i \leq n$.
   \end{proof}
 \end{lem}
 
 \begin{defn}
-  Let $A$ be an open, connected subset of $\C$ and let $\gamma_1 \colon [a_1,b_1] \rightarrow A, \gamma_2 \colon [a_2,b_2] \rightarrow A, \ldots, \gamma_n \colon [a_n,b_n] \rightarrow A$ be a finite collection of paths with $\gamma_i(b_i) = \gamma_{i+1}(a_i)$.
+  Let $A$ be an open, connected subset of $\C$ and let $\gamma_1 \colon [a_1,b_1] \rightarrow A, \gamma_2 \colon [a_2,b_2] \rightarrow A, \ldots, \gamma_n \colon [a_n,b_n] \rightarrow A$ be a finite collection of paths with $\gamma_i(b_i) = \gamma_{i+1}(a_{i+1})$ for all $1 \leq i \leq n-1$.
   Define $$\gamma = \gamma_1 + \gamma_2 + \ldots + \gamma_n$$ to be a parametrization that traces out $\gamma_1, \gamma_2, \ldots, \gamma_n$ in order.
 \end{defn}
 
@@ -77,7 +78,7 @@
     Define the rectilinear path $\eta_j : [a_j, b_j] \rightarrow A$ which parametrizes the straight line from $z_j$ to $\omega_j$, then the straight line from $\omega_j$ to $z_{j+1}$.
     Let $z = x + iy \in \eta_j([a_j, b_j])$ and observe 
     %that $\abs{z_i - \omega_i} = \abs{x_i - x_{i+1}}$ and $\abs{z_{i+1} - \omega_i} = \abs{y_i - y_{i+1}}$
-    $$\abs{z_j - z} = \sqrt{(x_j - x)^2 + (y_j - y)^2} \leq \sqrt{(x_j - x_{i+j})^2 + (y_j - y_{j+1})^2} = \abs{z_j - z_{j+1}} < r.$$
+    $$d(z_j, z) = \sqrt{(x_j - x)^2 + (y_j - y)^2} \leq \sqrt{(x_j - x_{i+j})^2 + (y_j - y_{j+1})^2} = d(z_j, z_{j+1}) < r.$$
     %Then by the Pythagorean Theorem we have
     %\sqrt{\abs{z_i - \omega_i}^2 + \abs{\omega_i - z_{i+1}}^2} =
     %$$ \abs{z_i - z}\leq \sqrt{(x_i - x_{i+1})^2 + (y_i - y_{i+1})^2} = \abs{z_i - z_{i+1}} < r $$
@@ -102,23 +103,26 @@
     \begin{enumerate}[(a)]
     \item
       Let $\varepsilon > 0$ be given and fix some $x_0 \in X$.
-      Since $F$ is continuous, there exists for each point $(x_0, y)$ a $\delta_y > 0$ such that 
+      Since $F$ is continuous, there exists for each point $(x_0, y)$ some $\delta_y > 0$ such that 
       \begin{equation}\label{18.1}
         F\left(B_d \left( \left(x_0,y\right), \delta_y\right)\right)\subseteq B_{d_Z}\left(F \left(x_0, y\right), \frac{\varepsilon}{2}\right).
       \end{equation}
-      Observe that the collection of open balls $\mathcal{B} = \left\{B_{d_Y}(y, \delta_y) \;\middle\vert\; y \in Y\right\}$ is an open cover of $Y$.
+      Observe that the collection of open $\delta_y$-balls $\mathcal{B} = \left\{B_{d_Y}(y, \delta_y) \;\middle\vert\; y \in Y\right\}$ is an open cover of $Y$.
       Since $Y$ is compact, there exists a finite subcover 
       $$B_1 = B_{d_Y}\left(y_1, \delta_{y_1}\right), B_2 = B_{d_Y}\left(y_2, \delta_{y_2}\right), \ldots, B_k = B_{d_Y}\left(y_k, \delta_{y_k}\right),$$ 
       for some $y_1, y_2, \ldots, y_k \in Y$.
 
       Take $\delta = \min \left\{\delta_{y_1}, \delta_{y_2}, \ldots, \delta_{y_k}\right\}$.
-      Observe that for each $y \in Y$,  $y \in B_i$ for some $1 \leq i \leq k$ and thus, so long as $d(x, x_0) < \delta \leq \delta_{y_i}$, both $(x, y)$ and $(x_0, y)$ lie in the open ball $B_d\left(\left(x_0, y_i\right), \delta_{y_i}\right)$.
+      Observe that for each $y \in Y$,  $y \in B_i$ for some $1 \leq i \leq k$ and thus, so long as $d(x, x_0) < \delta \leq \delta_{y_i}$, both $(x, y)$ and $(x_0, y)$ lie in the open $\delta_{y_i}$-ball, $B_d\left(\left(x_0, y_i\right), \delta_{y_i}\right)$.
       Hence by \eqref{18.1}, $d_X(x,x_0) < \delta$ implies
       \begin{align*}\label{inequalities}\tag{$\ast$}
         d_Z\left(F\left(x, y\right), F\left(x_0, y_i\right)\right) &< \frac{\varepsilon}{2} & \text{and}&& d_Z\left(F\left(x_0, y_i\right), F\left(x_0, y\right)\right) &< \frac{\varepsilon}{2}.
       \end{align*}
       Therefore if $d_X(x,x_0) < \delta$, then for all $y \in Y$ it follows from \eqref{inequalities} and the triangle inequality that
-      $$d_Z(F(x, y), F(x_0, y)) < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon$$
+      \begin{eqnarray*}
+        d_Z(F(x, y), F(x_0, y)) &\leq& d_Z\left(F\left(x, y\right), F\left(x_0, y_i\right)\right) + d_Z\left(F\left(x_0, y_i\right), F\left(x_0, y\right)\right)\\
+        &<& \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon
+      \end{eqnarray*}
       and the convergence is uniform, as desired.
     \item
       Let $\varepsilon > 0$ be given.
@@ -134,10 +138,13 @@
         d_Z\left(F\left(x_0,y\right), F\left(x_0, y_0\right)\right) < \frac{\varepsilon}{2}
       \end{equation}
 
-      Take $\delta = \min \left\{\delta_1, \delta_2\right\}$ and consider some $(x,y)$ in the open ball $B_d((x_0, y_0), \delta)$.
+      Take $\delta = \min \left\{\delta_1, \delta_2\right\}$ and consider some $(x,y)$ in the open $\delta$-ball, $B_d((x_0, y_0), \delta)$.
       It then follows from the definition of the metric that $d_X(x, x_0) < \delta \leq \delta_1$ and $d_Y(y,y_0) < \delta \leq \delta_2$.
       Hence by \eqref{18.2}, \eqref{18.3}, and the triangle inequality,
-      $$d_z\left(F\left(x,y\right), F\left(x_0,y_0\right)\right) < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon,$$
+      \begin{eqnarray*}
+        d_z\left(F\left(x,y\right), F\left(x_0,y_0\right)\right) &\leq& d_Z\left(F\left(x,y\right), F\left(x_0, y\right)\right) + d_Z\left(F\left(x_0,y\right), F\left(x_0, y_0\right)\right)\\
+        &<& \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon,
+      \end{eqnarray*}
       and $F$ is continuous on $X \times Y$, as desired.
     \end{enumerate}
   \end{proof}
@@ -167,9 +174,9 @@
     We now show $\left\{y_n\right\}_{n=1}^\infty$ is Cauchy.
     Towards that end, observe that if $n=2$, then 
     $$d(y_n, y_{n+1}) = d(y_2, y_3) \leq rd(y_1, y_2) = r^{n-1}d(x,f(x)).$$
-    Assume that $d(y_n, y_{n+1}) \leq r^{n-1} d(x,f(x))$ holds up to some $n$.
+    Inducting on $n$, assume that $d(y_n, y_{n+1}) \leq r^{n-1} d(x,f(x))$ holds up to some $n$.
     Then we have $$d\left(y_{n+1}, y_{n+2}\right) \leq r d\left(y_n, y_{n+1}\right) \leq r\left(r^{n-1}d\left(x, f\left(x\right)\right)\right) = r^n d\left(x, f\left(x\right)\right),$$
-    and the inequality holds for all $n \in \N$.
+    and thus the inequality holds for all $n \in \N$.
     Now consider for $m < n \in \N$ the distance $d\left(y_m, y_n\right)$.
     Apply the triangle inequality $n-m$ times and rearrange using $d(y_n, y_{n+1}) \leq r^{n-1} d\left(x,f\left(x\right)\right)$ to obtain the inequality 
     $$d(y_m, y_n) \leq d(y_m, y_{m+1}) + d(y_{m+1}, y_{m+2}) + \ldots + d(y_{n-1}, y_n) \leq d(x,f(x)) \sum_{j=m-1}^{n-2}r^j$$
@@ -181,7 +188,7 @@
       %\left(\frac{r^{m-1} - r^{n-1}}{1-r}\right) = d(x,f(x))r^{m-1}\left(\frac{1 - r^{n-m}}{1-r}\right) \leq r^{m-1}\left(\frac{d(x,f(x))}{1-r}\right).
     \end{equation}
     Now let $\varepsilon > 0$ be given.
-    Observe that $r^n \rightarrow 0$ as $n \rightarrow \infty$ implies we may choose $N \in \N$ such that 
+    Observe that since $0 \leq r < 1$, $r^n \rightarrow 0$ as $n \rightarrow \infty$ implies we may choose $N \in \N$ such that 
     $$r^{n} < \frac{1-r}{d(x,f(x))}\varepsilon$$
     holds for all $n \geq N$.
     Therefore, if $N < m < n$, then by \eqref{19.1}
