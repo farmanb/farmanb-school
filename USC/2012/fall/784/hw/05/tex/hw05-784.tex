@@ -2,11 +2,11 @@
 \usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate}
 \openup 5pt
 \author{Blake Farman\\University of South Carolina}
-\title{Math 784:\\Homework 01}
-\date{August 30, 2012}
+\title{Math 784:\\Homework 05}
+\date{November 2, 2012}
 \pdfpagewidth 8.5in
 \pdfpageheight 11in
-\usepackage[margin=1in]{geometry}
+\usepackage[margin=.75in]{geometry}
 
 \renewcommand{\qedsymbol}{\ensuremath{\blacksquare}}
 \newcommand{\abs}[1]{\left| #1 \right|}
@@ -17,85 +17,87 @@
 \newtheorem{thm}{}
 
 \begin{thm}
-		Prove that the only integer solutions to $y^2 + 2 = x^3$ are $(x,y) = (3,\pm5)$.
-		
-		\begin{proof}
-			Checking by hand, it's easy to see $(3, \pm5)$ are solutions.
-			It remains to show that these are the only solutions.
-			Working in $\mathbb{Z}[\sqrt{-2}]$, the ring of integers in $\mathbb{Q}(\sqrt{-2})$, we may rewrite the equation as $(y + i\sqrt{2})(y - i\sqrt{2}) = x^3$.
-			Suppose $x,y \in \mathbb{Z}$ are solutions.
-			
-			Suppose to the contrary that $y$ were even, then we would have $y = 2y^\prime$ for some $y^\prime \in \mathbb{Z}$.
-			Then $4(y^\prime)^2 + 2 = x^3$ implies that $x$ is even and thus $x = 2x^\prime$ for some $x^\prime \in \mathbb{Z}$.
-			Hence $2(y^\prime)^2 + 1 = 4(x^\prime)^3$.
-			However, the left hand side is odd and the right hand side is even, a contradiction.
-			Therefore $y$ is odd.
-			
-			Let $a + ib\sqrt{2}$ be a common factor of $y + i\sqrt{2}$ and $y - i\sqrt{2}$.
-			Then $(y + i\sqrt{2}) - (y i i\sqrt{2}) = i2\sqrt{2}$ implies $(a + ib\sqrt{2}) \mid 2$.
-			Hence $a^2 + 2b^2 \mid 4$ and $a^2 + 2b^2 \mid y^2 + 2$.
-			Since $y^2 + 2$ is odd, $a^2 + 2b^2 = 1$, and thus $a = \pm 1$ and $b = 0$.
-			
-			Now for some $a,b \in \mathbb{Z}$ we have $y + i\sqrt{2} = (\pm(a +ib\sqrt{2}))^3 = (c + id\sqrt{2})^3$, where $c = \pm a$, $d = \pm b$.
-			Hence $y + i\sqrt{2} = c^3 - 6cd^2 + i\sqrt{2}(3c^2d - 2d^3)$.
-			Comparing the real and complex parts we have $y = c^3 - 6cd^2$ and $1 = 3c^2d - 2d^3 = d(3c^2 - 2d^2)$.
-			Since $c$ and $d$ are integers, the second equality implies $d = \pm 1$.
-			Then from $1 = d(3c^2 - 2d^2)$ we obtain $1 = \pm(3c^2 - 2)$, from which it follows that 
-			$$c^2 = \left\{ 
-			\begin{array}{ll}
-			\frac{1}{3} & \text{if } d = -1,\\
-			1 & \text{if } d = 1.
-			\end{array}
-			\right.$$
-			Since $c$ must be an integer, $d = 1$ and $c = \pm 1$.
-			Hence $y = c^3 - 6cd^2 =(\pm 1)^3 \mp 6 = \mp 5$.
-			Then we obtain $x^3 = 25 + 2 = 27$, from which it follows that $x = 3$.
-			Therefore the only integer solutions to $y^2 + 2 = x^3$ are $(x,y) = (3,\pm 5)$
-		\end{proof}
+  Prove that the only integer solutions to $y^2 + 2 = x^3$ are $(x,y) = (3,\pm5)$.
+  
+  \begin{proof}
+    Checking by hand, it's easy to see $(3, \pm5)$ are solutions.
+    It remains to show that these are the only solutions.
+    Working in $\mathbb{Z}[\sqrt{-2}]$, the ring of integers in $\mathbb{Q}(\sqrt{-2})$, we may rewrite the equation as $(y + i\sqrt{2})(y - i\sqrt{2}) = x^3$.
+    Note that $\mathbb{Z}[\sqrt{-2}]$ is a UFD by Theorems 55 and 57.
+    Suppose $x,y \in \mathbb{Z}$ are solutions.
+    
+    Suppose to the contrary that $y$ were even, then we would have $y = 2y^\prime$ for some $y^\prime \in \mathbb{Z}$.
+    Then $4(y^\prime)^2 + 2 = x^3$ implies that $x$ is even and thus $x = 2x^\prime$ for some $x^\prime \in \mathbb{Z}$.
+    Hence $2(y^\prime)^2 + 1 = 4(x^\prime)^3$.
+    However, the left hand side is odd and the right hand side is even, a contradiction.
+    Therefore $y$ is odd.
+    
+    Let $a + ib\sqrt{2}$ be a common factor of $y + i\sqrt{2}$ and $y - i\sqrt{2}$.
+    Then $(y + i\sqrt{2}) - (y + i\sqrt{2}) = i2\sqrt{2}$ implies $(a + ib\sqrt{2}) \mid i2\sqrt{2}$.
+    Taking norms we can see that $a^2 + 2b^2 \mid 8$ and $a^2 + 2b^2 \mid y^2 + 2$.
+    Since $y^2 + 2$ is odd, $a^2 + 2b^2 = 1$, and thus $a + ib\sqrt{2}$ is a unit in $\mathbb{Z}[\sqrt{-2}]$.
+    Moreover, note that by Theorem 58 $a = \pm 1$ and $b = 0$, both of which are cubes in $\mathbb{Z}[\sqrt{-2}]$.
+    
+    Now, factoring $x^3$ into primes (uniquely) in $\mathbb{Z}[\sqrt{-2}]$, it follows that for some $a,b \in \mathbb{Z}$ we have $y + i\sqrt{2} = (\pm(a +ib\sqrt{2}))^3 = (c + id\sqrt{2})^3$, where $c = \pm a$, $d = \pm b$.
+    Hence $y + i\sqrt{2} = c^3 - 6cd^2 + i\sqrt{2}(3c^2d - 2d^3)$.
+    Comparing the real and complex parts we have $y = c^3 - 6cd^2$ and $1 = 3c^2d - 2d^3 = d(3c^2 - 2d^2)$.
+    Since $c$ and $d$ are integers, the second equality implies $d = \pm 1$.
+    Then from $1 = d(3c^2 - 2d^2)$ we obtain $1 = \pm(3c^2 - 2)$, from which it follows that 
+    $$c^2 = \left\{ 
+    \begin{array}{ll}
+      \frac{1}{3} & \text{if } d = -1,\\
+      1 & \text{if } d = 1.
+    \end{array}
+    \right.$$
+    Since $c$ must be an integer, $d = 1$ and $c = \pm 1$.
+    Hence $y = c^3 - 6cd^2 =(\pm 1)^3 \mp 6 = \mp 5$.
+    Then we obtain $x^3 = 25 + 2 = 27$, from which it follows that $x = 3$.
+    Therefore the only integer solutions to $y^2 + 2 = x^3$ are $(x,y) = (3,\pm 5)$
+  \end{proof}
 \end{thm}
 
 \begin{thm}
-	Let $f_0 = 0$, $f_1 = 1$, $f_{m+1} = f_m + f_{m-1}$, for every integer $m \geq 1$.
-	\begin{enumerate}[(a)]
-		\item
-			Prove that $f_m = (\omega^m - \overline{\omega}^m)/\sqrt{5}$ for every integer $m \geq 0$.
-		\item
-			Using Lemma 3, prove that if $q$ is a rational prime (possibly even) and $q \equiv \pm 2 \pmod{5}$, then $q \mid f_{q+1}$.
-	\end{enumerate}
-	\begin{proof}
-	\begin{enumerate}[(a)]
-		\item
-			Observe that $(\omega^0 - \overline{\omega}^0)/\sqrt{5} = 0 = f_0$ and 
-			$$\omega - \overline{\omega} = \sqrt{5} = \sqrt{5}f_1.$$
-			Assume by way of induction that $\sqrt{5}f_{m-1} = \omega^{m-1} - \overline{\omega}^{m-1}$ holds up to some $m-1$.
-			Then write 
-			\begin{equation}\label{2.1}
-				\sqrt{5}f_m = \sqrt{5}(f_{m-1} + f_{m-2}) = (\omega^{m-1} - \overline{\omega}^{m-1}) + (\omega^{m-2} - \overline{\omega}^{m-2}).
-			\end{equation}
-			Observe that $$\frac{1}{\omega} + \frac{1}{\omega^2} = \overline{\omega}^2 - \overline{\omega} = \frac{(6 - 2\sqrt{5}) - (2 - 2\sqrt{5})}{4} = 1$$
-			and
-			$$\frac{1}{\overline{\omega}} + \frac{1}{\overline{\omega}^2} = \omega^2 - \omega = \frac{(6 + 2\sqrt{5}) - (2 + 2\sqrt{5})}{4} = 1.$$
-			Then rewrite \eqref{2.1} as 
-			\begin{equation}\label{2.2}
-			\sqrt{5}f_m = \left(\frac{\omega^m}{\omega} - \frac{\overline{\omega}^m}{\overline{\omega}}\right) + \left(\frac{\omega^m}{\omega^2} - \frac{\overline{\omega}^m}{\overline{\omega^2}}\right) = \omega^m\left(\frac{1}{\omega} + \frac{1}{\omega^2}\right) - \overline{\omega}^m\left(\frac{1}{\overline{\omega}} + \frac{1}{\overline{\omega}^2}\right) = \omega^m - \overline{\omega}^m.
-			\end{equation}
-			Therefore $f_m = (\omega^m - \overline{\omega}^m)/\sqrt{5}$.
-		\item
-			First observe that if $q = 2$, then $f_3 = 2$ is divisible by $q$.
-			Assume $q \equiv 2 \pmod{5}$ and $q \not = 2$.
-			Working $R = \mathbb{Z}[(1 + \sqrt{5})/2]$, the ring of integers in the quadratic extension $\mathbb{Q}(\sqrt{5})$, suppose for some $\beta = (a + b\sqrt{5})/2$ and $\gamma = (c + d\sqrt{5})/2$ in $R$ that $q = \beta\gamma$.
-			Taking norms of both sides, we have $q^2 = N(\beta)N(\gamma)$.
-			Observe that if both are not units, then $N(\beta) = N(\gamma) = q$ and $\gamma, \beta$ are irreducibles.  
-			Then $q \equiv 2 \pmod{5}$ implies $$a^2 - 5b^2 = 4q \equiv 3 \pmod{5}$$ and thus $a^2 = 3$, which is impossible for $a \in \mathbb{Z}$.
-			Hence one of $\beta, \gamma$ is a unit implies $q$ is irreducible.
-			Moreover, since $\mathbb{Z}[(1 + \sqrt{5})/2]$ is a Euclidean domain, $q$ is prime.
-			Now observe that by Lemma 3 
-			$$\sqrt{5}f_{q+1} = \omega^{q+1} - \overline{\omega}^{q+1} \equiv N(\omega) - N(\overline{\omega}) = 0 \pmod{q}.$$
-			Hence $q$ divides either $\omega - \overline{\omega} = \sqrt{5}$ or $f_{q+1}$.
-			However, $N(\sqrt{5}) = -5$ implies $\sqrt{5}$ is irreducible.
-			Therefore $q$ divides $f_{q+1}$.
-	\end{enumerate}
-	\end{proof}
+  Let $f_0 = 0$, $f_1 = 1$, $f_{m+1} = f_m + f_{m-1}$, for every integer $m \geq 1$.
+  \begin{enumerate}[(a)]
+  \item
+    Prove that $f_m = (\omega^m - \overline{\omega}^m)/\sqrt{5}$ for every integer $m \geq 0$.
+  \item
+    Using Lemma 3, prove that if $q$ is a rational prime (possibly even) and $q \equiv \pm 2 \pmod{5}$, then $q \mid f_{q+1}$.
+  \end{enumerate}
+  \begin{proof}
+    \begin{enumerate}[(a)]
+    \item
+      Observe that $(\omega^0 - \overline{\omega}^0)/\sqrt{5} = 0 = f_0$ and $\omega - \overline{\omega} = \sqrt{5} = \sqrt{5}f_1$.
+      Assume by way of induction that $\sqrt{5}f_{m-1} = \omega^{m-1} - \overline{\omega}^{m-1}$ holds up to some $m-1$.
+      Then write 
+      \begin{equation}\label{2.1}
+	\sqrt{5}f_m = \sqrt{5}(f_{m-1} + f_{m-2}) = (\omega^{m-1} - \overline{\omega}^{m-1}) + (\omega^{m-2} - \overline{\omega}^{m-2}).
+      \end{equation}
+      Observe that $$\frac{1}{\omega} + \frac{1}{\omega^2} = \overline{\omega}^2 - \overline{\omega} = \frac{(6 - 2\sqrt{5}) - (2 - 2\sqrt{5})}{4} = 1$$
+      and
+      $$\frac{1}{\overline{\omega}} + \frac{1}{\overline{\omega}^2} = \omega^2 - \omega = \frac{(6 + 2\sqrt{5}) - (2 + 2\sqrt{5})}{4} = 1.$$
+      Then rewrite \eqref{2.1} as 
+      \begin{equation}\label{2.2}
+	\sqrt{5}f_m = \left(\frac{\omega^m}{\omega} - \frac{\overline{\omega}^m}{\overline{\omega}}\right) + \left(\frac{\omega^m}{\omega^2} - \frac{\overline{\omega}^m}{\overline{\omega^2}}\right) = \omega^m\left(\frac{1}{\omega} + \frac{1}{\omega^2}\right) - \overline{\omega}^m\left(\frac{1}{\overline{\omega}} + \frac{1}{\overline{\omega}^2}\right) = \omega^m - \overline{\omega}^m.
+      \end{equation}
+      Therefore $f_m = (\omega^m - \overline{\omega}^m)/\sqrt{5}$.
+    \item
+      First observe that if $q = 2$, then $f_3 = 2$ is divisible by $q$.
+      Assume $q \equiv \pm2 \pmod{5}$ and $q \not = 2$.
+      Working in the UFD $R = \mathbb{Z}[\omega]$, the ring of integers in the quadratic extension $\mathbb{Q}(\sqrt{5})$, observe by Lemma 1 that $q$ is prime.
+      %, suppose for some $\beta = (a + b\sqrt{5})/2$ and $\gamma = (c + d\sqrt{5})/2$ in $R$ that $q = \beta\gamma$.
+      %Taking norms of both sides, we have $q^2 = N(\beta)N(\gamma)$.
+      %Observe that if both are not units, then $N(\beta) = N(\gamma) = q$ and $\gamma, \beta$ are irreducibles.  
+      %Then $q \equiv 2 \pmod{5}$ implies $$a^2 - 5b^2 = 4q \equiv 3 \pmod{5}$$ and thus $a^2 = 3$, which is impossible for $a \in \mathbb{Z}$.
+      %Hence one of $\beta, \gamma$ is a unit implies $q$ is irreducible.
+      %Moreover, since $\mathbb{Z}[(1 + \sqrt{5})/2]$ is a Euclidean domain, $q$ is prime.
+      By Lemma 3 
+      $$\sqrt{5}f_{q+1} = \omega^{q+1} - \overline{\omega}^{q+1} \equiv N(\omega) - N(\overline{\omega}) = 0 \pmod{q}.$$
+      Hence $q$ divides either $\omega - \overline{\omega} = \sqrt{5}$ or $f_{q+1}$.
+      However, $N(\sqrt{5}) = -5$ implies $\sqrt{5}$ is irreducible.
+      Therefore $q$ divides $f_{q+1}$.
+    \end{enumerate}
+  \end{proof}
 \end{thm}
 
 \end{document}
