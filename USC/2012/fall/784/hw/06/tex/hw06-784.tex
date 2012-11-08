@@ -1,0 +1,49 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate}
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 784:\\Homework 06}
+\date{November 9, 2012}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+
+\renewcommand{\qedsymbol}{\ensuremath{\blacksquare}}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\GCD}[1]{\operatorname{GCD}\left( #1 \right)}
+
+\begin{document}
+\maketitle
+
+\newtheorem{thm}{}
+
+\begin{thm}
+	Let $n$ be a positive rational integer.
+	Define a greatest common divisor for $n$ ideals $A_1, \ldots, A_n$ in $R$ as an ideal $D$ in $R$ that satisfies
+	\begin{enumerate}[(i)]
+		\item\label{1.1}
+			$D \mid A_i$ for each $1 \leq i \leq n$,
+		\item\label{1.2}
+			If $E$ is an ideal dividing each of $A_1, \ldots, A_n$, then $E \mid D$.
+	\end{enumerate}
+	Prove that such a greatest common divisor is unique.
+	Denote it by $\GCD{A_1, \ldots, A_n}$, and furthermore prove that
+		$$\GCD{A_1, \ldots, A_n} = A_1 + A_2 + \ldots A_n.$$
+	\begin{proof}
+	Suppose that $D_1$ and $D_2$ are both GCDs as defined above.
+	Since $D_1$ divides $A_i$ for each $1 \leq i \leq n$, it follows from \eqref{1.2} that $D_1$ divides $D_2$.
+	Hence $D_2 \subseteq D_1$ by Theorem 69.
+	Similarly, since $D_2$ divides $A_i$ for each $1 \leq i \leq n$, $D_2$ divides $D_1$.
+	Hence $D_1 \subseteq D_2$ by Theorem 69.
+	Therefore $D_1 = D_2$.
+	
+	Let $D = \GCD{A_1, \ldots, A_2}$ and let $I = A_1 + A_2 + \ldots + A_n$.
+	Since $A_i \subseteq I$ for each $1 \leq i \leq n$, it follows from \eqref{1.2} that $I$ divides $D$.
+	Hence $D \subseteq I$ by Theorem 69.
+	Moreover, by \eqref{1.1} and Theorem 69, $A_i \subseteq D$ holds for each $1 \leq i \leq n$.
+	Since $D$ is an ideal, it is closed under addition and thus $I \subseteq D$.
+	Therefore $I = D$, as desired.
+	\end{proof}
+\end{thm}
+
+\end{document}
