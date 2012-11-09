@@ -214,7 +214,7 @@
           \end{array}\right)$\\
         \end{tabular}
       \end{center}
-      Since $n_3$ is either 1 or 4, these four must be the only Sylow 3-subgroups.
+      Since $n_3$ is either 1 or 4, these must be the generators for the only Sylow 3-subgroups.
     \item
       Observe that the Sylow 2-subgroups each have 7 distinct non-identity elements.  
       Since there are four Sylow 3-subgroups, each with two distinct elements, if $n_2 = 3$, then there are at least $21 + 9 + 1 = 31$ elements in a group of order 24, a contradiction.
@@ -458,7 +458,7 @@
       First observe that $\Det \colon \GL{2}{\Z/p\Z} \rightarrow (\Z/p\Z)^\times$ is a surjective\footnote[1]{Take the matrix $(a_{i,i})$ with $a_{1,1} = a \in (\Z/p\Z)^\times$ and, all other diagonal entries 1, and all off-diagonal entries 0.} homomorphism  with $\ker\Det = \SL{2}{\Z/p\Z}$.
       Hence by (a) and Exercise 5 of Homework 5 it suffices to show $n_p(\SL{2}{\Z/p\Z}) = p + 1$.
       Moreover, by the First Isomorphism Theorem,
-      $$\abs{\SL{2}{\Z/p\Z}} = \frac{\abs{\GL{2}{\Z/p\Z}}}{2} = \frac{(p^2 - 1)(p^2 - p)}{p-1} = p(p+1)(p-1).$$
+      $$\abs{\SL{2}{\Z/p\Z}} = \frac{\abs{\GL{2}{\Z/p\Z}}}{p-1} = \frac{(p^2 - 1)(p^2 - p)}{p-1} = p(p+1)(p-1).$$
         
       Since $n_p(\SL{2}{\Z/p\Z}) \equiv 1 \pmod{p}$ and $n_p(\SL{2}{\Z/p\Z}) \mid (p+1)(p-1)$, it follows that $n_p(\SL{2}{\Z/p\Z})$ is either 1 or $p+1$.
       To see that $n_p(\SL{2}{\Z/p\Z}) \not = 1$, take the matrix $\left(\begin{array}{cc}
