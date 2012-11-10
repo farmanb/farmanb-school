@@ -1,0 +1,100 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath}
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 701:\\Homework 09}
+\date{November 16, 2012}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+\maketitle
+
+\newtheorem{thm}{}
+\newtheorem{lem}{Lemma}
+
+\begin{thm}
+  Let $R$ be a commutative ring.
+  Define the set $R[[x]]$ of {\bf formal power series} in the indeterminate $x$ with coefficients from $R$ to be all formal infinite sums
+  $$\sum_{n=0}^\infty a_nx^n = a_0 + a_1x + a_2 x^2 + a_3x^3 + \ldots.$$
+  Define addition and multiplication in $R[[x]]$ by
+  $$\sum_{n=0}^\infty a_nx^n + \sum_{n=0}^\infty b_mx^m = \sum_{k=0}^\infty (a_k + b_k)x^k,\; \left(\sum_{n=0}^\infty a_nx^n\right) \cdot \left(\sum_{m=0}^\infty b_mx^m\right) = \sum_{j=0}^\infty\left(\sum_{n=0}^j a_nb_{j-n}\right)x^j.$$
+  \begin{enumerate}[(a)]
+  \item
+    Prove that $R[[x]]$ is a commutative ring.
+    (Associativity of multiplication is a bit tedious, so you may assume it.)
+  \item
+    Show that $1-x$ is a unit in $R[[x]]$ with inverse $1 + x + x^2 + \ldots$.
+  \item
+    Prove that $\sum_{n=0}^\infty a_nx^n$ is a unit in $R[[x]]$ if and only if $a_0$ is a unit in $R$.
+  \item
+    Prove that if $R$ is an integral domain, then so is $R[[x]]$.
+  \end{enumerate}
+
+  \begin{proof}
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Let $K$ be a field.
+  A {\bf discrete valuation} on $K$ is a function $v \colon K^\times \rightarrow \Z$ satisfying
+  \begin{enumerate}[(i)]
+    \item
+      $v(ab) = v(a) + v(b)$.
+      (i.e. $v$ is a homomorphism from the group $(K^\times, \times)$ to $(\Z, +)$),
+    \item
+      $v$ is surjective,
+    \item
+      $v(x + y) \geq \min \left\{v(x), v(y)\right\}$ for all $x,y \in K^\times$ with $x + y \neq 0$
+  \end{enumerate}
+  The set $R = \left\{x \in K^\times \;\middle\vert\; v(x) \geq 0\right\} \cup \left\{0\right\}$ is the {\bf valuation ring} of $v$.
+  \begin{enumerate}[(a)]
+  \item
+    Prove that $R$ is a subring of $K$. (In general, a ring $R$ is called a {\bf discrete valuation ring} if there is some field $K$ and some discrete valuation $v$ on $K$ such that $R$ is the valuation ring of $v$.)
+  \item
+    Prove ethat for each non-zero element $x \in K$, either $x$ or $x^{-1}$ is in $R$.
+  \item
+    Prove that an element $x$ is a unit of $R$ if and only if $v(x) = 0$.
+  \end{enumerate}
+  \begin{proof}
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  A specific example of a discrete valuation ring is obtained when $p$ is prime, $K = \Q$, and 
+  $$v_p \colon \Q^\times \rightarrow \Z,\, \text{by}\  v_p\left(\frac{a}{b}\right) = \alpha,\, \text{where}\  \frac{a}{b} = p^\alpha\frac{c}{d},\, p \nmid c\ \text{and}\ p \nmid d.$$
+  \begin{enumerate}[(a)]
+  \item
+    Prove that the corresponding valuation ring is 
+    $$R = \left\{\frac{a}{b} \in \Q \;\middle\vert\; \gcd(a,b) = 1,\, \text{and}\ p\nmid b\right\}.$$
+  \item
+    Describe $R^\times$.
+  \end{enumerate}
+  \begin{proof}
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Let $F$ be a field, and define the ring $$F((x)) = \left\{ \sum_{n=N}^\infty a_nx^n \;\middle\vert\; a_n \in F\ \text{and}\ N \in \Z\right\}.$$
+  (Every element of $F((x))$ is a power series in $x$ plus a polynomial, possibly 0, in $1/x$.  
+  I.e., each element of $F((x))$ has only finitely many terms with negative powers of $x$.)
+  \begin{enumerate}[(a)]
+  \item
+    Prove that $F((x))$ is a field.
+  \item
+    Define the map 
+    $$v \colon F((x)) \rightarrow \Z\ \text{by}\ v\left(\sum_{n=N}^\infty a_nx^n\right) = N$$
+    where $a_N$ is the first non-zero coefficient in the series (i.e., $N$ is the ``order of zero or pole of the series at 0'').
+    Prove that $v$ is a discrete valuation on $F((x))$ whose discrete valuation ring is $F[[x]]$, the ring of formal power series.
+  \end{enumerate}
+  \begin{proof}
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Let $\quat = \Z + \Z i + \Z j + \Z k$ be the ring of na\"{i}ve
+  \begin{proof}
+  \end{proof}
+\end{thm}
+\end{document}
