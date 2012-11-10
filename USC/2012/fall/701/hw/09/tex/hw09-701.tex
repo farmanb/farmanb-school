@@ -130,6 +130,19 @@
   \begin{proof}
     \begin{enumerate}[(a)]
     \item
+      If $x = 0$, then the result holds for all integers.
+      Assume $x \neq 0$.
+      Let $2 \leq m \in \Z^{>0}$ be the smallest integer such that $x^m = 0$.
+      Since $2 \leq m$, it follows from the choice of $m$ that $x^m = x(x^{m-1}) = 0$ with $x^{m-1} \neq 0$.
+      Therefore $x$ is a zero divisor.
+    \item
+      Let $r \in R$ be given and let $m \in \Z^{> 0}$ be such that $x^m = 0$.
+      Since $R$ is commutative, we have $(rx)^m = r^mx^m = (r^m)0 = 0$.
+      Therefore $rx$ is nilpotent.
+    \item
+      Let $m \in \Z^{>0}$ be the smallest integer such that $x^m = 0$.
+    \item
+      Let $u \in R^\times$ be given and for some nilpotent element $x$, let m $\in \Z^{>0}$ be the smallest integer such that $x^m = 0$
     \end{enumerate}
   \end{proof}
 \end{thm}
