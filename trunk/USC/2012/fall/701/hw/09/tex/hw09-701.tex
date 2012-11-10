@@ -40,13 +40,13 @@
   Let $K$ be a field.
   A {\bf discrete valuation} on $K$ is a function $v \colon K^\times \rightarrow \Z$ satisfying
   \begin{enumerate}[(i)]
-    \item
-      $v(ab) = v(a) + v(b)$.
-      (i.e. $v$ is a homomorphism from the group $(K^\times, \times)$ to $(\Z, +)$),
-    \item
-      $v$ is surjective,
-    \item
-      $v(x + y) \geq \min \left\{v(x), v(y)\right\}$ for all $x,y \in K^\times$ with $x + y \neq 0$
+  \item
+    $v(ab) = v(a) + v(b)$.
+    (i.e. $v$ is a homomorphism from the group $(K^\times, \times)$ to $(\Z, +)$),
+  \item
+    $v$ is surjective,
+  \item
+    $v(x + y) \geq \min \left\{v(x), v(y)\right\}$ for all $x,y \in K^\times$ with $x + y \neq 0$
   \end{enumerate}
   The set $R = \left\{x \in K^\times \;\middle\vert\; v(x) \geq 0\right\} \cup \left\{0\right\}$ is the {\bf valuation ring} of $v$.
   \begin{enumerate}[(a)]
@@ -103,23 +103,34 @@
   \item
     For all $\alpha, \beta \in S$ prove that $N(\alpha\beta) = N(\alpha)N(\beta)$.
     (We say that the norm is multiplicative.)
-    \item
-      Let $u \in S$.
-      Prove that $u \in S^\times$ if and only if $N(u) = \pm 1$.
-      Show that $S^\times$ is a non-abelian group of order 8.
-      (This is the ``quaternion grouip.''
-      Note that the inverse of $a \neq 0$ in the ring of rational quaternions, $\quat(\Q)$ (replace $\Z$ by $\Q$ in the definition), is $\frac{\overline{\alpha}}{N(\alpha)}$.)
+  \item
+    Let $u \in S$.
+    Prove that $u \in S^\times$ if and only if $N(u) = \pm 1$.
+    Show that $S^\times$ is a non-abelian group of order 8.
+    (This is the ``quaternion grouip.''
+    Note that the inverse of $a \neq 0$ in the ring of rational quaternions, $\quat(\Q)$ (replace $\Z$ by $\Q$ in the definition), is $\frac{\overline{\alpha}}{N(\alpha)}$.)
   \end{enumerate}
   \begin{proof}
   \end{proof}
 \end{thm}
 
 \begin{thm}
-  
+  An element $x$ in $R$ is nilpotent if and only if for some positive integer $m$, we have $x^m = 0$.
+  Suppose that $R$ is commutative.
   \begin{enumerate}[(a)]
-    
+  \item
+    Prove that $x$ is either zero or a zero divisor.
+  \item
+    Prove that for all $r \in R$, we have $rx$ nilpotent.
+  \item
+    Prove that $1 + x \in R^\times$.
+  \item
+    Deduce that the sum of a nilpotent element and a unit is nilpotent.
   \end{enumerate}
   \begin{proof}
+    \begin{enumerate}[(a)]
+    \item
+    \end{enumerate}
   \end{proof}
 \end{thm}
 \end{document}
