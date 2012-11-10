@@ -141,8 +141,13 @@
       Therefore $rx$ is nilpotent.
     \item
       Let $m \in \Z^{>0}$ be the smallest integer such that $x^m = 0$.
+      Since $x^{i} \neq 0$ for $2 \leq i \leq m - 1$, it follows from the distributive axiom for rings that
+      $$(1 + x)(1 - x + x^2 - x^3 + \ldots + (-1)^{m-1}x^{m-1}) = 1 + x^m = 1.$$
+      Therefore $1+x$ is a unit.
     \item
-      Let $u \in R^\times$ be given and for some nilpotent element $x$, let m $\in \Z^{>0}$ be the smallest integer such that $x^m = 0$
+      Let $u \in R^\times$ be given and for some nilpotent element $x$, let m $\in \Z^{>0}$ be the smallest integer such that $x^m = 0$.
+      
+      Therefore $u + x$ is a unit.
     \end{enumerate}
   \end{proof}
 \end{thm}
