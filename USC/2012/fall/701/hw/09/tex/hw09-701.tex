@@ -205,6 +205,23 @@
     Describe $R^\times$.
   \end{enumerate}
   \begin{proof}
+    \begin{enumerate}[(a)]
+      \item
+        By definition, $R = \left\{\frac{a}{b} \in \Q \;\middle\vert\; v_p\left(\frac{a}{b}\right) = p^\alpha,\, \alpha > 0\right\}$.
+        Let $\frac{a}{b} \in R$, where $a,b \in \Z$, be given and write $a = p^{\alpha_1}m$, $b = p^{\alpha_2}n$, where $m$ and $n$ are $p$-free.
+        Since $v_p(\frac{a}{b}) = \alpha_1 - \alpha_2 \geq 0$, we may let $d = \gcd(m,n)$, $\alpha = \alpha_1 - \alpha_2$, and rewrite, for some $k, \ell \in \Z$, 
+        $$\frac{a}{b} = p^{\alpha}\frac{dk}{d\ell} = p^{\alpha}\frac{k}{\ell} = \frac{p^{\alpha}k}{\ell}.$$
+        Then we have $\gcd(k,\ell) = 1$ and $p \nmid \ell$.
+        Therefore $R = \left\{\frac{a}{b} \in \Q \;\middle\vert\; \gcd(a,b) = 1,\, \text{and}\ p\nmid b\right\}$, as desired.
+      \item
+        Let $\frac{a}{b} \in R^\times$ be given.
+        By part (a) we have that $\frac{a}{b} = \frac{p^\alpha k}{\ell}$ for some $k, \ell \in \Z$.
+        Moreover, by part (c) of Exercise 2, we have that $v(\frac{a}{b}) = \alpha = 0$
+        Hence $R^\times = \left\{\frac{a}{b} \in \Q \;\middle\vert\; \gcd(a,b) = 1,\, \text{and}\ p \nmid a,\, p\nmid b \right\}$.
+        
+        Consider $\Z/p\Z \times \Z/p\Z$. 
+        Using the usual equivalence relation for constructing the field of fractions for an integral domain modulo $p$, $(a,b) \sim_p (c,d)$ if and only if $ad \equiv bc \pmod{p}$, we may identify $R$ with $(\Z/p\Z \times \Z/p\Z)/\sim_p$.
+    \end{enumerate}
   \end{proof}
 \end{thm}
 
