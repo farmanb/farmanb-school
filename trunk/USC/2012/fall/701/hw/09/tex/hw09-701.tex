@@ -14,6 +14,17 @@
 \newtheorem{thm}{}
 \newtheorem{lem}{Lemma}
 
+\begin{lem}\label{units}
+  Let $R$ be a ring.  If $u$ is a unit, then $u$ is not a zero divisor.
+  \begin{proof}
+    Suppose for some $r \in R$ that $ur = 0$.
+    Then by associativity we have 
+    $$r = (u^{-1}u)r = u^{-1}(ur) = u^{-1}\cdot 0 = 0.$$
+    Similarly, if $ru = 0$, then
+    $$r = r(uu^{-1}) = (ru)u^{-1} = 0 \cdot u^{-1} = 0.$$
+    Therefore $u$ is not a zero divisor, as desired.
+  \end{proof}
+\end{lem}
 \begin{thm}
   Let $R$ be a commutative ring.
   Define the set $R[[x]]$ of {\bf formal power series} in the indeterminate $x$ with coefficients from $R$ to be all formal infinite sums
@@ -99,6 +110,16 @@
       Hence 
       $$\sum_{j=0}^\infty a_jx^j\sum_{i=0}^\infty b_ix^i = \sum_{i=0}^\infty b_ix^i \sum_{j=0}^\infty a_jx^j = \sum_{i=0}^\infty \left(\sum_{j=0}^i b_ja_{i-j}\right)x^i = 1_R + 0\cdot x + 0\cdot x^2 + \ldots = 1.$$
       Therefore $\sum_{i=0}^\infty a_ix^i$ is invertible, as desired.
+    \item
+      We proceed by the contrapositive.
+      Suppose that $R[[x]]$ is not an integral domain.
+      Then there exist non-zero series $\sum_{i=0}^\infty a_ix^i$ and $\sum_{j=0}^\infty b_jx^j$ such that their product is zero.
+      Let $k$ and $\ell$ be the smallest integers such that $a_k \neq 0$ and $b_\ell \neq 0$.
+      Let $n = k + \ell$ and consider the coefficient of $x^n$.
+      Observe that if $j < k$, then $a_j = 0$ and if $j > k$, then $n - j < \ell$ implies $b_{n-j} = 0$.
+      Hence
+      $$0 = \sum_{j=0}^{n} a_jb_{n-j} = \sum_{j=0}^{k-1} a_jb_{n-j} + a_kb_\ell + \sum_{j=k+1}^n a_jb_{n-j} = a_kb_\ell.$$
+      Therefore, since both $a_k$ and $b_\ell$ are assumed to be non-zero elements of $R$, we have that $R$ is not an integral.
     \end{enumerate}
   \end{proof}
 \end{thm}
