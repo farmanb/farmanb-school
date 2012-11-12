@@ -146,6 +146,51 @@
     Prove that an element $x$ is a unit of $R$ if and only if $v(x) = 0$.
   \end{enumerate}
   \begin{proof}
+    \begin{enumerate}[(a)]
+    \item
+      Let $x,y,z \in R$ be given.
+      We first show that $(R, +)$ is an abelian group.
+      It suffices to show that $x - y \in R$.
+      If $x - y = 0$, then $x - y \in R$ holds by definition, so it suffices to assume $x - y \neq 0$.
+      Also note that since $K$ is a field, $0 \neq x - y \in K^\times$.
+      Observe for $a \in K$ that 
+      $$v(a) = v(a \cdot 1_K) = v(a) + v(1_K) = v(1_K) + v(a)  = v(1_K \cdot a) = v(a)$$ 
+      implies $v(1_K) = 0$.
+      Furthermore that $0 = v(1) = v((-1)(-1)) = v(-1) + v(-1)$ implies $v(-1) = -v(-1)$ and thus $v(-1) = 0$.
+      Hence
+      \begin{equation}\label{2.1}
+        v(-y) = v(-1 \cdot y) = v(-1) + v(y) = v(y).
+      \end{equation}
+      It now follows from \eqref{2.1} and the definition of $R$ that
+      $$v(x + (-y)) \geq \min\left\{v(x), v(-y)\right\} = \min\left\{v(x), v(y)\right\} \geq 0$$
+      and thus $(R, +)$ is a group.
+      That $(R, +)$ is abelian follows from $K$ being a field.
+      
+      To see that $R$ is closed under multiplication, consider $z(x + y)$.
+      Note that $R$ inherits commutativity, associativity and distribution from $K$.
+      If either $z = 0$ or $(x+y) = 0$, then $z(x + y) = 0 \in R$ by definition.
+      Assume both are non-zero.
+      Since $K$ is a field, $z(x + y) \neq 0$.
+      Since $(R, +)$ is a group, we have $(x + y) \in R$ and       
+      $$v(zx + zy) = v(z(x+y)) = v(z) + v(x + y) \geq 0$$
+      since $v(z), v(x + y) \geq 0$ holds by definition of $R$.
+      Therefore $z(x + y) \in R$ and $R$ is a subring of $K$.
+    \item
+      Let $x \in K^\times$ be given.
+      Assume $x \neq x^{-1}$.
+      Observe that since $v$ is a homomorphism we have $v(x^{-1}) = -v(x)$.
+      Hence either $v(x)$ or $-v(x)$ is positive.
+      Therefore either $x \in R$ or $x^{-1} \in R$.
+    \item
+      Assume that $u$ is a unit in $R$.
+      Suppose by way of contradiction that $v(u) > 0$.
+      Then $v(u^{-1}) = -v(u) < 0$ implies $u^{-1} \not \in R$, a contradiction.
+      Therefore $v(u) = 0$.
+      
+      Conversely, assume $u \in R$ and $v(u) = 0$.
+      Then $v(u^{-1}) = -v(0) = 0$ implies $u^{-1} \in R$.
+      Therefore $u$ is a unit.
+    \end{enumerate}
   \end{proof}
 \end{thm}
 
