@@ -52,37 +52,44 @@
       both follow from the fact that $(R, +)$ is an additive abelian group.
       Define the series $0 = \sum_{n=0}^\infty 0_R$.
       Then it follows from
-      $$\sum_{i=0}^\infty a_ix^i + \sum_{j=0}^\infty 0\cdot x^i = \sum_{i=0}^\infty (a_i + 0)x^i = \sum_{i=0}^\infty a_ix^i = \sum_{i=0}^\infty (0 + a_i)x^i = \sum_{j=0}^\infty 0\cdot x^j + \sum_{i=0}^\infty a_ix^i.$$
+      $$\sum_{i=0}^\infty a_ix^i + \sum_{j=0}^\infty 0_R\cdot x^i = \sum_{i=0}^\infty (a_i + 0_R)x^i = \sum_{i=0}^\infty a_ix^i = \sum_{i=0}^\infty (0_R + a_i)x^i = \sum_{j=0}^\infty 0_R\cdot x^j + \sum_{i=0}^\infty a_ix^i.$$
       that $0$ is the additive identity.
       Moreover, $R[[x]]$ is closed under additive inverses with
       $$\sum_{i=0}^\infty a_ix^i + \sum_{i=0}^\infty -a_ix^i = \sum_{i=0}^\infty (a_i - a_i)x^i = \sum_{i=0}^\infty 0\cdot x^i = 0.$$
-      To see that $R[[x]]$ is associative, we have since $(R,+)$ is an additive group
-      \begin{eqnarray*}
-        \sum_{i=0}^\infty a_ix^i + \left(\sum_{j=0}^\infty b_jx^j + \sum_{k=0}^\infty c_kx^k\right) & = & \sum_{i=0}^\infty a_ix^i + \sum_{j=0}^\infty (b_j + c_j)x^j\\
-        & = & \sum_{i=0}^\infty \left(a_i + (b_i + c_i)\right)x^i\\
-        & = & \sum_{i=0}^\infty \left((a_i + b_i) + c_i\right)x^i\\
-        & = & \left(\sum_{i=0}^\infty a_ix^i + \sum_{j=0}^\infty b_jx^j\right) + \sum_{k=0}^\infty c_kx^k.\\
-      \end{eqnarray*}
+      To see that $R[[x]]$ is associative, consider 
+      \begin{equation}\label{1.0}
+        \sum_{i=0}^\infty a_ix^i + \left(\sum_{j=0}^\infty b_jx^j + \sum_{k=0}^\infty c_kx^k\right)  = \sum_{i=0}^\infty a_ix^i + \sum_{j=0}^\infty (b_j + c_j)x^j = \sum_{i=0}^\infty \left(a_i + (b_i + c_i)\right)x^i
+      \end{equation}
+      Since $(R,+)$ is an additive group, $a_i + (b_i + c_i) = (a_i + b_i) + c_i$ holds for all $i$.
+      Therefore by \eqref{1.0}
+      $$\sum_{i=0}^\infty a_ix^i + \left(\sum_{j=0}^\infty b_jx^j + \sum_{k=0}^\infty c_kx^k\right) = \sum_{i=0}^\infty \left((a_i + b_i) + c_i\right)x^i= \left(\sum_{i=0}^\infty a_ix^i + \sum_{j=0}^\infty b_jx^j\right) + \sum_{k=0}^\infty c_kx^k.$$
       
       Define the series $1 = \sum_{n=0}^\infty e_n$ where $e_0 = 1_R$ and $e_n = 0$ for all $n \geq 2$.  
       Consider the finite sums 
-      \begin{equation*}
-        \sum_{j=0}^i a_j e_{i-j}\quad \text{and}\quad \sum_{j=0}^i e_j a_{i-j}.
-      \end{equation*}
+      $$\sum_{j=0}^i a_j e_{i-j}\quad \text{and}\quad \sum_{j=0}^i e_j a_{i-j}.$$
       It follows from the definition of $1$ that their values are  $a_ie_{i-i} = a_i$ and $e_0a_{i-0} = a_i$, respectively.
       Hence 
       $$\sum_{i=0}^\infty a_ix^i \cdot 1 = \sum_{i=0}^\infty \left(\sum_{j=0}^i a_j e_{i-j}\right)x^i  = \sum_{i=0}^\infty a_i =\sum_{i=0}^\infty \left(\sum_{j=0}^i e_j a_{i-j}\right)x^i = 1 \cdot \sum_{i=0}^\infty a_ix^i$$
-      implies that $1$ is the additive identity in $R[[x]]$.
-      Finally consider the product
-      \begin{eqnarray*}
-        \sum_{i=0}^\infty a_ix^i \cdot \left(\sum_{j=0}^\infty b_jx^j + \sum_{k=0}^\infty c_kx^k \right) &=& \sum_{i=0}^\infty a_ix^i \cdot \sum_{j=0}^\infty (b_j + c_j)x^j\\
-        &=& \sum_{i=0}^\infty \left(\sum_{j=0}^i a_j(b_{i-j} + c_{i-j})\right)x^i\\
-        &=& \sum_{i=0}^\infty \left(\sum_{j=0}^i (a_jb_{i-j} + a_jc_{i-j})\right)x^i\\
-        &=& \sum_{i=0}^\infty \left(\sum_{j=0}^i (a_jb_{i-j}) +  \sum_{j=0}^i a_jc_{i-j})\right)x^i\\
-        &=& \sum_{i=0}^\infty \left(\sum_{j=0}^i (a_jb_{i-j})\right)x^i +  \sum_{k=0}^\infty \left(\sum_{\ell=0}^k a_{\ell}c_{k-\ell})\right)x^k\\
-        &=& \sum_{i=0}^\infty a_ix^i \cdot \sum_{j=0}^\infty b_jx^j + \sum_{i=0}^\infty a_ix^i \cdot \sum_{k=0}^\infty c_kx^k
-      \end{eqnarray*}
-      Since $R$ is commutative, distribution on the right follows similarly, mutatis mutandis.
+      implies that $1$ is the multiplicative identity in $R[[x]]$.
+      Finally, consider the product
+      \begin{equation}\label{1.1}
+        \sum_{i=0}^\infty a_ix^i \cdot \left(\sum_{j=0}^\infty b_jx^j + \sum_{k=0}^\infty c_kx^k \right) = \sum_{i=0}^\infty a_ix^i \cdot \sum_{j=0}^\infty (b_j + c_j)x^j = \sum_{i=0}^\infty \left(\sum_{j=0}^i a_j(b_{i-j} + c_{i-j})\right)x^i.
+      \end{equation}
+      Since $R$ is a ring, $a_i(b_{i-j} + c_{i-j}) = a_ib_{i-j} + a_ic_{i-j}$ holds for all $i,j$ and so it follows from \eqref{1.1} that
+      \begin{equation}\label{1.2}
+        \sum_{i=0}^\infty a_ix^i \cdot \left(\sum_{j=0}^\infty b_jx^j + \sum_{k=0}^\infty c_kx^k \right) = \sum_{i=0}^\infty \left(\sum_{j=0}^i a_jb_{i-j} +  \sum_{k=0}^i a_kc_{i-k}\right)x^i
+      \end{equation}
+      Then we have from the definition of addition and multiplication
+      \begin{eqnarray}
+        \sum_{i=0}^\infty a_ix^i \cdot \sum_{j=0}^\infty b_jx^j + \sum_{i=0}^\infty a_ix^i \cdot \sum_{k=0}^\infty c_kx^k &=& \sum_{i=0}^\infty \left(\sum_{j=0}^i a_jb_{i-j}\right)x^i +  \sum_{i=0}^\infty \left(\sum_{k=0}^i a_{k}c_{i-k}\right)x^i\\\label{1.3}
+        &=& \sum_{i=0}^\infty \left(\sum_{j=0}^i a_jb_{i-j} +  \sum_{k=0}^i a_kc_{i-k}\right)x^i.\label{1.4}
+      \end{eqnarray}
+      From \eqref{1.2} and \eqref{1.4} it follows that
+      $$\sum_{i=0}^\infty a_ix^i \cdot \left(\sum_{j=0}^\infty b_jx^j + \sum_{k=0}^\infty c_kx^k \right) = \sum_{i=0}^\infty a_ix^i \cdot \sum_{j=0}^\infty b_jx^j + \sum_{i=0}^\infty a_ix^i \cdot \sum_{k=0}^\infty c_kx^k.$$
+      Since $R$ is commutative, distribution on the right follows by the same argument, mutatis mutandis.
+      Moreover, observing that since $R$ is commutative, $a_i(b_{i-j} + c_{i-j}) = (b_{i-j} + c_{i-j})a_i$ and hence
+      $$\sum_{i=0}^\infty a_ix^i \cdot \left(\sum_{j=0}^\infty b_jx^j + \sum_{k=0}^\infty c_kx^k \right) = \left(\sum_{j=0}^\infty b_jx^j + \sum_{k=0}^\infty c_kx^k \right) \cdot \sum_{i=0}^\infty a_ix^i.$$
+      Therefore $R[[x]]$ is a commutative ring.
     \item
       First consider $1 - x$ as the series $\sum_{n=0}^\infty a_n$ where $a_0 = 1_R$, $a_1 = -1_R$ and $a_n = 0$ for all $n \geq 2$.
       %Consider the finite sums 
@@ -105,7 +112,11 @@
       Conversely, assume $\sum_{i=0}^\infty a_ix^i$ is a series with $a_0 \in R^\times$.
       Define the sequence $\left\{b_n\right\}_{n=0}^\infty$ by $b_0 = a_0^{-1}$, and $b_n = -a_0^{-1}\left(\sum_{i=0}^{n-1} b_ia_{n-i}\right)$ for each $n \geq 1$.
       Fix $i > 0$ and consider the finite sum
-      $$\sum_{j=0}^i b_ja_{i-j} = \sum_{j=0}^{i-1} b_ja_{j-i} + b_ja_0 = \sum_{j=0}^{i-1} b_ja_{i-j} + a_0(-a_0^{-1})\left(\sum_{j=0}^{i-1} b_ja_{i-j}\right) = \sum_{j=0}^{i-1} b_ja_{i-j} - \left(\sum_{j=0}^{i-1} b_ja_{i-j}\right) = 0.$$
+      \begin{eqnarray*}
+        \sum_{j=0}^i b_ja_{i-j} = \sum_{j=0}^{i-1} b_ja_{j-i} + b_ia_0 &=& \sum_{j=0}^{i-1} b_ja_{i-j} + a_0(-a_0^{-1})\left(\sum_{j=0}^{i-1} b_ja_{i-j}\right)\\
+        &=& \sum_{j=0}^{i-1} b_ja_{i-j} - \left(\sum_{j=0}^{i-1} b_ja_{i-j}\right)\\
+        &=& 0.
+      \end{eqnarray*}
       Note that when $i = 0$ we have $b_0a_0 = 1$ by construction.
       Hence 
       $$\sum_{j=0}^\infty a_jx^j\sum_{i=0}^\infty b_ix^i = \sum_{i=0}^\infty b_ix^i \sum_{j=0}^\infty a_jx^j = \sum_{i=0}^\infty \left(\sum_{j=0}^i b_ja_{i-j}\right)x^i = 1_R + 0\cdot x + 0\cdot x^2 + \ldots = 1.$$
@@ -236,6 +247,32 @@
     Prove that $v$ is a discrete valuation on $F((x))$ whose discrete valuation ring is $F[[x]]$, the ring of formal power series.
   \end{enumerate}
   \begin{proof}
+    \begin{enumerate}[(a)]
+    \item
+      Let $\sum_{i=N}^\infty a_ix^i$ and $\sum_{j=M}^\infty b_jx^j \in F((x))$ be given.
+      Take $S = \min\left\{N, M, L\right\}$ and rewrite the sums as
+      $$\sum_{i=S}^\infty a_ix^i = \sum_{i=S}^{N-1} 0_F + \sum_{i=N}^\infty a_ix^i,\, \text{and}\ \sum_{j=S}^\infty b_jx^j = \sum_{i=S}^{M-1} 0_F + \sum_{j=M}^\infty b_jx^j.$$
+      Then defining addition as
+      $$\sum_{i=S}^\infty a_ix^i + \sum_{j=S}^\infty b_jx^j = \sum_{i=S}^\infty (a_i + b_i)x^i$$ 
+      and multiplication as
+      $$\sum_{i=S}^\infty a_ix^i \sum_{j=S}^\infty b_jx^j = \sum_{i=S}^\infty \sum_{j = S}^{i-S} \left(a_jb_{i-j}\right)x^i.$$
+      Note that when $S = 0$, these coincide with the definitions in Exercise 1.
+      
+      It remains only to show that $0 \neq \sum_{i=N}^\infty a_ix^i$ is invertible.
+      Since the series is not $0$ we may assume that $a_N \neq 0$, for otherwise we could reindex the series from some $M$, the smallest integer such that $a_M \neq 0$.
+      Since $F$ is a field we may let $b_N = a_N^{-1}$.
+      For each $n > N$ define $b_n = -a_N^{-1}\left(\sum_{i=N}^{n-1} b_ia_{n-i}\right)$.
+      Fix $i > N$ and consider the finite sum
+      \begin{eqnarray*}
+        \sum_{j=N}^i b_ja_{i-j} = \sum_{j=N}^{i-1} b_ja_{j-i} + b_ia_N &=& \sum_{j=N}^{i-1} b_ja_{i-j} + a_N(-a_N^{-1})\left(\sum_{j=N}^{i-1} b_ja_{i-j}\right)\\
+        &=& \sum_{j=N}^{i-1} b_ja_{i-j} - \left(\sum_{j=N}^{i-1} b_ja_{i-j}\right)\\ 
+        &=& 0.
+      \end{eqnarray*}
+      Note that when $i = N$ we have $b_Na_N = 1$ by construction.
+      Hence 
+      $$\sum_{j=N}^\infty a_jx^j\sum_{i=N}^\infty b_ix^i = \sum_{i=N}^\infty b_ix^i \sum_{j=N}^\infty a_jx^j = \sum_{i=N}^\infty \left(\sum_{j=N}^i b_ja_{i-j}\right)x^i = 1_F + 0\cdot x + 0\cdot x^2 + \ldots = 1.$$
+      Therefore $\sum_{i=N}^\infty a_ix^i$ is invertible, as desired.
+    \end{enumerate}
   \end{proof}
 \end{thm}
 
@@ -272,7 +309,7 @@
   \item
     Prove that $1 + x \in R^\times$.
   \item
-    Deduce that the sum of a nilpotent element and a unit is nilpotent.
+    Deduce that the sum of a nilpotent element and a unit is a unit.
   \end{enumerate}
   \begin{proof}
     \begin{enumerate}[(a)]
