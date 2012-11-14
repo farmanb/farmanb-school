@@ -319,6 +319,31 @@
     Note that the inverse of $a \neq 0$ in the ring of rational quaternions, $\quat(\Q)$ (replace $\Z$ by $\Q$ in the definition), is $\frac{\overline{\alpha}}{N(\alpha)}$.)
   \end{enumerate}
   \begin{proof}
+    \begin{enumerate}[(a)]
+    \item
+      Using the identities $ij = -ji = k$, $jk = -kj = i$, $ki = -ik = j$, and $i^2 = j^2 = k^2 = -1$, distribute and collect like terms to obtain
+      \begin{eqnarray*}
+        \alpha\overline{\alpha} &=& (a^2 + b^2 + c^2 + d^2) + (-ab + ab - cd + dc)i + (-ac + ca -db + bd)j + (-ad + da -bc + cb)k\\
+        &=& a^2 + b^2 + c^2 + d^2\\
+        &=& N(\alpha).
+      \end{eqnarray*}
+      \item
+        Let $\alpha = a + bi + cj + dk, \beta = e + fi + gj + hk \in \quat$ be given.
+        Using the identities $ij = -ji = k$, $jk = -kj = i$, $ki = -ik = j$, and $i^2 = j^2 = k^2 = -1$, distribute and collect like terms to obtain
+        \begin{equation}\label{5.1}
+          \alpha\beta = (ae - bf - cg -dh) + (af + be + ch -dg) + (ag - bh + ce + df)j + (ah + bj - cf + de)k.
+        \end{equation}
+        Consider the product $\overline{\beta}\overline{\alpha}$.
+        Using \eqref{5.1}, we have 
+        \begin{eqnarray*}
+          \overline{\beta}\overline{\alpha} &=& (ae - bf - cg - dh) + (-af -be -ch + dg)i + (-ag + bh - ce - df)j + (-ah -bg + cf -de)k\\
+          &=& (ae - bf - cg - dh) -(af + be + ch - dg)i - (ag - bh + ce + df)j - (ah + bg - cf + de)k\\
+          &=& \overline{\alpha\beta}.
+        \end{eqnarray*}
+        Noting that the integers commute with the elements of $\quat$, we have
+        $$N(\alpha\beta) = \alpha \beta \overline{\alpha \beta} = \alpha \beta \overline{\beta} \overline{\alpha} = \alpha N(\beta) \overline{\alpha} = \alpha \overline{\alpha} N(\beta) = N(\alpha)N(\beta).$$
+        Therefore the norm is multiplicative.
+    \end{enumerate}
   \end{proof}
 \end{thm}
 
