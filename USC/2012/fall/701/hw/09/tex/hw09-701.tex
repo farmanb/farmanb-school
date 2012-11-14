@@ -343,6 +343,14 @@
         Noting that the integers commute with the elements of $\quat$, we have
         $$N(\alpha\beta) = \alpha \beta \overline{\alpha \beta} = \alpha \beta \overline{\beta} \overline{\alpha} = \alpha N(\beta) \overline{\alpha} = \alpha \overline{\alpha} N(\beta) = N(\alpha)N(\beta).$$
         Therefore the norm is multiplicative.
+      \item
+        First observe that for any element $\alpha \in \quat$ we have
+        $$N(\alpha) = N(1_\quat \alpha) = N(1_\quat)N(\alpha).$$
+        Hence $N(1_\quat) = 1$.
+        Let $u \in \quat$ be a unit so that
+        $$N(1_\quat) = N(uu^{-1}) = N(u)N(u^{-1}) = 1$$
+        implies $N(u)$ is a unit in $\Z$.
+        Since $\pm 1$ are the only units, it follows that $N(u) = \pm 1$.
     \end{enumerate}
   \end{proof}
 \end{thm}
