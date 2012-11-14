@@ -313,9 +313,9 @@
     (We say that the norm is multiplicative.)
   \item
     Let $u \in S$.
-    Prove that $u \in S^\times$ if and only if $N(u) = \pm 1$.
+    Prove that $u \in S^\times$ if and only if $N(u) = 1$.
     Show that $S^\times$ is a non-abelian group of order 8.
-    (This is the ``quaternion grouip.''
+    (This is the ``quaternion group.''
     Note that the inverse of $a \neq 0$ in the ring of rational quaternions, $\quat(\Q)$ (replace $\Z$ by $\Q$ in the definition), is $\frac{\overline{\alpha}}{N(\alpha)}$.)
   \end{enumerate}
   \begin{proof}
@@ -350,7 +350,22 @@
         Let $u \in \quat$ be a unit so that
         $$N(1_\quat) = N(uu^{-1}) = N(u)N(u^{-1}) = 1$$
         implies $N(u)$ is a unit in $\Z$.
-        Since $\pm 1$ are the only units, it follows that $N(u) = \pm 1$.
+        Since $N(u) = a^2 + b^2 + c^2 + d^2 > 0$ and $1$ is the only positive unit, it follows that $N(u) = 1$.
+        
+        Conversely, let $u \in \quat$ and assume $N(u) = 1$.
+        Then $$N(u) = u\overline{u} = 1$$ implies $u^{-1} = \overline{u}$.
+        Therefore $u \in \quat$ is a unit if and only if $N(u) = 1$.
+        
+        Let $u = a + bi + cj + dk \in \quat^\times$ be given.
+        First observe that the quaternion group, $Q_8 = \left\{\pm 1, \pm i, \pm j, \pm k \right\}$, is isomorphic to a subgroup of $\quat^\times$ under the embedding,
+        \begin{align*}
+          i \colon Q_8 &\hookrightarrow \quat^\times\\
+          g &\mapsto g.
+        \end{align*}
+        Hence it suffices to show that $H^\times \subseteq Q_8$.
+        Since $u\overline{u} = a^2 + b^2 + c^2 + d^2 = 1$, it follows that one of $a, b, c, d$ is 1 and the others are zero.
+        Taking all possible combinations, we have $\quat^\times \subseteq Q_8$.
+        Therefore $\quat^\times \cong Q_8$.
     \end{enumerate}
   \end{proof}
 \end{thm}
@@ -371,9 +386,9 @@
   \begin{proof}
     \begin{enumerate}[(a)]
     \item
-      If $x = 0$, then the result holds for all integers.
+      If $x = 0$, then the result holds for all positive integers.
       Assume $x \neq 0$.
-      Let $2 \leq m \in \Z^{>0}$ be the smallest integer such that $x^m = 0$.
+      Let $2 \leq m \in \Z$ be the smallest integer such that $x^m = 0$.
       It follows from the choice of $m$ that $x^m = x(x^{m-1}) = 0$ with $x^{m-1} \neq 0$.
       Therefore $x$ is a zero divisor.
     \item
@@ -382,7 +397,7 @@
       $$(rx)^m = r^mx^m = (r^m)0 = 0.$$
       Therefore $rx$ is nilpotent.
     \item
-      Let $m \in \Z^{>0}$ be the smallest integer such that $x^m = 0$.
+      Let $0 < m \in \Z$ be the smallest integer such that $x^m = 0$.
       Since $x^{i} \neq 0$ for $2 \leq i \leq m - 1$, it follows from the distributive axiom for rings that
       $$(1 + x)(1 - x + x^2 - x^3 + \ldots + (-1)^{m-1}x^{m-1}) = 1 + x^m = 1.$$
       Therefore $1+x$ is a unit.
