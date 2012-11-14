@@ -188,9 +188,9 @@
       Therefore $z(x + y) \in R$ and $R$ is a subring of $K$.
     \item
       Let $x \in K^\times$ be given.
-      Assume $x \neq x^{-1}$.
       Observe that since $v$ is a homomorphism we have $v(x^{-1}) = -v(x)$.
-      Hence either $v(x)$ or $-v(x)$ is positive.
+      If $v(x) = 0$, then both $x \in R$ and $x^{-1} \in R$ hold.
+      If $v(x) \neq 0$, then either $v(x)$ or $-v(x)$ is positive.
       Therefore either $x \in R$ or $x^{-1} \in R$.
     \item
       Assume that $u$ is a unit in $R$.
@@ -249,29 +249,53 @@
   \begin{proof}
     \begin{enumerate}[(a)]
     \item
-      Let $\sum_{i=N}^\infty a_ix^i$ and $\sum_{j=M}^\infty b_jx^j \in F((x))$ be given.
-      Take $S = \min\left\{N, M, L\right\}$ and rewrite the sums as
-      $$\sum_{i=S}^\infty a_ix^i = \sum_{i=S}^{N-1} 0_F + \sum_{i=N}^\infty a_ix^i,\, \text{and}\ \sum_{j=S}^\infty b_jx^j = \sum_{i=S}^{M-1} 0_F + \sum_{j=M}^\infty b_jx^j.$$
-      Then defining addition as
-      $$\sum_{i=S}^\infty a_ix^i + \sum_{j=S}^\infty b_jx^j = \sum_{i=S}^\infty (a_i + b_i)x^i$$ 
-      and multiplication as
-      $$\sum_{i=S}^\infty a_ix^i \sum_{j=S}^\infty b_jx^j = \sum_{i=S}^\infty \sum_{j = S}^{i-S} \left(a_jb_{i-j}\right)x^i.$$
-      Note that when $S = 0$, these coincide with the definitions in Exercise 1.
-      
-      It remains only to show that $0 \neq \sum_{i=N}^\infty a_ix^i$ is invertible.
-      Since the series is not $0$ we may assume that $a_N \neq 0$, for otherwise we could reindex the series from some $M$, the smallest integer such that $a_M \neq 0$.
-      Since $F$ is a field we may let $b_N = a_N^{-1}$.
-      For each $n > N$ define $b_n = -a_N^{-1}\left(\sum_{i=N}^{n-1} b_ia_{n-i}\right)$.
-      Fix $i > N$ and consider the finite sum
+      %Let $\sum_{n=N}^\infty a_nx^n$ and $\sum_{n=M}^\infty b_nx^n$ be given.
+      %Let $S = \min\left\{N, M, L\right\}$.
+      % and rewrite the sums as
+      %$$\sum_{n=S}^\infty a_nx^n = \sum_{n=S}^{N-1} 0_F + \sum_{n=N}^\infty a_nx^n,\,\sum_{n=S}^\infty b_nx^n = \sum_{n=S}^{M-1} 0_F + \sum_{n=M}^\infty b_nx^n,\,  \text{and}\ \sum_{n=S}^\infty c_nx^n = \sum_{n=S}^{L-1} 0_F + \sum_{n=L}^\infty c_nx^n.$$
+      %Use the addition
+      %$$\sum_{n=N}^\infty a_nx^n + \sum_{n=M}^\infty b_nx^n = \sum_{n=S}^\infty (a_n + b_n)x^n,$$ 
+      %where $n < N$ and $n < M$ imply $a_n = 0$ and $b_n = 0$, respectively, and multiplication
+      %$$\sum_{n=N}^\infty a_nx^n \sum_{n=M}^\infty b_nx^n = \sum_{n=N+M}^\infty \left(\sum_{i + j = n} a_ib_j\right)x^n.$$
+      %It remains only to show that every element $0 \neq \sum_{n=N}^\infty a_nx^n$ of $F((x))$ is invertible.
+      %Let $0 \neq \sum_{n=N}^\infty a_nx^n \in F((x))$ be given.
+      Since $F((x))$ is a ring, it suffices to show that every element $0 \neq \sum_{n=N}^\infty a_nx^n$ of $F((x))$ is invertible.
+      %Assume that $N < 0$.
+      Consider $x^{-N}$ as a series with terms $b_n = 0$ for all $n \neq -N$ and $b_{-N} = 1$.
+      Then by construction
+      $$c_n = \sum_{i + j = n} a_ib_j = a_{n+N}b_{-N} = a_{n+N}.$$
+      If $N \leq n < 0$, then it follows that $n + N < N$ and thus $c_n = 0$ for all $n < 0$.
+      Similarly, if $n < 0 < N$, then it follows that $n + N < N$ and thus $c_n = 0$ for all $n < 0$.
+      Hence we have $$x^{-N} \sum_{n=N}^\infty a_nx^n = \sum_{n=0}^\infty c_nx^n.$$
+      Since $c_0 = a_N$ is a unit, the series $\sum_{n=0}^\infty c_nx^n$ is invertible using the same method as in part (c) of Exercise 1.
+      Hence
+      $$\left(\left(\sum_{n=0}^\infty c_nx^n\right)^{-1}x^{-N}\right) \sum_{n=N}^\infty a_nx^n = 1$$
+      and $\sum_{n=N}^\infty a_nx^n$ is invertible, as desired.
+      Therefore $F((x))$ is a field.
+    \item
+      Let $\sum_{n=N}^\infty a_nx^n$ and $\sum_{n=M}^\infty b_nx^n \in F((x))$ be given.
+      First consider $$\sum_{n=N}^\infty a_nx^n \cdot \sum_{n=M}^\infty b_nx^n = \sum_{n=N+M}^\infty \left(\sum_{i + j = n} a_ib_j\right)x^n.$$
+      Then we have
       \begin{eqnarray*}
-        \sum_{j=N}^i b_ja_{i-j} = \sum_{j=N}^{i-1} b_ja_{j-i} + b_ia_N &=& \sum_{j=N}^{i-1} b_ja_{i-j} + a_N(-a_N^{-1})\left(\sum_{j=N}^{i-1} b_ja_{i-j}\right)\\
-        &=& \sum_{j=N}^{i-1} b_ja_{i-j} - \left(\sum_{j=N}^{i-1} b_ja_{i-j}\right)\\ 
-        &=& 0.
+        v\left(\sum_{n=N}^\infty a_nx^n \cdot \sum_{n=M}^\infty b_nx^n\right) &=& v\left(\sum_{n=N+M}^\infty \left(\sum_{i + j = n} a_ib_j\right)x^n\right)\\
+        &=& N + M\\
+        &=& v\left(\sum_{n=N}^\infty a_nx^n\right)v\left(\sum_{n=M}^\infty b_nx^n\right)
       \end{eqnarray*}
-      Note that when $i = N$ we have $b_Na_N = 1$ by construction.
-      Hence 
-      $$\sum_{j=N}^\infty a_jx^j\sum_{i=N}^\infty b_ix^i = \sum_{i=N}^\infty b_ix^i \sum_{j=N}^\infty a_jx^j = \sum_{i=N}^\infty \left(\sum_{j=N}^i b_ja_{i-j}\right)x^i = 1_F + 0\cdot x + 0\cdot x^2 + \ldots = 1.$$
-      Therefore $\sum_{i=N}^\infty a_ix^i$ is invertible, as desired.
+      To see that $v$ is surjective, for each $N \in \Z$, construct a sequence $\sum_{n=N}^\infty a_nx^n$ with $a_N \neq 0_F$ and all other $a_n = 0_F$, so that $v(\sum_{n=N}^\infty a_nx^n) = N$.
+      Finally, we have 
+      \begin{eqnarray*}
+        v\left(\sum_{n=N}^\infty a_nx^n + \sum_{n=M}^\infty b_nx^n\right) &=& v\left(\sum_{n=\min\{N,M\}}(a_n + b_n)x^n\right)\\
+        &=& \min\{N,M\}\\
+        &=& \min\left\{v\left(\sum_{n=N}^\infty a_nx^n\right), v\left(\sum_{n=M}^\infty b_nx^n \right)\right\}.
+      \end{eqnarray*}
+      Therefore $v$ is a discrete valuation on $F((x))$ with discrete valuation ring
+      \begin{eqnarray*}
+        R &=& \left\{\sum_{n=N}^\infty a_nx^n \in F^\times \;\middle\vert\; v\left(\sum_{n=N}^\infty a_nx^n\right) \geq 0 \right\} \cup \left\{0\right\}\\
+        &=& \left\{\sum_{n=N}^\infty a_nx^n \in F^\times \;\middle\vert\; N \geq 0\right\} \cup \left\{0\right\}\\
+        &=& \left\{\sum_{n=0}^\infty a_nx^n \;\middle\vert\; a_n \in F \right\}\\
+        &=& F[[x]].
+      \end{eqnarray*}
+      
     \end{enumerate}
   \end{proof}
 \end{thm}
