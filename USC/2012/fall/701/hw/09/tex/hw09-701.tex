@@ -216,6 +216,26 @@
     Describe $R^\times$.
   \end{enumerate}
   \begin{proof}
+    To see that $v_p$ is a discrete valuation on $K$, let $\frac{a}{b}, \frac{c}{d} \in \Q^\times$ be given.
+    Write $a = p^{\alpha_1}m$, $b = p^{\alpha_2}n$, $c = p^{\alpha_3}k$, and $d = p^{\alpha_4}\ell$, where $m$, $n$, $k$, and $\ell$ are all $p$-free integers.
+    Then 
+    $$v_p\left(\frac{ac}{bd}\right) = v_p\left(p^{\alpha_1 - \alpha_2 + \alpha_3 - \alpha_4}\frac{mk}{n\ell}\right) = (\alpha_1 - \alpha_2) + (\alpha _3  - \alpha_4) = v_p\left(\frac{a}{b}\right) + v_p\left(\frac{c}{d}\right).$$
+    Since $p^n \in \Q^\times$ for all $n \in \Z$, $v_p(p^n) = n$ implies $v_p$ is surjective.
+    Now note that since $\Z/p\Z$ is a field and $n$, $m$, $k$, $\ell$ were all chosen to be $p$-free, the products $n\ell$, $km$, and $m\ell$ are not divisible by $p$.
+    Hence if we let $M = \min\left\{\alpha_1 + \alpha_4, \alpha_2 + \alpha_3\right\}$, then
+    \begin{equation}\label{3.1}
+      \frac{a}{b} + \frac{c}{d} = \frac{ad + cb}{bd} = \frac{p^{\alpha_1 + \alpha_4}n\ell + p^{\alpha_2 + \alpha_3}km}{p^{\alpha_2 + \alpha_4}m\ell} = p^{M - \alpha_2 - \alpha_4}\left(\frac{p^{\alpha_1 + \alpha_4 - M}n\ell + p^{\alpha_2 + \alpha_3 - M}km}{m\ell}\right).
+    \end{equation}
+    Since one of $\alpha_1 + \alpha_4 - M$ and $\alpha_2 + \alpha_3 - M$ is zero, the numerator in the right-hand side of \eqref{3.1} is not divisible by $p$.
+    Hence $v_p\left(\frac{a}{b} + \frac{c}{d}\right) = M - \alpha_2 - \alpha_3$.
+    Moreover, note that 
+    $$M - \alpha_2 - \alpha_3 = \left\{
+    \begin{array}{ll}
+      \alpha_1 - \alpha_2 & \text{if}\ M = \alpha_1 + \alpha_4,\\
+      \alpha_3 - \alpha_4 & \text{if}\ M = \alpha_2 + \alpha_3\\
+    \end{array}
+    \right.$$ implies $v_p\left(\frac{a}{b} + \frac{c}{d}\right) \geq \min\left\{\alpha_1 - \alpha_2, \alpha_3 - \alpha_4\right\} = \min\left\{v_p\left(\frac{a}{b}\right), v_p\left(\frac{c}{d}\right)\right\}$.
+    Therefore $v_p$ is a discrete valuation on $K$.
     \begin{enumerate}[(a)]
       \item
         By definition, $R = \left\{\frac{a}{b} \in \Q \;\middle\vert\; v_p\left(\frac{a}{b}\right) = p^\alpha,\, \alpha > 0\right\}$.
