@@ -1,5 +1,5 @@
 \documentclass[10pt]{amsart}
-\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate}
 \openup 5pt
 \author{Blake Farman\\University of South Carolina}
 \title{Math 701:\\Homework 09}
@@ -10,6 +10,41 @@
 
 \begin{document}
 \maketitle
+
+%Field names
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\uhp}{\mathfrak{h}}
+\newcommand{\quat}{\mathbb{H}}
+
+%Operator names
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\Det}{\operatorname{Det}}
+\newcommand{\Gal}{\operatorname{Gal}}
+\newcommand{\Inn}[1]{\operatorname{Inn}\left(#1\right)}
+\newcommand{\Aut}[1]{\operatorname{Aut}\left(#1\right)}
+\newcommand{\real}[1]{\operatorname{\mathfrak{Re}}\left(#1\right)}
+\newcommand{\imag}[1]{\operatorname{\mathfrak{Im}}\left(#1\right)}
+\newcommand{\Syl}[2]{\operatorname{Syl}_{#1}\left(#2\right)}
+\newcommand{\SL}[2]{\operatorname{SL}_#1\left(#2\right)}
+\newcommand{\GL}[2]{\operatorname{GL}_#1\left(#2\right)}
+\newcommand{\M}[2]{\operatorname{M}_#1\left(#2\right)}
+\newcommand{\PSL}[2]{\operatorname{PSL}_#1\left(#2\right)}
+\newcommand{\Mat}[2]{\operatorname{Mat}_{#1}\left(#2\right)}
+\providecommand{\norm}[1]{\lVert#1\rVert}
+\newcommand{\dist}[2]{\operatorname{dist}\left(#1,#2\right)}
+\newcommand{\cntr}[1]{\mathbf{Z}\left(#1\right)}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\orbit}[1]{\mathcal{O}_{#1}}
+\newcommand{\card}[1]{\operatorname{card}#1}
+
+%\renewcommand{\phi}{\varphi}
+\renewcommand{\qedsymbol}{\(\blacksquare\)}
+\renewcommand{\epsilon}{\varepsilon}
 
 \newtheorem{thm}{}
 \newtheorem{lem}{Lemma}
@@ -102,7 +137,7 @@
         \sum_{j=0}^i a_j = a_0 + a_1 = 0
       \end{equation*}
       it follows that $\sum_{i=0}^\infty\left(\sum_{j=0}^i a_j\right) = 1_R + 0\cdot x + 0 \cdot x^2 + \ldots = 1$.
-      Therefore $(1 - x) \cdot \sum_{n = 0}^\infty x^n = \sum_{n = 0}^\infty x^n \cdot (1 - x) = 1$, as desired.
+      Therefore $$(1 - x) \cdot \sum_{n = 0}^\infty x^n = \sum_{n = 0}^\infty x^n \cdot (1 - x) = 1,$$ as desired.
     \item
       Let $\sum_{i=0}^\infty a_ix^i \in (R[[x]])^\times$ be given and let $\sum_{j=0}^\infty b_jx^j$ be its inverse.
       Then by the definition of multiplication it follows that
@@ -130,7 +165,7 @@
       Observe that if $j < k$, then $a_j = 0$ and if $j > k$, then $n - j < \ell$ implies $b_{n-j} = 0$.
       Hence
       $$0 = \sum_{j=0}^{n} a_jb_{n-j} = \sum_{j=0}^{k-1} a_jb_{n-j} + a_kb_\ell + \sum_{j=k+1}^n a_jb_{n-j} = a_kb_\ell.$$
-      Therefore, since both $a_k$ and $b_\ell$ are assumed to be non-zero elements of $R$, we have that $R$ is not an integral.
+      Therefore, since both $a_k$ and $b_\ell$ are assumed to be non-zero elements of $R$, we have that $R$ is not an integral domain.
     \end{enumerate}
   \end{proof}
 \end{thm}
@@ -299,7 +334,7 @@
       \begin{eqnarray*}
         v\left(\sum_{n=N}^\infty a_nx^n \cdot \sum_{n=M}^\infty b_nx^n\right) &=& v\left(\sum_{n=N+M}^\infty \left(\sum_{i + j = n} a_ib_j\right)x^n\right)\\
         &=& N + M\\
-        &=& v\left(\sum_{n=N}^\infty a_nx^n\right)v\left(\sum_{n=M}^\infty b_nx^n\right)
+        &=& v\left(\sum_{n=N}^\infty a_nx^n\right) + v\left(\sum_{n=M}^\infty b_nx^n\right)
       \end{eqnarray*}
       To see that $v$ is surjective, for each $N \in \Z$, construct a sequence $\sum_{n=N}^\infty a_nx^n$ with $a_N \neq 0_F$ and all other $a_n = 0_F$, so that $v(\sum_{n=N}^\infty a_nx^n) = N$.
       Finally, we have 
@@ -377,14 +412,14 @@
         Therefore $u \in \quat$ is a unit if and only if $N(u) = 1$.
         
         Let $u = a + bi + cj + dk \in \quat^\times$ be given.
-        First observe that the quaternion group, $Q_8 = \left\{\pm 1, \pm i, \pm j, \pm k \right\}$, is isomorphic to a subgroup of $\quat^\times$ under the embedding,
+        First observe that the quaternion group, $Q_8 = \left\{\pm 1, \pm i, \pm j, \pm k \right\}$, is isomorphic to a subgroup of $\quat^\times$ under the embedding
         \begin{align*}
           i \colon Q_8 &\hookrightarrow \quat^\times\\
           g &\mapsto g.
         \end{align*}
         Hence it suffices to show that $H^\times \subseteq Q_8$.
         Since $u\overline{u} = a^2 + b^2 + c^2 + d^2 = 1$, it follows that one of $a, b, c, d$ is 1 and the others are zero.
-        Taking all possible combinations, we have $\quat^\times \subseteq Q_8$.
+        Taking all such combinations, we have $\quat^\times \subseteq Q_8$.
         Therefore $\quat^\times \cong Q_8$.
     \end{enumerate}
   \end{proof}
@@ -412,7 +447,7 @@
       It follows from the choice of $m$ that $x^m = x(x^{m-1}) = 0$ with $x^{m-1} \neq 0$.
       Therefore $x$ is a zero divisor.
     \item
-      Let $r \in R$ be given and let $m \in \Z^{> 0}$ be such that $x^m = 0$.
+      Let $r \in R$ be given and let $0 < m \in \Z$ be such that $x^m = 0$.
       Since $R$ is commutative, we have 
       $$(rx)^m = r^mx^m = (r^m)0 = 0.$$
       Therefore $rx$ is nilpotent.
@@ -422,7 +457,7 @@
       $$(1 + x)(1 - x + x^2 - x^3 + \ldots + (-1)^{m-1}x^{m-1}) = 1 + x^m = 1.$$
       Therefore $1+x$ is a unit.
     \item
-      Let $u \in R^\times$ be given.
+      Let $u \in R^\times$ be given and let $x$ be a nilpotent element of $R$.
       It follows from parts (b) and (c) that $1 + u^{-1}x$ is a unit.
       Therefore $u(1 + u^{-1}x) = u + x$ is a unit by virtue of $R^\times$ being a multiplicative group.
     \end{enumerate}
