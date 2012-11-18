@@ -161,9 +161,9 @@
     \item
       Fix some point $z_0 \in \C$ and choose two sequences, $\left\{z_n = z_0 + \frac{1}{n}\right\}_{n=1}^\infty$ and $\left\{\omega_n = z_0 + i\frac{1}{n}\right\}_{n=1}^\infty$.
       Then we have for $z$ approaching $z_0$ by way of $\left\{z_n\right\}_{n=1}^\infty$ the limit
-      $$\lim_{n \rightarrow \infty} \frac{\real{z_n} - \real{z_0})}{z_n - z_0} = \lim_{n\rightarrow \infty} = \frac{\frac{1}{n}}{\frac{1}{n}} = \lim_{n \rightarrow \infty} 1 = 1.$$
-      However approaching by $\left\{\omega_n\right\}_{n=1}^\infty$ we have the limit
-      $$\lim_{n \rightarrow \infty} \frac{\real{\omega_n} - \real{z_0}}{\omega_n - z_0} = \lim_{n\rightarrow \infty} = \frac{z_0 - z_0}{i\frac{1}{n}} = \lim_{n \rightarrow \infty} (-in) \cdot 0 = 0.$$
+      $$\lim_{n \rightarrow \infty} \frac{\real{z_n} - \real{z_0}}{z_n - z_0} = \lim_{n\rightarrow \infty} = \frac{z_n - z_0}{z_n - z_0} = \lim_{n \rightarrow \infty} 1 = 1.$$
+      However approaching by $\left\{\omega_n\right\}_{n=1}^\infty$ we have $\real{\omega_n} - \real{z_0} = 0$ and thus the limit
+      $$\lim_{n \rightarrow \infty} \frac{\real{\omega_n} - \real{z_0}}{\omega_n - z_0} = \lim_{n\rightarrow \infty} 0 = 0.$$
       Therefore the limit does not exist and, since $z_0$ was arbitrary, $f(z) = \real{z}$ is nowhere differentiable.
     \item
       First observe that by writing $z = x + iy$, we have $f(z) = \abs{z} = \sqrt{x^2 + y^2}$.
