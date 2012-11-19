@@ -1,6 +1,6 @@
 \documentclass[12pt]{amsart}
 \renewcommand{\baselinestretch}{1.5}
-\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,paralist,mymath}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,paralist}
 \openup 5pt
 \author{Blake Farman\\University of South Carolina}
 \title{Math 703:\\Homework 06}
@@ -10,6 +10,41 @@
 \usepackage[margin=.75in]{geometry}
 \begin{document}
 \maketitle
+
+%Field names
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\uhp}{\mathfrak{h}}
+
+%Operator names
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\Det}{\operatorname{Det}}
+\newcommand{\Gal}{\operatorname{Gal}}
+\newcommand{\Inn}[1]{\operatorname{Inn}\left(#1\right)}
+\newcommand{\Aut}[1]{\operatorname{Aut}\left(#1\right)}
+\newcommand{\real}[1]{\operatorname{\mathfrak{Re}}\left(#1\right)}
+\newcommand{\imag}[1]{\operatorname{\mathfrak{Im}}\left(#1\right)}
+\newcommand{\Syl}[2]{\operatorname{Syl}_{#1}\left(#2\right)}
+\newcommand{\SL}[2]{\operatorname{SL}_#1\left(#2\right)}
+\newcommand{\GL}[2]{\operatorname{GL}_#1\left(#2\right)}
+\newcommand{\M}[2]{\operatorname{M}_#1\left(#2\right)}
+\newcommand{\PSL}[2]{\operatorname{PSL}_#1\left(#2\right)}
+\newcommand{\Mat}[2]{\operatorname{Mat}_{#1}\left(#2\right)}
+\providecommand{\norm}[1]{\lVert#1\rVert}
+\newcommand{\dist}[2]{\operatorname{dist}\left(#1,#2\right)}
+\newcommand{\cntr}[1]{\mathbf{Z}\left(#1\right)}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\orbit}[1]{\mathcal{O}_{#1}}
+\newcommand{\card}[1]{\operatorname{card}#1}
+\newcommand{\Log}[1]{\operatorname{Log}\left(#1\right)}
+\newcommand{\Arg}[1]{\operatorname{Arg}\left(#1\right)}
+
+\renewcommand{\qedsymbol}{\(\blacksquare\)}
+\renewcommand{\epsilon}{\varepsilon}
 
 \newtheorem{thm}{}
 \setcounter{thm}{20}
@@ -96,18 +131,23 @@
     \begin{equation}\label{3.1}
       \sin(z) = \frac{e^{-y + ix} - e^{y - ix}}{2i} = \frac{e^{-y}(\cos(x) + i\sin(x)) - e^y(\cos(x) - i\sin(x))}{2i} = 3.
     \end{equation}
-    Rearranging the right hand side of \eqref{3.1} yields
-    $$\cos(x)(e^{-y} - e^{y}) + i\sin(x)(e^{-y} + e^y) = 6i.$$
+    Rearranging \eqref{3.1} yields
+    $$i2\sin(z) = \cos(x)(e^{-y} - e^{y}) + i\sin(x)(e^{-y} + e^y) = 6i.$$
     Equating real and imaginary parts we have $\cos(x)(e^{-y} - e^{y}) = 0$ and $\sin(x)(e^{-y} + e^y)$.
-    The former has solutions $x = (2n + 1)\pi/2$, $n \in Z$, and $y = 0$.
+    The former has solutions $x = k\pi/2$, $k \equiv 1 \pmod{2}$, and $y = 0$.
     Observe that when $y = 0$, $$\sin(x)(e^{-y} + e^y) = 2\sin(x) = 6$$ has no solution in $x$.
-    Similarly, when $x = (\pm 3n + 1)\pi/2$, $n \in \N$, $-(e^{-y} + e^y) = 6$ as no solution in $y$ since $e^{-y}$ and $e^y$ are both positive.
-    Hence $x = (\pm 4n + 1)\pi/2$, $n \in \N$.
-    Then letting $Y = e^y$ we have $6 = Y^{-1} + Y$, which rearranges to $Y^2 - 6Y + 1 = 0$.
+	%$x = k\pi/2$ for
+	Similarly, when $k \equiv 3 \pmod{4}$
+	$$\sin(x)(e^{-y} + e^y ) = -(e^{-y} + e^y) = 6$$ 
+	has no solution in $y$ since $e^{-y}$ and $e^y$ are both positive.
+	%$x = k\pi/2$, 
+    Hence $k \equiv 1 \pmod{4}$.
+    
+	Letting $Y = e^y$ we have $6 = Y^{-1} + Y$, which rearranges to $Y^2 - 6Y + 1 = 0$.
     We then factor $1 = (3 + 2\sqrt{2})(3 - 2\sqrt{2})$ to obtain $$Y^2 - 6Y + 1 = (Y - (3 + 2\sqrt{2}))(Y - (3 - 2\sqrt{2})) = 0.$$
     %Solving for $Y$ we obtain $Y = 3 \pm 2\sqrt{2}$.
     Hence $y = \log(3 \pm 2 \sqrt{2})$.
-    Therefore the solutions to $\sin(z) = 3$ are $z = (\pm 4n + 1)\pi/2 + i \log(3 \pm 2\sqrt{2})$, $n \in N$.
+    Therefore the solutions to $\sin(z) = 3$ are $z = k\pi/2 + i \log(3 \pm 2\sqrt{2})$, $k \equiv 1 \pmod{4}$.
   \end{proof}
 \end{thm}
 
@@ -125,12 +165,13 @@
   \begin{proof}
     \begin{enumerate}[(a)]
     \item
-      Write $z = x + iy$ so that $$e^z = e^x(\cos(y) + i\sin(y)) = i.$$
-      Then $e^x\cos(y) = 0$ implies $y = (2n+1)\pi/2$, $n \in \Z$.
-      Hence $e^x\sin(y) = \pm e^x = 1$.
-      Since $e^x$ is positive, it follows that $\sin(y) = 1$ must hold, hence $y = (\pm 4n + 1)\pi/2$, $n \in \N$.
-      Then it follows that $e^x = 1$ and thus $x = 0$.
-      Therefore the solutions to $e^z = -i$ are $z = i(\pm 4n + 1)\pi/2$, $n \in \N$.
+      Write $z = x + iy$ so that $$e^z = e^x(\cos(y) + i\sin(y)) = -i.$$
+      Comparing coefficients, we have $e^x\cos(y) = 0$ implies $y = k\pi/2$, $k \equiv 1 \pmod{2}$.
+      Hence $$e^x\sin(y) = \pm e^x = -1.$$
+      Since $e^x$ is positive, it follows that $\sin(y) = -1$ must hold and thus $k \equiv 3 \pmod{4}$. 
+      %$y = k\pi/2$, 
+      Then it follows from $e^x = 1$ that $x = 0$.
+      Therefore the solutions to $e^z = -i$ are $z = ik\pi/2$, $k \equiv 3 \pmod{4}$.
     \item
       Writing $$\sin(z) = \frac{e^{iz} - e^{-iz}}{2i} = 0$$
       it is clear that $e^{iz} = e^{-iz}$.
