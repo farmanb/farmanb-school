@@ -67,7 +67,7 @@
     \begin{enumerate}[(a)]
       \item
         Write $1 + i$ as $\sqrt{2}e^{i\pi/4}$ and then 
-        $$(1 + i)^{20} = (\sqrt{2}e^{i\pi/4})^{20} = 2^{10}e^{5\pi/4} = -2^{10}.$$
+        $$(1 + i)^{20} = (\sqrt{2}e^{i\pi/4})^{20} = 2^{10}e^{5\pi} = -2^{10}.$$
       \item
         Multiplying the numerator and the denominator by $2 - i$ we have
         $$\frac{1 - 2i}{2 + i} = \frac{(1 - 2i)(2 - i)}{(2 + i)(2 - i)} = \frac{2 - 2 - i(1 - 4)}{5} = \frac{-5i}{5} = -i.$$
@@ -133,7 +133,7 @@
     \end{equation}
     Rearranging \eqref{3.1} yields
     $$i2\sin(z) = \cos(x)(e^{-y} - e^{y}) + i\sin(x)(e^{-y} + e^y) = 6i.$$
-    Equating real and imaginary parts we have $\cos(x)(e^{-y} - e^{y}) = 0$ and $\sin(x)(e^{-y} + e^y)$.
+    Equating real and imaginary parts we have $\cos(x)(e^{-y} - e^{y}) = 0$ and $\sin(x)(e^{-y} + e^y) = 6$.
     The former has solutions $x = k\pi/2$, $k \equiv 1 \pmod{2}$, and $y = 0$.
     Observe that when $y = 0$, $$\sin(x)(e^{-y} + e^y) = 2\sin(x) = 6$$ has no solution in $x$.
 	%$x = k\pi/2$ for
@@ -170,7 +170,7 @@
       Hence $$e^x\sin(y) = \pm e^x = -1.$$
       Since $e^x$ is positive, it follows that $\sin(y) = -1$ must hold and thus $k \equiv 3 \pmod{4}$. 
       %$y = k\pi/2$, 
-      Then it follows from $e^x = 1$ that $x = 0$.
+      It then follows that $e^x = 1$ and thus $x = 0$.
       Therefore the solutions to $e^z = -i$ are $z = ik\pi/2$, $k \equiv 3 \pmod{4}$.
     \item
       Writing $$\sin(z) = \frac{e^{iz} - e^{-iz}}{2i} = 0$$
@@ -193,7 +193,7 @@
   Prove that the following functions are nowhere differentiable.
   \begin{enumerate}[(a)]
     \item
-      $f(z) = \real{Z}$,
+      $f(z) = \real{z}$,
     \item
       $f(z) = \abs{z}$.
   \end{enumerate}
@@ -215,7 +215,7 @@
         \frac{\partial u}{\partial x} = \frac{x}{\sqrt{x^2 + y^2}} = 0& = \frac{\partial v}{\partial y} &&\text{and}\ & \frac{\partial u}{\partial y} = \frac{y}{\sqrt{x^2 + y^2}} = 0 &= -\frac{\partial v}{\partial x}.
       \end{align*}
       are not satisifed.
-      Hence $f$ is not differentiable at $z \neq 0$ by the contrapositive of Theorem 3.3.
+      Hence $f$ is not differentiable, except possibly at $z = 0$, by the contrapositive of Theorem 3.3.
       
       Fix $z = 0$ and consider the two sequences $\left\{z_n = \frac{1}{n} \right\}_{n=1}^\infty$ and $\left\{ \omega_n = \frac{-1}{n} \right\}_{n=1}^\infty$.
       Approaching zero by way of $\left\{z_n\right\}_{n=1}^\infty$ we have the limit
