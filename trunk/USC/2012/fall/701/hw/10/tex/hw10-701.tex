@@ -1,0 +1,353 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath,tikz-cd}
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 701:\\Homework 10}
+\date{December 3, 2012}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+\maketitle
+
+\providecommand{\p}{\mathfrak{p}}
+\providecommand{\m}{\mathfrak{m}}
+
+\newtheorem{thm}{}
+\newtheorem{lem}{Lemma}
+
+\begin{thm}
+  When $p$ is prime, we let $\F_p := \Z/p\Z$; this is a field.
+  Let $x^2 + x + 1$ be an element of $E = \F_2[x]$.
+  We let $\pi \colon E \rightarrow E/(x^2 + x + 1)$ be the reduction ring homomorphism.
+  For $f(x) \in E$, we write $\overline{f(x)} := \pi(f(x))$; for the image of $E$, we write $\overline{E}$.
+  \begin{enumerate}[(a)]
+  \item
+    Prove that $\overline{E}$ has four elements.
+  \item
+    Write out the addition table for $\overline{E}$ to conclude that $\overline{E} \cong \Z/2\Z \times \Z/2\Z$.
+  \item
+    Write out the multiplication table for $\overline{E}$ to conclude that $\overline{E}^{\times} \cong \Z/3\Z$.
+    Deduce that $\overline{E}$ is a field, and that $(x^2 + x + 1) \lhd E$ is maximal.
+  \end{enumerate}
+  \begin{proof}
+    \begin{enumerate}[(a)]
+    \item
+      First observe that since we are working over $\F_2$, $$\pi(x^2) = -\pi(x + 1) = \pi(-(x + 1)) = \pi(x + 1)$$ follows from $\pi(x^2 + x + 1) = \pi(x^2) + \pi(x + 1) = \overline{0}$, and so every element $p$ of $E$ projects onto a polynomial of degree strictly less than 2.
+      Then we note that there are only four such polynomials: $\overline{0}$, $\overline{1}$, $\overline{x}$, and $\overline{x + 1}$.
+      \item
+        The group tables for $\overline{E}$ and the Klein 4-group, $V_4 = \left\{1,a,b,c\right\} \cong \Z/2\Z \times \Z/2\Z$, which exhibit the evident isomprhism are given below.\\
+      \begin{center}
+        \begin{tabular}{|c||c|c|c|}
+        \hline
+        & $\overline{1}$ & $\overline{x}$ & $\overline{x + 1}$\\
+        \hline
+        \hline
+        $\overline{1}$ & $\overline{0}$ & $\overline{x+1}$ & $\overline{x}$\\
+        \hline
+        $\overline{x}$ & $\overline{x+1}$ & $\overline{0}$ & $\overline{1}$\\
+        \hline
+        $\overline{x + 1}$ & $\overline{x}$ & $\overline{1}$ & $\overline{0}$\\
+        \hline
+      \end{tabular}
+      \quad
+      \begin{tabular}{|l||c|c|c|}
+        \hline
+        & a & b & c\\
+        \hline
+        \hline
+        a & 1 & c & b\\
+        \hline
+        b & c & 1 & a\\
+        \hline
+        c & b & a & 1\\
+        \hline
+      \end{tabular}
+      \end{center}
+    \item
+      Using the relation $\pi(x^2) = \pi(x+1)$ to reduce products of degree at least 2, we obtain the following multiplication table.\\
+      \begin{center}
+        \begin{tabular}{|c||c|c|c|}
+        \hline
+        & $\overline{1}$ & $\overline{x}$ & $\overline{x + 1}$\\
+        \hline
+        \hline
+        $\overline{1}$ & $\overline{1}$ & $\overline{x}$ & $\overline{x+1}$\\
+        \hline
+        $\overline{x}$ & $\overline{x}$ & $\overline{x + 1}$ & $\overline{1}$\\
+        \hline
+        $\overline{x + 1}$ & $\overline{x + 1}$ & $\overline{1}$ & $\overline{x}$\\
+        \hline
+      \end{tabular}
+      \end{center}
+      Then from the table it is clear that $\overline{E}^\times = \overline{E}\setminus\left\{0\right\}$ implies $\overline{E}$ is a field.
+      Moreover, the group of units is isomorphic to $\Z/3\Z$, with $\overline{1}$ the identity, and two elements of order three, $\overline{x}$ and $\overline{x+1}$.
+      Since the quotient of a ring by an ideal is a field if and only if the ideal is maximal, $(x^2 + x + 1)$ is maximal in $E$. 
+    \end{enumerate}
+  \end{proof}
+\end{thm}
+
+\begin{lem}\label{homid}
+  Let $\phi \colon R \rightarrow S$ be a homomorphism of rings.
+  \begin{enumerate}[(a)]
+    \item
+      If $J$ is an ideal of $S$, then $\phi^{-1}(J)$ is an ideal of $R$.
+    \item
+      If $\phi$ is surjective and $I$ is an ideal of $R$, then $\phi(I)$ is an ideal of $S$.
+  \end{enumerate}
+  \begin{proof}
+    \begin{enumerate}[(a)]
+    \item
+      Let $r \in \phi^{-1}(J)$ and let $\gamma \in R$ be given.
+      Then $\phi(\gamma r) = \phi(\gamma)\phi(r) \in J$ follows from the fact that $J$ is an ideal.
+      Hence $\gamma r \in \phi^{-1}(J)$.
+      Similarly, $r \gamma \in \phi^{-1}(J)$.
+      For any other element $r^\prime$ of $\phi^{-1}(J)$, we have $\phi(r + r^\prime) = \phi(r) + \phi(r^\prime) \in J$ since $J$ is an ideal.
+      Hence $r + r^\prime \in \phi^{-1}(J)$.
+      Therefore $\phi^{-1}(J)$ is an ideal of $R$.
+    \item
+      First observe that since $I$ is an ideal and $\phi$ is a homomorphism, for any $r, r^\prime \in I$ we have that $$\phi(r + r^\prime) = \phi(r) + \phi(r^\prime) \in \phi(I)$$ implies $\phi(I)$ is closed under addition.
+      Let $s \in S$ be given.
+      Since $\phi$ is surjective, there exists an element $\gamma \in R$ such that $\phi(\gamma) = s$.
+      Then since $\phi$ is a homomorphism and $I$ is an ideal for any $r \in I$, $\phi(r)s = \phi(r)\phi(\gamma) = \phi(r\gamma) \in \phi(I)$.
+      Similarly, $ s\phi(r) = \phi(\gamma)\phi(r) = \phi(\gamma r) \in \phi(I)$.
+      Hence $\phi(I)$ is closed under multiplication by all of $S$.
+      Therefore $\phi(I)$ is an ideal of $S$.
+    \end{enumerate}
+  \end{proof}
+\end{lem}
+
+\begin{thm}
+  Let $\phi \colon R \rightarrow S$ be a homomorphism of commutative rings.
+  \begin{enumerate}[(a)]
+  \item
+    Suppose that $\p \lhd S$ is prime.
+    Prove that either $\phi^{-1}(\p) = R$ or $\phi^{-1}(\p) \lhd R$ is prime.
+  \item
+    Suppose that $\m \lhd S$ is maximal and that $\phi$ is surjective.
+    Prove that $\phi^{-1}(\m) \lhd R$ is maximal.
+    Give an example to show that this need not be the case if $\phi$ fails to be surjective.
+  \end{enumerate}
+  \begin{proof}
+    \begin{enumerate}[(a)]
+    \item
+      By part (a) of Lemma~\ref{homid}, we have that $\phi^{-1}(\p)$ is an ideal of $R$.
+      Let $r_1, r_2 \in R$ be such that $r_1r_2 \in \phi^{-1}(\p)$.
+      Since $\p$ is prime, $\phi(r_1r_2) = \phi(r_1)\phi(r_2) \in \p$ implies one of $\phi(r_1), \phi(r_2) \in \p$.
+      Hence one of $r_1, r_2 \in \phi^{-1}(\p)$ and, if $\phi^{-1}(\p) \neq R$, it follows from the definition that $\phi^{-1}(\p)$ is prime.
+      Therefore either $\phi^{-1}(\p) = R$ or $\phi^{-1}(\p)$ is a prime ideal of $R$.
+    \item
+      Let $\m$ be a maximal ideal of $S$.
+      Observe that by the First Isomorphism Theorem we have, since $\phi$ is surjective, $R/\ker \phi \cong S$.
+      By the universal property for quotients, the map 
+      \begin{align*}
+        \overline{\phi} \colon R/\ker\phi &\rightarrow S\\
+        r + \ker\phi & \mapsto \phi(r)
+      \end{align*}
+      is the isomorphism for which the diagram 
+      \begin{equation}\label{diagram}
+        \begin{tikzcd}
+          R \arrow{r}{\pi} \arrow{rd}{\phi} &R/\ker\phi \arrow{d}{\overline{\phi}}\\
+          &S
+        \end{tikzcd}
+      \end{equation}
+      commutes.
+      It now follows from the Lattice Isomorphism that, since $\ker\overline{\phi}$ is trivial, the ideals of $R/\ker\phi$ are in bijection with the ideals of $S$ and thus for some ideal $I$ of $R$ containing $\ker\phi$, the ideal $I/\ker\phi$ of $R/\ker\phi$ corresponds to $\m$.
+      Moreover, because these correspondences preserves inclusions, the ideals $I/\ker\phi$ and $I$ are maximal.
+
+      Consider the ideal $\phi^{-1}(\m)$ of $R$.  
+      By the argument above, this ideal corresponds to $\phi^{-1}(\m) / \ker \phi$ and $\phi^{-1}(\m) / \ker \phi$ corresponds to $\overline{\phi}(\phi^{-1}(\m)/\ker \phi)$.
+      Then, by virtue of \eqref{diagram} commuting and $\phi$ being surjective, we have 
+      $$\overline{\phi}(\phi^{-1}(\m)/\ker \phi) = (\overline{\phi} \circ \pi)(\phi^{-1}(\m)) = \phi(\phi^{-1}(\m)) = \m.$$
+      Therefore $\phi^{-1}(\m)$ is maximal, as desired.
+
+      To see that this does not hold in general, take the trivial homomorphism from any non-trivial ring, say $R = \Z$, to any field, say $F = \Z/2\Z$,
+      \begin{align*}
+        \varphi \colon R &\rightarrow F\\
+        r &\mapsto 0_F.
+      \end{align*}
+      Since $F$ is a field, $(0_F)$ is the unique maximal ideal of $F$.  However, the preimage of $(0)$ under $\varphi$ is $R$, which is not a maximal ideal.
+    \end{enumerate}
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  The {\bf characteristic} of a ring $R$ is the smallest positive integer $n$ such that $1 + 1 + \ldots + 1 = 0$ ($n$ times) in $R$; 
+  if no such integer exists, the characteristic of $R$ is zero.
+  For example, for all positive integers $n$, the ring $\Z/n\Z$ has characteristic $n$, while $\Z$ has characteristic 0.
+  \begin{enumerate}[(a)]
+  \item
+    Prove that the map $\Z \rightarrow R$ defined by 
+    $$
+    k \mapsto \left\{ 
+    \begin{array}{ll}
+      1 + 1 + \ldots 1 + 1\ (k\ \text{times}) & \text{if}\ k > 0,\\
+      0 & \text{if}\ k = 0,\\
+      -1 - 1 - \ldots - 1 (-k\ \text{times}) & \text{if}\ k < 0
+    \end{array}
+    \right.
+    $$
+    is a ring homomorphism with kernel $n\Z$, where $n$ is the characteristic of $R$.
+  \item
+    Suppose that $p$ is prime, and that $R$ is a commutative ring of characteristic $p$.
+    Prove, for all $a, b \in R$, that $(a + b)^p = a^p + b^p$.
+    (You may assume that the binomial theorem holds in any commutative ring $R$: for all $a,b \in R$, and for all $n \geq 0$ in $\Z$, we have
+    $$(a + b)^n = \sum_{k=0}^n{n \choose k}a^kb^{n-k},$$
+    where we interpret ${n \choose k}$ to mean the sum $1 + \ldots + 1$ of $1_R$ taken ${n \choose k}$ times in $R$.)
+  \item
+    Suppose that $R$ is an integral domain.
+    Prove that $R$ has characteristic zero or that there exists a prime $p$ such that $R$ has characteristic $p$.
+  \end{enumerate}
+  \begin{proof}
+    \begin{enumerate}[(a)]
+      \item
+        Let $k_1, k_2 \in \Z$ be given and let $\varphi$ be the map defined above.
+        If $k_1 + k_2 = k_3$, then by associativity in $\Z$ and cancellation in the additive group $(R, +)$ we can write
+        $$\varphi(k_1 + k_2) = \pm(\underbrace{1 + \ldots + 1}_{\abs{k_3}}) = \pm(\underbrace{1 + \ldots + 1}_{\abs{k_1}}) \pm(\underbrace{1 + \ldots + 1}_{\abs{k_2}}) = \varphi(k_1) + \varphi(k_2).$$
+        Then using distribution in $R$ we can write
+        $$\varphi(k_1k_2) = \pm(\underbrace{1 + \ldots + 1}_{k_1k_2}) = \pm(\overbrace{(\underbrace{1 + \ldots + 1}_{k_1}) + \ldots + (\underbrace{1 + \ldots + 1}_{k_1})}^{k_2}) = \pm(\underbrace{\varphi(k_1) + \ldots +\varphi(k_1)}_{k_2}) = \phi(k_1)\varphi(k_2),$$
+        with the appropriate association of signs.
+        Hence $\varphi$ is a homomorphism.
+        
+        Consider some element $k \in n\Z$.  
+        Write $k = mn$ for some $m \in \Z$ and then
+        $$\varphi(k) = \overbrace{(\underbrace{1 + \ldots + 1}_n + \ldots + (\underbrace{1 + \ldots + 1}_n))}^m = \underbrace{0 + \ldots 0}_m = 0$$
+        Similarly, for $k \equiv a \neq 0 \pmod{n}$, we have $k = mn + a$ for some $m \in \Z$ and thus
+        $$\varphi(k) = \overbrace{(\underbrace{1 + \ldots + 1}_n + \ldots + (\underbrace{1 + \ldots + 1}_n))}^m +\underbrace{1 + \ldots + 1}_a = \underbrace{0 + \ldots + 0}_m + \underbrace{1 + \ldots + 1}_a = \underbrace{1 + \ldots + 1}_a \neq 0.$$
+        Hence $\ker\varphi = n\Z$.
+      \item
+        It suffices to show that ${p \choose k} \equiv 0 \pmod{p}$ holds for all $0 < k < p$.
+        Observe that the binomial coefficients can be obtained from Pascal's triangle recursively as the sum of two integers, and thus will always be integers.
+        Hence
+        $${p \choose k} = \frac{p(p-1)!}{k!}$$
+        is an integer.
+        Moreover, for $2 \leq i \leq k < p$, $\gcd(i,p) = 1$ implies ${p \choose k} = p\ell$ for some $\ell \in \Z$, as desired.
+      \item
+        Since $R$ is an integral domain, the ideal $(0)$ is prime in $R$.
+        Hence it follows from exercise 2 that $\varphi^{-1}((0))$ is either prime in $\Z$ or all of $\Z$.
+        Since $R$ is assumed to have a unit, $\varphi(1) = 1 \neq 0$ implies that $\varphi^{-1}((0))$ is not all of $\Z$.
+        Therefore $\ker\phi$ is either $(0)$ or $p\Z$ for some prime $p$ of $\Z$.
+    \end{enumerate}
+  \end{proof}
+\end{thm}  
+
+\begin{thm}
+  Let $R$ be a commutative ring.
+  \begin{enumerate}[(a)]
+  \item
+    We denote by $\nilrad{R}$ the set of nilpotent elements in $R$; this is called the {\bf nilradical} of $R$.
+    Prove that the nilradical is an ideal.
+    (To show closure under addition, use the binomial theorem).
+  \item
+    Prove that $0$ is the only nilpotent element of $R/\nilrad{R}$.
+  \item
+    Let $\p \lhd R$ be prime.
+    Prove that $\p$ contains every nilpotent element in $R$.
+    Conclude that $\nilrad{R}$ lies in the intersection of all prime ideals of $R$.
+  \item
+    Let $I \lhd R$.
+    Define the {\bf radical} of $I$ to be 
+    $$\rad{I} = \left\{x \in R \;\middle\vert\; x^n \in I\ \text{for some}\ n > 0\ \text{in}\ \Z\right\}$$
+    Prove that $\rad{I}$ is an ideal and that $I \subseteq \rad{I}.$
+  \item
+    Prove that $\nilrad{R/I} = \rad{I}/I$.
+  \end{enumerate}
+  \begin{proof}
+    \begin{enumerate}[(a)]
+    \item
+      Let $x_1, x_2 \in \nilrad{R}$ be given.
+      Let $\alpha_1, \alpha_2 \in \Z$ be the smallest integers such that $x_1^{\alpha_1} = x_2^{\alpha_2} = 0$.
+      By possibly renaming, we may assume $\alpha_1 \leq \alpha_2$.
+      Take $\alpha = \alpha_1 + \alpha_2$ so that 
+      $$(x_1 + x_2)^\alpha = \sum_{k=0}^\alpha {\alpha \choose k} x_1^{\alpha-k}x_2^k = \sum_{k=0}^{\alpha_2} {\alpha \choose k} x_1^{\alpha - k}x_2^k + \sum_{k=\alpha_2}^\alpha {\alpha \choose k} x_1^{\alpha - k}x_2^k$$
+      When $k \leq \alpha_2$ we have $\alpha_1 \leq \alpha_1 + \alpha_2 - k$ and thus for some $i \in \Z$, $x_1^{\alpha-k} = x_1^{\alpha_1 + i} = x_1{^\alpha_1}x_1^i = 0$.
+      When $k \geq \alpha_2$ we have for some $j \in \Z$, $x_2^k = x_2^{\alpha_2 + j} = x_2^{\alpha_2}x_2^j = 0.$
+      Hence $(x_1 + x_2)^\alpha = 0$ shows that $\nilrad{R}$ is closed under addition.
+      Closure under multiplication follows from part b of exercise 6 on Homework 9.
+    \item
+      Let $\pi \colon R \rightarrow R/\nilrad{R}$ be the canonincal projection homomorphism.
+      Suppose for some element $0 \neq \overline{n}$ of $R/\nilrad{R}$ that $\overline{n}^\alpha = 0$ for some $\alpha \in \Z$.
+      Then since $\pi$ is a surjective homomorphism, for every $n \in \pi^{-1}(\overline{n})$, we have $0 = \pi(n)^\alpha = \pi(n^\alpha)$.
+      Then since $n^\alpha \in \nilrad{R}$, there exists some $\beta \in \Z$ such that $(n^\alpha)^\beta = n^{\alpha\beta} = 0$.
+      Hence $n \in \nilrad{R}$.
+      Therefore $\overline{0}$ is the only nilpotent element in the quotient.
+    \item
+      Observe that $0 \in \p$.
+      Take $x \in R$ nilpotent with $\alpha \in \Z$ the smallest integer such that $x^\alpha = 0$.
+      Then since $\p$ is prime,
+      $$x(x^{\alpha - 1}) = x^\alpha = 0 \in \p,$$
+      implies $x \in \p$.
+      Since $\p$ and $x$ were arbitrary, $\nilrad{R}$ lies in the inersection of all the prime ideals of $R$.
+    \item
+      Let $x_1, x_2 \in \rad{I}$, with $x_1^{m_1}, x_2^{m_2} \in I$ and $m_1 \leq m_2$.
+      Then consider for $m = m_1 + m_2$
+      $$(x_1 - x_2)^m = \sum_{k=0}^m(-1)^k{m \choose k} x_1^{m-k}x_2^k = \sum_{k=0}^{m_2}(-1)^k{m \choose k} x_1^{m-k}x_2^k + \sum_{k=m_2}^m(-1)^k{m \choose k} x_1^{m-k}x_2^k.$$
+      When $k \leq m_2$, $m_1 \leq m_1 + m_2 - k$ and hence for some $i \in \Z$, $x_1^{m-k} = x_1^{m_1 + i} = x_1^{m_1}x_1^i \in I$.
+      Similarly, when $k \geq m_2$, $x_2^k \in I$.
+      Hence it follows from the fact that $I$ is an ideal that $(x_1 - x_2)^m \in I$ and thus $x_1 - x_2 \in \rad{I}$.
+      
+      For any $r \in R$, and $x \in \rad{I}$ with $x^m \in I$, we have $(rx)^m = r^mx^m \in I$.
+      Hence $\rad{I}$ is closed uner multiplication from $R$.
+      Therefore $\rad{I}$ is an ideal.
+      
+      For $i \in I$, observe that $i^{1} \in I$ implies $i \in \rad{I}$.
+      Therefore $I \subseteq \rad{I}$.
+    \item
+      By definition, $n \in \nilrad{R/I}$ implies $n^\alpha \in I$.
+      Hence $\nilrad{R/I} \subseteq \rad{I}/I$.
+      Similarly, if $n \in \rad{I}/I$, then $n^\alpha = 0$ implies $\rad{I}/I \subseteq \nilrad{R/I}$.
+    \end{enumerate}
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Let $R$ and $S$ be rings.
+  \begin{enumerate}[(a)]
+  \item
+    Prove that every ideal of $R \times S$ is of the form $I \times J$, where $I \lhd R$ and $J \lhd S$.
+  \item
+    Prove that if $R$ and $S$ are non-zero, then $R \times S$ is never a field.
+  \end{enumerate}
+  \begin{proof}
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Let $F$ be a field.
+  \begin{enumerate}[(a)]
+  \item
+    Suppose that $F$ has characteristic zero.
+    Show that $F$ contains a unique smallest subfield isomorphic to $\Q$.
+  \item
+    Suppose that $F$ has prime characteristic $p$.
+    Show that $F$ contains a unique smallest subfield ismorphic to $\Z/p\Z$.
+  \end{enumerate}
+  \begin{proof}
+    \begin{enumerate}[(a)]
+    \item
+      Use $\varphi \colon \Z \rightarrow F$ as in exercise 3.
+      Since $F$ has characteristic zero, $\ker\phi$ is trivial and thus localizing at $(0)$ induces by the Universal Mapping Theorem the following commutative diagram\\
+      \begin{center}
+        \begin{tikzcd}
+          \Z \arrow{r}{\phi_0} \arrow[hook]{rd}{\varphi} &\Q \arrow[hook]{d}{\overline{\varphi}}\\
+          &F.
+        \end{tikzcd}      
+      \end{center}
+      Note that $\overline{\varphi}$ is necessarily an injection since the field $\Q$ has no proper, non-trivial ideals.
+      Uniqueness of $\overline{\phi}_0$ follows from the universal property.
+    \item
+      Take $\varphi \colon \Z \rightarrow F$ as in exercise 3 and let $\pi \colon Z \rightarrow \Z/p\Z$ be the canonical projection (ring) homomorphism.
+      By the universal property for quotients, we have the following commutative diagram\\
+      \begin{center}
+        \begin{tikzcd}
+          \Z \arrow[two heads]{r}{\pi} \arrow{rd}{\varphi} &\Z/p\Z \arrow[hook]{d}{\overline{\varphi}}\\
+          &F.
+        \end{tikzcd}
+      \end{center}
+      Again, note that $\overline{\varphi}$ is necessarily an injection since the field $\Z/p\Z$ has no proper, non-trivial ideals.
+      Uniqueness follows from the universal property.
+    \end{enumerate}
+  \end{proof}
+\end{thm}
+\end{document}
