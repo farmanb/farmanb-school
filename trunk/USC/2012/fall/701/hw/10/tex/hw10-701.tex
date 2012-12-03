@@ -310,6 +310,31 @@
     Prove that if $R$ and $S$ are non-zero, then $R \times S$ is never a field.
   \end{enumerate}
   \begin{proof}
+    \begin{enumerate}[(a)]
+    \item
+      Let $I, J$ be ideals of $R$ and $S$, respectively.
+      Then for any element $(i,j) \in I \times J$, and any $(r,s) \in R \times S$,
+      $$(r,s)(i,j) = (ri,sj) \in I \times J\ \text{and}\ (i,j)(r,s) = (ir,js) \in I \times J.$$
+      Similarly, for an $(i_1,j_2), (i_2,j_2) \in I \times J$,
+      $$(i_1,j_1) - (i_2,j_2) = (i_1 - i_2, j_1 - j_2) \in I \times J.$$
+      Hence $I \times J$ is an ideal of $R \times S$.
+      
+      Similarly, if $L$ is an ideal of $R \times S$, then consider the projection of $L$ onto its coordinates, $\pi_1(r, s) = (r,0_S)$ and $\pi_2(r, s) = (0_R,s)$ for any $(r, s) \in L$.
+      Since $L$ is an ideal, for any elements $(r_1, s_1)$, $(r_2,s_2)$ of $L$ and any element $(r,s)$ of $R \times S$
+      $$\pi_1((r_1,s_1) - (r_2,s_2)) = \pi_1(r_1,s_1) - \pi_1(r_2,s_2) \in \pi_1(L)$$
+      and
+      $$\pi_2((r_1,s_1) - (r_2,s_2)) = \pi_2(r_1,s_1) - \pi_2(r_2,s_2) \in \pi_1(L)$$
+      hold since $L$ is an ideal.
+      Similarly, 
+      $$\pi_1((r,s)(r_1,s_1)) = \pi_1(r,s)\pi_1(r_1,s_1) \in \pi_1(L)$$
+      and
+      $$\pi_2((r,s)(r_1,s_1)) = \pi_2(r,s)\pi_2(r_1,s_1) \in \pi_2(L).$$
+      Hence $L = \pi_1(L) \times \pi_2(L)$, where $\pi_1(L)$ is an ideal of $R$ and $\pi_2(L)$ is an ideal of $S$.
+    \item
+      Take the ideals $R \times 0$ and $0 \times S$.
+      At least one of these is not the zero ideal.
+      Therefore $R \times S$ has a non-trivial ideal and is thus not a field.
+    \end{enumerate}
   \end{proof}
 \end{thm}
 
