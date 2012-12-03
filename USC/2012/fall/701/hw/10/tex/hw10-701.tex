@@ -273,11 +273,18 @@
       Hence $n \in \nilrad{R}$.
       Therefore $\overline{0}$ is the only nilpotent element in the quotient.
     \item
+      Let $\p$ be a prime ideal of $R$.
       Observe that $0 \in \p$.
       Take $x \in R$ nilpotent with $\alpha \in \Z$ the smallest integer such that $x^\alpha = 0$.
       Then since $\p$ is prime,
       $$x(x^{\alpha - 1}) = x^\alpha = 0 \in \p,$$
-      implies $x \in \p$.
+      implies one of $x, x^{\alpha - 1} \in \p$.
+      
+      Suppose to the contrary that $x \not \in \p$.
+      Then we have $x^{\alpha -1} = xx^{\alpha-2} \in \p$, from which it follows that $x^{\alpha-2} \in \p$.
+      Descending in this way, we arrive at $x^{\alpha - (\alpha -2)} = xx^{\alpha - (\alpha - 1)} = xx \in \p$.
+      However, $x$ was supposed to not be an element of $\p$, a contradiction.
+      Therefore $x \in \p$.
       Since $\p$ and $x$ were arbitrary, $\nilrad{R}$ lies in the inersection of all the prime ideals of $R$.
     \item
       Let $x_1, x_2 \in \rad{I}$, with $x_1^{m_1}, x_2^{m_2} \in I$ and $m_1 \leq m_2$.
@@ -291,12 +298,14 @@
       Hence $\rad{I}$ is closed uner multiplication from $R$.
       Therefore $\rad{I}$ is an ideal.
       
-      For $i \in I$, observe that $i^{1} \in I$ implies $i \in \rad{I}$.
-      Therefore $I \subseteq \rad{I}$.
+      To see that $I \subseteq \rad{I}$, observe that for $i \in I$, $i^{1} \in I$ implies $i \in \rad{I}$.
     \item
-      By definition, $n \in \nilrad{R/I}$ implies $n^\alpha \in I$.
+      By definition, if $n + I \in \nilrad{R/I}$, then for some $\alpha \in \Z$, $(n + I)^\alpha = n^\alpha + I = I$ and so it follows that $n^\alpha \in I$.
+      Then by definition of $\rad{I}$, we have $n \in \rad{I}$ and so it follows that $n + I \in \rad{I}/I$.
       Hence $\nilrad{R/I} \subseteq \rad{I}/I$.
-      Similarly, if $n \in \rad{I}/I$, then $n^\alpha = 0$ implies $\rad{I}/I \subseteq \nilrad{R/I}$.
+      Similarly, if $n + I\in \rad{I}/I$, then there exists some $\alpha$ such that $n^\alpha \in I$.
+      Hence $(n+I)^\alpha = n^\alpha + I = I$ implies $n + I \in \nilrad{R/I}$.
+      Therefore $\rad{I}/I \subseteq \nilrad{R/I}$.
     \end{enumerate}
   \end{proof}
 \end{thm}
@@ -319,16 +328,16 @@
       $$(i_1,j_1) - (i_2,j_2) = (i_1 - i_2, j_1 - j_2) \in I \times J.$$
       Hence $I \times J$ is an ideal of $R \times S$.
       
-      Similarly, if $L$ is an ideal of $R \times S$, then consider the projection of $L$ onto its coordinates, $\pi_1(r, s) = (r,0_S)$ and $\pi_2(r, s) = (0_R,s)$ for any $(r, s) \in L$.
+      Conversely, if $L$ is an ideal of $R \times S$, then consider the projection of $L$ onto its coordinates by the usual projection homomorphisms $\pi_1 \colon R \times S \rightarrow R$ and $\pi_2 \colon R \times S \rightarrow S$.
       Since $L$ is an ideal, for any elements $(r_1, s_1)$, $(r_2,s_2)$ of $L$ and any element $(r,s)$ of $R \times S$
-      $$\pi_1((r_1,s_1) - (r_2,s_2)) = \pi_1(r_1,s_1) - \pi_1(r_2,s_2) \in \pi_1(L)$$
+      $$\pi_1(r_1,s_1) - \pi_1(r_2,s_2) = \pi_1((r_1,s_1) - (r_2,s_2)) \in \pi_1(L)$$
       and
-      $$\pi_2((r_1,s_1) - (r_2,s_2)) = \pi_2(r_1,s_1) - \pi_2(r_2,s_2) \in \pi_1(L)$$
+      $$\\pi_2(r_1,s_1) - \pi_2(r_2,s_2) = \pi_2((r_1,s_1) - (r_2,s_2)) \in \pi_1(L)$$
       hold since $L$ is an ideal.
       Similarly, 
-      $$\pi_1((r,s)(r_1,s_1)) = \pi_1(r,s)\pi_1(r_1,s_1) \in \pi_1(L)$$
+      $$\pi_1(r,s)\pi_1(r_1,s_1) = \pi_1((r,s)(r_1,s_1)) \in \pi_1(L)$$
       and
-      $$\pi_2((r,s)(r_1,s_1)) = \pi_2(r,s)\pi_2(r_1,s_1) \in \pi_2(L).$$
+      $$\pi_2(r,s)\pi_2(r_1,s_1) = \pi_2((r,s)(r_1,s_1)) \in \pi_2(L).$$
       Hence $L = \pi_1(L) \times \pi_2(L)$, where $\pi_1(L)$ is an ideal of $R$ and $\pi_2(L)$ is an ideal of $S$.
     \item
       Take the ideals $R \times 0$ and $0 \times S$.
