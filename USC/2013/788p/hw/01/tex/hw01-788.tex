@@ -1,0 +1,43 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath,tikz-cd}
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 788p:\\Homework 01}
+\date{January 25, 2013}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+\maketitle
+
+\providecommand{\p}{\mathfrak{p}}
+\providecommand{\m}{\mathfrak{m}}
+
+\newtheorem{thm}{}
+\newtheorem{lem}{Lemma}
+
+\begin{thm}
+  Prove that for any prime $p$ other than 2, and any $x \in \Z/p\Z$, the equation $x = a^2 + b^2$ can be solved in $\Z/p\Z$.
+  \begin{proof}
+    Let $p$ be an odd prime.
+    Since the multiplicative group of units, $\left(\Z/p\Z\right)^\times = \Z/p\Z \setminus \left\{0\right\}$, is cyclic of order $p-1$ there exists some element $g$ such that $\left(\Z/p\Z\right)^\times = \left<g\right>.$
+    Define a subset of distinct squares $$S = \left\{(g^\alpha)^2 \;\middle\vert\; 1 \leq \alpha \leq (p-1)/2 \right\} \cup \left\{0\right\} \subseteq \Z/p\Z.$$
+    Note that by construction this set has $(p-1)/2 + 1 = (p + 1)/2$ elements.
+    %Consider $G = \Z/p\Z$ as an additive group and 
+    %Define the set of additive inverses of $S$, 
+    %$$S^{-1} = \left\{-g^{2\alpha} \;\middle\vert\; 1 \leq \alpha \leq (p-1)/2\right\} \cup \left\{0\right\}.$$
+    
+    Let $x \in \Z/p\Z$ be given.
+    It suffices to show that there exist elements $s$ and $s^\prime$ of $S$ such that $x = s + s^\prime$.
+    Consider the set
+    $$x - S = \left\{x - s \;\middle\vert\; s \in S\right\} \subseteq \Z/p\Z.$$
+    For any two elements $s, s^\prime \in S$, by left (additive) cancellation and the uniqueness of additive inverses, $x - s = x - s^\prime$ if and only if $s = s^\prime$.
+    Hence the set map $S \rightarrow x - S$ given by $s \mapsto x - s$ is a bijection.
+    %Thus $\abs{S} = \abs{h - S} = (p + 1) / 2$.
+    It now follows that these two sets must have a non-empty intersection; for otherwise we would have $(p + 1) / 2$ distinct elements of $\Z/p\Z$ in each set, and hence $p + 1$ distinct elements in a field of order $p$.
+    Now observe that for any element $h$ of $S \cap x - S$ we may write $$h = s = x - s^\prime,$$ for some $s,s^\prime \in S$. 
+    Therefore $x = s + s^\prime$, as desired.
+  \end{proof}
+\end{thm}
+\end{document}
