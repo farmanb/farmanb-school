@@ -1,5 +1,5 @@
 \documentclass[10pt]{amsart}
-\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath,tikz-cd}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate}
 \openup 5pt
 \author{Blake Farman\\University of South Carolina}
 \title{Math 788p:\\Homework 01}
@@ -7,6 +7,41 @@
 \pdfpagewidth 8.5in
 \pdfpageheight 11in
 \usepackage[margin=1in]{geometry}
+
+%Field names
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\uhp}{\mathfrak{h}}
+
+%Operator names
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\Det}{\operatorname{Det}}
+\newcommand{\Gal}{\operatorname{Gal}}
+\newcommand{\Inn}[1]{\operatorname{Inn}\left(#1\right)}
+\newcommand{\Aut}[1]{\operatorname{Aut}\left(#1\right)}
+\newcommand{\real}[1]{\operatorname{\mathfrak{Re}}\left(#1\right)}
+\newcommand{\imag}[1]{\operatorname{\mathfrak{Im}}\left(#1\right)}
+\newcommand{\Syl}[2]{\operatorname{Syl}_{#1}\left(#2\right)}
+\newcommand{\SL}[2]{\operatorname{SL}_#1\left(#2\right)}
+\newcommand{\GL}[2]{\operatorname{GL}_#1\left(#2\right)}
+\newcommand{\M}[2]{\operatorname{M}_#1\left(#2\right)}
+\newcommand{\PSL}[2]{\operatorname{PSL}_#1\left(#2\right)}
+\newcommand{\Mat}[2]{\operatorname{Mat}_{#1}\left(#2\right)}
+\providecommand{\norm}[1]{\lVert#1\rVert}
+\newcommand{\dist}[2]{\operatorname{dist}\left(#1,#2\right)}
+\newcommand{\cntr}[1]{\mathbf{Z}\left(#1\right)}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\orbit}[1]{\mathcal{O}_{#1}}
+\newcommand{\card}[1]{\operatorname{card}#1}
+\newcommand{\Log}[1]{\operatorname{Log}\left(#1\right)}
+\newcommand{\Arg}[1]{\operatorname{Arg}\left(#1\right)}
+
+\renewcommand{\qedsymbol}{\(\blacksquare\)}
+\renewcommand{\epsilon}{\varepsilon}
 
 \begin{document}
 \maketitle
@@ -40,4 +75,44 @@
     Therefore $x = s + s^\prime$, as desired.
   \end{proof}
 \end{thm}
+
+\begin{lem}\footnote{This might all be overkill, but I wasn't quite sure what was quotable.}\label{wilson}
+For any rational prime, $p$, $(p-1)! \equiv -1 \pmod{p}$.
+\begin{proof}
+Consider the difference of the elements $g(x) = \prod_{a \in \F_p}(x - a)$ and $h(x) = x^{p-1} - 1$ of $A = \F_p[x]$.
+Since $g$ and $h$ are both monic of degree $p-1$, we have that $\deg{g - h} = p - 2$.
+It now follows from Lagrange's Theorem that $h(a) \equiv 0 \pmod{p}$ for each $a \in \F_p$.
+Thus $(g-h)(a) \equiv 0 \pmod{p}$ for each $a \in \F_p$.
+Since $g-h$ is a degree $p-2$ polynomial with $p-1$ roots, it follows that $g-h = 0_A$.
+Now observe that, by construction, the constant coefficient of $g$ is $(p-1)!$ and thus it follows from $g - h = 0_A$ that $(p-1)! + 1 = 0 \pmod{p}$.
+Therefore $(p-1)! \equiv -1 \pmod{p}$.
+\end{proof}
+\end{lem}
+
+\begin{lem}\label{square}
+If $p$ is a rational prime congruent to $1$ modulo $4$, then there exists some integer $x$ such that $x^2 = -1 \pmod{p}$.
+\end{lem}
+\begin{proof}
+By Lemma~\ref{wilson} we have $(p-1)! \equiv -1 \pmod{p}$.
+Write $p = 4n + 1$ for some $n \in \Z$ and then we have 
+$$(p-1)! = 1 \cdot 2 \cdot \ldots \cdot (2n) \cdot (p - (2n)) \cdot \ldots \cdot (p - 1) = (2n)!(-1)^{\frac{p-1}{2}}(2n!) \equiv -1 \pmod{p}.$$
+Since $(p-1)/2 = 2n$, it follows that $(2n!)^2 \equiv -1 \pmod{p}$, as desired.
+\end{proof}
+
+\begin{lem}
+A rational prime, $p$, is a sum of two squares if and only if $p \equiv 1 \pmod{4}$.
+\begin{proof}
+Assume $p$ is the sum of two squares.
+Then since the squares are 0 and 1 modulo 4, it follows directly that $p \not \equiv 3 \pmod{4}$.
+Hence $p \equiv 1 \pmod{4}$.
+
+Conversely, assume $p \equiv 1 \pmod{4}$.
+Consider the ring $A = \F_p[x]/(x^2 + 1)$.
+By Lemma~\ref{square}, there  exists some element of $\F_p$ such that $x^2 + 1 = (x + a)(x - a)$.
+Since $\F_p[x]$ is a principal ideal domain, it follows that $(x^2 + 1)$ is not prime and thus $A$ is not an integral domain.
+It now follows from the isomorphism $\Z[i]/(p) \cong \F_p[x]/(x^2 + 1)$ that $p$ is not prime in $\Z[i]$.
+Hence there exists a non-trivial factorization $p = \alpha\beta$ for some $\alpha, \beta \in \Z[i]$.
+Taking norms of both sides, it follows that $p = N(\alpha) = a^2 + b^2$ for some $a,b \in \Z$.
+\end{proof}
+\end{lem}
 \end{document}
