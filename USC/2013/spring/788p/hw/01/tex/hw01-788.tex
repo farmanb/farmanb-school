@@ -1,5 +1,5 @@
 \documentclass[10pt]{amsart}
-\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath}
 \openup 5pt
 \author{Blake Farman\\University of South Carolina}
 \title{Math 788p:\\Homework 01}
@@ -7,41 +7,6 @@
 \pdfpagewidth 8.5in
 \pdfpageheight 11in
 \usepackage[margin=1in]{geometry}
-
-%Field names
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\C}{\mathbb{C}}
-\newcommand{\F}{\mathbb{F}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\uhp}{\mathfrak{h}}
-
-%Operator names
-\newcommand{\ord}{\operatorname{ord}}
-\newcommand{\Det}{\operatorname{Det}}
-\newcommand{\Gal}{\operatorname{Gal}}
-\newcommand{\Inn}[1]{\operatorname{Inn}\left(#1\right)}
-\newcommand{\Aut}[1]{\operatorname{Aut}\left(#1\right)}
-\newcommand{\real}[1]{\operatorname{\mathfrak{Re}}\left(#1\right)}
-\newcommand{\imag}[1]{\operatorname{\mathfrak{Im}}\left(#1\right)}
-\newcommand{\Syl}[2]{\operatorname{Syl}_{#1}\left(#2\right)}
-\newcommand{\SL}[2]{\operatorname{SL}_#1\left(#2\right)}
-\newcommand{\GL}[2]{\operatorname{GL}_#1\left(#2\right)}
-\newcommand{\M}[2]{\operatorname{M}_#1\left(#2\right)}
-\newcommand{\PSL}[2]{\operatorname{PSL}_#1\left(#2\right)}
-\newcommand{\Mat}[2]{\operatorname{Mat}_{#1}\left(#2\right)}
-\providecommand{\norm}[1]{\lVert#1\rVert}
-\newcommand{\dist}[2]{\operatorname{dist}\left(#1,#2\right)}
-\newcommand{\cntr}[1]{\mathbf{Z}\left(#1\right)}
-\newcommand{\abs}[1]{\left| #1 \right|}
-\newcommand{\orbit}[1]{\mathcal{O}_{#1}}
-\newcommand{\card}[1]{\operatorname{card}#1}
-\newcommand{\Log}[1]{\operatorname{Log}\left(#1\right)}
-\newcommand{\Arg}[1]{\operatorname{Arg}\left(#1\right)}
-
-\renewcommand{\qedsymbol}{\(\blacksquare\)}
-\renewcommand{\epsilon}{\varepsilon}
 
 \begin{document}
 \maketitle
@@ -76,43 +41,142 @@
   \end{proof}
 \end{thm}
 
-\begin{lem}\footnote{This might all be overkill, but I wasn't quite sure what was quotable.}\label{wilson}
-For any rational prime, $p$, $(p-1)! \equiv -1 \pmod{p}$.
-\begin{proof}
-Consider the difference of the elements $g(x) = \prod_{a \in \F_p}(x - a)$ and $h(x) = x^{p-1} - 1$ of $A = \F_p[x]$.
-Since $g$ and $h$ are both monic of degree $p-1$, we have that $\deg{g - h} = p - 2$.
-It now follows from Lagrange's Theorem that $h(a) \equiv 0 \pmod{p}$ for each $a \in \F_p$.
-Thus $(g-h)(a) \equiv 0 \pmod{p}$ for each $a \in \F_p$.
-Since $g-h$ is a degree $p-2$ polynomial with $p-1$ roots, it follows that $g-h = 0_A$.
-Now observe that, by construction, the constant coefficient of $g$ is $(p-1)!$ and thus it follows from $g - h = 0_A$ that $(p-1)! + 1 = 0 \pmod{p}$.
-Therefore $(p-1)! \equiv -1 \pmod{p}$.
-\end{proof}
+\begin{lem}\footnote{These lemmas might be overkill, but I wasn't quite sure what was quotable.}\label{wilson}
+  For any rational prime, $p$, $(p-1)! \equiv -1 \pmod{p}$.
+  \begin{proof}
+    When $p = 2$, the result holds trivially.  
+    Hence it suffices to assume $p \neq 2$.
+    Consider the difference of the elements $g(x) = \prod_{a \in \F_p}(x - a)$ and $h(x) = x^{p-1} - 1$ of $A = \F_p[x]$.
+    Since $g$ and $h$ are both monic of degree $p-1$, we have that $\deg{g - h} = p - 2$.
+    It now follows from Lagrange's Theorem that $h(a) \equiv 0 \pmod{p}$ for each $a \in \F_p$.
+    Thus $(g-h)(a) \equiv 0 \pmod{p}$ for each $a \in \F_p$.
+    Since $g-h$ is a degree $p-2$ polynomial with $p-1$ roots, it follows that $g-h = 0_A$.
+    Now observe that, by construction, the constant coefficient of $g$ is $(p-1)!$ and thus it follows from $g - h = 0_A$ that $(p-1)! + 1 = 0 \pmod{p}$.
+    Therefore $(p-1)! \equiv -1 \pmod{p}$.
+  \end{proof}
 \end{lem}
 
 \begin{lem}\label{square}
-If $p$ is a rational prime congruent to $1$ modulo $4$, then there exists some integer $x$ such that $x^2 = -1 \pmod{p}$.
+  If $p$ is a rational prime congruent to $1$ modulo $4$, then there exists some integer $x$ such that $x^2 = -1 \pmod{p}$.
 \end{lem}
 \begin{proof}
-By Lemma~\ref{wilson} we have $(p-1)! \equiv -1 \pmod{p}$.
-Write $p = 4n + 1$ for some $n \in \Z$ and then we have 
-$$(p-1)! = 1 \cdot 2 \cdot \ldots \cdot (2n) \cdot (p - (2n)) \cdot \ldots \cdot (p - 1) = (2n)!(-1)^{\frac{p-1}{2}}(2n!) \equiv -1 \pmod{p}.$$
-Since $(p-1)/2 = 2n$, it follows that $(2n!)^2 \equiv -1 \pmod{p}$, as desired.
+  By Lemma~\ref{wilson} we have $(p-1)! \equiv -1 \pmod{p}$.
+  Write $p = 4n + 1$ for some $n \in \Z$ and then we have 
+  $$(p-1)! = 1 \cdot 2 \cdot \ldots \cdot (2n) \cdot (p - (2n)) \cdot \ldots \cdot (p - 1) = (2n)!(-1)^{\frac{p-1}{2}}(2n)! \equiv -1 \pmod{p}.$$
+  Since $(p-1)/2 = 2n$, it follows that $((2n)!)^2 \equiv -1 \pmod{p}$, as desired.
 \end{proof}
 
 \begin{lem}
-A rational prime, $p$, is a sum of two squares if and only if $p \equiv 1 \pmod{4}$.
-\begin{proof}
-Assume $p$ is the sum of two squares.
-Then since the squares are 0 and 1 modulo 4, it follows directly that $p \not \equiv 3 \pmod{4}$.
-Hence $p \equiv 1 \pmod{4}$.
+  An odd rational prime, $p$, is a sum of two squares if and only if $p \equiv 1 \pmod{4}$.
+  \begin{proof}
+    Assume $p$ is the sum of two squares.
+    Then since the squares are 0 and 1 modulo 4, it follows directly that $p \not \equiv 3 \pmod{4}$.
+    Hence $p \equiv 1 \pmod{4}$.
 
-Conversely, assume $p \equiv 1 \pmod{4}$.
-Consider the ring $A = \F_p[x]/(x^2 + 1)$.
-By Lemma~\ref{square}, there  exists some element of $\F_p$ such that $x^2 + 1 = (x + a)(x - a)$.
-Since $\F_p[x]$ is a principal ideal domain, it follows that $(x^2 + 1)$ is not prime and thus $A$ is not an integral domain.
-It now follows from the isomorphism $\Z[i]/(p) \cong \F_p[x]/(x^2 + 1)$ that $p$ is not prime in $\Z[i]$.
-Hence there exists a non-trivial factorization $p = \alpha\beta$ for some $\alpha, \beta \in \Z[i]$.
-Taking norms of both sides, it follows that $p = N(\alpha) = a^2 + b^2$ for some $a,b \in \Z$.
-\end{proof}
+    Conversely, assume $p \equiv 1 \pmod{4}$.
+    Consider the ring $A = \F_p[x]/(x^2 + 1)$.
+    By Lemma~\ref{square}, there  exists some element $a$ of $\F_p$ such that $x^2 + 1 = (x + a)(x - a)$.
+    Since $\F_p[x]$ is a P.I.D., it follows that $(x^2 + 1)$ is not prime and thus $A$ is not an integral domain.
+    It now follows from the isomorphism $\Z[i]/(p) \cong \F_p[x]/(x^2 + 1)$ that $p$ is not prime in $\Z[i]$.
+    Hence there exists a non-trivial factorization $p = \alpha\beta$ for some $\alpha, \beta \in \Z[i]$.
+    Taking norms of both sides, it follows that if $\alpha = a+bi$, then $p = \operatorname{N}(\alpha) = a^2 + b^2$ for some $a,b \in \Z$.
+  \end{proof}
 \end{lem}
+
+\begin{lem}\label{3mod4}
+  Let $p$ be a rational prime congruent to 3 modulo 4.
+  If for any integers $a$ and $b$, $p$ divides $a^2 + b^2$, then $p$ divides both $a$ and $b$.
+  \begin{proof}
+    Since $p$ is prime in $\Z[i]$ and $p$ divides $a^2 + b^2 = (a + ib)(a-ib)$, $p$ divides one of $a \pm ib$.
+    Hence one of $(a/p) \pm i(b/p)$ is an element of $\Z[i]$. 
+    Therefore $p$ divides $a$ and $b$ in $\Z$.
+  \end{proof}
+\end{lem}
+
+\setcounter{thm}{2}
+\begin{thm}
+  Suppose that $n = p_1^{e_1}p_2^{e_2}\ldots p_r^{e_r}$.
+  Prove carefully that $n$ can be represented as a sum of two squares if and only if each $p_i^{e_i}$ can.
+  
+  \begin{proof}
+    Assume each $p_i^{e_i}$ can be expressed as the sum of two squares.  Then, as was shown in class, the product of integers that can be represented as the sum of two squares is again a sum of two squares.  Hence $n$ is representable as the sum of two squares.
+
+    Conversely, assume $n$ is the sum of two squares.
+    Since $0 = 0^2 + 0^2$, it suffices to assume $n \neq 0$.
+    By Lemma~\ref{square} each $p_i \equiv 1 \pmod{4}$ can be expressed as the sum of two squares, and hence $p_i^{e_i}$ can be written as the sum of two squares.
+    It suffices to show that for each $p_j^{e_j}$ with $p_j \equiv 3 \pmod{4}$, $e_j$ is even, for then $p_j^{e_j} = \left(p_j^{e_j/2}\right)^2 + 0^2$.
+
+    Write $n = km^2$, where $k$ is square-free.
+    We aim to show that the only primes dividing $k$ are not congruent to 3 modulo 4.
+    Observe that for $n = 1 = 1^2 + 0$, this holds trivially.
+    Proceeding by induction, assume that this holds for all such integers less than $n$.
+    Let $p$ be a prime congruent to 3 modulo 4 that divides $n = a^2 + b^2$.
+    By Lemma~\ref{3mod4}, there exist integers $\alpha$ and $\beta$ such that 
+    $$n = a^2 + b^2 = (p\alpha)^2 + (p\beta)^2 = p^2(\alpha^2 + \beta^2).$$
+    Then, since $\alpha^2 + \beta^2 < a^2 + b^2$, we have by the induction hypothesis that for some $m,k \in \Z$, $\alpha^2 + \beta^2 = mk^2$ with $m$ square free and not divisible by any primes congruent to 3 modulo 4.
+    Hence $n = m(pk)^2$.
+    Therefore for each $p_i \equiv 3 \pmod{4}$, $p_i^{e_i}$ can be written as the sum of two squares.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Prove that $\sqrt{2} + \sqrt{3}$ generates the biquadratic field $\Q(\sqrt{2}, \sqrt{3})$ over $\Q$.
+  \begin{proof}
+    Since the elements of the field $\Q(\sqrt{2} + \sqrt{3})$ are generated by $\sqrt{2} + \sqrt{3}$, it suffices to show that $\Q(\sqrt{2}, \sqrt{3}) = \Q(\sqrt{2} + \sqrt{3})$.
+    Towards that end, observe that $\sqrt{2} + \sqrt{3} \in \Q(\sqrt{2}, \sqrt{3})$ implies $\Q(\sqrt{2} + \sqrt{3}) \subseteq \Q(\sqrt{2}, \sqrt{3})$.
+    To see the reverse containment, compute
+    $$\frac{1}{2} \left( (\sqrt{2} + \sqrt{3}) + \frac{1}{\sqrt{2} + \sqrt{3}} \right) = \frac{1}{2}(\sqrt{2} + \sqrt{3} - \sqrt{2} + \sqrt{3}) = \sqrt{3} \in \Q(\sqrt{2} + \sqrt{3}).$$
+    Then $(\sqrt{2} + \sqrt{3}) - \sqrt{3} = \sqrt{2} \in \Q(\sqrt{2} + \sqrt{3})$ completes the reverse containment.
+    Therefore $\Q(\sqrt{2}, \sqrt{3}) = \Q(\sqrt{2} + \sqrt{3})$.
+  \end{proof}
+\end{thm}
+
+%\begin{lem}\label{modules}
+%  Let $A \subseteq B$ be commutative, unital rings.
+%  If $b_0, b_1, \ldots, b_{n-1}$ are integral over $A$, then $A[b_0, b_1, \ldots, b_{n-1}]$ is contained in a finitely generated $A$-module.
+%\begin{proof}
+%  By the Proposition proven in class, if $a_0 + a_1b_0 + \ldots + a_{n-1}b_0^{n-1} + b^n = 0$, then $A[b_0]$ is contained in the finitely generated $A$-module $A + Ab_0 + \ldots + Ab_0^{n-1}$.
+%  Suppose that for $m > 0$, $A[b_0, \ldots, b_{m-1}]$ is finitely generated as an $A$-module.
+%  Since $A \subseteq A[b_0, \ldots, b_m]$, it follows that $b_m$ is integral over $A[b_0, \ldots, b_{m-1}]$ and $A[b_0, b_1, \ldots, b_m] \subseteq A[b_0, \ldots, b_{m-1}]x_1 + \ldots A[b_0, \ldots, b_{m-1}]x_s$
+%\end{proof}
+%\end{lem}
+    
+\begin{thm}
+  Given ring extensions $A \subseteq B \subseteq C$.
+  Suppose that $B$ is integral over $A$ (i.e. every element of $B$ is integral over $A$) and that $C$ is integral over $B$.
+  Prove that $C$ is integral over $A$.
+
+\begin{proof}
+  Let $c \in C$ be given.
+  By the Proposition from class, it suffices to show that $A[c]$ is contained in a finitely generated $A$ module.
+  Since $C$ is integral over $B$, there exists a monic polynomial $$f(x) = b_0 + b_1x + \ldots b_{n-1}x^{n-1} + x^n \in B[x]$$ such that $f(c) = 0$.
+  Since $c$ is integral over $A[b_0, b_1, \ldots, b_{n-1}]$, it follows that $A[b_0, b_1, \ldots, b_{n-1}, c]$ is contaiend in a finitely generated $A[b_0, b_1, \ldots, b_{n-1}]$ module.
+  However, $A[b_0, b_1, \ldots, b_{n-1}]$ is a finitely generated $A$-module since each of $b_0, \ldots, b_{n-1}$ are integral over $A$.
+  Therefore $A[c] \subseteq A[b_0, b_1, \ldots, b_{n-1}, c]$ is finitely generated as an $A$-module, as desired.
+\end{proof}
+\end{thm}
+
+\begin{thm}
+  State the structure theorem for Abelian groups.
+  Suppose that $\mathcal{O}_K$ and $A$ are abelian groups, with $A$ a free $\Z$-module.
+  Assume further that $\mathcal{O}_K$ and $A$ are contained in a field $K$, and with $A \subseteq \mathcal{O}_K \subseteq \frac{1}{d}A$.
+  Using the structure theorem, prove that $\mathcal{O}_K$ is also a free $\Z$-module.
+
+  \begin{proof}
+    Let $M$ be a finitely generated $\Z$-module.
+    Then
+    \begin{enumerate}
+      \item\label{6.1}
+        $$M \cong \Z^r \oplus \Z/(a_1) \oplus \ldots \oplus \Z/(a_m)$$
+        for some $r \geq 0$ and $a_1, \ldots, a_m$ non-units satisfying $a_1 \mid a_2 \mid \ldots \mid a_m$,
+      \item
+        $M$ is torsion free if and only if $M$ is free,
+      \item
+        $\operatorname{Tor}(M) \cong \Z/(a_1) \oplus \ldots \oplus \Z/(a_m)$.
+        In particular, if $M$ is a torsion module if and only if $r = 0$ and the annihilator of $M$ is the ideal $(a_m)$
+    \end{enumerate}
+    
+    
+  \end{proof}
+\end{thm}
 \end{document}
