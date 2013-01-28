@@ -1,0 +1,223 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath}
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 702:\\Homework 01}
+\date{January 30, 2013}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+\maketitle
+
+\providecommand{\p}{\mathfrak{p}}
+\providecommand{\m}{\mathfrak{m}}
+
+\newtheorem{thm}{}
+\newtheorem{lem}{Lemma}
+
+\setcounter{thm}{1}
+
+\begin{thm}\label{Ex2}
+  Determine whether the following polynomials are irreducible in the rings indicated.  For those that are reducible, determine their factorization into irreducibles.
+  \begin{enumerate}[(a)]
+  \item
+    $x^3 + x + 1$ in $\F_3[x]$.
+  \item
+    $x^4 + 1$ in $\F_5[x].$
+  \item
+    $x^4 + 10x^2 + 1$ in $\Z[x]$.
+  \item
+    $x^4 + 4x^3 + 6x^2 +2x + 1$ in $\Z[x]$.
+  \end{enumerate}
+  
+  \begin{proof}
+    \begin{enumerate}[(a)]
+    \item
+      In $\F_3[x]$, it is easy to check by hand that $x^3 + x + 1$ factors as $(x-1)(x^2 + x + 2).$
+      Since the squares in $\F_3$ are 0 and 1,  $x^2 + x + 2$ does not have any roots in $\F_5$ and thus is prime.
+      Therefore $x^3 + x + 1 = (x-1)(x^2 + x + 2)$ is the prime factorization in $\F_3[x]$.
+    \item
+      In $\F_5[x]$, it is easy to check by hand that $x^4+1$ factors as $(x^2 + 2)(x^2 + 3)$.
+      The squares in $\F_5[x]$ are 0, 1, and 4, so neither $x^2 + 2$ nor $x^2 + 3$ have roots in $\F_5[x]$ and thus are both prime.
+      Therefore $x^4+1 = (x^2 + 2)(x^2 + 3)$ is the prime factorization in $\F_5[x]$.
+    \item
+      Observe first that because $x^4,x^2 \geq 0$, there are no integer solutions to $x^4 + 10x^2 + 1 = 0$.
+      Hence there are neither linear nor cubic factors, so it remains only to show that there are no quadratic factors.
+      Suppose $x^4 + 10x^2 + 1$ factors into two quadratics, 
+      \begin{align*}
+        \begin{split}
+          x^4 + 10x^2 + 1 &= (x^2 + ax + b)(x^2 + cx + d)\\ &= x^4 + x^3(c+a)+x^2(b+d+ac) +x(ad+bc)+bd.
+        \end{split}
+      \end{align*}
+      Then we have the following equations:  $c+a = 0,\, d+b+ac = 10,\, ad+bc=0$, and $bd = 1$.
+      It follows from the latter equation that $b = d = \pm 1$.
+      Now, if we take  $c = -a$, then $\pm 2 - 10 = a^2$.
+      However, this leads to a contradiction; namely, $a^2 = \pm 2 - 10$ does not have a solution in the integers.
+      Therefore $x^4 + 10x^2 + 1$ is irreducible in $\Z[x]$.
+    \item
+      Substituting $x-1$ for $x$ and expanding, we have $$(x-1)^4 + 4(x-1)^3 + 6(x-1)^2 + 2(x-1)+1 = x^4 - 2x + 2,$$ which is irreducible by Eisenstein's Criterion applied for the prime 2.  
+      Since any factorization of $x^4 + 4x^3 + 6x^2 +2x + 1$ would imply a factorization of $x^4 - 2x + 2$, $x^4 + 4x^3 + 6x^2 +2x + 1$ must be irreducible.
+    \end{enumerate}
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Let $n \geq 1$.
+  \begin{enumerate}[(a)]
+  \item
+    Prove that $(x-1)(x-2)\ldots(x-n) - 1$ is irreducible in $\Z[x]$.
+  \item
+    Suppose $n \neq 4$.  Prove that $(x-1)(x-2)\ldots(x-n) + 1$ is irreducible in $\Z[x]$.
+  \end{enumerate}
+  
+  \begin{proof}
+    \begin{enumerate}[(a)]
+    \item
+      Let $p(x) = (x-1)(x-2)\ldots(x-n) - 1$.
+      Assume to the contrary that there exists a non-trivial factorization $p = \alpha\cdot\beta$ for some $\alpha, \beta \in \Z[x]$.
+      % and note that $\deg(p) = \deg(\alpha) + \deg(\beta) = n.$
+      Observe that since $p$ is primitive, $\deg{\alpha}, \deg{\beta} < n$.
+      Moreover, for $1 \leq i \leq n$, we have $(\alpha\cdot\beta)(i) = -1$ and thus $\alpha(i) = \pm 1$ and $\beta(i) = - \alpha(i)$.
+      If we now consider the polynomial $\alpha + \beta$ of degree at most $n-1$, then it follows that for $1 \leq i \leq n$, 
+      $$(\alpha + \beta)(i) = \alpha(i) - \alpha(i) = 0.$$
+      These roots correspond to $n$ linear factors of a degree at most $n-1$ polynomial.
+      Hence $\alpha + \beta \equiv 0$ and $p = \alpha\beta = \alpha(-\alpha) = -\alpha^2$.
+      %Hence at least one of $\alpha$ or $\beta$ must have degree $n$.
+      %However, since $\deg(\alpha) + \deg(\beta) = n$, the other must have degree 0.
+      %Indeed, because $p$ is monic, one of $\alpha$ or $\beta$ must be one of the two units, $1$ or $-1$.
+      But then the comparing leading coefficients on the left and right, we arrive at a contradiction; namely, the leading coefficient of $p$ is positive, and that of $-\alpha^2$ is negative.
+      Therefore $p$ is irreducible.
+    \item
+      Let $p(x) = (x-1)(x-2)\ldots(x-n) + 1$.
+      Assume to the contrary that there exists a non-trivial factorization $p = \alpha\cdot\beta$ for some $\alpha, \beta \in \Z[x]$.
+      % and note that $\deg(p) = \deg(\alpha) + \deg(\beta) = n.$
+      Observe that since $p$ is primitive, $\deg{\alpha}, \deg{\beta} < n$.
+      Moreover, for $1 \leq i \leq n$, we have $(\alpha\cdot\beta)(i) = 1$ and thus $\alpha(i) = \pm 1$ and $\beta(i) = \alpha(i)$.
+      If we now consider the polynomial $\alpha - \beta$ of degree at most $n-1$, then it follows that for $1 \leq i \leq n$, 
+      $$(\alpha - \beta)(i) = \alpha(i) - \alpha(i) = 0.$$
+      These roots correspond to $n$ linear factors of a degree at most $n-1$ polynomial and thus $\alpha + \beta \equiv 0$.  
+      %Hence at least one of $\alpha$ or $\beta$ must have degree $n$.
+      %However, since $\deg(\alpha) + \deg(\beta) = n$, the other must have degree 0.
+      %Indeed, because $p$ is monic, one of $\alpha$ or $\beta$ must be one of the two units, $1$ or $-1$.
+      Hence $p = \alpha\beta = \alpha^2$.
+      Then the constant coefficient, $(-1)^n(n!) + 1$, must be positive and so $n$ must be positive.
+      
+      For $n = 2$, we have $p(x) = x^2 - 3x + 3$, which is irreducible by Eisenstein's Criterion applied for the prime $2$.
+      When $n \geq 6$, we observe that the factorization in $\Z[x]$ is trivially a factorization in $\Q[x]$.
+      Hence it suffices to show the existence of some element of $r \in \Q$ for which $f(r) < 0$
+      Choosing $1 < r < 2$, it is clear that
+      $$(r - 1)(r - 2)(r - 3)\ldots(r - n) = (-1)^{n-1}(r - 1)(2 - r)(3 - r)\ldots(n - r) < 0$$
+      since $n-1$ is odd.
+      Then, since $f(r) = (-1)^{n-1}(r - 1)(2 - r)(3 - r)\ldots(n - r) + 1$, it remains only to select an $r$ such that $(r - 1)(2 - r)(3 - r)\ldots(n - r) > 1$.
+      Fortuitously, the midpoint fits the bill (somewhat) cleanly.
+      If $r = 3/2$, then with some minor rearrangement and truly atrocious\footnote{This is, admittedly, a terrible mess.  Unfortunately, I don't see a way out.  The more natural contradiction here seems to be to show that $n! + 1$ is not a square.  This, however, is apparently Brocard's problem, which remains open...} bounds,
+      %\begin{eqnarray*}
+      $$\frac{(3 - 2)(4 - 3)(6 - 3)(8 - 3)(10 - 3)(12  - 3)\ldots(2n - 3)}{2^n} \geq \frac{2(4)^{n-3}}{2^n} = 2^{n-5} \geq 2.$$
+        %&=& \frac{(1)(1)(3)(5)(7)(9)\ldots(2n-3)}{2^n}\\
+        %\frac{(1)(1)(2)(4)(4)(4)\ldots(4)}{2^n}\\
+        %& = & \frac{2^{2n-5}}{2^n}\\
+        %& = & 2^{n - 5}\\
+        %& \geq & 2.
+      %\end{eqnarray*}
+      Therefore $(\alpha(r))^2 = p(r) < 0$ is a contradiction, and $p$ is irreducible.
+    \end{enumerate}  
+  \end{proof}
+\end{thm}
+
+\begin{thm}\label{Ex4}
+  Find all monic irreducible polynomials of degree $\leq 3$ in $\F_3[x]$.
+  \begin{proof}
+    Checking by hand, it's easy to compute\footnote{Or, easier still, just use Sage to factor $x^{27} - x$ and $x^9 - x$ over $\F_p[x]$.} the monic irreducible polynomials by given by the table below.
+    \begin{center}
+      \begin{tabular}{|c|c|c|}
+        \hline
+        degree 1 & degree 2 & degree 3\\
+        \hline
+        $x$ & $x^2 + 1$ & $x^3 + 2x + 1$\\ 
+        $x+1$ & $x^2 + x + 2$ & $x^3 + 2x + 2$\\
+        $x + 2$ & $x^2 + 2x + 2$ & $x^3 + x^2 + 2$\\
+        &&$x^3 + 2x^2 + 1$\\
+        &&$x^3 + x^2 + x + 2$\\
+        &&$x^3 + x^2 + 2x + 1$\\
+        &&$x^3 + 2x^2 + x + 1$\\
+        &&$x^3 + 2x^2 + 2x + 2$\\
+        \hline
+      \end{tabular}
+    \end{center}
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Construct fields (as $F[x]/(f(x))$ for some $F$ and $f$) with the following orders:
+  \begin{enumerate}[(a)]
+  \item
+    8.
+  \item
+    81.
+  \end{enumerate}
+  
+  \begin{proof}
+    \begin{enumerate}[(a)]
+    \item
+      Let $f(x) = x^3 + x + 1$ (or $x^3 + x^2 + 1$), which is irreducible over $\F_2[x]$.
+      Then $\F_2[x]/(f(x))$ is the set of polynomials of degree 2, of which there are 8 (two choices for each of the coefficients of $x^2,\, x,\, \text{and}\ 1$).
+      Therefore $\F_2[x]/(f(x))$ is a field of 8 elements.
+    \item
+      Similarly, take a degree four irreducible polynomial over $\F_3[x]$, say $f(x) = x^4 + x + 2$.
+      It is easy to check that $f$ is irreducible over $\F_3[x]$ by observing that it has no roots, and is not divisible by any of the degree two irreducible polynomials from Exercise~\ref{Ex4}.
+      Then $\F_3[x]/(f(x))$ is the set of polynomials of degree 3, of which there are 81 (three choices for each of the coefficients of $x^3,\, x^2,\, x,\, \text{and}\ 1$).
+      Therefore $\F_3[x]/(f(x))$ is a field of 81 elements.
+    \end{enumerate}
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Prove that $x^2 - \sqrt{2}$ is irreducible in $\Z[\sqrt{2}]$.
+  \begin{proof}
+    First observe that $\Z[\sqrt{2}] = \Z \oplus \sqrt{2}\Z$.
+    Consider the quotient of $\Z[\sqrt{2}]$ by the ideal $\mathfrak{a} = \sqrt{2}\Z[\sqrt{2}]$.
+    Let $\pi \colon \Z[\sqrt{2}] \rightarrow \mathfrak{a}$ be the canonical projection homomorphism.
+    For every $\alpha = a + b\sqrt{2} \in \Z[\sqrt{2}]$, $a,b \in \Z$, it is clear that $\pi(\alpha) = a + \mathfrak{a}$.
+    Now, define the ring homomorphism 
+    \begin{align*}
+      \varphi : \Z[\sqrt{2}]/\mathfrak{a} &\rightarrow \Z\\
+      a + \mathfrak{a} &\mapsto a.
+    \end{align*}
+    It is clear that, since $\Z \subseteq \Z[\sqrt{2}]$, $\varphi$ is surjective.
+    Moreover, $\ker\varphi$ is necessarily trivial.
+    Hence $\Z[\sqrt{2}]/\mathfrak{a} \cong \Z$, an integral domain, and thus $\mathfrak{a}$ is prime.
+    If $\sqrt{2}$ divides $\alpha\beta$ for some $\alpha, \beta \in \Z[\sqrt{2}]$, then $\alpha\beta \in \mathfrak{a}$.
+    Hence either $\alpha \in \mathfrak{a}$ or $\beta \in \mathfrak{a}$, and thus $\sqrt{2}$ divides either $\alpha$ or $\beta$.
+    Whence $\sqrt{2}$ is prime in $\Z[\sqrt{2}]$.
+    Therefore $x^2 - \sqrt{2}$ is irreducible in $\Z[\sqrt{2}]$ by Eisenstein's Criterion applied for the prime $\sqrt{2}$.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Prove that $x^2 + y^2 - 1$ is irreducible in $\Q[x,y]$.
+  \begin{proof}
+    Factor $y^2 + x^2 - 1 = y^2 + (x-1)(x+1)$ and consider $\Q[x,y]$ as $\left(\Q[x]\right)[y]$.
+    Since $\Q[x]$ is a P.I.D., and $x - 1$ (or $x + 1$) is irreducible, it is also prime in $\Q[x]$.
+    Therefore $y^2 + x^2 - 1$ irreducible by Eisenstein's Criterion applied for the prime $(x + 1)$ (or ($x - 1$)).
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Let $n \geq 1$.
+  Prove that $x^{n-1} + x^{n-2} + \ldots + x + 1$ is irreducible in $\Z[x]$ if and only if $n$ is prime. 
+  (We proved one implication in class.  You do not have to reprove it.)
+  
+  \begin{proof}
+    Let $f(x) = x^{n-1} + x^{n-2} + \ldots + x + 1$.
+    Since we have proven that if $n$ is prime, then $f$ is irreducible, it suffices to show the converse.
+    Arguing by the contrapositive, assume that $n$ is not prime.
+    There exist positive non-units $a$ and $b$ in $\Z$ such that $n = ab$.
+    Then $$f(x) = \frac{x^n - 1}{(x - 1)} = \frac{(x^a)^b - 1}{(x - 1)} = \frac{(x^a - 1)}{(x - 1)}(1 + x^a + (x^a)^2 + \ldots + (x^a)^{b-1}).$$
+    Since 1 is a root of $x^a - 1$ and $a > 1$, there exists some $g \in \Z[x]$ such that $x^a - 1 = (x - 1)g(x)$ with $\deg{g} \geq 1$.
+    Therefore $f(x) = g(x)(1 + x^a + (x^a)^2 + \ldots + (x^a)^{b-1})$ is reducible, as desired.
+  \end{proof}
+\end{thm}
+  
+\end{document}
