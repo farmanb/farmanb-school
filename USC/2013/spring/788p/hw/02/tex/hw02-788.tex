@@ -1,0 +1,107 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath}
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 788p:\\Homework 02}
+\date{February 1, 2013}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+\maketitle
+
+\providecommand{\p}{\mathfrak{p}}
+\providecommand{\m}{\mathfrak{m}}
+
+\newtheorem{thm}{}
+\newtheorem{lem}{Lemma}
+
+\setcounter{thm}{1}
+
+\begin{lem}\label{lem1}
+  Let $A$ be interally closed in its field of fractions $K$.
+  If $f, g \in K[t]$ are monic and $fg \in A[t]$, then $f, g \in A[t]$.
+  
+  \begin{proof}
+    Take the splitting field, $L/K$, for $f$ and $g$, and let $B$ be the integral closure of $A$ in $L$.
+    For some $\alpha_i, \beta_i \in L$, write $f = \prod_{i=1}^n (x - \alpha_i)$ and $g = \prod_{i=1}^m (x - \beta_i)$.
+    Since the $\alpha_i, \beta_i \in B$ are roots of the polynomial $fg \in A[t]$, $\alpha_i, \beta_i \in B$.
+    Then since the coefficients of $f$ and $g$ can be expressed as a polynomial in their respective roots, the coefficients of $f$ and $g$ are elements of $B$.
+    However, these coefficients were assumed to be in $K$.
+    Therefore these coefficients are elements of $K$ that are integral over $A$ and thus are in fact in $A$, as desired.
+  \end{proof}
+\end{lem}
+
+\begin{thm}
+  If the integral domain $A$ is integrally closed, then so is the polynomial ring $A[t]$.
+  \begin{proof}\footnote{The idea for this proof comes from the hints for the more general problems 8 and 9 in Chapter 5 (p. 68) of Atiyah and MacDonald.}
+    Let $K$ be the field of fractions for $A$.
+    Let $f \in K(t)$ be given and assume that $f$ is integral over $A[t]$.
+    Then, trivially, $f$ is integral over $K[t]$.
+    Since $K[t]$ is a P.I.D., it is integrally closed and so $f \in K[t]$.
+    Hence it suffices to assume that $f \in K[t]$.
+    
+    Since $f$ is integral over $A[t]$, there exist polynomials $g_1, g_2, \ldots, g_m \in A[t]$ such that
+    \begin{equation}\label{2.1}
+      f^m + g_1f^{m-1} + \ldots + g_{m-1}f + g_m = 0.
+    \end{equation}
+    Choose $r > \max\left\{ \deg{f}, \deg{g_1}, \ldots, \deg{g_m}\right\}$ and define the monic, degree $r$ polynomial $f_1 = f - x^r$.
+    Then we may rewrite \eqref{2.1} as 
+    \begin{equation}\label{2.2}
+      (f_1 + x^r)^m + g_1(f_1 + x^r)^{m-1} + \ldots + g_{m-1}(f_1 + x^r) + g_m = 0.
+    \end{equation}
+    Expanding \eqref{2.2} and very carefully collecting together the coefficients of $f_1^a$ for $a = 0, \ldots, m$, it is not difficult to find that we may rewrite \eqref{2.2} as
+    \begin{equation}\label{2.3}
+      f_1^m + h_1f_1^{m-1} + \ldots + h_{m-1}f_1 + h_m = 0,
+    \end{equation}
+    where, if we define $g_0 = 1$,
+    $$h_{m-a} = \sum_{k = 0}^{m-a} {{m - k}\choose{(m-k) - a}}\left(x^r\right)^{(m-k) - a}g_k,.$$
+
+    In particular, observe that $h_m = (x^r)^m + g_1(x^r)^{m-1} + \ldots + g_m \in A[x]$ and, by the choice of $r$, we have 
+    $$\deg{(x^r)^{m-a}g_{a}} = r(m-a) + \deg{g_{a}} < r(m - a) + r = r(m - a + 1) = \deg{(x^r)^m},$$
+    for each $1 \leq a \leq m-1$.
+    Hence $h_m$ is monic of degree $rm$.
+    With this in mind, we rewrite \eqref{2.3} as
+    $$h_m = -f_1\left(f_1^{m-1} + h_1f_1^{m-2} + \ldots + h_{m-2}f_1^{m-3} + h_{m-1}\right).$$
+    Now, since $-f_1 = x_r - f$ is monic of degree $r$, it follows that $f_1^{m-1} + h_1f_1^{m-2} + \ldots + h_{m-2}f_1 + h_{m-1}$ is monic of degree $r(m-1)$.
+    Therefore $-f_1 \in A[x]$ by Lemma~\ref{lem1} and thus $f = f_1 - x^r \in A[x]$, as desired.
+  \end{proof}
+\end{thm}
+\setcounter{thm}{4}
+\begin{thm}
+  Find the discriminant of, and an integral basis for, $\Q(\theta)$ where $\theta^3 - \theta - 4 = 0$.
+  \begin{proof}
+    \renewcommand{\Tr}[1]{\operatorname{Tr}\left(#1\right)}
+    First, form the matrix 
+    $$A = \left(\Tr{\theta_i\theta_j}\right) = 
+    \left(
+    \begin{array}{ccc}
+      \Tr{1} & \Tr{\theta} & \Tr{\theta^2}\\
+      \Tr{\theta} & \Tr{\theta} & \Tr{\theta + 4}\\
+      \Tr{\theta^2} & \Tr{\theta + 4} & \Tr{\theta^2 + 4\theta} 
+    \end{array}
+    \right)
+    =
+    \left(
+    \begin{array}{ccc}
+      3 & 0 & 2\\
+      0 & 2 & 12\\
+      2 & 12 & 2
+    \end{array}
+    \right).
+    $$
+    Then the discriminant is given by $\det{A} = 3(4 - 144) + 2(-4) = -428 = -(2^2)107$.
+    Then it suffices to check whether any of the elements of $\left\{\theta/2, \theta^2/2, (1 + \theta)/2, (1 + \theta^2)/2, (1 + \theta + \theta^2)/2, (\theta + \theta^2)/2\right\}$ are algebraic integers.
+    Taking $\alpha = (\theta + \theta^2)/2$, compute $4\alpha^2 = (\theta + \theta^2)^2 = 2\theta^2 + 6\theta + 8$.
+    Hence $2\alpha^2 = \theta^2 + 3\theta + 4$.
+    Then compute $8\alpha^3 = (\theta + \theta^2)^3 = 16\theta^2 + 24\theta + 32$, so $\alpha^3 = 2\theta^2 + 24\theta + 32$.
+    Now observe that $2\alpha^2 = 2\alpha + 2\theta + 4$, and thus $\alpha^2 - \alpha = \theta + 2$.
+    Similarly, $\alpha^3 = 4\alpha + \theta + 4$.
+    Then 
+    $$\alpha^3 - 4\alpha - \alpha^2 + \alpha - 2 = \theta + 4 - \theta - 2 - 2 = 0$$
+    shows that $\alpha$ is an algebraic integer.
+    Then since $\theta^2 = 2\alpha - \theta$, it suffices to take $\left\{1, \theta, \alpha\right\}$ as an integral basis.
+  \end{proof}
+\end{thm}
+\end{document}
