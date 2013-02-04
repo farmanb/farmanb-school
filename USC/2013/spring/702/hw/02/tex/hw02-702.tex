@@ -1,0 +1,248 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath,mathtools}
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 702:\\Homework 02}
+\date{February 6, 2013}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+\maketitle
+
+\providecommand{\p}{\mathfrak{p}}
+\providecommand{\m}{\mathfrak{m}}
+
+\newtheorem{thm}{}
+\newtheorem{lem}{Lemma}
+
+$F$ is a field.
+\begin{thm}\label{Ex1}
+  Let $\mathbb{F}$ be a finite field of characteristic $p$.  Prove that there exists a positive integer $n$
+  such that  $|\mathbb{F}| = p^n$.
+  \begin{proof}
+    Consider $\F$ as an extension of its prime subfield, $\F_p$.
+    Since $\F$ is finite, it is clear that $[\F:\F_p] = n < \infty$.
+    Then let $\mathcal{B} = \left\{\alpha_1, \alpha_2, \ldots, \alpha_n\right\}$ be a basis for $\F/\F_p$.
+    Therefore it follows from the $p$ choices for each coefficient in any linear combination that $\abs{F} = p^n$.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  The polynomial $f(x) = x^3 - 6x^2 + 9x + 3$ is irreducible in $\Q[x]$.  (It is $3$-Eisenstein; alternatively, one 
+  could use the Rational Root Theorem since the degree is $\leq 3$.)  Let $u$ be a root of $f(x)$.
+  Write the following expressions in $\Q(u)$ in the $\Q$-basis $\{1, u, u^2\}$.
+  \begin{enumerate}[(a)]
+  \item
+    $3u^5 - u^4 + 2$.
+  \item
+    $(u^2 - 6u + 8)^{-1}$.
+  \end{enumerate}
+
+  \begin{proof}
+    \begin{enumerate}[(a)]
+    \item
+      Using $u^3 = 6u^2 - 9u + 3$ compute 
+      $$u^4 = u(6u^2 - 9u + 3) = 27u^2 - 57u - 18$$ 
+      and
+      $$u^5 = u(27u^2 - 57u - 18) = 105u^2 - 261u - 81.$$
+      Therefore 
+      $$3u^5 - u^4 + 2 = 3(105u^2 - 261u - 81) - 27u^2 - 57u - 18 + 2 = 288u^2 - 726u - 223.$$
+    \item
+      Using the Euclidean algorithm we have
+      \begin{enumerate}[(i)]
+      \item
+        $u^3 - 6u^2 + 9u - 3 = u(u^2 - 6u + 8) + (u + 3)$,
+      \item
+        $u^2 - 6u + 8 = (u+3)(u-9) + 35.$
+      \end{enumerate}
+      Let $f = u^2 - 6u + 8$.
+      Backsolving yields $$35 = f - (u + 3)(u - 9) = f - (-uf)(u - 9)= f(u^2 - 9u + 1).$$
+      Therefore $f^{-1} = \frac{1}{35}u^2 - \frac{9}{35}u + \frac{1}{35}.$
+    \end{enumerate}
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Prove that $\Q(\sqrt{5} + \sqrt{7}) = \Q(\sqrt{5}, \sqrt{7})$. Conclude that $[\Q(\sqrt{5} + \sqrt{7}) : \Q] = 4$, and 
+  find an irreducible polynomial satisfied by $\sqrt{5} + \sqrt{7}$.  
+  \begin{proof}
+    First observe that $\sqrt{5} + \sqrt{7} \in \Q(\sqrt{5}, \sqrt{7})$ implies $\Q(\sqrt{5} + \sqrt{7}) \subseteq \Q(\sqrt{5}, \sqrt{7})$.
+    To see the reverse containment, compute
+    $$\frac{1}{2} (\sqrt{5} + \sqrt{7}) + \frac{1}{\sqrt{5} + \sqrt{7}} = \frac{1}{2}\left(\sqrt{5} + \sqrt{7} - \sqrt{5} + \sqrt{7}\right) = \sqrt{7} \in \Q(\sqrt{5} + \sqrt{7}).$$
+    Then $(\sqrt{5} + \sqrt{7}) - \sqrt{7} = \sqrt{5} \in \Q(\sqrt{5} + \sqrt{7})$ completes the reverse containment.
+
+    Let $L = \Q(\sqrt{5}, \sqrt{7})$.
+    To see that $L$ is a biquadratic extension, it suffices to show that $\sqrt{5} \not \in K = \Q(\sqrt{7})$, for then $L = K(\sqrt{5})$ is a degree 2 extension of $K$.
+    Assume to the contrary that $\sqrt{5} \in K$.
+    Then, since $\sqrt{5}$ is integral over $\Z$, $\sqrt{5}$ would lie in $\mathcal{O}_K$.
+    Hence there would exist integers $a$ and $b$ such that $\sqrt{5} = a + b\sqrt{7}$.
+    Squaring both sides we have $5 = a^2 + 7b^2 + 2ab\sqrt{7}$.
+    Then since $\mathcal{B} = \left\{1, \sqrt{7}\right\}$ is an integral basis for $\mathcal{O}_K$ and $5 = 5 + 0\sqrt{7}$, it follows that $5 = a^2 + 7b^2$.
+    But clearly this has no solutions in $\Z$, a contradiction.
+    Therefore $\sqrt{5} \not \in K$ and $L = K(\sqrt{5})$ has degree 4, as desired.
+
+    To find a degree four polynomial with roots $\alpha = \sqrt{5} + \sqrt{7}, \alpha_1 = \sqrt{5} - \sqrt{7}, \alpha_2 = -\alpha, \alpha_3 = -\alpha_2$, compute $\alpha^2 - 12 = 2\sqrt{35}$.
+    Then squaring both sides, we have $(\alpha^2 - 12)^2 = \alpha^4 - 24\alpha^2 + 144 = 140$.
+    Hence $\alpha^4 - 24\alpha^2 + 4 = 0$ and $x^4 - 24x^2 + 4$ is the minimal polynomial for $\sqrt{5} + \sqrt{7}$.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Suppose that $[F(\alpha) : F]$ is odd.  Prove that $F(\alpha) = F(\alpha^2)$.  
+  \begin{proof}
+    Suppose to the contrary that $F(\alpha^2) \subsetneq F(\alpha)$.
+    %Then $F(\alpha^2)$ is a subfield of $F(\alpha)$.
+    Let $n = [F(\alpha^2):F]$.
+    Then $\alpha$ is a root of the polynomial $t^2 - \alpha^2 \in F(\alpha^2)[t]$, which is supposed to be irreducible.
+    Hence $F(\alpha) \cong F(\alpha^2)[t]/(t^2 - \alpha^2)$ is a degree two extension of $F(\alpha^2)$.
+    By the multiplicity of dimensions in towers, we then have 
+    $$[F(\alpha):F] = [F(\alpha^2):F][F(\alpha):F(\alpha^2)] = 2n,$$ 
+    a contradiction.
+    Therefore $F(\alpha) = F(\alpha^2)$.
+  \end{proof}
+\end{thm}
+
+\newcommand{\End}[2]{\operatorname{End}_{#1}\left(#2\right)}
+\begin{lem}\label{lem5.1}
+  If $K$ is an $F$-vector space, then $\End{F}{K}$, the set of $F$-linear operators, is a ring under the operations pointwise addition, $+$, and composition, $\circ$.
+\begin{proof}
+  Let $\varphi, \psi, \sigma \in \End{F}{K}$, $k, k^\prime \in K$, and $f \in F$ be given.
+Associativity and commutativity of pointwise addition are inherited from $K$.
+Since $\varphi, \psi$ are homomorphisms, closure under pointwise addition follows from 
+$$(\varphi + \psi)(r + r^\prime) = \varphi(r + r^\prime) + \psi(r + r^\prime) = \varphi(r) + \varphi(r^\prime) + \psi(r) + \psi(r^\prime) = (\varphi + \psi)(r) + (\varphi + \psi)(r^\prime)$$
+and 
+$$(\varphi + \psi)(fr) = \varphi(fr) + \psi(fr) = f\varphi(r) + f\psi(r) = f(\varphi(r) + \psi(r))= f(\varphi + \psi)(r).$$
+The trivial homomorphism,
+\begin{align*}
+  0 \colon K & \rightarrow K\\
+  k &\mapsto 0_K,
+\end{align*}
+provides an additive identity and the additive inverse of $\varphi$ is given by $-\varphi$; namely for all $k \in K$
+$$(\varphi + 0)(k) = \varphi(k) + 0(k) = \varphi(k)\ \text{and}\ (\varphi + -\varphi)(k) = \varphi(k) - \varphi(k) = 0.$$
+
+Since composition is associative in general, it remains to show closure under $\circ$ and distribution.
+Closure under $\circ$ follows from
+$$(\varphi \circ \psi)(k + k^\prime) = \varphi(\psi(k) + \psi(k^\prime)) = (\varphi\circ\psi)(k) + (\varphi\circ\psi)(k^\prime)$$
+and
+$$(\varphi \circ \psi)(fk) = \varphi(f\psi(k)) = f\varphi(\psi(k)) = f(\varphi\circ\psi)(k).$$
+Finally, distribution follows from 
+$$(\sigma \circ (\varphi + \psi))(k) = \sigma((\varphi+ \psi)(k)) = \sigma(\varphi(k) + \psi(k)) = \sigma(\varphi(k)) + \sigma(\psi(k)) = (\sigma\circ)\varphi(k) + (\sigma\circ\psi)(k).$$
+By defining $1_{\End{F}{K}} = \operatorname{id}_K$, it is clear that this is a unital ring.
+\end{proof}
+  \end{lem}
+
+\begin{thm}
+  Let $K$ be an extension of $F$ with $[K : F] = n$.  
+  \begin{enumerate}[(a)]
+  \item
+    Let $\alpha\in K$.  Prove that multiplication by $\alpha$ is a linear transformation of the $F$-vector space 
+    $K$ to itself.  We denote this linear transformation by $[\alpha] : K \rightarrow K$, so we have 
+    $[\alpha] \in \text{Hom}_{F}(K, K)$.     
+  \item 
+    Prove that $K$ is isomorphic to a subfield of the ring $\text{Mat}_{n\times n}(F)$ of $n\times n$ 
+    matrices over~$F$.  Conclude that $\text{Mat}_{n\times n}(F)$ contains an isomorphic copy of every
+    extension of $F$ of degree $\leq n$.  
+  \item 
+    Recall that the characteristic polynomial of a matrix $A\in \text{Mat}_{n\times n}(F)$ is $p_{A}(x) 
+    = \text{det}(xI_n - A)\in F[x]$, where $I_n$ is the $n\times n$ identity matrix.  
+    \begin{enumerate}[(i)]
+    \item 
+      Let $A$ denote the matrix of the linear transformation $[\alpha]$ from (a).  
+      Prove that $\alpha$ is a root of $p_{A}(x)$. 
+    \item 
+      Suppose that $K = F(\alpha)$.  Conclude that $p_{A}(x) = m_{\alpha, F}(x)$, the minimal polynomial 
+      for $\alpha$ over $F$.  
+    \item 
+      Use the ideas in the previous parts of this problem to compute the minimal polynomial for 
+      $1 + \sqrt{2} + \sqrt{3} + \sqrt{6}$ and for $1 + \sqrt[3]{2} + \sqrt[3]{4}$.    
+    \end{enumerate}
+  \item 
+    Let $D$ be a square-free integer, let  $K = \Q(\sqrt{D})$, and let $\alpha = a + b\sqrt{D}\in K$.  
+    Use the basis $\{1, \sqrt{D}\}$ for $K$ as a $\Q$-vector space to show that the matrix for $[\alpha]$
+    in $\text{Mat}_{2\times 2}(\Q)$ is $\begin{pmatrix} a & bD \\ b & a \end{pmatrix}$.  
+    Prove directly that the map $K \rightarrow \text{Mat}_{2\times 2}(\Q)$ given by 
+    $a + b\sqrt{D} \mapsto \begin{pmatrix} a & bD \\ b & a\end{pmatrix}$ is an isomorphism of 
+      $K$ with a subfield of $\text{Mat}_{2\times 2}(\Q)$.  
+  \end{enumerate}
+
+  \begin{proof}
+    \begin{enumerate}[(a)]
+    \item\label{ex5.1}
+      Fix $\alpha \in K$ and define the map
+      \begin{align*}
+        \varphi \colon K &\rightarrow K\\
+        k &\mapsto \alpha k
+      \end{align*}
+      To see that $\varphi_\alpha \in \End{F}{K}$, let $k, k^\prime \in K$ and $f \in F$ be given.
+    Then 
+    $$\varphi_\alpha(k + k^\prime) = \alpha(k + k^\prime) = \alpha k + \alpha k^\prime = \varphi_\alpha(k) + \varphi_\alpha(k^\prime)$$
+    by distributivity, and
+    $$\varphi_\alpha(fk) = \alpha fk = f(\alpha k) = f\varphi_\alpha(k).$$
+    Therefore $\varphi_\alpha \in \End{F}{K}$, as desired. 
+\item
+  Define the map 
+  \begin{align*}
+    \varphi \colon K & \hookrightarrow \End{F}{K}\\
+  \alpha & \mapsto \varphi_\alpha,
+\end{align*}
+where $\varphi_\alpha$ is the morphism defined in part~\ref{ex5.1}.
+Let $\alpha, \beta \in K$ be given.
+This map is clearly well defined; if $\alpha = \beta$, then $\varphi_\alpha(k) = \alpha k = \beta k = \varphi_\beta(k)$ for all $k \in K$.
+The map is additive (pointwise): $$\varphi(\alpha + \beta)(k) = \varphi_{\alpha + \beta}(k) = (\alpha + \beta) k = \alpha k + \beta k = \varphi_\alpha(k) + \varphi_\beta(k) = (\varphi_\alpha + \varphi_\beta)(k).$$
+It is also multiplicative:
+$$\varphi(\alpha\beta)(k) = \varphi_{\alpha\beta}(k) = (\alpha\beta) k = \alpha(\beta k) = \alpha\varphi_\beta(k) = (\varphi_\alpha \circ \varphi_\beta)(k).$$
+Hence it is a ring homomorphism.
+Injectivity follows from the fact that $K$ is a field.
+If $\varphi_\alpha = 0_{\End{F}{K}}$, as defined in Lemma~\ref{lem5.1}, then $\varphi_\alpha(k) = \alpha k = 0$ for all $k \in K$ if and only if $\alpha = 0$.
+
+Fix an F-basis $\mathcal{B} = \left\{e_1, \ldots, e_n\right\}$ of $K$ and define the map 
+\begin{align*}
+  \psi \colon \End{F}{K} &\hookrightarrow \Mat{n \times n}{F}\\
+\varphi_\alpha &\mapsto [\varphi_\alpha]_{\mathcal{B}}^{\mathcal{B}},
+\end{align*}
+where $[\varphi_\alpha]_{\mathcal{B}}^{\mathcal{B}}$ is the matrix with the $j^{\text{th}}$ column the coefficients of $\varphi_\alpha(e_j) = \alpha_{1,j}e_1 + \alpha_{2,j}e_2 + \ldots + \alpha_{n,j}e_n$ for some $\alpha_{i,j} \in F$ and each $1 \leq j \leq n$.
+This map is well-defined by the uniqueness of representation with respect to the basis $\mathcal{B}$.
+To see that $\psi$ is a ring homomorphism, let $\alpha, \beta \in K$ be given.
+Then for each $1 \leq j \leq n$, the coefficients of $$(\varphi_\alpha + \varphi_\beta)(e_j) = \varphi_\alpha(e_j) + \varphi_\beta(e_j) = \sum_{i=1}^n \alpha_{i,j}e_i + \sum_{i=1}^n\beta_{i,j}e_i,  = \sum_{i=1}^n (\alpha_{i,j} + \beta_{i,j})e_i,$$ 
+give the $j^{\text{th}}$ columns of the matrix $[\varphi_{\alpha}]_{\mathcal{B}}^\mathcal{B} + [\varphi_\beta]_{\mathcal{B}}^\mathcal{B}$.
+Hence we obtain
+$$\psi(\varphi_\alpha + \varphi_\beta) = [\varphi_{\alpha} + \varphi_\beta]_{\mathcal{B}}^\mathcal{B} = [\varphi_\alpha]_{\mathcal{B}}^\mathcal{B} + [\varphi_\beta]_{\mathcal{B}}^\mathcal{B} = \psi(\varphi_\alpha) + \psi(\varphi_\beta)$$
+Now consider $\psi(\varphi_\alpha \circ \varphi_\beta)$.
+Since $\varphi_\alpha$ is an $F$-vector space homomorphism we have 
+\begin{equation}\label{eq5.1}
+  (\varphi_\alpha \circ \varphi_\beta)(e_j) = \varphi_\alpha\left(\sum_{i=1}^n\beta_{i,j}e_i\right) = \sum_{i=1}^n\varphi_\alpha\left(\beta_{i,j}e_i\right) = \sum_{i=1}^n\beta_{i,j}\left(\sum_{k=1}^n\alpha_{k,j}e_k\right).
+\end{equation}
+Collecting coefficients of the basis elements, we rewrite \eqref{eq5.1} as
+$$(\varphi_\alpha \circ \varphi_\beta)(e_j) = \sum_{i=1}^n\left(\sum_{j=1}^n\alpha_{i,j}\beta_{j,i}\right)e_i.$$
+These coefficients are precisely the entries of the $j^{\text{th}}$ column of the matrix product $[\varphi_\alpha]_{\mathcal{B}}^\mathcal{B} \cdot [\varphi_\beta]_{\mathcal{B}}^\mathcal{B}$.
+Hence 
+$$\psi(\varphi_\alpha \circ \varphi_\beta) = [\varphi_{\alpha} \circ \varphi_\beta]_{\mathcal{B}}^\mathcal{B} = [\varphi_\alpha]_{\mathcal{B}}^\mathcal{B}[\varphi_\beta]_{\mathcal{B}}^\mathcal{B} = \psi(\varphi_\alpha) \psi(\varphi_\beta).$$
+Thus $\psi$ is a ring homomorphism.
+Finally, to see that $\psi$ is injective, observe that if $\psi(\varphi_\alpha) = 0_{\Mat{n \times n}{F}}$, then for each $1 \leq j \leq n$
+$$\alpha e_j = \varphi_\alpha(e_j) = \sum_{i=1}^n \alpha_{i,j}e_i = \sum_{i=1}^n 0_F\cdot e_i = 0_K.$$
+Hence it follows from the fact that $K$ is a field that $\alpha = 0$ and $\varphi_\alpha = 0$.
+Therefore the injective ring homomorphism
+$$K \xhookrightarrow{\varphi} \End{F}{K} \xhookrightarrow{\psi} \Mat{n \times n}{F}$$
+gives the desired embedding.
+For any other extension, $K^\prime$, of degree $m \leq n$, the embedding 
+\begin{align*}
+  \imath \colon \Mat{m\times m}{F} &\hookrightarrow \Mat{n \times n}{F}\\
+  A &\mapsto 
+  \left(\begin{array}{c|c}
+    & 0\\
+    \huge{\mbox{$A$}}\\[-5ex]
+    &\vdots\\[-0.5ex]
+    & 0\\
+    \hline
+    0 \ldots 0 & 0
+  \end{array}\right)
+\end{align*}
+yields an embedding 
+$$K^\prime \xhookrightarrow{\varphi} \End{F}{K^\prime} \xhookrightarrow{\psi} \Mat{m \times m}{F} \xhookrightarrow{\imath}\Mat{n \times n}{F}.$$
+\item
+  \end{enumerate}
+\end{proof}
+\end{thm}
+\end{document}
