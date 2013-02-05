@@ -17,6 +17,9 @@
 \newtheorem{thm}{}
 \newtheorem{lem}{Lemma}
 
+\newcommand{\End}[2]{\operatorname{End}_{#1}\left(#2\right)}
+\newcommand{\Hom}[2]{\operatorname{Hom}_{#1}\left(#2\right)}
+
 $F$ is a field.
 \begin{thm}\label{Ex1}
   Let $\mathbb{F}$ be a finite field of characteristic $p$.  Prove that there exists a positive integer $n$
@@ -104,7 +107,6 @@ $F$ is a field.
   \end{proof}
 \end{thm}
 
-\newcommand{\End}[2]{\operatorname{End}_{#1}\left(#2\right)}
 \begin{lem}\label{lem5.1}
   If $K$ is an $F$-vector space, then $\End{F}{K}$, the set of $F$-linear operators, is a ring under the operations pointwise addition, $+$, and composition, $\circ$.
 \begin{proof}
@@ -139,14 +141,14 @@ By defining $1_{\End{F}{K}} = \operatorname{id}_K$, it is clear that this is a u
   \item
     Let $\alpha\in K$.  Prove that multiplication by $\alpha$ is a linear transformation of the $F$-vector space 
     $K$ to itself.  We denote this linear transformation by $[\alpha] : K \rightarrow K$, so we have 
-    $[\alpha] \in \text{Hom}_{F}(K, K)$.     
+    $[\alpha] \in \Hom{F}{K, K}$.     
   \item 
-    Prove that $K$ is isomorphic to a subfield of the ring $\text{Mat}_{n\times n}(F)$ of $n\times n$ 
-    matrices over~$F$.  Conclude that $\text{Mat}_{n\times n}(F)$ contains an isomorphic copy of every
+    Prove that $K$ is isomorphic to a subfield of the ring $\Mat{n\times n}{F}$ of $n\times n$ 
+    matrices over~$F$.  Conclude that $\Mat{n\times n}{F}$ contains an isomorphic copy of every
     extension of $F$ of degree $\leq n$.  
   \item 
-    Recall that the characteristic polynomial of a matrix $A\in \text{Mat}_{n\times n}(F)$ is $p_{A}(x) 
-    = \text{det}(xI_n - A)\in F[x]$, where $I_n$ is the $n\times n$ identity matrix.  
+    Recall that the characteristic polynomial of a matrix $A\in \Mat{n \times n}{F}$ is $p_{A}(x) 
+    = \operatorname{det}(xI_n - A)\in F[x]$, where $I_n$ is the $n\times n$ identity matrix.  
     \begin{enumerate}[(i)]
     \item 
       Let $A$ denote the matrix of the linear transformation $[\alpha]$ from (a).  
@@ -161,10 +163,10 @@ By defining $1_{\End{F}{K}} = \operatorname{id}_K$, it is clear that this is a u
   \item 
     Let $D$ be a square-free integer, let  $K = \Q(\sqrt{D})$, and let $\alpha = a + b\sqrt{D}\in K$.  
     Use the basis $\{1, \sqrt{D}\}$ for $K$ as a $\Q$-vector space to show that the matrix for $[\alpha]$
-    in $\text{Mat}_{2\times 2}(\Q)$ is $\begin{pmatrix} a & bD \\ b & a \end{pmatrix}$.  
-    Prove directly that the map $K \rightarrow \text{Mat}_{2\times 2}(\Q)$ given by 
+    in $\Mat{2\times 2}{\Q}$ is $\begin{pmatrix} a & bD \\ b & a \end{pmatrix}$.  
+    Prove directly that the map $K \rightarrow \Mat{2\times 2}{\Q}$ given by 
     $a + b\sqrt{D} \mapsto \begin{pmatrix} a & bD \\ b & a\end{pmatrix}$ is an isomorphism of 
-      $K$ with a subfield of $\text{Mat}_{2\times 2}(\Q)$.  
+      $K$ with a subfield of $\Mat{2\times 2}{\Q}$.  
   \end{enumerate}
 
   \begin{proof}
@@ -242,6 +244,92 @@ For any other extension, $K^\prime$, of degree $m \leq n$, the embedding
 yields an embedding 
 $$K^\prime \xhookrightarrow{\varphi} \End{F}{K^\prime} \xhookrightarrow{\psi} \Mat{m \times m}{F} \xhookrightarrow{\imath}\Mat{n \times n}{F}.$$
 \item
+  \begin{enumerate}[(i)]
+  \item
+    Let $k \in K$ be given.
+    Using the basis $\mathcal{B}$ as above, write $k = k_1e_1 + k_2e_2 + \ldots k_ne_n$.
+    Then by construction $A(k_1, k_2, \ldots, k_n)^T = \alpha k$ shows that $\alpha$ is an eigenvalue of $A$ and $\operatorname{det}(\alpha I_{n} - A) = 0$.
+  \item
+    Observe that $p_A(x)$ is monic of degree $n$.
+    Then by the previous part, we have that $m_{\alpha,F}(x)$ divides $p_A(x)$.
+    Therefore they must be equal.
+  \item
+    Let $\alpha = 1 + \sqrt{2} + \sqrt{3} + \sqrt{6}$.
+    For the extension $\Q(\alpha)$, choose the $\Q$-basis $\left\{1, \sqrt{2}, \sqrt{3}, \sqrt{6}\right\}$.
+    Then construct the matrix of multiplication by $\alpha$
+    $$A = \left(\begin{array}{rrrr}
+      1 & 1 & 1 & 1 \\
+      2 & 1 & 2 & 1 \\
+      3 & 3 & 1 & 1 \\
+      6 & 2 & 3 & 1
+    \end{array}\right).$$
+    Then the minimal polynomial is given by
+    $$\operatorname{det}(xI_n - A) = \operatorname{det}\left(\begin{array}{rrrr}
+x - 1 & -1 & -1 & -1 \\
+-2 & x - 1 & -2 & -1 \\
+-3 & -3 & x - 1 & -1 \\
+-6 & -2 & -3 & x - 1
+\end{array}\right) = x^{4} - 4 \, x^{3} - 16 \, x^{2} - 10 \, x + 4
+.$$
+    
+    Similarly, let $\alpha = 1 + \sqrt[3]{2} + \sqrt[3]{4}$ and choose the $\Q$-basis $\left\{1,\sqrt[3]{2},\sqrt[3]{4}\right\}$ for $\Q(\alpha)$.
+    Then we compute the matrix of multiplication by $\alpha$
+    $$A = \left(\begin{array}{rrr}
+      1 & 1 & 1 \\
+      2 & 1 & 1 \\
+      2 & 2 & 1
+    \end{array}\right).$$
+    Then the minimum polynomial is given by
+    $$\det(xI_n - A) = \operatorname{det}\left(\left(\begin{array}{rrr}
+      x - 1 & -1 & -1 \\
+      -2 & x - 1 & -1 \\
+      -2 & -2 & x - 1
+    \end{array}\right)\right) = x^{3} - 3 \, x^{2} - 3 \, x - 1.$$
+  \item
+    Under the map of multiplication by $\alpha$, we have $1 \mapsto a + b\sqrt{D}$ and $\sqrt{D} \mapsto bD + a\sqrt{D}$.
+    Hence the matrix $A$ is determined by the equation below:
+    $$\left(\begin{array}{cc}
+      a & bD\\
+      b & a
+    \end{array}\right)
+    \left(\begin{array}{c}
+      \sqrt{D}\\
+      1
+    \end{array}\right) = \left(\begin{array}{c}
+      bD + a\sqrt{D}\\
+      a + b\sqrt{D}
+      \end{array}\right).$$
+    Let $\beta = c + d\sqrt{D}$.
+    Then $\alpha + \beta = (a + c) + (b + d)\sqrt{D}$ and $\alpha\beta = (ac + bdD) + (ad + bc)\sqrt{D}$.
+    Hence 
+    $$\alpha + \beta \mapsto \left(\begin{array}{cc}
+      a+c & b + d\\
+      (b + c)D & a + c
+    \end{array}\right) = 
+    \left(\begin{array}{cc}
+      a & b\\
+      bD & a
+    \end{array}\right) +
+    \left(\begin{array}{cc}
+      c & d\\
+      dD & c
+    \end{array}\right)$$
+    and
+    $$\alpha\beta \mapsto \left(\begin{array}{cc}
+      ac + bdD & ad+bc\\
+      (ad + bc)D & ac + bdD
+    \end{array}\right) = 
+    \left(\begin{array}{cc}
+      a & b\\
+      bD & a
+    \end{array}\right)
+    \left(\begin{array}{cc}
+      c & d\\
+      dD & c
+    \end{array}\right).$$
+    Hence the map $K \rightarrow \Mat{n \times n}{\Q}$ is a homomorphism.
+    The kernel is clearly trivial.
+  \end{enumerate}
   \end{enumerate}
 \end{proof}
 \end{thm}
