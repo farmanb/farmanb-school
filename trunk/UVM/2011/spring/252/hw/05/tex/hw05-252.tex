@@ -1,5 +1,5 @@
 \documentclass[10pt]{amsart}
-\usepackage{amsmath,amsthm,amssymb,amsfonts,mymath}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,mymath,enumerate}
 \openup 5pt
 \author{Blake Farman}
 \title{Math-252:\\Homework 5}
@@ -36,15 +36,15 @@
 
 \begin{thm}
   \label{Ex2}
-  \begin{alphaenum}
+  \begin{enumerate}[(a)]
   \item
     Prove that two $2 \times 2$ matrices over $F$ which are not scalar matrices are similar if and only if they have the same characteristic polynomial.
   \item
     Prove that two $3 \times 3$ matrices over $F$ are similar if and only if they have the same characterstic and same minimal polynomials.
     Give an explicit counterexample to this assertion for $4 \times 4$ matrices.
-  \end{alphaenum}
+  \end{enumerate}
   \begin{proof}
-    \begin{alphaenum}
+    \begin{enumerate}[(a)]
     \item
       Let $A$ and $B$ be non-scalar $2 \times 2$ matrices.
       Assume $A$ and $B$ are similar.
@@ -69,7 +69,7 @@
       In particular, we are concerned only with the case where at least two linear factors are the same and the minimal polynomial is of degree 2.
       We observe that because  $m_A(x) = m_B(x)$, there is no choice for the remaining invariant factor.
       Therefore $A$ and $B$ have the same rational canonical form, proving they are similar.
-    \end{alphaenum}
+    \end{enumerate}
   \end{proof}
 \end{thm}
 
