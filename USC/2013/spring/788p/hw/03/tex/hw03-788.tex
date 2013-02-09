@@ -1,0 +1,177 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath,tikz-cd}
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 788p:\\Homework 03}
+\date{February 11, 2013}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+\maketitle
+
+\providecommand{\p}{\mathfrak{p}}
+\providecommand{\m}{\mathfrak{m}}
+
+\theoremstyle{plain}
+\newtheorem{thm}{}
+\newtheorem{lem}{Lemma}
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}
+
+\setcounter{thm}{2}
+
+\begin{defn}[Limit]\label{def1}
+  Let $\mathcal{C}$ and $J$ be categories and let $\mathcal{C}^{J}$ be the category with objects functors from $J$ to $\mathcal{C}$ and arrows natural transformations between functors.
+  Define the diagonal functor $\Delta \colon \mathcal{C} \rightarrow \mathcal{C}^{J}$ by the object map that sends $c$ to the
+  constant functor\footnote{That is, $\Delta c$ is $c$ at each object $j$ of $J$ and $1_c$ at each arrow of $J$.  
+    Here, the functor category amounts to the 'diagrams of shape $J$' in $\mathcal{C}$; a functor $F \colon J \rightarrow \mathcal{C}$ is essentially a choice of $J$-indexed objects and morphisms of $\mathcal{C}$ between these objects.
+  $J$ is usually small or finite.} 
+  $\Delta c: J \rightarrow \mathcal{C}$ and the arrow map that sends an arrow $f: c \rightarrow c^\prime$ of $\mathcal{C}$ to the natural 
+  transformation $\Delta f: \Delta c \dot{\rightarrow} \Delta c^\prime$, which has the value $f$ at each object $j$ of $J$.
+
+  Fix a functor $F \colon J \rightarrow \mathcal{C}$ of $\mathcal{C}^{J}$ and consider a natural transformation $\tau \colon \Delta c \dot{\rightarrow} F$.
+  Since $\Delta c$ is the constant functor, the natural transformation $\tau$ is the collection of morphisms $\tau_j \colon c \rightarrow F_j$ of $\mathcal{C}$, for each object $j$ of $J$, such that for every arrow $u \colon j \rightarrow k$ of $J$, the diagram 
+    \begin{center}
+      \begin{tikzcd}
+        & \arrow{ld}[description]{\tau_j}c\arrow{rd}[description]{\tau_j} & & j\arrow{d}[description]{u}\\
+        F_j\arrow{rr}[description]{Fu} & & F_k & k
+      \end{tikzcd}
+    \end{center}
+    %$\tau_k = Fu \circ \tau_j$
+    commutes.\footnote{Essentially, by identifying the top two vertices of the naturality square, it collapses to a triangle.}
+    This is a 'cone to the base $F$ from the vertex $c$'.
+    
+    A limit for $F$ is the data of an object $\underleftarrow{\lim}F_i$ of $\mathcal{C}$ and a natural transformation $\nu \colon \Delta \underleftarrow{\lim}F_i \dot{\rightarrow} F$ that is universal amongst natural transformations $\tau \colon \Delta c \dot{\rightarrow} F$, for objects $c$ of $\mathcal{C}$.
+    The natural transformation $\nu$ is a universal cone to the base $F$.
+    Pictorially, $\underleftarrow{\lim}F_i$ is the unique object (up to isomorphism) of $\mathcal{C}$ such that for every $u \colon j \rightarrow k$ of $J$, and every natural transformation $\tau \colon \Delta c \dot{\rightarrow} F$ there exists a unique morphism $f \colon c \rightarrow \underleftarrow{\lim}F_i$ such that the diagram
+  \begin{center}
+    \begin{tikzcd}
+      & \arrow[bend right]{ldd}{\tau_j}\arrow[dotted]{d}{\exists !h} c\arrow[bend left]{rdd}{\tau_j} &\\
+      & \arrow{ld}{\nu_j}\underleftarrow{\lim}F_i\arrow{rd}{\nu_j} &\\
+      F_j\arrow{rr}{Fu} & & F_k
+  \end{tikzcd}
+\end{center}
+  commutes.
+\end{defn}
+
+%As an example, regard $J = \N$ as a discrete category; the objects are natural numbers $n$ and the only morphisms are the identity morphisms, $n \xrightarrow{\operatorname{id}_n} n$.
+%If $\mathcal{C} = {\bf Rng}$, then the objects of the functor category ${\bf Rng}^{\N}$ can be safely identified as collections of rings, $\mathcal{R} = \left\{G_n \;\middle\vert\; n \in \N\right\}$.
+%For two collections $\mathcal{R}$ and $\mathcal{S}$, a natural transformation $\eta \colon \mathcal{R} \dot{\rightarrow} \mathcal{S}$ is simply a collection of indexed ring homomorphisms $\eta_n \colon R_n \rightarrow S_n$, for each $n \in \N$.
+%Since $\N$ is taken to be a discrete category, naturality is trivial (there are no ring homomorphisms $R_n \rightarrow S_m$ within a diagram if $n \neq m$).
+
+%The diagonal functor $\Delta \colon {\bf Rng} \rightarrow {\bf Rng}^{\N}$ sends a ring $R$ to the constant collection $\mathcal{R} = \left\{R_n = R \;\middle\vert\; n \in \N\right\}$.
+%A universal arrow from a collection $\mathcal{R}$ to $\Delta$ is an infinite product consisting of the object $\prod_{k \in \N} R_k$ of ${\bf Rng}$ and an indexed collection of ring homomorphism $\pi_n \colon \prod_{k \in \N} R_k \rightarrow R_n$ such that for every other element $\mathcal{S}$ equipped with ring homomorphisms $f_n \colon \mathcal{S} \rightarrow R_n$ for each $n \in \N$, there exists a unique ring homomorphism $f \colon \prod_{k \in \N} R_k \rightarrow \mathcal{S}$ and for each $n, m \in \N$, the diagram 
+%\begin{center}
+%  \begin{tikzcd}
+%    &\mathcal{S}\arrow[bend right]{ldd}[description]{f_n}\arrow[dotted]{d}{\exists ! f}\arrow[bend left]{rdd}[description]{f_m}\\
+%    & \arrow{rd}[description]{\pi_n}\prod_{k \in \N}R_k \arrow{ld}[description]{\pi_m} &\\
+%    R_n &  & R_m
+%  \end{tikzcd}
+%\end{center}
+%commutes.
+
+\begin{thm}\label{ex3}
+  $\Z_p$ is the inverse limit of the rings $\Z/(p^n)$.
+  \begin{proof}
+    Let $J$ be the category with objects natural numbers, $n$, and a unique arrow $n \rightarrow m$ if and only if $n \geq m$.
+    Take $\mathcal{C} = {\bf Rng}$, the category with objects rings and arrows ring homomorphisms.
+    Consider the functor $F \colon J \rightarrow {\bf Rng}$ with object map that sends $n$ to $\Z/p^n\Z$ and arrow map that sends $n \rightarrow m$ to the projection 
+    \begin{align*}
+      \varphi_{n,m} \colon \Z/(p^n) &\rightarrow \Z/(p^m)\\
+      \alpha &\mapsto \alpha \pmod{p^m}.
+    \end{align*}
+    Consider $\Z_p$ as the subring
+    $\left\{(x_1, x_2, \ldots) \in \prod_{n=1}^\infty \Z/(p^n) \;\middle\vert\; \varphi_{n,n+1}(x_{n_1}) = x_n \right\} \subseteq \prod_{n=1}^\infty \Z/(p^n)$
+    equipped with the morphisms 
+    \begin{align*}
+      \pi_n \colon \Z_p &\rightarrow \Z/(p^n)\\
+      (x_1, x_2, \ldots) & \mapsto x_n.
+    \end{align*}
+    This forms the cone
+    \begin{center}
+      \begin{tikzcd}
+        &&&\Z_p \arrow[dashed]{lld}{\ldots} \arrow{ld}[description]{\pi_4} \arrow{d}[description]{\pi_3} \arrow{rd}[description]{\pi_2} \arrow{rrd}[description]{\pi_1}\\
+        &\ldots\arrow{r}[below]{\varphi_{4,5}} & \Z/(p^4) \arrow{r}[below]{\varphi_{3,4}}& \Z/(p^3) \arrow{r}[below]{\varphi_{2,3}}& \Z/(p^2)\arrow{r}[below]{\varphi_{1,2}} & \Z/(p).
+      \end{tikzcd}
+    \end{center}
+    Let $R$ be the vertex of any other cone, equipped with morphisms $f_n \colon R \rightarrow \Z/(p^n)$.
+    Then the morphism 
+    \begin{align*}
+      f \colon R &\rightarrow \Z_p\\
+      r &\mapsto (f_1(r), f_2(r), f_3(r), \ldots).
+    \end{align*}
+    is forced by the commutativity of the diagram
+    \begin{center}
+      \begin{tikzcd}
+        &R\arrow[bend right]{ldd}[description]{f_n}\arrow[dotted]{d}{\exists ! f}\arrow[bend left]{rdd}[description]{f_m}\\
+        & \arrow{ld}[description]{\pi_n}\Z_p \arrow{rd}[description]{\pi_m} &\\
+        \Z/(p^n)\arrow{rr}[description]{\varphi_{m,n}} &  & \Z/(p^m)
+      \end{tikzcd}
+    \end{center}    
+
+  \end{proof}
+\end{thm}
+
+\setcounter{thm}{6}
+\begin{thm}
+  $\Z_p$ is compact.
+
+  \begin{proof}
+    Equip $\Z/(p^n)$ with the discrete topology and consider the infinite product $X = \prod_{n=1}^\infty \Z/(p^n)$ equipped with the usual product topology.
+    Since each of $\Z/(p^n)$ is finite, each is also compact.
+    Hence Tychonoff's Theorem guarantees that $X$ is a compact topological space.
+    Equip $\Z_p$ with the maps
+    \begin{align*}
+      f_n \colon \Z_p  &\rightarrow \Z/(p^n)\\
+      x &\mapsto x \pmod{p^n}.
+    \end{align*}
+    To see that these are continuous, let $U \subseteq \Z/(p^n)$ be an open set and write $U$ as the union of singletons, $U = \bigcup_{u \in U}\left\{u\right\}$.
+    Observe that the basis for the topology on $\Z_p$ consists of the sets
+    $$B_k(\alpha) = \left\{x \in \Z_p \;\middle\vert\; x \equiv \alpha \pmod{p^k}\right\} = f_k^{-1}(\alpha).$$
+    Continuity of $f_n$ now follows from $$f_n^{-1}(U) = f_n^{-1}\left(\bigcup_{u \in U} u\right) = \bigcup_{u \in U} f_n^{-1}(u).$$
+    
+    Then by the universal property of limits in Definition~\ref{def1}, there exists a unique continuous function $f \colon \Z_p \rightarrow X$ such that the diagram 
+    \begin{center}
+      \begin{tikzcd}
+        &\Z_p\arrow[bend right]{ldd}[description]{f_n}\arrow[dotted]{d}{\exists ! f}\arrow[bend left]{rdd}[description]{f_m}\\
+        & \arrow{ld}[description]{\pi_n}X \arrow{rd}[description]{\pi_m} &\\
+        \Z/(p^n) &  & \Z/(p^m)
+      \end{tikzcd}
+    \end{center}  
+    commutes.
+    Consider the map     
+    \begin{align*}
+      f \colon \Z_p &\hookrightarrow X\\
+      x &\mapsto (f_1(x), f_2(x), f_3(x), \ldots).
+    \end{align*}
+    By Exercise~\ref{ex3} this map satisfies the commutativity conditions.
+    It remains to show that $f$ is continuous.
+    Towards that end, define the collections $\mathcal{S}_n = \left\{\pi_n^{-1}(U) \;\middle\vert\; U \subseteq \Z/(p^i) \right\}$ for each $n \in \N$.
+    Since each $\pi_n$ is continuous, each element $S \in \mathcal{S}_n$ is open in $X$ and we can write $X = \bigcup_{n=1}^\infty \mathcal{S}_n$.
+    Hence the collection $\mathcal{S} = \bigcup_{n=1}^\infty \mathcal{S}_n$ is a subbasis for $X$ by definition and so it suffices to show that for any $U \subseteq \Z/(p^n)$, the preimage $\pi_n^{-1}(U)$ is open in $\Z_p$.
+    This follows from the commutativity conditions; namely 
+    $$f^{-1}(\pi_n^{-1}(U)) = (f \circ \pi_n)^{-1}(U) = f_n^{-1}(U)$$
+    is open because $f_n$ is continuous.
+    Thus we may identify $\Z_p$ as a subspace of $X$, and it suffices to show that $\Z_p$ is closed in the compact topological space $X$.
+    
+    Let $x = (x_1, x_2, x_3, \ldots) \in X \setminus \Z_p$ be given.
+    There exists some $n \in \N$ such that $x_n \not \equiv x_{n+1} \pmod{p^n}$.
+    Let $\alpha = \pi_n(x_n)$ and $\beta = \pi_{n+1}(x_{n+1})$ and consider the open neighborhood $U = \pi_n^{-1}(\alpha) \cap \pi_{n+1}^{-1}(\beta)$ of $x$.
+    For any $y \in U$, we have by construction that $\pi_n^{-1}(y) = \alpha \not \equiv \beta = \pi_{n+1}^{-1}(y) \pmod{p^n}$ and thus $y \not \in \Z_p$.
+    Hence $U \subseteq X \setminus \Z_p$ and so $X \setminus \Z_p$ is open.
+    Therefore $\Z_p$ is closed, as desired.
+    
+    %, there exists a unique continuous function, $f$, such that the diagram
+%    \begin{center}
+%      \begin{tikzcd}
+%        &\Z_p\arrow[bend right]{ldd}[description]{f_n}\arrow[dotted]{d}{\exists ! f}\arrow[bend left]{rdd}[description]{f_m}\\
+%        & \arrow{ld}[description]{\pi_n}\prod_{n=1}^\infty \Z/(p^n) \arrow{rd}[description]{\pi_m} &\\
+%        \Z/(p^n) &  & \Z/(p^m)
+%      \end{tikzcd}
+%    \end{center}    
+%    commutes.
+  \end{proof}
+\end{thm}
+\end{document}
