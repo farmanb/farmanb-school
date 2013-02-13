@@ -1,5 +1,5 @@
 \documentclass[10pt]{amsart}
-\usepackage{amsmath,amsthm,amssymb,amsfonts,mymath}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,mymath,enumerate}
 \openup 5pt
 \author{Blake Farman}
 \title{Math-252:\\Homework 8}
@@ -89,10 +89,10 @@
 \newtheorem*{6}{6}
 
 \begin{6}
-  \newcommand{\Aut}{\operatorname{Aut}}
+%  \newcommand{\Aut}{\operatorname{Aut}}
   \label{Ex6}
-  This exercise determines $\Aut(\R/\Q)$
-  \begin{alphaenum}
+  This exercise determines $\Aut{\R/\Q}$
+  \begin{enumerate}[(a)]
     \item
       Prove that any $\sigma \in \Aut(\R/\Q)$ takes squares to squares and takes positive reals to positive reals.
       Conclude that $a < b$ implies $\sigma a < \sigma b$ for every $a,b \in R$.
@@ -100,17 +100,17 @@
       Prove that $|a - b| < 1/m$ implies $|\sigma a - \sigma b|< 1/m$ for every positive integer $m$. 
       Conclude that $\sigma$ is a continuous map on $\R$.
     \item
-      Prove that any continuous map on $\R$ which is the identity on $\Q$ is the identity map, hence $\Aut(\R/\Q) = 1$.
-  \end{alphaenum}
+      Prove that any continuous map on $\R$ which is the identity on $\Q$ is the identity map, hence $\Aut{\R/\Q} = 1$.
+  \end{enumerate}
 
   \begin{proof}
-    \begin{alphaenum}
+    \begin{enumerate}[(a)]
     \item
-      Since $\sigma \in \Aut(\R/\Q)$, we have $\sigma(x^2) = (\sigma x)^2$.
+      Since $\sigma \in \Aut{\R/\Q}$, we have $\sigma(x^2) = (\sigma x)^2$.
       Hence $\sigma$ takes squares to squares.
       Then it follows that since each element $x$ of $\R^+$ can be written as a square, $\sigma x$ is also a square.
       Hence positive reals map to positive reals.
-      Since $\sigma \in \Aut(\R/\Q)$, it must then be the case that no element of $\R^{\leq 0}$ maps into $R^+$. 
+      Since $\sigma \in \Aut{\R/\Q}$, it must then be the case that no element of $\R^{\leq 0}$ maps into $R^+$. 
       Then for $a < b$, we have $a - b < 0$ and thus $\sigma (a - b) = \sigma a - \sigma b < 0$.
       Therefore $\sigma a < \sigma b$.
     \item
@@ -123,8 +123,8 @@
       Let $\{q_n\}_{n=1}^{\infty}$ one such rational Cauchy sequence.
       The result of part (b) implies that the sequence $\{\sigma q_n\}_{n=1}^{\infty} = \{q_n\}_{n=1}^{\infty}$ converges to $\sigma x$.
       Hence $\sigma x = x$ implies that $\sigma$ is the identity.
-      Therefore, since the choice of $\sigma$ was arbitrary, $\Aut(\R/\Q) = 1$.
-    \end{alphaenum}
+      Therefore, since the choice of $\sigma$ was arbitrary, $\Aut{\R/\Q} = 1$.
+    \end{enumerate}
   \end{proof}
 \end{6}
 
