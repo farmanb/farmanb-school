@@ -23,36 +23,36 @@
 \setcounter{thm}{2}
 
 \begin{defn}[Limit]\label{def1}
-  Let $\mathcal{C}$ and $J$ be categories and let $\mathcal{C}^{J}$ be the category with objects functors from $J$ to $\mathcal{C}$ and arrows natural transformations between functors.
-  Define the diagonal functor $\Delta \colon \mathcal{C} \rightarrow \mathcal{C}^{J}$ by the object map that sends $c$ to the
-  constant functor\footnote{That is, $\Delta c$ is $c$ at each object $j$ of $J$ and $1_c$ at each arrow of $J$.  
-    Here, the functor category amounts to the 'diagrams of shape $J$' in $\mathcal{C}$; a functor $F \colon J \rightarrow \mathcal{C}$ is essentially a choice of $J$-indexed objects and morphisms of $\mathcal{C}$ between these objects.
-  $J$ is usually small or finite.} 
-  $\Delta c: J \rightarrow \mathcal{C}$ and the arrow map that sends an arrow $f: c \rightarrow c^\prime$ of $\mathcal{C}$ to the natural 
-  transformation $\Delta f: \Delta c \dot{\rightarrow} \Delta c^\prime$, which has the value $f$ at each object $j$ of $J$.
+  Let $\mathcal{C}$ and $I$ be categories and let $\mathcal{C}^{I}$ be the category with objects functors from $I$ to $\mathcal{C}$ and arrows natural transformations between functors.
+  Define the diagonal functor $\Delta \colon \mathcal{C} \rightarrow \mathcal{C}^{I}$ by the object map that sends $c$ to the
+  constant functor\footnote{That is, $\Delta c$ is $c$ at each object $i$ of $I$ and $1_c$ at each arrow of $I$.  
+    Here, the functor category amounts to the 'diagrams of shape $I$' in $\mathcal{C}$; a functor $F \colon I \rightarrow \mathcal{C}$ is essentially a choice of $I$-indexed objects and morphisms of $\mathcal{C}$ between these objects.
+    $I$ is usually small or finite.} 
+  $\Delta c: I \rightarrow \mathcal{C}$ and the arrow map that sends an arrow $f: c \rightarrow c^\prime$ of $\mathcal{C}$ to the natural 
+  transformation $\Delta f: \Delta c \dot{\rightarrow} \Delta c^\prime$, which has the value $f$ at each object $i$ of $I$.
 
-  Fix a functor $F \colon J \rightarrow \mathcal{C}$ of $\mathcal{C}^{J}$ and consider a natural transformation $\tau \colon \Delta c \dot{\rightarrow} F$.
-  Since $\Delta c$ is the constant functor, the natural transformation $\tau$ is the collection of morphisms $\tau_j \colon c \rightarrow F_j$ of $\mathcal{C}$, for each object $j$ of $J$, such that for every arrow $u \colon j \rightarrow k$ of $J$, the diagram 
-    \begin{center}
-      \begin{tikzcd}
-        & \arrow{ld}[description]{\tau_j}c\arrow{rd}[description]{\tau_j} & & j\arrow{d}[description]{u}\\
-        F_j\arrow{rr}[description]{Fu} & & F_k & k
-      \end{tikzcd}
-    \end{center}
-    %$\tau_k = Fu \circ \tau_j$
-    commutes.\footnote{Essentially, by identifying the top two vertices of the naturality square, it collapses to a triangle.}
-    This is a 'cone to the base $F$ from the vertex $c$'.
-    
-    A limit for $F$ is the data of an object $\underleftarrow{\lim}F_i$ of $\mathcal{C}$ and a natural transformation $\nu \colon \Delta \underleftarrow{\lim}F_i \dot{\rightarrow} F$ that is universal amongst natural transformations $\tau \colon \Delta c \dot{\rightarrow} F$, for objects $c$ of $\mathcal{C}$.
-    The natural transformation $\nu$ is a universal cone to the base $F$.
-    Pictorially, $\underleftarrow{\lim}F_i$ is the unique object (up to isomorphism) of $\mathcal{C}$ such that for every $u \colon j \rightarrow k$ of $J$, and every natural transformation $\tau \colon \Delta c \dot{\rightarrow} F$ there exists a unique morphism $f \colon c \rightarrow \underleftarrow{\lim}F_i$ such that the diagram
+  Fix a functor $F \colon I \rightarrow \mathcal{C}$ of $\mathcal{C}^{I}$ and consider a natural transformation $\tau \colon \Delta c \dot{\rightarrow} F$.
+  Since $\Delta c$ is the constant functor, the natural transformation $\tau$ is the collection of morphisms $\tau_i \colon c \rightarrow F_i$ of $\mathcal{C}$, for each object $i$ of $I$, such that for every arrow $u \colon i \rightarrow j$ of $I$, the diagram 
   \begin{center}
     \begin{tikzcd}
-      & \arrow[bend right]{ldd}{\tau_j}\arrow[dotted]{d}{\exists !h} c\arrow[bend left]{rdd}{\tau_j} &\\
-      & \arrow{ld}{\nu_j}\underleftarrow{\lim}F_i\arrow{rd}{\nu_j} &\\
-      F_j\arrow{rr}{Fu} & & F_k
-  \end{tikzcd}
-\end{center}
+      & \arrow{ld}[description]{\tau_i}c\arrow{rd}[description]{\tau_i} & & i\arrow{d}[description]{u}\\
+      F_i\arrow{rr}[description]{Fu} & & F_j & j
+    \end{tikzcd}
+  \end{center}
+  %$\tau_j = Fu \circ \tau_i$
+  commutes.\footnote{Essentially, by identifying the top two vertices of the naturality square, it collapses to a triangle.}
+  This is a 'cone to the base $F$ from the vertex $c$'.
+  
+  A limit for $F$ is the data of an object $\varprojlim_{i \in I}F_i$ of $\mathcal{C}$ and a natural transformation $\nu \colon \Delta \varprojlim_{i \in I}F_i \dot{\rightarrow} F$ that is universal amongst natural transformations $\tau \colon \Delta c \dot{\rightarrow} F$, for objects $c$ of $\mathcal{C}$.
+  The natural transformation $\nu$ is a universal cone to the base $F$.
+  Pictorially, $\varprojlim_{i \in I}F_i$ is the unique object (up to isomorphism) of $\mathcal{C}$ such that for every $u \colon i \rightarrow j$ of $I$, and every natural transformation $\tau \colon \Delta c \dot{\rightarrow} F$ there exists a unique morphism $f \colon c \rightarrow \varprojlim_{i \in I}F_i$ such that the diagram
+  \begin{center}
+    \begin{tikzcd}
+      & \arrow[bend right]{ldd}{\tau_i}\arrow[dotted]{d}{\exists !h} c\arrow[bend left]{rdd}{\tau_i} &\\
+      & \arrow{ld}{\nu_i}\varprojlim_{i \in I}F_i\arrow{rd}{\nu_i} &\\
+      F_i\arrow{rr}{Fu} & & F_j
+    \end{tikzcd}
+  \end{center}
   commutes.
 \end{defn}
 
@@ -75,15 +75,24 @@
 \begin{thm}\label{ex3}
   $\Z_p$ is the inverse limit of the rings $\Z/(p^n)$.
   \begin{proof}
-    Let $J$ be the category with objects natural numbers, $n$, and a unique arrow $n \rightarrow m$ if and only if $n \geq m$.
+    Regard $\N$ as a category with respect to the relation $\leq$ by taking the objects natural numbers and a unique arrow $n \rightarrow m$ if and only if $n \leq m$.
     Take $\mathcal{C} = {\bf Rng}$, the category with objects rings and arrows ring homomorphisms.
-    Consider the functor $F \colon J \rightarrow {\bf Rng}$ with object map that sends $n$ to $\Z/p^n\Z$ and arrow map that sends $n \rightarrow m$ to the projection 
+    Consider the functor $F \colon \N^\text{op} \rightarrow {\bf Rng}$, where $\N^\text{op}$ is the category $\N$ with the arrows reversed (i.e. the domain and codomain are switched), with object map that sends $n$ to $\Z/p^n\Z$ and
+    arrow map that sends $n \rightarrow m$ for every $n \geq m$ to the projection 
     \begin{align*}
-      \varphi_{n,m} \colon \Z/(p^n) &\rightarrow \Z/(p^m)\\
+      \varphi_{n,m} \colon \Z/(p^n) &\twoheadrightarrow \Z/(p^m)\\
       \alpha &\mapsto \alpha \pmod{p^m}.
     \end{align*}
+    This defines the inverse system
+    \begin{center}
+      \begin{tikzcd}
+        \ldots \arrow{r}{\varphi_{5,4}} & \Z/(p^4) \arrow{r}{\varphi_{4,3}} & \Z/(p^3) \arrow{r}{\varphi_{3,2}} & \Z/(p^2)\arrow{r}{\varphi_{2,1}} & \Z/(p).
+      \end{tikzcd}
+    \end{center}
+    Note that by defining the functor with domain the opposite category, we have a covariant, rather than contravariant, functor.
+    
     Consider $\Z_p$ as the subring
-    $\left\{(x_1, x_2, \ldots) \in \prod_{n=1}^\infty \Z/(p^n) \;\middle\vert\; \varphi_{n,n+1}(x_{n_1}) = x_n \right\} \subseteq \prod_{n=1}^\infty \Z/(p^n)$
+    $$\left\{(x_1, x_2, \ldots) \in \prod_{n=1}^\infty \Z/(p^n) \;\middle\vert\; \varphi_{n+1,n}(x_{n+1}) = x_n \right\} \subseteq \prod_{n=1}^\infty \Z/(p^n)$$
     equipped with the morphisms 
     \begin{align*}
       \pi_n \colon \Z_p &\rightarrow \Z/(p^n)\\
@@ -97,7 +106,7 @@
       \end{tikzcd}
     \end{center}
     Let $R$ be the vertex of any other cone, equipped with morphisms $f_n \colon R \rightarrow \Z/(p^n)$.
-    Then the morphism 
+    Then the map 
     \begin{align*}
       f \colon R &\rightarrow \Z_p\\
       r &\mapsto (f_1(r), f_2(r), f_3(r), \ldots).
@@ -107,10 +116,15 @@
       \begin{tikzcd}
         &R\arrow[bend right]{ldd}[description]{f_n}\arrow[dotted]{d}{\exists ! f}\arrow[bend left]{rdd}[description]{f_m}\\
         & \arrow{ld}[description]{\pi_n}\Z_p \arrow{rd}[description]{\pi_m} &\\
-        \Z/(p^n)\arrow{rr}[description]{\varphi_{m,n}} &  & \Z/(p^m)
+        \Z/(p^n)\arrow{rr}[description]{\varphi_{m,n}} &  & \Z/(p^m).
       \end{tikzcd}
     \end{center}    
-
+    To see that this is actually a morphism, take $r_1, r_2 \in R$.
+    Then we have 
+    $$f(r_1 + r_2) = (f_1(r_1 + r_2), f_2(r_1 + r_2), \ldots) = (f_1(r_1) + f_1(r_2), f_2(r_1) + f_2(r_2), \ldots),$$
+    since each $f_i$ is a morphism.
+    Similarly, 
+    $$f(r_1 r_2) = (f_1(r_1 r_2), f_2(r_1 r_2), \ldots) = (f_1(r_1) f_1(r_2), f_2(r_1) f_2(r_2), \ldots).$$
   \end{proof}
 \end{thm}
 
@@ -122,6 +136,12 @@
     Equip $\Z/(p^n)$ with the discrete topology and consider the infinite product $X = \prod_{n=1}^\infty \Z/(p^n)$ equipped with the usual product topology.
     Since each of $\Z/(p^n)$ is finite, each is also compact.
     Hence Tychonoff's Theorem guarantees that $X$ is a compact topological space.
+    Note that we have implicity constructed a limit in {\bf Top}.
+    In particular, $X = \varprojlim_{i \in I}F_i$ where, 
+    regarding $\N$ as a discrete category (the only arrows are the identity maps $n \rightarrow n$ for each $n \in N$), 
+    the functor $F \colon \N \rightarrow {\bf Top}$ sends the object $n$ to $\Z/(p^n)$ 
+    and the arrow $n \rightarrow n$ to $\Z/(p^n) \rightarrow \Z/(p^n)$ in the obvious way.
+    
     Equip $\Z_p$ with the maps
     \begin{align*}
       f_n \colon \Z_p  &\rightarrow \Z/(p^n)\\
@@ -131,8 +151,7 @@
     Observe that the basis for the topology on $\Z_p$ consists of the sets
     $$B_k(\alpha) = \left\{x \in \Z_p \;\middle\vert\; x \equiv \alpha \pmod{p^k}\right\} = f_k^{-1}(\alpha).$$
     Continuity of $f_n$ now follows from $$f_n^{-1}(U) = f_n^{-1}\left(\bigcup_{u \in U} u\right) = \bigcup_{u \in U} f_n^{-1}(u).$$
-    
-    Then by the universal property of limits in Definition~\ref{def1}, there exists a unique continuous function $f \colon \Z_p \rightarrow X$ such that the diagram 
+    By the universal property of limits, there exists a unique continuous function $f \colon \Z_p \rightarrow X$ such that the diagram 
     \begin{center}
       \begin{tikzcd}
         &\Z_p\arrow[bend right]{ldd}[description]{f_n}\arrow[dotted]{d}{\exists ! f}\arrow[bend left]{rdd}[description]{f_m}\\
@@ -141,12 +160,13 @@
       \end{tikzcd}
     \end{center}  
     commutes.
+
     Consider the map     
     \begin{align*}
       f \colon \Z_p &\hookrightarrow X\\
       x &\mapsto (f_1(x), f_2(x), f_3(x), \ldots).
     \end{align*}
-    By Exercise~\ref{ex3} this map satisfies the commutativity conditions.
+    The structure on $\Z_p$ dictates that this map satisfies the commutativity conditions.
     It remains to show that $f$ is continuous.
     Towards that end, define the collections $\mathcal{S}_n = \left\{\pi_n^{-1}(U) \;\middle\vert\; U \subseteq \Z/(p^i) \right\}$ for each $n \in \N$.
     Since each $\pi_n$ is continuous, each element $S \in \mathcal{S}_n$ is open in $X$ and we can write $X = \bigcup_{n=1}^\infty \mathcal{S}_n$.
@@ -158,20 +178,20 @@
     
     Let $x = (x_1, x_2, x_3, \ldots) \in X \setminus \Z_p$ be given.
     There exists some $n \in \N$ such that $x_n \not \equiv x_{n+1} \pmod{p^n}$.
-    Let $\alpha = \pi_n(x_n)$ and $\beta = \pi_{n+1}(x_{n+1})$ and consider the open neighborhood $U = \pi_n^{-1}(\alpha) \cap \pi_{n+1}^{-1}(\beta)$ of $x$.
+    Let $\alpha = \pi_n(x_n)$ and $\beta = \pi_{n+1}(x_{n+1})$ and consider the open neighbourhood $U = \pi_n^{-1}(\alpha) \cap \pi_{n+1}^{-1}(\beta)$ of $x$.
     For any $y \in U$, we have by construction that $\pi_n^{-1}(y) = \alpha \not \equiv \beta = \pi_{n+1}^{-1}(y) \pmod{p^n}$ and thus $y \not \in \Z_p$.
     Hence $U \subseteq X \setminus \Z_p$ and so $X \setminus \Z_p$ is open.
     Therefore $\Z_p$ is closed, as desired.
     
     %, there exists a unique continuous function, $f$, such that the diagram
-%    \begin{center}
-%      \begin{tikzcd}
-%        &\Z_p\arrow[bend right]{ldd}[description]{f_n}\arrow[dotted]{d}{\exists ! f}\arrow[bend left]{rdd}[description]{f_m}\\
-%        & \arrow{ld}[description]{\pi_n}\prod_{n=1}^\infty \Z/(p^n) \arrow{rd}[description]{\pi_m} &\\
-%        \Z/(p^n) &  & \Z/(p^m)
-%      \end{tikzcd}
-%    \end{center}    
-%    commutes.
+    %    \begin{center}
+    %      \begin{tikzcd}
+    %        &\Z_p\arrow[bend right]{ldd}[description]{f_n}\arrow[dotted]{d}{\exists ! f}\arrow[bend left]{rdd}[description]{f_m}\\
+    %        & \arrow{ld}[description]{\pi_n}\prod_{n=1}^\infty \Z/(p^n) \arrow{rd}[description]{\pi_m} &\\
+    %        \Z/(p^n) &  & \Z/(p^m)
+    %      \end{tikzcd}
+    %    \end{center}    
+    %    commutes.
   \end{proof}
 \end{thm}
 \end{document}
