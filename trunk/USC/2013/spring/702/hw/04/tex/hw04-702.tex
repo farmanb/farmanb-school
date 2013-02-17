@@ -1,0 +1,121 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath,mathtools,tikz}
+\usetikzlibrary{shapes}
+
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 702:\\Homework 04}
+\date{February 20, 2013}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+\maketitle
+
+\providecommand{\p}{\mathfrak{p}}
+\providecommand{\m}{\mathfrak{m}}
+
+\newtheorem{thm}{}
+\newtheorem{lem}{Lemma}
+
+\newcommand{\End}[2]{\operatorname{End}_{#1}\left(#2\right)}
+\newcommand{\Hom}[2]{\operatorname{Hom}_{#1}\left(#2\right)}
+
+\begin{thm}
+  Prove that no finite field is algebraically closed.
+  \begin{proof}
+    Let $\F$ be a finite field of order $p^n$ for some rational prime $p$ and some integer $n$, and regard $\F$ as the splitting field for $f(x) = x^{p^n} - x$ over $\F_p$.
+    Suppose to the contrary that $\F$ were algebraically closed.
+    Let $\F^\prime$ be the splitting field for $g(x) = x^{p^{2n}} - x$.
+    If $\alpha$ is a root of $f$, then $\alpha^{p^n} = \alpha$ and so
+    $$\alpha^{p^{2n}} = \alpha^{(p^n)^2} = \left(\alpha^{p^n}\right)^{p^n} = (\alpha)^{p^n} = \alpha$$ 
+    implies that $\alpha$ is also a root of $g$.
+    Hence $\F \subseteq \F^\prime$.
+    However, comparing orders of $\F$ and $\F^\prime$, it follows that $\F \subsetneq \F^\prime$.
+    Hence $\F^\prime$ is a degree two extension of $\F$, which was supposed to be algebraically closed, a contradiction.
+    Therefore finite fields are not algebraically closed.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Let $p$ be prime.
+  Show that $\F_p(t)$, the field of rational functions in $t$ over $\F_p$, is not perfect.
+  \begin{proof}
+    Suppose to the contrary that $\F_p(t)$ were perfect.
+    Then there exist $f, g \in \F_p[t]$ such that $t = (f(t)/g(t))^p$, and so $tg(t)^p = f(t)^p$.
+    Let $d = \deg{f(t)}$ and $d^\prime = \deg{g(t)}$.
+    Comparing degrees we have $pd^\prime + 1 = pd$.
+    However, $p$ divides the right hand side, and does not divide the left hand side, a contradiction.
+    Therefore $\F_p(t)$ is not perfect.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Let $F$ be a finite field.
+  Show that every element of $F$ is expressible as a sum of two squares.
+  \begin{proof}
+    Assume $\abs{F} = p^n$ for some rational prime $p$ and some integer $n$.
+    Since the multiplicative group of units, $F^\times = F \setminus \left\{0\right\}$, is cyclic of order $p^n-1$ there exists some element $g$ such that $F^\times = \left<g\right>.$
+    Define a subset of distinct squares $$S = \left\{(g^\alpha)^2 \;\middle\vert\; 1 \leq \alpha \leq (p^n-1)/2 \right\} \cup \left\{0\right\} \subseteq F.$$
+    Note that by construction this set has $(p^n-1)/2 + 1 = (p^n + 1)/2$ elements.
+    %Consider $G = F$ as an additive group and 
+    %Define the set of additive inverses of $S$, 
+    %$$S^{-1} = \left\{-g^{2\alpha} \;\middle\vert\; 1 \leq \alpha \leq (p-1)/2\right\} \cup \left\{0\right\}.$$
+    
+    Let $x \in F$ be given.
+    It suffices to show that there exist elements $s$ and $s^\prime$ of $S$ such that $x = s + s^\prime$.
+    Consider the set
+    $$x - S = \left\{x - s \;\middle\vert\; s \in S\right\} \subseteq F.$$
+    For any two elements $s, s^\prime \in S$, by left (additive) cancellation and the uniqueness of additive inverses, $x - s = x - s^\prime$ if and only if $s = s^\prime$.
+    Hence the set map $S \rightarrow x - S$ given by $s \mapsto x - s$ is a bijection.
+    %Thus $\abs{S} = \abs{h - S} = (p + 1) / 2$.
+    It now follows that these two sets must have a non-empty intersection; for otherwise we would have $(p^n + 1) / 2$ distinct elements of $F$ in each set, and hence $p^n + 1$ distinct elements in a field of order $p^n$.
+    Now observe that for any element $h$ of $S \cap x - S$ we may write $$h = s = x - s^\prime,$$ for some $s,s^\prime \in S$. 
+    Therefore $x = s + s^\prime$, as desired.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Suppose that $K/F$ is an algebraic extension of fields, that $R$ is a ring, and that $F \subseteq R \subseteq K$.
+  Show that $R$ is a field.
+  \begin{proof}
+    First observe that $R$ inherits commutativity from $K$.
+    Let $r \in R$ be given.
+    It suffices to show that if $k \in K$ is such that $rk = 1$, then $k \in R$.
+    Since $K/F$ is algebraic, there exist $\alpha_1, \ldots, \alpha_n \in F \subseteq R$ such that 
+    $$\alpha_n k^n + \alpha_{n-1} k^{n-1} + \ldots + \alpha_1 k + \alpha_0 = 0.$$
+    Multiplying both sides by $r^{n-1}$ yields
+    \begin{eqnarray*}
+      0 &=& r^{n-1}(\alpha_n k^n + \alpha_{n-1} k^{n-1} + \alpha_{n-2} k^{n-2}\ldots + \alpha_1 k + \alpha_0)\\
+      &=& \alpha_n k(r^{n-1}k^{n-1}) + \alpha_{n-1} (r^{n-1}k^{n-1}) + \alpha_{n-2} r (r^{n-2} k^{n-2})\ldots + \alpha_1 r^{n-2}(rk) + \alpha_0r^{n-1}\\
+      &=& \alpha_n k + \alpha_{n-1} + \alpha_{n-2}r+ \ldots + \alpha_1 r^{n-2} + \alpha_0r^{n-1}\\
+    \end{eqnarray*}
+    Rearranging, we obtain $$k = -\left(\frac{\alpha_{n-1}}{\alpha_n} + \frac{\alpha_{n-2}}{\alpha_n}r\ldots + \frac{\alpha_1}{\alpha_n} r^{n-2} + \frac{\alpha_0}{\alpha_n k}r^{n-1}\right).$$
+    Since $\alpha_i/\alpha_n \in F \subseteq R$ for each $0 \leq i \leq n-1$, it follows that $k \in R$.
+    Therefore $R$ is a field.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Let $\alpha \in R$ have $\alpha^4 = 5$.
+  Show that $\Q(\alpha(1 + i))$ is normal over $\Q(i\alpha^2)$, but that $\Q(\alpha(i + 1))$ is not normal over $\Q$.
+  \begin{proof}
+    First note that $(1 + i)\alpha$ is a root of the irreducible polynomial $x^4 + 20 \in \Q[x]$ (Eisenstein in 5) and $i\alpha^2$ is a root of the irreducible polynomial $x^2 + 5 \in \Q[x]$ (also Eisenstein in 5).
+    Hence $\Q(\alpha(1 + i))/\Q$ has degree four and $\Q(i\alpha^2)/\Q$ has degree two.
+    In particular, this means that $(1 + i)\alpha \not \in \Q(i\alpha^2)$.
+    Hence $x^2 - 2i\alpha^2 = (x - (1 + i)\alpha)(x + (1 + i)\alpha)$ is irreducible over $\Q(i\alpha^2)$.
+    Then since $\pm (1 + i)\alpha \in \Q((1 + i)\alpha)$, $\Q((1 + i)\alpha)$ is a splitting field for $x^2 - 2i\alpha^2$ and so $\Q((1 + i)\alpha)/\Q(i\alpha^2)$ is normal.
+    
+    To see that $\Q((1 + i)\alpha)/\Q$ is not normal, consider the roots of $x^4 + 20$, $\pm(1 + i)\alpha$ and $\pm(1 - i)\alpha$.
+    If it were normal, then $(1 - i)\alpha \in \Q((1 + i)\alpha)$ would imply that $\alpha = ((1 + i)\alpha + (1 - i)\alpha)/2 \in \Q((1 + i)\alpha)$.
+    Then
+    $$i = \frac{((1 + i)\alpha)^2}{2\alpha^2} = \frac{2i\alpha^2}{2\alpha^2} \in \Q((1 + i)\alpha)$$
+    implies that $\Q(i, \alpha) \subseteq \Q((1 + i)\alpha)$.
+    But then, since $\alpha$ is a root of $x^4 - 5 = (x - \alpha)(x + \alpha)(x - i\alpha)(x + i\alpha)$, $\Q((1 + i)\alpha)$ must contain the splitting for for $x^4 - 5$.
+    This implies that the degree four extension $\Q((1 + i)\alpha)$ contains an isomorphic copy of the degree eight extension $\Q(i, \sqrt[4]{5}) = \Q(\sqrt[4]{5})(i)$, a contradiction.
+    Therefore $\Q((1 + i)\alpha)/\Q$ is not normal.
+  \end{proof}
+\end{thm}
+
+\end{document}
