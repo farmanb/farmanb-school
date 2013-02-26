@@ -102,7 +102,7 @@
     \begin{center}
       \begin{tikzcd}
         &&&\Z_p \arrow[dashed]{lld}{\ldots} \arrow{ld}[description]{\pi_4} \arrow{d}[description]{\pi_3} \arrow{rd}[description]{\pi_2} \arrow{rrd}[description]{\pi_1}\\
-        &\ldots\arrow{r}[below]{\varphi_{4,5}} & \Z/(p^4) \arrow{r}[below]{\varphi_{3,4}}& \Z/(p^3) \arrow{r}[below]{\varphi_{2,3}}& \Z/(p^2)\arrow{r}[below]{\varphi_{1,2}} & \Z/(p).
+        &\ldots\arrow{r}[below]{\varphi_{5,4}} & \Z/(p^4) \arrow{r}[below]{\varphi_{4,3}}& \Z/(p^3) \arrow{r}[below]{\varphi_{3,2}}& \Z/(p^2)\arrow{r}[below]{\varphi_{2,1}} & \Z/(p).
       \end{tikzcd}
     \end{center}
     Let $R$ be the vertex of any other cone, equipped with morphisms $f_n \colon R \rightarrow \Z/(p^n)$.
@@ -116,7 +116,7 @@
       \begin{tikzcd}
         &R\arrow[bend right]{ldd}[description]{f_n}\arrow[dotted]{d}{\exists ! f}\arrow[bend left]{rdd}[description]{f_m}\\
         & \arrow{ld}[description]{\pi_n}\Z_p \arrow{rd}[description]{\pi_m} &\\
-        \Z/(p^n)\arrow{rr}[description]{\varphi_{m,n}} &  & \Z/(p^m).
+        \Z/(p^n)\arrow{rr}[description]{\varphi_{n,m}} &  & \Z/(p^m).
       \end{tikzcd}
     \end{center}    
     To see that this is actually a morphism, take $r_1, r_2 \in R$.
@@ -128,7 +128,69 @@
   \end{proof}
 \end{thm}
 
-\setcounter{thm}{6}
+\setcounter{thm}{1}
+
+\begin{thm}\footnote{I've done these out of order to simplify the argument.}
+  Write out a formal proof that there exists an injection $\Z_{(p)} \hookrightarrow \Z_p$.
+  
+  \begin{proof}
+    Equip $\Z_{(p)}$ with the ring homomorphisms
+    \begin{align*}
+      f_n \colon \Z_{(p)} &\rightarrow \Z/(p^n)\\
+      x & \mapsto x \pmod{p^n}.
+    \end{align*}
+    Note that these are well-defined, for if $a \in \Z_{(p)}^\times$, then since $p$ does not divide $a$, $f_n(a) \in (\Z/(p^n))^\times$ and $f_n(a^{-1}) = f_n(a)^{-1}$.
+    This forms the cone
+    \begin{center}
+      \begin{tikzcd}
+        &&&\Z_{(p)} \arrow[dashed]{lld}{\ldots} \arrow{ld}[description]{f_4} \arrow{d}[description]{f_3} \arrow{rd}[description]{f_2} \arrow{rrd}[description]{f_1}\\
+        &\ldots\arrow{r}[below]{\varphi_{5,4}} & \Z/(p^4) \arrow{r}[below]{\varphi_{4,3}}& \Z/(p^3) \arrow{r}[below]{\varphi_{3,2}}& \Z/(p^2)\arrow{r}[below]{\varphi_{2,1}} & \Z/(p).
+      \end{tikzcd}
+    \end{center}
+    Then by the universal property, the unique map
+    \begin{align*}
+      f \colon \Z_{(p)} &\rightarrow \Z/(p^n)\\
+      x & \mapsto (f_1(x), f_2(x), f_3(x), \ldots).
+    \end{align*}
+    ensures that the diagram 
+    \begin{center}
+      \begin{tikzcd}
+        &\Z_{(p)}\arrow[bend right]{ldd}[description]{f_n}\arrow[dotted]{d}{\exists ! f}\arrow[bend left]{rdd}[description]{f_m}\\
+        & \arrow{ld}[description]{\pi_n}\Z_p \arrow{rd}[description]{\pi_m} &\\
+        \Z/(p^n)\arrow{rr}[description]{\varphi_{n,m}} &  & \Z/(p^m)
+      \end{tikzcd}
+    \end{center}    
+    commutes.
+    Finally, to see that this is an injection, observe that the only choices for $\ker f$ are $(0)$ or $(p^n)$ for some some $n \geq 0$.
+    However, for every $n \geq 0$, $f(p^n) = (0, 0, \ldots, 0, f_{n+1}(p), f_{n+2}(p), \ldots) \neq (0, 0, 0 \ldots)$.
+    Therefore $f \colon \Z_{(p)} \hookrightarrow \Z_p$, as desired.
+  \end{proof}
+\end{thm}
+
+\setcounter{thm}{5}
+\begin{thm}
+  Prove that addition or multiplication by any fixed element of $\Q_p$ is (topologically)
+  a homeomorphism from $\Q_p$ to itself.
+  \begin{proof}
+    Since $(\Q_p, \abs{\cdot}_p)$ is a metric space, the functions 
+    \begin{align*}
+      \psi_\alpha \colon \Q_p &\rightarrow \Q_p\\
+      x &\mapsto x + \alpha,
+    \end{align*}
+     $\alpha \in \Q_p$ and 
+    \begin{align*}
+      \varphi_\alpha \colon \Q_p &\rightarrow \Q_p\\
+      x &\mapsto \alpha x,
+    \end{align*}
+    $\alpha \in \Q_p^\times$ are continuous.
+    Moreover, since $\Q_p$ is a field, they have continuous inverses $\psi_{-\alpha} \circ \psi_{\alpha} = \psi_{\alpha} \circ \psi_{-\alpha} = \operatorname{id}$ and $\varphi_{\alpha} \circ \varphi_{1/\alpha} = \varphi_{1/\alpha} \circ \varphi_{\alpha} = \operatorname{id}$, respectively.
+    Therefore they are homeomorphisms.
+    
+    It remains to show that multiplication by zero is a homeomorphism.
+    It is clear that the map $\varphi_0$ is continuous, since $\varphi_0^{-1}(0) = \Q_p$ is open.
+  \end{proof}
+\end{thm}
+
 \begin{thm}
   $\Z_p$ is compact.
 
