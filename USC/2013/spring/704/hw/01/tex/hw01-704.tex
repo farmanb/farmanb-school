@@ -1,0 +1,60 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath}
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 704:\\Homework 01}
+\date{February 28, 2013}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+\maketitle
+
+\providecommand{\p}{\mathfrak{p}}
+\providecommand{\m}{\mathfrak{m}}
+
+\newtheorem{thm}{}
+\newtheorem{lem}{Lemma}
+
+\setcounter{thm}{1}
+
+\begin{thm}\label{ex1}
+  Let $(X, \mathcal{A}, \mu)$ be a measure space.
+  Let $f, f_n \colon X \rightarrow \R^*$ be integrable for all $n \in \N$.
+  Let 
+  $$\int_{X} \abs{f_n - f} d\mu \rightarrow 0\ \text{as}\ n \rightarrow \infty.$$
+  Show that $K = \left\{f_n\right\}_{n \in \N}$ is uniformly integrable.
+  That is, for every $\varepsilon > 0$ there exists a $\delta > 0$ such that $s = \sup \left\{ \int_E \abs{f_n} d\mu \;\middle\vert\; n \in N\right\} < \varepsilon$ for every $E \in \mathcal{A}$ with $\mu(E) < \delta$.
+  \begin{proof}
+    Let $\varepsilon > 0$ be given.
+    Choose $N \in \N$ such that 
+    $$\int_X \abs{f_n - f} d\mu < \frac{\varepsilon}{2}$$
+    whenever $n \geq N$.
+    Observe that we have $\abs{f_n} - \abs{f} \leq \abs{f_n  - f}$ by the triangle inequality and so 
+    \begin{equation}\label{1.1}
+      \int_X \abs{f_n} - \abs{f} d\mu = \int_X \abs{f_n} d\mu - \int_X \abs{f} d\mu \leq \int_X \abs{f_n - f} d\mu < \frac{\varepsilon}{2}
+    \end{equation}
+    follows from Propositions 5.16 and 5.26.
+    Since the $\abs{f_n}$ are integrable, it follows from Corollary 5.24 that there exist positive $\delta_1, \delta_2, \ldots, \delta_{N-1}$ such that if $k < N$, then
+    \begin{equation}\label{1.2}
+      \int_E \abs{f_k} d\mu < \varepsilon
+    \end{equation}
+    holds for every measurable $E$ with $\mu(E) < \delta_k$.
+    Similarly, there exists $\delta_f > 0$ such that 
+    \begin{equation}\label{1.3}
+      \int_E \abs{f} d\mu < \frac{\varepsilon}{2}
+    \end{equation}
+    holds for every measurable $E \subseteq X$ with $\mu(E) < \delta_f$.
+    Let $\delta = \min\left\{\delta_f, \delta_1, \ldots, \delta_{N-1}\right\}$ and let $E \subseteq X$ be a measurable set with $\mu(E) < \delta$.
+    By \eqref{1.1}, \eqref{1.3}, and Proposition 5.15 (b) we have that 
+    $$\int_E \abs{f_n} d\mu = \int_E \abs{f_n - f} d\mu + \int_E \abs{f} d\mu < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon$$
+    whenever $n \geq N$.
+    Then by \eqref{1.2} we have that
+    $$\int_E \abs{f_k} d\mu < \varepsilon$$
+    holds whenever $k \leq N$.
+    Since $s$ is the least upper bound on the set $\left\{\int_E \abs{f_n} d\mu \;\middle\vert\; n \in N\right\}$, it follows that $s < \varepsilon$, as desired.
+  \end{proof}
+\end{thm}
+  
+\end{document}

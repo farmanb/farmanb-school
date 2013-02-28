@@ -1,0 +1,103 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath,mathtools,tikz}
+\usetikzlibrary{shapes}
+
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 702:\\Homework 04}
+\date{February 20, 2013}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+\maketitle
+
+\providecommand{\p}{\mathfrak{p}}
+\providecommand{\m}{\mathfrak{m}}
+
+\newtheorem{thm}{}
+\newtheorem{lem}{Lemma}
+
+\newcommand{\End}[2]{\operatorname{End}_{#1}\left(#2\right)}
+\newcommand{\Hom}[2]{\operatorname{Hom}_{#1}\left(#2\right)}
+
+\begin{thm}
+  Let $F$ be a field.
+  Suppose that $x$ is transcendental over $F$ and suppose that $K$ is a field with $F \subset K \subseteq F(x)$.
+  Show that $x$ is algebraic over $K$, and conclude that $[F(x) : K]$ is finite.
+  
+  \begin{proof}
+    Let $t \in K \setminus F$ be given.
+    Since $K \subseteq F(x)$, there exist co-prime $f, g \neq 0 \in F[x]$ such that $t = f(x) / g(x)$.
+    Observe that since $t \not \in F$, it must be the case that $\max\left\{\deg{f(x)}, \deg{g(x)}\right\} \geq 1$.
+    Considering $f(y) - tg(y) \in K[y]$, it follows that $x$ is a root.
+    Hence $x$ is algebraic over $K$ and there exists some minimal irreducible polynomial, $m_{x,K}(y) \in K[y]$, dividing $f(y) - tg(y)$.
+    Therefore it follows from the fact that $\deg{f(y) - tg(y)}$ is finite that $F(x)/K$ is finite and algebraic.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Let $K$ be a field, and let $p(x), q(x) \neq 0 \in K[x]$ be relatively prime with $t = p(x)/q(x) \in K(x)$.
+  \begin{enumerate}[(a)]
+  \item
+    Let $r(y) = p(y) - tq(y) \in K(t)[y]$.
+    Show that $r(y)$ is irreducible in $K(t)[y]$ and has $x$ as a root.
+  \item
+    Show that $r(y)$ has degree in $K(t)[y]$ equal to $\max\{\deg{p}, \deg{q}\}$.
+  \item
+    Conclude that $[K(x) : K(t)] = [K(x) : K(p(x)/q(x))] = \max\{\deg{p}, \deg{q}\}$.
+  \end{enumerate}
+  \begin{proof}
+    \begin{enumerate}[(a)]
+    \item\label{2.a}
+      First observe that if $x \in K$, then the results hold trivially.
+      Assume $x \not \in K$.
+      It then follows directly that if $r(y)$ were to have $x$ as a root, it must be the case that $t \not \in K$.
+      Consider $r$ in the polynomial ring $(K[y])[t]$.
+      Since $r$ is linear in $t$ and $p,q$ are co-prime, it follows that if $r = a \cdot b$ for some $a,b \in (K[y])[t]$, one of $a,b \in K[y]^\times = (K[y])[t]^\times = K^\times$.
+      Therefore $r$ is irreducible in $(K[y])[t] = (K[t])[y]$ and, by Gauss' Lemma, irreducible in $K(t)[y]$.
+      Finally observe that if $\epsilon_x \colon (K[t])[y] \rightarrow K[t]$ is the usual evaluation homomorphism, it follows from $t = p(x)/q(x)$ that $r \in \ker \epsilon_x$.
+    \item\label{2.b}
+      Since $t \not \in K$ and $p,q \in K[y]$, it follows that there can be no cancellation in the difference $p(y) - tq(y)$.
+      Therefore, considering $p(y) - tq(y)$ as a polynomial in $y$ with coefficients in the field $K(t)$, $\deg{p(y) - tq(y)} = \max\{\deg{p}, \deg{q}\}$.
+    \item
+      By part \eqref{2.a}, $r(y)$ is the minimal polynomial for $x$ over $K(t)$.
+      Therefore by part \eqref{2.b}, $[K(x) : K(t)] = [K(x) : K(p(x)/q(x))] = \deg{r} = \max\{\deg{p}, \deg{q}\}$.
+    \end{enumerate}
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Let $F$ be a field with characteristic $p > 0$.
+  Suppose that $K/F$ is finite and that $p \nmid [K : F]$.
+  Show that $K/F$ is separable.
+  \begin{proof}
+    Since $K$ is finite, there exist $\alpha_1, \ldots, \alpha_n$ such that $K = F(\alpha_1, \ldots, \alpha_n)$.
+    It suffices to show that each $\alpha_i$ is separable.
+    Towards that end, construct the tower 
+    $$F_0 = F \subseteq F_1 = F_0(\alpha_1) \subseteq \ldots F_n = F_{n-1}(\alpha_{n}) = K.$$
+    Since indices are multiplicative in towers, we have $[K:F] = \prod_{i=0}^{n-1} [F_{i+1} : F_i]$.
+    Let $m_{\alpha_i, F}$ be the minimal polynomial for $\alpha_i$.
+    If any $\alpha_i$ is inseparable, then by the theorem from class, we have $m_{\alpha_i}(x) = m_{\alpha_i, \operatorname{sep}}(x^{p^{k_{i}}})$ and
+    $$[F_{i+1} : F_i]_i = \frac{[F_{i+1} : F_{i}]}{[F_{i+1} : F_i]_s} = p^{k_{i+1}}.$$
+    However, since $p \nmid [K : F]$ and $[F_{i+1} : F_i] \mid [K : F]$ for each $0 \leq i \leq n-1$, it follows that $p \nmid [F_{i+1} : F_i]$.
+    Therefore $[F_{i+1} : F_i] = [F_{i+1} : F_i]_s$ and each $\alpha_i$ is separable, as desired.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Let $p$ be prime, let $x$ and $y$ be independent transcendentals over $\F_p$, let $K = \F_p(x,y)$, and let $F = \F_p(x^p - x, y^p - x)$.
+  \begin{enumerate}[(a)]
+  \item
+    Prove $[K : F] = p^2$ and that the separable and inseparable degrees of $K/F$ are both equal to $p$.
+  \item
+    Prove that there is a field $E$ with $F \subseteq E \subseteq K$ which is purely inseparable over $F$ of degree $p$.
+  \end{enumerate}
+
+  \begin{proof}
+    \begin{enumerate}[(a)]
+    \end{enumerate}
+  \end{proof}
+\end{thm}
+\end{document}
