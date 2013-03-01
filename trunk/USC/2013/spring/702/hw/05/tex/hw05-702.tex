@@ -97,6 +97,26 @@
 
   \begin{proof}
     \begin{enumerate}[(a)]
+    \item
+      First observe that $x$ is a root of $t^p - t - x^p + x \in F[t]$ and so $m_{x, F}(t) \mid t^p - t - x^p + x$.
+      Hence $m_{x, F}(t)$ has degree at most $p$.
+      Then since $x$ is transcendental over $\F_p$, if $m_{x, F}(t) = t^n + \alpha_{n-1}t^{n-1} + \ldots + \alpha_1 t + \alpha_0$, $\alpha_i \in F$, it follows that at least one of the $\alpha_i \in F \setminus \F_p$.
+      Hence it follows from comparing degrees of the left- and right-hand sides of $x^n = -(\alpha_{n-1}x^{n-1} + \ldots + \alpha_1 x + \alpha_0)$ in $F$ that $n \geq p$.
+      Hence $m_{x, F}(t) = t^p - t - x^p - x$.
+      Then $D_x(m_{x,F}(t) = -1$, which is co-prime to $m_{x,F}(t)$.
+      Therefore $F(x)/F$ is a separable extension of degree $p$.
+      
+      Now we have that $(y^p - x) + x = y^p \in F(x)$ and so $y$ is a root of $t^p - y^p = (t - y)^p \in F(x)[t]$.
+      By unique factorization in the Euclidean domain $F(x)[t]$, we have that $m_{y, F(x)}(t) = (t - y)^n$ for some $n \leq p$.
+      Suppose to the contrary that $n < p$ and observe that $y^n \in F(x)$.
+      Since $\gcd(p,n) = 1$ there exist integers $a$ and $b$ such that $an + bp = 1$, and thus $(y^n)^a(y^p)^b = y^{an + bp} = y \in F(x)$, a contradiction.
+      Therefore $F(x,y)/F(x)$ is an inseparable extension of degree $p$. 
+    \item
+      Let $u = x^p - x$ and $v = y^p - x$.
+      Then $u - v = x^p - y^p = (x - y)^p$ which is a root of $t^p - (x - y)^p = (t - (x - y))^p \in F[t]$.
+      Hence by unique factorization in the Euclidean domain $F[t]$, it follows that $m_{(x-y), F}(t) = (t - (x - y))^n$ for some $n \leq p$ and $E = F(x - y) \subset K$.
+      Observe then that if $x - y \in F$, then $x - (x - y) = y \in F(x)$ and $F(x,y)$, a degree $p^2$ extension, is contained in the degree $p$ extension $\subseteq F(x)$, which is absurd.
+      Therefore $E$ is a purely separable extension of $F$.
     \end{enumerate}
   \end{proof}
 \end{thm}
