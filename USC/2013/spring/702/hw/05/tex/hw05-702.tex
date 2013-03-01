@@ -4,8 +4,8 @@
 
 \openup 5pt
 \author{Blake Farman\\University of South Carolina}
-\title{Math 702:\\Homework 04}
-\date{February 20, 2013}
+\title{Math 702:\\Homework 05}
+\date{March 1, 2013}
 \pdfpagewidth 8.5in
 \pdfpageheight 11in
 \usepackage[margin=1in]{geometry}
@@ -78,11 +78,11 @@
     Towards that end, construct the tower 
     $$F_0 = F \subseteq F_1 = F_0(\alpha_1) \subseteq \ldots F_n = F_{n-1}(\alpha_{n}) = K.$$
     Since indices are multiplicative in towers, we have $[K:F] = \prod_{i=0}^{n-1} [F_{i+1} : F_i]$.
-    Let $m_{\alpha_i, F}$ be the minimal polynomial for $\alpha_i$.
-    If any $\alpha_i$ is inseparable, then by the theorem from class, we have $m_{\alpha_i}(x) = m_{\alpha_i, \operatorname{sep}}(x^{p^{k_{i}}})$ and
+    Let $f_i = m_{\alpha_i, F}$ be the minimal polynomial for $\alpha_i$.
+    If any $\alpha_i$ is inseparable, then by the theorem from class, we have $f_i(x) = f_{i, \text{sep}}(x^{p^{k_{i}}})$ and
     $$[F_{i+1} : F_i]_i = \frac{[F_{i+1} : F_{i}]}{[F_{i+1} : F_i]_s} = p^{k_{i+1}}.$$
     However, since $p \nmid [K : F]$ and $[F_{i+1} : F_i] \mid [K : F]$ for each $0 \leq i \leq n-1$, it follows that $p \nmid [F_{i+1} : F_i]$.
-    Therefore $[F_{i+1} : F_i] = [F_{i+1} : F_i]_s$ and each $\alpha_i$ is separable, as desired.
+    Therefore $k_{i+1} = 0$, $[F_{i+1} : F_i] = [F_{i+1} : F_i]_s$ and each $\alpha_i$ is separable, as desired.
   \end{proof}
 \end{thm}
 
@@ -99,10 +99,7 @@
     \begin{enumerate}[(a)]
     \item
       First observe that $x$ is a root of $t^p - t - x^p + x \in F[t]$ and so $m_{x, F}(t) \mid t^p - t - x^p + x$.
-      Hence $m_{x, F}(t)$ has degree at most $p$.
-      Then since $x$ is transcendental over $\F_p$, if $m_{x, F}(t) = t^n + \alpha_{n-1}t^{n-1} + \ldots + \alpha_1 t + \alpha_0$, $\alpha_i \in F$, it follows that at least one of the $\alpha_i \in F \setminus \F_p$.
-      Hence it follows from comparing degrees of the left- and right-hand sides of $x^n = -(\alpha_{n-1}x^{n-1} + \ldots + \alpha_1 x + \alpha_0)$ in $F$ that $n \geq p$.
-      Hence $m_{x, F}(t) = t^p - t - x^p - x$.
+      By an argument similar to Exercise 2 on Homework 3, replacing $\F_p[x]$ by $F[t]$ and letting $a = x^p + x$, $m_{x, F}(t) = t^p - t - x^p - x$.
       Then $D_x(m_{x,F}(t) = -1$, which is co-prime to $m_{x,F}(t)$.
       Therefore $F(x)/F$ is a separable extension of degree $p$.
       
@@ -116,7 +113,7 @@
       Then $u - v = x^p - y^p = (x - y)^p$ which is a root of $t^p - (x - y)^p = (t - (x - y))^p \in F[t]$.
       Hence by unique factorization in the Euclidean domain $F[t]$, it follows that $m_{(x-y), F}(t) = (t - (x - y))^n$ for some $n \leq p$ and $E = F(x - y) \subset K$.
       Observe then that if $x - y \in F$, then $x - (x - y) = y \in F(x)$ and $F(x,y)$, a degree $p^2$ extension, is contained in the degree $p$ extension $\subseteq F(x)$, which is absurd.
-      Therefore $E$ is a purely separable extension of $F$.
+      Therefore $E$ is a purely inseparable extension of $F$.
     \end{enumerate}
   \end{proof}
 \end{thm}
