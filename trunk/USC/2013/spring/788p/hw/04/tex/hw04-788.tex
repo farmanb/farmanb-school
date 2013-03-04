@@ -172,4 +172,107 @@
     \end{center}
   \end{proof}
 \end{thm}
+
+\begin{thm}
+  Take a ton of cubic fields, sorted by discriminant.
+  \begin{enumerate}[(a)]
+  \item
+    Pick your favorite prime, not 2 or 3.
+    Then, find cubic fields in which this prime is totally split, inert, partially split, and ramified.
+  \item
+    Pick any cubic field which does not have a square discriminant.
+    Count the number of primes $p \leq X$, where $X$ is some reasonably big number, for which $p$ is totally split, inert, partially split, and ramified.
+    What do the proportions look like?
+  \item
+    Now pick a cubic field which {\it does} have a square discriminant.
+    How does your calculation change?
+    Can you explain why?
+  \item
+    One simple thing you can do with these tables is to count all the cubic fields $K$ with $\abs{\operatorname{Disc}(K)} < X$.
+    Davenport and Heilbronn (1971) proved that the number of such fields is asymptotic to $\frac{1}{3\zeta(3)}X$, where $\zeta(3) = 1.202\ldots$.
+    Does this match your data well?
+  \item
+    Once again, picking some prime larger than 3, compute counts of cubic fields with $\abs{\operatorname{Disc}(K)} < X$ where this prime is totally split, inert, partially split, and ramified.
+    Describe your data.
+    Can you guess the relative proportions?
+  \end{enumerate}
+
+  \begin{proof}
+    \begin{enumerate}[(a)]
+    \item
+      Using the prime $p = 73$, the following table gives field polynomials and splitting types.
+      \begin{center}
+        \begin{tabular}{|c|c|}
+          \hline
+          Splitting Type & Field Polynomial\\
+          \hline
+          totally split & $x^3 - 3x - 1$\\ 
+          \hline
+          inert & $x^3 - x^2 + 1$\\ 
+          \hline
+          partially split & $x^3 + x - 1$\\
+          \hline
+          ramified & $x^3 - x^2 - 24x + 27$\\
+          \hline
+        \end{tabular}
+      \end{center}
+    \item
+      Using the field with polynomial $x^3 - x^2 + 1$ and discriminant $-23$, the counts for each of the types are as follows:
+      \begin{center}
+        \begin{tabular}{|c|c|}
+          \hline
+          Splitting Type & Count\\
+          \hline
+          totally split & 157\\ 
+          \hline
+          inert & 335\\ 
+          \hline
+          partially split & 508\\
+          \hline
+          ramified & 1\\
+          \hline
+        \end{tabular}
+      \end{center}
+      \item
+        Using the field with polynomial $x^3 - x^2 - 2*x + 1$ and discriminant $49$, the counts for each of the types are as follows:
+        \begin{center}
+        \begin{tabular}{|c|c|}
+          \hline
+          Splitting Type & Count\\
+          \hline
+          totally split & 331\\ 
+          \hline
+          inert & 669\\ 
+          \hline
+          partially split & 0 \\
+          \hline
+          ramified & 1\\
+          \hline
+        \end{tabular}
+      \end{center}
+        The major difference here is that there is no partial split.
+        Of the 28145 fields selected, the 51 with square discriminants are all Galois.
+        As was mentioned, when the fields are Galois, the e-f-g Theorem gives $3 = [K : Q] = efg$, which precludes partial splitting.
+      \item
+        Counting the number of fields with discriminant less than 1000, the result of Davenport and Heilbronn suggests roughly 277 fields, while there are 153 such fields in my data set.
+      \item
+        Using the prime $p = 179$, the number of fields with the splitting types are given by the table below.
+        \begin{center}
+          \begin{tabular}{|c|c|}
+            \hline
+            Splitting Type & Count\\
+            \hline
+            totally split & 26\\ 
+            \hline
+            inert & 45\\ 
+            \hline
+            partially split & 82 \\
+            \hline
+            ramified & 1\\
+            \hline
+          \end{tabular}
+        \end{center}
+    \end{enumerate}
+  \end{proof}
+\end{thm}
 \end{document}
