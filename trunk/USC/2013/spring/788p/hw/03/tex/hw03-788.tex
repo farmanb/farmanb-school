@@ -77,7 +77,7 @@
   \begin{proof}
     Regard $\N$ as a category with respect to the relation $\leq$ by taking the objects natural numbers and a unique arrow $n \rightarrow m$ if and only if $n \leq m$.
     Take $\mathcal{C} = {\bf Rng}$, the category with objects rings and arrows ring homomorphisms.
-    Consider the functor $F \colon \N^\text{op} \rightarrow {\bf Rng}$, where $\N^\text{op}$ is the category $\N$ with the arrows reversed (i.e. the domain and codomain are switched), with object map that sends $n$ to $\Z/p^n\Z$ and
+    Consider the functor $F \colon \N^\text{op} \rightarrow {\bf Rng}$, where $\N^\text{op}$ is the category $\N$ with the arrows reversed (i.e. the domain and codomain are switched), with object map that sends $n$ to $\Z/(p^n)$ and
     arrow map that sends $n \rightarrow m$ for every $n \geq m$ to the projection 
     \begin{align*}
       \varphi_{n,m} \colon \Z/(p^n) &\twoheadrightarrow \Z/(p^m)\\
@@ -121,10 +121,10 @@
     \end{center}    
     To see that this is actually a morphism, take $r_1, r_2 \in R$.
     Then we have 
-    $$f(r_1 + r_2) = (f_1(r_1 + r_2), f_2(r_1 + r_2), \ldots) = (f_1(r_1) + f_1(r_2), f_2(r_1) + f_2(r_2), \ldots),$$
+    $$f(r_1 + r_2) = (f_1(r_1 + r_2), f_2(r_1 + r_2), \ldots) = (f_1(r_1) + f_1(r_2), f_2(r_1) + f_2(r_2), \ldots) = f(r_1) + r(r_2),$$
     since each $f_i$ is a morphism.
     Similarly, 
-    $$f(r_1 r_2) = (f_1(r_1 r_2), f_2(r_1 r_2), \ldots) = (f_1(r_1) f_1(r_2), f_2(r_1) f_2(r_2), \ldots).$$
+    $$f(r_1 r_2) = (f_1(r_1 r_2), f_2(r_1 r_2), \ldots) = (f_1(r_1) f_1(r_2), f_2(r_1) f_2(r_2), \ldots) = f(r_1)f(r_2).$$
   \end{proof}
 \end{thm}
 
@@ -169,7 +169,7 @@
 
 \setcounter{thm}{5}
 \begin{thm}
-  Prove that addition or multiplication by any fixed element of $\Q_p$ is (topologically)
+  Prove that addition by any fixed element and multiplication by any fixed unit of $\Q_p$ is (topologically)
   a homeomorphism from $\Q_p$ to itself.
   \begin{proof}
     Since $(\Q_p, \abs{\cdot}_p)$ is a metric space, the functions 
@@ -184,10 +184,7 @@
     \end{align*}
     $\alpha \in \Q_p^\times$ are continuous.
     Moreover, since $\Q_p$ is a field, they have continuous inverses $\psi_{-\alpha} \circ \psi_{\alpha} = \psi_{\alpha} \circ \psi_{-\alpha} = \operatorname{id}$ and $\varphi_{\alpha} \circ \varphi_{1/\alpha} = \varphi_{1/\alpha} \circ \varphi_{\alpha} = \operatorname{id}$, respectively.
-    Therefore they are homeomorphisms.
-    
-    It remains to show that multiplication by zero is a homeomorphism.
-    It is clear that the map $\varphi_0$ is continuous, since $\varphi_0^{-1}(0) = \Q_p$ is open.
+    Therefore addition by any fixed element and multiplication by any fixed unit defines a homeomorphism of $\Q_p$ to itself.
   \end{proof}
 \end{thm}
 
@@ -232,7 +229,7 @@
     It remains to show that $f$ is continuous.
     Towards that end, define the collections $\mathcal{S}_n = \left\{\pi_n^{-1}(U) \;\middle\vert\; U \subseteq \Z/(p^i) \right\}$ for each $n \in \N$.
     Since each $\pi_n$ is continuous, each element $S \in \mathcal{S}_n$ is open in $X$ and we can write $X = \bigcup_{n=1}^\infty \mathcal{S}_n$.
-    Hence the collection $\mathcal{S} = \bigcup_{n=1}^\infty \mathcal{S}_n$ is a subbasis for $X$ by definition and so it suffices to show that for any $U \subseteq \Z/(p^n)$, the preimage $\pi_n^{-1}(U)$ is open in $\Z_p$.
+    Hence the collection $\mathcal{S} = \bigcup_{n=1}^\infty \mathcal{S}_n$ is a subbasis for $X$ by definition and so it suffices to show that for any $U \subseteq \Z/(p^n)$, the preimage of $\pi_n^{-1}(U)$ under $f$ is open in $\Z_p$.
     This follows from the commutativity conditions; namely 
     $$f^{-1}(\pi_n^{-1}(U)) = (f \circ \pi_n)^{-1}(U) = f_n^{-1}(U)$$
     is open because $f_n$ is continuous.
