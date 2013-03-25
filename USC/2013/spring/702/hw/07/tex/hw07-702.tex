@@ -1,0 +1,41 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath,mathtools,tikz}
+\usetikzlibrary{shapes}
+
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 702:\\Homework 05}
+\date{March 1, 2013}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+\maketitle
+
+\providecommand{\p}{\mathfrak{p}}
+\providecommand{\m}{\mathfrak{m}}
+
+\newtheorem{thm}{}
+\newtheorem{lem}{Lemma}
+
+\newcommand{\End}[2]{\operatorname{End}_{#1}\left(#2\right)}
+\newcommand{\Hom}[2]{\operatorname{Hom}_{#1}\left(#2\right)}
+
+\begin{thm}
+  Let $F$ be a field of characteristic $p > 0$.
+  Suppose that $f(x) = x^p - x - a \in F[x]$ has no root in $F$.
+  Prove that $f$ has splitting field $K/F$, Galois with $\Gal{K/F} \cong \Z/p\Z$.
+
+  \begin{proof}
+    First observe that $D_x(f) = -1$ implies that $f$ is separable and thus has $p$ distinct roots.
+    Let $\alpha$ be any root of $f$ in $K/F$.
+    Since the prime subfield of $F$ is $\F_p$, it follows that for $1 \leq i \leq p-1$
+    $$(\alpha + i)^p - (\alpha + i) - a = \alpha^p - i - (\alpha + i) - a = \alpha^p - \alpha - a = 0.$$
+    Hence the $p$ roots of $f$ are $\alpha + i$ for $0 \leq i \leq p-1$.
+    Then $F(\alpha)/F \cong F[x]/(f)$ is a degree $p$ extension of $F$ containing all the roots of $f$, and is the splitting field of $f$ over $F$.
+    Hence $K/F = F(\alpha)/F$ is Galois of degree $p$.
+    Therefore $\Gal{K/F}$ is cyclic of order $p$, as desired.
+  \end{proof}
+\end{thm}
+\end{document}
