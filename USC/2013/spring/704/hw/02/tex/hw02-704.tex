@@ -1,0 +1,108 @@
+\documentclass[12pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath}
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 704:\\Homework 02}
+\date{March 28, 2013}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+\maketitle
+
+\providecommand{\p}{\mathfrak{p}}
+\providecommand{\m}{\mathfrak{m}}
+
+\newtheorem{thm}{}
+\newtheorem{lem}{Lemma}
+
+\setcounter{thm}{8}
+
+\begin{thm}\label{ex1}
+    For the measure space $(X, \mathcal{A}, \mu)$ in which $X$ is the positive integers, $\mathcal{A}$ consists of all subsets of $X$, and $\mu$ is the counting measure, the theory of Lebesgue integration becomes a theory of infinite series.
+    Restate Fatou's Lemma and the Dominated convergence Theorem in this context.
+  \begin{proof}
+    Let $E$ be a measurable set and let $\left\{f_n\right\}_{n = 1}^\infty$ be a sequence of non-negative measurable functions.
+    For the counting measure, these measurable functions are sequences
+    \begin{align*}
+      f_n : X &\rightarrow \R^+\\
+      k &\mapsto a_k^n.
+    \end{align*}
+    Rewrite these functions as $f_n = \sum_{k \in \N} a_k^n \chi_{\left\{k\right\}}$.
+    Then for fixed $n \in \N$, form a sequence of simple functions $s_m^n = \sum_{k = 1}^m a_k^n \chi_{\left\{k\right\}} \uparrow_n f_n$ to see that
+    $$S_m^n = \mathcal{I}(s_m^n) = \sum_{k = 1}^m a_k^n \uparrow_m \int_E f_n d\mu = \sum_{k \in E} a_k^n$$
+    by the Monotone Convergence Theorem.
+    
+    Now we may reformulate Fatou's Lemma as 
+    $$\sum_{k \in E} \liminf_n a_k^n \leq \liminf_n \sum_{k \in E} a_k^n.$$
+    If there exists a function
+    \begin{align*}
+      f : X &\rightarrow \R^+\\
+      k &\mapsto a_k
+    \end{align*}
+    such that $f_n \rightarrow_n f$ pointwise, then we have
+    $$\sum_{k \in E} a_k \leq \liminf_n \sum_{k \in E} a_k^n.$$
+
+    Similarly, for Lebesgue's Dominated Convergence Theorem, let $E$ be a measurable set and suppose that $\left\{f_n\right\}_{n = 0}^\infty$ is a sequence of measurable functions such that for some integrable $g$, for all $n \in \N$ and for all $k \in \N$, $\abs{f_n(k)} < g(k)$.
+    If $\lim f_n = f$ exists pointwise, then
+    \begin{enumerate}[(i)]
+    \item
+      $\lim_{n \rightarrow \infty} \int_E f_n d\mu = \lim_{n \rightarrow \infty} \sum_{k \in E} a_k^n< \infty$,
+    \item
+      $\int_E f d\mu = \sum_{k \in E} a_k < \infty$, and
+    \item
+      $\lim_{n \rightarrow \infty}\int_E f_n d\mu = \lim_{n \rightarrow \infty} \sum_{k \in E} a_k^n = \sum_{k \in E} a_k = \int_E f d\mu$.
+    \end{enumerate}
+  \end{proof}
+\end{thm}
+
+\setcounter{thm}{10}
+\begin{thm}
+  This problem involves a Cantor set $C$ in $[0,1]$ built using fractions $r_n$ as in Section II.9.
+  \begin{enumerate}[(a)]
+  \item
+    Show that $C$ has Lebesgue measure $\prod_{n = 1}^\infty (1 - r_n)$.
+  \item
+    Prove that the indicator function $I_C$ is discontinuous at every point of $C$ and only there.
+    Thus the set of discontinuities of $I_C$ is not of measure 0 if $\prod_{n = 1}^\infty (1 - r_n) > 0$.
+  \end{enumerate}
+  
+  \begin{proof}
+    \begin{enumerate}[(a)]
+    \item
+      Let $\lambda$ be the usual Lebesgue measure on $[0,1]$.
+      Label the resulting set of the $n^\text{th}$ iteration in the construction of the Cantor set $C_n$.
+      Observe that $C_n$ is the union of $2^{n}$ disjoint closed intervals of equal length.
+      Choose $I_1 \subseteq C_1$ to be one of the two intervals after removing the first middle open interval of length $r_1$.
+      Let $I_0 = [0,1]$ and note that the measure of the first set is 
+      $$\lambda(I_1) = \frac{\lambda(I_0) - r_1\lambda(I_0)}{2} = \frac{(1 - r_1)}{2}.$$
+      Then because $\lambda$ is $\sigma$-additive and the closed intervals comprising $C_1$ are disjoint, it follows that $\lambda(C_1) = 2\lambda(I_1) = 1 - r_1$.
+      Similarly, if $I_2$ is one of the closed intervals from $C_2$, then 
+      $$\lambda(C_2) = 4\lambda(I_2) = 4\frac{\lambda(I_1) - r_2\lambda(I_1)}{2} = 2\lambda(I_1)(1 - r2) = (1 - r_1)(1 - r_2).$$
+      Assume that 
+      $$\lambda(C_n) = \prod_{k = 1}^n(1 - r_k)$$
+      holds for the first $n$ sets.
+      Then let $I_{n+1}$ be one of the closed intervals in $C_{n+1}$.
+      By construction, $$\lambda(I_{n+1}) = \frac{\lambda(I_n) - r_{n+1}\lambda(I_n)}{2} = \lambda(I_n)\frac{(1 - r_{n+1})}{2}.$$
+      Hence $$\lambda(C_{n+1}) = 2^{n+1}\lambda(I_{n+1}) = 2^{n}\lambda(I_n)(1 - r_{n+1}) = \lambda(C_n)(1 - r_{n+1}) = \prod_{k = 1}^{n+1}(1 - r_n).$$
+      Therefore, because $[0,1]$ is a finite measure space, by Corollary 5.3
+      $$\lambda(C) = \lambda\left(\bigcap_{i = 1}^n C_n\right) = \lim_{n \rightarrow \infty} \prod_{k = 1}^n (1 - r_k) = \prod_{n \in \N} (1 - r_n),$$
+      as desired.
+    \item
+      Let $\varepsilon > 0$ be given and assume that $\varepsilon < 1$.
+      Since $C$ is nowhere dense, $C^\circ = \emptyset$. 
+      Fix a point $c \in C$ and observe that for every $\delta > 0$, $B_\delta(c) \cap C^c \neq \emptyset$.
+      Let $x \in B_\delta(c) \cap C^c$.
+      Then 
+      $$\abs{I_C(c) - I_C(x)} = \abs{1 - 0} = 1 > \varepsilon$$
+      shows that $I_C$ is not continuous on $C$.
+      
+      Conversely, let $x \in C^c$ be given.
+      Since $C$ is closed, $C^c$ is open and thus there exists a $\delta > 0$ such that $B_\delta(x) \subseteq C^c$.
+      Then for every $y \in B_\delta(x)$, $$\abs{I_C(x) - I_C(y) } = \abs{0 - 0} = 0 < \varepsilon.$$
+      Therefore $I_C$ is continuous at each point of $C^c$.
+    \end{enumerate}
+  \end{proof}
+\end{thm}
+\end{document}
