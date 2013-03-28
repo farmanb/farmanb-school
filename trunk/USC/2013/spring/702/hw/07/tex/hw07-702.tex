@@ -38,4 +38,65 @@
     Therefore $\Gal{K/F}$ is cyclic of order $p$, as desired.
   \end{proof}
 \end{thm}
+
+\setcounter{thm}{3}
+\begin{thm}
+  Suppose that $p$ is prime and that $f(x) \in \Q[x]$ is irreducible of degree $p$ with precisely two non-real roots in $\C$.
+  Prove that $f(x)$ has splitting field $K$ with $\Gal{K/F} \cong S_p$.
+  Use this result to determine the Galois group of the splitting field of $f(x) = x^5 - 2x^3 - 8x + 2$.
+  
+  \begin{proof}
+    Identify $\Gal{K/F}$ with a subgroup of $S_p$.
+    Observe that because $\Q[x]/(f)$ is a subfield of $K$ of degree $p$, it follows from Cauchy's Theorem that $\Gal{K/F}$ contains an element of order $p$, which can be identified with some $p$-cycle.
+    Then since there are two complex roots, complex conjugation is an automorphism that may be identified with a transposition.
+    Therefore by Exercise 2 of Homework 6 from last semester, it follows that these two elements generate $S_p$ and $\Gal{K/F} \cong S_p$, as desired.
+  \end{proof}
+\end{thm}
+\begin{thm}
+  Let $\zeta \in \mu_3 \subseteq \C$ be primitive $(\neq 1)$, and let $\sigma, \tau \in \Aut{\C(t)/\C}$ with
+  $$\sigma \colon t \mapsto \zeta t,\ \ \tau \colon t \mapsto \frac{1}{t}.$$
+  \begin{enumerate}[(a)]
+  \item
+    Define $H = \left< \sigma, \tau \right>$.
+    Prove that $\sigma^3 = \tau^2 = 1$, $\tau\sigma = \sigma^{-1}\tau$, and $\abs{H} = 6$.
+    Identify $H$ as a familiar group.
+  \item
+    Let $u = t^3 + 1/t^3$.
+    Prove that $\C(t)^H = \C(u)$.
+    Conclude that $\C(t)/C(u)$ is Galois with $\Gal{\C(t)/\C(u)} \cong H$.
+  \item
+    Find a cubic $f(x) \in \C(u)[x]$ with splitting field $\C(t)$.
+  \end{enumerate}
+  
+  \begin{proof}
+    \begin{enumerate}[(a)]
+    \item
+      To see that $\sigma^3 = \tau^2 = 1$, observe that 
+      $$t \xmapsto{\sigma} \zeta t \xmapsto{\sigma} \zeta^2t \xmapsto{\sigma}\ \text{and}\ t \xmapsto{\tau} \frac{1}{t} \xmapsto{\tau} \frac{1}{\frac{1}{t}} = t.$$
+      To see that $\tau\sigma = \sigma^{-1}\tau = \sigma^2\tau$, observe that
+      $$t \xmapsto{\tau} \frac{1}{t} \xmapsto{\sigma} \frac{1}{\zeta t} \xmapsto{\sigma} \frac{1}{\zeta^2t}\ \text{and}\ t \xmapsto{\sigma} \zeta t \xmapsto{\sigma} \zeta^2t \xmapsto{\tau} \frac{1}{\zeta^2t}.$$
+      Then it is clear that $H = \left< \sigma, \tau \;\middle\vert\; \sigma^3 = \tau^2 = 1,\, \sigma \tau = \sigma^{-1}\tau \right> \cong S_3,$ the unique non-abelian group of order 6 up to isomorphism.
+    \item
+      To see that $H$ fixes $\C(u)$, compute
+      $$\sigma(u) = \sigma(t)^3 + \frac{1}{\sigma(t)^3} = (\zeta t)^3 + \frac{1}{(\zeta t)^3} = t^3 + \frac{1}{t^3} = u$$
+      and
+      $$\tau(u) = \tau(t)^3 + \frac{1}{\tau(t)^3} = \left(\frac{1}{t}\right)^3 + \frac{1}{\left(\frac{1}{\frac{1}{t}}\right)^3} = \frac{1}{t^3} + {t^3} = u.$$
+      Then since $u = (t^6 + 1)/t^3 \in \C(t)$, it follows from $[\C(t) : \C(u)] = \max\left\{\deg{t^6 + 1}, \deg{t^3}\right\} = 6$ that $\C(u) = \C(t)^H$.
+      Therefore $\C(t)/\C(u)$ is Galois with $\Gal{\C(t)/\C(u)} \cong H$ by the Fundamental Theorem.
+    \item
+      Using the symmetrizing functions $1 + \tau$, $1 + \tau\sigma$, and $1 + \tau\sigma^2$ and the same argument above, mutatis mutandis, we have that the degree three subfields of $\C(t)$ are $\C(t + 1/t)$, $\C(t + \zeta/t)$, and $\C(t + \zeta^2/t)$.
+      Now by computing 
+      $$(t + 1/t)^3 = t^3 + 3t + 3/t + 1/t^3 = u + 3(t + 1/t)$$
+      it follows that $t + 1/t$ is a root of $x^3 - 3x - u$.
+      Similarly, 
+      $$(\zeta(t + \zeta/t))^3 = t^3 + \zeta t + \zeta^2/t + 1/t^3 = u + 3(\zeta(t + \zeta/t))$$
+      and
+      $$(\zeta^2(t + \zeta^2/t))^3 = t^3 + \zeta^2 t + \zeta/t + 1/t^3 = u + 3(\zeta^2(t + \zeta^2/t))$$
+      show that these are the other two roots.
+      Observe that $\zeta(\zeta^2(t + \zeta^2/t)) = t + \zeta^2/t$ and $\zeta^2(\zeta(t + \zeta/t)) = t + \zeta/t$.
+      Hence any field containing all the roots of $x^3 - 3x - u$ contains all the subfields of degree 3, and the smallest such field is $\C(t)$.
+      Therefore $f(x) = x^3 - 3x - u$ is a degree three polynomial with coefficients in $\C(u)$ with splitting field $\C(t)$, as desired.
+    \end{enumerate}
+  \end{proof}
+\end{thm}
 \end{document}
