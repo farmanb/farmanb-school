@@ -4,8 +4,8 @@
 
 \openup 5pt
 \author{Blake Farman\\University of South Carolina}
-\title{Math 702:\\Homework 05}
-\date{March 1, 2013}
+\title{Math 702:\\Homework 07}
+\date{March 29, 2013}
 \pdfpagewidth 8.5in
 \pdfpageheight 11in
 \usepackage[margin=1in]{geometry}
@@ -39,6 +39,63 @@
   \end{proof}
 \end{thm}
 
+\begin{thm}
+  Let $K/F$ be a finite extension, and let $\alpha \in K$.
+  Define the norm of $\alpha$ from $K$ to $F$ to be 
+  $$\Norm{K/F}{\alpha} = \prod_{\sigma \in \Emb{K/F}} \sigma(\alpha),$$
+  where $\Emb{K/F}$ denotes the embeddings of $K$ into an algebraic closure of $K$ containing $F$ which fix $F$.
+  Note that if $K/F$ is Galois, then we have $\Emb{K/F} = \Gal{K/F}$.
+  \begin{enumerate}[(a)]
+  \item
+    Prove that $\Norm{K/F}{\alpha} \in F$.
+  \item
+    Let $\alpha, \beta \in K$.
+    Prove that $\Norm{K/F}{\alpha\beta} = \Norm{K/F}{\alpha}\Norm{K/F}{\beta}$.
+  \item
+    Suppose that $[K : F] = n$, and let $m_{\alpha, F}(x) = x^d + a_{d - 1}x^{d-1} + \ldots + a_1x + a_0 \in F[x]$ be the minimal polynomial of $\alpha$ over $F$.
+    Prove that $d \mid n$, and that for fixed $\sigma \in \Emb{K/F}$, we have $\abs{\left\{\tau \in \Emb{K/F} \;\middle\vert\; \sigma(\alpha) = \tau(\alpha)\right\}} = n/d$.
+    Conclude that $\Norm{K/F}{\alpha} = (-1)^n a_0^{n/d}$.
+  \end{enumerate}
+
+  \begin{proof}
+    Let $L/F$ be the Galois closure of $K$.
+    Let $H_1$ be the subgroup of $\Gal{L/F}$ that fixes $K$.
+    \begin{enumerate}[(a)]
+    \item
+      Regard $\Emb{K/F}$ as the coset space $\Gal{L/F}/H_1$ and let $\sigma$ be an element of $\Gal{L/F}/H_1$.
+      For any element $\tau$ of $\Gal{L/F}$, $\tau\sigma$ is again another set of coset representatives in $\Gal{L/F}/H_1$.
+      Therefore it follows that
+      $$\tau\left(\Norm{K/F}{\alpha}\right) = \prod_{\sigma \in \Emb{K/F}} \tau\sigma(\alpha) = \Norm{K/F}{\alpha}$$
+      and, since $\tau$ was arbitrary, $\Norm{K/F}{\alpha} \in F$.
+    \item
+      Since each element $\sigma \in \Emb{K/F}$ is a homomorphism,
+      \begin{eqnarray*}
+        \Norm{K/F}{\alpha\beta} &=& \prod_{\sigma \in \Emb{K/F}} \sigma(\alpha\beta) = \prod_{\sigma \in \Emb{K/F}} \sigma(\alpha)\sigma(\beta)\\
+        &=& \prod_{\sigma \in \Emb{K/F}}\sigma(\alpha)\prod_{\sigma \in \Emb{K/F}}\sigma(\beta)\\
+        &=& \Norm{K/F}{\alpha}\Norm{K/F}{\beta}.
+      \end{eqnarray*}
+    \item
+      First observe that because $\alpha \in K$, $F(\alpha)/F$ is a subfield of $K$ and by the multiplicity of degrees in towers, 
+      $$[K : F(\alpha)] = \frac{[K : F]}{[F(\alpha) : F]} = n/d \in \Z.$$
+      Let $H_2$ be the subgroup of $\Gal{L/F}$ that fixes $F(\alpha)$, and observe that $H_1 \subseteq H_2$, and so as coset spaces, we have $H_2/H_1 \subseteq \Gal{L/F} / H_1$.
+      Note that if for fixed $\sigma \in \Emb{K/F}$, if $\sigma(\alpha) = \tau(\alpha)$, then 
+      $$\tau^{-1}\sigma(\alpha) = \tau^{-1}\tau(\alpha) = \alpha$$
+      and similarly $\sigma^{-1}\tau(\alpha) = \alpha$ imply that $\sigma, \tau$ both generate the same coset in $H_2/H_1$.
+      Likewise, if they generate the same coset in $H_2/H_1$, then necessarily $\sigma(\alpha) = \tau(\alpha)$.
+      Since $n = [\Gal{L/F} : H_1] = [\Gal{L/F} : H_2][H_2 : H_1] = d[H_2 : H_1]$, we have $[H_2 : H_1] = n/d$.
+      Hence there are $n/d$ elements in the coset of $H_2/H_1$ represented by $\sigma$, and thus $\abs{\left\{\tau \in \Emb{K/F} \;\middle\vert\; \sigma(\alpha) = \tau(\alpha)\right\}} = n/d.$
+      
+      Now observe that 
+      $$m_{\alpha, F}(x) = \prod_{\sigma \in \Emb{F(\alpha)/F}} (x - \sigma(\alpha))$$
+      and so it follows from $\deg{m_{\alpha,F}} = d$ that
+      $$\prod_{\sigma \in \Emb{F(\alpha)/F}} \sigma(\alpha) = (-1)^d a_0.$$
+      Therefore, by partitioning the embeddings of $\Emb{K/F}$ as above, we have
+      $$\prod_{\sigma \in \Emb{K/F}} \sigma(\alpha) = ((-1)^d a_0)^{n/d} = (-1)^n a_0^{n/d},$$
+      as desired.
+    \end{enumerate}
+  \end{proof}
+\end{thm}
+
 \setcounter{thm}{3}
 \begin{thm}
   Suppose that $p$ is prime and that $f(x) \in \Q[x]$ is irreducible of degree $p$ with precisely two non-real roots in $\C$.
@@ -48,7 +105,7 @@
   \begin{proof}
     Identify $\Gal{K/F}$ with a subgroup of $S_p$.
     Observe that because $\Q[x]/(f)$ is a subfield of $K$ of degree $p$, it follows from Cauchy's Theorem that $\Gal{K/F}$ contains an element of order $p$, which can be identified with some $p$-cycle.
-    Then since there are two complex roots, complex conjugation is an automorphism that may be identified with a transposition.
+    Then since there are two complex roots, complex conjugation is an involution that may be identified with a transposition.
     Therefore by Exercise 2 of Homework 6 from last semester, it follows that these two elements generate $S_p$ and $\Gal{K/F} \cong S_p$, as desired.
   \end{proof}
 \end{thm}
@@ -72,10 +129,10 @@
     \begin{enumerate}[(a)]
     \item
       To see that $\sigma^3 = \tau^2 = 1$, observe that 
-      $$t \xmapsto{\sigma} \zeta t \xmapsto{\sigma} \zeta^2t \xmapsto{\sigma}\ \text{and}\ t \xmapsto{\tau} \frac{1}{t} \xmapsto{\tau} \frac{1}{\frac{1}{t}} = t.$$
+      $$t \xmapsto{\sigma} \zeta t \xmapsto{\sigma} \zeta^2t \xmapsto{\sigma} \zeta^3 t = t\ \text{and}\ t \xmapsto{\tau} \frac{1}{t} \xmapsto{\tau} \frac{1}{\frac{1}{t}} = t.$$
       To see that $\tau\sigma = \sigma^{-1}\tau = \sigma^2\tau$, observe that
       $$t \xmapsto{\tau} \frac{1}{t} \xmapsto{\sigma} \frac{1}{\zeta t} \xmapsto{\sigma} \frac{1}{\zeta^2t}\ \text{and}\ t \xmapsto{\sigma} \zeta t \xmapsto{\sigma} \zeta^2t \xmapsto{\tau} \frac{1}{\zeta^2t}.$$
-      Then it is clear that $H = \left< \sigma, \tau \;\middle\vert\; \sigma^3 = \tau^2 = 1,\, \sigma \tau = \sigma^{-1}\tau \right> \cong S_3,$ the unique non-abelian group of order 6 up to isomorphism.
+      Then it is clear that $H = \left< \sigma, \tau \;\middle\vert\; \sigma^3 = \tau^2 = 1,\, \sigma \tau = \sigma^{-1}\tau \right> \cong S_3$ (or $D_6$), the unique non-abelian group of order 6 up to isomorphism.
     \item
       To see that $H$ fixes $\C(u)$, compute
       $$\sigma(u) = \sigma(t)^3 + \frac{1}{\sigma(t)^3} = (\zeta t)^3 + \frac{1}{(\zeta t)^3} = t^3 + \frac{1}{t^3} = u$$
