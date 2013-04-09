@@ -1,0 +1,197 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate}
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 702:\\Homework 09}
+\date{April 17, 2013}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+
+%Field names
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\uhp}{\mathfrak{h}}
+
+%Operator names
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\Det}{\operatorname{Det}}
+\newcommand{\Gal}{\operatorname{Gal}}
+\newcommand{\Inn}[1]{\operatorname{Inn}\left(#1\right)}
+\newcommand{\Aut}[1]{\operatorname{Aut}\left(#1\right)}
+\newcommand{\real}[1]{\operatorname{\mathfrak{Re}}\left(#1\right)}
+\newcommand{\imag}[1]{\operatorname{\mathfrak{Im}}\left(#1\right)}
+\newcommand{\Syl}[2]{\operatorname{Syl}_{#1}\left(#2\right)}
+\newcommand{\SL}[2]{\operatorname{SL}_#1\left(#2\right)}
+\newcommand{\GL}[2]{\operatorname{GL}_#1\left(#2\right)}
+\newcommand{\M}[2]{\operatorname{M}_#1\left(#2\right)}
+\newcommand{\PSL}[2]{\operatorname{PSL}_#1\left(#2\right)}
+\newcommand{\Mat}[2]{\operatorname{Mat}_{#1}\left(#2\right)}
+\providecommand{\norm}[1]{\lVert#1\rVert}
+\newcommand{\dist}[2]{\operatorname{dist}\left(#1,#2\right)}
+\newcommand{\cntr}[1]{\mathbf{Z}\left(#1\right)}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\orbit}[1]{\mathcal{O}_{#1}}
+\newcommand{\card}[1]{\operatorname{card}#1}
+\newcommand{\Log}[1]{\operatorname{Log}\left(#1\right)}
+\newcommand{\Arg}[1]{\operatorname{Arg}\left(#1\right)}
+\newcommand{\Tor}[2]{\operatorname{Tor}_{#1}\left(#2\right)}
+\newcommand{\Ann}[2]{\operatorname{Ann}_{#1}\left(#2\right)}
+\newcommand{\Hom}[2]{\operatorname{Hom}_{#1}\left(#2\right)}
+\newcommand{\End}[2]{\operatorname{End}_{#1}\left(#2\right)}
+
+\renewcommand{\qedsymbol}{\(\blacksquare\)}
+\renewcommand{\epsilon}{\varepsilon}
+
+\begin{document}
+\maketitle
+
+\providecommand{\p}{\mathfrak{p}}
+\providecommand{\m}{\mathfrak{m}}
+
+\newtheorem{thm}{}
+\newtheorem{lem}{Lemma}
+
+\begin{thm}
+	Let $R$ be a ring, let $M$ be a (left) $R$-module, and let $\Tor{R}{M}$ denote the set of torsion elements of $M$.
+	\begin{enumerate}[(a)]
+		\item
+			Suppose that $R$ is an integral domain.
+			Prove that $\Tor{R}{M}$ is a submodule of $M$, the torsion submodule of $M$.
+		\item
+			Suppose that $R$ is commutative.
+			Give an example of an $R$-module $M$ in which $\Tor{R}{M}$ is not a submodule of $M$.
+	\end{enumerate}
+	
+	\begin{proof}
+		\begin{enumerate}[(a)]
+			\item
+				Since $0 \in \Tor{R}{M}$, it is non-empty.
+				Let $x,y \in \Tor{R}{M}$ and $0 \neq r \in R$ be given.
+				There exist elements $r_x, r_y$ of $R$ such that $r_x x = r_y y = 0$.
+				Hence, since $R$ is an integral domain,
+				$$r_x r_y(x + ry) = r_y(r_x x) + r_x r(r_y y) = 0$$
+				with $r_x r_y \neq 0$.
+				Therefore $x + ry \in \Tor{R}{M}$ and $\Tor{R}{M}$ is a submodule, as desired.
+			\item
+				Take the $\Z$-module $\Z/6\Z$.
+				The elements 2 and 3 are both torsion elements, $3 \cdot (2) = 0$ and $2 \cdot (3) = 0$.
+				However, $5 = 2 + 3 \not \in \Tor{R}{M}$.
+		\end{enumerate}
+	\end{proof}
+\end{thm}
+
+\begin{thm}
+	Let $R$ be a ring, let $M$ be a (left) $R$-module, and let $\Ann{R}{N}$ denote the annihilator of $N$ in $R$.
+	Prove that $\Ann{R}{N}$ is an ideal (two-sided).
+	
+	\begin{proof}
+		First observe that $0 \in \Ann{R}{N}$, and so it is not empty.
+		Let $a_1, a_2 \in \Ann{R}{N}$ be given.
+		For any $n \in N$, it follows from
+			$$(a_1 + a_2)n = a_1 n + a_2 n = 0$$
+		that $a_1 + a_2 \in \Ann{R}{N}$.
+		Then for any $r \in R$, by the definition of the $R$-action on $N$, 
+		$$(a_1r)n = a_1(rn) = 0\ \text{and}\ (ra_1)n = r(a_1n) = 0.$$
+		Therefore $\Ann{R}{N}$ is a two-sided ideal.
+	\end{proof}
+\end{thm}
+
+\begin{thm}
+Let $R$ be a commutative ring, let $M$, $A$, $B$ be $R$-modules, and let $F$ be a free $R$-module.
+\begin{enumerate}[(a)]
+	\item
+		Prove the following.
+		\begin{enumerate}
+			\item
+				$\Hom{R}{A,B}$ is an $R$-module.
+			\item
+				$\Hom{R}{R,M} \cong M$ as $R$-modules.
+			\item
+				Prove that $\End{R}{M} = \Hom{R}{M,M}$ is a ring, the endomorphism ring of $M$.
+		\end{enumerate}
+	\item
+		Prove one of the following $R$-module isomorphisms.
+		\begin{enumerate}
+			\item
+				$\Hom{R}{A \times B, M} \cong \Hom{R}{A,M} \times \Hom{R}{B,M}$.
+			\item
+				$\Hom{R}{M, A \times B} \cong \Hom{R}{M,A} \times \Hom{R}{M,B}$.
+		\end{enumerate}
+	\item
+		Suppose that $\operatorname{rank}_R(F) = n$ is finite.
+		\begin{enumerate}
+			\item
+				Prove that $\Hom{R}{F,R} \cong F$ as $R$-modules.
+			\item
+				Prove that $\Hom{R}{F,M} \cong M \times \ldots M$ ($n$ times).
+		\end{enumerate}
+\end{enumerate}
+
+\begin{proof}
+	\begin{enumerate}[(a)]
+		\item
+		\begin{enumerate}[(i)]
+			\item
+				Let $\varphi, \psi \in \Hom{R}{A,B}$ be given.
+				Under pointwise addition, $\Hom{R}{A,B}$ is an abelian group:
+				\begin{enumerate}
+					\item
+						The unique map $0 \colon A \rightarrow 0 \hookrightarrow B$ is the additive identity,
+					\item
+						$(\varphi + \psi)(a) = \varphi(a) + \psi(a) = \psi(a) + \varphi(a) = (\psi + \varphi)(a)$, for each $a \in A$
+					\item
+						$(\varphi - \varphi)(a) = \varphi(a) - \varphi(a) = 0$, for each $a \in A$.
+				\end{enumerate}
+				Define an $R$-action
+				\begin{align*}
+					R \times \Hom{R}{A,B} &\rightarrow \Hom{R}{A,B}\\
+					(r, \varphi) &\mapsto r\varphi.
+				\end{align*}
+				Since $R$ is a commutative ring, this action is well defined.  Namely $r\varphi$ is a homomorphism,
+				$$r\varphi(a + sb) = r(\varphi(a) + s\varphi(b)) = r\varphi(a) + rs\varphi(b) = (r\varphi)(a) + s(r\varphi)(b).$$
+				For any $a \in A$ and $r, s \in R$, using the $R$-action on $B$, this action satisfies the module axioms
+				\begin{enumerate}
+					\item
+						$((r + s)\varphi)(a) = (r + s)\varphi(a) = r\varphi(a) + s\varphi(a) = (r\varphi)(a) + (s\varphi)(a)$,
+					\item
+						$((rs)\varphi)(a) = (rs)\varphi(a) = r(s\varphi(a)) = r(s\varphi)(a)$,
+					\item
+						$r(\varphi + \psi)(a) = r(\varphi(a) + \psi(a)) = r\varphi(a) + r\psi(a) = (r\varphi)(a) + (r\psi)(a)$, and
+					\item
+						$(1\varphi)(a) = 1 \varphi(a) = \varphi(a)$.
+				\end{enumerate}
+				Therefore $\Hom{R}{A,B}$ is an $R$-module.
+			\item
+				Let $\varphi \in \Hom{R}{M}$ be given.
+				Since $R$ is cyclically generated by $1$ as an $R$-module, for $r \in R$, $\varphi(r) = r\varphi(1)$.
+				Observe that the choice of target for $1$ is equivalent to defining the morphism $\varphi \colon r \mapsto rm$.
+				Namely, $\varphi(r) = r\varphi(1) = rm$ implies by 
+		\end{enumerate}
+	\end{enumerate}
+\end{proof}
+
+\end{thm}
+
+\begin{thm}[Schur's Lemma]
+	let $R$ be a ring.
+	An $R$-module $M$ is {\it simple} if and only if it is nonzero and its only submodules are $\left\{0\right\}$ and $M$.
+	Suppose that $M$ is a simple $R$-module.
+	Prove that $\End{R}{M}$ is a division ring.
+	
+	\begin{proof}
+		Let $\varphi \in \End{R}{M}$ be given.
+		Observe that $\varphi(0) = \varphi(0 + 0) = \varphi(0) + \varphi(0)$ implies by cancellation that $\varphi(0) = 0 \in \varphi(M)$.
+		For any two elements $a, b \in M$ and any ring element $r$,
+		$$\varphi(a) + r\varphi(b) = \varphi(a) + \varphi(rb) = \varphi(a + rb) \in \varphi(M),$$
+		and so $\varphi(M)$ is a submodule of $M$.
+		Hence $\varphi$ is either the zero morphism, or an automorphism.
+		Since by part iii of 3 (a) $\End{R}{M}$ is a ring, it follows that $\End{R}{M}^\times = \operatorname{Aut}_R(M)$.
+		Therefore $\End{R}{M}$ is a (not necessarily commutative) division ring.
+	\end{proof}
+\end{thm}  
+\end{document}
