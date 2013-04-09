@@ -1,0 +1,122 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath,mathtools,tikz}
+\usetikzlibrary{shapes}
+
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 702:\\Homework 08}
+\date{April 8, 2013}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+\maketitle
+
+\providecommand{\p}{\mathfrak{p}}
+\providecommand{\m}{\mathfrak{m}}
+
+\newtheorem{thm}{}
+\newtheorem{lem}{Lemma}
+
+\newcommand{\End}[2]{\operatorname{End}_{#1}\left(#2\right)}
+\newcommand{\Hom}[2]{\operatorname{Hom}_{#1}\left(#2\right)}
+
+\begin{thm}[Hilbert's Theorem 90, multiplicative form]
+  Suppose that $K/F$ is a cyclic Galois extension with $[K : F] = n$ and $\Gal{K/F} = \left< \sigma \right>$.
+  Prove that $\alpha \in K$ has $\Norm{K/F}{\alpha} = 1$ if and only if there exists $0 \neq \beta \in K$ with $\alpha = \beta / \sigma(\beta)$.
+  \begin{proof}
+    Assume that $\Norm{K/F}{\alpha} = 1$.
+    Let $\gamma_0 = 1$, $\gamma_i = \prod{k=0}^{i-1}\sigma^k(\alpha)$ for $i = 1, \ldots, n-1$.
+    Observe that $\gamma_i\prod_{k = i}^n \sigma^k(\alpha) = \Norm{K/F}{\alpha} = 1$, and so $\gamma_i \neq 0$.
+    Hence by linear independence of characters, there exists some $\theta \in K^\times$ such that 
+    $$0 \neq \beta = \sum_{i=0}^{n-1} \gamma_i \sigma^i(\theta).$$
+    Then the result follows from
+    \begin{eqnarray*}
+      \alpha\sigma(\beta) &=& \alpha\sigma(\theta) + \alpha\sigma(\alpha)\sigma^2(\theta) + \ldots + \alpha\sigma(\alpha) \ldots \sigma^{n-1}(\alpha)\theta\\
+      &=& \alpha\sigma(\theta) + \alpha\sigma(\alpha)\sigma^2(\theta) + \ldots + \alpha \Norm{K/F}{\alpha}\theta\\
+      &=& \alpha\sigma(\theta) + \alpha\sigma(\alpha)\sigma^2(\theta) + \ldots + \alpha \theta\\
+      &=& \beta,
+    \end{eqnarray*}
+    as desired.
+    
+    Conversely, if $\alpha = \beta/\sigma(\beta)$ for some $\beta \in K^\times$, then
+    $$\Norm{K/F}{\alpha} = \Norm{K/F}{\beta/\sigma(\beta)} = \Norm{K/F}{\beta}/\Norm{K/F}{\sigma(\beta)} = \Norm{K/F}{\beta}/\Norm{K/F}{\beta} = 1.$$
+  \end{proof}
+\end{thm}
+
+\setcounter{thm}{2}
+\begin{thm}[Artin-Schreier extensions]
+  Let $F$ be a field with characteristic $p > 0$, and let $K/F$ be cyclic with $[K : F] = p$.
+  Prove that there exists $a \in F$ such that $K = F(\alpha)$, where $\alpha$ is a root of $f(x) = x^p - x - a$.
+  
+  \begin{proof}
+    Let $\Gal{K/F} = \left< \sigma \right>$.
+    Since $[K : F] = p$ and $K$ has characteristic $p$, 
+    $$\Tr{K/F}{-1} = \sum_{i=0}^{p-1} \sigma^i(-1) = \sum_{i=0}^{p-1} -\sigma^i(1) = \sum_{i=0}^{p-1} -1 = -p = 0.$$
+    By the additive form of Hilbert's Theorem 90, there exists $\alpha \in K$ with $\sigma(\alpha) = \alpha - 1$.
+    Let $a = \alpha^p - \alpha$ and observe that 
+    $$\sigma(a) = \sigma(\alpha)^p - \sigma(\alpha) = (\alpha - 1)^p - (\alpha - 1) = \alpha^p - \alpha = a.$$
+    Hence $a \in F$ and $\alpha$ is a root of $x^p - x - a \in F[x]$.
+    It then follows from the multiplicity of degrees in the tower $F \subseteq F(\alpha) \subseteq K$ and the prime degree that $K = F(\alpha)$.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Let $\alpha$ be algebraic over $\Q$ and let $L$ be the Galois closure of $\Q(\alpha)/\Q$.
+  Suppose that $p$ is prime with $p \mid \abs{\Gal{L/\Q}}$.
+  Prove that there is a subfield $F$ of $L$ with $[L : F] = p$ and $L = F(\alpha)$.
+  
+  \begin{proof}
+    Since $p$ divides the order of the group, it follows from Cauchy's Theorem and the Fundamental Theorem of Galois Theory that $F = L^{\left< \sigma \right>}$, where $\sigma$ is an element of order $p$, and $L/F$ is Galois.
+    Consider the Galois conjugates $\alpha, \sigma(\alpha), \ldots, \sigma^i(\alpha)$.
+    Since $L$ is the Galois closure of $\Q(\alpha)$, it follows that at least one of these is not an element of $F$, say $\sigma^k(\alpha)$.
+    Then since $[L : F] = p$, it follows from divisibility of degrees in towers that $L = F(\sigma^k(\alpha))$.
+    Therefore since $L/F$ is Galois, 
+    $$L = \sigma^{p-k} (F(\sigma^k(\alpha))) = F(\alpha),$$ 
+    as desired.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Let $R$ be a commutative ring, let $I \lhd R$, let $M$ be an $R$-Module, and define 
+  $$IM = \left\{ a_1m_1 + \ldots + a_nm_n \;\middle\vert\; a_i \in I, m_j \in M, n < \infty\right\}.$$
+  Prove that $IM$ is an $R$-submodule of $M$.
+  
+  \begin{proof}
+    Let $x = \sum_{i = 1}^j r_im_i,\, y = \sum_{i = 1}^k s_i n_i \in IM$, where $r_i,\, s_i \in R$ and $m_i,\, n_i \in M$, and $r \in R$ be given.
+    Observe that since $M$ is a module, $r_im_i$ and $s_i n_i$ are elements of $M$ for each $i$, and so by distribution and finiteness of each sum
+    $$x + ry = \sum_{i = 1}^j r_im_i + \sum_{i = 1}^k r(s_i n_i) = \sum_{i = 1}^j r_im_i + \sum_{i = 1}^k (rs_i) n_i \in IM.$$
+    Therefore $IM$ is a submodule by the submodule criterion.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Let $n \geq 1$.
+  Let $F$ be a field, let $R = \Mat{n \times n}{F}$, and let 
+  $$M = \left\{ A \in R \;\middle\vert\; A\ \text{has arbitrary first column and all other columns with zeroes}\right\}.$$
+  \begin{enumerate}[(a)]
+  \item
+    Viewing $R$ as a left $R$-module, prove that $M$ is a left $R$-submodule of $R$.
+  \item
+    Viewing $R$ as a right $R$-module, prove that $M$ is not a right $R$-submodule of $R$.
+  \end{enumerate}
+
+  \begin{proof}
+    \begin{enumerate}[(a)]
+    \item
+      Let $A = (a_{i,j}), B = (b_{i,j}) \in M$ and $X = (x_{i,j})\in R$.
+      Let $c_{i,j} = \sum_{j = 1}^n x_{i,j} b_{j,i}$, so by the definition of matrix multiplication $XB = \left(c_{i,j}\right)$.
+      Since $b_{j,i} = 0$ for all $i \neq 1$, it follows that $c_{i,j} = 0$ for all $j \neq 1$, and thus $XB \in M$.
+      Then $A + XB = (a_{i,j} + c_{i,j}) \in M$ since all the columns except the first are zero in both matrices.
+      Therefore $M$ is a left $R$-submodule by the submodule criterion.
+    \item
+      Let $A = (a_{i,j}) \in M$ be such that $a_{1,1} \neq 0$ and $a_{i,j} = 0$ elsewhere.
+      Let $X = (x_{i,j})\in R$ be such that $x_{1,2} \neq 0$ and $x_{i,j} = 0$ elsewhere.
+      Let $c_{i,j} = \sum_{j = 1}^n a_{i,j} x_{j,i}$, so by the definition of matrix multiplication $AX = \left(c_{i,j}\right)$.
+      However, $c_{1,2} = a_{1,1}x_{1,2} \neq 0$, and so $AX \not \in M$.
+      Therefore $M$ is not an $R$-submodule.
+    \end{enumerate}
+  \end{proof}
+\end{thm}
+\end{document}
