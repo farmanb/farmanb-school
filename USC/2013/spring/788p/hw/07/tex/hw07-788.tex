@@ -1,0 +1,101 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath,tikz-cd,pbox,mathtools}
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 788p:\\Homework 07}
+\date{May 8, 2013}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+\maketitle
+
+\providecommand{\p}{\mathfrak{p}}
+\providecommand{\m}{\mathfrak{m}}
+\newcommand{\legendre}[2]{\left(\frac{#1}{#2}\right)}
+\theoremstyle{plain}
+\newtheorem{thm}{}
+\newtheorem{lem}{Lemma}
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}
+\newtheorem{prop}{Proposition}
+\newtheorem{cor}{Corollary}
+
+\setcounter{thm}{6}
+
+\begin{thm}
+  Describe, in around two to three pages, something interesting you have learned this semester, about number theory or a related topic, outside of this course and your other coursework.
+\end{thm}
+
+The bulk of my extra-curricular learning this semester has been devoted in large part to developing the basic machinery for algebraic number theory, particularly category theory.  
+One of the interesting results is Yoneda's Lemma, which is a roughly similar result to the embedding of a module in its ring of endomorphisms.  
+Namely, a category, $\mathcal{C}$, can be identified as a subcategory of the category of presheaves (i.e. the category of covariant functors $\mathcal{C}^\text{op} \rightarrow {\bf Set}$), $[\mathcal{C}^\text{op}, {\bf Set}]$.
+
+The proof of Yoneda's Lemma follows quickly from a proposition, which requires the following
+\begin{defn}{Univseral Arrow}
+  If $S: \mathcal{D} \rightarrow \mathcal{C}$ is a functor and $c$ an object of $\mathcal{C}$, a universal arrow from $c$ to $S$ is a pair $\left<r, u\right>$ consisting of an object $r$ of $\mathcal{D}$ and an arrow $u \colon c \rightarrow Sr$ of $C$, such that every pair $\left<d,f\right>$ with $d$ an object of $\mathcal{D}$ and $f \colon c \rightarrow Sd$, there is a unique arrow $f^\prime \colon r \rightarrow d$ of $\mathcal{D}$ such that the diagram
+  \begin{center}
+    \begin{tikzcd}
+      c \arrow[equals]{d}\arrow{r}{u} & Sr \arrow[dashed]{d}{Sf^\prime} & r \arrow[dashed]{d}{\exists! f^\prime}\\
+      c \arrow{r} & Sd & d
+    \end{tikzcd}
+  \end{center}
+  commutes.
+\end{defn}
+
+\begin{prop}
+  For a functor $S \colon \mathcal{D} \rightarrow \mathcal{C}$ a pair $\left<r, u \colon c \rightarrow Sr\right>$ is a universal from $c$ to $S$ if and only if the functor sending each $f^\prime \colon r \rightarrow d$ into $Sf^\prime \circ u \colon c \rightarrow Sd$ is a bijection of hom-sets
+  \begin{equation}\label{eq1}
+    \mathcal{D}(r,d) \cong \mathcal{C}(S,d),
+  \end{equation}
+  where $D$ and $C$ are the usual covariant hom-functors.
+  This bijection is natural in $d$.
+  Conversely, any natural isomorphism \eqref{eq1} is determined in this way by a unique arrow $u \colon c \rightarrow Sr$ such that $\left<r,u\right>$ is universal from $c$ to $S$.
+  
+  \begin{proof}
+    The bijection follows directly from the definition of the universal.
+    Namely, for every element $f \colon c \rightarrow Sd$, there is a unique arrow $f^\prime r \rightarrow d$ with $f = Sf^\prime \circ u$.
+    Naturality is just the statement $S(g^\prime \circ f^\prime) \circ u = Sg^\prime \circ Sf^\prime \circ u$, which follows directly from functoriality of $S$ and associativity of composition.
+
+    For the converse, let $\varphi \colon \mathcal{D}(r,\_) \rightarrow \mathcal{C}(c, {S\_})$ be a natural transformation and let $u \colon c \rightarrow Sr$ to be the image of the identity on $r$ under the component $\varphi_r$.
+    For every morphism $f^\prime \colon r \rightarrow d$, we have a morphism
+    \begin{align*}
+      \mathcal{D}(r,r) &\rightarrow \mathcal{D}(r,d)\\
+      g^\prime &\mapsto f^\prime \circ g^\prime.
+    \end{align*}
+    In particular, when $g^\prime = 1_r$, we have by naturality $Sf^\prime \circ \varphi_r(1_r) = Sf^\prime \circ u = \varphi_d(f^\prime \circ 1_r) = \varphi_d(f^\prime)$, which is precisely the statement that $\left<r,u\right>$ is universal.
+  \end{proof}
+\end{prop}
+  This gives a natural isomorphism between the functors $\mathcal{D}(r,\_) \cong \mathcal{C}(c, S\_)$ and gives rise to the 
+  \begin{defn}
+    Let $\mathcal{D}$ have small hom-sets.
+    A representation of a functor $K \colon \mathcal{D} \rightarrow {\bf Set}$ is a pair $\left<r, \psi\right>$, $r$ an object of $\mathcal{D}$, and
+    $$\psi \colon \mathcal{D}(r, \_) \cong K$$
+    a natural isomorphism.
+    The object $r$ is called the representing object.
+    The functor $K$ is said to be representable when such a representation exists.
+  \end{defn}
+  With this in hand, the Yoneda Lemma is then
+  \begin{lem}
+    If $K \colon \mathcal{D} \rightarrow {\bf Set}$ and $r$ is an object of $\mathcal{D}$ having small hom-sets, there is a bijection
+    $$y \colon \operatorname{Nat}(D(r, \_), K) \cong Kr,$$
+    which sends each natural transformation $\alpha \colon D(r, \_) \rightarrow K$ to $\alpha_r(1_r)$, the image of the identity $1_r$ on $r$, to an element of $Kr$.
+    The map $y$ is natural in $K$ and $r$.
+    \begin{proof}
+      The proof follows from Proposition 1 and the diagram
+      \begin{center}
+        \begin{tikzcd}
+          \mathcal{D}(r, r) \arrow{d}[left]{f \circ \_}\arrow{r}{\alpha_r} & Kr \arrow{d}{Kf} & r \arrow{d}{f}\\
+          \mathcal{D}(r, d) \arrow{r}{\alpha_d} & Kd & d.
+        \end{tikzcd}
+      \end{center}
+    \end{proof}
+  \end{lem}
+  
+  Using Yoneda and Proposition 1, we have the 
+  \begin{cor}
+    For objects $r, s \in \mathcal{D}$, each natural transformation $\mathcal{D}(r, \_) \rightarrow \mathcal{D}(S, _)$ has the form $\mathcal{D}(h, \_)$ for a unique arrow $h \colon s \rightarrow r$. 
+  \end{cor}
+  With this corollary, taking as object function $r \mapsto \mathcal{D}(r, \_)$ and arrow function $(f \colon s \rightarrow r) \mapsto  
+\end{document}

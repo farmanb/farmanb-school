@@ -1,0 +1,282 @@
+\documentclass[12pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath}
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 704:\\Final Exam}
+\date{May 3, 2013}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+\maketitle
+
+\providecommand{\p}{\mathfrak{p}}
+\providecommand{\m}{\mathfrak{m}}
+
+\newtheorem{thm}{}
+\newtheorem{lem}{Lemma}
+
+\begin{thm}[p. 371, Problem 2]\label{ex1}
+  Let $m$ be Lebesgue measure.  
+  Does there exist a Lebesgue measurable set $E$ such that $m(E \cap I) = \frac{1}{2}m(I)$ for every bounded interval $I$?
+  Why or why not?
+  
+  \begin{proof}
+    This is not true.
+    Assume  to the contrary that for some measurable set $E$ and for every bounded interval, $I$, $m(E \cap I) = \frac{1}{2}m(I)$.
+    Consider any bounded subset, $S$, of $\R$.
+    Necessarily, for some bounded interval, $J$, $S \subseteq J$.
+    Regarding $m(E \cap J)$ as the integral $m(E \cap J) = \int_J \chi_E\, dm$
+    it follows that
+    $$\int_S \chi_E\, dm \leq \int_J \chi_E\, dm = \frac{1}{2}m(J) < \infty.$$
+    By Corollary 7.4 of VII, it then follows that 
+    $$\frac{d}{dx} \int_a^x \chi_E\, dm = \chi_E(x)$$
+    for almost all $x \in R$.
+    Then computing 
+    $$F(x) = \int_a^x \chi_E\, dm = \frac{1}{2}(x - a)\ \text{and}\ F(x + h) = \int_a^{x + h} \chi_E\, dm = \frac{1}{2}(x + h - a)$$
+    it follows that $(F(x + h) - F(x))/{h} = 1/2$.
+    But then
+    $$\lim_{h \rightarrow 0} \frac{F(x + h) - F(x))}{h} = \frac{1}{2} \neq \chi_E(x),$$
+    a contradiction.
+  \end{proof}
+\end{thm}
+
+\newpage
+
+\begin{thm}[p. 436, Problem 1]\label{ex2}
+  For a measure space of finite measure, prove that $L^p \subseteq L^q$ whenever $p \geq q \geq 1$.
+  More particularly prove, for the case that the total measure is 1, that $\norm{f}_q \leq \norm{f}_p$ whenever $p \geq q \geq 1$.
+  
+  \begin{proof}
+    Let $(X, \mathcal{A}, \mu)$ denote the measure space.
+    If $p = q$, the results hold trivially.
+    Assume $p > q$.
+    If $p = \infty$, then $L^\infty \subseteq L^q$ holds since for any $f \in L^\infty$
+    \begin{equation}\label{2.1}
+      (\norm{f}_q)^q = \int_X \abs{f}^q\, d\mu \leq (\norm{f}_\infty)^q \int_X \chi_X\, d\mu = (\norm{f}_\infty)^q \mu(X) < \infty
+    \end{equation}
+    shows that $\abs{f}^q \in L^1$.
+    
+    Assume that $p < \infty$.
+    Let $r = p/q$ and let $s$ be its dual exponent.
+    Let $f \in L^p$ and observe that
+    $$\left(\int_X (\abs{f}^q)^r\, d\mu\right)^{1/r} = \left(\left(\int_X \abs{f}^p\, d\mu\right)^{1/p}\right)^q = (\norm{f}_p)^q < \infty$$
+    and so $\abs{f}^q \in L^r$.
+    Then since $\chi_X \in L^s$ trivially, it follows from H\"older's inequality that
+    \begin{equation}\label{2.2}
+      (\norm{f}_q)^q = \int_X \abs{f}^q\chi_x\, d\mu = \left(\int_X (\abs{f}^q)^r\, d\mu\right)^{1/r} \left(\int_X \chi_X\, d\mu\right)^{1/s} = (\norm{f}_p)^q \mu(X)^{1/s}< \infty.
+    \end{equation}
+    Hence $\abs{f}^q \in L^1$, as desired.
+    When $\mu(X) = 1$, \eqref{2.1} and \eqref{2.2} together yield $\norm{f}_q \leq \norm{f}_p$.
+  \end{proof}
+\end{thm}
+
+\newpage
+
+\begin{thm}[p. 436, Problem 2]\label{ex3}
+  Let $p, q, r$ be real numbers in $[1, +\infty]$ with $\frac{1}{p} + \frac{1}{q} + \frac{1}{r} = 1$.
+  Using the equality $\frac{r^\prime}{p} + \frac{r^\prime}{q} = 1$ and H\"older's inequality, prove that $\int_X \abs{fgh}\, d\mu \leq \norm{f}_p\norm{g}_q\norm{h}_r$.
+  
+  \begin{proof}
+    First observe that when $p, q, r < \infty$ we have 
+    $$r^\prime = \frac{pq}{p + q}$$
+    and 
+    $$r^\prime - p = p(\frac{q}{p + q} - 1) \leq p(\frac{q}{1 + q} - 1) \leq p(1 - 1) = 0$$
+    and so $r^\prime \leq p$.
+    Similarly, $r^\prime \leq q$.
+    Hence by the previous problem $L^p, L^q \subseteq L^{r^\prime}$.
+    Now it follows from H\"older's inequality that
+    \begin{equation}\label{3.1}
+      \int_X \abs{fgh}\, d\mu \leq \norm{fg}_{r^\prime} \norm{h}_r
+    \end{equation}
+    and it remains only to show that 
+    \begin{equation}\label{3.2}
+      \norm{fg}_{r\prime} \leq \norm{f}_p\norm{g}_q.
+    \end{equation}
+    
+    Computing
+    $$\left(\int_X (\abs{f}^{r^\prime})^{p/r^\prime}\, d\mu\right)^{r^\prime/p} = \left(\left(\int_X \abs{f}^p\, d\mu\right)^{1/p}\right)^{r^\prime} = (\norm{f}_p)^{r^\prime} < \infty$$
+    and similarly
+    $$\left(\int_X (\abs{g}^{r^\prime})\, d\mu\right)^{q/r^\prime} = (\norm{g}_q)^{r^\prime} < \infty$$
+    together imply $\abs{f}^{r^\prime} \in L^{r^\prime/p}$ and $\abs{g}^{r^\prime} \in L^{r^\prime/q}$.
+    By H\"older's inequality we have
+    $$(\norm{fg}_{r^\prime})^{r^\prime} = \int_X \abs{fg}^{r^\prime}\, d\mu \leq \left(\int_X (\abs{f}^{r^\prime})^{p/r^\prime}\, d\mu\right)^{r^\prime/p} \left(\int_X (\abs{g}^{r^\prime})\, d\mu\right)^{q/r^\prime} = (\norm{f}_p\norm{g}_q)^{r^\prime}$$
+    and \eqref{3.2} follows directly.
+    
+    \newpage
+
+    If $r = \infty$, then $r^\prime = 1$ and $p, q$ are dual.
+    By two applications of H\"older's inequality
+    $$\int_X \abs{fgh}\, d\mu = \norm{fg}1 \norm{h}_\infty \leq \norm{f}_p\norm{g}_q\norm{h}_\infty.$$
+    Similarly, if either $p = \infty$ or $q = \infty$, $r^\prime = q$ or $p$, respectively, and so by the same argument either
+    $$\int_X \abs{fgh}\, d\mu \leq \norm{f}_\infty \norm{gh}_q \leq \norm{f}_\infty \norm{g}_q \norm{h}_r$$
+    or 
+    $$\int_X \abs{fgh}\, d\mu \leq \norm{fh}_1 \norm{g}_\infty \leq \norm{f}_p \norm{h}_r \norm{g}_\infty.$$
+  \end{proof}
+\end{thm}
+
+\newpage
+
+\begin{thm}[p. 437, Problem 3]\label{ex4}
+  For a measure space of finite measure, let $\{f_n\}$ be a sequence of measurable functions converging pointwise to $f$.
+  Suppose that $1 \leq q < p < \infty$, and suppose that the sequence of numbers $\{\norm{f_n}_p\}$ is bounded.
+  Using Egoroff's Theorem (Problem 17, Chapter V) or uniform integrability (Problem 21, Chapter V), prove that $f_n \rightarrow f$ in $L^q$.
+  
+  \begin{proof}
+    Let $\varepsilon > 0$ be given.
+    Choose $E$ by Egoroff's Theorem so that $\mu(E) < \varepsilon$ and $f_n \rightrightarrows f$ on $E$.
+    Let $M$ be such that $\norm{f_n}_p \leq M$ for all $n \in \N$.
+    Let $r = p/q$ and $s = p/(p - q)$ so that $\frac{1}{r} + \frac{1}{s} = 1$.
+    By the proof of (1) note that $\abs{f}^q \in L^r$ and, since $\mu(X) < \infty$, $\chi_E \in L_s$.
+    Then by H\"older's inequality
+    \begin{eqnarray*}
+      \norm{f_n\chi_E}_q &=& \left(\int_X \abs{f_n}^q \chi_E\right)^{1/q}\\
+      &\leq& \left(\int_X (\abs{f_n}^q)^r\, d\mu\right)^{1/rq}\left( \mu(E) \right)^{1/sq}\\
+      &=& \left(\int_X \abs{f_n}^p\, d\mu\right)^\frac{1}{p} \varepsilon^{(p-q)/pq}\\
+      &=& \norm{f_n}_p\varepsilon^{(p-q)/pq}\\
+      &\leq& M\varepsilon^{(p-q)/pq}.
+    \end{eqnarray*}
+    By Fatou's Lemma 
+    $$\int_E \abs{f}^q\, d\mu = \int_E \lim \abs{f_n}^q\, d\mu = \int_E \liminf \abs{f_n}^q\, d\mu \leq \liminf \int_E \abs{f_n}^q \leq M\varepsilon^{(p-q)/pq}$$
+    implies that $\norm{f \chi_E}_q \leq M\varepsilon^{(p-q)/pq}$.
+    Write 
+    \begin{eqnarray*}
+      f_n - f &=& f_n - f_n\chi_{E^c} + f_n\chi_{E^c} - f\chi_{E^c} + f\chi_{E^c} - f\\
+      &=& f_n(\chi_X - \chi_{E^c}) + (f_n - f)\chi_{E^c} + f(\chi_{E^c} - \chi_X)
+    \end{eqnarray*}
+    so that by the triangle inequality we have
+    \begin{eqnarray*}
+     \norm{f_n - f}_q &\leq& \norm{f_n(\chi_X - \chi_{E^c})}_q + \norm{(f_n - f)\chi_{E^c}}_q + \norm{f(\chi_{E^c} - \chi_X)}_q\\
+     &=& \norm{f_n\chi_E}_q + \norm{(f_n - f)\chi_{E^c}}_q + \norm{f\chi_E}_q.
+    \end{eqnarray*}
+    Note that since $f_n \rightrightarrows f$ on $E$, $\norm{(f_n - f)\chi_E}_q \rightarrow 0$ as $\varepsilon \rightarrow 0$.
+    Therefore since $\norm{f_n\chi_E}_q, \norm{f\chi_E}_q \leq M\varepsilon^{(p-q)/pq}$, $\norm{f_n - f}_q \rightarrow 0$ as $\varepsilon \rightarrow 0$, as desired.
+  \end{proof}
+\end{thm}
+
+\newpage
+
+\begin{thm}\label{ex5}
+  Let $1 \leq p, q, r \leq \infty$ with
+  $$\frac{1}{r} = \frac{1}{p} + \frac{1}{q}.$$
+  If $f \in L^p(\R)$ and $g \in L^q(\R)$, then prove $fg \in L^r(\R)$ and
+  $$\norm{fg}_r \leq \norm{f}_p \norm{g}_q.$$
+  
+  \begin{proof}
+    Let $s$ be dual to $r$.
+    Then we have $1 = \frac{1}{r} + \frac{1}{s} = \frac{1}{p} + \frac{1}{q} + \frac{1}{s}$ and $r\left(\frac{1}{p} + \frac{1}{q}\right) = 1$.
+    Using the proof of Problem~\ref{ex3}, we have $\L^p, \L^q \subseteq L^r$ so $fg \in L^r$ and for any $0 \neq h \in L^s$ it follows from H\"older's inequality and Problem~\ref{ex3} that
+    $$\norm{fgh}_q \leq \norm{fg}_r\norm{h}_s \leq \norm{f}_p\norm{g}_q\norm{h}_s.$$
+    Dividing through by $\norm{h}_s$ we have
+    $$\norm{fg}_r \leq \norm{f}_p \norm{g}_q.$$
+  \end{proof}
+\end{thm}
+
+\newpage
+
+\begin{lem}\label{lem1}
+  If $f : [a,b] \rightarrow \R$ and $a < c < b$, then $V_a^b(f) = V_a^c(f) + V_c^b(f)$.
+  
+  \begin{proof}
+    For ease of notation, for a partition $P = \left\{x_0 < x_1 < \ldots < x_n\right\}$, define 
+    $$\sum_P \Delta_i(f) = \sum_{i = 1}^n \abs{f(x_i) - f(x_{i-1})}.$$
+    Let $P_1 = \left\{a = x_0 < x_1 < \ldots < x_n = c\right\}$ and $P_2 = \left\{c = y_0 < y_1 < \ldots < y_m = b\right\}$ be partitions of $[a,c]$ and $[c,b]$, respectively.
+    Then $P = P_1 \cup P_2$ is a partition of $[a,b]$, from which it follows that
+    $$\sum_{P_1} \Delta_i(f) + \sum_{P_2} \Delta_i(f) = \sum_{P} \Delta_i(f) \leq V_a^b(f).$$
+    Hence $V_a^c(f) + V_c^b(f) \leq V_a^b(f)$.
+    
+    To see the reverse inequality, let $P = \left\{a = x_0 < x_1 < \ldots < x_n = b\right\}$ be a partition of $[a,b]$.
+    Take the refinement $P^\prime = P \cup \{c\}$.
+    Since $c$ lies in some interval $[x_{k-1}, x_k]$, we have partitions
+    $$P_1 = \{a = x_0 < x_1 < x_{k-1} \leq c\}\ \text{and}\ P_2 = \{c \leq x_{k} < \ldots < x_n = b\}$$
+    of $[a,c]$ and $[c,b]$.
+    By the triangle inequality we have
+    $$\abs{f(x_k) - f(x_{k-1})} \leq \abs{f(x_k) - f(c)} + \abs{f(c) - f(x_{k-1})}$$
+    and so 
+    $$\sum_P \Delta_i(f) \leq \sum_{P_1} \Delta_i(f) + \sum_{P_2} \Delta_i(f) \leq V_a^c(f) + V_c^b(f).$$
+    Since $V_a^b(f)$ is a least upper bound, it follows that $V_a^b(f) \leq V_a^c(f) + V_c^b(f)$, as desired.
+  \end{proof}
+\end{lem}
+
+\begin{thm}\label{ex6}
+  Show that if $f$ is absolutely continuous on $[a,b]$, then $f$ is of bounded variation on $[a,b]$. (That is $AC([a,b]) \subseteq BV([a,b])$.)
+  
+  \begin{proof}
+    Let $\varepsilon = 1$ and choose $\delta > 0$ satisfying the definition of absolute continuity.
+    Choose $n \in \N$ sufficiently large so that $(b - a) / n < \delta$ and let $P = \{a = x_0 < x_1 < \ldots < x_n = b\}$ be a partition with $x_i - x_{i-1} < (b-a)/n$.
+    Let $P^\prime$ be a partition of any subinterval $[x_{k-1}, x_k]$.
+    By construction, $\sum_{P^\prime} \Delta_i(\chi_{[a,b]}) < \delta$ and so by absolute continuity
+    $$\sum_{P^\prime} \Delta_i(f) < 1,$$ 
+    which yields $V_{x_{k-1}}^{x^k}(f) \leq 1$ for all $k$.
+    Hence by the Lemma~\ref{lem1}, 
+    $$V_a^b(f) = \sum_{i = 1}^n V_{x_{i-1}}^{x_i}(f) \leq n < \infty.$$
+    Therefore $f$ is of bounded variation, as desired.
+  \end{proof}
+\end{thm}
+
+\newpage
+
+\begin{thm}\label{ex7}
+  Show that a function $f$ on the interval $[a,b]$ is of bounded variation on $[a,b]$ if and only if $f$ is the difference of two monotone functions. 
+  (That is $f \in BV([a,b])$ if and only if $f = g - h$ where $g$ and $h$ are both monotone increasing functions.)
+  \begin{proof}
+    If $f = g - h$ for two monotone increasing functions, then 
+    $$V_a^b(g) = g(b) - g(a) < \infty\ \text{and}\ V_a^b(h) = h(b) - h(a) < \infty$$
+    show that both are of bounded variation.
+    Moreover, $V_a^b(f) = V_a^b(g - h) \leq V_a^b(g) + V_a^b(h) < \infty$ shows that $f$ is also of bounded variation.
+    
+    Conversely, assume $f$ is of bounded variation.
+    Define the function
+    \begin{align*}
+      V_f \colon [a,b] &\rightarrow \R^{\geq 0}\\
+      x &\mapsto V_a^x(f),
+    \end{align*}
+    which is well-defined by the Lemma~\ref{lem1}.
+    It suffices to show that $V_f$ and $V_f - f$ are both of increasing, for then $f = V_f - (V_f - f)$.
+    Towards that end, let $a < x < y \leq b$ be given and observe that
+    $$ V_f(y) - V_f(x) = V_a^y(f) - V_a^x(f) = (V_a^x(f) + V_x^y(f)) - V_a^x(f) = V_x^y(f) \geq 0.$$
+    Hence $V_f(x) \leq V_f(y)$, as desired.
+    
+    To see that $V_f - f$ is increasing, use the trivial partition of $[x,y]$ to obtain
+    \begin{equation}\label{7.1}
+      V_f(x) + \abs{f(y) - f(x)} \leq V_f(x) + V_x^y(f) = V_f(y).
+    \end{equation}
+    Hence by \eqref{7.1}, 
+    $$ f(y) - f(x) \leq \abs{f(y) - f(x)} \leq V_f(y) - V_f(x)$$
+    and so
+    $$0 \leq \left(V_f(y) - V_f(x)\right) - \left(f(y) - f(x)\right) = \left(V_f(y) - f(y)\right) - \left(V_f(x) - f(x)\right).$$
+  \end{proof}
+\end{thm}
+
+\newpage
+
+\begin{thm}\label{ex8}
+  If $f \in L^1(\R)$ and $Mf$ is the Hardy-Littlewood maximal function:
+  $$(Mf)(x) := \sup_{I \ni x} \frac{1}{\mu(I)} \int_I \abs{f} d \mu$$
+  where the supremum is taken over all intervals of finite length that contain $x$.
+  Prove that $Mf \in L^1(\R)$ if and only if $f = 0$ a.e.
+
+  {\it Remark}: One reason this is interesting is that for $p > 1$ there is an $L^p$ version of the Hardy-Littlewood maximal inequality which says there is a constant $A_p$ such that if $f \in L^p(\R)$, then also $Mf \in L^p(\R)$ and $\norm{Mf}_p \leq A_p \norm{f}_p$.
+  This is one of the many ways that $L^1$ differs greatly from the sapces $L^p$ when $1 < p < \infty$.
+  
+  \begin{proof}
+    If $f = 0$ a.e. then $\int_I \abs{f} d\mu = 0$ forces $(Mf)(x) = 0$ and $Mf \in L^1$.
+    Conversely, assume $Mf \in L^1$.
+    Assume to the contrary that the set $S = \{x \in \R \mid f(x) \neq 0\}$ does not have measure zero.
+    Observe that $S^o \neq \emptyset$, for otherwise $S$ would be totally disconnected and hence could be written as the disjoint union of measure zero sets.
+    
+    Translate and dilate accordingly (since $\R$ is a field and a metric space, both are continuous operations with a continuous inverse, hence homeomorphisms that preserve the Borel sets which generate the $\sigma$-algebra) so that $S^o$ contains a ball, $B$, of radius 1 about 0.
+    Let $C = \int_B \abs{f}\, d\mu$.
+    For each $x \in \R$, the ball, $B_x$, about $x$ of radius $\abs{x} + 1$ is a finite interval containing $B$.
+    Hence 
+    $$(Mf(x)) = \sup_{I \ni x} \frac{1}{\mu(I)} \int_I \abs{f}\, d\mu \geq \frac{C}{\mu(B_x)} = \frac{C}{x + 1}.$$
+    Let $I_n = [n-1, n] \cup [-n, -n + 1]$ and approximate $1/(\abs{x} + 1)$ below by the simple functions
+    $$S_n = \sum_{k = 1}^n \frac{1}{(k+1)}\chi_{I_k}$$
+    Then since $\int_\R S_n\, d\mu = 2\sum_{k = 1}^n \frac{1}{k + 1} \rightarrow \infty$ as $n \rightarrow \infty$, it is clear that
+    $$\int_\R (Mf)(x) d\mu \geq C \int_\R \frac{1}{\abs{x} + 1}\, d\mu$$
+    diverges, a contradiction.
+    Therefore $f = 0$ a.e.
+  \end{proof}
+\end{thm}
+\end{document}
