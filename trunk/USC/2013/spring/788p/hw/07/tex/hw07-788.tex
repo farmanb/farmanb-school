@@ -1,5 +1,5 @@
 \documentclass[10pt]{amsart}
-\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath,tikz-cd,pbox,mathtools}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath,tikz-cd,pbox,mathtools, cite}
 \openup 5pt
 \author{Blake Farman\\University of South Carolina}
 \title{Math 788p:\\Homework 07}
@@ -28,11 +28,13 @@
   Describe, in around two to three pages, something interesting you have learned this semester, about number theory or a related topic, outside of this course and your other coursework.
 \end{thm}
 
-The bulk of my extra-curricular learning this semester has been devoted in large part to developing the basic machinery for algebraic number theory, particularly category theory.  
-One of the interesting results is Yoneda's Lemma, which is a roughly similar result to the embedding of a module in its ring of endomorphisms.  
+The bulk of my extra-curricular learning this semester has been devoted in large part to developing the basic machinery for algebraic geometry, particularly the language of category theory.  
+One result I found particularly interesting is Yoneda's Lemma, which is a somewhat similar result to the embedding of an algebra in its ring of endomorphisms.
 Namely, a category, $\mathcal{C}$, can be identified as a subcategory of the category of presheaves (i.e. the category of covariant functors $\mathcal{C}^\text{op} \rightarrow {\bf Set}$), $[\mathcal{C}^\text{op}, {\bf Set}]$.
+Morally speaking, this means that you can recover information about an object in a category simply by studying the morphisms into it.
+The development here mostly follows that found in \cite{lane1998categories}\footnote{The development here is (not unexpectedly) rather terse.  Ravi Vakil's notes provide a better 'feel' for Yoneda, but, at least in my opinion, are a bit looser when it comes down to doing the work.} with (most) of the omitted details filled in.
 
-The proof of Yoneda's Lemma follows quickly from a proposition, which requires the following
+The proof of Yoneda's Lemma is not particularly involved once the language is unwound.  Most of the unwinding is done in the form of a proposition, from which Yoneda follows quickly.  This requires the following
 \begin{defn}{Univseral Arrow}
   If $S: \mathcal{D} \rightarrow \mathcal{C}$ is a functor and $c$ an object of $\mathcal{C}$, a universal arrow from $c$ to $S$ is a pair $\left<r, u\right>$ consisting of an object $r$ of $\mathcal{D}$ and an arrow $u \colon c \rightarrow Sr$ of $C$, such that every pair $\left<d,f\right>$ with $d$ an object of $\mathcal{D}$ and $f \colon c \rightarrow Sd$, there is a unique arrow $f^\prime \colon r \rightarrow d$ of $\mathcal{D}$ such that the diagram
   \begin{center}
@@ -43,7 +45,7 @@ The proof of Yoneda's Lemma follows quickly from a proposition, which requires t
   \end{center}
   commutes.
 \end{defn}
-
+This definition makes nearly trivial the following
 \begin{prop}
   For a functor $S \colon \mathcal{D} \rightarrow \mathcal{C}$ a pair $\left<r, u \colon c \rightarrow Sr\right>$ is a universal from $c$ to $S$ if and only if the functor sending each $f^\prime \colon r \rightarrow d$ into $Sf^\prime \circ u \colon c \rightarrow Sd$ is a bijection of hom-sets
   \begin{equation}\label{eq1}
@@ -55,19 +57,39 @@ The proof of Yoneda's Lemma follows quickly from a proposition, which requires t
   
   \begin{proof}
     The bijection follows directly from the definition of the universal.
-    Namely, for every element $f \colon c \rightarrow Sd$, there is a unique arrow $f^\prime r \rightarrow d$ with $f = Sf^\prime \circ u$.
+    Namely, for every arrow $f \colon c \rightarrow Sd$, there is a unique arrow $f^\prime \colon r \rightarrow d$ with $f = Sf^\prime \circ u$.
     Naturality is just the statement $S(g^\prime \circ f^\prime) \circ u = Sg^\prime \circ Sf^\prime \circ u$, which follows directly from functoriality of $S$ and associativity of composition.
 
     For the converse, let $\varphi \colon \mathcal{D}(r,\_) \rightarrow \mathcal{C}(c, {S\_})$ be a natural transformation and let $u \colon c \rightarrow Sr$ to be the image of the identity on $r$ under the component $\varphi_r$.
     For every morphism $f^\prime \colon r \rightarrow d$, we have a morphism
     \begin{align*}
-      \mathcal{D}(r,r) &\rightarrow \mathcal{D}(r,d)\\
+      f^\prime \circ \_ \colon \mathcal{D}(r,r) &\rightarrow \mathcal{D}(r,d)\\
       g^\prime &\mapsto f^\prime \circ g^\prime.
     \end{align*}
-    In particular, when $g^\prime = 1_r$, we have by naturality $Sf^\prime \circ \varphi_r(1_r) = Sf^\prime \circ u = \varphi_d(f^\prime \circ 1_r) = \varphi_d(f^\prime)$, which is precisely the statement that $\left<r,u\right>$ is universal.
+    In particular, when $g^\prime = 1_r$, from the bijection and the naturality square we obtain
+    %we have by naturality $Sf^\prime \circ \varphi_r(1_r) = Sf^\prime \circ u = \varphi_d(f^\prime \circ 1_r) = \varphi_d(f^\prime)$, which is precisely the statement that $\left<r,u\right>$ is universal.
+    \begin{center}
+      \begin{tikzcd}
+        r\arrow{ddd}[left]{f^\prime} & \mathcal{D}(r,r)\arrow{ddd} \arrow{rrr}{\varphi_r}\arrow{ddd}[left]{f^\prime \circ \_}  & & & \mathcal{C}(c, Sr)\arrow{ddd}{Sf^\prime \circ \_}\\
+        & & 1_r \arrow[mapsto]{d}\arrow[mapsto]{r} & u := \varphi_r(1_r) \arrow[mapsto]{d}\\
+        & & f^\prime \circ 1_r = f^\prime \arrow[mapsto]{r} & f := \varphi_d(f^\prime) = Sf^\prime \circ u\\
+        d & \mathcal{D}(r,d) \arrow{rrr}[below]{\varphi_d} & & & \mathcal{C}(c, Sd)
+      \end{tikzcd}
+    \end{center}
+    which is precisely the statement that $\left<r, u\right>$ is universal.
+    This idea will be the crux of the proof of Yoneda.
   \end{proof}
 \end{prop}
-  This gives a natural isomorphism between the functors $\mathcal{D}(r,\_) \cong \mathcal{C}(c, S\_)$ and gives rise to the 
+From this we see that whenever $\mathcal{C}$ and $\mathcal{D}$ have small hom-sets\footnote{That is, for all $c, c^\prime$ objects of $\mathcal{C}$ and $d, d^\prime$ objects of $\mathcal{D}$, 
+  $\operatorname{Hom}_\mathcal{C}(c, c^\prime)$ and $\operatorname{Hom}_\mathcal{D}(d, d^\prime)$ are actually {\it sets}, not proper classes.},
+and $S \colon \mathcal{D} \rightarrow \mathcal{C}$ is a functor, we obtain a natural isomorphism between the functors $\mathcal{D}(r,\_) \cong \mathcal{C}(c, S\_)$.
+Note that when we write $\mathcal{C}(c, S\_)$ we mean the functor $\mathcal{C}(c, S\_) \colon \mathcal{D} \rightarrow {\bf Set}$ with object function $d \mapsto \operatorname{Hom}_\mathcal{C}(c, Sd)$ and arrow function that sends $f \colon d \rightarrow d^\prime$ to the set function 
+\begin{align*}
+  Sf \circ \_ \colon \operatorname{Hom}_\mathcal{C}(c, Sd) &\rightarrow \operatorname{Hom}_\mathcal{C}(c, Sd^\prime)\\
+  g &\mapsto Sf \circ g.
+\end{align*}
+In fact, this is true in general of {\it any} set valued functor, such as a pre-sheaf (or a sheaf) on a topological space $X$ viewed as a preorder under inclusion maps.
+In this case we say
   \begin{defn}
     Let $\mathcal{D}$ have small hom-sets.
     A representation of a functor $K \colon \mathcal{D} \rightarrow {\bf Set}$ is a pair $\left<r, \psi\right>$, $r$ an object of $\mathcal{D}$, and
@@ -76,14 +98,14 @@ The proof of Yoneda's Lemma follows quickly from a proposition, which requires t
     The object $r$ is called the representing object.
     The functor $K$ is said to be representable when such a representation exists.
   \end{defn}
-  With this in hand, the Yoneda Lemma is then
-  \begin{lem}
+
+  That this holds in general (not just for the case in Proposition 1) is the
+  \begin{lem}[Yoneda]
     If $K \colon \mathcal{D} \rightarrow {\bf Set}$ and $r$ is an object of $\mathcal{D}$ having small hom-sets, there is a bijection
     $$y \colon \operatorname{Nat}(D(r, \_), K) \cong Kr,$$
     which sends each natural transformation $\alpha \colon D(r, \_) \rightarrow K$ to $\alpha_r(1_r)$, the image of the identity $1_r$ on $r$, to an element of $Kr$.
-    The map $y$ is natural in $K$ and $r$.
     \begin{proof}
-      The proof follows from Proposition 1 and the diagram
+      The proof follows from the same techniques in Proposition 1 and the naturality square
       \begin{center}
         \begin{tikzcd}
           \mathcal{D}(r, r) \arrow{d}[left]{f \circ \_}\arrow{r}{\alpha_r} & Kr \arrow{d}{Kf} & r \arrow{d}{f}\\
@@ -92,10 +114,43 @@ The proof of Yoneda's Lemma follows quickly from a proposition, which requires t
       \end{center}
     \end{proof}
   \end{lem}
-  
-  Using Yoneda and Proposition 1, we have the 
+  This immediately yields a useful
   \begin{cor}
-    For objects $r, s \in \mathcal{D}$, each natural transformation $\mathcal{D}(r, \_) \rightarrow \mathcal{D}(S, _)$ has the form $\mathcal{D}(h, \_)$ for a unique arrow $h \colon s \rightarrow r$. 
+    For objects $r, s \in \mathcal{D}$, each natural transformation $\mathcal{D}(r, \_) \rightarrow \mathcal{D}(s, \_)$ has the form
+    \begin{align*}
+      \_ \circ h \colon \mathcal{D}(r, \_) &\rightarrow \mathcal{D}(s, \_)\\
+      f & \mapsto f \circ h 
+    \end{align*}
+    for a unique arrow $h \colon s \rightarrow r$
   \end{cor}
-  With this corollary, taking as object function $r \mapsto \mathcal{D}(r, \_)$ and arrow function $(f \colon s \rightarrow r) \mapsto  
+  For with this Corollary, it is not difficult to show that the map $y$ above is natural in $K$ and $r$.
+  This requires viewing $y$ as a natural isomorphism between the bifunctors $N, E \colon [\mathcal{D}, {\bf Set}] \times \mathcal{D} \rightarrow {\bf Set}$.
+  Here $E$ is the evaluation functor that sends a pair $\left<K, r\right>$ to the set $Kr$ and $N$ is the functor that takes a pair $\left<K, r\right>$ to the set of natural transformations $\operatorname{Nat}(\mathcal{D}(r, \_), K)$.
+  For a natural transformation $F \colon K \rightarrow K^\prime$ and an arrow $f \colon r \rightarrow r^\prime$ of $\mathcal{D}$, $F \times f \colon \left<K, r\right> \rightarrow \left<K^\prime, r^\prime\right>$ is a morphism of $[\mathcal{D}, {\bf Set}] \times \mathcal{D}$ in the evident way and the naturality square is
+  \begin{center}
+    \begin{tikzcd}
+      \left<K, r\right>\arrow{d}[left]{F \times f} & N(K,r) \arrow{r}{y_{\left<K,r\right>}}\arrow{d}[left]{N(F \times f)} & E(K,r)\arrow{d}{E(F \times f)}\\
+      \left<K^\prime, r^\prime\right> & N(K,r^\prime) \arrow{r} & E(k, r^\prime)
+  \end{tikzcd}
+  \end{center}
+  
+  We may now define the Yoneda functor $Y \colon D^\text{op} \rightarrow [\mathcal{D}, {\bf Set}]$ with object function $r \mapsto \mathcal{D}(r, \_)$ and arrow function that sends $f \colon s \rightarrow r$ to the arrow
+  \begin{align*}
+    \_ \circ f \colon \mathcal{D}(r, \_) &\rightarrow \mathcal{D}(s, \_)\\
+   g & \mapsto g \circ f.
+  \end{align*}
+  Similarly (i.e. reverse all the arrows), there is the dual functor $Y^\prime \colon \mathcal{D} \rightarrow [\mathcal{D}^\text{op}, {\bf Set}]$ with object function $r \mapsto \mathcal{D}(\_, r)$ and arrow function that sends $f \colon s \rightarrow r$ to the arrow
+  \begin{align*}
+    f \circ \_  \colon \mathcal{D}(\_, s)  &\rightarrow \mathcal{D}(\_, r)\\
+   g & \mapsto f \circ g.
+  \end{align*}
+  The latter is of particular interest in algebraic geometry.
+  Indeed, both of these functors are full and faithful, which says that the embedding given by the dual Yoneda functor allows us to view, in a natural way, the original category as a subcategory of its category of presheaves.
+  
+  \bibliographystyle{plain}
+  \bibliography{hw07-788.bib}{}
+
 \end{document}
+
+
+
