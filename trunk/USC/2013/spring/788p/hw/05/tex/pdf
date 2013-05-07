@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-NUM=06
+NUM=05
 CLASS=788
 NAME="hw${NUM}-${CLASS}"
 PDFDIR=../pdf/
