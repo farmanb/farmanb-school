@@ -43,7 +43,7 @@
 \end{thm}  
 
 \begin{thm}
-  Suppose that $R = (r_{ji}) \in \GL{N}{\Z}$.
+  Suppose that $R = (r_{ji}) \in \GL{n}{\Z}$.
   What can you say about a finitely generated abelian group $G$ with presentation
   $$\left< a_1, \ldots, a_n \;\middle\vert\; \sum_{j = 1}^n r_{ji}a_j = 0\ \text{for}\ 1 \leq i \leq n \right>?$$
   
@@ -64,7 +64,20 @@
   \begin{proof}
     \begin{enumerate}[(a)]
     \item
-      
+      Since there is an isomorphism of $W$ with $F[x]/(f)$, it suffices to show that the image of $\{1, x, \ldots, x^{k-1}\}$ is a basis for $F[x]/(f)$.
+      Since $F$ is a field, we may assume without loss of generality that each element $g \in F[x]$ is monic and so may be written uniquely as $g = fq + r$ for some $q,r \in F[x]$ and $\deg{r} < k$ or $r = 0$.
+      Hence we may identify the elements of $F[x]/(f)$ with polynomials of degree at most $k-1$, and so $\{1, x, \ldots, x^{k-1}\}$ certainly span the space and are clearly linearly independent.
+      The result then follows from the action of $x$ on $W = F[x]v$.
+    \item
+      Let $f(x) = x^k + a_{k-1}x^{k-1} + \ldots + a_1x + a_0$.
+      Since $T$ cycles the basis elements and $T(T^{k-1}) = T^k = - a_{k-1}T^{k-1} - \ldots - a_1T - a_0$, the matrix for $T$ with respect to $B$ is
+      $$(T)_B = \left(\begin{array}{cccc}
+        0 & 0 & \ldots &-a_0\\
+        1 & 0 & \ldots &-a_1\\
+        0 & 1 & \ldots &-a_2\\
+        \vdots& & \ddots &\vdots\\
+        0 & 0 & \ldots & -a_{k-1}\\
+      \end{array}\right) = C(f).$$
   \end{enumerate}
   \end{proof}
 \end{thm}  
@@ -75,8 +88,8 @@
   Prove that $f(x) = m_T$, the minimal polynomial for $T$.
   
   \begin{proof}
-    First observe that for each $i$, $T(e_i) = e_{i+1}$ and so we may rewrite $\{e_1, \ldots e_n\} = \{e_1, T(e_1), \ldots, T^{n-1}(e_1)\}$.
-    Therefore the vector space is cyclic and isomorphic to $F[x]/(f)$, and so $f = m_T$.
+    First observe that $T$ simply cycles the basis elements as above; if $n = \deg{f}$, for each $1 \leq i \leq n-1$, $T(e_i) = e_{i+1}$ and so we may rewrite $\{e_1, \ldots e_n\} = \{e_1, T(e_1), \ldots, T^{n-1}(e_1)\}$.
+    Therefore the vector space is cyclic and isomorphic to $F[x]/(f)$, and so $f = m_T$, the generator for the annihilator.
   \end{proof}
 \end{thm}  
 
