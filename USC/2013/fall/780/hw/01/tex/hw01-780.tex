@@ -1,0 +1,112 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath,mathtools}
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 780:\\Homework 01}
+\date{September 4, 2013}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+\maketitle
+
+\providecommand{\p}{\mathfrak{p}}
+\providecommand{\m}{\mathfrak{m}}
+
+\newtheorem{thm}{}
+\newtheorem{lem}{Lemma}
+
+\begin{thm}\label{ex1}
+  Let $I = \R \setminus \Q$ denote the set of irrational numbers.
+  Determine whether each of the following is true or false.
+
+  \begin{enumerate}[(a)]
+  \item
+    $\alpha \in I$ and $\beta \in I$ implies $\alpha + \beta \in I$.
+  \item
+    $\alpha \in I$ and $\beta \in I$ implies $\alpha\beta \in I$.
+  \item
+    $\alpha \in \Q \setminus \left\{ 0 \right\}$ and $\beta \in I$ implies $\alpha + \beta \in I$ and $\alpha\beta \in I$.
+  \item
+    $\alpha \in I$ and $\beta \in \Q \setminus \left\{0 \right\}$ implies $\alpha^\beta \in I$.
+  \item
+    $\alpha \in \Q \setminus \{1\}$ and $\beta \in I$ implies $\alpha^\beta \in I$.
+  \end{enumerate}
+  
+  \begin{proof}
+    \begin{enumerate}[(a)]
+    \item
+      This is false; $\sqrt{2} + (- \sqrt{2}) = 0 \in \Q$.
+    \item
+      This is false; $\sqrt{2}\sqrt{2} = 2 \in \Q$.
+    \item
+      This is true.
+      Let $\alpha \in \Q \setminus \left\{ 0 \right\}$ and $\beta \in I$ be given.
+      Suppose to the contrary that $\alpha + \beta \in \Q$ holds.
+      Then
+      $$(\alpha + \beta) - \alpha = \beta \in \Q,$$
+      a contradiction.
+      Similarly, if $\alpha\beta \in \Q$, then
+      $$\alpha^{-1}(\alpha\beta) = (\alpha^{-1}\alpha)\beta = \beta \in \Q,$$ 
+      again a contradiction.
+    \item
+      This is false; $\sqrt{2}^2 = 2 \in \Q$.
+    \item
+      This is false; for any positive $\beta \in I$, $0^\beta = 0 \in \Q$.
+    \end{enumerate}
+  \end{proof}
+\end{thm}
+
+\begin{thm}\label{ex2}
+  Prove that $\sqrt{n}$ is irrational whenever $n$ is a positive integer which is not a square.
+
+  \begin{proof}
+    Let $n$ be a positive, square-free integer and suppose to the contrary that $\sqrt{n}$ were rational.
+    There exist two coprime, positive integers $a$ and $b$ such that $\sqrt{n} = a/b$.
+    Squaring both sides yields $n = a^2/b^2 \in \Z$.
+    However, $a$ and $b$ were assumed to be coprime, whence $b = 1$ (the only positive unit in $\Z$) and $n = a^2$, a contradiction.
+    Therefore $\sqrt{n}$ is irrational.
+  \end{proof}
+\end{thm}
+
+\begin{thm}\label{ex3}
+  Prove that $\sqrt{2} + \sqrt{3}$ is irrational.
+
+  \begin{proof}
+    Suppose to the contrary that there exist two positive, coprime integers $a$ and $b$ with $\sqrt{2} + \sqrt{3} = a/b$.
+    After squaring both sides and performing some routine algebra, we have 
+    $$\sqrt{6} = \frac{a^2 - 5b^2}{2b^2} \in \Q,$$
+    contradicting Exercise~\ref{ex2}.
+    Therefore $\sqrt{2} + \sqrt{3}$ is irrational.
+  \end{proof}
+\end{thm}
+
+\begin{thm}\label{ex4}
+  Prove that $\sqrt{2} + \sqrt{3} + \sqrt{5}$ is irrational.
+  
+  \begin{proof}
+    Let $\alpha = \sqrt{2} + \sqrt{3} + \sqrt{5}$ and suppose to the contrary that $\alpha$ is rational.
+    Observe that
+    $$\alpha^2 = 2\sqrt{6} + 2\sqrt{5}(\sqrt{2} + \sqrt{3} + \sqrt{5}) = 2\sqrt{6} + 2\alpha\sqrt{5},$$
+    whence $\alpha^2 - 2\alpha\sqrt{5} = 2\sqrt{6}$.
+    Squaring both sides gives 
+    $$\alpha^4 - 4\alpha^3\sqrt{5} + 20\alpha = 24.$$
+    But then
+    $$\sqrt{5} = \frac{\alpha^4 + 20\alpha - 24}{4\alpha^3} \in \Q,$$
+    which contradicts Exercise~\ref{ex2}.
+    Therefore $\alpha$ is irrational.
+  \end{proof}
+\end{thm}  
+
+\begin{thm}\label{ex5}
+  Prove that $\log_2{3}$ is irrational.
+  
+  \begin{proof}
+    Suppose to the contrary that for two coprime integers $a$ and $b$, $\log_2{3} = a/b$.
+    By the definition of the logarithm, we have $2^{a/b} = 3$, hence $2^a = 3^b$.
+    Since $2$ and $3$ are both prime, the only such solution is $a = b = 0$, but this is absurd.
+    Therefore $\log_2{3}$ is irrational.
+  \end{proof}
+\end{thm}
+\end{document}
