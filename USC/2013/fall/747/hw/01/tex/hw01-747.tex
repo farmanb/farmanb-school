@@ -1,0 +1,67 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath,mathtools}
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 747:\\Homework 01}
+\date{September 6, 2013}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+\maketitle
+
+\providecommand{\p}{\mathfrak{p}}
+\providecommand{\m}{\mathfrak{m}}
+
+\newtheorem{thm}{}
+\newtheorem{lem}{Lemma}
+
+\begin{thm}\label{ex1}
+
+	\begin{proof}
+		First observe that $\C / \Z + i\Z$ is compact as it is the image of $[0,1] \times [0,1]$ under the (continuous) canonical projection map, $p \colon \C \rightarrow \C/\Z + i\Z$.
+		Consider the subset $S^1 \times S^1 = \left\{(e^{i\theta}, e^{i\phi}) \;\middle\vert\; 0 \leq \theta, \phi < 2\pi \right\} \subseteq \C \times \C$.
+		The maps
+		\begin{align*}
+			f_1 \colon \C / \Z + i\Z &\rightarrow S^1 \times S^1 &\text{and}&& f_2 \colon \C / \Z + i\Z & \rightarrow S^1 \times S^1\\
+			[x + iy] & \mapsto e^{i2\pi x} &&& [x + iy] & \mapsto e^{i2\pi y}
+		\end{align*}
+		are both continuous, so the map $f = f_1 \times f_2 \colon \C / \Z + i\Z \rightarrow S^1 \times S^1$ is continuous and clearly surjective.
+		Moreover, $f$ is injective, for if $(e^{i2\pi x_1}, e^{i2\pi y_1}) = (e^{i2\pi x_2}, e^{i2\pi y_2})$, then
+		$$1 = e^{i2\pi(x_1 - x_2)} = e^{i2\pi(y_1 - y_2)}$$
+		implies $x_1 - x_2, y_1 - y_2 \in \Z$ and so $[x_1 + iy_1] = [x_2 + iy_2]$.
+		Therefore, since $S^1 \times S^1$ is Hausdorff, $f$ is a homeomorphism.
+
+		Now, identify $S^1 \times S^1$, and thus $\C/\Z + i\Z$, as a subspace of the $3$-sphere of radius $\sqrt{2}$ in $\R^4$
+		$$S = \left\{(x_1, x_2, x_3, x_4) \;\middle\vert\; x_1^2 + x_2^2 + x_3^2 + x_4^2 = 2\right\}$$
+		by realizing a point $(e^{i\theta}, e^{i\phi}) \in S^1 \times S^1$ as $(\cos(\theta), \sin(\theta), \cos(\phi), \sin(\phi))$ of norm $\sqrt{2}$.
+		Define the map
+		\begin{align*}
+			f  \colon S \setminus \left\{ (0,0,0,\sqrt{2}) \right\} &\rightarrow \R^3\\
+			(x_1, x_2, x_3, x_4) &\mapsto \frac{1}{\sqrt{2} - x_4}(x_1, x_2, x_3).
+		\end{align*}
+		Again, as its component maps are continuous, $f$ is also continuous.
+		We show that $f$ has a continuous inverse.
+		Define the following continuous maps
+		\begin{align*}
+			t \colon \R^3 &\rightarrow \R^3\\
+			x = (x_1, x_2, x_3) &\mapsto \frac{2\sqrt{2}}{1 + \norm{x}^2}
+		\end{align*}
+		and
+		\begin{align*}
+			g \colon \R^3 &\rightarrow S \setminus \left\{ (0,0,0,\sqrt{2}) \right\}\\
+			x = (x_1, x_2, x_3) &\mapsto \left(t(x)x_1, t(x)x_2, t(x)x_3, 1 - t(x)\right).
+		\end{align*}
+		
+		First observe that if $x = (x_1, x_2, x_3, x_4) \in S \setminus \{(0,0,0,\sqrt{2})\}$ and $y = f(x)$, then
+		$$t(y) = \frac{2\sqrt{2}(\sqrt{2} - x_4)^2}{(\sqrt{2} - x_4)^2 + (x_1^2 + x_2^2 + x_3^2)} = \frac{2\sqrt{2}(\sqrt{2} - x_4)^2}{4 - 2\sqrt{2}x_4} = \frac{2\sqrt{2}(\sqrt{2} - x_4)^2}{2\sqrt{2}(\sqrt{2} -x_4)} = \sqrt{2} - x_4$$
+		and so $g(y) = x$ shows that $g$ is a left inverse for $f$.
+		If $y = (y_1, y_2, y_3) \in \R^3$, then for $x = g(y)$ we have
+		$$f(x) = \frac{1}{\sqrt{2} - (\sqrt{2} - t(y))}(t(y)y_1, t(y)y_2, t(y)y_3) = \frac{1}{t(y)}(t(y)y_1, t(y)y_2, t(y)y_3) = y,$$
+		establishing that $f$ is bicontinuous, as desired.
+		Therefore $\C/\Z +i\Z$ may be identified as a subspace of $\R^3$ and equipped with the metric induced by the usual Euclidean norm.		
+	\end{proof}
+ \end{thm}
+
+\end{document}
