@@ -18,50 +18,90 @@
 \newtheorem{lem}{Lemma}
 
 \begin{thm}\label{ex1}
+  If $X$ is Hausdorff and $Z \subset X$ is compact, then $Z$ is closed in $X$.
+  
+  \begin{proof}
+    To see that $Z$ is closed, it suffices to show that for any fixed $x \in X \setminus Z$ there exists a neighbourhood of $x$ disjoint from $Z$.
+    Since $X$ is Hausdorff, for each $z \in Z$ there exist disjoint neighbourhoods $U_z^{x}$ of $x$ and $V_z$ of $z$.
+    Observe that $\left\{V_z\right\}_{z \in Z}$ is a cover of $Z$ by opens and thus there exist finitely many elements, say $z_1, z_2, \ldots, z_n$, of $Z$ such that
+    $$Z \subseteq \bigcup_{i = 1}^n V_{z_i}.$$
+    The sets $U_{z_i}^x$ and $V_{z_i}$ are disjoint for each $1 \leq i \leq n$ by construction, whence the neighbourhood
+    $$U = \bigcap_{i = 1}^n U_{z_i}^x$$
+    of $x$ is disjoint from $Z$.
+    Therefore $X \setminus Z$ is open, as desired.
+  \end{proof}
+\end{thm}
 
-	\begin{proof}
-		First observe that $\C / \Z + i\Z$ is compact as it is the image of $[0,1] \times [0,1]$ under the (continuous) canonical projection map, $p \colon \C \rightarrow \C/\Z + i\Z$.
-		Consider the subset $S^1 \times S^1 = \left\{(e^{i\theta}, e^{i\phi}) \;\middle\vert\; 0 \leq \theta, \phi < 2\pi \right\} \subseteq \C \times \C$.
-		The maps
-		\begin{align*}
-			f_1 \colon \C / \Z + i\Z &\rightarrow S^1 \times S^1 &\text{and}&& f_2 \colon \C / \Z + i\Z & \rightarrow S^1 \times S^1\\
-			[x + iy] & \mapsto e^{i2\pi x} &&& [x + iy] & \mapsto e^{i2\pi y}
-		\end{align*}
-		are both continuous, so the map $f = f_1 \times f_2 \colon \C / \Z + i\Z \rightarrow S^1 \times S^1$ is continuous and clearly surjective.
-		Moreover, $f$ is injective, for if $(e^{i2\pi x_1}, e^{i2\pi y_1}) = (e^{i2\pi x_2}, e^{i2\pi y_2})$, then
-		$$1 = e^{i2\pi(x_1 - x_2)} = e^{i2\pi(y_1 - y_2)}$$
-		implies $x_1 - x_2, y_1 - y_2 \in \Z$ and so $[x_1 + iy_1] = [x_2 + iy_2]$.
-		Therefore, since $S^1 \times S^1$ is Hausdorff, $f$ is a homeomorphism.
+\begin{thm}\label{ex2}
+  Let $X$ be the quotient space $\C/(\Z + i\Z)$.
+  Construct a metric on $X$ with the property that the induced metric topology is the quotient topology.
 
-		Now, identify $S^1 \times S^1$, and thus $\C/\Z + i\Z$, as a subspace of the $3$-sphere of radius $\sqrt{2}$ in $\R^4$
-		$$S = \left\{(x_1, x_2, x_3, x_4) \;\middle\vert\; x_1^2 + x_2^2 + x_3^2 + x_4^2 = 2\right\}$$
-		by realizing a point $(e^{i\theta}, e^{i\phi}) \in S^1 \times S^1$ as $(\cos(\theta), \sin(\theta), \cos(\phi), \sin(\phi))$ of norm $\sqrt{2}$.
-		Define the map
-		\begin{align*}
-			f  \colon S \setminus \left\{ (0,0,0,\sqrt{2}) \right\} &\rightarrow \R^3\\
-			(x_1, x_2, x_3, x_4) &\mapsto \frac{1}{\sqrt{2} - x_4}(x_1, x_2, x_3).
-		\end{align*}
-		Again, as its component maps are continuous, $f$ is also continuous.
-		We show that $f$ has a continuous inverse.
-		Define the following continuous maps
-		\begin{align*}
-			t \colon \R^3 &\rightarrow \R^3\\
-			x = (x_1, x_2, x_3) &\mapsto \frac{2\sqrt{2}}{1 + \norm{x}^2}
-		\end{align*}
-		and
-		\begin{align*}
-			g \colon \R^3 &\rightarrow S \setminus \left\{ (0,0,0,\sqrt{2}) \right\}\\
-			x = (x_1, x_2, x_3) &\mapsto \left(t(x)x_1, t(x)x_2, t(x)x_3, 1 - t(x)\right).
-		\end{align*}
-		
-		First observe that if $x = (x_1, x_2, x_3, x_4) \in S \setminus \{(0,0,0,\sqrt{2})\}$ and $y = f(x)$, then
-		$$t(y) = \frac{2\sqrt{2}(\sqrt{2} - x_4)^2}{(\sqrt{2} - x_4)^2 + (x_1^2 + x_2^2 + x_3^2)} = \frac{2\sqrt{2}(\sqrt{2} - x_4)^2}{4 - 2\sqrt{2}x_4} = \frac{2\sqrt{2}(\sqrt{2} - x_4)^2}{2\sqrt{2}(\sqrt{2} -x_4)} = \sqrt{2} - x_4$$
-		and so $g(y) = x$ shows that $g$ is a left inverse for $f$.
-		If $y = (y_1, y_2, y_3) \in \R^3$, then for $x = g(y)$ we have
-		$$f(x) = \frac{1}{\sqrt{2} - (\sqrt{2} - t(y))}(t(y)y_1, t(y)y_2, t(y)y_3) = \frac{1}{t(y)}(t(y)y_1, t(y)y_2, t(y)y_3) = y,$$
-		establishing that $f$ is bicontinuous, as desired.
-		Therefore $\C/\Z +i\Z$ may be identified as a subspace of $\R^3$ and equipped with the metric induced by the usual Euclidean norm.		
-	\end{proof}
- \end{thm}
+  \begin{proof}
+    First observe that $\C / \Z + i\Z$ is compact as it is the image of $[0,1] \times [0,1]$ under the (continuous) canonical projection map, $p \colon \C \rightarrow \C/\Z + i\Z$.
+    Consider the subset $S^1 \times S^1 = \left\{(e^{i\theta}, e^{i\phi}) \;\middle\vert\; 0 \leq \theta, \phi < 2\pi \right\} \subseteq \C \times \C$.
+    The maps
+    \begin{align*}
+      f_1 \colon \C / \Z + i\Z &\rightarrow S^1 \times S^1 &\text{and}&& f_2 \colon \C / \Z + i\Z & \rightarrow S^1 \times S^1\\
+      [x + iy] & \mapsto e^{i2\pi x} &&& [x + iy] & \mapsto e^{i2\pi y}
+    \end{align*}
+    are both continuous, so the map $f = f_1 \times f_2 \colon \C / \Z + i\Z \rightarrow S^1 \times S^1$ is continuous and clearly surjective.
+    Moreover, $f$ is injective, for if $(e^{i2\pi x_1}, e^{i2\pi y_1}) = (e^{i2\pi x_2}, e^{i2\pi y_2})$, then
+    $$1 = e^{i2\pi(x_1 - x_2)} = e^{i2\pi(y_1 - y_2)}$$
+    implies $x_1 - x_2, y_1 - y_2 \in \Z$ and so $[x_1 + iy_1] = [x_2 + iy_2]$.
+    Therefore, since $S^1 \times S^1$ is Hausdorff, $f$ is a homeomorphism.
+
+    Now, identify $S^1 \times S^1$, and thus $\C/\Z + i\Z$, as a subspace of the $3$-sphere of radius $\sqrt{2}$ in $\R^4$
+    $$S = \left\{(x_1, x_2, x_3, x_4) \;\middle\vert\; x_1^2 + x_2^2 + x_3^2 + x_4^2 = 2\right\}$$
+    by realizing a point $(e^{i\theta}, e^{i\phi}) \in S^1 \times S^1$ as $(\cos(\theta), \sin(\theta), \cos(\phi), \sin(\phi))$ of norm $\sqrt{2}$.
+    Define the map
+    \begin{align*}
+      f  \colon S \setminus \left\{ (0,0,0,\sqrt{2}) \right\} &\rightarrow \R^3\\
+      (x_1, x_2, x_3, x_4) &\mapsto \frac{1}{\sqrt{2} - x_4}(x_1, x_2, x_3).
+    \end{align*}
+    Again, as its component maps are continuous, $f$ is also continuous.
+    We show that $f$ has a continuous inverse.
+    Define the following continuous maps
+    \begin{align*}
+      t \colon \R^3 &\rightarrow \R^3\\
+      x = (x_1, x_2, x_3) &\mapsto \frac{2\sqrt{2}}{1 + \norm{x}^2}
+    \end{align*}
+    and
+    \begin{align*}
+      g \colon \R^3 &\rightarrow S \setminus \left\{ (0,0,0,\sqrt{2}) \right\}\\
+      x = (x_1, x_2, x_3) &\mapsto \left(t(x)x_1, t(x)x_2, t(x)x_3, 1 - t(x)\right).
+    \end{align*}
+    
+    First observe that if $x = (x_1, x_2, x_3, x_4) \in S \setminus \{(0,0,0,\sqrt{2})\}$ and $y = f(x)$, then
+    $$t(y) = \frac{2\sqrt{2}(\sqrt{2} - x_4)^2}{(\sqrt{2} - x_4)^2 + (x_1^2 + x_2^2 + x_3^2)} = \frac{2\sqrt{2}(\sqrt{2} - x_4)^2}{4 - 2\sqrt{2}x_4} = \frac{2\sqrt{2}(\sqrt{2} - x_4)^2}{2\sqrt{2}(\sqrt{2} -x_4)} = \sqrt{2} - x_4$$
+    and so $g(y) = x$ shows that $g$ is a left inverse for $f$.
+    If $y = (y_1, y_2, y_3) \in \R^3$, then for $x = g(y)$ we have
+    $$f(x) = \frac{1}{\sqrt{2} - (\sqrt{2} - t(y))}(t(y)y_1, t(y)y_2, t(y)y_3) = \frac{1}{t(y)}(t(y)y_1, t(y)y_2, t(y)y_3) = y,$$
+    establishing that $f$ is bicontinuous, as desired.
+    Therefore $\C/\Z +i\Z$ may be identified as a subspace of $\R^3$ and equipped with the metric induced by the usual Euclidean norm.		
+  \end{proof}
+\end{thm}
+
+\begin{thm}\label{ex3}
+  Set $X = \R^2$ and $T \colon X \rightarrow X$ equal to the homeomorphism defined by $T(x,y) = (2x, 1/2y)$.
+  Let $Y$ be the quotient of $X$ by the group action of $\Z$ defined by $n \cdot (x,y) = T^n(x,y)$.
+  Is $Y$ Hausdorff?
+  
+  \begin{proof}
+    Let $p \colon X \rightarrow Y$ be the canonical projection map and consider the point $y = [(0,1)] \in Y$.
+    The preimage of $\{y\}$ under $p$ is given by
+    $$p^{-1}(\{y\}) = \left\{(x,y) \;\middle\vert\; \exists n \in \Z\ \text{s.t}\ T^{n}(x,y) = y\right\} = \left\{(0, 2^{n}) \;\middle\vert\; n \in \Z\right\}.$$
+    Now observe that $\left\{(0, 1/2^n)\right\}_{n \in \N} \subset p^{-1}(\{y\})$ and $\lim_{n \rightarrow \infty} (0, 1/2^n) = (0,0) \not \in p^{-1}(\{y\})$, hence $p^{-1}(\{y\})$ is not closed in $X$.
+    Then it follows that $\left\{y\right\}$ is not closed in $Y$.
+    Therefore $Y$ is not $T_1$ and, in particular, not Hausdorff.
+  \end{proof}
+\end{thm}
+
+\begin{thm}\label{ex4}
+  Let $X$ be a compact topological space, $Y$ a Hausdorff topological space, and $f \colon X \rightarrow Y$ a quotient map.
+  Prove that the restriction $f \mid_A \colon A \rightarrow f(A)$ of $f$ to a closed subset $A \subset X$ is a quotient map.
+  Does this result remain true if $A$ is allowed to be an arbitrary subset of $X$?
+  \begin{proof}
+  \end{proof}
+\end{thm}
 
 \end{document}
