@@ -88,11 +88,13 @@
   
   \begin{proof}
     Let $p \colon X \rightarrow Y$ be the canonical projection map and consider the point $y = [(0,1)] \in Y$.
-    The preimage of $\{y\}$ under $p$ is given by
-    $$p^{-1}(\{y\}) = \left\{(x,y) \;\middle\vert\; \exists n \in \Z\ \text{s.t}\ T^{n}(x,y) = y\right\} = \left\{(0, 2^{n}) \;\middle\vert\; n \in \Z\right\}.$$
-    Now observe that $\left\{(0, 1/2^n)\right\}_{n \in \N} \subset p^{-1}(\{y\})$ and $\lim_{n \rightarrow \infty} (0, 1/2^n) = (0,0) \not \in p^{-1}(\{y\})$, hence $p^{-1}(\{y\})$ is not closed in $X$.
-    Then it follows that $\left\{y\right\}$ is not closed in $Y$.
-    Therefore $Y$ is not $T_1$ and, in particular, not Hausdorff.
+    The preimage of $\{y\}$ under $p$ is the set
+    $$A = p^{-1}(\{y\}) = \left\{(x,y) \;\middle\vert\; \exists n \in \Z\ \text{s.t}\ T^{n}(x,y) = y\right\} = \left\{(0, 2^{n}) \;\middle\vert\; n \in \Z\right\}.$$
+    %Now observe that $\left\{(0, 1/2^n)\right\}_{n \in \N} \subset p^{-1}(\{y\})$ and $\lim_{n \rightarrow \infty} (0, 1/2^n) = (0,0) \not \in p^{-1}(\{y\})$, hence $p^{-1}(\{y\})$ is not closed in $X$.
+    Observe that $\left\{(0, 1/2^n) \;\middle\vert\; n \in \N \right\} \subset A$, so for every $\varepsilon > 0$ the ball of radius $\varepsilon$ about the origin in $X$ meets $A$.
+    However, since $A$ does not contain the origin it is not closed.
+    Since $p$ is a quotient map it follows that $\left\{y\right\}$ is not closed in $Y$, whence $Y$ is not $T_1$.
+    Therefore $Y$ is not Hausdorff.
   \end{proof}
 \end{thm}
 
@@ -100,7 +102,40 @@
   Let $X$ be a compact topological space, $Y$ a Hausdorff topological space, and $f \colon X \rightarrow Y$ a quotient map.
   Prove that the restriction $f \mid_A \colon A \rightarrow f(A)$ of $f$ to a closed subset $A \subset X$ is a quotient map.
   Does this result remain true if $A$ is allowed to be an arbitrary subset of $X$?
+  
   \begin{proof}
+    Since $X$ is compact and $A$ is closed, it follows that $A$ is compact, hence $f(A)$ is compact and thus closed by Exercise~\ref{ex1}.
+    Then for any closed set $F$ of $Y$ we have
+    $$f^{-1}(F \cap f(A)) = f^{-1}(F) \cap f^{-1}(f(A))$$
+    is the intersection of closed sets, hence closed.
+    Similarly, if $K \subset f(A)$ is such that $f^{-1}(K)$ is closed in $X$, then $f^{-1}(K)$ is compact and so 
+    $$K = f(f^{-1}(K))$$
+    is compact, hence closed.
+    Therefore $f\mid_A$ is a quotient map.\\
+    
+    This does not hold for arbitrary subsets $A$ of $X$.
+    Let $X = [0,1] \cup [2,3] \subset \R$, $Y = [0,2] \subset \R$, and 
+    \begin{align*}
+      p \colon X &\rightarrow Y\\
+      x &\mapsto 
+      \left\{
+      \begin{array}{ll}
+        x & \text{if}\ x \in [0,1]\\
+        x - 1 & \text{if}\ x \in [2,3].
+      \end{array}
+      \right.
+    \end{align*}
+    Clearly $p$ is continuous and surjective.
+    For any closed subset $F$ of the compact space $X$, $F$ is also compact.
+    Hence $p(F)$ is compact and thus closed in the Hausdorff space $Y$, which shows that $f$ is a closed map.
+    This establishes that $p$ is a quotient map.
+    %$$p(F \cap X) = p(F \cap [0,1] \cup F \cap [2,3]) = F \cap [0,1] \cup p(F \cap [2,3]).$$
+    %Since $p(F \cap [2,3])$ is just a translation of $F \cap [2,3]$, this remains closed and so $p$ is a closed map, hence a quotient map.
+    
+    Let $A = [0,1) \cup [2,3] \subset X$ and let $q = p \mid_A$.
+      Observe that $q$ remains surjective and continuous and that $[2,3]$ is open in $X$ as it can be written as, say, $(3/2,7/2) \cap X$, so $[2,3]$ is open in $A$.
+      However, since $1 \not \in A$, it follows that $[2,3]$ is the preimage of the closed subset $[1,2] \subset Y$ under $q$.
+      Therefore $q$ cannot be a quotient map.
   \end{proof}
 \end{thm}
 
