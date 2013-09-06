@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 NUM=01
-CLASS=780
+CLASS=747
 NAME="hw${NUM}-${CLASS}"
 PDFDIR=../pdf/
 FILE="$NAME.tex"
