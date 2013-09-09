@@ -1,0 +1,52 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath,mathtools}
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 746:\\Homework 01}
+\date{September 6, 2013}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+\maketitle
+
+\providecommand{\p}{\mathfrak{p}}
+\providecommand{\m}{\mathfrak{m}}
+
+\newtheorem{thm}{}
+\newtheorem{lem}{Lemma}
+
+\begin{thm}
+  Let $A$ be a ring and $I$ an ideal that is maximal amongst all infinitely generated ideals in $A$.  Prove that $I$ is prime.
+  
+  \begin{proof}
+    Suppose to the contrary that $I$ is not prime, so there exist elements $a$ and $b$ of $A$ with $a,b \not \in I$ and $ab \in I$.
+    Let $\mathfrak{a} = (a) + I$ and observe that, since $I$ is maximal, this ideal must be finitely generated, say $\mathfrak{a} = (g_1, g_2, \ldots, g_n)$, where $g_i = a_ia + x_i$ with $a_i \in A$ and $x_i \in I$.
+    It is easy to see that this reduces to the ideal $\mathfrak{a} = (a, x_1, \ldots, x_n)$.
+    
+    Define the set $\mathfrak{b} = \left\{y \in A \;\middle\vert\; ay \in I \right\}$.
+    Observe that for $y, y^\prime \in \mathfrak{b}$ we have 
+    $$a(y - y^\prime) = ay - ay^\prime \in I$$ 
+    so that $\mathfrak{b}$ is a subgroup of $A$, and for any $a^\prime \in A$, 
+    $$a(a^\prime y) = a^\prime(ay) \in I,$$
+    which establishes that $\mathfrak{b}$ is an ideal.
+    It is clear that $\mathfrak{b}$ contains $I$, so we observe that $\mathfrak{b}$ does not contain a unit, for if $u \in A^\times \cap \mathfrak{b}$, then $ua \in I$ and so $a = u^{-1}(ua) \in I$, contrary to our assumption.
+    By maximality once more, we have that $\mathfrak{b}$ is finitely generated, say $\mathfrak{b} = (y_1, \ldots, y_m)$.
+    Note that since $ab \in I$, $b \in \mathfrak{b}$.
+    
+    Now consider the ideal $\mathfrak{c} = (ay_1, \ldots, ay_m, x_1, \ldots, x_n) \subseteq I$.
+    Let $x \in I \subset \mathfrak{a}$ be given and write 
+    $$x = a^\prime a + c_1x_1 + \ldots c_nx_n$$
+    for some $a^\prime, c_1, \ldots, c_n \in A$.
+    It follows that $a^\prime a \in I$ and so $a^\prime \in \mathfrak{b}$.
+    Hence we may rewrite $x$ as 
+    $$x = (d_1y_1 + \ldots + d_my_m)a + c_1x_1 + \ldots c_nx_n \in \mathfrak{c}$$
+    for some $d_i \in A$.
+    This is establishes the reverse inclusion, $I \subseteq \mathfrak{c}$.
+    However, this is contrary to the assumption that $I$ is not finitely generated.
+    Therefore $I$ is prime.
+  \end{proof}
+\end{thm}
+
+\end{document}
