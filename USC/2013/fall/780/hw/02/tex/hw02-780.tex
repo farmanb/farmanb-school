@@ -53,7 +53,7 @@
   \begin{proof}
     Suppose to the contrary that all the prime factors of $n$ are strictly larger as $\sqrt{n}$.
     Since $n$ is composite, there exist at least two primes $p$ and $q$, not necessarily distinct, dividing $n$.
-    Then for some integer $m \geq 1$ we have
+    Hence for some integer $m \geq 1$ we have
     $$n = pqm > (\sqrt{n})^2 = n$$
     a contradiction.
     Therefore $n$ has a prime divisor which is at most $\sqrt{n}$.
@@ -65,36 +65,34 @@
   Prove that $n^4 + 4^n$ is composite if $n$ is an integer strictly larger than 1.
 
   \begin{proof}
-    First observe that if $n$ is even, then $2 \mid n^4 + 4^n$ implies $n^4 + 4^n$ is not composite.
-    Assume that $n$ is an odd integer at least as large as 3, and note that $n+1/2$ is thus an integer.
-    Hence
-    \begin{eqnarray*}
-      n^4 + 4^n &=& (n^2)^2 + (2^n)^2\\
-      &=& (n^2 + 2^n)^2 - 2(n^2)2^n\\
-      &=& (n^2 + 2^n)^2 - n^2 2^{n+1}\\
-      &=& (n^2 + 2^n)^2 - (n 2^{\frac{n + 1}{2}})^2\\
-      &=& (n^2 + 2^n - n 2^{\frac{n + 1}{2}})(n^2 + 2^n + n 2^{\frac{n + 1}{2}}).
-    \end{eqnarray*}
-    It remains to show that neither of the factors are 1.
-    Observe that since $n \geq 3$ we have
-    $$n^2 + 2^n + n 2^{\frac{n + 1}{2}} \geq 29.$$
+    First observe that if $n$ is even, then $n^4 + 4^n \neq 2$ and $2 \mid n^4 + 4^n$ imply that $n^4 + 4^n$ is not prime.
+    Assume that $n$ is an odd integer at least as large as 3, and note that $(n+1)/2$ is thus an integer, whence
+    $$n^4 + 4^n = (n^2)^2 + (2^n)^2 = (n^2 + 2^n)^2 - (n 2^{\frac{n + 1}{2}})^2 = (n^2 + 2^n - n 2^{\frac{n + 1}{2}})(n^2 + 2^n + n 2^{\frac{n + 1}{2}})$$
+    is a factorization of $n^4 + 4^n$ in $\Z$.
+    %\begin{eqnarray*}
+    %  n^4 + 4^n &=& (n^2)^2 + (2^n)^2\\
+      %&=& (n^2 + 2^n)^2 - 2(n^2)2^n\\
+      %&=& (n^2 + 2^n)^2 - n^2 2^{n+1}\\
+     % &=& (n^2 + 2^n)^2 - (n 2^{\frac{n + 1}{2}})^2\\
+      %&=& (n^2 + 2^n - n 2^{\frac{n + 1}{2}})(n^2 + 2^n + n 2^{\frac{n + 1}{2}}).
+    %\end{eqnarray*}
+    It remains to show that neither factor is a unit.
+    Observe that since $n \geq 3$ we have $n^2 + 2^n + n 2^{\frac{n + 1}{2}} \geq 29$, so it suffices to show that $n^2 + 2^n - n 2^{\frac{n + 1}{2}} \neq 1$.
     Suppose to the contrary that 
-    $$n^2 + 2^n - n 2^{\frac{n + 1}{2}} = 1$$
-    so 
-    $$n^4 + 4^n = n^2 + 2^n + n 2^{\frac{n + 1}{2}} = 1 + 2n2^{\frac{n + 1}{2}}.$$
+    $n^2 + 2^n - n 2^{\frac{n + 1}{2}} = 1$
+    so that
+    $$n^4 + 4^n = n^2 + 2^n + n 2^{\frac{n + 1}{2}} = (n^2 + 2^n - n 2^{\frac{n + 1}{2}}) + 2n2^{\frac{n + 1}{2}}= 1 + 2n2^{\frac{n + 1}{2}}.$$
     With some elementary calculus, it is easy to see that $n \leq 2^{\frac{n+1}{2}}$ holds for $n \geq 3$.
     Combined with the observation that $2^{n-1} \geq 4$ we have
-    \begin{eqnarray*}
-      n^4 + 4^n &=&  1 + 2n2^{\frac{n + 1}{2}}\\
-      &\leq& 1 + 2(2^{n+1})\\
-      &\leq& 1 + 2^{n-1}2^{n+1}\\
-      &=& 1 + 4^n
+    $$n^4 + 4^n =  1 + 2n2^{\frac{n + 1}{2}} \leq 1 + 2(2^{n+1}) \leq 1 + (2^{n-1})(2^{n+1}) = 1 + 4^n,$$
+    %\begin{eqnarray*}
+     % n^4 + 4^n &=&  1 + 2n2^{\frac{n + 1}{2}} \leq& 1 + 2(2^{n+1}) \leq 1 + 2^{n-1}2^{n+1} = 1 + 4^n
       %&=& 1 + (2^{\frac{n + 1}{2}})^3\\
       %&\leq& 1 + (2^{\frac{n + 1}{2}})^4\\
       %&=& 1 + 4(4^n)\\
-    \end{eqnarray*}
+  %\end{eqnarray*}
     which implies $n^4 \leq 1$, a contradiction.
-    Therefore $n^4 + 4^n$ is composite.
+    Therefore $n^4 + 4^n$ is composite for $n > 1$.
 %    \begin{eqnarray*}
 %      1 &=& (n^2 + 2^n - n 2^{\frac{n + 1}{2}})^2\\
 %      &=& (n^2 + 2^n)^2 - 2(n^2 + 2^n)n2^{\frac{n + 1}{2}} + (n2^{\frac{n + 1}{2}})^2\\
