@@ -1,0 +1,126 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath,mathtools}
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 780:\\Homework 01}
+\date{September 4, 2013}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+\maketitle
+
+\providecommand{\p}{\mathfrak{p}}
+\providecommand{\m}{\mathfrak{m}}
+
+\newtheorem{thm}{}
+\newtheorem{lem}{Lemma}
+
+\begin{thm}\label{ex1}
+  Let $a$, $b$, $c$, and $d$ denote positive integers.
+  Prove each of the following:
+  \begin{enumerate}[(a)]
+  \item
+    $a \mid b$ and $b \mid c$ implies $a \mid c$.
+  \item
+    $ac \mid bc$ implies $a \mid b$.
+  \item
+    $a \mid b$ and $c \mid d$ implies $ac \mid bd$.
+  \end{enumerate}
+  
+  \begin{proof}
+    \begin{enumerate}[(a)]
+    \item
+      Since $b \mid c$ and $a \mid b$ we have $c = bm$ and $b = an$ for some integerse $m$ and $n$.
+      Therefore $c = bm = anm$ implies $a \mid c$.
+    \item
+      Write $bc = (ac)m = (am)c$ for some integer $m$.
+      Subtracting $(am)c$ from both sides we obtain
+      $$0 = bc - (am)c = (b - am)c$$
+      which implies $b = am$ since $c$ is not zero.
+      Therefore $a \mid b$.
+    \item
+      For some integers $m$ and $n$, write $b = am$ and $d = cn$.
+      Then $bd = (ac)mn$, which implies $ac \mid bd$.
+    \end{enumerate}
+  \end{proof}
+\end{thm}
+
+\begin{thm}\label{ex2}
+  Prove that if $n$ is an integer at least as large as $2$ which is composite, then $n$ has a prime divisor which is at most $\sqrt{n}$.
+
+  \begin{proof}
+    Suppose to the contrary that all the prime factors of $n$ are strictly larger as $\sqrt{n}$.
+    Since $n$ is composite, there exist at least two primes $p$ and $q$, not necessarily distinct, dividing $n$.
+    Then for some integer $m \geq 1$ we have
+    $$n = pqm > (\sqrt{n})^2 = n$$
+    a contradiction.
+    Therefore $n$ has a prime divisor which is at most $\sqrt{n}$.
+  \end{proof}
+\end{thm}
+
+\begin{thm}\label{ex3}
+  Observe that $n^4 + 4^n$ is prime for $n = 1$.
+  Prove that $n^4 + 4^n$ is composite if $n$ is an integer strictly larger than 1.
+
+  \begin{proof}
+    First observe that if $n$ is even, then $2 \mid n^4 + 4^n$ implies $n^4 + 4^n$ is not composite.
+    Assume that $n$ is an odd integer at least as large as 3, and note that $n+1/2$ is thus an integer.
+    Hence
+    \begin{eqnarray*}
+      n^4 + 4^n &=& (n^2)^2 + (2^n)^2\\
+      &=& (n^2 + 2^n)^2 - 2(n^2)2^n\\
+      &=& (n^2 + 2^n)^2 - n^2 2^{n+1}\\
+      &=& (n^2 + 2^n)^2 - (n 2^{\frac{n + 1}{2}})^2\\
+      &=& (n^2 + 2^n - n 2^{\frac{n + 1}{2}})(n^2 + 2^n + n 2^{\frac{n + 1}{2}}).
+    \end{eqnarray*}
+    It remains to show that neither of the factors are 1.
+    Observe that since $n \geq 3$ we have
+    $$n^2 + 2^n + n 2^{\frac{n + 1}{2}} \geq 29.$$
+    Suppose to the contrary that 
+    $$n^2 + 2^n - n 2^{\frac{n + 1}{2}} = 1$$
+    so 
+    $$n^4 + 4^n = n^2 + 2^n + n 2^{\frac{n + 1}{2}} = 1 + 2n2^{\frac{n + 1}{2}}.$$
+    With some elementary calculus, it is easy to see that $n \leq 2^{\frac{n+1}{2}}$ holds for $n \geq 3$.
+    Combined with the observation that $2^{n-1} \geq 4$ we have
+    \begin{eqnarray*}
+      n^4 + 4^n &=&  1 + 2n2^{\frac{n + 1}{2}}\\
+      &\leq& 1 + 2(2^{n+1})\\
+      &\leq& 1 + 2^{n-1}2^{n+1}\\
+      &=& 1 + 4^n
+      %&=& 1 + (2^{\frac{n + 1}{2}})^3\\
+      %&\leq& 1 + (2^{\frac{n + 1}{2}})^4\\
+      %&=& 1 + 4(4^n)\\
+    \end{eqnarray*}
+    which implies $n^4 \leq 1$, a contradiction.
+    Therefore $n^4 + 4^n$ is composite.
+%    \begin{eqnarray*}
+%      1 &=& (n^2 + 2^n - n 2^{\frac{n + 1}{2}})^2\\
+%      &=& (n^2 + 2^n)^2 - 2(n^2 + 2^n)n2^{\frac{n + 1}{2}} + (n2^{\frac{n + 1}{2}})^2\\
+%      &=& (n^2 + 2^n)^2 - (n2^{\frac{n + 1}{2}})^2 - 2(n^2 + 2^n)n2^{\frac{n + 1}{2}} + 2(n2^{\frac{n + 1}{2}})^2\\
+%      &=& n^4 + 4^n - 2n2^{\frac{n + 1}{2}}((n^2 + 2^n) - n2^{\frac{n + 1}{2}})\\
+%      &=& n^4 + 4^n - 2n2^{\frac{n + 1}{2}}
+%    \end{eqnarray*}
+%    from which it follows that $n^4 + 4^n = 1 + 2n2^{\frac{n + 1}{2}} < n^2 + 2^n + n 2^{\frac{n + 1}{2}}$.
+  \end{proof}
+\end{thm}
+
+\begin{thm}\label{ex4}
+  Find the complete set of integer solutions in $x$ and $y$ to
+  $$821x + 1997y = 24047.$$
+
+  \begin{proof}
+  \end{proof}
+\end{thm}
+
+\begin{thm}\label{ex5}
+  A large furniture store sells 6 kinds of dining room suites, whose prices are $\$231$, $\$273$, $\$429$, $\$600.60$, $\$1001$, and $\$1501.50$, respectively.
+  Once a South American buyer came, purchased some suites, paid the total amount due, $\$13519.90$, and sailed for South America.
+  The manager lost the duplicate bill of sale and had no other memorandum of each kind of suite purchased.
+  Help him by determining the exact number of suites of each kind the South American buyer bought.
+  (Don't forget to show that your solution is unique).
+  \begin{proof}
+  \end{proof}
+\end{thm}
+\end{document}
