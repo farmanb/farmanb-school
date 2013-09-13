@@ -109,16 +109,88 @@
   $$821x + 1997y = 24047.$$
 
   \begin{proof}
+    Using the Euclidean algorithm we have
+    \begin{eqnarray*}
+      1997 &=& 821(2) + 355\\
+      821 &=& 355(2) + 111\\
+      355 &=& 111(3) + 22\\
+      111 &=& 22(5) + 1
+    \end{eqnarray*}
+    Then we have the equations $1 = 111 - 5(22)$, $22 = 355 - 3(111)$, $111 = 821 - 2(355)$, and $355 = 1997 - 2(821)$.
+    Substituting accordingly, we arrive at
+    \begin{eqnarray*}
+      1 &=& 111 - 5(22)\\
+      &=& 16(111) - 5(355)\\
+      &=& 16(821) - 37(355)\\
+      &=& 90(821) - 37(1997).
+    \end{eqnarray*}
+    Hence multiplying both sides by $24047$ we arrive at the solution 
+    $$2164230(821) - 889739(1997) = 24047.$$
+    The solution set is then $\left\{(2164230 + 1997k, 889739 + 821k) \;\middle\vert\; k \in \Z\right\}$.
   \end{proof}
 \end{thm}
 
 \begin{thm}\label{ex5}
+  Prove that for every non-constant polynomial $f(x)$ with integer coefficients, there is an integer $m$ such that $f(m)$ is composite.
+  
+  \begin{proof}
+    Write $f(x) = a_nx^n + a_{n-1}x^{n-1} + \ldots + a_0$, $a_i \in \Z$. 
+    Observe that we may assume that $f(m) = p$ is prime for some integer $m$.
+    Since $\abs{f}$ is an increasing function, it follows that $\abs{f(m + kp)} \rightarrow \infty$ as $k \rightarrow \infty$, so for sufficiently large $k$ we have $\abs{f(m + kp)} > p$.
+    By expanding we have
+    \begin{eqnarray*}
+      f(m + kp) &=& \sum_{j=0}^{n}a_{n-j}\sum_{i=0}^{n-j} {n-j \choose i}m^{n-j-i}(kp)^i\\
+      %&=& a_n\sum_{i=0}^n{n \choose i}m^{n-i}(kp)^{i} + a_{n-1}\sum_{i=0}^{n-1}{n-1 \choose i}m^{n-1-i}(kp)^{i} + \ldots + a_1m + a_1(kp)+ a_0\\
+      &=& \sum_{i=0}^n a_{n-i}m^{n-i} + \sum_{j=0}^{n-1}a_{n-j}\sum_{i=1}^{n-j} {n-j \choose i}m^{n-j-i}(kp)^i\\
+      &=& p + \sum_{j=0}^{n}a_{n-j}\sum_{i=1}^{n-j} {n-j \choose i}m^{n-j-i}(kp)^i \equiv 0 \pmod{p}
+      \end{eqnarray*}
+    is thus composite, as desired.
+  \end{proof}
+\end{thm}
+
+\begin{thm}\label{ex6}
   A large furniture store sells 6 kinds of dining room suites, whose prices are $\$231$, $\$273$, $\$429$, $\$600.60$, $\$1001$, and $\$1501.50$, respectively.
   Once a South American buyer came, purchased some suites, paid the total amount due, $\$13519.90$, and sailed for South America.
   The manager lost the duplicate bill of sale and had no other memorandum of each kind of suite purchased.
   Help him by determining the exact number of suites of each kind the South American buyer bought.
   (Don't forget to show that your solution is unique).
+
   \begin{proof}
+    The number of suites of each kind can be modeled as integer solutions to the equation
+    $$2310x + 2730y + 4290z + 6006s + 10010t + 15015u = 135199.$$
+    The table below gives the factorizations of each, with the entry in the table indicating the power of the prime present in the factorization.
+    \begin{center}
+      \begin{tabular}{|c|c|c|c|c|c|c|}
+        \hline
+        & 2 & 3 & 5 & 7 & 11 & 13\\
+        \hline
+        2310 & 1 & 1 & 1 & 1 & 1 & 0\\
+        \hline
+        2730 & 1 & 1 & 1 & 1 & 0 & 1\\
+        \hline
+        4290 & 1 & 1 & 1 & 0 & 1 & 1\\
+        \hline
+        6006 & 1 & 1 & 0 & 1 & 1 & 1\\
+        \hline
+        10010 & 1 & 0 & 1 & 1 & 1 & 1\\
+        \hline
+        15015 & 0 & 1 & 1 & 1 & 1 & 1\\
+        \hline
+      \end{tabular}
+    \end{center}
+    Observe that from the zeroes down the diagonal, we can construct the following congruences
+    \begin{eqnarray*}    
+      9x &\equiv& 12 \pmod{13}\\
+      2y &\equiv& 9 \pmod{11}\\
+      6z &\equiv& 1 \pmod{7}\\
+      s &\equiv& 4 \pmod{5}\\
+      2t &\equiv& 1 \pmod{3}\\
+      u &\equiv& 1 \pmod{2}.\\
+    \end{eqnarray*}
+    The solutions to these congruences are $x \equiv 10 \pmod{13}$, $y \equiv 10 \pmod{11}$, $z \equiv 6 \pmod{7}$, $s \equiv 4 \pmod{5}$, $t \equiv 2 \pmod{3}$, and $u \equiv 1 \pmod{2}$.
+    Checking the least representatives for each, we have
+    $$2310(10) + 2730(10) + 4290(6) + 6006(4) + 10010(2) + 15015 = 135199.$$
+    Uniqueness follows directly from the CRT.
   \end{proof}
 \end{thm}
 \end{document}
