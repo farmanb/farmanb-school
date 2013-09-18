@@ -23,210 +23,235 @@
 \newcommand{\A}{\mathbb{A}}
 
 \begin{defn}\label{curve}
-	For a field $k$, an \it{algebraic (projective) curve of degree $d$}, $C$, is the set of solutions in $\mathbb{P}^2_k$
-		$$C \colon F(X,Y,Z) = 0$$
-	where $F(X,Y,Z) \in k[x,y,z]$ is a homogenous, degree $d$ polynomial.
-	The \it{affine part} of $C$ is the set of solutions in $\A_k^2$ $$f(x,y) = F(x,y,1) = 0$$.
+  For a field $k$, an \it{algebraic (projective) curve of degree $d$}, $C$, is the set of solutions in $\mathbb{P}^2_k$
+  $$C \colon F(X,Y,Z) = 0$$
+  where $F(X,Y,Z) \in k[x,y,z]$ is a homogenous, degree $d$ polynomial.
+  The \it{affine part} of $C$ is the set of solutions in $\A_k^2$ $$f(x,y) = F(x,y,1) = 0$$.
 \end{defn}
 
 
 \begin{thm}[B\'{e}zout] 
-	Let $k$ be an algebraically closed field and $C_1$ and $C_2$ be projective curves with no common components.
-	Then 
-		$$\sum_{P \in C_1 \cap C_2} I(C_1 \cap C_2, P) = (\deg{C_1})(\deg{C_2})$$
-	where the sum is over all points of $C_1 \cap C_2$ having coordinates in $k$.
-	In particular, if $C_1$ and $C_2$ are smooth curves with only transversal intersections, then $\#\left\{C_1 \cap C_2\right\} \leq (\deg{C_1})(\deg{C_2})$; and in all cases there is an inequality
-		$$\#\left\{C_1 \cap C_2 \right\} \leq (\deg{C_1})(\deg{C_2}).$$
+  Let $k$ be an algebraically closed field and $C_1$ and $C_2$ be projective curves with no common components.
+  Then 
+  $$\sum_{P \in C_1 \cap C_2} I(C_1 \cap C_2, P) = (\deg{C_1})(\deg{C_2})$$
+  where the sum is over all points of $C_1 \cap C_2$ having coordinates in $k$.
+  In particular, if $C_1$ and $C_2$ are smooth curves with only transversal intersections, then $\#\left\{C_1 \cap C_2\right\} \leq (\deg{C_1})(\deg{C_2})$; and in all cases there is an inequality
+  $$\#\left\{C_1 \cap C_2 \right\} \leq (\deg{C_1})(\deg{C_2}).$$
 \end{thm}
 
 Throughout, we will work with $A = k[x,y]$, $F_1$ and $F_2$ homogenous polynomials as in Definition~\ref{def1}, and $f_1$, $f_2$ be the affine parts.
 Let $n_1 = \deg{f_1}$ and $n_2 = \deg{f_2}$.
 
 \begin{prop}\label{prop1}
-	Then the number of intersection points of $C_1$ and $C_2$ in $\A^2$ satisfies
-		$$\#(C_1 \cap C_2 \cap \A^2) \leq \dim A /(f_1,f_2) \leq n_1n_2.$$
-	Here, the dimension is as a $k$-vector space.
+  Then the number of intersection points of $C_1$ and $C_2$ in $\A^2$ satisfies
+  $$\#(C_1 \cap C_2 \cap \A^2) \leq \dim A /(f_1,f_2) \leq n_1n_2.$$
+  Here, the dimension is as a $k$-vector space.
 
-	\begin{proof}
-		Let $P_1, P_2, \ldots, P_m$ be $m$ distinct points in $\A^2$.
-		Choose lines $L_i$ such that $L_i(P_i) = 0$ and $\alpha_j^i = L_i(P_j) \neq 0$ for all $i \neq j$.
-		For each $1 \leq i \leq m$ define $$\beta_i = \prod_{j \neq i} \alpha_j^i$$
-		Now define the polynomials $h_i = L_i/\beta_i$ and observe that $h_i(P_i) = 1$.
-		Suppose that the $P_i$ lie in $C_1 \cap C_2$ and that there is a linear dependence modulo $(f_1, f_2)$
-			$$c_1h_1 + \ldots + c_mh_k = g_1f_1 + g_2f_2.$$
-		Observe that $f_1(P_i) = f_2(P_i) = 0$ and $h_i(P_i) = 1$ imply necessarily that $c_i = 0$ for each $1 \leq i \leq m$.
-		This establishes our lower bound.
+  \begin{proof}
+    Let $P_1, P_2, \ldots, P_m$ be $m$ distinct points in $\A^2$.
+    Choose lines $L_i$ such that $L_i(P_i) = 0$ and $\alpha_j^i = L_i(P_j) \neq 0$ for all $i \neq j$.
+    For each $1 \leq i \leq m$ define $$\beta_i = \prod_{j \neq i} \alpha_j^i$$
+    Now define the polynomials $h_i = L_i/\beta_i$ and observe that $h_i(P_i) = 1$.
+    Suppose that the $P_i$ lie in $C_1 \cap C_2$ and that there is a linear dependence modulo $(f_1, f_2)$
+    $$c_1h_1 + \ldots + c_mh_k = g_1f_1 + g_2f_2.$$
+    Observe that $f_1(P_i) = f_2(P_i) = 0$ and $h_i(P_i) = 1$ imply necessarily that $c_i = 0$ for each $1 \leq i \leq m$.
+    This establishes our lower bound.
 
-		For each integer $d$, let $A_d$ be the $k$-vector of polynomials of degree at most $d$ and let 
-			$$W_d = A_{d - n_1}f_1 + A_{d - n_2}f_2.$$
-		Observe that $W_d \subseteq (f_1, f_2)$ and, if $d < n_1 \vee n_2$, then $W_d = 0$.
-		Since the monomials $x^iy^j$ with $k = i + j \leq d$ span $A_d$, we note that for each $k \leq d$ the number of monomials of degree $k$ is
-			$$\#\left\{0 + k, 1 + (k-1), \ldots, (k-1) + 1, k + 0\right\} = k + 1.$$
-		Hence we we have
-			$$\dim{A_d} = \sum_{k=0}^d (k + 1) = \frac{(d + 1)(d + 2)}{2}.$$
-		If $d \geq n_1 + n_2$, it should be clear from counting degrees that 
-			$$A_{d - n_1 - n_2}f_1f_2 \subseteq A_{d - n_1}f_1 \cap A_{d - n_2}f_2.$$
-		For the reverse containment, we note that $f_1$ and $f_2$ are supposed not to have any common components, so every element of $A_{d - n_1}f_1 \cap A_{d - n_2}f_2$ is necessarily divisible by $f_1f_2$.
-		Thus we have 
-		\begin{equation}\label{eq1.1}
-			A_{d - n_1 - n_2}f_1f_2 = A_{d - n_1}f_1 \cap A_{d - n_2}f_2.
-		\end{equation}
+    For each integer $d$, let $A_d$ be the $k$-vector of polynomials of degree at most $d$ and let 
+    $$W_d = A_{d - n_1}f_1 + A_{d - n_2}f_2.$$
+    Observe that $W_d \subseteq (f_1, f_2)$ and, if $d < n_1 \vee n_2$, then $W_d = 0$.
+    Since the monomials $x^iy^j$ with $k = i + j \leq d$ span $A_d$, we note that for each $k \leq d$ the number of monomials of degree $k$ is
+    $$\#\left\{0 + k, 1 + (k-1), \ldots, (k-1) + 1, k + 0\right\} = k + 1.$$
+    Hence we we have
+    $$\dim{A_d} = \sum_{k=0}^d (k + 1) = \frac{(d + 1)(d + 2)}{2}.$$
+    If $d \geq n_1 + n_2$, it should be clear from counting degrees that 
+    $$A_{d - n_1 - n_2}f_1f_2 \subseteq A_{d - n_1}f_1 \cap A_{d - n_2}f_2.$$
+    For the reverse containment, we note that $f_1$ and $f_2$ are supposed not to have any common components, so every element of $A_{d - n_1}f_1 \cap A_{d - n_2}f_2$ is necessarily divisible by $f_1f_2$.
+    Thus we have 
+    \begin{equation}\label{eq1.1}
+      A_{d - n_1 - n_2}f_1f_2 = A_{d - n_1}f_1 \cap A_{d - n_2}f_2.
+    \end{equation}
 
-		Now for $f \neq 0$, define the map
-		\begin{align*}
-			\psi \colon A_{d-j} &\rightarrow A_{d-j}f\\
-			g &\mapsto fg,
-		\end{align*}
-		and note that this a surjective map with trivial kernel, hence an isomorphism, which gives 
-			$$\dim{A_{d-j}}f = \dim{A_{d-j}} = (d-j + 1)(d - j + 2)/2.$$
-		Hence by linear algebra we have
-		\begin{eqnarray*}
-			\dim{W_d} &=& \dim_{A_{d - n_1}f_1} + \dim_{A_{d - n_1}f_1} - \dim{A_{d - n_1}f_1 \cap A_{d - n_2}f_2}\\
-			&=& \dim_{A_{d - n_1}f_1} + \dim_{A_{d - n_1}f_1} - \dim{A_{d - n_1 - n_2}f_1f_2}\\
-			&=& \frac{(d - n_1 + 1)(d - n_1 + 2)}{2} + \frac{(d - n_2 + 1)(d - n_2 + 2)}{2} - \frac{(d - n_1 - n_2 + 1)(d - n_1 - n_2 + 2)}{2}\\
-			&=& \frac{(d + 1)(d + 2)}{2} - n_1n_2\\
-			&=& \dim{A_d} - n_1n_2.
-		\end{eqnarray*}
-		Hence $\dim{A_d/W_d} = n_1n_2$.
+    Now for $f \neq 0$, define the map
+    \begin{align*}
+      \psi \colon A_{d-j} &\rightarrow A_{d-j}f\\
+      g &\mapsto fg,
+    \end{align*}
+    and note that this a surjective map with trivial kernel, hence an isomorphism, which gives 
+    $$\dim{A_{d-j}}f = \dim{A_{d-j}} = (d-j + 1)(d - j + 2)/2.$$
+    Hence by linear algebra we have
+    \begin{eqnarray*}
+      \dim{W_d} &=& \dim_{A_{d - n_1}f_1} + \dim_{A_{d - n_1}f_1} - \dim{A_{d - n_1}f_1 \cap A_{d - n_2}f_2}\\
+      &=& \dim_{A_{d - n_1}f_1} + \dim_{A_{d - n_1}f_1} - \dim{A_{d - n_1 - n_2}f_1f_2}\\
+      &=& \frac{(d - n_1 + 1)(d - n_1 + 2)}{2} + \frac{(d - n_2 + 1)(d - n_2 + 2)}{2} - \frac{(d - n_1 - n_2 + 1)(d - n_1 - n_2 + 2)}{2}\\
+      &=& \frac{(d + 1)(d + 2)}{2} - n_1n_2\\
+      &=& \dim{A_d} - n_1n_2.
+    \end{eqnarray*}
+    Hence $\dim{A_d/W_d} = n_1n_2$.
 
-		Now for any set of $n_1n_2 + 1$ polynomials from $A$, take $d$ sufficiently large so that $g_i \in A_d$ and $d \geq n_ 1 + n_2$.
-		By the previous results, we have that the $g_i$ are linearly dependent modulo $W_d \subseteq (f_1, f_2)$.
-		Therefore we have established
-			$$\#(C_1 \cap C_2 \cap \A^2) \leq \dim A /(f_1,f_2) \leq n_1n_2.$$
+    Now for any set of $n_1n_2 + 1$ polynomials from $A$, take $d$ sufficiently large so that $g_i \in A_d$ and $d \geq n_ 1 + n_2$.
+    By the previous results, we have that the $g_i$ are linearly dependent modulo $W_d \subseteq (f_1, f_2)$.
+    Therefore we have established
+    $$\#(C_1 \cap C_2 \cap \A^2) \leq \dim A /(f_1,f_2) \leq n_1n_2.$$
 
-	\end{proof}
+  \end{proof}
 \end{prop}
 
 \begin{prop}\label{prop2}
-	If $C_1$ and $C_2$ do not meet at infinity, then
-		$$\dim A /(f_1,f_2) = n_1n_2.$$
+  If $C_1$ and $C_2$ do not meet at infinity, then
+  $$\dim A /(f_1,f_2) = n_1n_2.$$
 
-	\begin{proof}
-		First note that we need only establish $\dim A/(f_1, f_2) \geq n_1n_2$.
-		Let $f(x) = \sum_{i,j} c_{i,j}x^iy^j$ with $c_{i,j} \in k$ be a given polynomial of degree $n$ in $A$.
-		Let 
-			$$F(X,Y,Z) = \sum_{i,j}c_{i,j}X^iY^jZ^{n - i - j}$$
-		be the homogenous polynomial with affine part $f(x,y) = F(x,y,1)$.
-		Define $f^*(x,y) = F(x,y,0)$, the homogenous part of highest degree.
-		Since $f^*(x,y)$ is homogenous, we can write $f(x,y) = y^nf^*(x/y, 1)$.
-		Regarding the latter as an element of $k\left[x/y\right]$, we have the factorization 
-			$$f^*\left(\frac{x}{y}, 1\right) = \left(a_1\frac{x}{y} + b_1\right)\left(a_2\frac{x}{y} + b_2\right)\cdots\left(a_r\frac{x}{y} + b_r\right),\, r = \deg{f^*\left(\frac{x}{y}, 1\right)} \leq n$$		
-		since $k$ is algebraically closed.
-		Hence we have the factorization
-			$$f^*(x,y) = y^{n-r}(a_1x + b_1y)(a_2x + b_2y)\cdots(a_rx + b_ry)$$
-		over $A$.
-		We note that the points at infinity of $f(x,y) = 0$ are precisely the points satisfying $F(X,Y,0) = 0$ are precisely the points satisfying $f^*(x,y) = 0$, namely the set of points given by the homogenous coordinates $[b_i : -a_i : 0]$.
-		
-		Since $C_1$ and $C_2$ do not meet at infinity, it is then clear that $f_1^*$ and $f_2^*$ do not share a common factor.
-		Moreover, in this case $(f_1, f_2) \cap A_d = W_d$.
-		The containment $W_d \subseteq A_d \cap (f_1, f_2)$ is clear.
-		For the reverse containment, let $g_1$ and $g_2$ have minimal degree amongst elements $g_1f_1 + g_2f_2 \in A_d$.
-		If $\deg{g_1} > d - n_1$ then it follows that
-			$$0 = (g_1f_1)^* + (g_2f_2)^* = g_1^*f_1^* + g_2^*f_2^*,$$
-		where the right-hand equality follows from the construction of the homogenous part of highest degree.
-		Since $f_1^*$ and $f_2^*$ are relatively prime, it follows that for some $h$, $g_1^* = f_2^*h$ and $g_2^* = -f_1^*h$ must hold.
-		Hence for some $r_i \in A$ with $\deg{r_i} < \deg{g_i^*}$ for $i = 1,2$ we can write
-		$$g_1^* = f_2^*h + r_1\ \text{and}\ g_2^* = -f_1^*h + r_2,$$
-		from which it follows easily that we can write 
-			$$g_1 = f_2h + r_1^\prime\ \text{and}\ g_2 = -f_1h + r_2^\prime$$
-		for some $r_i^\prime \in A$ with $\deg{r_i^\prime} < \deg{g_i}$
-		But then
-			$$f_1g_1 + f_2g_2 = f_1f_2h - f_2f_1h + f_1r_1^\prime + f_2r_2^\prime = f_1r_1^\prime + f_2r_2^\prime,$$
-		contradicting minimality, which establishes the reverse containment.
+  \begin{proof}
+    First note that we need only establish $\dim A/(f_1, f_2) \geq n_1n_2$.
+    Let $f(x) = \sum_{i,j} c_{i,j}x^iy^j$ with $c_{i,j} \in k$ be a given polynomial of degree $n$ in $A$.
+    Let 
+    $$F(X,Y,Z) = \sum_{i,j}c_{i,j}X^iY^jZ^{n - i - j}$$
+    be the homogenous polynomial with affine part $f(x,y) = F(x,y,1)$.
+    Define $f^*(x,y) = F(x,y,0)$, the homogenous part of highest degree.
+    Since $f^*(x,y)$ is homogenous, we can write $f(x,y) = y^nf^*(x/y, 1)$.
+    Regarding the latter as an element of $k\left[x/y\right]$, we have the factorization 
+    $$f^*\left(\frac{x}{y}, 1\right) = \left(a_1\frac{x}{y} + b_1\right)\left(a_2\frac{x}{y} + b_2\right)\cdots\left(a_r\frac{x}{y} + b_r\right),\, r = \deg{f^*\left(\frac{x}{y}, 1\right)} \leq n$$		
+    since $k$ is algebraically closed.
+    Hence we have the factorization
+    $$f^*(x,y) = y^{n-r}(a_1x + b_1y)(a_2x + b_2y)\cdots(a_rx + b_ry)$$
+    over $A$.
+    We note that the points at infinity of $f(x,y) = 0$ are precisely the points satisfying $F(X,Y,0) = 0$ are precisely the points satisfying $f^*(x,y) = 0$, namely the set of points given by the homogenous coordinates $[b_i : -a_i : 0]$.
+    
+    Since $C_1$ and $C_2$ do not meet at infinity, it is then clear that $f_1^*$ and $f_2^*$ do not share a common factor.
+    Moreover, in this case $(f_1, f_2) \cap A_d = W_d$.
+    The containment $W_d \subseteq A_d \cap (f_1, f_2)$ is clear.
+    For the reverse containment, let $g_1$ and $g_2$ have minimal degree amongst elements $g_1f_1 + g_2f_2 \in A_d$.
+    If $\deg{g_1} > d - n_1$ then it follows that
+    $$0 = (g_1f_1)^* + (g_2f_2)^* = g_1^*f_1^* + g_2^*f_2^*,$$
+    where the right-hand equality follows from the construction of the homogenous part of highest degree.
+    Since $f_1^*$ and $f_2^*$ are relatively prime, it follows that for some $h$, $g_1^* = f_2^*h$ and $g_2^* = -f_1^*h$ must hold.
+    Hence for some $r_i \in A$ with $\deg{r_i} < \deg{g_i^*}$ for $i = 1,2$ we can write
+    $$g_1^* = f_2^*h + r_1\ \text{and}\ g_2^* = -f_1^*h + r_2,$$
+    from which it follows easily that we can write 
+    $$g_1 = f_2h + r_1^\prime\ \text{and}\ g_2 = -f_1h + r_2^\prime$$
+    for some $r_i^\prime \in A$ with $\deg{r_i^\prime} < \deg{g_i}$
+    But then
+    $$f_1g_1 + f_2g_2 = f_1f_2h - f_2f_1h + f_1r_1^\prime + f_2r_2^\prime = f_1r_1^\prime + f_2r_2^\prime,$$
+    contradicting minimality, which establishes the reverse containment.
 
-		Now note that from the proof of Proposition~\ref{prop1} we have that there are $n_1n_2$ elements of $A_d$ that are linearly independent modulo $W_d$.
-		Since $(f_1, f_2) \cap A_d = W_d$, they are also linearly independent modulo $(f_1, f_2)$, which implies
-			$$\dim A/(f_1,f_2) \geq n_1n_2,$$
-		as desired.
-	\end{proof}
+    Now note that from the proof of Proposition~\ref{prop1} we have that there are $n_1n_2$ elements of $A_d$ that are linearly independent modulo $W_d$.
+    Since $(f_1, f_2) \cap A_d = W_d$, they are also linearly independent modulo $(f_1, f_2)$, which implies
+    $$\dim A/(f_1,f_2) \geq n_1n_2,$$
+    as desired.
+  \end{proof}
 \end{prop}
 
 We will now strengthen the inequality from Proposition~\ref{prop1}.  
 
 \begin{defn}\label{localringpoint}
-	Let $P$ be a point in $\A^2$.
-	Define the {\it local ring of P}, $(\mathcal{O}_P, \mathfrak{m}_P)$, to be the localization of $A$ at the complement of the ideal of $P$, $I(P) = \left\{f \in A \;\middle\vert\; f(p) = 0 \right\}$.
+  Let $P$ be a point in $\A^2$.
+  Define the {\it local ring of P}, $(\mathcal{O}_P, \mathfrak{m}_P)$, to be the localization of $A$ at the complement of the ideal of $P$, $I(P) = \left\{f \in A \;\middle\vert\; f(p) = 0 \right\}$.
 \end{defn}
 
 \begin{defn}\label{intmult}
-	Define the {\it intersection multiplicity (intersection index) of $C_1$ and $C_2$ at $P$} to be
-		$$I(C_1 \cap C_2, P) = \dim \mathcal{O}_P/(f_1, f_2)_P,$$
-	where $(f_1, f_2)_P$ denotes the ideal of $\mathcal{O}_P$ generated by $f_1$ and $f_2$.
+  Define the {\it intersection multiplicity (intersection index) of $C_1$ and $C_2$ at $P$} to be
+  $$I(C_1 \cap C_2, P) = \dim \mathcal{O}_P/(f_1, f_2)_P,$$
+  where $(f_1, f_2)_P$ denotes the ideal of $\mathcal{O}_P$ generated by $f_1$ and $f_2$.
 \end{defn}
 
 \begin{prop}\label{prop3}
-	For a suitably defined \it{intersection multiplicity} of $C_1$ and $C_2$ at $P$, $I(C_1 \cap C_2, P)$, we have
-		$$\sum_{P \in C_1 \cap C_2 \cap \A^2} I(C_1 \cap C_2, P) \leq \dim A / (f_1, f_2).$$
+  Let $C_1$ and $C_2$ be algebraic curves that do not meet at infinity.
+  For a suitably defined \it{intersection multiplicity} of $C_1$ and $C_2$ at $P$, $I(C_1 \cap C_2, P)$, we have
+  $$\sum_{P \in C_1 \cap C_2 \cap \A^2} I(C_1 \cap C_2, P) \leq \dim A / (f_1, f_2).$$
 
-	\begin{proof}
-		First observe that $\mathcal{O}_P$ is easily identified as a subring of $k(x,y)$ containing $k$, hence has a natural $k$-vector space structure.
-		Since vector spaces are projective modules, we have the exact sequence
-		\begin{center}
-			\begin{tikzcd}
-				0 \arrow{r} & \mathfrak{m}_P \arrow{r} & \mathcal{O}_P \arrow{r}{\epsilon_P} &  k \arrow{r} & 0
-			\end{tikzcd}
-		\end{center}
-		where $\epsilon_P$ is evaluation at $P$, which is split, giving $\mathcal{O}_P \cong k \oplus \mathfrak{m}_P$.
-		
-		Observe that any finite set of elements of $\mathcal{O}_P$ can be written over a common denominator.
-		Suppose that $g_1/h, \ldots, g_r/h \in \mathcal{O}_P$, $g_i \in A$, are linearly independent modulo $(f_1, f_2)_P$.
-		Consider the relation
-			$$\alpha_1g_1 + \ldots + \alpha_rg_r = \beta_1 f_1 + \beta_2 f_2$$
-		for some $\alpha_i \in k$ and $\beta_1, \beta_2 \in A.$
-		Then in $\mathcal{O_P}$ we have
-			$$\alpha_1(g_1/h) + \ldots + \alpha_r(g_r/h) = (\beta_1/h)f_1 + (\beta_2/h) f_2,$$
-		which implies that $\alpha_1 = \ldots = \alpha_r = 0$.
-		Hence $g_1, \ldots, g_r \in A$ are linearly independent modulo $(f_1, f_2)$, which in turn implies that the intersection multiplicity is finite; namely
-			$$\dim \mathcal{O}_P/(f_1, f_2)_P \leq \dim A/(f_1, f_2) \leq n_1n_2$$
-		
-		%HERE
+  \begin{proof}
+    First observe that $\mathcal{O}_P$ is easily identified as a subring of $k(x,y)$ containing $k$, hence has a natural $k$-vector space structure.
+    Since vector spaces are projective modules, we have the exact sequence
+    \begin{center}
+      \begin{tikzcd}
+	0 \arrow{r} & \mathfrak{m}_P \arrow{r} & \mathcal{O}_P \arrow{r}{\epsilon_P} &  k \arrow{r} & 0
+      \end{tikzcd}
+    \end{center}
+    where $\epsilon_P$ is evaluation at $P$, which is split, giving $\mathcal{O}_P \cong k \oplus \mathfrak{m}_P$.
+    
+    Observe that any finite set of elements of $\mathcal{O}_P$ can be written over a common denominator.
+    Suppose that $g_1/h, \ldots, g_r/h \in \mathcal{O}_P$, $g_i \in A$, are linearly independent modulo $(f_1, f_2)_P$.
+    Consider the relation
+    $$\alpha_1g_1 + \ldots + \alpha_rg_r = \beta_1 f_1 + \beta_2 f_2$$
+    for some $\alpha_i \in k$ and $\beta_1, \beta_2 \in A.$
+    Then in $\mathcal{O}_P$ we have
+    $$\alpha_1(g_1/h) + \ldots + \alpha_r(g_r/h) = (\beta_1/h)f_1 + (\beta_2/h) f_2,$$
+    which implies that $\alpha_1 = \ldots = \alpha_r = 0$.
+    Hence $g_1, \ldots, g_r \in A$ are linearly independent modulo $(f_1, f_2)$, which in turn implies that the intersection multiplicity is finite; namely
+    $$\dim \mathcal{O}_P/(f_1, f_2)_P \leq \dim A/(f_1, f_2) \leq n_1n_2$$
+    
+    %HERE
 
-		Now observe that if $P \not \in C_1 \cap C_2$, then one of $f_i(P) \neq 0$ and so at least one of $f_i \in \mathcal{O}_P^\times$.
-		Hence $I(C_1 \cap C_2, P) = 0$ in this case.
-		If $P \in C_1 \cap C_2$, both lie in $\mathfrak{m}_P$ and thus $(f_1, f_2) \subseteq \mathfrak{m}_P$ holds.
-		Viewing $\mathcal{O}_P = k \oplus \mathfrak{m}_P$ as a coproduct, it is clear that the map $1 \oplus \pi \colon k \oplus \mathfrak{m}_P \rightarrow k \oplus \mathfrak{m}_P/(f_1,f_2)_P$, where $\pi$ is the canonical projection homomorphism, is an isomorphism.
-		Hence we have
-			$$I(C_1 \cap C_2, P) = \dim{k} + \dim{\mathfrak{m}_P/(f_1, f_2)} = 1 + \dim{\mathfrak{m}_P/(f_1, f_2)_P}$$
-		and $I(C_1 \cap C_2, P) \geq 1$ with equality if and only if $\mathfrak{m}_P = (f_1, f_2)_P$.
-	
-		Let $r$ be such that $r \geq \dim{\mathcal{O}_P/(f_1, f_2)_P}$.
-		We aim to show that $\mathfrak{m}_P^r \subseteq (f_1, f_2)_P$.
-		Given $r$ elements $t_1, t_2, \ldots, t_r \in \mathfrak{m}_P$, consider the ideals $J_0 = \mathfrak{m}_P$, $J_i = t_1t_2 \cdots t_i\mathcal{O}_P + (f_1, f_2)_P$ of $\mathcal{O}_P$, $J_{r + 1} = (f_1, f_2)_P.$
-		Observe that we have a chain of ideals
-		$$J_{r+1} \subseteq J_{r} \subseteq \ldots \subseteq J_2 \subseteq J_1 \subseteq J_0.$$
-		If for each $1 \leq i \leq r$, $\dim{J_i/J_{i+1}} = \dim{J_i} - \dim{J_{i+1}} \geq 1$ then we have
-			$$r < \sum_{i = 0}^r \dim{J_i/J_{i+1}}= \sum_{i = 0}^r \left(\dim{J_i} - \dim{J_{i+1}}\right) = \dim{m_P} - \dim{(f_1, f_2)_P} = \dim{m_P/(f_1, f_2)_P},$$
-		which is absurd.
-		Hence for some $i$, $J_i = J_{i+1}$.
-		If $i = r$, then $t_1t_2 \cdots t_r \in (f_1, f_2)_P$ implies that $\mathfrak{m}_P^r \subseteq (f_1, f_2)_P$.
-		If $i < r$, then for some $f \in \mathcal{O}_P$ and $g \in (f_1, f_2)_P$ we have
-			$$t_1 t_2 \cdots t_i = t_1 t_2 \cdots t_{i+1}f + g,$$
-		and so $t_1 t_2 \cdots t_i(1 - t_{i+1}f) = g \in (f_1, f_2)_P$.
-		However, $\mathcal{O}_P$ is local, so $1 - t_{i+1}f$ is a unit and thus
-			$$t_1 t_2 \cdots t_i = (1 - t_{i+1}f)^{-1}g \in (f_1, f_2)_P,$$
-		which gives $t_1 t_2 \cdots t_r \in (f_1, f_2)_P$.
-		Hence $\mathfrak{m}_P^r \subseteq (f_1, f_2)_P$.
+    Now observe that if $P \not \in C_1 \cap C_2$, then one of $f_i(P) \neq 0$ and so at least one of $f_i \in \mathcal{O}_P^\times$.
+    Hence $I(C_1 \cap C_2, P) = 0$ in this case.
+    If $P \in C_1 \cap C_2$, both lie in $\mathfrak{m}_P$ and thus $(f_1, f_2) \subseteq \mathfrak{m}_P$ holds.
+    Viewing $\mathcal{O}_P = k \oplus \mathfrak{m}_P$ as a coproduct, it is clear that the map $1 \oplus \pi \colon k \oplus \mathfrak{m}_P \rightarrow k \oplus \mathfrak{m}_P/(f_1,f_2)_P$, where $\pi$ is the canonical projection homomorphism, is an isomorphism.
+    Hence we have
+    $$I(C_1 \cap C_2, P) = \dim{k} + \dim{\mathfrak{m}_P/(f_1, f_2)} = 1 + \dim{\mathfrak{m}_P/(f_1, f_2)_P}$$
+    and $I(C_1 \cap C_2, P) \geq 1$ with equality if and only if $\mathfrak{m}_P = (f_1, f_2)_P$.
+    
+    Let $r$ be such that $r \geq \dim{\mathcal{O}_P/(f_1, f_2)_P}$.
+    We aim to show that $\mathfrak{m}_P^r \subseteq (f_1, f_2)_P$.
+    Given $r$ elements $t_1, t_2, \ldots, t_r \in \mathfrak{m}_P$, consider the ideals $J_0 = \mathfrak{m}_P$, $J_i = t_1t_2 \cdots t_i\mathcal{O}_P + (f_1, f_2)_P$ of $\mathcal{O}_P$, $J_{r + 1} = (f_1, f_2)_P.$
+    Observe that we have a chain of ideals
+    $$J_{r+1} \subseteq J_{r} \subseteq \ldots \subseteq J_2 \subseteq J_1 \subseteq J_0.$$
+    If for each $1 \leq i \leq r$, $\dim{J_i/J_{i+1}} = \dim{J_i} - \dim{J_{i+1}} \geq 1$ then we have
+    $$r < \sum_{i = 0}^r \dim{J_i/J_{i+1}}= \sum_{i = 0}^r \left(\dim{J_i} - \dim{J_{i+1}}\right) = \dim{m_P} - \dim{(f_1, f_2)_P} = \dim{m_P/(f_1, f_2)_P},$$
+    which is absurd.
+    Hence for some $i$, $J_i = J_{i+1}$.
+    If $i = r$, then $t_1t_2 \cdots t_r \in (f_1, f_2)_P$ implies that $\mathfrak{m}_P^r \subseteq (f_1, f_2)_P$.
+    If $i < r$, then for some $f \in \mathcal{O}_P$ and $g \in (f_1, f_2)_P$ we have
+    $$t_1 t_2 \cdots t_i = t_1 t_2 \cdots t_{i+1}f + g,$$
+    and so $t_1 t_2 \cdots t_i(1 - t_{i+1}f) = g \in (f_1, f_2)_P$.
+    However, $\mathcal{O}_P$ is local, so $1 - t_{i+1}f$ is a unit and thus
+    $$t_1 t_2 \cdots t_i = (1 - t_{i+1}f)^{-1}g \in (f_1, f_2)_P,$$
+    which gives $t_1 t_2 \cdots t_r \in (f_1, f_2)_P$.
+    Hence $\mathfrak{m}_P^r \subseteq (f_1, f_2)_P$.
 
-		We have determined that there are at most $n_1n_2$ points in $C_1 \cap C_2 \cap \A^2$.
-		As in Proposition~\ref{prop1}, we can construct a polynomial $h \in A$ such that $h(P) = 1$ and $h(Q) = 0$ for all $P \neq Q \in (C_1 \cap C_2 \cap A^2)$.
-		Hence $h \in \mathcal{O}_P^\times$ and $h \in \mathfrak{m}_Q$ for each $Q \neq P$, and so for $r \geq \dim{\mathcal{O}_Q / (f_1, f_2)_Q}$, we have $h^r \in (f_1, f_2)_Q$ for $Q \neq P$.
+    We have determined that there are at most $n_1n_2$ points in $C_1 \cap C_2 \cap \A^2$.
+    As in Proposition~\ref{prop1}, we can construct a polynomial $h \in A$ such that $h(P) = 1$ and $h(Q) = 0$ for all $P \neq Q \in (C_1 \cap C_2 \cap A^2)$.
+    Hence $h \in \mathcal{O}_P^\times$ and $h \in \mathfrak{m}_Q$ for each $Q \neq P$, and so for $r \geq \dim{\mathcal{O}_Q / (f_1, f_2)_Q}$, we have $h^r \in (f_1, f_2)_Q$ for $Q \neq P$.
 
-		Suppose that the polynomials $g_1/h, \ldots, g_m/h$ span $\mathcal{O}_P/(f_1, f_2)_P$.
-		Observe that for any element $f \in \mathcal{O}_P$, there exist $\alpha_1, \ldots, \alpha_r \in k$ such that
-			$$f/h - (\alpha_1(g_1/h) + \ldots + \alpha_m(g_m/h)) \in (f_1, f_2)_P$$
-		and so we have
-			$$f - (\alpha_1g_1 + \ldots + \alpha_mg_m) \in (f_1, f_2)_P.$$
-		In particular, we can find an element $g$ of $A$ that is congruent to $f  h^{-r}$ modulo $(f_1, f_2)_P$.
-		Then $gh^r$ is congruent to $f$ modulo $(f_1, f_2)_P$ and congruent to 0 modulo $(f_1, f_2)_Q$.
-		This shows that the map
-		\begin{align*}
-			\varphi \colon A &\rightarrow \prod_{P \in C_1 \cap C_2 \cap \A^2} \mathcal{O}_P/(f_1, f_2)_P\\
-			f &\mapsto (\ldots, f \mod{ (f_1, f_2)_P}, \ldots)
-		\end{align*}
-		is a surjection.
-		Finally, we observe that $(f_1, f_2) \subseteq \ker\varphi$ implies
-			$$\dim{A/\ker\varphi} = \sum_{P} \dim{\mathcal{O}_P/(f_1, f_2)_P} = \sum_{P} I(C_1 \cap C_2, P) \leq \dim{A/(f_1, f_2)}.$$	
-	\end{proof}
+    Suppose that the polynomials $g_1/h, \ldots, g_m/h$ span $\mathcal{O}_P/(f_1, f_2)_P$.
+    Observe that for any element $f \in \mathcal{O}_P$, there exist $\alpha_1, \ldots, \alpha_r \in k$ such that
+    $$f/h - (\alpha_1(g_1/h) + \ldots + \alpha_m(g_m/h)) \in (f_1, f_2)_P$$
+    and so we have
+    $$f - (\alpha_1g_1 + \ldots + \alpha_mg_m) \in (f_1, f_2)_P.$$
+    In particular, we can find an element $g$ of $A$ that is congruent to $f  h^{-r}$ modulo $(f_1, f_2)_P$.
+    Then $gh^r$ is congruent to $f$ modulo $(f_1, f_2)_P$ and congruent to 0 modulo $(f_1, f_2)_Q$.
+    This shows that the map
+    \begin{align*}
+      \varphi \colon A &\rightarrow \prod_{P \in C_1 \cap C_2 \cap \A^2} \mathcal{O}_P/(f_1, f_2)_P\\
+      f &\mapsto (\ldots, f \mod{ (f_1, f_2)_P}, \ldots)
+    \end{align*}
+    is a surjection.
+    Finally, we observe that $(f_1, f_2) \subseteq \ker\varphi$ implies
+    $$\dim{A/\ker\varphi} = \sum_{P} \dim{\mathcal{O}_P/(f_1, f_2)_P} = \sum_{P} I(C_1 \cap C_2, P) \leq \dim{A/(f_1, f_2)}.$$	
+  \end{proof}
 \end{prop}
 
+\begin{prop}\label{prop4}
+  Under the conditions of Proposition~\ref{prop3}, 
+  $$\sum_{P \in C_1 \cap C_2 \cap \A^2} I(C_1 \cap C_2, P) = \dim A / (f_1, f_2).$$
+  
+  \begin{proof}
+    We observe that it suffices to show that $\ker\varphi \subseteq (f_1, f_2)$.
+    Towards that end, let $f \in \ker\varphi$ and consider the set 
+    $$L = \left\{ g \in A \;\middle\vert\; gf \in (f_1, f_2)\right\}.$$
+    This is clearly an ideal; if $g \in L$, then for any $h \in A$ we have 
+    $$(hg)f = h(gf) \in (f_1, f_2)$$
+    and for any $g^\prime \in L$
+    $$(g - g^\prime)f = gf + g^\prime f\in (f_1, f_2).$$
+    We need only show that $1 \in L$.
+    Towards that end, consider a point $P \in \A^2$.
+    First assume that  $P \in C_1 \cap C_2$.
+    Since $f \in \ker\varphi$, it follows that $f \in (f_1, f_2)_P$ and so for some $\alpha_1, \alpha_2 \in \mathcal{O}_P$ we have
+    $$f = \alpha_1 f_1 + \alpha_2 f_2 = \frac{\beta_1}{g} f_1 + \frac{\beta_2}{g} f_2$$
+    for some $\beta_1, \beta_2 \in A$ after finding a common denominator.
+    Then $g \in L$ is such that $g(P) \neq 0$.
+    If $P \not \in C_1 \cap C_2$, then one of $f_1(P) \neq 0$ or $f_2(P) \neq 0$.
+    Hence there exists for every $P \in \A^2$ some function that is not zero at $P$.
+    Therefore by the weak Nullstellensatz, we have that $L = A$ and so $f \in (f_1, f_2)$ as desired.
+  \end{proof}
+\end{prop}
 \end{document}
