@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 NUM=01
 CLASS=746
-NAME="hw${NUM}-${CLASS}"
+NAME="bezout"
 PDFDIR=../pdf/
 FILE="$NAME.tex"
 
