@@ -17,10 +17,54 @@
 \newtheorem{thm}{}
 \newtheorem{lem}{Lemma}
 
+\begin{lem}\label{lem1}
+	If $X$ and $Y$ are topological $m$- and $n$-manifolds, respectively, then $X \times Y$ is a topological $(m +n)$-manifold.
+
+	\begin{proof}
+		First we show that $X \times Y$ is Hausdorff.
+		Let $(x_1, y_1)$ and $(x_2, y_2)$ in $X \times Y$ be given and choose neighbourhoods $U_1 \subseteq X$ of $x_1$, $U_2 \subseteq X$ of $x_2$, $V_1 \subseteq Y$ of $y_1$, and $V_2 \subseteq Y$ of $Y_2$ such that $U_1 \cap U_2 = V_1 \cap V_2 = \emptyset$.
+		Then $U_1 \times V_1$ and $U_2 \times V_2$ are neighbourhoods of $(x_1, y_1)$ and $(x_2, y_2)$, respectively and
+		$$(U_1 \times V_1) \cap (U_2 \times V_2) = (U_1 \cap U_2) \times (V_1 \cap V_2) = \emptyset,$$
+		as desired.
+
+		Let $(x_0,y_0) \in X \times Y$ be given.
+		Since $X$ and $Y$ are topological manifolds, there exist neighbourhoods $U \subseteq X$ of $x_0$, $V \subseteq Y$ of $y_0$ and homeomorphisms 
+		$$\varphi \colon U \rightarrow U^\prime\ \text{and}\ \psi \colon V \rightarrow V^\prime,$$
+		for some $U^\prime \subseteq R^m$ and $V^\prime \subseteq R^n$.
+		Now $U \times V$ is a neighbourhood of $(x,y)$ and the map
+		\begin{align*}
+			\varphi \times \psi \colon X \times Y &\rightarrow \R^m \times \R^n \simeq \R^{m + n}\\
+			(x,y) & \mapsto (\varphi(x), \varphi(y)).
+		\end{align*}
+		is continuous with continuous inverse $\varphi^{-1} \times \psi^{-1} \colon \R^{m+n} \rightarrow X \times Y$, establishing that $X \times Y$ is a topological $(m+n)$-manifold.
+	\end{proof}
+\end{lem}
+
+\begin{lem}\label{lem2}
+	If $X$ and $Y$ are smooth $m$- and $n$-manifolds, respectively, then $X \times Y$ is a smooth $(m + n)$-manifold.
+	\begin{proof}	
+		By Lemma~\ref{lem1} we have that $X \times Y$ is a topological $(m + n)$-manifold, so it remains only to exhibit a smooth structure.
+		Consider the charts $\varphi_1 \times \psi_1: U_1 \times V_1 \rightarrow U_1^\prime \times V_1^\prime$ and $\varphi_2 \times \psi_2 \colon U_2 \times V_2 \rightarrow U_2^\prime \times V_2 ^\prime$ of $X \times Y$.
+		Since both $\varphi_2^{-1} \circ \varphi_1$ and $\psi_2^{-1} \circ \psi_1$ are smooth we have the transition map
+		\begin{align*}
+			\varphi_2 \times \psi_2 \circ \varphi_1^{-1} \times \psi_2^{-1} \colon \varphi_1 \times \psi_1(U_1 \cap U_2 \times V_1 \cap V_2) &\rightarrow \varphi_2 \times \psi_2(U_1 \cap U_2 \times V_1 \cap V_2)\\
+			(x,y) &\mapsto \left(\varphi_2^{-1} \circ \varphi_1(x), \psi_2^{-1} \circ \psi_1(y)\right)
+		\end{align*}
+		which is also smooth.
+	\end{proof}
+\end{lem}
+
 \begin{thm}\label{ex1}
   Prove that $\C/(\Z + i\Z)$ is a smooth 2-manifold.
   
   \begin{proof}
+	From the previous homework set, we have that $\C/(\Z + i\Z)$ is homeomorphic to $S^1 \times S^1$ under the homeomorphism
+	\begin{align*}
+		f \colon \C/(\Z + i\Z) &\rightarrow S^1 \times S^1\\
+		[x + iy] & \mapsto (e^{i2\pi x}, e^{i2\pi y}),
+	\end{align*}
+	which is also smooth.
+	As was shown in class $S^1$ is a smooth 1-manifold, so it follows from Lemma~\ref{lem2} that $\C/(\Z+ i\Z)$ is a smooth 2-manifold.
   \end{proof}
 \end{thm}
 
@@ -31,6 +75,15 @@
   You do not need to explicitly construct charts, but you do need to prove your answer is correct (Warning: The hardest part is proving that $X_c$ is not a mnifold for certain values of $c$.  If you get stuck, try drawing a graph).
 
   \begin{proof}
+	First observe that $X_c$ is the zero locus of
+	\begin{align*}
+		f \colon \R^2 \times \R &\rightarrow \R\\
+		(x,y,z) &\mapsto x^2 + y^2 - z^2 - c
+	\end{align*}
+	which has Jacobian $(2x\ 2y\ 2z)$.
+	If $c = 0$, then $X_c = \left\{0\right\}$, which is not a topological $2$-manifold; the image of $0$ will always be closed ($\R^2$ is $T_1$), hence no homeomorphism to an open subset of $\R^2$ exists.	
+	When $c < 0$, the equation $x^2 + y^2 = c$ has no solution, so the points of $X_c$ have non-zero $z$-coordinate and $X_c$ is a smooth 2-manifold, hence also a topological 2-manifold by the Corollary to the IFT.
+	When $c > 0$, not all of $x$, $y$, and $z$ are zero, so not all of the minors of the Jacobian vanish, and the IFT can be used to produce charts.
   \end{proof}
 \end{thm}
 
@@ -40,7 +93,17 @@
   a topological 2-manifold?
   Prove that your answer is correct (Warning: Again the hardest part is proving that $X_c$ is not a manifold for certain values of $c$.
   Solve Problem~\ref{ex1} first).
+
   \begin{proof}
+	Observe that $X_c$ is the zero locus of
+	\begin{align*}
+		f \colon \R^2 \times \R &\rightarrow \R^1\\
+		(x,y,z) &\mapsto (x + 1)^2 + 3(y - 1)^2 + (z +2)^2 - c - 8
+	\end{align*}
+	which has Jacobian $(2(x +1)\ 6(y - 1)\ 2(z + 2))$.
+	If $c < -8$, then $X_c = \emptyset$ is not a 2-manifold.
+	if $c = -8$, then $X_c = \left\{(-1, 1, -2)\right\}$ is again not a 2-manifold.
+	If $c > 8$, then $(-1,1,-2)$ is not a point of $X_c$ and thus the Jacobian does not vanish entirely, and from the IFT  the minors can be used to produce charts.
   \end{proof}
 \end{thm}
 
@@ -49,6 +112,7 @@
   For what values $n = 1,2,3,\ldots$ is the quotient space $X = \R^n/\sim$ a topological manifold?
   
   \begin{proof}
+	In progress...
   \end{proof}
 \end{thm}
 
@@ -57,6 +121,7 @@
   Prove your answer is correct.
 
   \begin{proof}
+	Almost certain this is true, but some details are still missing.
   \end{proof}
 \end{thm}
 \end{document}
