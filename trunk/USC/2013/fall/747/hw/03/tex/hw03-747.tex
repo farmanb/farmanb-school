@@ -1,0 +1,292 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath,mathtools,tikz-cd}
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 747:\\Homework 03}
+\date{September 20, 2013}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+\maketitle
+
+\providecommand{\p}{\mathfrak{p}}
+\providecommand{\m}{\mathfrak{m}}
+
+\newtheorem{thm}{}
+\newtheorem{lem}{Lemma}
+\newtheorem{prop}{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[thm]
+
+\newcommand{\A}{\mathbb{A}}
+
+\begin{thm}
+  Define smooth matps $m \colon S^3 \times S^3 \rightarrow S^3$ and $i \colon S^3 \rightarrow S^3$ so that $S^3$ is a group with multiplication map $m$ and inversion map $i$.
+  \begin{proof}
+    Define the following maps for $x = (x_1, x_2, x_3, x_4, y_1, y_2, y_3, y_4) \in \R^8$
+    \begin{align*}
+      m_1 \colon \R^8 &\rightarrow \R\\
+      x &\mapsto x_1y_1 - x_2y_2 - x_3y_3 - x_4y_4,
+    \end{align*}
+    
+    \begin{align*}
+      m_2 \colon \R^8 &\rightarrow \R\\
+      x &\mapsto x_1y_2 + x_3y_4 - x_4y_3 + x_2y_1,
+    \end{align*}
+
+    \begin{align*}
+      m_3 \colon \R^8 &\rightarrow \R\\
+      x &\mapsto x_1y_3 + x_4y_2 - x_2y_4 + x_3y_1,
+    \end{align*}
+    and
+    \begin{align*}
+      m_4 \colon \R^8 &\rightarrow \R\\
+      x &\mapsto x_1y_4 + x_2y_3 - x_3y_2 + x_4y_1.
+    \end{align*}
+    Let $m = m_1 \times m_2 \times m_3 \times m_4 \colon \R^8 \rightarrow \R^4$.
+    It is not difficult, but rather lengthy, to check that $m$ is associative.
+    If $x \in S^3 \times S^3$, then with some routine algebra, we have 
+    $$\sum_{i=1}^4 m_i(x)^2 = \sum_{i=1}^4\sum_{j=1}^4 (x_iy_j)^2 = \sum_{i=1}^4 x_i^2 \sum_{j=1}^4 y_j^2 = \sum_{i=1}^4 x_i^2 = 1.$$
+    Hence $m$ maps elements of $S^3 \times S^3$ to elements of $S^3$.
+    
+    Observe that these are polynomials, so each of the partials exist and $m$ is a smooth map.
+    Identify $S^3 \times S^3$ as the subspace 
+    $$\left\{(x_1, x_2, x_3, x_4, y_1, y_2, y_3, y_4) \in \R^8 \;\middle\vert\; x_1^2 + x_2^2 + x_3^2 + x_4^2 = y_1^2 + y_2^2 + y_3^2 + y_4^2 = 1\right\} \subseteq \R^8.$$
+    Then any open set of $S^3\times S^3$ is obtained as $U \cap S^3 \times S^3$ with $U$ open in $R^8$ and so, since $m$ is smooth at every point of $U$, it follows that $m$ is smooth on $S^3 \times S^3$.
+    
+    For $x = (x_1, x_2, x_3, x_4)$, define the map
+    \begin{align*}
+      i \colon \R^4 &\rightarrow \R^4\\
+      x &\mapsto \frac{1}{x_1^2 + x_2^2 + x_3^2 + x_4^2} (x_1, -x_2, -x_3, -x_4).
+    \end{align*}
+    With some routine algebra, it's easy to see that $m_1(x,i(x)) m_1(i(x), x) = x_1^2 + x_2^2 + x_3^2 x_4^2$ and $m_i(x,i(x)) = m_i(i(x), x) = 0$ for $2 \leq i \leq 4$.
+    Hence $m(i(x), x) = m(x, i(x)) = (1,0,0,0)$.
+    Moreover, $m(x, (1,0,0,0)) = m((1,0,0,0), x) = x$ implies that $i(x)$ is the inverse of $x$.
+    By a similar argument, as for $m$, this map is also smooth on $S^3$.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Construct a smooth atlas on $\mathbb{P}^1_\C$.
+  Then prove that the map $p \colon S^3 \rightarrow \mathbb{P}^1_\C$ defined by $p(z) = [z]$ is smooth.
+  What are the fibers?
+
+  \begin{proof}
+    Take as charts the maps
+    \begin{align*}
+      \varphi_1 \colon \mathbb{P}^1 \setminus \left\{[1 : 0]\right\} &\rightarrow \C & \text{and} & & \varphi_2 \colon \mathbb{P}^1 \setminus \left\{[0 : 1]\right\} & \rightarrow \C\\
+             [z : w] & \mapsto \frac{z}{w} & & & [z : w] & \mapsto \frac{w}{z}
+    \end{align*}
+    It is easy to see that the inverses of these maps are
+    \begin{align*}
+      \varphi_1^{-1} \colon \C &\rightarrow \mathbb{P}^1 \setminus \left\{[1 : 0]\right\} & \text{and} & & \varphi_2^{-1} \colon \C & \rightarrow \mathbb{P}^1 \setminus \left\{[0 : 1]\right\}\\
+      z & \mapsto \left[z : 1 \right] & & & z & \mapsto [1 : z].
+    \end{align*}
+    Namely, for $w \in \C^\times$ we have, 
+    $$[z : w] \overset{\phi_1}{\mapsto} \frac{z}{w} \overset{\phi_1^{-1}}{\mapsto} [z/w : 1] \sim [z : w]\ 
+    \text{and}\ z \overset{\phi_1^{-1}}{\mapsto} [z : 1] \overset{\phi_1}{\mapsto} z.$$
+    For $z \in \C^\times$, we have
+    $$[z : w] \overset{\phi_2}{\mapsto} \frac{w}{z} \overset{\phi_2^{-1}}{\mapsto} [1 : w/z] \sim [z : w]\ 
+    \text{and}\ z \overset{\phi_2^{-1}}{\mapsto} [1 : z] \overset{\phi_2}{\mapsto} z.$$
+    Moreover
+    \begin{align*}
+      \varphi_2 \circ \varphi_1^{-1}  = \varphi_1 \circ \varphi_2^{-1} \colon \C^\times &\rightarrow \C^\times\\
+      z &\mapsto \frac{1}{z}
+    \end{align*}
+    is holomorphic, hence smooth.
+
+    For the charts on $S^3$, take the usual stereographic projections from the north and south poles
+    \begin{align*}
+      \psi_1 \colon S^3 \setminus \left\{(0, 1)\right\} &\rightarrow \C \times \R& \text{and} & & \psi_2 \colon S^1 \setminus \left\{(0, -1)\right\} & \rightarrow \C \times \R\\
+             (z, w) & \mapsto \frac{1}{1 - \Im{w}}(z, \Re{w}) & & & (z, w) & \mapsto \frac{1}{1 + \Im{w}}(z, \Re{w}).
+    \end{align*}
+    %Define the map
+    %\begin{align*}
+    %  t \colon \C \times \R &\rightarrow \C \times \R\\
+    %  (z,x) &\mapsto \frac{2}{1 + \abs{z}^2 + x^2}
+    %\end{align*}
+    %so that
+    The inverses are
+    \begin{align*}
+      \psi_1^{-1} \colon \C \times \R &\rightarrow S^3 \setminus \left\{(0,1)\right\} & \text{and} & & \psi_2^{-1} \colon \C \times \R & \rightarrow S^3 \setminus \left\{(0,-1)\right\}\\
+      (z,x) & \mapsto \left(\frac{2z}{1 + \abs{z}^2 + x^2}, \frac{x + i(x^2 + \abs{z}^2 - 1)}{1 + \abs{z}^2 + x^2}\right) & & & (z,x) & \mapsto \left(\frac{2z}{1 + \abs{z}^2 + x^2}, \frac{x + i(1 - x^2 - \abs{z}^2)}{1 + \abs{z}^2 + x^2}\right).%(t(z,x)z, t(z,x)x + i(t(z,x) - 1)).
+    \end{align*}
+
+    Let $(z,x) \in \C \times \R$ be given.
+    Then 
+    \begin{eqnarray*}
+      \varphi_1 \circ p \circ \psi_1^{-1}(z,x) &=& \varphi_1\left(\left[\frac{2z}{1 + \abs{z}^2 + x^2} : \frac{2x}{1 + \abs{z}^2 + x^2} + i\frac{x^2 + \abs{z}^2 - 1}{1 + \abs{z}^2 + x^2}\right]\right)\\
+      &=& \frac{2z}{2x + i(\abs{z}^2 + x^2 - 1)}
+    \end{eqnarray*}
+    is smooth, provided that $\abs{z^2} \neq 1$.
+    Similarly,
+    $$\varphi_2 \circ p \circ \psi_1^{-1}(z,x) = \frac{2x + i(\abs{z}^2 + x^2 - 1)}{2z}$$
+    is smooth, provided $z \neq 0$.
+    The other two maps are
+    \begin{eqnarray*}
+      \varphi_1 \circ p \circ \psi_2^{-1}(z,x) &=& \varphi_1\left(\left[\frac{2z}{1 + \abs{z}^2 + x^2} : \frac{2x}{1 + \abs{z}^2 + x^2} + i\frac{1 - x^2 - \abs{z}^2}{1 + \abs{z}^2 + x^2}\right]\right)\\
+      &=& \frac{2z}{2x + i(1 - \abs{z}^2 - x^2)}
+    \end{eqnarray*}
+    and
+    $$\varphi_2 \circ p \circ \psi_2^{-1}(z,x) = \frac{2x + i(1 - \abs{z}^2 - x^2)}{2z}.$$
+    The first is smooth provided $\abs{z}^2 \neq 1$ and the second is smooth provided $z \neq 0$.
+    
+    The fibers of this map are the sets $p^{-1}\left([z : w]\right) = \left\{\lambda(z,w) \;\middle\vert\; \lambda \in \C^\times, \abs{\lambda}^2 = 1\right\}$.
+    This follows from observing that if $p(z,w) = [z : w] \sim [z^\prime : w^\prime] = p(z^\prime, w^\prime)$, then $(z^\prime, w^\prime) = (\lambda z, \lambda w)$ for some $\lambda \in C^\times$.
+    Since $(z,w)$ and $(z^\prime, w^\prime)$ both lie on $S^3$, it follows that 
+    $$1 = \abs{z^\prime}^2 + \abs{w^\prime}^2 = \abs{\lambda z}^2 + \abs{\lambda w}^2 = \abs{\lambda}^2\left(\abs{z}^2 + \abs{w}^2\right) = \abs{\lambda}^2.$$
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Let $X$ be a smooth, compact, connected $n$-manifold with $n \geq 1$.
+  Check that the set of $\mathcal{E}(X)$ of smooth complex-valued functions on $X$ is a ring under point-wise addition and multiplication.
+  Is this ring Noetherian?
+
+  \begin{proof}
+    Let $f, g \in \mathcal{E}(X)$ be given and let $\varphi$ be a chart.
+    Let $u_1$, $v_1$ be the component functions of $f$ and $u_2, v_2$ those of $g$.
+    Since each of $f, g$ are smooth, all the partials of $u_1 \circ \varphi^{-1}, u_2 \circ \varphi^{-1}, v_1 \circ \varphi^{-1}, v_2 \circ \varphi^{-1}$ exist and are continuous, hence under point-wise addition and multiplication
+    $$fg \circ \varphi^{-1} = (u_1 \circ \varphi^{-1} \cdot u_2 \circ  \varphi^{-1}, v_1 \circ \varphi^{-1} \cdot v_2 \circ  \varphi^{-1})$$
+    and
+    $$f + g = (u_1 \circ \varphi^{-1} + u_2 \circ \varphi^{-1}, v_1 \circ \varphi^{-1} + v_2 \circ \varphi^{-1})$$
+    are also smooth.
+
+    This ring is not Noetherian in general.
+    Take $X = [-1,1]$ and consider the family of opens $U_n = (-1/n, 1/n)$ for $n \in \N$.
+    Observe that $U_1 \supset U_2 \supset U_3 \supset \ldots$. and there is a natural contravariant inclusion of the ideals of functions that vanish on each $U_i$, $\mathfrak{a}_i = \left\{ f \in \mathcal{E}(X) \;\middle\vert\; f\mid_{U_i} = 0 \right\}$,
+    \begin{equation}\label{3.1}
+      \mathfrak{a}_1 \subseteq \mathfrak{a}_2 \subseteq \mathfrak{a}_3 \subseteq \ldots.
+    \end{equation}
+    %$$ \mathcal{E}(U_0) \subseteq \mathcal{E}(U_1) \subseteq \mathcal{E}(U_2) \subseteq \mathcal{E}(U_3) \subseteq \ldots $$
+    %given by restriction.
+    The functions
+    $$f_n(x) = \left\{
+    \begin{array}{ll}
+      e^{\frac{-1}{x^2 - 1/n^2}} & \text{if}\ x \not \in U_n\\
+      0 & x \in U_n.
+    \end{array}
+    \right.
+    $$
+    are such that $f_n \in \mathfrak{a}_n$ but $f_n \not \in \mathfrak{a}_{n+1}$, and hence the inclusions in \ref{3.1} are strict.
+    Therefore $\mathcal{E}(X)$ does not satisfy the A.C.C. and is not Noetherian.
+  \end{proof}
+\end{thm}
+
+\begin{thm}\label{ex4}
+  Suppose that $x \in X$ is a point on a smooth $n$-manifold.
+  
+  \begin{defn}
+    Define an equivalence relation $\sim$ on the set of smooth complex-valued functions on $X$ by making two functions $f$ and $g$ equivalen, $f \sim g$, if $f\mid_U = g\mid_U$ for some open neighbourhood $U$ of $x$.
+    The quotient set is called the {\bf ring of germs of smooth functions at} $x$ and written $\mathcal{E}_x$.
+
+    The equivalence class of $f \in \mathcal{E}(X)$ is written $[f] \in \mathcal{E}_x$.\\
+
+    Check that $\mathcal{E}_x$ has a ring structure such that $f \mapsto [f]$ is a ring homomorphism.
+    Is $\mathcal{E}_x$ Noetherian?
+  \end{defn}
+
+  \begin{proof}
+    Let $f, g \in \mathcal{E}(X)$ be given.
+    Define pointwise addition and multiplication in $\mathcal{E}_x$ by $[f] + [g] = [f + g]$ and $[f][g] = [fg]$.
+    It remains to show that this is independent of choice of represntative.
+    Towards this end, suppose that $f \sim f^\prime$ and $g \sim g^\prime$.
+    There exist neighbourhoods $U \subseteq X$ and $V \subseteq X$ of $x$ such that $f\mid_U = f^\prime\mid_U$ and $g\mid_U = g^\prime\mid_U$, so we have
+    $$(f + g)\mid_{U \cap V} = (f^\prime + g^\prime)\mid_{U \cap V}\ \text{and}\ (fg)\mid_{U \cap V} = (f^\prime g^\prime)\mid_{U \cap V}.$$
+    Therefore $f + g \sim f^\prime + g^\prime$ and $fg \sim f^\prime g^\prime$ imply $[f + g] = [f^\prime + g^\prime]$ and $[fg] = [f^\prime g^\prime]$, as desired.		
+
+    This ring is not Noetherian in general.
+    Let $X = [-1,1]$ and consider the smooth functions
+    \begin{align*}
+      f_n \colon X &\rightarrow \R\\
+      x &\mapsto \left\{
+      \begin{array}{ll}
+	\frac{1}{x^n}e^\frac{-1}{x^2} & \text{if}\ x \neq 0,\\ 
+	0 & \text{if}\ x = 0
+      \end{array}
+      \right.
+    \end{align*}
+    for $n \geq 0$.
+    First note that there is no neighbourhood of $0$ for which $f_n = 0$.
+    Now observe that for $0 \leq m < n$ we have $x^{n-m}f_n(x) = f_m(x)$.
+    Suppose that for some $g \in \mathcal{E}(X)$, $f_n(x) = gf_m(x)$ on some neighbourhood $U$ of $0$.
+    Then it follows that for $0 \neq x \in U$
+    $$\frac{1}{x^m}e^\frac{-1}{x^2}\left(\frac{1}{x^{n-m}} - g(x)\right) = 0$$
+    implies that $g(x) = 1/x^{n-m}$, which is absurd.
+    Hence in $\mathcal{E}_0$ we have the ascending chain
+    $$([f_0]) \subset ([f_1]) \subset ([f_2]) \subset \ldots$$
+    which does not stabilize.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Let $\mathcal{E}_x$ be as in the previous problem.
+  Fix a chart $\phi \colon U \rightarrow V$ on $X$ with the property that $x \in U$ and $\phi(x) = 0$.
+  \begin{enumerate}
+  \item\label{5.1}
+    Is the map $\mathcal{E}_x \rightarrow \R$ defined by
+    $$f \mapsto f \circ \phi^{-1}(0)$$
+    well-defined?
+    If well-defined, does the map depend on the choice of $\phi$?
+  \item
+    Is the subset $I_1 = \left\{ [f] \in \mathcal{E}_x \;\middle\vert\; f \circ \phi^{-1}(0) = 0 \right\}$ an ideal?
+    If an ideal, is $I_1$ independent of the choice of $\phi$?
+    Is $I_1$ a prime ideal?
+  \item
+    Is the map $\mathcal{E}_x \rightarrow[t_1, \ldots, t_n]/(t^2)$ defined by
+    $$[f] \mapsto f\circ \phi^{-1}(0) + \sum_{i=1}^n \frac{\partial f \circ \phi^{-1}}{\partial x_i}(0) \cdot t_i$$
+    well-defined?
+    If well-defined, does the map depend on the choice of $\phi$?
+  \item
+    Is the subset $I_2 = \left\{ [f] \in \mathcal{E}_x \;\middle\vert\; f \circ \phi(0) = \frac{\partial f \circ \phi^{-1}}{\partial x_1}(0) = \frac{\partial f \circ \phi^{-1}}{\partial x_n}(0) = 0\right\}$ an ideal?
+    If an ideal, is $I_2$ independent of the choice of $\phi$?
+    Is $I_2$ a prime ideal?
+  \end{enumerate}
+  
+  \begin{proof}
+    \begin{enumerate}
+    \item
+      The map $f \mapsto f \circ \phi^{-1}(0)$ is well-defined and independent of the choice of chart, so long as $\phi(x) = 0$.
+      If $f \sim f^\prime$, we have that there exists some neighbourhood $U^\prime$ of $x$ with $f\mid_{U^\prime} = f^\prime\mid_{U^\prime}$.
+      Hence $f\mid_{U \cap U^\prime} = f^\prime\mid_{U \cap U^\prime}$ and so in particular at $x = \phi^{-1}(0)$, we have
+      $$f \circ \phi^{-1}(0) = f(x) = f^\prime(x) = f^\prime \circ \phi^{-1}(0).$$
+    \item
+      This is a maximal, hence prime, ideal independent of the choice of $\phi$, provided $\phi(0) = x$.
+      Observe that the map from part~(\ref{5.1}) is actually a surjective ring homomorphism with kernel $I_1$.
+      For any pair $[f], [g] \in \mathcal{E}_x$
+      $$(f + g)\circ \phi^{-1}(0) = (f + g)(x) = f(x) + g(x) = f \circ \phi^{-1}(0) + g \circ \phi^{-1}(0)$$
+      and 
+      $$(fg) \circ \phi^{-1}(0) = fg(x) = f(x)g(x) = (f \circ \phi^{-1}(0))(g \circ \phi^{-1}(0)).$$
+      Surjectivity follows from the fact that constant functions are smooth.
+      Therefore $\mathcal{E}_x / I_1 \cong \R$ gives maximality, as desired.
+    \item
+      The map $[f] \mapsto f\circ \phi^{-1}(0) + \sum_{i=1}^n \frac{\partial f \circ \phi^{-1}}{\partial x_i}(0) \cdot t_i$ is well-defined and independent of the choice of chart, for essentially the same reason as in part~(\ref{5.1}).
+      If $f \sim f^\prime$, then there exists some neighbourhood $U^\prime$ of $x$ with $f\mid_{U^\prime} = f^\prime\mid_{U^\prime}$.
+      %Restrict the domain of $\phi^{-1}$ to $\phi(U \cap U^\prime)$, which it should be noted includes $0$.
+      Note that $\phi(U \cap U^\prime)$ is a neighbourhood of $0$.
+      For any ball, $B$, about $0$ of sufficiently small radius such that $B \subseteq \phi(U \cap U^\prime)$, we have that $f\mid_{\phi^{-1}(B)} = f^\prime\mid_{\phi^{-1}(B)}$.
+      Hence $f\circ\phi^{-1}\mid_B = f^\prime\circ\phi^{-1}\mid_B$ holds. 
+      Since the behavior of the partials of $f \circ \phi^{-1}$ depend only on the limit of the difference quotient (in the appropriate direction) in balls about $0$, it follows that the partials agree.
+      %For two smooth functions $f \sim f^\prime$ we have $f\mid_{U \cap U^\prime} = f^\prime\mid_{U \cap U^\prime}$, which ensures that the secant lines are identical in a small neighbourhoods of $x$.
+    \item
+      This set is an ideal contained in $I_1$.
+      If $[f], [g] \in I_2$ and $[h] \in \mathcal{E}_x$, then
+      $$\frac{\partial}{\partial x_i}((f + g) \circ \phi^{-1})(0) = \frac{\partial}{\partial x_i}(f\circ \phi^{-1} + g \circ \phi^{-1})(0) = \frac{\partial}{\partial x_i}(f \circ \phi^{-1})(0) + \frac{\partial}{\partial x_i}(g\circ \phi^{-1})(0) = 0$$
+      and
+      $$\frac{\partial}{\partial x_i} (fh\circ\phi^{-1})(0) = \frac{\partial}{\partial x_i} (f\circ \phi^{-1})(0) \cdot (h \circ\phi^{-1}(0)) + (f\circ \phi^{-1})(0) \cdot \frac{\partial}{\partial x_i} (h \circ\phi^{-1})(0) = 0.$$
+      This ideal is not, in general, prime.
+      Take two elements of $[f], [g] \in I_1 \setminus I_2$.
+      Then by the above, it follows that 
+      $$\frac{\partial}{\partial x_i} (fg \circ \phi^{-1})(0) = 0$$
+      holds for each $i = 1, \ldots, n$.
+
+      Take for instance $X$ as in the proof of part~(\ref{ex4}).
+      Let $f(x) = g(x) = x \in \mathcal{E}_0$.
+      Since $f(0) = g(0) = 0$ and $df/dx = dg/dx = 1$, it follows that $[f], [g] \in I_1 \setminus I_2$.
+      However, $fg(0) = 0$ and $d(fg)/dx(0)= 0$ imply that $fg \in I_2$.
+    \end{enumerate}
+  \end{proof}
+\end{thm}
+\end{document}
