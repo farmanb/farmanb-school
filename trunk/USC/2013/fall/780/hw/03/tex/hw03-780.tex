@@ -1,0 +1,74 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath,mathtools}
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 780:\\Homework 03}
+\date{September 25, 2013}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+\maketitle
+
+\providecommand{\p}{\mathfrak{p}}
+\providecommand{\m}{\mathfrak{m}}
+
+\newtheorem{thm}{}
+\newtheorem{lem}{Lemma}
+
+\begin{thm}\label{ex1}
+  Prove that 1105 and 1729 are absolute pseudo-primes.
+  
+  \begin{proof}
+    Observe that $1105 = 5 \cdot 13 \cdot 17$, $1104 = 2^4 \cdot 3 \cdot 23$, $1729 = 7 \cdot 13 \cdot 19$, and $1728 = 3^3 \cdot 2^6$.
+    Take $a \in \Z$ such that $(a, 1105) = 1$.
+    Then we observe that $4$, $12$, and $16$ divide $1104$ and so by Fermat's Little Theorem
+    \begin{eqnarray*}
+      a^{1104} &\equiv 1 \pmod{5}\\
+      a^{1104} &\equiv 1 \pmod{13}\\
+      a^{1104} &\equiv 1 \pmod{17}.
+    \end{eqnarray*}
+    Therefore by the CRT, $a^{1104} \equiv 1 \pmod{1105}$, and $1105$ is an absolute pseudo-prime.
+    
+    Take $a \in \Z$ such that $(a, 1729) = 1$.
+    Again we observe that $6$, $12$, and $18$ all divide $1728$ and so it follows from Fermat's Little Theorem that
+    \begin{eqnarray*}
+      a^{1104} &\equiv 1 \pmod{7}\\
+      a^{1104} &\equiv 1 \pmod{13}\\
+      a^{1104} &\equiv 1 \pmod{19}.
+    \end{eqnarray*}
+    Therefore by the CRT, $a^{1728} \equiv 1 \pmod{1729}$, and $1729$ is an absolute pseudo-prime.
+  \end{proof}
+\end{thm}
+
+\begin{thm}\label{ex2}
+  Prove that if $n$ is a pseudo-prime, then $2^n - 1$ is a pseudo-prime.
+
+  \begin{proof}
+    Let $N = 2^n - 1$ and observe that $N \equiv 1 \pmod{n}$, hence $N = kn + 1$ for some integer $k$.
+    Then
+    $$2^{N} - 1 = 2^{nk + 1} - 1 = 2(N+1)^k - 1 =\sum_{i=0}^{k-1} {k \choose i}N^{k-i} + 1 \equiv 1 \pmod{N}.$$
+    Therefore $2^{N} \equiv 2 \pmod{N}$, as desired.
+  \end{proof}
+\end{thm}
+
+\begin{thm}\label{ex1}
+  Prove the converse of Wilson's Theorem.
+  More specifically, prove that $n$ is an integer strictly larger than 1 for which $(n-1)! \equiv -1 \pmod{n}$, then $n$ is prime.
+  
+  \begin{proof}
+    %Suppose to the contrary that $n$ is composite and $(n-1)! \equiv -1 \pmod{n}$.
+    %When $n = 4$, we have $3! \equiv 2 \pmod{4}$.
+    %Assume that $n > 4$.
+    %Observe that for every proper divisor, $d$, of $n$, $a \mid (n-1)!$.
+    %Hence 
+    Suppose that we have a factorisation $n = kd$.
+    Observe that $d \mid (n-1)!$, hence $(n-1)! = md$ for some integer $m$.
+    By assumption, there exists an integer $\ell$ such that
+    $$(n-1)! = \ell n - 1 = \ell(kd) - 1 = md,$$
+    whence $1 = d(\ell k - m)$.
+    Therefore $d$ is a unit and $n$ is irreducible, hence prime, as desired.
+  \end{proof}
+\end{thm}
+\end{document}
