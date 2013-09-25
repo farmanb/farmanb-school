@@ -71,4 +71,79 @@
     Therefore $d$ is a unit and $n$ is irreducible, hence prime, as desired.
   \end{proof}
 \end{thm}
+
+\begin{thm}
+	Find the smallest positive integer $n > 2$ such that $2$ divides $n$, $3$ divides $n + 1$, 4 divides $n + 2$, 5 divides $n + 3$, and $6$ divides $n + 4$.
+	Prove your answer is the least such $n$.
+
+	\begin{proof}
+		First observe that we have the congruences
+		\begin{eqnarray*}
+			n & \equiv &  0 \pmod{2}\\
+			n & \equiv & 2 \pmod{3}\\
+			n & \equiv & 2 \pmod{4}\\
+			n & \equiv & 2 \pmod{5}\\
+			n & \equiv & 2 \pmod{6}.
+		\end{eqnarray*}
+		Note that $n \equiv 2 \pmod{4}$ immediately implies $n \equiv 0 \pmod{2}$, and the congruences $n \equiv 0 \pmod{2}$ and $n \equiv 2 \pmod{3}$ immediately implies $n \equiv 2 \pmod{6}$, for if $n = 3k + 2$, then $3k + 2\equiv k \pmod{2}$ implies $k \equiv 0 \pmod{2}$.
+		Hence we can reduce to the congruences
+		\begin{eqnarray*}
+			n &\equiv& 2 \pmod{3}\\
+			n &\equiv& 2 \pmod{4}\\
+			n &\equiv& 2 \pmod{5}.
+		\end{eqnarray*}
+		By the CRT, there exists a unique class modulo 60 satisfying these congruences, namely the class of $2$.
+		Therefore the smallest $n > 2$ satisfying the congruences above is $62$.
+	\end{proof}	 
+\end{thm}
+
+\begin{thm}
+	Let $k$ be an arbitrary positive integer.
+	Prove that there is a positive integer $m$ such that $m + 1$, $m + 2$, \ldots, $m + k$ are each not square-free.
+	
+	\begin{proof}
+		Fix some positive integer $k$.
+		Since there are infinitely many prime numbers, we may choose $k$ distinct primes, $p_1, p_2, \ldots, p_k$.
+		For $i \neq j$, $(p_i^2, p_j^2) = 1$, hence by the CRT there exists a soltion to the congruences
+		\begin{eqnarray*}
+			m &\equiv& -1 \pmod{p_1^2}\\
+			m &\equiv& -2 \pmod{p_2^2}\\
+			& \vdots & \\
+			m &\equiv& -k \pmod{p_k^2}.
+		\end{eqnarray*}
+		Therefore $m$ is as desired.
+	\end{proof}
+\end{thm}
+
+\begin{thm}
+	Calculate the remainder when the number $123456789101112 \ldots 19781979$ is divided by $1980$.
+	
+	\begin{proof}
+		Let $x = 123456789101112 \ldots 19781979$.
+		First recognize that there are 980 four digit numbers, 900 three digit numbers, 90 two digit numbers, and 9 single digit numbers.
+		Hence
+		\begin{eqnarray*}
+			x &=& \sum_{k = 0}^{979} (1979 - k) \cdot 10^{4k} + \sum_{k = 0}^{899} (999 - k) \cdot 10^{3k + 3920} + \\
+			&+& \sum_{k = 0}^{89} (99 - k) \cdot 10^{2k + 6620} + \sum_{k = 0}^9 (9 - k) \cdot 10^{k + 6800}.
+		\end{eqnarray*}
+		Then it's obvious that $x \equiv 1979 \equiv 3 \pmod{4}$ and $x \equiv 1979 \equiv 4 \pmod{5}$.
+		With a simple loop in, say, Sage, it's easy to compute $ x \equiv 0 \pmod{9}$ and $x \equiv 2 \pmod{11}$.	
+		By the CRT we can use the extended Euclidean algorithm we can compute solutions to the equations
+		$$\begin{array}{lll}
+			4u_1 + 5v_1=1 & 5u_4 + 9v_4 = 1 & 9u_6 + 11v_6 = 1\\
+			4u_2 + 9v_2 = 1& 5u_5 + 11v_5 = 1\\
+			4u_3 + 11v_1 = 1
+		\end{array}$$
+		to obtain a solution to the congruences modulo 1980,
+		$$n = 3(5 v_1) (9v_2)(11v_3) + 4(4u_1)(9v_4)(11v_5) + 2(4u_3)(5u_5)(9u_6).$$
+		One such set of solutions, in the same order as the equations, are the $(u,v)$ pairs
+		$$\begin{array}{lll}
+			\left(-1, 1\right) & \left(2, -1\right) & \left(5, -4\right)\\
+			\left(-2, 1\right) & \left(-2, 1\right)\\
+			\left(3, -1\right)
+		\end{array}$$
+		which give $n = -10701 \equiv 1179 \pmod{1980}.$
+		Therefore $x \equiv 1179 \pmod{1980}$.
+	\end{proof}
+\end{thm}
 \end{document}
