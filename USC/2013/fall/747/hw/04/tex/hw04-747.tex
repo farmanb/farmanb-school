@@ -1,0 +1,175 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath,mathtools,tikz-cd}
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 747:\\Homework 03}
+\date{September 20, 2013}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+\maketitle
+
+\providecommand{\p}{\mathfrak{p}}
+\providecommand{\m}{\mathfrak{m}}
+
+\newtheorem{thm}{}
+\newtheorem{lem}{Lemma}
+\newtheorem{prop}{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[thm]
+
+\newcommand{\A}{\mathbb{A}}
+
+\begin{thm}
+  \begin{enumerate}[(a)]
+    \item
+      Let $\Gamma, \Gamma^\prime \subset \C$ be two lattices.
+      Suppose $\alpha \in \C^\times$ is such that $\alpha \Gamma \subset \Gamma^\prime$.
+      Show that the map $\C \rightarrow \C$, $z \mapsto \alpha z$ induces a holomorphic map 
+      $$\C/\Gamma \rightarrow \C/\Gamma^\prime,$$
+      which is biholomorphic if and only if $\alpha \Gamma = \Gamma^\prime$.
+    \item
+      Show that every torus $X = \C / \Gamma$ is isomorphic to a torus of the form
+      $$X(\tau) = \C/(\Z + \Z\tau),$$
+      where $\tau \in \C$ satisfies $\Im{\tau} > 0$.
+    \item
+      Suppose $\left(\begin{array}{cc}
+        a & b\\
+        c & d
+        \end{array}\right) \in \SL{2}{\Z}$
+      and $\Im{\tau} > 0$.
+      Let 
+      $$\tau^\prime = \frac{a \tau + b}{c \tau + d}.$$
+      Show that the tori $X(\tau)$ and $X(\tau^\prime)$ are isomorphic.
+  \end{enumerate}
+
+  \begin{proof}
+    \begin{enumerate}[(a)]
+    \item
+      If $z_1, z_2 \in \C$ are such that $z_1 - z_2 \in \Gamma$, then
+      $$\alpha z_1 - \alpha z_2 = \alpha(z_1 - z_2) = \alpha\gamma \in \Gamma^\prime$$
+      shows that the map
+      \begin{align*}
+        f \colon \C/\Gamma &\rightarrow \C/\Gamma^\prime\\
+        [z] &\mapsto [\alpha z]
+      \end{align*}
+      is well-defined.
+      
+      Let $\varphi \colon U \rightarrow V$ and $\varphi^\prime \colon U^\prime \rightarrow V^\prime$ be charts on $\C / \Gamma$ and $\C / \Gamma^\prime$, respectively, as in the example in Forster such that $f \circ \varphi^{-1}(V) \subseteq U$ holds.
+      For $z \in V$
+      $$\varphi^{-1} \circ f \circ \varphi^\prime (z) = \varphi^{-1} \circ f ([z]) = \varphi^{-1}([\alpha z]) = \alpha z + \gamma^\prime$$
+      for some $\gamma^\prime \in \Gamma^\prime$, which is holomorphic.
+      Hence $f$ is a holomorphic map.
+
+      If $f$ is biholomorphic, then for $\gamma \in \Gamma$ and $\gamma^\prime \in \Gamma^\prime$,
+      $$\gamma \xmapsto{\alpha \cdot} \alpha \gamma \xmapsto{\alpha^{-1} \cdot} \alpha^{-1}(\alpha \gamma) = \gamma$$
+      and
+      $$\gamma^\prime \xmapsto{\alpha^{-1} \cdot} \alpha^{-1} \gamma^\prime \xmapsto{\alpha \cdot} \alpha(\alpha^{-1} \gamma^\prime) = \gamma,$$
+      which gives $\alpha\Gamma = \Gamma^\prime$.
+      
+      Similarly, if $\alpha\Gamma = \Gamma^\prime$, then we have
+      $$[z] \xmapsto{f} [\alpha z] \xmapsto{f^{-1}} [\alpha^{-1}(\alpha z)] = [z]$$
+      and
+      $$[z] \xmapsto{f^{-1}} [\alpha^{-1} z] \xmapsto{f} [\alpha(\alpha^{-1} z)] = [z]$$
+      which gives $f$ bijective, and $f^{-1}$ is holomorphic by the same argument above, mutatis mutandis.
+    \item
+      If $\Gamma = \Z\omega_1 + \Z\omega_2$, then one of 
+      $$\Im{\frac{\omega_1}{\omega_2}} = -\Im{\frac{\omega_2}{\omega_1}}$$
+      is positive, so we may assume it is $\Im{\omega_1/\omega_2}$.
+      Let $\tau = \omega_1 / \omega_2$ and so by part (a) there is an isomorphism  $\C/\Gamma \cong \C/(\Z + \Z\tau)$ induced by
+      \begin{align*}
+        \C &\rightarrow \C\\
+        z &\mapsto \frac{z}{w}
+      \end{align*}
+    \item
+      Let $\Gamma = \Z + \Z\tau$ and $\Gamma^\prime = \Z + \Z\tau^\prime$.
+      Let $m + n\tau^\prime \in \Gamma^\prime$ be given and observe that
+      \begin{eqnarray*}
+        (d + c\tau)(m + n\tau^\prime) &=& m(d + c\tau) + n(d + c\tau)\tau^\prime\\
+        &=& m(d + c\tau) + n(b + a\tau)\\
+        &=& (md + bn) + (an + mc)\tau \in \Gamma
+      \end{eqnarray*}
+      implies $(d + c\tau)\Gamma^\prime \subseteq \Gamma$.
+      Moreover, we have 
+      $$(d + c\tau)(a - c\tau^\prime) = (ad - bc) + (ac - ac)\tau = 1$$
+      and
+      $$(d + c\tau)(-b + d\tau^\prime) = (-bd + bd) + (ad - bc)\tau = \tau.$$
+      Hence for every $m + n\tau \in \Gamma$,
+      \begin{eqnarray*}
+        m + n\tau &=& m(d + c\tau)(a - c\tau^\prime) + n(d + c\tau)(-b + d\tau^\prime)\\
+        &=& (d + c\tau)(m(a - c\tau^\prime) + n(-b + d\tau^\prime))\\
+        &=& (d + c\tau)((ma - nb) + (nd -mc)\tau^\prime),
+      \end{eqnarray*}
+      completing the reverse inclusion.
+      Therefore by part (a), $X(\tau)$ and $X(\tau^\prime)$ are isomorphic.
+    \end{enumerate}
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Let $\Gamma \subset \C$ be a lattice.
+  The Weierstrass $\wp$-function with respect to $\Gamma$ is defined by
+  $$\wp_\Gamma (z) = \frac{1}{z^2} + \sum_{\omega \in \Gamma \setminus 0} \left( \frac{1}{(z - \omega)^2} - \frac{1}{\omega^2}\right)$$
+  
+  \begin{enumerate}[(a)]
+  \item
+    Prove that $\wp_\Gamma$ is a double periodic meromorphic function with respect to $\Gamma$ which has poles at the points of $\Gamma$.
+  \item
+    Let $f \in \mathcal{M}(\C)$ be a double periodic function with respect to $\Gamma$ which has its poles at the points of $\Gamma$ and which has the following Laurent expansion about the origin
+    $$f(z) = \sum_{k = -2}^\infty c_kz^k,\ \text{where}\ c_{-2} = 1,\, c_{-1} = c_0 = 0.$$
+    Prove that $f = \wp_\Gamma$.
+  \end{enumerate}
+  
+  \begin{proof}
+    \begin{enumerate}[(a)]
+  \end{enumerate}
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Do you think $X = C/(\Z + i\Z)$ embeds in $\C^2$ as a Riemann surface?
+
+  \begin{proof}
+    Given that the embedding $X \rightarrow \C^2$ is given by $x \mapsto (e^{i2\pi\Re{x}}, e^{i2\pi\Im{x}})$, it seems reasonable to think that it might embed as a Riemann surface.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Let $X = \left\{f(w, z) \in C^2 \;\middle\vert\; w^2 = 1 - z^6\right\}$.
+  Consider the function $f \colon X \rightarrow \C$ defined by $f(w, z) = z$.
+  Prove that $f$ is holomorphic. 
+  What is multiplicity of $f$ at $(0, 1) \in X$.
+
+  \begin{proof}
+    Regard $X$ as the zero locus of $F(w,z) = x^2 + z^6 - 1$.
+    We obtain two charts by the holomorphic IFT, when $z \neq 0$ 
+    \begin{align*}
+      \varphi_1^{-1} \colon \C &\rightarrow X\\
+      z &\mapsto (g(z), z)
+    \end{align*}
+    for some holomorphic $g$ and when $w \neq 0$, 
+    \begin{align*}
+      \varphi_2^{-1} \colon \C &\rightarrow X\\
+      w &\mapsto (w, h(w))
+      \end{align*}
+    for some holomorphic $h$.
+    Then we have $z \xmapsto{\varphi_1^{-1}} (g(z), z) \xmapsto{f} = z$ and $w \xmapsto{\varphi_2^{-1}} (w, h(w)) \xmapsto{f} h(w)$, both of which are holomorphic.
+    
+    The multiplicity should be 2; for $\varepsilon > 0$, there are two points in the preimage of a point in an $\varepsilon$-ball about $1$ in $\C$,
+    $$(\pm \varepsilon)^2 = 1 - (\sqrt[6]{1 - \varepsilon})^6.$$
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Let $X$ be as in the previous problem but now define $g \colon X \rightarrow \C$ by $g(w,z) = w$.
+  What is the mutliplicity of $g$ at $(1,0) \in X$.
+  
+  \begin{proof}
+    The multiplicity should be 6; for $\varepsilon > 0$, there are six points in the preimage of a point in an $\varepsilon$-ball about $1$ in $\C$,
+    $$(\sqrt{1 - \varepsilon})^2 = 1 - (\zeta_6^a\sqrt[6]{\varepsilon})^6,\, 0 \leq a \leq 5,$$
+    $\zeta_6$ a primitive sixth root of unity.
+  \end{proof}
+\end{thm}
+\end{document}
