@@ -13,15 +13,32 @@
 
 \providecommand{\p}{\mathfrak{p}}
 \providecommand{\m}{\mathfrak{m}}
-
+\providecommand{\Ann}[1]{\operatorname{Ann}\left(#1\right)}
 \newtheorem{thm}{}
 \newtheorem{lem}{Lemma}
+
+\begin{thm}
+	Let $A$ be a ring and $M$ an $A$-module.
+	Let $I$ be an ideal of $A$ that is maximal amongst all annihilators of non-zero elements of $M$.
+	Prove that $I$ is a prime ideal.
+
+\begin{proof}
+	There exists, by hypothesis, an element $m \in M$ such that $I = \Ann{m}$.
+	Suppose that for some $a, b \in A$ that $ab \in I$.
+	Assume that $b \not \in I$, so that $bm \neq 0$ and $a \in \Ann{bm}$.
+	Observe that if $x \in I$, then
+		$$x(bm) = (xb)m = (bx)m = b(xm) = 0$$
+	implies that $I \subseteq \Ann{bm}$.
+	Hence by maximality, $\Ann{bm} = I$.
+	Therefore $a \in I$ implies that $I$ is prime, as desired.
+\end{proof}
+\end{thm}
 
 \begin{thm}
   Let $A$ be a ring and $I$ an ideal that is maximal amongst all infinitely generated ideals in $A$.  Prove that $I$ is prime.
   
   \begin{proof}
-    Suppose to the contrary there exist elements $a$ and $b$ of $A$ with $a,b \not \in I$, but $ab \in I$.
+    Suppose to the contrary that there exist elements $a$ and $b$ of $A$ with $a,b \not \in I$, but $ab \in I$.
     Let $\mathfrak{a} = (a) + I$ and observe that, since $I$ is maximal, this ideal must be finitely generated, say $\mathfrak{a} = (g_1, g_2, \ldots, g_n)$, where $g_i = a_ia + x_i$ with $a_i \in A$ and $x_i \in I$.
    % It is easy to see that this reduces to the ideal $\mathfrak{a} = (a, x_1, \ldots, x_n)$.
     
