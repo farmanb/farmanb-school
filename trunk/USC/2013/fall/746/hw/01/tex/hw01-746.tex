@@ -1,0 +1,183 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath,mathtools,tikz-cd}
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 746:\\Homework 01}
+\date{September 18, 2013}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+\maketitle
+
+\providecommand{\p}{\mathfrak{p}}
+\providecommand{\m}{\mathfrak{m}}
+
+\newtheorem{thm}{}
+\newtheorem{lem}{Lemma}
+\newtheorem{prop}{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}
+
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\nil}[1]{\operatorname{nil}{\left(#1\right)}}
+%\newcommand{\rad}[1]{\operatorname{rad}{\left(#1\right)}}
+
+\begin{thm}
+  Let $A$ be a ring, and $I \subseteq \nil{A}$ be an ideal made up of nilpotent elements; if $a \in A$ maps to a unit of $A / I$, then $a$ is a unit of $A$.
+
+  \begin{proof}
+    Assume that $a \in A$ is such that $a + I \in (A/I)^\times$.
+    For some $b \in A$ we have
+    $$(a + I)(b + I) = ab + I = 1 + I,$$
+    and so $ab - 1 \in I$.
+    Since $I \subseteq \nil{A}$, it follows that $(ab - 1) + 1 = ab \in A^\times$.
+    Hence for some $u \in A^\times$ be such that
+    $$1 = (ab)u = a(bu) = (au)b.$$
+    Therefore  $a, b \in A^\times$, as desired.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Let $A_1, A_2, \ldots, A_n$ be rings; then the prime ideals of $A_1 \times A_2 \times \ldots \times A_n$ are of the form
+  $$A_1 \times \ldots \times A_{i-1} \times P_i \times A_{i+1} \times \ldots \times A_n,$$
+  where $P_i$ is a prime ideal of $A_i$.
+
+  \begin{proof}
+    Let $P_i$ be a prime ideal in $A_i$.
+    If any $(a_1, \ldots, a_n)$ and $(b_1, \ldots, b_n)$ in $A_1 \times \ldots \times A_n$ are such that
+    $$(a_1b_1, \ldots, a_nb_n) \in A_1 \times \ldots \times A_{i-1} \times P_i \times A_{i+1} \times \ldots \times A_n,$$
+    then $a_ib_i \in P_i$ implies one of $a_i$ or $b_i$ must be an element of $P_i$.
+    Thus one of $(a_1, \ldots, a_n)$ or $(b_1, \ldots, b_n)$ must be an element of $A_1 \times \ldots \times A_{i-1} \times P_i \times A_{i+1} \times \ldots \times A_n$.
+    
+    Conversely, assume that $P$ is a prime ideal of $A_1 \times \ldots \times A_n$.
+    Let $e_i = (0, \ldots, 0, 1, 0, \ldots, 0)$ for $i = 1, \ldots, n$.
+    Observe that $(e_1, \ldots, e_n) = R$, so for some $i$, $e_i \not \in P$.
+    However, since $P$ is prime, for any $j \neq i$ we have that $e_ie_j = 0 \in P$ implies $e_j \in P$.
+    Hence 
+    $$P = \pi_1(P) \times \ldots \times \pi_n(P) = A_1 \times \ldots \times \pi_i(P) \times \ldots \times A_n.$$
+    
+    Suppose $a_i, b_i \in A_i$ are such that $a_ib_i \in \pi_i(P)$.
+    Then there exist elements $(a_1, \ldots, a_n)$ and $(b_1, \ldots, b_n)$ of $A_1 \times \ldots \times A_n$ such that
+    $$\pi_i(a_1, \ldots, a_n) = a\ \text{and}\ \pi_i(b_1, \ldots, b_n) = b.$$
+    Since $P$ is prime and $(a_1, \ldots, a_n)(b_1, \ldots, b_n) \in P$, it follows that one of $(a_1, \ldots, a_n) \in P$ or $(b_1, \ldots, b_n) \in P$ holds.
+    Hence one of $a_i \in \pi_i(P)$ or $b_i \in \pi_i(P)$ holds, and $\pi_i(P)$ is a prime ideal of $A_i$, as desired.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Let $A,B$ be rings, and $f \colon A \rightarrow B$ a surjective homomorphism.
+  \begin{enumerate}[(a)]
+  \item
+    Prove that $f(\rad{A}) \subseteq \rad{B}$, and construct an example where the inclusion is strict.
+  \item
+    Prove that if $A$ is a semilocal ring, then $f(\rad{A}) = \rad{B}$.
+  \end{enumerate}
+
+  \begin{proof}
+    \begin{enumerate}[(a)]
+    \item
+      Since $f$ is surjective, we have $f(1) = 1$.
+      For $x \in \rad{A}$ and $b \in B$, let $a \in A$ be such that $f(a) = b$.
+      Then
+      $$1 + f(x)b = f(1 + ax)$$
+      is invertible in $B = f(A)$ with
+      $$\left(1 + f(x)b\right)^{-1} = f(1 + ax)^{-1} = f\left( (1 + ax)^{-1}\right).$$
+      Hence $f(x) \in \rad{B}$.
+      Therefore $f(\rad{A}) \subseteq \rad{B}$.
+
+      Take the canonical projection, $\pi \colon \Z \twoheadrightarrow \Z/4\Z$.
+      Then
+      $$\rad{\Z} = \left\{x \in \Z \;\middle\vert\; \forall a \in \Z, 1 + ax = 1\right\} = (0),$$
+      and so $f(\rad{\Z}) = (0) \subset (2) = \rad{\Z/4\Z}$, the only two ideals of $\Z/4\Z$.
+    \end{enumerate}
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Let $A$ be an integral domain.
+  Then $A$ is a U.F.D. if and only if every irreducible element is prime and the principle ideals of $A$ satisfy the ascending chain condition (equivalently, every non-empty family of principle ideals has a maximal element).
+
+  \begin{proof}
+    Assume that $A$ is a U.F.D.
+    Let $p \in A$ be irreducible and assume that $ab \in (p)$.
+    By unique factorization and the fact that $p$ is irreducible, it follows that, up to a unit, $p$ divides either $a$ or $b$, and so $p$ is prime.
+    Let $(a_1) \subseteq (a_2) \subseteq \ldots$ be an ascending chain of principal ideals.
+    Since $A$ is a U.F.D., there exist finitely many (not necessarily distinct) primes such that $a_1 = p_1 \cdots p_n$.
+    Observe that for each $k$, $a_k$ divides $a_1$ and so it follows that, up to units, each $a_k$ has as its factorization, some subcollection of the primes $p_1, \ldots, p_n$.
+    Since there are only finitely many such combinations, it follows that the chain must stabilize.
+    
+    Conversely, assume that every irreducible of $A$ is prime and the principle ideals of $A$ satisfy the ascending chain condition.
+    We first show that every non-zero, non-unit $a \in A$ can be written as a product of a finite number of irreducibles.
+    If $a$ is irreducible, then we are done, so suppose this is not the case.
+    Then there exist two non-units $a_1, b_1 \in A$ such that $a = a_1b_1$.
+    If both are irreducible, then we are done, so suppose that $a_1$ is not irreducible.
+    Then there exist two non-units $a_2, b_2$ in $A$ with $a_1 = a_2b_2$.
+    Continuing in this fashion, with $a_k$ reducible at each step, we obtain an ascending chain of ideals
+    $$(a) \subseteq (a_1) \subseteq (a_2) \subseteq (a_3) \subseteq \ldots$$
+    which stabilizes by assumption, and we are done.
+    
+    For uniqueness of factorization, suppose $a = p_1 p_2 \cdots p_n = q_1 q_2 \cdots q_m$ are two factorizations of $a$ into irreducibles.
+    By assumption, each $p_i$ is prime, hence 
+    $$a = q_1(q_2 \cdots q_m) = p_1(p_2 \cdots p_n) \in (p_1)$$
+    implies that either $q_1 \in (p_1)$ or $(q_2 \cdots q_m) \in (p_1)$.
+    If the former, then since both are irreducibles, we have $q_1 = p_1$.
+    Otherwise, since $p_1$ divides $q_2 \cdots q_m$ and $q_2, \ldots, q_m$ are all irreducibles, we see that for some $1 \leq i \leq m$, $q_i = p_1$.
+    Hence we may relabel accordingly so that $q_1 = p_1$, and thus
+    $$p_2 \cdots p_n = q_2 \cdots q_m.$$
+    Continuing in this way, we eliminite the $q_i$ by the same argument, mutatis mutandis, to see that $p_i = q_i$ and $m = n$.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Let $\left\{P_\lambda\right\}_{\lambda \in \Lambda}$ be a non-empty family of prime ideals, and suppose that the $P_\lambda$ are totally ordered by inclusion; then $\cap P_\lambda$ is a prime ideal.
+  Also, if $I$ is any proper ideal, the set of prime ideals containing $I$ has a minimal element.
+
+  \begin{proof}
+    Let $P = \cap P_\lambda$.
+    Suppose to the contrary that $ab \in P$ and $a, b \not \in P$.
+    Let $\lambda_a$ and $\lambda_b$ be the smallest indices such that $a \in P_{\lambda_a}$ and $b \in P_{\lambda_b}$.
+    Necessarily there exists some $\lambda < \lambda_a, \lambda_b$ of $\Lambda$ such that $a,b \not \in P_\lambda$.
+    However, $ab \in P_\lambda$ implies $a \in P_\lambda$ or $b \in P_\lambda$, a contradiction.
+    
+    Let $S = \left\{\wp \subseteq A \;\middle\vert\; \wp\ \text{prime},\, I \subseteq \wp\right\}$ ordered under reverse inclusion.
+    For any totally ordered subset of $S$,
+    $$\wp_1 \supseteq \wp_2 \supseteq \ldots$$
+    we have by the previous part that $\wp = \cap_{n \in \N}{\wp_n} \supseteq I$ is prime and hence is an upper bound for the chain.
+    Therefore by Zorn's Lemma, $S$ has a maximal element, which is a minimal prime containing $I$.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Let $A$ be a ring, $I$, $P_1$, \ldots, $P_r$ ideals of $A$, and suppose that $P_3, \ldots, P_r$ are prime, and that $I$ is not contained in any of the $P_i$, then there exists an element $x \in I$ not contained in any $P_i$.
+
+  \begin{proof}
+    We proceed by induction on $r$.
+    When $r = 1$, the conclusion holds by hypothesis.
+    When $r = 2$, choose $x \in I \setminus P_1$ and $y \in I \setminus P_2$.
+    Suppose $x \in P_2$ and $y \in P_1$.
+    Since $y = (x + y) - x$ and $x = (x + y) - y$, it follows that $x + y \not \in P_1 \cup P_2$.
+    Hence one of $x$, $y$, or $x + y$ is not an element of either $P_1$ or $P_2$.
+    
+    Assume the result holds up to $r > 2$.
+    If $P_i \subseteq P_r$ for some $i < r$, then replace $P_i$ by $P_r$.
+    By induction, there exists 
+    $$x \in I \setminus (P_1 \cup \ldots \cup P_{i-1} \cup P_r \cup P_{i + 1} \cup \ldots \cup P_{r-1}) = I \setminus (P_1 \cup \ldots \cup P_{r}).$$
+    Hence we may assume $P_i \not \subseteq P_r$ holds for each $1 \leq i < r$.
+    Since $P_r$ is prime, it follows that $IP_1 P_2 \cdots P_{r - 1} \not \subseteq P_r$; 
+    namely for $x_0 \in I \setminus P_r$ and $x_i \in P_i \setminus P_r \neq \emptyset$, $1 \leq i < r$, we have
+    $$y = x_0 x_1 x_2 \cdots x_{r-1} \in (I P_1 P_2 \cdots P_{r-1}) \setminus P_r.$$
+    By induction, there exists an element $x \in I \setminus (P_1 \cup \ldots \cup P_{r-1})$.
+    Suppose that $x \in P_r$.
+    Then $(x + y) \in P_r$ implies $y = (x + y) - x \in P_r$ and $(x + y) \in P_1 \cup \ldots \cup P_{r-1}$ implies $x = (x + y) - x \in P_1 \cup \ldots \cup P_{r-1}$, both of which are absurd.
+    Therefore either $x$ or $x + y$ is an element of $I \setminus (P_1 \cup \ldots \cup P_r)$.
+%    If $x \in P_r$, then we note that $x + y \not \in P_r$, for otherwise we arrive at the contradiction
+%    $$y = (x + y) - x \in P_r.$$
+%    Furthermore, $x + y \not \in P_i$ holds for all $i$, for otherwise we arrive at the contradiction
+%    $$x = (x + y) - y \in P_i.$$
+ 
+  \end{proof}
+\end{thm}
+
+\end{document}
