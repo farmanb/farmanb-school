@@ -1,9 +1,9 @@
 \documentclass[10pt]{amsart}
-\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath,mathtools,mymath}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath,mathtools}
 \openup 5pt
 \author{Blake Farman\\University of South Carolina}
-\title{Math 746:\\Homework 01}
-\date{September 6, 2013}
+\title{Math 746:\\Homework 02}
+\date{October 10, 2013}
 \pdfpagewidth 8.5in
 \pdfpageheight 11in
 \usepackage[margin=1in]{geometry}
@@ -13,24 +13,25 @@
 
 \providecommand{\p}{\mathfrak{p}}
 \providecommand{\m}{\mathfrak{m}}
+\providecommand{\Ann}[1]{\operatorname{Ann}\left(#1\right)}
 \newtheorem{thm}{}
 \newtheorem{lem}{Lemma}
 
 \begin{thm}
-  Let $A$ be a ring and $M$ an $A$-module.
-  Let $I$ be an ideal of $A$ that is maximal amongst all annihilators of non-zero elements of $M$.
-  Prove that $I$ is a prime ideal.
+	Let $A$ be a ring and $M$ an $A$-module.
+	Let $I$ be an ideal of $A$ that is maximal amongst all annihilators of non-zero elements of $M$.
+	Prove that $I$ is a prime ideal.
 
-  \begin{proof}
-    There exists, by hypothesis, an element $m \in M$ such that $I = \Ann{m}$.
-    Suppose that for some $a, b \in A$ that $ab \in I$.
-    Assume that $b \not \in I$, so that $bm \neq 0$ and $a \in \Ann{bm}$.
-    Observe that if $x \in I$, then
-    $$x(bm) = (xb)m = (bx)m = b(xm) = 0$$
-    implies that $I \subseteq \Ann{bm}$.
-    Hence by maximality, $\Ann{bm} = I$.
-    Therefore $a \in I$ implies that $I$ is prime, as desired.
-  \end{proof}
+\begin{proof}
+	There exists, by hypothesis, an element $m \in M$ such that $I = \Ann{m}$.
+	Suppose that for some $a, b \in A$ that $ab \in I$.
+	Assume that $b \not \in I$, so that $bm \neq 0$ and $a \in \Ann{bm}$.
+	Observe that if $x \in I$, then
+		$$x(bm) = (xb)m = (bx)m = b(xm) = 0$$
+	implies that $I \subseteq \Ann{bm}$.
+	Hence by maximality, $\Ann{bm} = I$.
+	Therefore $a \in I$ implies that $I$ is prime, as desired.
+\end{proof}
 \end{thm}
 
 \begin{thm}
@@ -39,9 +40,9 @@
   \begin{proof}
     Suppose to the contrary that there exist elements $a$ and $b$ of $A$ with $a,b \not \in I$, but $ab \in I$.
     Let $\mathfrak{a} = (a) + I$ and observe that, since $I$ is maximal, this ideal must be finitely generated, say $\mathfrak{a} = (g_1, g_2, \ldots, g_n)$, where $g_i = a_ia + x_i$ with $a_i \in A$ and $x_i \in I$.
-    % It is easy to see that this reduces to the ideal $\mathfrak{a} = (a, x_1, \ldots, x_n)$.
+   % It is easy to see that this reduces to the ideal $\mathfrak{a} = (a, x_1, \ldots, x_n)$.
     
-    Define the set $\mathfrak{b} = \left\{ y \in A \;\middle\vert\; ay \in I \right\}$.
+    Define the set $\mathfrak{b} = \left\{y \in A \;\middle\vert\; ay \in I \right\}$.
     Observe that for $y, y^\prime \in \mathfrak{b}$ we have 
     $$a(y - y^\prime) = ay - ay^\prime \in I$$ 
     so that $\mathfrak{b}$ is a subgroup of $A$, and for any $a^\prime \in A$, 
@@ -55,7 +56,7 @@
     Let $x \in I \subset \mathfrak{a}$ be given and write 
     $$x = c_1g_1 + \ldots + c_ng_n  = c_1(a_1a + x_1) + \ldots + c_n(a_na + x_n) = (c_1a_1 + \ldots c_na_n)a + c_1x_1 + \ldots c_nx_n$$% = a^\prime a + c_1x_1 + \ldots c_nx_n$$ 
     for some $c_1, \ldots, c_n \in A$.
-    % It follows that $a^\prime a \in I$ and so $a^\prime \in \mathfrak{b}$.
+   % It follows that $a^\prime a \in I$ and so $a^\prime \in \mathfrak{b}$.
     It follows that $(c_1a_1 + \ldots + c_na_n)a \in I$ and so $(c_1a_1 + \ldots + c_na_n) \in \mathfrak{b}$.
     Hence we may rewrite $x$ as 
     $$x = a(d_1y_1 + \ldots + d_my_m) + c_1x_1 + \ldots c_nx_n \in \mathfrak{c}$$
@@ -67,47 +68,48 @@
 \end{thm}
 
 \begin{thm}
-  In a ring $A$, let $I$ be an ideal which is maximal amongst non-principal ideals.
-  Prove that $I$ is a prime ideal.
-  
-  \begin{proof}
-    Suppose to the contrary that $ab \in I$, but $a,b \not \in I$.
-    Let $\mathfrak{a} = (a) + I$.
-    By maximality, it follows that there exists some $\alpha \in A$ with $\mathfrak{a} = (\alpha)$.
-    Let $\mathfrak{b} = \left\{x \in A \;\middle\vert\; x\alpha \in I \right\}$.
-    Observe that if $x, x^\prime \in \mathfrak{b}$ and $y \in A$, then
-    $$\alpha(x - x^\prime) = \alpha x - \alpha x^\prime \in I$$
-    implies $(x - x^\prime) \in\mathfrak{b}$ and    
-    $$\alpha(yx) = y(\alpha x) \in I$$
-    establishes that $\mathfrak{b}$ is an ideal of $A$ containing both $b$ and $I$.
-    Hence by maximality, there exists some $\beta \in A$ with $\mathfrak{b} = (\beta)$.
-    
-    Consider the ideal $\mathfrak{c} = (\alpha\beta)$ contained in $I$.
-    For $x \in I \subset \mathfrak{a}$ we have $x = s\alpha$ for some $s \in A$.
-    But then we have $s \in \mathfrak{b}$, from which it follows that, for some $t \in A$,
-    $$x = (t\beta)\alpha = t(\alpha\beta) \in \mathfrak{c}.$$
-    Hence $I = \mathfrak{c}$, contrary to the assumption that $I$ is not principal.
-    Therefore one of $a, b \in I$ must hold and so $I$ is prime.
-%    Since $I \subset \mathfrak{a}$, it follows from maximality that $\mathfrak{a} = (a^\prime a + i)$ for some $i \in I$ and some $a^\prime \in A$.
+	In a ring A, let I be an ideal which is maximal amongst non-principal ideals. 
+	Prove that I is prime ideal.
 
-%    Let $\mathfrak{b} = \left\{x \in A \;\middle\vert\; ax \in I\right\}$, which is an ideal containing $I$.
-%    The containment is strict since $b \in \mathfrak{b}$, so there exists by maximality some $\beta \in A$ with $\mathfrak{b} = (\beta)$.
-%    Consider the ideal $\mathfrak{c} = (a\beta)$.
-%    Since $a \beta \in I$ we observe that $\mathfrak{c} \subseteq I$.
-%    Let $x \in I \subset a$ and write
-%    $$x = (a^\prime a + i)s = (a^\prime s)a + is$$ 
-%    for some $c \in A$.
-%    It then follows that $a^\prime s = x - is\in \mathfrak{b}$, so we can write $a^\prime s = t\beta$.
-%    But also, $I \subseteq \mathfrak{b}$ implies that $i = r\beta$.
-%    Hence $x = (t\beta)a + (r\beta)s = $
-  \end{proof}
+	\begin{proof}
+		Suppose to the contrary that $a, b \in A$ are such that $ab \in I$ but $a,b \not \in I$.
+		Let $\mathfrak{a} = (a) + I$.
+		Since $\mathfrak{a}$ properly contains $I$, it follows that there exists an $\alpha \in A$ with $\mathfrak{a} = (\alpha)$.
+		Let $\mathfrak{b} = \left\{x \in A \;\middle\vert\; x\alpha \in I\right\}$.
+		Observe that $\mathfrak{b}$ is an ideal of $A$ containing $b$ and $I$, hence $\mathfrak{b}$ properly contians $I$ and so there exists some $\beta \in A$ with $\mathfrak{b} = (\beta)$.
+
+		Let $\mathfrak{c} = (\alpha \beta)$  and note that $\mathfrak{c} \subseteq I$.
+		Let $x \in I$ be given and write $x = a^\prime \alpha$ for some $a^\prime \in A$.
+		Then it follows that $a^\prime \in \mathfrak{b}$, so for some $c \in A$ we have 
+		$$x = (c\beta)\alpha = c(\alpha \beta) \in \mathfrak{c}.$$
+		Hence $I \subseteq \mathfrak{c}$, contrary to the assumption that $I$ is not principal.
+		Therefore one of $a \in I$ or $b \in I$ must hold and $I$ is prime, as desired.
+	\end{proof}
 \end{thm}
 
 \begin{thm}
-  In a ring $A$, let $I$ be an ideal which is maximal amongst ideals that are not countably generated.
-  Prove that $I$ is a prime ideal.
-  
-  \begin{proof}
-  \end{proof}
+	In a ring A, let I be an ideal which is maximal amongst ideals that are not countably generated. 
+	Prove that I is prime ideal.
+
+\begin{proof}
+	Suppose to the contrary that $a, b \in A$ are such that $ab \in I$ but $a,b \not \in I$.
+	Let $\mathfrak{a} = (a) + I$.
+	Since $\mathfrak{a}$ properly contains $I$, it follows that there exists a countable set of generators $\{g_n\}_{n \in \N}$ with $g_n = a_n a + x_n$ with $a_n \in A$ and $x_n \in I$.
+	Let $\mathfrak{b} = \left\{x \in A \;\middle\vert\; ax \in I\right\}$.
+	Observe that $\mathfrak{b}$ is an ideal of $A$ containing $b$ and $I$, hence $\mathfrak{b}$ properly contains $I$ and so there exist countably many generators $\{y_n\}_{n \in \N}$
+
+	Let $\mathfrak{c}$ be the ideal of $A$ generated by the set $\{ay_n\}_{n \in N} \cup \{x_n\}_{n \in \N}$ and note that $\mathfrak{c} \subseteq I$.
+	Let $x \in I$ be given and write 
+	$$x = \sum_{n \in \N} c_ng_n = a\sum_{n \in \N}a_nc_n + \sum_{n \in \N}c_n x_n$$
+	where $c_n \in A$ and $c_n = 0$ for all but finitely many $n \in \N$.
+	Then it follows that $\sum_{n \in \N} a_n c_n \in \mathfrak{b}$, so we have
+	$$\sum_{n \in \N} a_n c_n = \sum_{n \in N} d_n y_n$$
+	where $d_n \in A$ and $d_n = 0$ for all but finitely many $n \in N$.
+	Hence
+	$$x =  a\sum_{n \in \N}d_n y_n + \sum_{n \in \N}c_n x_n \in \mathfrak{c}$$
+	implies that $I \subseteq \mathfrak{c}$, which contradicts the assumption that $I$ is not finitely generated.
+	Therefore one of $a \in I$ or $b \in I$ hold and $I$ is prime, as desired.
+\end{proof}
 \end{thm}
+
 \end{document}
