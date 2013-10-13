@@ -1,0 +1,103 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath,mathtools,tikz-cd}
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 747:\\Homework 03}
+\date{September 27, 2013}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+\maketitle
+
+\providecommand{\p}{\mathfrak{p}}
+\providecommand{\m}{\mathfrak{m}}
+
+\newtheorem{thm}{}
+\newtheorem{lem}{Lemma}
+\newtheorem{prop}{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[thm]
+
+\newcommand{\A}{\mathbb{A}}
+
+\begin{thm}
+  Let $X = \C/(\Z + i\Z)$, $Y = \C$, and 
+  \begin{align*}
+    q \colon Y & \rightarrow X\\
+    z & \mapsto z \pmod{\Z + i\Z},
+  \end{align*}
+  the quotient map.
+  
+  Consider the following curve in $X$
+  \begin{align*}
+    u \colon [0,1] & \rightarrow X\\
+    t & \mapsto t \pmod{\Z + i\Z}.
+  \end{align*}
+  Construct a lifting $\tilde{u} \colon [0,1] \rightarrow Y$ of $u$ with $\tilde{u}(0) = 0$.
+  What is $\tilde{u}(1)$?
+
+  \begin{proof}
+    Define the map
+    \begin{align*}
+      \tilde{u} \colon [0,1] & \rightarrow Y\\
+      t & \mapsto t.
+    \end{align*}
+    Observe that $\tilde{u}$ is continuous and $q \circ \tilde{u}(t) = q(t) = t \pmod{\Z + i\Z} = u(t)$.
+    Therefore $\tilde{u}$ is a lifting of $u$ and $\tilde{u}(1) = 1$.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Let $X = \C/(\Z + i\Z)$, $Y = \C$, and 
+  \begin{align*}
+    p \colon Y & \rightarrow X\\
+    z & \mapsto 2 \cdot z \pmod{\Z + i\Z},
+  \end{align*}
+  the multiplication by $2$ map.
+  
+  Consider the following curve in $X$
+  \begin{align*}
+    u \colon [0,1] & \rightarrow X\\
+    t & \mapsto t \cdot i \pmod{\Z + i\Z}.
+  \end{align*}
+  Construct a lifting $\tilde{u} \colon [0,1] \rightarrow Y$ of $u$ with $\tilde{u}(0) = 0$.
+  What is $\tilde{u}(1)$?
+  
+  \begin{proof}
+    Define the map
+    \begin{align*}
+      \tilde{u} \colon [0,1] & \rightarrow Y\\
+      t & \mapsto \frac{1}{2}it.
+    \end{align*}
+    Observe that $\tilde{u}$ is continuous and 
+    $$p \circ \tilde{u}(t) = p\left(\frac{1}{2}it\right) = it \pmod{\Z + i\Z} = u(t).$$
+    Therefore $\tilde{u}$ is a lifting of $u$ and $\tilde{u}(1) = \frac{1}{2}i$.
+    
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Read Theorem 4.10 in Forster.
+  Assume the maps $p$ and $q$ satisfy the curve lifting property.
+  Use Problems 1 and 2 to prove that $\pi_1(X, 0)$ is non-trivial.
+  
+  Guess what group $\pi_1(X, 0)$ is.
+  Can you prove your guess is correct?
+  
+  \begin{proof}
+    Observe that the curves from (1) and (2) are both closed loops about $0 \pmod{\Z + i\Z}$ since $1, i \in \Z + i\Z$.
+    Suppose to the contrary that $H \colon [0,1] \times [0,1] \rightarrow X$ is a homotopy with $u_0 = H(t,0)$ the curve from (1) and $u_1 = H(t,1)$ the curve from (2).
+    Since $q$ has the curve lifting property, we note that each curve $u_s(t) = H(t,s)$ lifts to $\tilde{u}_s \colon [0,1] \rightarrow Y$.
+    Now since we have a lift $u_1$ to 
+    \begin{align*}
+      \tilde{u}_1 \colon [0,1] & \rightarrow Y\\
+      t & \mapsto t \cdot i
+    \end{align*}
+    since $q \circ \tilde{u}_1(t) = q(ti) = t \cdot i \pmod{\Z + i\Z} = u_1(t)$, and this is lift is unique, this must be the lift given by the lifting property.
+    However, $u_0(1) = 1 \neq i = u_1(1)$, contrary to Theorem 4.10.
+    Therefore no such homotopy exists and the fundamental group of $X$ is not trivial.
+  \end{proof}
+\end{thm}
+\end{document}
