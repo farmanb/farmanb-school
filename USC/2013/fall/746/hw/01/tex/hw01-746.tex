@@ -34,14 +34,14 @@
     $$(a + I)(b + I) = ab + I = 1 + I,$$
     and so $ab - 1 \in I$.
     Since $I \subseteq \nil{A}$, it follows that $(ab - 1) + 1 = ab \in A^\times$.
-    Hence for some $u \in A^\times$ be such that
-    $$1 = (ab)u = a(bu) = (au)b.$$
-    Therefore  $a, b \in A^\times$, as desired.
+    Hence there exists some $u \in A^\times$ such that
+    $$1 = (ab)u = a(bu).$$
+    Therefore  $a \in A^\times$, as desired.
   \end{proof}
 \end{thm}
 
 \begin{thm}
-  Let $A_1, A_2, \ldots, A_n$ be rings; then the prime ideals of $A_1 \times A_2 \times \ldots \times A_n$ are of the form
+  Let $A_1, A_2, \ldots, A_n$ be rings; then the prime ideals of $A = A_1 \times A_2 \times \ldots \times A_n$ are of the form
   $$A_1 \times \ldots \times A_{i-1} \times P_i \times A_{i+1} \times \ldots \times A_n,$$
   where $P_i$ is a prime ideal of $A_i$.
 
@@ -53,16 +53,20 @@
     Thus one of $(a_1, \ldots, a_n)$ or $(b_1, \ldots, b_n)$ must be an element of $A_1 \times \ldots \times A_{i-1} \times P_i \times A_{i+1} \times \ldots \times A_n$.
     
     Conversely, assume that $P$ is a prime ideal of $A_1 \times \ldots \times A_n$.
-    Let $e_i = (0, \ldots, 0, 1, 0, \ldots, 0)$ for $i = 1, \ldots, n$.
-    Observe that $(e_1, \ldots, e_n) = R$, so for some $i$, $e_i \not \in P$.
+    Let $e_i = (0, \ldots, 0, 1, 0, \ldots, 0)$ for $1 \leq i \leq n$.
+    Note that $(e_1, \ldots, e_n) = A$ and so $e_i \not \in P$ for some $i$.
     However, since $P$ is prime, for any $j \neq i$ we have that $e_ie_j = 0 \in P$ implies $e_j \in P$.
-    Hence 
-    $$P = \pi_1(P) \times \ldots \times \pi_n(P) = A_1 \times \ldots \times \pi_i(P) \times \ldots \times A_n.$$
+    Now observe that if $\pi_i : A \rightarrow A_i$ is the usual projection, then $P \subseteq A_1 \times \ldots \times A_{i-1} \times \pi_i(P_i) \times A_{i+1} \times \ldots \times A_n$.
+    To see the reverse inclusion, let $a = (a_1, \ldots, a_n) \in A_1 \times \ldots \times A_{i-1} \times \pi_i(P_i) \times A_{i+1} \times \ldots \times A_n$ be given.
+    There exists some element $a^\prime \in P$ with $\pi_i(a^\prime) = a_i$ and so from the fact that $P$ is an ideal, we have
+    $$a = ae_1 + \ldots + a^\prime e_i + \ldots + a e_n \in P,$$
+    whence 
+    $$A_1 \times \ldots \times A_{i-1} \times P_i \times A_{i+1} \times \ldots \times A_n \subseteq P.$$
     
-    Suppose $a_i, b_i \in A_i$ are such that $a_ib_i \in \pi_i(P)$.
-    Then there exist elements $(a_1, \ldots, a_n)$ and $(b_1, \ldots, b_n)$ of $A_1 \times \ldots \times A_n$ such that
-    $$\pi_i(a_1, \ldots, a_n) = a\ \text{and}\ \pi_i(b_1, \ldots, b_n) = b.$$
-    Since $P$ is prime and $(a_1, \ldots, a_n)(b_1, \ldots, b_n) \in P$, it follows that one of $(a_1, \ldots, a_n) \in P$ or $(b_1, \ldots, b_n) \in P$ holds.
+    To see that $\pi_i(P)$ is a prime ideal, suppose $a_i, b_i \in A_i$ are such that $a_ib_i \in \pi_i(P)$.
+    Then the elements $(0, \ldots, a_i, \ldots, 0)$ and $(0, \ldots, b_i, \ldots, 0)$ of $A_1 \times \ldots \times A_n$ are such that
+    $$\pi_i(0, \ldots, a_i, \ldots, 0) = a_i\ \text{and}\ \pi_i(0, \ldots, b_i, \ldots, 0) = b_i.$$
+    Since $P$ is prime and $(0, \ldots, a_ib_i, \ldots, 0) \in P$, it follows that one of $(0, \ldots, a_i, \ldots, 0) \in P$ or $(0, \ldots, b_i, \ldots, 0) \in P$ holds.
     Hence one of $a_i \in \pi_i(P)$ or $b_i \in \pi_i(P)$ holds, and $\pi_i(P)$ is a prime ideal of $A_i$, as desired.
   \end{proof}
 \end{thm}
@@ -91,7 +95,7 @@
       Take the canonical projection, $\pi \colon \Z \twoheadrightarrow \Z/4\Z$.
       Then
       $$\rad{\Z} = \left\{x \in \Z \;\middle\vert\; \forall a \in \Z, 1 + ax = 1\right\} = (0),$$
-      and so $f(\rad{\Z}) = (0) \subset (2) = \rad{\Z/4\Z}$, the only two ideals of $\Z/4\Z$.
+      and so $f(\rad{\Z}) = (0) \subset (2) = \rad{\Z/4\Z}$, since these are the only two ideals of $\Z/4\Z$.
     \end{enumerate}
   \end{proof}
 \end{thm}
@@ -124,7 +128,7 @@
     $$a = q_1(q_2 \cdots q_m) = p_1(p_2 \cdots p_n) \in (p_1)$$
     implies that either $q_1 \in (p_1)$ or $(q_2 \cdots q_m) \in (p_1)$.
     If the former, then since both are irreducibles, we have $q_1 = p_1$.
-    Otherwise, since $p_1$ divides $q_2 \cdots q_m$ and $q_2, \ldots, q_m$ are all irreducibles, we see that for some $1 \leq i \leq m$, $q_i = p_1$.
+    Otherwise, since $p_1$ divides $q_2 \cdots q_m$ and $q_2, \ldots, q_m$ are all irreducibles, we see that for some $2 \leq i \leq m$, $q_i = p_1$.
     Hence we may relabel accordingly so that $q_1 = p_1$, and thus
     $$p_2 \cdots p_n = q_2 \cdots q_m.$$
     Continuing in this way, we eliminite the $q_i$ by the same argument, mutatis mutandis, to see that $p_i = q_i$ and $m = n$.
