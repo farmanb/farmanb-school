@@ -96,6 +96,31 @@
 \end{thm}
 
 \begin{thm}\label{ex3}
+  Calculate the Legendre symbols $\left(\frac{30}{71}\right)$ and $\left(\frac{-56}{103}\right)$.
+
+  \begin{proof}
+    Observe that $30 = 2\cdot 3 \cdot 5$  and $71$ is prime.
+    Then 
+    \begin{eqnarray*}
+      \left(\frac{30}{71}\right) &=& \left(\frac{2}{71}\right)\left(\frac{3}{71}\right)\left(\frac{5}{71}\right)\\
+      &=& -\left(\frac{2}{71}\right)\left(\frac{71}{3}\right)\left(\frac{71}{5}\right) \\
+      &=& -\left(\frac{2}{71}\right)\left(\frac{2}{3}\right)\left(\frac{1}{5}\right)\\
+      &=& -\left(\frac{2}{71}\right)(-1)(1)\\
+      &=& 1
+      \end{eqnarray*}
+    since $12^2 = 144 = 71(2) + 2$.
+    
+    Observe that $-56 \equiv 47 \pmod{103}$ so we have
+    \begin{eqnarray*}
+      \left(\frac{-56}{103}\right) &=& \left(\frac{47}{103}\right)\\
+      &=& -\left(\frac{103}{47}\right)\\
+      &=& -\left(\frac{9}{47}\right)\\
+      &=& -1
+    \end{eqnarray*}
+    since $9 = 3^2$.
+  \end{proof}
+\end{thm}
+\begin{thm}\label{ex4}
   Let $p$ denote a prime.
   Prove that there is a solution to $x^2 - 3x + 3 \equiv 0 \pmod{p}$ if and only if $p = 3$ or $p \equiv 1 \pmod{3}$.
 
@@ -111,6 +136,46 @@
     $$\left(\frac{-3}{p}\right) = \left(\frac{-1}{p}\right)\left(\frac{3}{p}\right) = -\left(\frac{-1}{p}\right)\left(\frac{p}{3}\right) = \left(\frac{p}{3}\right).$$
     Hence $x^2 - 3x + 3$ has a root modulo $p$ if and only if $p$ is a quadratic residue modulo $3$.
     Therefore, since $1$ is the only non-zero square modulo $3$, it follows directly that $x^2 - 3x + 3$ has a root modulo $p$ if and only if $p = 3$ or $p \equiv 1 \pmod{3}$.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Prove that for every prime $p$, there is an $a \in \{1,2,\ldots,9\}$ such that both $a$ and $a + 1$ are squares modulo $p$.
+
+  \begin{proof}
+    If $p = 2$, then $1 = 1^2$ and $1 + 1 = 2 \equiv 0 \equiv 0^2 \pmod{p}$.
+    Assume $p$ is odd.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  \begin{enumerate}[(a)]
+  \item
+    For every odd prime $p$, prove either $\left(\frac{-1}{p}\right) = 1$, $\left(\frac{2}{p}\right) = 1$, or $\left(\frac{-2}{p}\right) = 1$.
+  \item
+    Prove that $x^4 + 1$ is reducible modulo $p$ for every prime $p$.
+  \end{enumerate}
+
+  \begin{proof}
+    \begin{enumerate}[(a)]
+    \item
+      If $p \equiv 1 \pmod{4}$, then $\left(\frac{-1}{p}\right) = 1$.
+      Suppose $p \equiv 3 \pmod{4}$.
+      Either $p \equiv \pm 1 \pmod{8}$ or $p \equiv \pm 3 \pmod{8}$.
+      If the former holds, then
+      $$\left(\frac{2}{p}\right) = 1.$$
+      If the latter holds, then
+      $$\left(\frac{-2}{p}\right) = \left(\frac{-1}{p}\right)\left(\frac{2}{p}\right) = (-1)(-1) = 1.$$
+    \item
+      If $p = 2$, then 
+        $$x^4 + 1 = x^4 + 1^4 \equiv (x + 1)^4 \pmod{2}.$$
+        If $p$ is odd, observe that $p^2 - 1$ is divisible by 8 since $p \equiv 1, 3, 5, 7 \pmod{8}$ and $1^2 \equiv 3^2 \equiv 5^2 \equiv 7^2 \equiv 1 \pmod{8}$.
+        Let $p^2 - 1 = 8k$ for some integer $k$.
+        Consider the polynomial $x^{p^2 - 1} - 1$.
+        Writing $X = x^8$, it follows from $x^{p^2 - 1} - 1 = X^k - 1 = (X - 1)(X^{k - 1} + X^{k - 2} + \ldots + 1)$ that $x^8 - 1 = (x^4 + 1)(x^4 - 1)$ divides the polynomial $x^{p^2 - 1} - 1$, which in turn divides $x^{p^2} - x$.
+        Regarding $\F_{p^2}$ as the splitting field of the latter polynomial, it follows that all the roots of $x^4 + 1$ lie in $\F_{p^2}$ and so have degree at most $2$ over $\F_p$.
+        Therefore $x^4 + 1$ cannot be irreducible modulo $p$.
+    \end{enumerate}
   \end{proof}
 \end{thm}
 \end{document}
