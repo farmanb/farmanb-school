@@ -1,0 +1,171 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath,mathtools,tikz-cd}
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 747:\\Homework 03}
+\date{September 27, 2013}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+\maketitle
+
+\providecommand{\p}{\mathfrak{p}}
+\providecommand{\m}{\mathfrak{m}}
+
+\newtheorem{thm}{}
+\newtheorem{lem}{Lemma}
+\newtheorem{prop}{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[thm]
+
+\newcommand{\A}{\mathbb{A}}
+
+\begin{thm}
+  Let $X = \C \setminus \left\{ \pm 1\right\}$, $Y = \C \setminus \left\{\pi/2 + k\pi \;\middle\vert\; k \in \Z\right\}$.
+  Show that 
+  $$\sin \colon Y \rightarrow X$$
+  is a topological covering map.
+  Consider the following curves in $X$
+  \begin{align*}
+    u \colon [0,1] &\rightarrow X\\
+    t &\mapsto 1 - e^{i2\pi t}
+  \end{align*}
+  and
+  \begin{align*}
+    v \colon [0,1] &\rightarrow X\\
+    t &\mapsto -1 + e^{i2\pi t}
+  \end{align*} 
+  Let $w_1 \colon [0,1] \rightarrow Y$ be the lifting of $u \cdot v$ with $w_1(0) = 0$ and $w_2 \colon [0,1] \rightarrow Y$ be teh lifting of $v \cdot u$ with $w_2(0) = 0$.
+  Show that
+  \begin{align*}
+    w_1(1) &= 2\pi\\
+    w_2(1) &= -2\pi.
+  \end{align*}
+  Conclude that $\pi_1(X)$ is not abelian.
+
+  \begin{proof}
+    First observe that if $z_1, z_2 \in Y$ are such that $sin(z_1) = sin(z_2)$, then we obtain 
+    $$e^{iz_1} - e^{iz_2} = -\frac{e^{iz_1} - e^{iz_2}}{e^{i(z_1 + z_2)}},$$
+    from which it follows that either $e^{i(z_1 + z_2)} = -1$ or $e^{iz_1} = e^{iz_2}$.
+    In the first case it follows that $\Re{z_1} = (2k + 1) - \Re{z_2}$ for some $k \in \Z$ and $\Im{z_1} = -\Im{z_2}$.
+    In the second case $\Re{z_1} = \Re{z_2} + 2k\pi$ for some $k \in \Z$.
+    
+    Since $\frac{d}{dz} \sin(z) = \cos(z)$ does not vanish on $Y$, it follows that $\sin$ is a local homeomorphism.
+    Fix $y \in Y$ and let $x = \sin(y)$.
+    Since $\sin$ is a local homeomorphism, there exist neighbourhoods $U$ of $X$ and $V_0$ of $y$ with $\sin(V_0) = U$.
+    Letting $V_k = V_0 + 2k\pi$ and $V_k^\prime = (2k + 1) - V_0$, we have by the observation above that
+    $$\sin^{-1}(U) = \coprod_{k \in \Z} \left( V_k \cup V_k^\prime \right).$$
+    Therefore $\sin$ is a covering map, as desired.
+
+    For $z \in Y$, write $z = x + iy$ and so with some routine algebra we can rewrite $\sin(z)$ as
+    \begin{equation}\label{1.1}
+      \sin(z) = \frac{e^{iz} - e^{-iz}}{2i} = \sin(x)\cosh(y) + i\cos(x)\sinh(y).
+    \end{equation}
+    Consider the vertical strips of width $\pi/2$
+    $S_1 = \left\{y \in Y \;\middle\vert\; 0 \leq \Re{y} \leq \pi/2 \right\}$, 
+    $S_2 = \left\{y \in Y \;\middle\vert\; \pi/2 \leq \Re{y} \leq \pi \right\}$, 
+    $S_3 = \left\{y \in Y \;\middle\vert\; \pi \leq \Re{y} \leq 3\pi/2 \right\}$, and 
+    $S_4 = \left\{y \in Y \;\middle\vert\; 3\pi/2 \leq \Re{y} \leq 2\pi \right\}$. 
+    Let $S_i^+ = \left\{y \in S_i \;\middle\vert\; \Im{y} \geq 0\right\}$ and $S_i^- = \left\{y \in S_i \;\middle\vert\; \Im{y} \leq 0 \right\}$ for $1 \leq i \leq 4$.
+    By \eqref{1.1} we see that the quadrant into which $\sin$ maps an element of $Y$ is determined by the sign of $\sin(x)$ and the sign of $y\cos(x)$.
+    It is then easy to see that $\sin$ maps each of these half strips to the following quadrants in the usual Cartesian plane
+    $$\begin{array}{|c|c|c|c|c|c|c|c|c|}
+      \hline
+      \text{Set} & S_1^+ & S_2^+ & S_3^+ & S_4^+ & S_1^- & S_2^- & S_3^- & S_4^-\\
+      \hline
+      \text{Quadrant under}\ \sin & 1 & 4 & 3 & 2 & 4 & 1 & 2 & 3\\
+      \hline
+    \end{array}$$
+    By the fact that $\sin$ is $2\pi$-periodic, the translates of these sets by $2k\pi$ tesselate the plane.
+    We then observe that the curves $u \cdot v$ and $v \cdot u$ pass through the quadrants in the following order
+    $$u \cdot v \colon 4 \rightarrow 1 \rightarrow 2 \rightarrow 3\ \text{and}\ v \cdot u \colon 2 \rightarrow 3 \rightarrow 4 \rightarrow 1.$$
+    Since $w_1$ and $w_2$ are lifts, $\sin \circ w_1$ and $\sin \circ w_2$ must also pass through the quadrants in the same order.
+    Note the only real-valued points in the images of $\sin \circ w_1$ and $\sin \circ w_2$ are $1$, $0$, and $-2$ and that $\sin$ is real-valued for all $y \in Y$ with $\Im{y} = 0$.
+    Since all points at which $\sin$ takes on $1$ have been deleted from $Y$, it follows that $w_1$, $w_2$ can only possibly cross the line $\left\{y \in Y \;\middle\vert\; \Im{y} = 0\right\}$ at points $y = k\pi$, $k \in \Z$.
+    
+    With this observation, and given that $w_1, w_2$ are continuous with $w_1(0) = w_2(0) = 0$, it is then clear that $w_1$ must pass through the vertical strips
+    $$w_1 \colon S_1^- \rightarrow S_2^- \rightarrow S_3^- \rightarrow S_4^-$$
+    and $w_2$ must pass through the vertical strips
+    $$w_2 \colon S_4^+ - 2\pi \rightarrow S_3^+ - 2\pi \rightarrow S_2^+ - 2\pi \rightarrow S_1^+ - 2\pi$$
+    Now it's clear that the only point of $S_4^-$ for which $\sin$ vanishes is $2\pi$, so it follows that $w_1(1) = 2\pi$.
+    Similarly, the only point of $S_1^+ - 2\pi$ for which $\sin$ vanishes is $-2\pi$, and so $w_2(1) = -2\pi$.
+    Therefore by Thereom 4.10, $u \cdot v \neq v \cdot u$ and so $\pi_1(X)$ is not abelian.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Let $X$ and $Y$ be arcwise connected Hausdorff topological spaces and $f \colon Y \rightarrow X$ be a covering map.
+  Show that the induced map 
+  $$f_* \colon \pi_1(Y) \rightarrow \pi_1(X)$$
+  is injective.
+
+  \begin{proof}
+    Let $u \colon [0,1] \rightarrow Y$ be a curve representing an element of $\ker f_*$.
+    Then for some $x \in X$ we have that $f \circ u \sim u_x$, where $u_x$ is the constant curve at $x$ and by Theorem 4.10 this homotopy lifts.
+    We note that by the uniqueness of lifts, it follows that the lift of $f \circ u$ is $u$ itself.
+    From the homotopy, we see that there exists some element $y \in Y$ with $f(y) = x$, so again by uniqueness of lifts, we see that $\tilde{u}_x$ is just the constant curve at $y$.
+    Therefore $u$ is null-homotopic, and $f_*$ is injective, as desired.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Let $X$ and $Y$ be Hausdorff spaces and $p \colon Y \rightarrow X$ be a covering map.
+  Let $Z$ be a connected, locally arcwise connected topological space and $f \colon Z \rightarrow X$ a continuous map.
+  Let $c \in Z$, $a = f(c)$, and $b \in Y$ such that $p(b) = a$.
+  Prove that there exists a lifting $\tilde{f} \colon Z \rightarrow Y$ of $f$ with $\tilde{f}(c) = b$ if and only if $f_*\pi_1(Z, c) \subset p_*\pi_1(Y,b)$.
+
+  \begin{proof}
+    Assume that $\tilde{f}$ is a lift.
+    This induces a map $\tilde{f}_* \colon \pi_1(Z,c) \rightarrow \pi_1(Y,b)$.
+    We note that since $\tilde{f}$ is a lift, then
+    $$p \circ (\tilde{f} \circ u) = (p \circ \tilde{f}) \circ u = f \circ u$$
+    gives the commutative diagram
+    \begin{center}
+      \begin{tikzcd}
+        \pi_1(Z, c) \arrow{r}{\tilde{f}_*} \arrow[swap]{rd}{f_*}& \pi_1(Y,b)\arrow{d}{p_*}\\
+        & \pi_1(X,a)
+      \end{tikzcd}
+    \end{center}
+    and so by injectivity from the previous problem, we obtain $f_*\pi_1(Z, c) \subset p_*\pi_1(Y,b)$.
+    
+    Conversely, assume that $f_*\pi_1(Z, c) \subset p_*\pi_1(Y,b)$.
+    Fix $z \in Z$ and choose a path $\gamma \colon [0,1] \rightarrow Z$ with $\gamma(0) = c$ and $\gamma(1) = z$.
+    Since $p$ is a covering map, there exists a lift $\widetilde{f \circ \gamma}$ of $f \circ \gamma$.
+    Define 
+    \begin{align*}
+      \tilde{f} \colon Z & \rightarrow Y\\
+      z & \mapsto \widetilde{f \circ \gamma}(1).
+    \end{align*}
+    Once we have shown that this map is well defined, we will have the commutative diagram, as sets,
+    \begin{center}
+      \begin{tikzcd}
+        Z \arrow{r}{\tilde{f}} \arrow[swap]{rd}{f}& Y\arrow{d}{p}\\
+        & X
+      \end{tikzcd}
+    \end{center}
+    Towards that end, let $\eta$ be any other path from $c$ to $z$.
+    Then $\gamma \cdot \eta^-$ is a closed curve based at $c$, so $f \circ \gamma \cdot \eta^-$ is a closed curve based at $a$.
+    By assumption this lifts to a closed curve based at $b$, $\widetilde{f \circ \gamma \cdot \eta^-}$.
+    Using uniqueness, it follows that this lift is precisely $\widetilde{f \circ \gamma} \cdot \widetilde{f \circ \eta^-}$ and taking $\eta = \gamma$, it follows that $\widetilde{f \circ \gamma}^- = \widetilde{f \circ \gamma^-}$.
+    Hence we have 
+    $$\widetilde{f \circ \gamma}(1) = \widetilde{f \circ \gamma} \cdot \widetilde{f \circ \eta^-}\left(\frac{1}{2}\right) = \widetilde{f \circ \eta^-}(0) = \widetilde{f \circ \eta}(1),$$
+    as desired.
+
+    To see that $\tilde{f}$ is continuous, let $U \subseteq Y$ be open.
+    Fix $y \in U \cap \tilde{f}(Z)$ and let $y = f(z)$.
+    Since $p$ is a local homeomorphism, there exists an open neighbourhood $U_y \subseteq U$ of $y$ with $p\mid_{U_y} \colon U_y \rightarrow p(U_y)$ a homeomorphism.
+    Let $\varphi \colon p(U_y) \rightarrow U_y$ be its inverse and let $V = f^{-1}(p(U_y))$, which is open because $f$ is continuous.
+    By construction, we have
+    $$\tilde{f}(V) = \varphi \circ f(V) = U_y$$
+    and so $z \in V \subseteq \tilde{f}^{-1}(U_y)$.
+    Since $y$ was arbitrary, we have 
+    $$\tilde{f}^{-1}(U) = \tilde{f}^{-1}\left(\bigcup_{y \in U \cap \tilde{f}(Z)} U_y\right) = \bigcup_{y \in U \cap \tilde{f}(Z)} f^{-1}(U_y).$$
+    Therefore $\tilde{f}$ is continuous, as desired.
+    %$$p \circ \tilde{f}(V) = f(V) = p(U_y).$$
+    %Hence $U_y = \varphi \circ p(U_y) = \varphi \circ (p \circ \tilde{f}(V)) = \tilde{f}(V)$ implies that $z \in V \subseteq \tilde{f}^{-1}(U_y)$, and thus $\tilde{f}^{-1}(U_y)$ is open.
+    
+  \end{proof}
+\end{thm}
+\end{document}
