@@ -1,0 +1,84 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath,mathtools,tikz-cd}
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 747:\\Homework 08}
+\date{September 25, 2013}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+\maketitle
+
+\providecommand{\p}{\mathfrak{p}}
+\providecommand{\m}{\mathfrak{m}}
+
+\newtheorem{thm}{}
+\newtheorem{lem}{Lemma}
+\newtheorem{prop}{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[thm]
+
+\newcommand{\A}{\mathbb{A}}
+
+\begin{thm}
+  \begin{enumerate}[(a)]
+  \item
+    Show that $\tan(\C) = \mathbb{P}^1 \setminus \{\pm i\}$ and
+    $$\tan \colon \C \rightarrow \mathbb{P}^1 \setminus \{\pm i\}$$
+    is a covering map.
+  \item
+    Let $X = \C \setminus \left\{it \;\middle\vert\; t \in \R,\, \abs{t} \geq 1\right\}$.
+    Show that for $k \in \Z$ there exists a unique holomorphic $\arctan_k \colon X \rightarrow \C$ with
+    $$\tan \circ \arctan_k = \operatorname{id}_X$$
+    and
+    $$\arctan_k(0) = k$$
+    (the $k^\text{th}$ branch of $\arctan$).
+  \end{enumerate}
+  
+  \begin{proof}
+    \begin{enumerate}[(a)]
+    \item
+      To see that $\tan(\C) = \mathbb{P}^1$, first write
+      \begin{equation}\label{1.1}
+        \tan{z} = \frac{\sin{z}}{\cos{z}} = \frac{e^{iz} - e^{-iz}}{e^{iz} + e^{-iz}} = -i\frac{e^{i2z} - 1}{e^{i2z} + 1}.
+      \end{equation}
+      Observe that we may then rewrite $\tan$ as the composition
+      $$z \mapsto e^{i2z} \mapsto \frac{e^{i2z} - 1}{e^{i2z} + 1} \mapsto -i\left(\frac{e^{i2z} - 1}{e^{i2z} + 1}\right).$$
+      Then since the map
+      \begin{align*}
+        \C\setminus\{-1,0\} &\rightarrow \C\setminus\{\pm 1\}\\
+        z &\mapsto \frac{z - 1}{z + 1}
+      \end{align*}
+      is a bijection, with inverse $z \mapsto \frac{z + 1}{1 - z}$ it follows that $\tan(\C) = \mathbb{P}^1 \setminus \{\pm i\}$.
+      
+      Suppose $\tan(z_1) = \tan(z_2)$.
+      Using \eqref{1.1}, some routine algebra yields 
+      $$e^{i2z_1} - e^{i2z_2} = -(e^{i2z_1} - e^{i2z_2}),$$
+      whence $e^{i2z_1} = e^{i2z_2}$ implies $z_1 = z_2 + \pi$.
+      For a point $y \in \mathbb{P}^1 \setminus \{\pm i\}$, choose a point $x \in \tan^{-1}(y)$.
+      Using the fact that $\tan$ is a local homeomorphism, there exist neighbourhoods $V_0$ of $x$ and $U$ of $y$ with $\tan \colon V_0 \rightarrow U$ a homeomorphism.
+      Letting $V_k = V_0 + k\pi$ we have
+      $$\tan^{-1}(U) = \coprod_{k \in \Z} V_k.$$
+      Therefore $\tan$ is a covering map, as desired.
+    \item
+      Regard $\mathbb{P}^1$ as $\C \cup \{\infty\}$.
+      Fix $k \in \Z$ and let 
+      $$S_k = \left\{z \in \C \;\middle\vert\; \Re{z} = \pi/2 + k\pi\right\} \setminus \{\pi/2 + k\pi\}.$$
+      For $s = (\pi/2 + k\pi) + iy \in S_k$ we have
+      $$\tan(s) = -i\frac{-e^{-2y} - 1}{-e^{-2y} + 1} = i \frac{e^{2y} + 1}{e^{2y} - 1} \in X.$$
+      Fix $k\pi \in \C$ and note that $\operatorname{id}_X(0) = 0 = \tan(k\pi)$.
+      Observe that $X$ is simply connected so by Theorem 4.17 there exists a unique lift of $\operatorname{id}_X \colon X \rightarrow \mathbb{P}^1$
+      \begin{center}
+        \begin{tikzcd}
+          X \arrow[dotted]{r}{\tilde{\operatorname{id}}_X} \arrow[swap]{rd}{\operatorname{id}_X} & \C \arrow{d}{\tan}\\
+          & \mathbb{P}^1
+        \end{tikzcd}
+      \end{center}
+      with $\tilde{\operatorname{id}_X}(0) = k\pi$.
+      Since $\tilde{\operatorname{id}}_X \circ \tan = \operatorname{id}_X$, take $\arctan_k = \tilde{\operatorname{id}}_X$.
+    \end{enumerate}
+  \end{proof}
+\end{thm}
+\end{document}
