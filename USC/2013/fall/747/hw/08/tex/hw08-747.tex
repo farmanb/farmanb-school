@@ -65,11 +65,15 @@
     \item
       Regard $\mathbb{P}^1$ as $\C \cup \{\infty\}$.
       Fix $k \in \Z$ and let 
-      $$S_k = \left\{z \in \C \;\middle\vert\; \Re{z} = \pi/2 + k\pi\right\} \setminus \{\pi/2 + k\pi\}.$$
-      For $s = (\pi/2 + k\pi) + iy \in S_k$ we have
-      $$\tan(s) = -i\frac{-e^{-2y} - 1}{-e^{-2y} + 1} = i \frac{e^{2y} + 1}{e^{2y} - 1} \in X.$$
-      Fix $k\pi \in \C$ and note that $\operatorname{id}_X(0) = 0 = \tan(k\pi)$.
-      Observe that $X$ is simply connected so by Theorem 4.17 there exists a unique lift of $\operatorname{id}_X \colon X \rightarrow \mathbb{P}^1$
+      $$L_k = \left\{z \in \C \;\middle\vert\; \Re{z} = \pi/2 + k\pi\right\} \setminus \{\pi/2 + k\pi\}.$$
+      For $z = (\pi/2 + k\pi) + iy \in L_k$ we have
+      $$\tan(s) = -i\frac{-e^{-2y} - 1}{-e^{-2y} + 1} = i \frac{e^{2y} + 1}{e^{2y} - 1} \in \left\{it \;\middle\vert\; t \in \R,\, \abs{t} \geq 1\right\}$$
+      and these are the only such points of $\C$.
+      Let
+      $$S_k = \left\{z \in \C \;\middle\vert\; -\pi/2 + k\pi < \Re{z} < \pi/2 + k\pi\right\},$$
+      so by the observation above $\tan \mid_{S_k} \colon S_k \rightarrow X$.
+      Note that $\operatorname{id}_X(0) = 0 = \tan(k\pi)$ and that $X$ is simply connected.
+      By Theorem 4.17 there exists a unique lift of $\operatorname{id}_X \colon X \rightarrow \mathbb{P}^1$
       \begin{center}
         \begin{tikzcd}
           X \arrow[dotted]{r}{\tilde{\operatorname{id}}_X} \arrow[swap]{rd}{\operatorname{id}_X} & \C \arrow{d}{\tan}\\
@@ -80,5 +84,35 @@
       Since $\tilde{\operatorname{id}}_X \circ \tan = \operatorname{id}_X$, take $\arctan_k = \tilde{\operatorname{id}}_X$.
     \end{enumerate}
   \end{proof}
+\end{thm}
+
+\begin{thm}
+\end{thm}
+
+\begin{thm}
+    Consider the following polynomials:
+    \begin{align*}
+        x^3 + x + t,\, &x^3 - x + t\\
+        x^3 + tx + 1,\, &x^3 - 2tx + t\\
+        x^3 - x - t,\, &x^3 + t^2x - t^3.
+    \end{align*}
+    If $f(x,y) \in \C[x,t]$ is one of these polynomials, then define
+    $$X = \left\{ (x,t) \in \C^2 \;\middle\vert\; f(x,t) = 0\right\}$$
+    and
+    \begin{align*}
+        p \colon X &\rightarrow \C\\
+        (x,t) & \mapsto t.
+    \end{align*}
+    For at least two of the polynomials, answer the following questions:
+    \begin{enumerate}
+        \item
+	Is $X$ a Riemann surface?
+	(Note: You can assume $X$ is connected.  Why does this make the problem easier?)
+        \item
+	If $X$ is a Riemann surface, compute the ramification points of $p$?
+    \end{enumerate}
+
+    \begin{proof}
+    \end{proof}
 \end{thm}
 \end{document}
