@@ -92,6 +92,15 @@
   $$\Deck{\C/\Gamma \xrightarrow{f} \C/\Gamma^\prime} \cong \Gamma^\prime / \alpha\Gamma.$$
 
   \begin{proof}
+    By Exercise 1.5, $f$ is induced by $F$ and the commutativity of the diagram follows.
+    Suppose $\beta \in \C^\times$ is such that $\beta\Gamma \subseteq \Gamma^\prime$ so that we have the commutative diagram
+    \begin{center}
+      \begin{tikzcd}
+        \C \arrow[swap]{d}{\pi} \arrow{r}{G} & \C \arrow{d}{\pi^\prime}\\
+        \C/\Gamma \arrow{r}{g} & \C/\Gamma^\prime
+      \end{tikzcd}
+    \end{center}
+    with $G(z) = \beta z$ and $g$ is induced in the same way by $G$.
   \end{proof}
 \end{thm}
 \end{document}
