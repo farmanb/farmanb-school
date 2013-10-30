@@ -1,0 +1,97 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath,mathtools,tikz-cd}
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 747:\\Homework 08}
+\date{September 25, 2013}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+\maketitle
+
+\providecommand{\p}{\mathfrak{p}}
+\providecommand{\m}{\mathfrak{m}}
+
+\newtheorem{thm}{}
+\newtheorem{lem}{Lemma}
+\newtheorem{prop}{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[thm]
+
+\newcommand{\A}{\mathbb{A}}
+
+\begin{thm}
+  Let $X = \C \setminus \{\pm 1\}$ and $Y = \C \setminus \left\{\pi/2 + k\pi  \;\middle\vert\; k \in \Z \right\}$.
+  Prove that $\Deck{Y \xrightarrow{\sin} X}$ consists of the following transformations
+  \begin{enumerate}[(i)]
+  \item
+    $f_k(z) = z + 2k\pi, k \in \Z$,
+  \item
+    $g_k(z) = -z + (2k + 1)\pi, k \in \Z$.
+  \end{enumerate}
+  Calculate the products $f_k \circ f_\ell$, $f_k \circ g_\ell$, $g_l \circ f_k$, $g_k \circ g_\ell$.
+
+  \begin{proof}
+    By Exercise 4.1 it is clear that $\left\{f_k \;\middle\vert\; k \in \Z \right\} \cup \left\{g_k \;\middle\vert\; k \in \Z \right\} \subseteq \Deck{Y \xrightarrow{\sin} X}$.
+    To see the reverse inclusion, let $f \in \Deck{Y \xrightarrow{\sin} X}$ be given.
+    From the commutative diagram
+    \begin{center}
+      \begin{tikzcd}
+        Y \arrow{r}{f} \arrow[swap]{rd}{\sin} & Y\arrow{d}{\sin}\\
+        & X
+      \end{tikzcd}
+    \end{center}
+    it follows that
+    $$e^{if(z)} - e^{iz} = -\frac{e^{if(z)} - e^{iz}}{e^{i(f(z) + z)}},$$
+    from which it follows that either $e^{i(f(z) + z)} = -1$ or $e^{if(z)} = e^{iz}$.
+    In the first case it follows that
+    $$f(z) = (2k + 1)\pi - z = g_k(z)$$
+    for some $k \in \Z$.
+    In the second case, we obtain 
+    $$f(z) = z + 2k\pi = f_k(z)$$
+    for some $k \in \Z$.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Determine the covering transformations of
+  $$\tan \colon \C \rightarrow \mathbb{P}^1 \setminus \{\pm i\}.$$
+  
+  \begin{proof}
+    From Exercise 4.4 it is clear that $\left\{ z \mapsto z + k\pi \;\middle\vert\; k \in \Z \right\} \subseteq \Deck{\C \xrightarrow{\tan} \mathbb{P}^1 \setminus \{\pm i\}}$.
+    To see the reverse inclusion, let $f \in \Deck{\C \xrightarrow{\tan} \mathbb{P}^1 \setminus \{\pm i\}}$ be given.
+    From the commutative diagram
+    \begin{center}
+      \begin{tikzcd}
+        \C \arrow{r}{f} \arrow[swap]{rd}{\tan} & \C\arrow{d}{\tan}\\
+        & \mathbb{P}^1 \setminus \{\pm i\}
+      \end{tikzcd}
+    \end{center}
+    it follows that
+    $$e^{i2f(z)} - e^{i2z} = -(e^{i2f(z)} - e^{i2z}),$$
+    whence $e^{i2f(z)} = e^{i2z}$.
+    Therefore $f(z) = z + \pi$.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Let $\Gamma$, $\Gamma^\prime \subset \C$ be lattices and let
+  $$f \colon \C / \Gamma \rightarrow \C / \Gamma^\prime$$
+  be a non-constant holomorphic map with $f(0) = 0$.
+  Show that there exists a unique $\alpha \in \C^\times$ such that $\alpha\Gamma \subset \Gamma^\prime$ and the following diagram is commutative
+  \begin{center}
+    \begin{tikzcd}
+      \C \arrow[swap]{d}{\pi} \arrow{r}{F} & \C \arrow{d}{\pi^\prime}\\
+      \C/\Gamma \arrow{r}{f} & \C/\Gamma^\prime
+    \end{tikzcd}
+  \end{center}
+  where $F(z) = \alpha z$, and $\pi$ and $\pi^\prime$ are the canonical projections.
+  Prove that $f$ is an unbranched covering map and
+  $$\Deck{\C/\Gamma \xrightarrow{f} \C/\Gamma^\prime} \cong \Gamma^\prime / \alpha\Gamma.$$
+
+  \begin{proof}
+  \end{proof}
+\end{thm}
+\end{document}

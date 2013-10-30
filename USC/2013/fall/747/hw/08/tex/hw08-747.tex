@@ -87,32 +87,60 @@
 \end{thm}
 
 \begin{thm}
+  Explain the main result of Galois theory for finite Galois extensions.
+  
+  \begin{proof}
+    Given a Galois extension $K/F$ there is an inclusion reversing bijection between the subfields of $K$ containing $F$ and the subgroups of $\Gal{K/F}$.
+  \end{proof}
 \end{thm}
 
 \begin{thm}
-    Consider the following polynomials:
-    \begin{align*}
-        x^3 + x + t,\, &x^3 - x + t\\
-        x^3 + tx + 1,\, &x^3 - 2tx + t\\
-        x^3 - x - t,\, &x^3 + t^2x - t^3.
-    \end{align*}
-    If $f(x,y) \in \C[x,t]$ is one of these polynomials, then define
-    $$X = \left\{ (x,t) \in \C^2 \;\middle\vert\; f(x,t) = 0\right\}$$
-    and
-    \begin{align*}
-        p \colon X &\rightarrow \C\\
-        (x,t) & \mapsto t.
-    \end{align*}
-    For at least two of the polynomials, answer the following questions:
-    \begin{enumerate}
-        \item
-	Is $X$ a Riemann surface?
-	(Note: You can assume $X$ is connected.  Why does this make the problem easier?)
-        \item
-	If $X$ is a Riemann surface, compute the ramification points of $p$?
-    \end{enumerate}
+  Consider the following polynomials:
+  \begin{align*}
+    x^3 + x + t,\, &x^3 - x + t\\
+    x^3 + tx + 1,\, &x^3 - 2tx + t\\
+    x^3 - x - t,\, &x^3 + t^2x - t^3.
+  \end{align*}
+  If $f(x,y) \in \C[x,t]$ is one of these polynomials, then define
+  $$X = \left\{ (x,t) \in \C^2 \;\middle\vert\; f(x,t) = 0\right\}$$
+  and
+  \begin{align*}
+    p \colon X &\rightarrow \C\\
+    (x,t) & \mapsto t.
+  \end{align*}
+  For at least two of the polynomials, answer the following questions:
+  \begin{enumerate}
+  \item
+    Is $X$ a Riemann surface?
+    (Note: You can assume $X$ is connected.  Why does this make the problem easier?)
+  \item
+    If $X$ is a Riemann surface, compute the ramification points of $p$?
+  \end{enumerate}
 
-    \begin{proof}
-    \end{proof}
+  \begin{proof}
+    \begin{enumerate}
+    \item
+      Let $f(x,t) = x^3 + x + t$ and $g(x,t) = x^3 - x + t$.
+      Assuming that $X$ is connected, we note that $\frac{\partial{f}}{\partial t}(x,t) = \frac{\partial{g}}{\partial t}(x,t) = 1$, and so $f$ and $g$ are both Riemann surfaces by using the charts produced by the IFT.
+    \item
+      Consider $x^3 + x + t$ and
+      $$\frac{\partial{f}}{\partial x}(x,t) = 3x^2 + 1$$
+      which has roots $x = \pm i/\sqrt{3}$.
+      When $x \neq \pm i/\sqrt{3}$, there exists a holomorphic $g$ produced by the IFT which gives a local inverse of $p$, $t \mapsto (g(t), t)$.
+      When $x = \pm i/\sqrt{3}$ we find that
+      $$t = \pm\frac{2i}{3\sqrt{3}},$$
+      and observe that $x^3 + x \pm 2i/3\sqrt{3}$ both have a double root.
+      These are the branch points 
+
+      Consider $x^3 - x + t$ and
+      $$\frac{\partial{f}}{\partial x}(x,t) = 3x^2 - 1$$
+      which has roots $x = \pm 1/\sqrt{3}$.
+      When $x \neq \pm 1/\sqrt{3}$, there exists a holomorphic $g$ produced by the IFT which gives a local inverse of $p$, $t \mapsto (g(t), t)$.
+      When $x = \pm 1/\sqrt{3}$ we find that
+      $$t = \pm\frac{4}{3\sqrt{3}},$$
+      and observe that $x^3 + x \pm 4/3\sqrt{3}$ both have a double root.
+      These are the branch points 
+    \end{enumerate}
+  \end{proof}
 \end{thm}
 \end{document}
