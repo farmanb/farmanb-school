@@ -107,15 +107,15 @@
       \end{tikzcd}
     \end{center}
     with $\tilde{\pi}^\prime(0) = 0$.
-    ****Something needs to be said about why $\tilde{\pi}^\prime = \pi$****
-    Hence $f \circ \pi$ is a covering map, and so by the universal property induces $F \colon \C \rightarrow \C$ such that the diagram
+    By the universal property $\tilde{\pi}^\prime$ factors through $\pi$, so there exists an automorphism $G \colon \C \rightarrow \C$ such that the diagram
     \begin{center}
       \begin{tikzcd}
-        \C \arrow[swap]{d}{\pi} \arrow{r}{F} & \C \arrow{d}{\pi^\prime}\\
+        \C \arrow[swap]{d}{\pi} & \arrow{l}{G}\C \arrow{d}{\pi^\prime}\\
         \C/\Gamma \arrow{r}{f} & \C/\Gamma^\prime
       \end{tikzcd}
     \end{center}
     commutes.
+    Take $F = G^{-1}$.
 
   \end{proof}
 \end{thm}
