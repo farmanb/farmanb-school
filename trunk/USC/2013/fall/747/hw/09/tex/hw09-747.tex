@@ -92,15 +92,31 @@
   $$\Deck{\C/\Gamma \xrightarrow{f} \C/\Gamma^\prime} \cong \Gamma^\prime / \alpha\Gamma.$$
 
   \begin{proof}
-    By Exercise 1.5, $f$ is induced by $F$ and the commutativity of the diagram follows.
-    Suppose $\beta \in \C^\times$ is such that $\beta\Gamma \subseteq \Gamma^\prime$ so that we have the commutative diagram
+    Note that the proof from Forster that a torus is a Riemann surface gives that $\pi$, $\pi^\prime$ are both covering maps.
+    Since $\C$ is simply connected, we may regard $\C \xrightarrow{\pi} \C/\Gamma$ and $\C \xrightarrow{\pi^\prime} \C/\Gamma^\prime$ as universal covers.
+    %Since $f$ is holomorphic, it is a local homeomorphism.
+    %Fix a point $y \in \C/\Gamma^\prime$ and let $x \in \C/\Gamma$ be such that $f(x) = y$.
+    %Chooise neighbourhoods $U \subseteq \C/\Gamma^\prime$ of $y$ and $V_0 \subseteq \C/\Gamma$ of $x$ such that $f \mid_{V_0} \colon V_0 \rightarrow U$ is a homeomorphism.
+    %Then it follows that 
+    %$$f^{-1}(U) = \coprod_{\gamma \in \Gamma} V_0 + \gamma.$$
+    Since $\C$ is simply connected and $f$ is a local homeomorphism (as it is holomorphic), we have by Theorem 4.17 the following lift
     \begin{center}
       \begin{tikzcd}
-        \C \arrow[swap]{d}{\pi} \arrow{r}{G} & \C \arrow{d}{\pi^\prime}\\
-        \C/\Gamma \arrow{r}{g} & \C/\Gamma^\prime
+        \C \arrow[dotted]{r}{\tilde{\pi}^\prime} \arrow[swap]{rd}{\pi^\prime} & \C / \Gamma \arrow{d}{f}\\
+         & \C/\Gamma^\prime
       \end{tikzcd}
     \end{center}
-    with $G(z) = \beta z$ and $g$ is induced in the same way by $G$.
+    with $\tilde{\pi}^\prime(0) = 0$.
+    ****Something needs to be said about why $\tilde{\pi}^\prime = \pi$****
+    Hence $f \circ \pi$ is a covering map, and so by the universal property induces $F \colon \C \rightarrow \C$ such that the diagram
+    \begin{center}
+      \begin{tikzcd}
+        \C \arrow[swap]{d}{\pi} \arrow{r}{F} & \C \arrow{d}{\pi^\prime}\\
+        \C/\Gamma \arrow{r}{f} & \C/\Gamma^\prime
+      \end{tikzcd}
+    \end{center}
+    commutes.
+
   \end{proof}
 \end{thm}
 \end{document}
