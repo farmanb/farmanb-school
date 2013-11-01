@@ -52,6 +52,18 @@
     In the second case, we obtain 
     $$f(z) = z + 2k\pi = f_k(z)$$
     for some $k \in \Z$.
+
+    For the products we have
+    \begin{enumerate}[(i)]
+    \item
+      $f_k \circ f_\ell(z) = z + 2k\pi + 2\ell\pi = z + 2(k + \ell)\pi = f_{k + \ell}(z)$, 
+    \item
+      $f_k \circ g_\ell(z) =  (2\ell + 1)\pi - z + 2k\pi = (2(k + \ell) + 1)\pi - z = g_{\ell + k}(z)$,
+    \item
+      $g_l \circ f_k(z) = (2\ell + 1)\pi - z - 2k\pi = (2(\ell - k) + 1)\pi - z = g_{\ell - k}(z)$,
+    \item
+      $g_k \circ g_\ell(z) = (2k + 1)\pi - 2(\ell + 1)\pi + z = 2(k - \ell)\pi + z = f_{k - \ell}(z)$.
+    \end{enumerate}
   \end{proof}
 \end{thm}
 
@@ -92,31 +104,41 @@
   $$\Deck{\C/\Gamma \xrightarrow{f} \C/\Gamma^\prime} \cong \Gamma^\prime / \alpha\Gamma.$$
 
   \begin{proof}
-    Note that the proof from Forster that a torus is a Riemann surface gives that $\pi$, $\pi^\prime$ are both covering maps.
-    Since $\C$ is simply connected, we may regard $\C \xrightarrow{\pi} \C/\Gamma$ and $\C \xrightarrow{\pi^\prime} \C/\Gamma^\prime$ as universal covers.
-    %Since $f$ is holomorphic, it is a local homeomorphism.
-    %Fix a point $y \in \C/\Gamma^\prime$ and let $x \in \C/\Gamma$ be such that $f(x) = y$.
-    %Chooise neighbourhoods $U \subseteq \C/\Gamma^\prime$ of $y$ and $V_0 \subseteq \C/\Gamma$ of $x$ such that $f \mid_{V_0} \colon V_0 \rightarrow U$ is a homeomorphism.
-    %Then it follows that 
-    %$$f^{-1}(U) = \coprod_{\gamma \in \Gamma} V_0 + \gamma.$$
-    Since $\C$ is simply connected and $f$ is a local homeomorphism (as it is holomorphic), we have by Theorem 4.17 the following lift
+    Regard $\C \xrightarrow{\pi} \C/\Gamma$ and $\C \xrightarrow{\pi^\prime} \C/\Gamma^\prime$ as covering maps.
+    Since $\C$ is simply connected and $\pi^\prime$ is a covering map, we have by Theorem 4.17 the following lift
     \begin{center}
       \begin{tikzcd}
-        \C \arrow[dotted]{r}{\tilde{\pi}^\prime} \arrow[swap]{rd}{\pi^\prime} & \C / \Gamma \arrow{d}{f}\\
+        \C \arrow[dotted]{r}{\exists ! F} \arrow[swap]{rd}{f \circ \pi} & \C \arrow{d}{\pi^\prime}\\
          & \C/\Gamma^\prime
       \end{tikzcd}
     \end{center}
-    with $\tilde{\pi}^\prime(0) = 0$.
-    By the universal property $\tilde{\pi}^\prime$ factors through $\pi$, so there exists an automorphism $G \colon \C \rightarrow \C$ such that the diagram
+    with $F(0) = 0$.
+    This gives the commutative diagram
     \begin{center}
       \begin{tikzcd}
-        \C \arrow[swap]{d}{\pi} & \arrow{l}{G}\C \arrow{d}{\pi^\prime}\\
-        \C/\Gamma \arrow{r}{f} & \C/\Gamma^\prime
+        \C \arrow[swap]{d}{\pi} \arrow{r}{F} & \C \arrow{d}{\pi^\prime}\\
+        \C/\Gamma \arrow{r}{f} & \C/\Gamma^\prime.
       \end{tikzcd}
     \end{center}
-    commutes.
-    Take $F = G^{-1}$.
-
+    
+    Fix a point $z \in \C$ and choose a neighbourhood $V$ of $z$ such that $\phi = \pi \mid_U \colon U \rightarrow V = \pi(U)$ is a homeomorphism.
+    Choose neighbourhoods of $U$ of $F(z)$ and $V$ of $f \circ \pi(z)$ such that $\psi = \pi^\prime \mid_{U^\prime} \colon U^\prime \rightarrow V$ is a homeomorphism.
+    Observing that these are both charts as in the construction from Forster, we have, after possibly shrinking $U$, by the commutativity of the diagram above that
+    $$\psi \circ f \circ \phi= \psi^{-1} \circ \psi \circ F = F$$
+    and, moreover, this gives $F$ holomorphic at $z$ since $f$ is holomorphic by assumption.
+    Since $z$ was arbitrary we have that $F$ is holomorphic.
+    
+    Observe that if $z \in \C$ and $\gamma \in \Gamma$, it follows that
+    $$\pi^\prime \circ F(z) = f \circ \pi(z) = f \circ \pi(z + \gamma) = \pi^\prime \circ F(z + \gamma),$$
+    and so $F(z) - F(z + \gamma) \in \Gamma^\prime$.
+    In particular, for fixed $\gamma \in \Gamma$, we have a map 
+    \begin{align*}
+      d \colon \C &\rightarrow \Gamma^\prime\\
+      z &\mapsto F(z) - F(z + \gamma).
+    \end{align*}
+    Since $d$ is a holomorphic, hence continuous, map to a discrete set, we see that $d$ is constant and so $d^\prime \equiv 0$.
+    Then it follows that $F^\prime(z) = F^\prime(z + \gamma)$; namely, $F^\prime$ is doubly periodic, hence constant.
+    Therefore, since $F(0) = 0$, we obtain $F(z) = \alpha z$ for some $\alpha \in \C^\times$, as desired.
   \end{proof}
 \end{thm}
 \end{document}
