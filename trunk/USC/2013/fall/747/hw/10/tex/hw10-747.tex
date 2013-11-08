@@ -1,0 +1,76 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath,mathtools,tikz-cd}
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 747:\\Homework 09}
+\date{November 1, 2013}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+\maketitle
+
+\providecommand{\p}{\mathfrak{p}}
+\providecommand{\m}{\mathfrak{m}}
+\providecommand{\Deck}[1]{\operatorname{Deck}\left(#1\right)}
+
+\newtheorem{thm}{}
+\newtheorem{lem}{Lemma}
+\newtheorem{prop}{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[thm]
+
+\newcommand{\A}{\mathbb{A}}
+
+\begin{thm}
+	Let $X$ be a connected manifold and $p \colon \tilde{X} \rightarrow X$ be its universal covering.
+	Let $G \subset \Deck{\tilde{X}/X}$ be a subgroup, $Y = \tilde{X}/G$ be the quotient of $\tilde{X}$ by the equivalence relation defined in 5.8 and $q \colon Y \rightarrow X$ be the map induced by $p$.
+	Show that $q$ is a covering map which is Galois if and only if $G$ is a normal subgroup of $\Deck{\tilde{X}/X}$.
+	In the latter case,
+	$$\Deck{Y/X} \cong \Deck{\tilde{X}/X}/G.$$
+	
+	\begin{proof}
+		Assume that $q \colon Y \rightarrow X$ is a Galois covering map.
+		By Theorem 5.9, we may regard the canonical projection $\pi \colon \tilde{X} \rightarrow Y$ as the universal covering of $Y$, and $G$ as $\Deck{\tilde{X}/Y} \subset \Deck{\tilde{X}/X}$.
+		Let $\sigma \in \Deck{\tilde{X}/X}$ and $\tilde{x} \in \tilde{X}$ be given.
+		Observe that
+		$$q \circ \pi (\tilde{x}) = p(\tilde{x}) = p \circ \sigma(\tilde{x}) = q \circ \pi \circ \sigma(\tilde{x}).$$
+		Since $q$ is Galois, there is an induced map $\tilde{\sigma} \colon Y \rightarrow Y$ such that the diagram
+		\begin{center}
+			\begin{tikzcd}
+			\tilde{X} \arrow{r}{\sigma} \arrow[swap]{d}{\pi} & \tilde{X} \arrow{d}{\pi}\\
+			Y \arrow{r}{\tilde{\sigma}}& Y
+			\end{tikzcd}
+		\end{center}
+		commutes.
+		This induces a map $\Deck{\tilde{X}/X} \rightarrow \Deck{Y/Y}$.
+		It is clear from the definition of $Y$ that $G \leq \ker\left({\Deck{\tilde{X}/X} \rightarrow \Deck{Y/Y}}\right)$.
+		For the reverse inclusion, let $\sigma \in \ker\left({\Deck{\tilde{X}/X} \rightarrow \Deck{Y/Y}}\right)$ be given.
+		It follows that $\tilde{\sigma} \colon Y \rightarrow Y$ is the identity on $Y$ so we have the commutative diagram
+		\begin{center}
+			\begin{tikzcd}
+				\tilde{X} \arrow{r}{\sigma} \arrow{d}{\pi} & \tilde{X} \arrow{d}{\pi}\\
+				Y \arrow[equal]{r} & Y
+			\end{tikzcd}
+		\end{center}
+		and so $\tilde{\sigma} \in \Deck{\tilde{X}/Y}$.
+		This gives the short exact sequence
+		$$0 \rightarrow \Deck{\tilde{X}/Y} \rightarrow \Deck{\tilde{X}/X} \rightarrow \Deck{Y/X} \rightarrow 0$$
+		from which it follows that $\Deck{\tilde{X}/Y}$ is normal and 
+		$$\Deck{\tilde{X}/X}/\Deck{\tilde{X}/Y} \cong \Deck{Y/X}$$
+		
+		Convserely, assume that $G \leq \Deck{\tilde{X}/X}$.
+		Let $y_0, y_1 \in Y$ be such that $q(y_0) = q(y_1)$.
+		Choose $\tilde{x}_0, \tilde{x}_1 \in \tilde{X}$ such that $\pi(\tilde{x}_0) = y_0$ and $\pi(\tilde{x}_1) = y_1.$
+		Observe that
+		$$p(\tilde{x}_0) = q \circ \pi (\tilde{x}_0) = q(y_0) = q(y_1) = q \circ \pi(\tilde{x}_1) = p(\tilde{x}_1).$$
+		Since $p$ is Galois, there exists some $\sigma \in \Deck{\tilde{X}/X}$ with $\sigma(\tilde{x}_0) = \tilde{x}_1$.
+		Let $g \in G$ be given and observe that
+		$$\sigma \circ g(\tilde{x}_0) = \sigma \circ g \circ \sigma^{-1}(\tilde{x}_1) = h (\tilde{x_1})$$
+		for some $h \in G$.
+		Therefore the map $\tilde{sigma} \in \Deck{\tilde{X}/X}/G$ is such that $\tilde{\sigma}(y_0) = y_1$, and so $q$ is Galois.
+	\end{proof}
+	
+\end{thm}
+\end{document}
