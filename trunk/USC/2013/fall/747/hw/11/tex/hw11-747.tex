@@ -1,0 +1,97 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath,mathtools,tikz-cd,mathrsfs}
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 747:\\Homework 11}
+\date{November 15, 2013}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+\maketitle
+
+\providecommand{\p}{\mathfrak{p}}
+\providecommand{\m}{\mathfrak{m}}
+\providecommand{\Deck}[1]{\operatorname{Deck}\left(#1\right)}
+
+\newtheorem{thm}{}
+\newtheorem{lem}{Lemma}
+\newtheorem{prop}{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[thm]
+
+\newcommand{\A}{\mathbb{A}}
+
+\begin{thm}
+  Let $f \in \C[x,t]$ be one of the polynomials from Problem 3 of Problem Set 8 and $p \colon X \rightarrow \C$ be the associated holomorphic mapping.
+  If $B$ is the branch locus of $p$, then set $X^0 = X \setminus p^{-1}(B)$, $Y^0 = \C \setminus B$, and $p \colon X^0 \rightarrow Y^0$ the restriction of $p$.
+  The map $p$ is a covering space map.
+  For at least 2 of the holomorphic mappings, answer the following questions.
+  \begin{enumerate}
+  \item
+    What is $\Deck{X^0/Y^0}$?
+  \item
+    Is $p \colon X^0 \rightarrow Y^0$ Galois?
+  \item
+    Let $\alpha$ be a root of $f$ in some algebraic closure of $\C(t)$.
+    Is the field extension $\C(\alpha,t)/\C(t)$ Galois?
+  \item
+    If $\C(\alpha, t)/\C(t)$ is Galois, compute the Galois group.
+    Otherwise, compute the Galois group of the Galois closure.
+  \end{enumerate}
+  \begin{proof}
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Suppose $X$ is a Riemann surface.
+  For $U \subseteq X$ open, let $\mathscr{B}(U)$ be the vector space of all bounded holomorphic functions $f \colon U \rightarrow \C$.
+  For $V \subseteq U$, let $\mathscr{B} \rightarrow \mathscr{B}(V)$ be the usual restriction map.
+  Show that $\mathscr{B}$ is a presheaf which satisfies sheaf axiom (I) but not sheaf axiom (II).
+
+  \begin{proof}
+    That $\mathscr{B}$ is a presheaf satisfying axiom (I) is clear from the definition of restriction and equivalence of functions.
+    For sheaf axiom (II), let $X = \C$ and take the open cover $\{U_n\}_{n \in \N}$ of open discs of radius $n$ about 0.
+    For each $n$, let $s_n = \id_{U_n} \in \mathscr{B}(U_n)$.
+    Observe that $U_n \cap U_m = U_m$ for any $m < n$, so it follows that $s_m\mid_{U_{m,n}} = s_m = s_n\mid_{U_{m,n}}$.
+    However, there is no $s \in \mathscr{B}(X)$ such that $s \mid_{U_n} = s_n$, since any such $s$ would, necessarily, be unbounded.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Suppose $X$ is a Riemann surface.
+  For $U \subseteq X$ open, let
+  $$\mathscr{F}(U) = \mathcal{O}_X^*(U)/\exp \mathcal{O}_X(U).$$
+  Show that $\mathscr{F}$ with the usual restriction maps is a presheaf which does not satisfy sheaf axiom (I).
+  
+  \begin{proof}
+    To see that $\mathscr{F}$ is a presheaf, observe that given opens $U$, $V$, $W$ and morphisms $U \rightarrow V \rightarrow W$ we have from the fact that $\mathcal{O}_X$, $\mathcal{O}_X^*$ are sheaves the diagram
+    %\begin{center}
+     % \begin{tikzcd}
+      %  \mathcal{O}_X(W) \arrow{r}\arrow{rd} & \mathcal{O}_X(V)\arrow{d} & \mathcal{O}_X^*(W) \arrow{r}\arrow{rd} & \mathcal{O}_X^*(V)\arrow{d}\\
+       % & \mathcal{O}_X(U) & & \mathcal{O}^*_X(U)
+      %\end{tikzcd}
+    %\end{center}
+    \begin{center}
+      \begin{tikzcd}
+        W\arrow{d} & 0 \arrow{r} & \mathcal{O}_X(W)\arrow{r}{\exp}\arrow{d} &\mathcal{O}^*_X(W) \arrow{r}{\pi_W}\arrow{d} & \mathcal{O}^*_X(W)/\exp \mathcal{O}_X(W)\arrow[dashed]{d} \arrow{r} & 1\\
+        V\arrow{d} & 0 \arrow{r} &\mathcal{O}_X(V)\arrow{d} \arrow{r}{\exp} &\mathcal{O}^*_X(V) \arrow{r}{\pi_V}\arrow{d} & \mathcal{O}^*_X(V)/\exp \mathcal{O}_X(V)\arrow[dashed]{d} \arrow{r} & 1\\
+        U & 0 \arrow{r} &\mathcal{O}_X(U) \arrow{r}{\exp} &\mathcal{O}^*_X(U) \arrow{r}{\pi_U} & \mathcal{O}^*_X(U)/\exp \mathcal{O}_X(U) \arrow{r} & 1 
+      \end{tikzcd}
+    \end{center}
+    where the dotted arrows are induced by the universal property for cokernels.
+
+    Let $X = \C^\times$ and $U = X \setminus \left\{ x \in \R \;\middle\vert\; x < 0\right\}$, $V = X \setminus \left\{ x \in \R \;\middle\vert\; x > 0\right\}$.
+    Observe that these are branch cuts for the logarithm, so $\log_U \in \mathcal{O}_X(U)$ and $\log_V \in \mathcal{O}_X(V)$, and that $X = U \cup V$.
+    Let $s(z) = \frac{1}{z}$ and observe that $s \in \mathcal{O}_X^*(X)$.
+    Consider the restrictions $s_U = s\mid_U \in \mathcal{O}_X^*(U)$ and $s_V = s\mid_V \in \mathcal{O}_X^*(V)$.
+    Since there is a well defined logarithm on both $U$ and $V$ and $\operatorname{im} s_U \subseteq U$, $\operatorname{im} s_V \subseteq V$, it follows that% for every $s_U \in \mathcal{O}_X^*(U)$ we can write
+    $$\frac{s_U}{1} = s_U = \exp \circ \log_U \circ s_U\ \text{and}\ \frac{s_V}{1} = s_V = \exp \circ \log_V \circ s_V.$$
+    %and% for every $t \in \mathcal{O}_X^*(V)$ we can write
+    %Hence $\mathscr{F}(U)$ and $\mathscr{F}(V)$ are both trivial.
+    Hence $[s_U] = 1 \in \mathscr{F}(U)$ and $[s_V] = 1 \in \mathscr{F}(V)$, however, $1 \neq [s] \in \mathscr{F}(X)$.
+    Therefore $\mathscr{F}$ does not satisfy sheaf axiom (I) and thus $\mathscr{F}$ is not, in general, a sheaf.
+  \end{proof}
+\end{thm}
+\end{document}
