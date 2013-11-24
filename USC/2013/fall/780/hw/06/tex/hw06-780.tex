@@ -1,0 +1,238 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath,mathtools}
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 780:\\Homework 06}
+\date{November 25, 2013}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+\maketitle
+
+\providecommand{\p}{\mathfrak{p}}
+\providecommand{\m}{\mathfrak{m}}
+
+\newtheorem{thm}{}
+\newtheorem{lem}{Lemma}
+
+%\begin{lem}\label{lem1}
+%  Let $x_1, \ldots, x_n$ be indeterminants.
+%  Then
+%  $$\prod_{i = 1}^n x_i = 1 + \sum_{i = 1}^n (x_i - 1) + \sum_{i \neq j}^n (x_i - 1)(x_j - 1) + \ldots + \sum_{i=1}^n \prod_{i \neq j} (x_j - 1) + \prod_{i=1}^n (x_i - 1).$$
+%  
+%  \begin{proof}
+%    The result is clear when $n = 0$ or $n = 1$.
+%    When $n = 2$, we have
+%    \begin{eqnarray*}
+%      1 + \sum_{i=1}^2 (p_i - 1) + \prod_{i = 1}^2 (p_i - 1) &=& 1 + (p_1 - 1) + (p_2 - 1) + (p_1 - 1)(p_2 - 1)\\
+%      &=& ((p_1 - 1) + 1)((p_2 - 1) + 1)\\
+%      &=& p_1p_2.
+%    \end{eqnarray*}
+%    Assume the result holds up to $n > 2$.  Then we have
+%    \begin{eqnarray*}
+%      1 + \sum_{i = 1}^n (x_i - 1) + \sum_{i \neq j}^n (x_i - 1)(x_j - 1) + \ldots + \sum_{i=1}^n \prod_{i \neq j} (x_j - 1) + \prod_{i=1}^n (x_i - 1) &=& 1 + \sum_{i = 1}^{n-1}(x_i - 1) + (x_n - 1) + (x_n - 1)\left(\right)\\
+%      %\prod_{i = 1}^n x_i &=& \left((x_n - 1) + 1\right)\prod_{i = 1}^{n-1} x_i\\
+%      %&=& \left((x_n - 1) + 1\right)\left(1 + \sum_{i=1}^{n - 1}(x_1 - 1) + \ldots + \sum_{i = 1}\prod_{j \neq i}(x_j - 1) + \prod_{i = 1}^{n-1}(x_i - 1)\right)\\
+%      %&=& 1 + \sum_{i=1}^n (x_i - 1).
+%    \end{eqnarray*}
+%  \end{proof}
+%\end{lem}
+
+\begin{thm}
+  Prove that 
+  $$\frac{n}{\varphi(n)} = \sum_{d \mid n} \frac{\mu^2(d)}{\varphi(d)}.$$
+  
+  \begin{proof}n
+    Since $\mu$ vanishes on the divisors $d$ of $n$ that are not square free, we observe that if we write $n = p_1^{e_1} \cdots p_r^{e_r}$, then
+    \begin{eqnarray*}
+      \sum_{d \mid n} \frac{\mu^2(d)}{\varphi(d)} &=& 1 + \sum_{i=1}^r \frac{1}{p_i - 1} + \sum_{i \neq j}^r \frac{1}{(p_i - 1)(p_j - 1)} + \ldots + \prod_{i = 1}^r \frac{1}{(p_i - 1)}\\
+      &=& \prod_{i = 1}^r \frac{1}{(p_i - 1)}\left(1 + \sum_{i=1}^r (p_i - 1) + \ldots + \sum_{i = 1}^r \prod_{j \neq i} (p_j - 1) + \prod_{i=1}^r (p_i - 1)\right)\\
+      &=& \prod_{i = 1}^r \frac{1}{(p_i - 1)} \prod_{i = 1}^r \left((p_i - 1) + 1\right)\\
+      &=& \prod_{i = 1}^r \frac{p_i}{(p_i - 1)}\\
+      &=& \frac{n}{\varphi(n)}.
+    \end{eqnarray*}
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Define $\nu(1) = 0$, and for $n > 1$ let $\nu(n)$ be the number of distinct prime factors of $n$.
+  Let $f = \mu \ast \nu$ and prove that $f(n)$ is either 0 or 1.
+ 
+  \begin{proof}
+    Let $n \in \Z$ be given and write $n = p_1^{e_1} \cdots p_r^{e_r}$.
+    %We first observe that since $\mu$ vanishes on divisors $d$ of $n$ that are not square-free
+    %\begin{eqnarray*}
+    %  f(n) &=& \sum_{d \mid n} \mu(d)\nu\left(\frac{n}{d}\right)\\
+    %  &=& \mu(1)\nu(n) + \sum_{i=1}^r \mu(p_i)\nu\left(\frac{n}{p_i}\right) + \sum_{i \neq j}{\mu(p_ip_j)\nu\left(\frac{n}{p_ip_j}\right)} + \ldots + \mu(p_1 \cdots p_r)\nu\left(\frac{n}{p_1\cdots p_r}\right)\\
+    %  &=& r -\sum_{i=1}^r \nu\left(\frac{n}{p_i}\right) + \sum_{i \neq j}{\nu\left(\frac{n}{p_ip_j}\right)} - \ldots + (-1)^r\nu\left(\frac{n}{p_1\cdots p_r}\right).\\
+    %\end{eqnarray*}
+    We induct on $r$.
+    When $r = 0$, it is clear that $f(n) = 0$.
+    When $r = 1$, we have $n = p^e$ for some $0 < e \in \Z$ and
+    $$f(n) = \nu(n) - \nu\left(\frac{n}{p}\right) = \left\{ 
+    \begin{array}{ll}
+      0 & \text{if}\ e > 1,\\
+      1 & \text{if}\ e = 1.
+    \end{array}\right.$$
+    Assume the result holds up to $r > 1$.
+    Let $n^\prime = p_1^{e_1} \cdots p_{r-1}^{e_{r-1}}$.
+    %Let $I \subset \{1, 2, \ldots, r\}$ and $d = \prod_{i \in I} p_i$.
+    %Observe that if $r \in I$, then
+    %$$\nu\left(\frac{n}{d}\right) = \nu\left(\frac{p_rn^\prime}{d}\right) + \nu\left(\frac{n}{n^\prime p_r}\right) = \left\{
+    %\begin{array}{ll}
+    %  \nu\left(\frac{p_rn^\prime}{d}\right) + 1 & \text{if}\ e_r > 1,\\
+    %  \nu\left(\frac{p_rn^\prime}{d}\right) & \text{if}\ e_r = 1.
+    %\end{array}
+    %\right.$$
+    %and if $r \not \in I$, then
+    %$$\nu\left(\frac{n}{d}\right) = \nu\left(\frac{n^\prime}{d}\right) + 1$$
+    First assume $e_r = 1$ and thus $n = p_rn^\prime$.
+    We note that for $d \mid n$, either $d \mid n^\prime$ or $d = p_rd^\prime$ with $d^\prime \mid n^\prime$.
+    Hence
+    \begin{eqnarray*}
+      f(n) &=& \sum_{d \mid n} \mu(d)\nu\left(\frac{n}{d}\right)\\
+      &=& \sum_{\substack{d \mid n\\p_r \nmid d}} \mu(d)\nu\left(\frac{n}{d}\right) + \sum_{\substack{d \mid n\\p_r \mid d}} \mu(d)\nu\left(\frac{n}{d}\right)\\
+      &=& \sum_{d \mid n^\prime} \mu(d)\nu\left(\frac{p_rn^\prime}{d}\right) + \sum_{d \mid n^\prime} \mu(dp_r)\nu\left(\frac{p_rn^\prime}{p_rd}\right)\\
+      &=& \sum_{d \mid n^\prime} \mu(d)\nu\left(\frac{p_rn^\prime}{d}\right) + \sum_{d \mid n^\prime} \mu(dp_r)\nu\left(\frac{n^\prime}{d}\right)\\
+      &=& \sum_{d \mid n^\prime} \mu(d)\left(\nu\left(\frac{n^\prime}{d}\right) + 1\right) - \sum_{d \mid n^\prime} \mu(d)\nu\left(\frac{n^\prime}{d}\right)\\
+      &=& f(n^\prime) + \sum_{d \mid n^\prime} \mu(d) - \sum_{d \mid n^\prime} \mu(d)\nu\left(\frac{n^\prime}{d}\right)\\
+      &=& f(n^\prime) - f(n^\prime)\\
+      &=& 0
+    \end{eqnarray*}
+    Assume that $e_r > 1$ and $n = p_r^{e_r}n^\prime$.
+    We note, as before, that for $d \mid n$, we can have $d \mid n^\prime$, $d = p_r d^\prime$ with $d^\prime \mid n^\prime$, or $d = p_r^f d^\prime$ with $d^\prime \mid n$ and $1 < f < e_r$, 
+    but the latter terms are of no consequence since $\mu(p_r^f d^\prime) = 0$.
+    Hence
+    \begin{eqnarray*}
+      f(n) &=& \sum_{d \mid n} \mu(d)\nu\left(\frac{n}{d}\right)\\
+      &=& \sum_{\substack{d \mid n\\p_r \nmid d}} \mu(d)\nu\left(\frac{n}{d}\right) + \sum_{\substack{d \mid n\\p_r \mid d}} \mu(d)\nu\left(\frac{n}{d}\right)\\
+      &=& \sum_{d \mid n^\prime} \mu(d)\nu\left(\frac{p_r^{e_r}n^\prime}{d}\right) + \sum_{d \mid n^\prime} \mu(dp_r)\nu\left(\frac{p_r^{e_r}n^\prime}{p_rd}\right)\\
+      &=& \sum_{d \mid n^\prime} \mu(d)\nu\left(\frac{p_r^{e_r}n^\prime}{d}\right) + \sum_{d \mid n^\prime} \mu(dp_r)\nu\left(\frac{p_r^{e_r-1}n^\prime}{d}\right)\\
+      &=& \sum_{d \mid n^\prime} \mu(d)\left(\nu\left(\frac{n^\prime}{d}\right) + 1\right) - \sum_{d \mid n^\prime} \mu(d)\left(\nu\left(\frac{n^\prime}{d}\right)+1\right)\\
+      &=& f(n^\prime) + \sum_{d \mid n^\prime} \mu(d) - \sum_{d \mid n^\prime} \mu(d)\nu\left(\frac{n^\prime}{d}\right)\\
+      &=& f(n^\prime) - f(n^\prime)\\
+      &=& 0
+    \end{eqnarray*}
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Prove that $\sum_{t \mid n} d(t)^3 = \left(\sum_{t \mid n} d(t)\right)^2$.
+  
+  \begin{proof}
+    First observe that if we write $n = p_1^{e_1} \cdots p_r^{e_r}$, then every divisor $t$ of $n$ is of the form $t = p_1^{f_1} \cdots p_r^{f_r}$, where $0 \leq f_1 \leq e_1$.
+    We start with $r = 1$, so the divisors of $n$ are $\{1, p_1, \ldots, p_1^{e_1}\}$ and thus
+    $$\sum_{t \mid n} d(t)^3 = \sum_{i = 1}^{e_1} i^3 = \frac{n^2(n+1)^2}{4} = \left(\frac{n(n+1)}{2}\right)^2 = \left(\sum_{i = 1}^n i\right)^2 = \left(\sum_{t \mid n} d(t)\right)^2.$$
+    Assume the result holds up to $r$ and let $n^\prime = p_1^{e_1} \cdots p_{r-1}^{e_{r-1}}$.
+    Then we have
+    \begin{eqnarray*}
+      \left(\sum_{t \mid n} d(t)\right)^2 &=& \left(\left(\sum_{t \mid n^\prime} d(t)\right)\left(\sum_{t \mid p_r^{e^r}} d(t)\right)\right)^2\\
+      &=& \left(\sum_{t \mid n^\prime} d(t)\right)^2 \left(\sum_{t \mid p_r^{e^r}} d(t)\right)^2\\
+      &=& \left(\sum_{t \mid n^\prime} d(t)^3\right)\left( \sum_{t \mid p_r^{e^r}} d(t)^3\right)\\
+      &=& \sum_{\substack{t \mid n^\prime\\t^\prime \mid p_r^{e_r}}} \left(d(t)d(t^\prime)\right)^3\\
+      &=& \sum_{t \mid n} d(t)^3.
+    \end{eqnarray*}
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Let $f(x)$ be defined for all rational $x$ in $0 \leq x \leq 1$ and let
+  $$F(n) = \sum_{k=1}^n f\left(\frac{k}{n}\right),\,\ F^*(n) = \sum_{\substack{k = 1\\(n,k) = 1}}^n f\left(\frac{k}{n}\right).$$
+  \begin{enumerate}[(a)]
+  \item
+    Prove that $F^* = \mu \ast F$, the Dirichlet product of $\mu$ and $F$.
+  \item
+    Use (a) or some other means to prove that $\mu(n)$ is the sum of the primitive $n^\text{th}$ roots of unity:
+    $$\mu(n) = \sum_{\substack{k = 1\\(k,n) = 1}} e^{i2k\pi/n}.$$
+  \end{enumerate}
+  
+  \begin{proof}
+    \begin{enumerate}[(a)]
+    \item
+      First we compute
+      $$u \ast F^* = F^* \ast u = \sum_{d \mid n} F^*(d) = \sum_{d \mid n}\sum_{\substack{k = 1\\(d,k) = 1}}^d f\left(\frac{k}{d}\right) = \sum_{d \mid n}\sum_{\substack{k = 1\\(d,k) = 1}}^d f\left(\frac{k\frac{n}{d}}{n}\right).$$
+      Note that for $1 \leq j \leq n$, if $g = (n,j)$, $k = \frac{j}{g}$ and $d = \frac{n}{g}$, then $j = k\frac{n}{d}$ and $(k,d) = 1$, and moreover, this representation is unique.
+      Suppose that $j = k^\prime\frac{n}{d^\prime}$ with $(k^\prime, d^\prime) = 1$.
+      Then we obtain $kd^\prime = k^\prime d$.
+      Since $(k,d) = (k^\prime, d^\prime) = 1$, from $k \mid k^\prime d$ and $k^\prime \mid k d^\prime$, we obtain $k^\prime \mid k$ and $k \mid k^\prime$, hence $k = k^\prime$.
+      The same argument, mutatis mutandis, gives $d = d^\prime$.
+      Hence $u \ast F^* = F$.
+      Therefore
+      $$\mu \ast F = \mu \ast (u \ast F^*) = (\mu \ast u) \ast F^* = F^*,$$
+      as desired.
+    \item
+      Define
+      \begin{align*}
+        f \colon \Q \cap [0,1] & \rightarrow \C\\
+        x & \mapsto e^{i2\pi x}.
+      \end{align*}
+      Let $\zeta_n = e^{i2\pi/n}$, and observe that
+      $$F(n) = \sum_{k=1}^n f\left(\frac{k}{n}\right) = \sum_{k = 1}^n \zeta_n^k = \left\{ \begin{array}{ll}
+        1 & \text{if}\ n = 1,\\
+        \frac{1 - \zeta_n^n}{1 - \zeta_n} = 0 & \text{if}\ n > 1.
+      \end{array}\right.$$
+      Therefore $F = I$, from which it follows that
+      $$\mu = \mu \ast F = F^* = \sum_{\substack{k = 1\\(n,k) = 1}}^n f\left(\frac{k}{n}\right) = \sum_{\substack{k = 1\\(n,k) = 1}}^n \zeta_n^k.$$
+    \end{enumerate}
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Let $\varphi_k(n)$ denote the sum of the $k^\text{th}$ powers of the numbers less than or equal to $n$ and relatively prime to $n$.
+  Note that $\varphi_0(n) = \varphi(n)$.
+  Use exercise 14 or some other means to prove that
+  $$\sum_{d \mid n} \frac{\varphi_k(d)}{d^k} = \frac{1^k + \ldots + n^k}{n^k}.$$
+  
+  \begin{proof}
+    This follows from 
+    $$\sum_{d \mid n} \frac{\varphi_k(d)}{d^k} = \sum_{d \mid n} \frac{\varphi_k(d)\left(\frac{n}{d}\right)^k}{n^k} = \frac{1}{n^k}\sum_{d \mid n} \varphi_k(d)\left(\frac{n}{d}\right)^k = \frac{1}{n^k}\sum_{i = 1}^n i^k = \frac{1^k + \ldots + n^k}{n^k}.$$
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Invert the formula in Exercise 15 to obtain, for $n > 1$,
+  $$\varphi_1(n) = \frac{1}{2}n\varphi(n),\,\ \text{and}\ \ \varphi_2(n) = \frac{1}{3}n^2\varphi(n) + \frac{n}{6}\prod_{p \mid n}(1 - p) .$$
+  Derive a corresponding formula for $\varphi_3(n)$.
+  
+  \begin{proof}
+    By inverting the previous result,
+    \begin{eqnarray*}
+      \frac{\varphi_1(n)}{n} &=& \sum_{d \mid n} \frac{1}{d}\sum_{i = 1}^d i \mu\left(\frac{n}{d}\right)\\
+      &=& \sum_{d \mid n} \frac{d(d+1)}{2d} \mu\left(\frac{n}{d}\right)\\
+      &=& \frac{1}{2}\sum_{d \mid n} (d+1) \mu\left(\frac{n}{d}\right)\\
+      &=& \frac{1}{2}\left(\sum_{d \mid n} d\mu\left(\frac{n}{d}\right) + \sum_{d \mid n}\mu\left(\frac{n}{d}\right)\right)\\
+      &=& \frac{1}{2}\sum_{d \mid n} d\mu\left(\frac{n}{d}\right)\\
+      &=& \frac{1}{2}\varphi(n).
+    \end{eqnarray*}
+    Therefore $\varphi_1(n) = \frac{1}{2}n\varphi(n)$.
+
+    Similarly,
+    \begin{eqnarray*}
+      \frac{\varphi_2(n)}{n^2} &=& \sum_{d \mid n} \frac{1}{d^2}\sum_{i = 1}^d i^2 \mu\left(\frac{n}{d}\right)\\
+      &=& \sum_{d \mid n} \frac{d(d+1)(2d + 1)}{6d^2}\mu\left(\frac{n}{d}\right)\\
+      &=& \frac{1}{6}\sum_{d \mid n} \left(2d + 3 + \frac{1}{d}\right) \mu\left(\frac{n}{d}\right)\\
+      &=& \frac{1}{3}\sum_{d \mid n} d\mu\left(\frac{n}{d}\right)  + \frac{1}{2}\sum_{d \mid n}\mu\left(\frac{n}{d}\right) + \frac{1}{6}\sum_{d \mid n}\frac{1}{d}\mu\left(\frac{n}{d}\right)\\
+      &=& \frac{1}{3}\sum_{d \mid n} d\mu\left(\frac{n}{d}\right)  + \frac{1}{6}\sum_{d \mid n}\frac{1}{d}\mu\left(\frac{n}{d}\right)\\
+      &=& \frac{1}{3}\varphi(n)  + \frac{1}{6}\sum_{d \mid n}\frac{d}{n}\mu\left(d\right)\\
+      &=& \frac{1}{3}\varphi(n)  + \frac{1}{6n}\sum_{d \mid n}d\mu\left(d\right)\\
+      &=& \frac{1}{3}\varphi(n)  + \frac{1}{6n}\prod_{p \mid n}(1 - p).
+    \end{eqnarray*}
+    Therefore $\varphi_2(n) = \frac{1}{3}n^2\varphi(n)  + \frac{1}{6}n\prod_{p \mid n}(1 - p)$.
+
+    Finally, 
+    \begin{eqnarray*}
+      \frac{\varphi_3(n)}{n^3} &=& \sum_{d \mid n} \frac{1}{d^3}\sum_{i = 1}^d i^3 \mu\left(\frac{n}{d}\right)\\
+      &=& \sum_{d \mid n} \frac{d^2(d+1)^2}{4d^3}\mu\left(\frac{n}{d}\right)\\
+      &=& \frac{1}{4}\sum_{d \mid n} \left(d + 2 + \frac{1}{d}\right)\mu\left(\frac{n}{d}\right)\\
+      &=& \frac{1}{4}\sum_{d \mid n}d\mu\left(\frac{n}{d}\right) + \frac{1}{4}\sum_{d \mid n}2\mu\left(\frac{n}{d}\right) + \frac{1}{4}\sum_{d \mid n}\frac{1}{d}\mu\left(\frac{n}{d}\right)\\
+      &=& \frac{1}{4}\sum_{d \mid n}d\mu\left(\frac{n}{d}\right) + \frac{1}{4}\sum_{d \mid n}\frac{1}{d}\mu\left(\frac{n}{d}\right)\\
+      &=& \frac{1}{4}\varphi(n) + \frac{1}{4}\sum_{d \mid n}\frac{d}{n}\mu\left(d\right)\\
+      &=& \frac{1}{4}\varphi(n) + \frac{1}{4n}\sum_{d \mid n}d\mu\left(d\right)\\
+      &=& \frac{1}{4}\varphi(n) + \frac{1}{4n}\prod_{p \mid n}(1 - p).
+    \end{eqnarray*}
+    Therefore $\varphi_3(n) = \frac{1}{4}n^3\varphi(n) + \frac{1}{4}n^2\prod_{p \mid n}(1 - p)$.
+  \end{proof}
+\end{thm}
+\end{document}
