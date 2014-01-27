@@ -1,0 +1,93 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath,mathtools,tikz-cd,mathrsfs}
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 748-02:\\Homework 01}
+\date{January 24, 2014}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+\maketitle
+
+\providecommand{\p}{\mathfrak{p}}
+\providecommand{\m}{\mathfrak{m}}
+\providecommand{\Deck}[1]{\operatorname{Deck}\left(#1\right)}
+
+\newtheorem{thm}{}
+\newtheorem{lem}{Lemma}
+\newtheorem{prop}{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[thm]
+
+\newcommand{\A}{\mathbb{A}}
+
+\begin{thm}
+  Define $\mathbb{P}^2$ to be the quotient of $\C^3 \setminus\{0\}$ by the equivalence relation $v \equiv \lambda v$ for all $\lambda \in \C^\times$.
+  Given $(x, y, z) \in \C^3 \setminus \{0\}$, write $[x : y : z] \in \mathbb{P}^2$ for the image under the quotient map $p \colon \C^3 \setminus \{0\} \rightarrow \mathbb{P}^2$.
+  \begin{enumerate}[(a)]
+  \item
+    Show that the map $(x, y) \mapsto [x : y : 1]$ defines a homeomorphism between $\C^2$ and an open subset $U_0$ of $\mathbb{P}^2$.
+  \item
+    Prove that $\mathbb{P}^2$ is a complex $2$-manifold.
+  \item
+    Prove that $\mathbb{P}^2$ is compact and connected.
+  \end{enumerate}
+
+  \begin{proof}
+    \begin{enumerate}[(a)]
+    \item
+      Let $U_0 = \left\{ [x : y : z] \in \mathbb{P}^2 \;\middle\vert\; z \neq 0 \right\}$ and let $X = p^{-1}(U_0)$.
+      First observe that if $[x : y : z] \in U_0$, then $[x : y : z] = [x/z : y/z : 1]$ since $z \neq 0$ and so it follows that
+      $$X = p^{-1}(U_0) = \left\{(x, y, z) \in \C^3 \setminus \{0\} \;\middle\vert\; z \neq 0\right\} = \C^2 \times \C^\times.$$
+      Considering $\C^3\setminus \{0\}$ as a subspace of $\C^3 \cong \C^2 \times \C$, it follows that $X$ is an open subset of $\C^3\setminus \{0\}$ that is saturated with respect to $p$.
+      Hence the map
+      \begin{align*}
+        q \colon X &\rightarrow p(X) = U_0\\
+        x &\mapsto p(x)
+      \end{align*}
+      is a quotient map.
+      
+      Define the continuous map
+      \begin{align*}
+        g \colon X &\twoheadrightarrow \C^2\\
+        (x,y,z) &\mapsto \left(\frac{x}{z},\frac{y}{z}\right)
+      \end{align*}
+      and observe that $g$ is constant on the fibers of $q$.
+      Indeed, if $(x,y,z) \in q^{-1}\left([x_0:y_0:1]\right)$, then
+      $$g(x,y,z) = \left(\frac{x}{z}, \frac{y}{z}\right) = (x_0, y_0) = g(x_0, y_0, 1).$$
+      The map $g$ induces the bijective, continuous map
+      \begin{align*}
+        f \colon U_0 \rightarrow \C^2\\
+        [x : y : z] &\mapsto \left(\frac{x}{z}, \frac{y}{z}\right)
+      \end{align*}
+      with inverse
+      \begin{align*}
+        f^{-1} \colon \C^2 \rightarrow U_0\\
+        (x,y) &\mapsto [x : y : 1]
+      \end{align*}
+      that is a homeomorphism if and only if $g$ is a quotient map.
+      
+      Let $U \subseteq \C^2$ be such that $g^{-1}(U)$ is open in $X$.
+      Given a point $(x_0,y_0)$ of $U$ we have $(x_0, y_0, 1) \in g^{-1}(U)$.
+      There exists some $\varepsilon > 0$ such that the ball, $B$, of radius $\varepsilon$ centered about $(x_0,y_0,1)$ is contained in $g^{-1}(U)$.
+      Consider the subset of $B$ 
+      $$V = \left\{(x,y,1) \in B\right\} = \left\{(x, y, 1) \in X \;\middle\vert\; \abs{x - x_0}^2 + \abs{y - y_0}^2 < \varepsilon \right\}$$
+      and observe that $g(V) = \left\{(x,y) \;\middle\vert\; \abs{x - x_0}^2 + \abs{y-y_0}^2 < \varepsilon \right\} \subseteq U$ is a ball of radius $\varepsilon$ about $(x,y)$ and thus $U$ is open.
+      Therefore $g$ is a quotient map and $f$ is a homeomorphism, as desired.
+    \item
+      By the proof above, mutatis mutandis, the opens $U_1 = \left\{ [x : y : z] \in \mathbb{P}^2 \;\middle\vert\; y \neq 0 \right\}$ and $U_2 = \left\{ [x : y : z] \in \mathbb{P}^2 \;\middle\vert\; x \neq 0 \right\}$ are homeomorphic to $\C^2$ and cover $\mathbb{P}^2$.
+      These charts are just polynmoial equations and so the transition maps are clearly holomorphic.
+      Therefore $\mathbb{P}^2$ is a complex $2$-manifold.
+    \item
+      That $\mathbb{P}^2$ is connected follows from the fact that $\mathbb{P}^2$ is the image under the continuous map $p$ of the connected space $\C^3 \setminus \{0\}$.
+      That $\mathbb{P}^2$ is compact follows from the fact that every element of $\C^3\setminus\{0\}$ can be written as a scalar multiple of an element from the unit sphere in $\C^3\setminus\{0\}$.
+      Namely, given $[x : y : z] \in \mathbb{P}^2$, take $v = (x, y, z) \in \C^3\setminus\{0\}$.
+      Let $\norm{v} \in \C^\times$ be the usual Euclidean norm of $v$ and then 
+      $$p\left(\frac{x}{\norm{v}}, \frac{y}{\norm{v}}, \frac{z}{\norm{v}}\right) = [x : y : z].$$
+      Since $\mathbb{P}^2$ is the image under $p$ of the closed and bounded unit sphere in $\C^3\setminus\{0\}$, it follows that $\mathbb{P}^2$ is compact.
+    \end{enumerate}
+  \end{proof}
+\end{thm}
+\end{document}
