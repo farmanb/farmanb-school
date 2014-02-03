@@ -1,0 +1,165 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath,mathtools,tikz-cd,mathrsfs}
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 748-02:\\Homework 02}
+\date{February 3, 2014}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+\maketitle
+
+\providecommand{\p}{\mathfrak{p}}
+\providecommand{\m}{\mathfrak{m}}
+\providecommand{\Deck}[1]{\operatorname{Deck}\left(#1\right)}
+
+\newtheorem{thm}{}
+\newtheorem{lem}{Lemma}
+\newtheorem{prop}{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[thm]
+
+\newcommand{\A}{\mathbb{A}}
+
+\begin{thm}
+  This problem involves the compact Riemann surface
+  $$S = \left\{ [x : y : z] \in \mathbb{P}^2 \;\middle\vert\; y^2z = x^3 - xz^2 \right\}$$
+  which appeared on the last problem set.
+
+  \begin{enumerate}[(a)]
+  \item
+    Explain what it means to say that $r = y/z$ is a meromorphic function on $S$ and then prove $r = y/z$ is a meromorphic function.
+  \item
+    What is the set of zeroes of $r = y/z$?
+    For each zero, compute the multiplicity.
+  \item
+    What is the set of poles of $r = y/z$?
+    For each pole, compute the multiplicity.
+  \end{enumerate}
+  
+  \begin{proof}
+    \begin{enumerate}[(a)]
+    \item
+      To say that $r$ is a meromorphic function on $S$ is to say that for any $s \in S$, either $r$ is holomorphic at $s$ or 
+      there exists an open neighbourhood $U$ of $s$, and a chart $\varphi \colon U \rightarrow V$ such that $r \circ \varphi^{-1}$ has a pole or removable singularity at $\varphi(s)$.
+      
+      To see that $r$ is meromorphic, first observe that any dehomogenization of a smooth projective plane curve is a smooth affine plane curve.
+      Let $F(x,y,z) = x^3 - xz^2 - y^2z$ and take, for example, $f(x,y) = F(x,y,1)$.
+      Suppose to the contrary that there is a non-trivial solution $(x_0, y_0)$ to $f = f_x = f_y = 0$.
+      Then by Euler's formula we obtain $zF_z = 3F - xF_x - yF_y$ and so
+      \begin{eqnarray*}
+        F_z\left([x_0 : y_0 : 1]\right) &=& 3F\left([x_0 : y_0 : 1]\right) - x_0F_x\left([x_0 : y_0 : 1]\right) - y_0 F_y\left([x_0 : y_0 : 1]\right)\\
+        &=& -x_0 f_x(x_0, y_0) - y_0 f_y(x_0, y_0)\\
+        &=& 0,
+      \end{eqnarray*}
+      a contradiction.
+      The other cases follow similarly.
+      
+      Let $U_0 = \left\{ [x : y : z] \in \mathbb{P}^2 \;\middle\vert\; x \neq 0 \right\}$, 
+      $U_1 = \left\{ [x : y : z] \in \mathbb{P}^2 \;\middle\vert\; y \neq 0 \right\}$, 
+      $U_2 = \left\{ [x : y : z] \in \mathbb{P}^2 \;\middle\vert\; z \neq 0\right\}$, and
+      let $S_i = S \cap U_i$.
+      We note that each $S_i$ is homeomorphic to some subset of $\C^2$ under the maps given by division by the non-zero co-ordinate.  
+      Take for example $S_0$
+      \begin{align*}
+        \varphi \colon S_0 &\rightarrow \C^2\\
+        [x : y : z] &\mapsto (y/x, z/x) 
+      \end{align*}
+      with inverse
+      \begin{align*}
+        \varphi^{-1} \colon \varphi(S_0) &\rightarrow S_0\\
+        (y,z) &\mapsto [1 : y : z].
+      \end{align*}
+      Take as the charts on these $S_i$ the co-ordinate projections with inverses given by the Implicit Function Theorem.
+      For example, on $S_0$, there is a chart of the type $y \mapsto (y, g(y))$ or $z \mapsto (g(z), z)$, depending on which partial does not vanish, with $g$ holomorphic.
+      This gives as coordinate either $[1 : y : g(y)]$ or $[1 : g(z) : z]$, whose image under $r$ is either $y/g(y)$ or $g(z)/z$.
+      The composition is then $y \mapsto y/g(y)$ or $z \mapsto g(z)/z$, both of which are meromorphic.
+      The same construction, mutatis mutandis, works on $S_1$ and $S_2$.
+    \item
+      The zeroes of $r$ are $[0 : 0 : 1]$, $[1 : 0 : 1]$, and $[1 : 0 : 0]$.
+      Using $\ord{s}{r} = \ord{s}{y} - \ord{s}{z}$ we have
+      $\ord{[0 : 0 : 1]}{r} = 1 - 0 = 1$,
+      $\ord{[1 : 0 : 1]}{r} = 1 - 0 = 1$, and
+      $\ord{[1 : 0 : 0]}{r} = 1 - 1 = 0$.
+    \item
+      The poles of $r$ are $[0 : 1 : 0]$, $[1 : 1 : 0]$, and $[1 : 0 : 0]$.
+      Using $\ord{s}{r} = \ord{s}{y} - \ord{s}{z}$ we have
+      $\ord{[0 : 1 : 0]}{r} = 0 - 1 = -1$,
+      $\ord{[1 : 1 : 0]}{r} = 0 - 1 = -1$, and
+      $\ord{[1 : 0 : 0]}{r} = 1 - 1 = 0$.
+    \end{enumerate}
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  In the following problem, we will work with the homogenous equation
+  $$F = x^4 + y^4 + z^4.$$
+  \begin{enumerate}[(a)]
+  \item
+    Prove that
+    $$S = \left\{ [x : y : z] \in \mathbb{P}^2 \;\middle\vert\; F(x,y,z) = 0 \right\}$$
+    is a Riemann surface, assuming (as always) that $S$ is connected.
+  \item
+    Let $\zeta = \exp\left(2\pi i / 8\right)$ be a primitive eighth root of unity.
+    Convince yourself that the points
+    \begin{eqnarray*}
+      p_1 &=& [\zeta : 0 : 1],\\
+      p_2 &=& [\zeta^3 : 0 : 1],\\
+      p_3 &=& [\zeta^5 : 0 : 1],\\
+      p_4 &=& [\zeta^7 : 0 : 1],\\
+      q_1 &=& [0 : \zeta : 1],\\
+      q_2 &=& [0 : \zeta^3 : 1],\\
+      q_3 &=& [0 : \zeta^5 : 1]\\
+      q_4 &=& [0 : \zeta^7 : 1]
+    \end{eqnarray*}
+    all lie on $S$.
+  \item
+    Set 
+    $$D = p_1 + p_2 + p_3 + p_4.$$
+    Prove that
+    $$1, \frac{x}{y}, \frac{z}{y} \in H^0\left(S, \mathcal{O}_S(D)\right)$$
+    (i.e. that these rational functions have simple poles at $p_1$, $p_2$, $p_3$, $p_4$).
+  \item
+    Set
+    $$E = q_1 + p_2 + p_3 + p_4.$$
+    Prove that
+    $$1, \frac{x^2 - \zeta x z}{xy} \in H^0\left(S, \mathcal{O}_S(E)\right).$$
+  \end{enumerate}
+  
+  \begin{proof}
+    \begin{enumerate}[(a)]
+    \item
+      To see that $S$ is a Riemann surface, it suffices to show that there are no non-trivial simultaneous solutions to $F = F_x = F_y = F_z = 0$.
+      This is clear from the fact that $F_x = 4x^3$, $F_y = 4y^3$, and $F_z = 4z^3$.
+    \item
+      For each of $n \in \{1,3,5,7\}$, $4n \equiv 4 \pmod{8}$ and so $\zeta^{4n} = \zeta^4 = -1$.
+      Hence it follows from 
+      $$\zeta^{4n} + 0^4 + 1 = -1 + 1 = 0$$
+      and
+      $$0^4 + \zeta^{4n} + 1 = -1 = 1 = 0$$
+      that $p_i, q_i \in S$.
+    \item
+      Since $1$ is constant, it is holomorphic and thus $1 \in H^0\left(S, \mathcal{O}_S(D)\right)$.
+      Since $\ord{p_i}{x/y} = \ord{p_i}{x} - \ord{p_i}{y}$ and $\ord{p_i}{z/y} = \ord{p_i}{z} - \ord{p_i}{y}$, we have
+      $$\ord{p_i}{x/y} = 0 - 1 = -1\ \text{and}\ \ord{p_i}{z/y} = 0 - 1 = -1$$
+      which are both simple poles.
+    \item
+      Since $1$ is constant, it is holomorphic and thus $1 \in H^0\left(S, \mathcal{O}_S(E)\right)$.
+      Using
+      \begin{eqnarray*}
+        \ord{p}{\frac{x^2 - \zeta x z}{xy}} &=& \ord{p}{x^2 - \zeta x z} - \ord{p}{xy}\\
+        &=& \ord{p}{x} + \ord{p}{x - \zeta z} - \ord{p}{x} - \ord{p}{y}\\
+        &=&  \ord{p}{x - \zeta z} - \ord{p}{y}
+      \end{eqnarray*}
+      we obtain
+      $$\ord{q_1}{\frac{x^2 - \zeta x z}{xy}} = 0 - 0 = 0,$$
+      $$\ord{p_2}{\frac{x^2 - \zeta x z}{xy}} = 0 - 1 = -1,$$
+      $$\ord{p_3}{\frac{x^2 - \zeta x z}{xy}} = 0 - 1 = -1,$$ and
+      $$\ord{p_4}{\frac{x^2 - \zeta x z}{xy}} = 0 - 1 = -1.$$
+      Hence each of the points $q_1$, $p_2$, $p_3$, and $p_4$ is, at worst, a simple pole.
+    \end{enumerate}
+  \end{proof}
+\end{thm}
+\end{document}
