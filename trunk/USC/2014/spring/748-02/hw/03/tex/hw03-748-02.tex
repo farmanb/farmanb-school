@@ -1,0 +1,90 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath,mathtools,tikz-cd,mathrsfs}
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 748-02:\\Homework 02}
+\date{February 3, 2014}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+\maketitle
+
+\providecommand{\p}{\mathfrak{p}}
+\providecommand{\m}{\mathfrak{m}}
+\providecommand{\Deck}[1]{\operatorname{Deck}\left(#1\right)}
+
+\newtheorem{thm}{}
+\newtheorem{lem}{Lemma}
+\newtheorem{prop}{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[thm]
+
+\newcommand{\A}{\mathbb{A}}
+
+\begin{thm}
+	In this problem, we will study some examples of B\'{e}zout's Theorem.
+	Consider the following Riemann surfaces in $\mathbb{P}^2$.
+	\begin{eqnarray*}
+		R_1 &=& \left\{ [x : y : z] \in \mathbb{P}^2 \;\middle\vert\; x^2 + y^2 = 4z^2 \right\}\\
+		R_2 &=& \left\{ [x : y : z] \in \mathbb{P}^2 \;\middle\vert\; (x - z)^2 + (y - z)^2 = z^2 \right\}\\
+		S &=& \left\{ [x : y : z] \in \mathbb{P}^2 \;\middle\vert\; y^2z = x^3 - xz^2\right\}\\
+		T_1 &=& \left\{ [x : y : z] \in \mathbb{P}^2 \;\middle\vert\; y = 0 \right\}\\
+		T_2 &=& \left\{ [x : y : z] \in \mathbb{P}^2 \;\middle\vert\; x = 0 \right\}\\
+	\end{eqnarray*}
+	\begin{enumerate}[(a)]
+		\item
+		What are the points of $S \cap T_1$?
+		For each point of intersection, compute the intersection multiplicity.
+		\item
+		What are the points of $S \cap T_2$?
+		For each point of intersection, compute the intersection multiplicity.
+		\item
+		What are the points of $R_1 \cap R_2$?
+		For each point of intersection, compute the intersection multiplicity.
+	\end{enumerate}
+
+	\begin{proof}
+		\begin{enumerate}[(a)]
+			\item
+			The points of $S \cap T_1$ are
+			$$S \cap T_1 = \left\{ [x : 0 : z] \;\middle\vert\; 0 = x(x - z)(x + z)\right\}.$$
+			Since $z = 0$ implies $x = 0$, we may assume that $z = 1$ and so
+			$$S \cap T_1 = \left\{ [0 : 0 : 1], [1 : 0 : 1], [1 : 0 : -1] \right\}$$.
+			\item
+			The points of $S \cap T_2$ are
+			$$S \cap T_2 = \left\{ [0 : y : z] \;\middle\vert\; y^2z = 0 \right\} = \left\{[0 : 1 : 0], [0 : 0 : 1]\right\}.$$
+			\item
+			Assume that $[x : y : z] \in R_1 \cap R_2$.
+			Then we have
+			$$z^2 = (x - z)^2 + (y - z)^2 = x^2 + y^2 + 2z^2 - 2z(x + y) = 4z^2 + 2z^2 - 2z(x + y)$$
+			from which it follows that
+			$$z^2(5z - 2(x + y)) = 0.$$
+			
+			Assume that $z = 0$ and note that both $x$ and $y$ are non-zero.
+			From $x^2 + y^2 = (x + iy)(x - iy) = 0$ it follows that either $[x : y : z] = [x : -iy : 0] = [1 : -i : 0]$
+			or $[x : y : z] = [x : ix : 0] = [1 : i : 0]$.
+			
+			When $z \neq 0$, then $[x : y : z] = [x/z : y/z : 1]$, and so we may assume that $z = 1$.
+			We are then interested in pairs $(x,y) \in \C^2$ such that 
+			\begin{equation}\label{1.1}
+				x^2 + y^2 = 4
+			\end{equation}
+			 and 
+			\begin{equation}\label{1.2}
+				(x - 1)^2 + (y-1)^2 = 1.
+			\end{equation}
+			Upon expanding \eqref{1.2} we obtain by using \eqref{1.1} and some routine algebra 
+			$$x + y = 5/2.$$
+			Taking $x = 5/2 - y$ in \eqref{1.1} we obtain
+			$$8y^2 - 20y + 9 = 0.$$
+			Using the quadratic formula, it follows that $y = (5 \pm \sqrt{7})/4$ and thus $x = 10/4 - y = \left(5 \mp \sqrt{7}\right)/4$.
+			Hence
+			$$R_1 \cap R_2 = \left\{[1 : -i : 0], [1 : i : 0], [5 \mp \sqrt{7} : 5 \pm \sqrt{7} : 4]\right\}.$$
+
+			For the intersection multiplicites of $[1 : -i : 0]$ and $[1 : i : 0]$ we dehomenize by taking $x = 1$ and consider the resultant of the polynomials $f(y,z) = -4z^2 + (y^2 + 1)$ and $g(y,z) = z^2 - 2(1 + y)z + (y^2 - 1)$ as elements of $\C[y][z]$.
+		\end{enumerate}
+	\end{proof}
+\end{thm}
+\end{document}
