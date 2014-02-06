@@ -122,11 +122,11 @@
       For the intersection multiplicites of $[1 : -i : 0]$ and $[1 : i : 0]$ we dehomogenize by taking $x = 1$ and consider the resultant of the polynomials $f(y,z) = -4z^2 + (y^2 + 1)$ and $g(y,z) = z^2 - 2(1 + y)z + (y^2 - 1)$ as elements of $\left(\C[y]\right)[z]$, 
       \begin{eqnarray*}
         \operatorname{Res}(f,g) &=& \det\left(\begin{array}{cccc}
-        -4 & 0 & 1 & 0 \\
-        0 & -4 & -2 \, y - 2 & 1 \\
-        y^{2} + 1 & 0 & y^{2} + 1 & -2 \, y - 2 \\
-        0 & y^{2} + 1 & 0 & y^{2} + 1
-      \end{array}\right)\\
+          -4 & 0 & 1 & 0 \\
+          0 & -4 & -2 \, y - 2 & 1 \\
+          y^{2} + 1 & 0 & y^{2} + 1 & -2 \, y - 2 \\
+          0 & y^{2} + 1 & 0 & y^{2} + 1
+        \end{array}\right)\\
         &=& 9 \, y^{4} - 32 \, y^{3} + 18 \, y^{2} - 32 \, y + 9\\
         &=& {\left(y^{2} + 1\right)} {\left(9 \, y^{2} - 32 \, y + 9\right)}\\
         &=& {\left(y + i\right)} {\left(y - i\right)} {\left(9 \, y^{2} - 32 \, y + 9\right)}.
@@ -136,11 +136,11 @@
       For the intersection multiplicities of $[5 \mp \sqrt{7} : 5 \pm \sqrt{7} : 4]$, we dehomogenize by taking $z = 1$ and consider the resultant of the polynomials $f(x,y) = x^{2} + y^{2} - 4$ and $g(x,y) = {\left(y - 1\right)}^{2} + {\left(x - 1\right)}^{2} - 1$ as elements of $\left(\C[y]\right)[x]$,
       \begin{eqnarray*}
         \operatorname{Res}(f,g) &=& \det\left(\begin{array}{cccc}
-1 & 0 & 1 & 0 \\
-0 & 1 & -2 & 1 \\
-y^{2} - 4 & 0 & y^{2} - 2 \, y + 1 & -2 \\
-0 & y^{2} - 4 & 0 & y^{2} - 2 \, y + 1
-\end{array}\right) \\
+          1 & 0 & 1 & 0 \\
+          0 & 1 & -2 & 1 \\
+          y^{2} - 4 & 0 & y^{2} - 2 \, y + 1 & -2 \\
+          0 & y^{2} - 4 & 0 & y^{2} - 2 \, y + 1
+        \end{array}\right) \\
         &=& 8 \, y^{2} - 20 \, y + 9.
       \end{eqnarray*}
       Observing that $\frac{5 \pm \sqrt{7}}{4}$ are both roots of this polynomial, it follows that the intersection multiplicities for $[5 \mp \sqrt{7} : 5 \pm \sqrt{7} : 4]$ are both 1.
@@ -166,15 +166,15 @@ y^{2} - 4 & 0 & y^{2} - 2 \, y + 1 & -2 \\
       f &=& v_1 x + v_0\\
       g &=& w_1x + w_0.
     \end{eqnarray*}
-    \item
-      Compute $\operatorname{Res}_{2,2}(f,g)$ where
-      \begin{eqnarray*}
-        f &=& v_2x^2 + v_1x + v_0\\
-        g &=& w_2x^2 + w_1x + w_0.
-      \end{eqnarray*}
-    \item
-      Compute $\disc{f}$ where
-      $$f = v_wx^2 + v_1x + v_0.$$
+  \item
+    Compute $\operatorname{Res}_{2,2}(f,g)$ where
+    \begin{eqnarray*}
+      f &=& v_2x^2 + v_1x + v_0\\
+      g &=& w_2x^2 + w_1x + w_0.
+    \end{eqnarray*}
+  \item
+    Compute $\disc{f}$ where
+    $$f = v_wx^2 + v_1x + v_0.$$
   \end{enumerate}
   
   \begin{proof}
@@ -187,11 +187,11 @@ y^{2} - 4 & 0 & y^{2} - 2 \, y + 1 & -2 \\
     \item
       \begin{eqnarray*}
         \operatorname{Res}_{2,2}(f,g) &=& \det\left(\begin{array}{cccc}
-      v_2 & 0 & w_1 & 0\\
-      v_1 & v_2 & w_1 & w_2\\
-      v_0 & v_1 & w_0 & w_1\\
-      0 & v_0 & 0 & w_0
-    \end{array}\right)\\
+          v_2 & 0 & w_1 & 0\\
+          v_1 & v_2 & w_1 & w_2\\
+          v_0 & v_1 & w_0 & w_1\\
+          0 & v_0 & 0 & w_0
+        \end{array}\right)\\
         &=& v_{0}^{2} w_{1} w_{2} - v_{0} v_{1} w_{1}^{2} - v_{0} v_{2} w_{0} w_{1}
         - v_{0} v_{2} w_{0} w_{2} + v_{0} v_{2} w_{1}^{2} + v_{1}^{2} w_{0}
         w_{1} - v_{1} v_{2} w_{0} w_{1} + v_{2}^{2} w_{0}^{2}.
@@ -201,10 +201,10 @@ y^{2} - 4 & 0 & y^{2} - 2 \, y + 1 & -2 \\
       \begin{eqnarray*}
         \disc{f} &=& \operatorname{Res}(f,f^\prime)\\
         &=& \det \left(\begin{array}{ccc}
-        v_2 & 2v_2 & 0\\
-        v_1 & v_1 & 2v_2\\
-        v_0 & 0 & v_1
-      \end{array}\right)\\
+          v_2 & 2v_2 & 0\\
+          v_1 & v_1 & 2v_2\\
+          v_0 & 0 & v_1
+        \end{array}\right)\\
         &=& 4 \, v_{0} v_{2}^{2} - v_{1}^{2} v_{2}.
       \end{eqnarray*}
     \end{enumerate}
