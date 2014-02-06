@@ -80,7 +80,7 @@
       \end{eqnarray*}
       Hence the intersection multiplicity for $[0 : 1 : 0]$ is 1.
       
-      For the point $[0 : 0 : 1]$, we dehomogenize with $z = 1$ and consider the resultant of the polynomials $f(x,y) = $ and $g(x,y) = x$ as polynomials in $\left(\C[y]\right)[x]$,
+      For the point $[0 : 0 : 1]$, we dehomogenize with $z = 1$ and consider the resultant of the polynomials $f(x,y) = -x^{3} + y^{2} + x$ and $g(x,y) = x$ as polynomials in $\left(\C[y]\right)[x]$,
       \begin{eqnarray*}
         \operatorname{Res}(f,g) &=& \det \left(\begin{array}{cccc}
           -1 & 1 & 0 & 0 \\
@@ -149,12 +149,36 @@
 \end{thm}
 
 \begin{thm}
-  Given a monic polynomial $f \in \C[y]$ of degree $n$, define the {\it discriminant} by
-  $$\disc{f} = \operatorname{Res}(f, f^\prime) \in \C.$$
+  Given a monic polynomial $f \in \C[x]$ of degree $n$, define the {\it discriminant} by
+  $$\disc{f} = \operatorname{Res}_n(f, f^\prime) \in \C.$$
   Here $f^\prime$ is the derivative.
   
   Prove that $f$ has a multiple zero if and only if $\disc{f} = 0$.
   \begin{proof}
+    Let $f(x) = a_n x^n + a_{n-1}x^{n-1} + \ldots + a_1 x + a_0$, so then $f^\prime(x) = n a_n x^{n-1} + (n-1)a_{n-1} x^{n-2} + \ldots + 2a_2 x + a_1$.
+    Note that it suffices to show that $\disc{f} = 0$ if and only if $f$ and $f^\prime$ have a common zero.
+    We observe that if we let 
+    $$A = \left(
+    \begin{array}{cccccccccc}
+      a_n & 0 & 0 & \ldots & 0 & n a_n & 0 & 0 & \ldots & 0\\
+      a_{n-1} & a_n & 0 & \ldots & 0 & (n-1) a_{n-1} & na_n & 0 & \ldots & 0\\
+      a_{n-2} & a_{n-1} & a_n & \ldots & 0 & (n-2) a_{n-2} & (n-1)a_{n-1} & na_n & \ldots & 0\\
+      \vdots & \vdots & \vdots & \ddots & \vdots & \vdots & \vdots & \vdots & \ddots & \vdots\\
+      a_2 & a_3 & a_4 & \ldots & a_n & a_1 & 2a_2 & 3a_3 & \ldots & na_n\\
+      a_1 & a_2 & a_3 & \ldots & a_{n-1} & 0 & a_1 & 2a_2 & \ldots & (n-1)a_{n-1}\\
+      a_0 & a_1 & a_2 & \ldots & a_{n-2} & 0 & 0 & a_1 & \ldots & (n-2)a_{n-2}\\
+      0 & a_0 & a_1 & \ldots & a_{n-3} & 0 & 0 & 0 & \ldots & (n-3)a_{n-3}\\
+      \vdots & \vdots & \vdots & \ddots & \vdots & \vdots & \vdots & \vdots & \ddots & \vdots\\
+      0 & 0 & 0 & \ldots & a_0 & 0 & 0 & 0 & \ldots & a_1\\
+    \end{array}
+    \right) \in \operatorname{Mat}_{2n - 1}(\C),$$
+    then $\operatorname{Res}_n(f,f^\prime) = \det(A)$.
+    Let $\alpha \in \C$ be such that $f(\alpha) = 0$ and take $x = (\alpha^{2n-2}, \alpha^{2n-3}, \ldots, \alpha, 1)$.
+    Then we observe that 
+    $$A^Tx^T = (\alpha^{n-2}f(\alpha), \alpha^{n-1}f(\alpha), \ldots, f(\alpha), \alpha^{n-1}f^\prime(\alpha), \alpha^{n-2}f^\prime(\alpha), \ldots, f^\prime(\alpha))^T = 0$$
+    if and only if $f^\prime(\alpha) = 0$.
+    But since $x \neq 0$, we note that $A^Tx^T = 0$ if and only if $\det(A^T) = \det(A) = 0$.
+    Therefore $\operatorname{Res}_n(f,f^\prime) = 0$ if and only if $f$ has a multiple root.
   \end{proof}
 \end{thm}
 
