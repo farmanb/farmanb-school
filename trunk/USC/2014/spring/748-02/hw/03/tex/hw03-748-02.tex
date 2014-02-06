@@ -24,67 +24,190 @@
 \newcommand{\A}{\mathbb{A}}
 
 \begin{thm}
-	In this problem, we will study some examples of B\'{e}zout's Theorem.
-	Consider the following Riemann surfaces in $\mathbb{P}^2$.
-	\begin{eqnarray*}
-		R_1 &=& \left\{ [x : y : z] \in \mathbb{P}^2 \;\middle\vert\; x^2 + y^2 = 4z^2 \right\}\\
-		R_2 &=& \left\{ [x : y : z] \in \mathbb{P}^2 \;\middle\vert\; (x - z)^2 + (y - z)^2 = z^2 \right\}\\
-		S &=& \left\{ [x : y : z] \in \mathbb{P}^2 \;\middle\vert\; y^2z = x^3 - xz^2\right\}\\
-		T_1 &=& \left\{ [x : y : z] \in \mathbb{P}^2 \;\middle\vert\; y = 0 \right\}\\
-		T_2 &=& \left\{ [x : y : z] \in \mathbb{P}^2 \;\middle\vert\; x = 0 \right\}\\
-	\end{eqnarray*}
-	\begin{enumerate}[(a)]
-		\item
-		What are the points of $S \cap T_1$?
-		For each point of intersection, compute the intersection multiplicity.
-		\item
-		What are the points of $S \cap T_2$?
-		For each point of intersection, compute the intersection multiplicity.
-		\item
-		What are the points of $R_1 \cap R_2$?
-		For each point of intersection, compute the intersection multiplicity.
-	\end{enumerate}
+  In this problem, we will study some examples of B\'{e}zout's Theorem.
+  Consider the following Riemann surfaces in $\mathbb{P}^2$.
+  \begin{eqnarray*}
+    R_1 &=& \left\{ [x : y : z] \in \mathbb{P}^2 \;\middle\vert\; x^2 + y^2 = 4z^2 \right\}\\
+    R_2 &=& \left\{ [x : y : z] \in \mathbb{P}^2 \;\middle\vert\; (x - z)^2 + (y - z)^2 = z^2 \right\}\\
+    S &=& \left\{ [x : y : z] \in \mathbb{P}^2 \;\middle\vert\; y^2z = x^3 - xz^2\right\}\\
+    T_1 &=& \left\{ [x : y : z] \in \mathbb{P}^2 \;\middle\vert\; y = 0 \right\}\\
+    T_2 &=& \left\{ [x : y : z] \in \mathbb{P}^2 \;\middle\vert\; x = 0 \right\}\\
+  \end{eqnarray*}
+  \begin{enumerate}[(a)]
+  \item
+    What are the points of $S \cap T_1$?
+    For each point of intersection, compute the intersection multiplicity.
+  \item
+    What are the points of $S \cap T_2$?
+    For each point of intersection, compute the intersection multiplicity.
+  \item
+    What are the points of $R_1 \cap R_2$?
+    For each point of intersection, compute the intersection multiplicity.
+  \end{enumerate}
 
-	\begin{proof}
-		\begin{enumerate}[(a)]
-			\item
-			The points of $S \cap T_1$ are
-			$$S \cap T_1 = \left\{ [x : 0 : z] \;\middle\vert\; 0 = x(x - z)(x + z)\right\}.$$
-			Since $z = 0$ implies $x = 0$, we may assume that $z = 1$ and so
-			$$S \cap T_1 = \left\{ [0 : 0 : 1], [1 : 0 : 1], [1 : 0 : -1] \right\}$$.
-			\item
-			The points of $S \cap T_2$ are
-			$$S \cap T_2 = \left\{ [0 : y : z] \;\middle\vert\; y^2z = 0 \right\} = \left\{[0 : 1 : 0], [0 : 0 : 1]\right\}.$$
-			\item
-			Assume that $[x : y : z] \in R_1 \cap R_2$.
-			Then we have
-			$$z^2 = (x - z)^2 + (y - z)^2 = x^2 + y^2 + 2z^2 - 2z(x + y) = 4z^2 + 2z^2 - 2z(x + y)$$
-			from which it follows that
-			$$z^2(5z - 2(x + y)) = 0.$$
-			
-			Assume that $z = 0$ and note that both $x$ and $y$ are non-zero.
-			From $x^2 + y^2 = (x + iy)(x - iy) = 0$ it follows that either $[x : y : z] = [x : -iy : 0] = [1 : -i : 0]$
-			or $[x : y : z] = [x : ix : 0] = [1 : i : 0]$.
-			
-			When $z \neq 0$, then $[x : y : z] = [x/z : y/z : 1]$, and so we may assume that $z = 1$.
-			We are then interested in pairs $(x,y) \in \C^2$ such that 
-			\begin{equation}\label{1.1}
-				x^2 + y^2 = 4
-			\end{equation}
-			 and 
-			\begin{equation}\label{1.2}
-				(x - 1)^2 + (y-1)^2 = 1.
-			\end{equation}
-			Upon expanding \eqref{1.2} we obtain by using \eqref{1.1} and some routine algebra 
-			$$x + y = 5/2.$$
-			Taking $x = 5/2 - y$ in \eqref{1.1} we obtain
-			$$8y^2 - 20y + 9 = 0.$$
-			Using the quadratic formula, it follows that $y = (5 \pm \sqrt{7})/4$ and thus $x = 10/4 - y = \left(5 \mp \sqrt{7}\right)/4$.
-			Hence
-			$$R_1 \cap R_2 = \left\{[1 : -i : 0], [1 : i : 0], [5 \mp \sqrt{7} : 5 \pm \sqrt{7} : 4]\right\}.$$
+  \begin{proof}
+    \begin{enumerate}[(a)]
+    \item
+      The points of $S \cap T_1$ are
+      $$S \cap T_1 = \left\{ [x : 0 : z] \;\middle\vert\; 0 = x(x - z)(x + z)\right\}.$$
+      Since $z = 0$ implies $x = 0$, we may assume that $z = 1$ and so
+      $$S \cap T_1 = \left\{ [0 : 0 : 1], [1 : 0 : 1], [-1 : 0 : 1] \right\}.$$
+      
+      For the intersection multiplicities we dehomogenizing with $z = 1$ and consider the resultant of the polynomials $f(x,y) = -x^{3} + y^{2} + x$ and $g(x,y) = y$ as polynomials in $\left(\C[x]\right)[y]$,
+      \begin{eqnarray*}
+        \operatorname{Res}(f,g) &=& \det \left(\begin{array}{ccc}
+          1 & 0 & 1 \\
+          0 & 1 & 0 \\
+          -x^{3} + x & 0 & 0
+        \end{array}\right)\\
+        &=& x^3 - x\\
+        &=& x(x+1)(x-1).
+      \end{eqnarray*}
+      Therefore the intersection multiplicities are all 1.
+    \item
+      The points of $S \cap T_2$ are
+      $$S \cap T_2 = \left\{ [0 : y : z] \;\middle\vert\; y^2z = 0 \right\} = \left\{[0 : 1 : 0], [0 : 0 : 1]\right\}.$$
+      
+      For the point $[0 : 1 : 0]$, we dehomogenize with $y = 1$ and consider the resultant of the polynomials $f(x,z) = -x^{3} + x z^{2} + z$ and $g(x,z) = x$ as polynomials in $\left(\C[z]\right)[x]$,
+      \begin{eqnarray*}
+        \operatorname{Res}(f,g) &=& \det\left(\begin{array}{cccc}
+          -1 & 1 & 0 & 0 \\
+          0 & 0 & 1 & 0 \\
+          z^{2} & 0 & 0 & 1 \\
+          z & 0 & 0 & 0
+        \end{array}\right)\\
+        &=& -z.
+      \end{eqnarray*}
+      Hence the intersection multiplicity for $[0 : 1 : 0]$ is 1.
+      
+      For the point $[0 : 0 : 1]$, we dehomogenize with $z = 1$ and consider the resultant of the polynomials $f(x,y) = $ and $g(x,y) = x$ as polynomials in $\left(\C[y]\right)[x]$,
+      \begin{eqnarray*}
+        \operatorname{Res}(f,g) &=& \det \left(\begin{array}{cccc}
+          -1 & 1 & 0 & 0 \\
+          0 & 0 & 1 & 0 \\
+          1 & 0 & 0 & 1 \\
+          y^{2} & 0 & 0 & 0
+        \end{array}\right)\\
+        &=& -y^2.
+      \end{eqnarray*}
+      Hence the intersection multiplicity for $[0 : 0 : 1]$ is 2.
+    \item
+      Assume that $[x : y : z] \in R_1 \cap R_2$.
+      Then we have
+      $$z^2 = (x - z)^2 + (y - z)^2 = x^2 + y^2 + 2z^2 - 2z(x + y) = 4z^2 + 2z^2 - 2z(x + y)$$
+      from which it follows that
+      $$z^2(5z - 2(x + y)) = 0.$$
+      
+      Assume that $z = 0$ and note that both $x$ and $y$ are non-zero.
+      From $x^2 + y^2 = (x + iy)(x - iy) = 0$ it follows that either $[x : y : z] = [x : -iy : 0] = [1 : -i : 0]$
+      or $[x : y : z] = [x : ix : 0] = [1 : i : 0]$.
+      
+      When $z \neq 0$, then $[x : y : z] = [x/z : y/z : 1]$, and so we may assume that $z = 1$.
+      We are then interested in pairs $(x,y) \in \C^2$ such that 
+      \begin{equation}\label{1.1}
+	x^2 + y^2 = 4
+      \end{equation}
+      and 
+      \begin{equation}\label{1.2}
+	(x - 1)^2 + (y-1)^2 = 1.
+      \end{equation}
+      Upon expanding \eqref{1.2} we obtain by using \eqref{1.1} and some routine algebra 
+      $$x + y = 5/2.$$
+      Taking $x = 5/2 - y$ in \eqref{1.1} we obtain
+      $$8y^2 - 20y + 9 = 0.$$
+      Using the quadratic formula, it follows that $y = (5 \pm \sqrt{7})/4$ and thus $x = 10/4 - y = \left(5 \mp \sqrt{7}\right)/4$.
+      Hence
+      $$R_1 \cap R_2 = \left\{[1 : -i : 0], [1 : i : 0], [5 \mp \sqrt{7} : 5 \pm \sqrt{7} : 4]\right\}.$$
 
-			For the intersection multiplicites of $[1 : -i : 0]$ and $[1 : i : 0]$ we dehomenize by taking $x = 1$ and consider the resultant of the polynomials $f(y,z) = -4z^2 + (y^2 + 1)$ and $g(y,z) = z^2 - 2(1 + y)z + (y^2 - 1)$ as elements of $\C[y][z]$.
-		\end{enumerate}
-	\end{proof}
+      For the intersection multiplicites of $[1 : -i : 0]$ and $[1 : i : 0]$ we dehomogenize by taking $x = 1$ and consider the resultant of the polynomials $f(y,z) = -4z^2 + (y^2 + 1)$ and $g(y,z) = z^2 - 2(1 + y)z + (y^2 - 1)$ as elements of $\left(\C[y]\right)[z]$, 
+      \begin{eqnarray*}
+        \operatorname{Res}(f,g) &=& \det\left(\begin{array}{cccc}
+        -4 & 0 & 1 & 0 \\
+        0 & -4 & -2 \, y - 2 & 1 \\
+        y^{2} + 1 & 0 & y^{2} + 1 & -2 \, y - 2 \\
+        0 & y^{2} + 1 & 0 & y^{2} + 1
+      \end{array}\right)\\
+        &=& 9 \, y^{4} - 32 \, y^{3} + 18 \, y^{2} - 32 \, y + 9\\
+        &=& {\left(y^{2} + 1\right)} {\left(9 \, y^{2} - 32 \, y + 9\right)}\\
+        &=& {\left(y + i\right)} {\left(y - i\right)} {\left(9 \, y^{2} - 32 \, y + 9\right)}.
+      \end{eqnarray*}
+      Hence the intersection multiplicities of $[1 : -i : 0]$ and $[1 : i : 0]$ are both 1.
+      
+      For the intersection multiplicities of $[5 \mp \sqrt{7} : 5 \pm \sqrt{7} : 4]$, we dehomogenize by taking $z = 1$ and consider the resultant of the polynomials $f(x,y) = x^{2} + y^{2} - 4$ and $g(x,y) = {\left(y - 1\right)}^{2} + {\left(x - 1\right)}^{2} - 1$ as elements of $\left(\C[y]\right)[x]$,
+      \begin{eqnarray*}
+        \operatorname{Res}(f,g) &=& \det\left(\begin{array}{cccc}
+1 & 0 & 1 & 0 \\
+0 & 1 & -2 & 1 \\
+y^{2} - 4 & 0 & y^{2} - 2 \, y + 1 & -2 \\
+0 & y^{2} - 4 & 0 & y^{2} - 2 \, y + 1
+\end{array}\right) \\
+        &=& 8 \, y^{2} - 20 \, y + 9.
+      \end{eqnarray*}
+      Observing that $\frac{5 \pm \sqrt{7}}{4}$ are both roots of this polynomial, it follows that the intersection multiplicities for $[5 \mp \sqrt{7} : 5 \pm \sqrt{7} : 4]$ are both 1.
+    \end{enumerate}
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Given a monic polynomial $f \in \C[y]$ of degree $n$, define the {\it discriminant} by
+  $$\disc{f} = \operatorname{Res}(f, f^\prime) \in \C.$$
+  Here $f^\prime$ is the derivative.
+  
+  Prove that $f$ has a multiple zero if and only if $\disc{f} = 0$.
+  \begin{proof}
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  \begin{enumerate}[(a)]
+  \item
+    Compute $\operatorname{Res}_{1,1}(f,g)$ where
+    \begin{eqnarray*}
+      f &=& v_1 x + v_0\\
+      g &=& w_1x + w_0.
+    \end{eqnarray*}
+    \item
+      Compute $\operatorname{Res}_{2,2}(f,g)$ where
+      \begin{eqnarray*}
+        f &=& v_2x^2 + v_1x + v_0\\
+        g &=& w_2x^2 + w_1x + w_0.
+      \end{eqnarray*}
+    \item
+      Compute $\disc{f}$ where
+      $$f = v_wx^2 + v_1x + v_0.$$
+  \end{enumerate}
+  
+  \begin{proof}
+    \begin{enumerate}[(a)]
+    \item
+      $$\operatorname{Res}_{1,1}(f,g) = \det\left(\begin{array}{cc}
+      v_1 & w_1\\
+      v_0 & w_0
+    \end{array}\right) = v_{1} w_{0} -v_{0} w_{1}.$$
+    \item
+      \begin{eqnarray*}
+        \operatorname{Res}_{2,2}(f,g) &=& \det\left(\begin{array}{cccc}
+      v_2 & 0 & w_1 & 0\\
+      v_1 & v_2 & w_1 & w_2\\
+      v_0 & v_1 & w_0 & w_1\\
+      0 & v_0 & 0 & w_0
+    \end{array}\right)\\
+        &=& v_{0}^{2} w_{1} w_{2} - v_{0} v_{1} w_{1}^{2} - v_{0} v_{2} w_{0} w_{1}
+        - v_{0} v_{2} w_{0} w_{2} + v_{0} v_{2} w_{1}^{2} + v_{1}^{2} w_{0}
+        w_{1} - v_{1} v_{2} w_{0} w_{1} + v_{2}^{2} w_{0}^{2}.
+      \end{eqnarray*}
+    \item
+      Since $f^\prime = 2v_2x + v_1$
+      \begin{eqnarray*}
+        \disc{f} &=& \operatorname{Res}(f,f^\prime)\\
+        &=& \det \left(\begin{array}{ccc}
+        v_2 & 2v_2 & 0\\
+        v_1 & v_1 & 2v_2\\
+        v_0 & 0 & v_1
+      \end{array}\right)\\
+        &=& 4 \, v_{0} v_{2}^{2} - v_{1}^{2} v_{2}.
+      \end{eqnarray*}
+    \end{enumerate}
+  \end{proof}
 \end{thm}
 \end{document}

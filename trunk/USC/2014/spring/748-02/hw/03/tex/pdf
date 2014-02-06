@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-NUM=02
+NUM=03
 CLASS=748
 SECTION=02
 NAME="hw${NUM}-${CLASS}-${SECTION}"
