@@ -1,0 +1,101 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath,mathtools,tikz-cd,mathrsfs}
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 748-02:\\Homework 04}
+\date{February 21, 2014}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+\maketitle
+
+\providecommand{\p}{\mathfrak{p}}
+\providecommand{\m}{\mathfrak{m}}
+\providecommand{\Deck}[1]{\operatorname{Deck}\left(#1\right)}
+
+\newtheorem{thm}{}
+\newtheorem{lem}{Lemma}
+\newtheorem{prop}{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[thm]
+
+\newcommand{\A}{\mathbb{A}}
+
+\begin{thm}
+  In class we saw that the resultant satisfies
+  $$\Res_{m,n}(f,g) = \pm \Res_{n,m}(g,f).$$
+  What is the correct sign? (Your answer should depend on $n$ and $m$).
+  
+  \begin{proof}
+    Let $f(x) = u_0x^n + \ldots + u_n$ and $g(x) = v_0x^m + \ldots + v_m$.
+    Assume, after a possible relabeling, that $n \geq m$.
+    We observe that by starting with the matrix for $\Res_{m,n}(f,g)$, we may obtain the matrix for $\Res_{n,m}(g,f)$ in the following way:  
+    \begin{itemize}
+    \item
+      Interchange the $m^\text{th}$ column with the column on the right $n$ times,
+    \item
+      Interchange the $(m-1)^\text{th}$ column with the column on the right $n$ times,
+    \item
+      $\ldots$
+    \item
+      Interchange the first column with the column on the right $n$ times.
+    \end{itemize}
+    Each column of the first $m$ columns is interchanged with another column $n$ times, so this corresponds to interchanging $mn$ columns.
+    From linear algebra we know that if $B$ is a matrix obtained by interchanging two columns, then $\det(A) = -\det(B)$.
+    Therefore
+    $$\Res_{m,n}(f,g) = (-1)^{mn}\Res{n,m}(g,f).$$
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  In this problem, we shall describe some Riemann Surfaces inside of a complex manifold different from $\mathbb{P}^2$.
+  \begin{enumerate}[(a)]
+  \item
+    Make the product space $\mathbb{P}^1 \times \mathbb{P}^1$ into a $2$-dimensional complex manifold.
+  \item
+    Define a polynomial $F \in \C[s,t,x,y]$ to be {\it bi-homogenous} of bidegree $(m,n)$ if it satisfies
+    \begin{eqnarray*}
+      F(as, at, x, y) &=& a^mF(s,t,x,y)\\
+      F(s,t,bx,by) &=& b^nF(s,t,x,y).
+    \end{eqnarray*}
+    Prove that
+    $$S = \left\{([s : t], [x : y]) \in \mathbb{P}^1 \times \mathbb{P}^1 \;\middle\vert\; F(s,t,x,y) = 0\right\}$$
+    is a well-defined closed subset.
+  \item
+    Formulate a necessary and sufficient condition for $S$ to be a complex 1-manifold that is analogous to the condition from Problem 2 of Problem Set 1 
+    (i.e. the condition that a homogenous polynomial $F$ is such that $F_x = F_y = F_z = 0$ has no non-trivial solution).
+  \end{enumerate}
+  
+  \begin{proof}
+    \begin{enumerate}[(a)]
+    \item
+      Let $U, V \subseteq \mathbb{P}^1$ be open and let $\varphi_1 \colon U \rightarrow \varphi_1(U) \subseteq \C$ and $\varphi_2 \colon V \rightarrow \varphi_2(V) \subseteq \C$ be charts.
+      Applying the universal property for products in {\bf Top} we obtain the continuous map
+      \begin{align*}
+        \varphi_1 \times \varphi_2 \colon U \times V \rightarrow \varphi_1(U) \times \varphi_2(V)\\
+        \left([s : t], [x : y]\right) &\mapsto \left(\varphi_1\left([s:t]\right), \varphi_2\left([x : y]\right)\right)
+      \end{align*}
+      with inverse the analogously defined map $\varphi_{1}^{-1} \times \varphi_{2}^{-1}$; that is, $\varphi_1 \times \varphi_2$ is a homeomorphism.
+      
+      To see that these homeomorphisms are holomorphically compatible, observe that for any two charts $\varphi_1 \times \varphi_2$ and $\psi_1 \times \psi_2$ on $\mathbb{P}^1 \times \mathbb{P}^1$ for which the following composition makes sense
+      $$\psi_1^{-1} \times \psi_2^{-1} \circ \varphi_1 \times \varphi_2 = \psi_1^{-1} \circ \varphi_1 \times \psi_2^{-1} \circ \varphi_2$$
+      by the construction above.
+      Moreover, by virtue of $\psi_1, \psi_2, \varphi_1, \varphi_2$ being holomorphically compatible (as they are charts on $\mathbb{P}^1$), this composition gives holomorphic functions in both components, as desired.
+    \item
+      Choose two homogenous co-ordinates $([s_1 : t_1], [x_1 : y_1]) = ([s_2 : t_2], [x_2 : y_2])$.
+      There exists some $\lambda, \omega \in \C^\times$ with $s_1 = \lambda s_2$, $t_1 = \lambda t_2$ and $x_1 = \omega x_2$, $y_1 = \omega y_2$.
+      By the definition of bi-homogeneity we have
+      \begin{eqnarray*}
+        F(s_1, t_1, x_1, y_1) &=& F(\lambda s_2, \lambda t_2, x_1, y_1)\\
+        &=& \lambda^m F(s_2, t_2, x_1, y_1)\\
+        &=& \lambda^m F(s_2, t_2, \omega x_2, \omega y_2)\\
+        &=& \lambda^m \omega^n F(s_2, t_2, x_2, y_2).
+      \end{eqnarray*}
+      Hence $F(s_1, t_1, x_1, y_1) = 0$ if and only if $F(s_2, t_2, x_2, y_2) = 0$ and so $S$ is well-defined.
+      That $S$ is closed follows from the fact that $F$ defines a continuous function on $\mathbb{P}^1 \times \mathbb{P}^1$ and $S$ is the pre-image under $F$ of the closed point $\{0\}$.
+    \end{enumerate}
+  \end{proof}
+\end{thm}
+\end{document}
