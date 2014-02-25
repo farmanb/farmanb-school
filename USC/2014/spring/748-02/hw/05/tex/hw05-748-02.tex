@@ -1,0 +1,63 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath,mathtools,tikz-cd,mathrsfs}
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 748-02:\\Homework 05}
+\date{February 28, 2014}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+\maketitle
+
+\providecommand{\p}{\mathfrak{p}}
+\providecommand{\m}{\mathfrak{m}}
+\providecommand{\Deck}[1]{\operatorname{Deck}\left(#1\right)}
+
+\newtheorem{thm}{}
+\newtheorem{lem}{Lemma}
+\newtheorem{prop}{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[thm]
+
+\newcommand{\A}{\mathbb{A}}
+
+\begin{thm}
+  Here we will work some details of the proof that $\pi^*\left(\mathcal{M}(X)\right) \subset \mathcal{M}\left(Y\right)$ is an algebraic extension if $\pi \colon Y \rightarrow X$ is a degree $n$ unbranched cover.
+  
+  \begin{enumerate}[(a)]
+  \item
+    Suppose that $X$ is a Riemann surface, $\{U_i\}$ is an open cover, and $\{f_i \in \mathcal{O}_X(U_i)\}$ a collection of holomorphic functions such that $f_i\mid_{U_{i,j}} = f_j \mid_{U_{i,j}}$ for all $i,j$.
+    Here $U_{i,j} = U_i \cap U_j$.
+    
+    Prove that there exists a global holomorphic function $f \in \mathcal{O}_X(X)$ such that $f \mid_{U_i} = f_i$ for all $i$.
+  \item
+    Let $X = \C \setminus \{0\}$.
+    Construct an open cover $\{U_i\}$ of $X$ and a collection of holomorphic functions $\{f_i \in \mathcal{O}_X(U_i)\}$ that satisfy $f^2 = z$ on $U_i$.
+    Can you construct the $f_i$ so that $f_i\mid_{U_{i,j}} = f_j \mid_{U_{i,j}}$ for all $i$ and $j$?
+  \item
+    Suppose that $\pi \colon Y \rightarrow X$ is an unbranched degree $n$ holomorphic covering map and $f \in \mathcal{O}_Y(Y)$.
+    Let $\{U_i\}$ be an open cover of $X$ by evenly covered neighbourhoods.
+    For each $U_i$, we have
+    $$\pi^{-1}(U_i) = \coprod_{j=1}^n V_j^{(i)}$$
+    for some open $V_j^{(i)} \subseteq Y$
+    Let $\tau_{j}^{(i)} \colon U_i \rightarrow V_j^{(i)}$ be the local inverse.
+    
+    Define $f_j^{(i)} = f \circ \tau_{j}^{(i)} \in \mathcal{O}_X(U_i)$ and then set $c_k^{(i)} \in \mathcal{O}_X(U_i)$ equal to the $k^\text{th}$ elementary symmetric function in $f_1^{(i)}, \ldots, f_n^{(i)}$.
+    Prove that there exists a global holomorphic function $c_k \in \mathcal{O}_X(U_i)$ such that $c_k \mid_{U_i} = c_k^{(i)}$.
+  \end{enumerate}
+  
+  \begin{proof}
+    \begin{enumerate}[(a)]
+    \item
+      As we have seen $\mathcal{O}_X$ is a sheaf, therefore such an $f$ exists by the gluing axiom.
+    \item
+      Let $U_1 = X \setminus \left\{z \in X \;\middle\vert\; \Im{z} = 0,\, \Re{z} < 0\right\}$ and $U_1 = X \setminus \left\{z \in X \;\middle\vert\; \Im{z} = 0,\, \Re{z} > 0\right\}$.
+      For each $z \in U_1$ we can write $z = re^{i\theta}$ where $r > 0$ and $\theta \in (-\pi, \pi)$ and for each $z \in U_2$ we can write $z = re^{i\theta}$ where $\theta \in (0, 2\pi)$.
+      Define $f_1(z) = \sqrt{r}e^{i\theta/2}$ and $f_2(z) = \sqrt{r}e^{i\theta/2}$, and note that $f_i \in \mathcal{O}_X(U_i)$.
+      However, these cannot agree on the overlap, for otherwise there would exist a global holomorphic square root.
+    \end{enumerate}
+  \end{proof}
+\end{thm}
+\end{document}
