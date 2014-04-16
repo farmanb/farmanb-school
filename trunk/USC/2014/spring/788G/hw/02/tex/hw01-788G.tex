@@ -1,0 +1,84 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath,mathtools,tikz-cd,mathrsfs}
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 788G:\\Homework 01}
+\date{April 16, 2014}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+\maketitle
+
+\providecommand{\p}{\mathfrak{p}}
+\providecommand{\m}{\mathfrak{m}}
+\providecommand{\Deck}[1]{\operatorname{Deck}\left(#1\right)}
+\newcommand{\Res}{\operatorname{Res}}
+\newtheorem{thm}{}
+\newtheorem{lem}{Lemma}
+\newtheorem{prop}{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[thm]
+
+\newcommand{\A}{\mathbb{A}}
+
+\begin{thm}\label{Ex1}
+	Let $f(x,y) = ax^2 + bxy + cy^2$ be a quadratic form of discriminant $D \neq 0$.
+	Prove that it is positive definite if and only if $D < 0$ and $a < 0$.
+	In addition, describe what happens if $D = 0$.
+
+	\begin{proof}
+		Assume that $f$ is positive definite and let $g(x) = f(x,1)$.
+		First we show that $a > 0$.
+		Suppose that $a$ were not positive and observe that if $a = 0$, then $b \neq 0$ since $D \neq 0$.
+		Hence one of $\lim_{x \rightarrow \infty}g(x) = -\infty$ or $\lim_{x \rightarrow -\infty}g(x) = -\infty$ must hold.
+		Choose $N \in \Z$ sufficiently large so that $g(N) = f(N,1) < 0$, contrary to the assumption that $f$ is positive definite.
+		Therefore $a > 0$.
+		
+		Suppose to the contrary that $D$ were positive, and note that there exist distinct real roots, 
+		$$\alpha_1 <  -\frac{b}{2a} < \alpha_2,$$
+		of $g$.
+		It follows from the fact that $a > 0$ that the vertex of the parabola, $g$, lies below the $x$-axis, whence
+		$$4a^2g\left(\frac{-b}{2a}\right) = a(b^2) + b(-b)(2a) + c(4a^2) = f(-b, 2a) < 0,$$
+		contradicting the assumption that $f$ is positive definite.
+		Therefore $D < 0$, as desired.
+
+		Conversely, assume that $a > 0$ and $D < 0$.		
+		Then $f(x,y) > 0$ whenever $(x,y) \in \Z^2$ follows from
+		$$4af(x,y) = \left((2ax)^2 + 2(2ax)by + b^2y^2\right) - b^2y^2 + 4acy^2 = (2ax + by)^2 - Dy^2 > 0.$$
+	\end{proof}
+\end{thm}
+
+\begin{thm}
+	Can a quadratic form be indefinite over $\R$, but only represent positive integers when $x, y \in \Z$?
+
+	\begin{proof}
+		Suppose that $f(x,y) = ax^2 + bxy + cy^2$ were indefinite over $\R$ but positive definite over $\Z$.
+		Let $g(x) = f(x,1)$.
+		There exists some $[\alpha : \beta] \in \mathbb{P}_{\R}^1$ such that $f(\alpha,\beta) < 0$.
+		If $\beta = 0$, then $f(\alpha,\beta) = a\alpha^2 < 0$ implies $a < 0$, contradicting Exercise~\ref{Ex1}.
+		Assume that $\beta \neq 0$.
+		Then we have
+		$$g\left(\frac{\alpha}{\beta}\right) = \frac{1}{\beta^2}f(\alpha, \beta) < 0.$$
+		Choose integers $m$ and $n$ such that $m < \alpha/\beta < n$ and observe that $g(m), g(n) > 0$ must hold since $f$ is supposed to be positive definite over $\Z$.
+		By the Mean-Value Theorem, there exist real numbers $\alpha_1, \alpha_2$ such that 
+		$$m < \alpha_1 < \frac{\alpha}{\beta} < \alpha_2 < n$$
+		and $g(\alpha_1) = g(\alpha_2) = 0$.
+		Hence 
+		$$\operatorname{Disc}(f) = \operatorname{Disc}(g) = b^2 - 4ac> 0,$$
+		contradicting Exercise~\ref{Ex1}.
+		Therefore no such form exists.		
+	\end{proof}
+\end{thm}
+
+\begin{thm}
+	Prove that the action of $\GL{2}{\Z}$ defined in lecture does {\it not} definte a {\it left} action on binary quadratic forms.
+
+	In other words, find $g, g^\prime$ and $f$ for which (if a left action was defined) we would have $g(g^\prime(f)) \neq (gg^\prime)(f)$.
+\end{thm}
+
+\begin{thm}
+	Prove {\it directly} (i.e. do not quote the reduction theorem) that the quadratic forms $x^2 + 5y^2$ and $2x^2 + 2xy + 3y^2$ are not equivalent.
+\end{thm}
+\end{document}
