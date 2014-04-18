@@ -1,0 +1,238 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath,mathtools,tikz-cd,mathrsfs}
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 788G:\\Homework 01}
+\date{April 16, 2014}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+\maketitle
+
+\providecommand{\p}{\mathfrak{p}}
+\providecommand{\m}{\mathfrak{m}}
+\providecommand{\Deck}[1]{\operatorname{Deck}\left(#1\right)}
+%\newcommand{\Res}{\operatorname{Res}}
+\newtheorem{thm}{}
+\newtheorem{lem}{Lemma}
+\newtheorem{prop}{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[thm]
+
+\newcommand{\A}{\mathbb{A}}
+
+\begin{thm}\label{Ex1}
+  Let $f(x,y) = ax^2 + bxy + cy^2$ be a quadratic form of discriminant $D \neq 0$.
+  Prove that it is positive definite if and only if $D < 0$ and $a < 0$.
+  In addition, describe what happens if $D = 0$.
+
+  \begin{proof}
+    Assume that $f$ is positive definite and let $g(x) = f(x,1)$.
+    First we show that $a > 0$.
+    Suppose that $a$ were not positive and observe that if $a = 0$, then $b \neq 0$ since $D \neq 0$.
+    Hence one of $\lim_{x \rightarrow \infty}g(x) = -\infty$ or $\lim_{x \rightarrow -\infty}g(x) = -\infty$ must hold.
+    Choose $N \in \Z$ sufficiently large so that $g(N) = f(N,1) < 0$, contrary to the assumption that $f$ is positive definite.
+    Therefore $a > 0$.
+    
+    Suppose to the contrary that $D$ were positive, and note that there exist distinct real roots, 
+    $$\alpha_1 <  -\frac{b}{2a} < \alpha_2,$$
+    of $g$.
+    It follows from the fact that $a > 0$ that the vertex of the parabola, $g$, lies below the $x$-axis, whence
+    $$4a^2g\left(\frac{-b}{2a}\right) = a(b^2) + b(-b)(2a) + c(4a^2) = f(-b, 2a) < 0,$$
+    contradicting the assumption that $f$ is positive definite.
+    Therefore $D < 0$, as desired.
+
+    Conversely, assume that $a > 0$ and $D < 0$.		
+    Then $f(x,y) > 0$ whenever $(x,y) \in \Z^2$ follows from
+    $$4af(x,y) = \left((2ax)^2 + 2(2ax)by + b^2y^2\right) - b^2y^2 + 4acy^2 = (2ax + by)^2 - Dy^2 > 0.$$
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Can a quadratic form be indefinite over $\R$, but only represent positive integers when $x, y \in \Z$?
+
+  \begin{proof}
+    Suppose that $f(x,y) = ax^2 + bxy + cy^2$ were indefinite over $\R$ but positive definite over $\Z$.
+    Let $g(x) = f(x,1)$.
+    There exists some $[\alpha : \beta] \in \mathbb{P}_{\R}^1$ such that $f(\alpha,\beta) < 0$.
+    If $\beta = 0$, then $f(\alpha,\beta) = a\alpha^2 < 0$ implies $a < 0$, contradicting Exercise~\ref{Ex1}.
+    Assume that $\beta \neq 0$.
+    Then we have
+    $$g\left(\frac{\alpha}{\beta}\right) = \frac{1}{\beta^2}f(\alpha, \beta) < 0.$$
+    Choose integers $m$ and $n$ such that $m < \alpha/\beta < n$ and observe that $g(m), g(n) > 0$ must hold since $f$ is supposed to be positive definite over $\Z$.
+    By the Mean-Value Theorem, there exist real numbers $\alpha_1, \alpha_2$ such that 
+    $$m < \alpha_1 < \frac{\alpha}{\beta} < \alpha_2 < n$$
+    and $g(\alpha_1) = g(\alpha_2) = 0$.
+    Hence 
+    $$\operatorname{Disc}(f) = \operatorname{Disc}(g) = b^2 - 4ac> 0,$$
+    contradicting Exercise~\ref{Ex1}.
+    Therefore no such form exists.		
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Prove that the action of $\GL{2}{\Z}$ defined in lecture does {\it not} definte a {\it left} action on binary quadratic forms.
+
+  In other words, find $g, g^\prime$ and $f$ for which (if a left action was defined) we would have $g(g^\prime(f)) \neq (gg^\prime)(f)$.
+  
+  \begin{proof}
+    Let $f(x,y) = x^2 + y^2$ and let
+    $$g = \left(\begin{array}{cc}
+      0 & -1\\
+      1 & 0
+    \end{array}\right)\ \text{and}\ 
+    g^\prime = \left(\begin{array}{cc}
+      1 & 1\\
+      0 & 1
+    \end{array}\right).$$
+    We first note that 
+    $$g^\prime \left(\begin{array}{c}
+      x\\
+      y
+      \end{array}\right) = \left(\begin{array}{c}x + y\\y\end{array}\right)$$
+    and thus
+    $$g^\prime \cdot f(x,y) = f(x + y, y) = (x+y)^2 + y^2 = x^2 + 2xy + 2y^2.$$
+    Then we note that
+    $$g^\prime \left(\begin{array}{c}
+      x\\
+      y
+      \end{array}\right) = \left(\begin{array}{c} -y \\ x \end{array}\right),$$
+    from which it follows that
+    $$g\cdot (g^\prime(x,y)) = g \cdot (x^2 + 2xy + 2y^2) = (-y)^2 + 2(-y)(x) + x^2 = y^2 - 2xy + x^2.$$
+    However,
+    $$gg^\prime \left(\begin{array}{c}
+      x\\
+      y
+      \end{array}\right) = \left(\begin{array}{cc}
+      0 & -1\\
+      1 & 1
+    \end{array}\right)\left(\begin{array}{c}
+      x\\
+      y
+      \end{array}\right) = \left(\begin{array}{c}
+      -y\\
+      x + y
+    \end{array}\right) 
+    $$
+    and thus
+    $$(gg^\prime) \cdot f(x,y) = f(-y, x + y) = (-y)^2 + (x + y)^2 = x^2 + 2xy + 2y^2 \neq g \cdot (g^\prime \cdot f(x,y)),$$
+    as desired.    
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Prove {\it directly} (i.e. do not quote the reduction theorem) that the quadratic forms $x^2 + 5y^2$ and $2x^2 + 2xy + 3y^2$ are not equivalent.
+  
+  \begin{proof}
+    Suppose to the contrary that there were integers $a,b,c,d$ with $ad - bc = 1$ such that
+    $$(ax + by)^2 + 5(cx + dy)^2 = (a^2 + 5c^2)x^2 + (2ab + 10cd)xy + (b^2 + 5d^2)y^2 = 2x^2 + 2xy + 3y^2.$$
+    Equating coefficients, we immediately see that $a^2 + 5c^2 = 2$ implies that $c = 0$ and so $a^2 = 2$.
+    However, $a$ was supposed to be an integer, a contradiction.
+    Therefore $x^2 + 5y^2$ and $2x^2 + 2xy + 3y^2$ are not equivalent.
+  \end{proof}
+\end{thm}
+
+\setcounter{thm}{5}
+\begin{thm}
+  Compute $h(D)$ for $D = -7, -8, -43, -67, -163, \ldots$.
+  \begin{proof}
+    \begin{enumerate}[(a)]
+    \item
+      h(-7) = 1.
+      
+      We have that $\abs{b} \leq a \leq \sqrt{7/3} < 2$ and so $a = 1$.
+      Since $-D = 7 \equiv 3 \pmod{4}$ and $$c = \frac{b^2 - D}{4a} \in \Z$$ it follows that $b \neq 0$.
+      When $b = 1$ we have
+      $$c = \frac{1 + 7}{4} = 2,$$ 
+      giving the form $x^2 + xy + 2y^2$ and thus $h(-7) = 1$.
+    \item
+      h(-8) = 1.
+      
+      We have that $a \leq \sqrt{8/3} < 2$ and so $a = 1$, from which it follows that $b = 0$ or $b = 1$.
+      When $b = 1$ we have $c = 9/4 \not \in \Z$.
+      When $b = 0$ we have $c = 8/4 = 2$, giving the form $x^2 + 2y^2$.
+      Therefore $h(-8) = 1$.
+    \item
+      h(-43) = 1
+
+      We have that $\abs{b} \leq a \leq \sqrt{43/3} < 4$.
+      Observe that $-D = 43 \equiv 1 \pmod{4}$, so it is necessary that $b^2 \equiv 1 \pmod 4$ in order to satisfy
+      $$c = \frac{b^2 - D}{4a} \in \mathbb{Z}.$$
+      Hence $b \not \in \{0, \pm 2\}$ must hold.
+      When $a = 1$, this implies $b = 1$ immediately, giving the form $x^2 + xy + 11y^2$.
+      If $a = 2$, then $b \in \{\pm 1\}$.
+      However, $44 \equiv 3 \pmod{8}$ and so $a \neq 2$.
+      If $a = 3$, $b \in \{\pm 1, 3\}$.
+      Since $12 \nmid 44$ and $12 \nmid 52$, it follows that $a \neq 3$.
+      Therefore $h(-43) = 1$.
+    \item
+      h(-67) = 1.
+      
+      We have $\abs{b} \leq a \leq \sqrt{67/3} < 5$.
+      Observe that $-D = 67 \equiv 3 \pmod{4}$, so it is necessary that $b^2 \equiv 1 \pmod{4}$ and thus $b \not \in \{0, \pm 2, 4\}$.
+      When $a = 1$ we have the form $x^2 + xy + 17y^2$.
+      If $a = 2$, then $b \in \{\pm 1\}$, but $68 \equiv 4 \pmod{8}$, so $a \neq 2$. 
+      If $a = 3$, then $b \in \{\pm 1, 3\}$.
+      However $12 \nmid 68$ and $12 \nmid 76$, so $a \neq 3$.
+      If $a = 4$, then $b \in \{\pm 1, 3\}$.
+      However, $16 \nmid 68$ and $16 \nmid 76$.
+      Therefore $h(-67) = 1$.
+    \item
+      h(-163) = 1.
+      
+      We have $\abs{b} \leq a \leq \sqrt{163/3} < 8$.
+      Observe that $-D = 163 \equiv 3 \pmod{4}$, so it is necessary that $b^2 \equiv 1 \pmod{4}$ and thus $b \not \in \{0, \pm 2, \pm 4, 6\}$.
+      We first check the possible values of $b$ for each value of $a$, then compute the residues of $b^2 - D \pmod {4a}$; we note that the only viable choices for $a$ and $b$ are those satisfying $0 = b^2 - D \pmod{4a}$ since
+      $$c = \frac{b^2 - D}{4a} \in \Z.$$
+      If $a = 1$, then $b = 1$.
+      If $a = 2$, then $b \in \{\pm 1\}$, but $164 \equiv 4 \pmod{8}$, so $a \neq 2$. 
+      If $a = 3$, then $b \in \{\pm 1, 3\}$.
+      If $a = 4$, then $b \in \{\pm 1, \pm 3\}$.
+      If $a = 5$, then $b \in \{\pm 1, \pm 3, 5\}$
+      If $a = 6$ then $b \in \{\pm 1, \pm 3, \pm 5\}$.
+      If $a = 7$, then $b \in \{\pm 1, \pm 3, \pm 5, 7\}$.
+      The residue classes are collected in the following table; each column gives the residue class of $b^2 - D \pmod{4a}$, where appropriate.
+      $$\begin{array}{c||cccccccc}
+                        & 1 & 2 & 3 & 4 & 5 & 6 & 7\\
+        \hline        
+        (\pm 1)^2 + 163 & 0 & 4 & 8 & 4  & 4  & 20 & 24 & \pmod{4a}\\
+        (\pm 3)^2 + 163 & - & - & 4 & 12 & 12 & 4  & 4  & \pmod{4a}\\
+        (\pm 5)^2 + 163 & - & - & - & -  & 8  & 20 & 20 & \pmod{4a}\\
+        7^2 + 163       & - & - & - & -  & -  & -  & 16 & \pmod{4a}
+      \end{array}$$
+      The only viable choice is $a = 1$, $b = 1$ and so we have the form $x^2 + xy + 41y^2$.
+      Therefore $h(-163) = 1$.
+    \end{enumerate}
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Find some $D$ for which $h(D) > 5$.
+  
+  \begin{proof}
+    h(-87) = 6.
+
+    We have $\abs{b} \leq a \leq \sqrt{163/3} < 6$.
+    Observe that $-D = 87 \equiv 3 \pmod{4}$, so it is necessary that $b^2 \equiv 1 \pmod{4}$ and thus $b \not \in \{0, \pm 2, \pm 4\}$.
+    We first check the possible values of $b$ for each value of $a$, then compute the residues of $b^2 - D \pmod {4a}$; we note that the only viable choices for $a$ and $b$ are those satisfying $0 = b^2 - D \pmod{4a}$ since
+    $$c = \frac{b^2 - D}{4a} \in \Z.$$
+    If $a = 1$, then $b = 1$.
+    If $a = 2$, then $b \in \{\pm 1\}$, but $164 \equiv 4 \pmod{8}$, so $a \neq 2$. 
+    If $a = 3$, then $b \in \{\pm 1, 3\}$.
+    If $a = 4$, then $b \in \{\pm 1, \pm 3\}$.
+    If $a = 5$, then $b \in \{\pm 1, \pm 3, 5\}$
+    The residue classes are collected in the following table; each column gives the residue class of $b^2 - D \pmod{4a}$, where appropriate.
+    $$\begin{array}{c||cccccc}
+      & 1 & 2 & 3 & 4 & 5\\
+      \hline        
+      (\pm 1)^2 + 87 & 0 & 0 & 4 & 8 & 8  & \pmod{4a}\\
+      (\pm 3)^2 + 87 & - & - & 0 & 0 & 16 & \pmod{4a}\\
+      (\pm 5)^2 + 87 & - & - & - & -  & 12  & \pmod{4a}\\
+    \end{array}$$
+    The possible forms we obtain are $x^2 + xy + 22y^2$, $2x^2 \pm xy + 11y^2$, $3x^2 + 3xy + 16y^2$, and $4x^2 \pm 3xy + 6y^2$.
+    Therefore $h(-87) = 6$.
+  \end{proof}
+\end{thm}
+\end{document}
