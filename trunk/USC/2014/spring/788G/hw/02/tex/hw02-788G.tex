@@ -40,13 +40,21 @@
     $$\alpha_1 <  -\frac{b}{2a} < \alpha_2,$$
     of $g$.
     It follows from the fact that $a > 0$ that the vertex of the parabola, $g$, lies below the $x$-axis, whence
-    $$4a^2g\left(\frac{-b}{2a}\right) = a(b^2) + b(-b)(2a) + c(4a^2) = f(-b, 2a) < 0,$$
+    $$4a^2g\left(\frac{-b}{2a}\right) = a(b^2) + b(-b)(2a) + c(2a)^2 = f(-b, 2a) < 0,$$
     contradicting the assumption that $f$ is positive definite.
     Therefore $D < 0$, as desired.
 
     Conversely, assume that $a > 0$ and $D < 0$.		
     Then $f(x,y) > 0$ whenever $(x,y) \in \Z^2$ follows from
-    $$4af(x,y) = \left((2ax)^2 + 2(2ax)by + b^2y^2\right) - b^2y^2 + 4acy^2 = (2ax + by)^2 - Dy^2 > 0.$$
+    \begin{equation}\label{1.1}
+      4af(x,y) = \left((2ax)^2 + 2(2ax)by + b^2y^2\right) - b^2y^2 + 4acy^2 = (2ax + by)^2 - Dy^2 > 0.
+    \end{equation}
+    
+    When $D = 0$, we observe that $g(x) = f(x,1)$ has a double root at $x = -b/2a$.
+    If $f$ is positive definite, then it's clear that $a > 0$, for otherwise $g(x) = f(x,1) < 0$ holds for all $x \in \Z$, contrary to the assumption that $f$ is positive definite.
+    Conversely, if $a > 0$ and $D = 0$, then for all $(x,y) \in \Z^2$ we have by Equation~\eqref{1.1}
+    $$4af(x,y) = (2ax + by)^2 > 0$$
+    and $f(x,y) > 0$ follows directly.
   \end{proof}
 \end{thm}
 
