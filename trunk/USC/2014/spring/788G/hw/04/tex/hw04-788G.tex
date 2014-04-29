@@ -220,4 +220,63 @@
     \end{enumerate}
   \end{proof}
 \end{thm}
+
+\begin{thm}
+  Carry out the details of the computation given on p. 23.5 of the lecture notes.
+
+  \begin{proof}
+    Let $f(u,v) = u^3 + bu^2v + cuv^2 + dv^3$ and $g(u) = f(u,1) = (u - r)(u - s)(u - t)$.
+    Let $v = u + b/3$ so that
+    \begin{eqnarray*}
+      g(u) &=& u^3 + bu^2 + 3\left(\frac{b}{3}\right)^2u + \left(\frac{b}{3}\right)^3 + \left(c - 3\left(\frac{b}{3}\right)^2\right)u  + \left(d - \left(\frac{b}{3}\right)^3\right)\\
+      &=& \left(u + \frac{b}{3}\right)^3 + \left(c - 3\left(\frac{b}{3}\right)^2\right)u + \left(d - \left(\frac{b}{3}\right)^3\right)\\
+      &=& v^3 + \left(c - 3\left(\frac{b}{3}\right)^2\right)\left(v - \frac{b}{3}\right) + \left(d - \left(\frac{b}{3}\right)^3\right)\\
+      &=& v^3 + \left(c - \frac{b^2}{9}\right)v + \left(d - \frac{bc}{3} + 2\frac{b^3}{27}\right)\\
+      &=& v^3 + Cv + D\\
+      &=& (v - R)(v - S)(v - T).
+    \end{eqnarray*}
+    Expanding and equating coefficients, we see that $\sigma_1 = R + S + T = 0$, $\sigma_2 = RS + RT + ST = C$, and $\sigma_3 = RST = - D$.
+    We can compute the discriminant for $f$ using the relations on the elementary symmetric functions and the formula
+    \begin{eqnarray*}
+      -\disc{f} &=& g^\prime(R)g^\prime(S)g^\prime(T) = (3R^2 + C)(3S^2 + C)(3T^2 + C)\\
+      &=& 27R^2S^2T^2 + 9C(R^2S^2 + R^2T^2 + S^2T^2) + 3C^2(R^2 + S^2 + T^2) + C^3\\
+      &=& 27\sigma_3^2 + 9C(\sigma_2^2 - 2\sigma_1\sigma_3) + 3C^2(\sigma_1^2 - 2\sigma_2) + C^3\\
+      &=& 27(-D)^2 + 9C(C^2) + 3C^2(-2C) + C^3\\
+      &=& 27D^2 + 4C^3.
+    \end{eqnarray*}
+    Therefore $\disc{f} = -27D^2 - 4C^3 = -4 \, b^{3} d + b^{2} c^{2} + 18 \, b c d - 4 \, c^{3} - 27 \, d^{2}$.
+  \end{proof}
+\end{thm}
+
+\setcounter{thm}{5}
+\begin{thm}
+  Prove that there are $\frac{1}{3}(p^2 - 1)(p^2 - p)$ irreducible binary cubic forms over $\F_p$.
+
+  \begin{proof}
+    Let $X$ be the set of irreducible binary cubic forms.
+    By Delone-Faddeev, the set of irreducible binary cubic forms modulo the twisted $\GL{2}{\F_p}$ action is in bijection with the cubic extensions of $\F_p$.
+    Since there is a unique cubic extension $\F_{p^3}/\F_p$, the action is necessarily transitive and so for any $f \in X$,
+    $$\abs{X} = \left[\GL{2}{\F_p} \colon \GL{2}{F_p}_f \right] = \frac{\abs{\GL{2}{F_p}}}{\abs{\GL{2}{F_p}_f}}$$
+    
+    We observe that an element $A \in \Mat{2}{\F_p}$ is invertible if and only if the columns of the matrix form a basis for $\F_p^2$.
+    There are $p^2 - 1$ non-zero choices for the first column, and excluding the columns not in the span of the first, there $p^2 - p$ choices for the second column.
+    Hence $\abs{\GL{2}{\F_p}} = (p^2 - 1)(p^2 - p)$.
+    It remains to show that the stabilizer of an element $f \in X$ has order three.
+    
+    Fix an element $f \in X$ and write $f = \prod_{i=1}^n(r_iu - s_iv)$.
+    Let $\theta = s_i/r_i$ and observe that $\F_{p^3} \cong \F_p(\theta) \cong \F_p(\theta^p) \cong \F_p(\theta^{p^2})$ and $\Gal{\F_{p^3}/\F_p} \cong \Z/3\Z$ with generator
+    \begin{align*}
+      \sigma \colon \F_{p^3} & \rightarrow \F_{p^3}\\
+      \alpha &\mapsto \alpha^p.
+    \end{align*}
+    By the proof of Delone-Faddeev, there exists an element $g = \left(\begin{array}{cc}\alpha & \beta\\ \gamma & \delta\end{array}\right)$ of $\GL{2}{\F_p}$ such that
+      $$\sigma(\theta) = \theta^p = \theta \cdot g = \frac{\alpha \theta + \beta}{\gamma \theta + \delta}.$$
+      Now we observe that 
+      $$\theta^{p^2} = \sigma(\theta^p) = \sigma(\theta \cdot g) = \frac{\sigma\alpha \sigma\theta + \sigma\beta}{\sigma\gamma\sigma\theta + \sigma\delta} = \frac{\alpha\theta^p + \beta}{\gamma\theta^p + \delta} = \theta^p \cdot g$$
+      and, similarly,
+      $$\theta = \sigma(\theta^{p^2}) = \sigma(\theta^p \cdot g) = \frac{\sigma\alpha \sigma\theta^p + \sigma\beta}{\sigma\gamma\sigma\theta^p + \sigma\delta} = \frac{\alpha\theta^{p^2} + \beta}{\gamma\theta^{p^2} + \delta} = \theta^{p^2} \cdot g.$$
+      Then we note that $g$ is not the identity matrix, giving a non-trivial automorphism of $f$ since it fixes the roots.
+      The third automorphism of $f$ is the matrix that sends $\theta$ to $\theta^2$.
+  \end{proof}
+\end{thm}
 \end{document}
