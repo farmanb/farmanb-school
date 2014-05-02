@@ -27,98 +27,98 @@
   Verify directly, via brute force, that the discriminant of a binary cubic form is $\SL{2}{\Z}$-invariant.
   \begin{proof}
     Let $g = \left(\begin{array}{cc} \alpha & \beta \\ \gamma & \delta\end{array}\right) \in \GL{2}{\Z}$
-%      \begin{eqnarray*}
-%        f \cdot g(u,v) &=& \left(a\alpha^{3} 
-%        + b \alpha^{2} \gamma 
-%        + c \alpha  \gamma^{2} 
-%        + d \gamma^{3} \right)u^{3}\\
-%        &+& \left(3 a \alpha^{2} \beta 
-%        + b \alpha^{2}  \delta 
-%        + 2 b \alpha \beta \gamma 
-%        + 2 c \alpha \gamma \delta 
-%        + c \beta \gamma^{2} 
-%        + 3 d \gamma^{2} \delta \right)u^{2} v\\
-%        &+& \left(3 a \alpha\beta^{2} 
-%        + 2 b \alpha \beta \delta 
-%        + c \alpha \delta^{2} 
-%        + b \beta^{2} \gamma 
-%        + 2 c \beta \gamma \delta
-%        + 3 d \gamma \delta^{2} \right)u v^{2} \\
-%        &+& \left(a \beta^{3} 
-%        + b \beta^{2} \delta 
-%        + c \beta \delta^{2} 
-%        + d \delta^{3} \right)v^{3}
-%      \end{eqnarray*}
+      %      \begin{eqnarray*}
+      %        f \cdot g(u,v) &=& \left(a\alpha^{3} 
+      %        + b \alpha^{2} \gamma 
+      %        + c \alpha  \gamma^{2} 
+      %        + d \gamma^{3} \right)u^{3}\\
+      %        &+& \left(3 a \alpha^{2} \beta 
+      %        + b \alpha^{2}  \delta 
+      %        + 2 b \alpha \beta \gamma 
+      %        + 2 c \alpha \gamma \delta 
+      %        + c \beta \gamma^{2} 
+      %        + 3 d \gamma^{2} \delta \right)u^{2} v\\
+      %        &+& \left(3 a \alpha\beta^{2} 
+      %        + 2 b \alpha \beta \delta 
+      %        + c \alpha \delta^{2} 
+      %        + b \beta^{2} \gamma 
+      %        + 2 c \beta \gamma \delta
+      %        + 3 d \gamma \delta^{2} \right)u v^{2} \\
+      %        &+& \left(a \beta^{3} 
+      %        + b \beta^{2} \delta 
+      %        + c \beta \delta^{2} 
+      %        + d \delta^{3} \right)v^{3}
+      %      \end{eqnarray*}
       Let
-  \begin{eqnarray*}
-    A &=& a\alpha^{3} 
+      \begin{eqnarray*}
+        A &=& a\alpha^{3} 
         + b \alpha^{2} \gamma 
         + c \alpha  \gamma^{2} 
         + d \gamma^{3}\\ 
-    B &=& 3 a \alpha^{2} \beta 
+        B &=& 3 a \alpha^{2} \beta 
         + b \alpha^{2}  \delta 
         + 2 b \alpha \beta \gamma 
         + 2 c \alpha \gamma \delta 
         + c \beta \gamma^{2} 
         + 3 d \gamma^{2} \delta\\
-    C &=& 3 a \alpha\beta^{2} 
+        C &=& 3 a \alpha\beta^{2} 
         + 2 b \alpha \beta \delta 
         + c \alpha \delta^{2} 
         + b \beta^{2} \gamma 
         + 2 c \beta \gamma \delta
         + 3 d \gamma \delta^{2}\\
-    D &=& a \beta^{3} 
+        D &=& a \beta^{3} 
         + b \beta^{2} \delta 
         + c \beta \delta^{2} 
         + d \delta^{3}\\
-  \end{eqnarray*}
-  so that $f \cdot g(u,v) = f(\alpha u + \beta v, \gamma u + \delta v) = Au^3 + Bu^2v + Cuv^2 + Du^3$.
-  The discriminant for $f \cdot g$ is
-  $$B^2C^2 + 18ABCD - 4AC^3 - 4B^3D - 27A^2D^2,$$ 
-  which expands to
-  \begin{eqnarray*}
-    - 27 a^{2} d^{2}\left(\alpha^{6} \delta^{6} 
-    - 6 \alpha^{5}\delta^{5} \beta\gamma 
-    + 15 \alpha^{4}\delta^{4} \beta^{2}\gamma^{2} 
-    - 20 \alpha^{3}\delta^{3} \beta^{3}\gamma^{3} 
-    + 15 \alpha^{2}\delta^{2} \beta^{4}\gamma^{4} 
-    - 6 \alpha\delta \beta^{5}\gamma^{5} 
-    + \beta^{6} \gamma^{6}\right)\\
-    + 18a b c d \left( \alpha^{6} \delta^{6} 
-    - 6 \alpha^{5}\delta^{5} \beta\gamma 
-    + 15 \alpha^{4}\delta^{4} \beta^{2}\gamma^{2} 
-    - 20 \alpha^{3}\delta^{3} \beta^{3}\gamma^{3} 
-    + 15 \alpha^{2}\delta^{2} \beta^{4}\gamma^{4} 
-    - 6 \alpha\delta \beta^{5}\gamma^{5} 
-    + \beta^{6}\gamma^{6}\right)\\
-    - 4 a c^{3} \left( \alpha^{6}\delta^{6} 
-    - 6 \alpha^{5}\delta^{5} \beta\gamma 
-    + 15 \alpha^{4}\delta^{4} \beta^{2}\gamma^{2} 
-    - 20 \alpha^{3}\delta^{3} \beta^{3}\gamma^{3} 
-    + 15 \alpha^{2}\delta^{2} \beta^{4}\gamma^{4} 
-    - 6 \alpha\delta \beta^{5}\gamma^{5} 
-    + \beta^{6}\gamma^{6}\right)\\
-    - 4b^{3} d \left(\alpha^{6} \delta^{6} 
-    - 6 \alpha^{5}\delta^{5} \beta\gamma 
-    + 15 \alpha^{4}\delta^{4} \beta^{2}\gamma^{2} 
-    - 20 \alpha^{3}\delta^{3} \beta^{3}\gamma^{3} 
-    + 15 \alpha^{2}\delta^{2} \beta^{4}\gamma^{4} 
-    - 6 \alpha\delta \beta^{5}\gamma^{5} 
-    + 1 \beta^{6}\gamma^{6}\right)\\
-    + b^{2} c^{2} \left(\alpha^{6}\delta^{6} 
-    - 6 \alpha^{5}\delta^{5} \beta\gamma 
-    + 15 \alpha^{4}\delta^{4} \beta^{2}\gamma^{2} 
-    - 20 \alpha^{3}\delta^{3} \beta^{3}\gamma^{3} 
-    + 15 \alpha^{2}\delta^{2} \beta^{4}\gamma^{4} 
-    - 6 b^{2} c^{2}\alpha\delta \beta^{5}\gamma^{5} 
-    + \beta^{6} \gamma^{6}\right).
-  \end{eqnarray*}
-  This then reduces to 
-  \begin{equation}\label{1.1}
-    (\alpha\delta - \beta\gamma)^6 \left(b^{2}c^{2} + 18abcd - 4 ac^{3} - 4b^{3}d - 27 a^2 d^2 \right) = \det(g)^6\disc{f}.
-  \end{equation}
-  Since $g \in \GL{2}{\Z}$, we have $\det(g) \in \Z^\times = \{\pm 1\}$ and so the right hand side of \eqref{1.1} reduces to $(\pm 1)^6\disc{f} = \disc{f}$.
-  We now note that $\SL{2}{\Z} \subseteq \GL{2}{\Z}$ and the result follows.
+      \end{eqnarray*}
+      so that $f \cdot g(u,v) = f(\alpha u + \beta v, \gamma u + \delta v) = Au^3 + Bu^2v + Cuv^2 + Du^3$.
+      The discriminant for $f \cdot g$ is
+      $$B^2C^2 + 18ABCD - 4AC^3 - 4B^3D - 27A^2D^2,$$ 
+      which expands to
+      \begin{eqnarray*}
+        - 27 a^{2} d^{2}\left(\alpha^{6} \delta^{6} 
+        - 6 \alpha^{5}\delta^{5} \beta\gamma 
+        + 15 \alpha^{4}\delta^{4} \beta^{2}\gamma^{2} 
+        - 20 \alpha^{3}\delta^{3} \beta^{3}\gamma^{3} 
+        + 15 \alpha^{2}\delta^{2} \beta^{4}\gamma^{4} 
+        - 6 \alpha\delta \beta^{5}\gamma^{5} 
+        + \beta^{6} \gamma^{6}\right)\\
+        + 18a b c d \left( \alpha^{6} \delta^{6} 
+        - 6 \alpha^{5}\delta^{5} \beta\gamma 
+        + 15 \alpha^{4}\delta^{4} \beta^{2}\gamma^{2} 
+        - 20 \alpha^{3}\delta^{3} \beta^{3}\gamma^{3} 
+        + 15 \alpha^{2}\delta^{2} \beta^{4}\gamma^{4} 
+        - 6 \alpha\delta \beta^{5}\gamma^{5} 
+        + \beta^{6}\gamma^{6}\right)\\
+        - 4 a c^{3} \left( \alpha^{6}\delta^{6} 
+        - 6 \alpha^{5}\delta^{5} \beta\gamma 
+        + 15 \alpha^{4}\delta^{4} \beta^{2}\gamma^{2} 
+        - 20 \alpha^{3}\delta^{3} \beta^{3}\gamma^{3} 
+        + 15 \alpha^{2}\delta^{2} \beta^{4}\gamma^{4} 
+        - 6 \alpha\delta \beta^{5}\gamma^{5} 
+        + \beta^{6}\gamma^{6}\right)\\
+        - 4b^{3} d \left(\alpha^{6} \delta^{6} 
+        - 6 \alpha^{5}\delta^{5} \beta\gamma 
+        + 15 \alpha^{4}\delta^{4} \beta^{2}\gamma^{2} 
+        - 20 \alpha^{3}\delta^{3} \beta^{3}\gamma^{3} 
+        + 15 \alpha^{2}\delta^{2} \beta^{4}\gamma^{4} 
+        - 6 \alpha\delta \beta^{5}\gamma^{5} 
+        + 1 \beta^{6}\gamma^{6}\right)\\
+        + b^{2} c^{2} \left(\alpha^{6}\delta^{6} 
+        - 6 \alpha^{5}\delta^{5} \beta\gamma 
+        + 15 \alpha^{4}\delta^{4} \beta^{2}\gamma^{2} 
+        - 20 \alpha^{3}\delta^{3} \beta^{3}\gamma^{3} 
+        + 15 \alpha^{2}\delta^{2} \beta^{4}\gamma^{4} 
+        - 6 b^{2} c^{2}\alpha\delta \beta^{5}\gamma^{5} 
+        + \beta^{6} \gamma^{6}\right).
+      \end{eqnarray*}
+      This then reduces to 
+      \begin{equation}\label{1.1}
+        (\alpha\delta - \beta\gamma)^6 \left(b^{2}c^{2} + 18abcd - 4 ac^{3} - 4b^{3}d - 27 a^2 d^2 \right) = \det(g)^6\disc{f}.
+      \end{equation}
+      Since $g \in \GL{2}{\Z}$, we have $\det(g) \in \Z^\times = \{\pm 1\}$ and so the right hand side of \eqref{1.1} reduces to $(\pm 1)^6\disc{f} = \disc{f}$.
+      We now note that $\SL{2}{\Z} \subseteq \GL{2}{\Z}$ and the result follows.
   \end{proof}
 \end{thm}
 
@@ -142,15 +142,15 @@
   Let $f(u,v) = a_nu^n + a_{n-1}u^{n-1}v + \ldots + a_0v^n$.
   Prove
   \begin{enumerate}[(a)]
-    \item
-      If $a_n \neq 0$, then
-      $$\disc{f} = a_n^{2n - 2}\disc{f(u,1)}$$
-    \item
-      If $a_n = 0$ and $a_{n-1} \neq 0$, then
-      $$\disc{f} = a_{n-1}^2 \disc{a_{n-1}u^{n-1} + a_{n-2}u^{n-2}v + \ldots + a_0v^{n-1}}.$$
-    \item
-      If $a_n = 0$ and $a_{n-1} = 0$, then
-      $$\disc{f} = 0.$$
+  \item
+    If $a_n \neq 0$, then
+    $$\disc{f} = a_n^{2n - 2}\disc{f(u,1)}$$
+  \item
+    If $a_n = 0$ and $a_{n-1} \neq 0$, then
+    $$\disc{f} = a_{n-1}^2 \disc{a_{n-1}u^{n-1} + a_{n-2}u^{n-2}v + \ldots + a_0v^{n-1}}.$$
+  \item
+    If $a_n = 0$ and $a_{n-1} = 0$, then
+    $$\disc{f} = 0.$$
   \end{enumerate}
   
   \begin{proof}
@@ -291,8 +291,8 @@
   Then, the corresponding cubic form is $u^3 + bu^2v + cuv^2 + dv^3$.
   
   \begin{proof}
-    This is false.
-    Let $\omega = \alpha + b$ and $\omega = \alpha^2 + c$.
+    This is not quite true; the corresponding form is {\it not} the same, but it {\it is} $\GL{2}{\Z}$-equivalent.
+    Let $\omega = \alpha + b$ and $\theta = \alpha^2 + c$.
     This is a basis; for any $x \in \Z[\alpha]$, we see
     $$x = \ell + m\alpha + n\alpha^2 = (\ell - mb - nc) + m\omega + n\theta$$
     and if , then
@@ -306,15 +306,22 @@
     and
     \begin{eqnarray*}
       \theta^2 &=& \alpha^4 + 2c\alpha^2 + c^2\\
-      &=& (bd + c^2) + bc\alpha + (b^2 + 2c)\alpha^2\\
-      %&=& (bd + c^2) + bc\alpha + b^2c - b^2c + (b^2 + 2c)\alpha^2 + c(b^2+2c) - c(b^2 + 2c)\\
-      &=& (bd + c^2 - c(b^2 + 2c) - b^2c) + bc(\alpha + b) + (b^2 + 2c)(\alpha^2 + c)\\
-      &=& (bd - c^2 - 2b^2c) - (-bc)\omega + (b^2 + 2c)\theta,
+      %&=& \alpha(-b\alpha^2 - c\alpha - d) + 2c\alpha^2 + c^2\\
+      %&=& -b\alpha^3 - c\alpha^2 - d\alpha + 2c\alpha^2 + c^2\\
+      %&=& -b(-b\alpha^2 - c\alpha - d) + c\alpha^2 -d\alpha + c^2\\
+      %&=& b^2\alpha^2 + bc\alpha + bd + c\alpha^2 - d\alpha + c^2\\
+      &=& (bd + c^2) + (bc - d)\alpha + (b^2 + c)\alpha^2\\
+      %&=& (b^2 + c)\alpha^2 + c(b^2 + c) - c(b^2 + c) + (bc - d)\alpha + b(bc - d) - b(bc - d) + (bd + c^2)\\
+      &=& (bd + c^2 - c(b^2 + c) - b(bc - d)) + (bc - d)(\alpha + b) + (b^2 + c)(\alpha^2 + c)\\
+      %&=& (b^2 + c)\theta + (bc - d)\omega + (bd + c^2 - c(b^2 + c) - b(bc - d)\\
+      %&=& (bd + c^2 - c(b^2 + c) - b(bc - d)) - (d - bc)\omega + (b^2 + c)\theta\\
+      &=& (bd + c^2 - c(b^2 + c) - b(bc - d)) - (d - bc)\omega + (b^2 + c)\theta
     \end{eqnarray*}
     giving the form
-    $$f(u,v) = u^3 + (-2b)u^2v + (-bc)uv^2 + (b^2 + 2c)v^3$$
+    %$$f(u,v) = u^3 + (-2b)u^2v + (b^2 + 2c)uv^2 + (-bc)v^3$$
+    $$f(u,v) = u^3 + (-2b)u^2v + (b^2 + c)uv^2 + (d - bc)v^3.$$
     which is not the desired form.
-    Indeed, we show that it is not, in general, $\GL{2}{\Z}$-equivalent to the desired form.
+    However, we show that it is $\GL{2}{\Z}$-equivalent to the desired form.
     
     Let $h(u,v) = u^3 + bu^2v + cuv^2 + dv^3$ and suppose there is an element $g = \left(\begin{array}{cc} \alpha & \beta\\ \gamma & \delta\end{array}\right) \in \GL{2}{\Z}$ such that 
       \begin{eqnarray}\label{10.1}
@@ -323,17 +330,42 @@
         &=& \pm h(\alpha u + \beta v, \gamma u + \delta v).\label{10.1.3}
       \end{eqnarray}
       If the right-hand side of \eqref{10.1.3} is negative, then by homogeneity we note that
-      $$- h(\alpha u + \beta v, \gamma u + \delta v) = (-1)^3 h(\alpha u + \beta v, \gamma u + \delta v) = h(-\alpha u - \beta v, -\gamma u - \delta v)$$ and so by possibly replacing $g$ with $-g$ we may assume that $f(u,v) = h(\alpha u + \beta v, \gamma u - \delta v)$.
-      Then we see that by Problem~\ref{Ex1}
-      $$\disc{f} = \disc{h(\alpha u + \beta v, \gamma u + \delta v)} = (\alpha\delta - \beta\gamma)^6\disc{h} = (\pm 1)^6\disc{h} = \disc{h}.$$
-      However,
+      $$- h(\alpha u + \beta v, \gamma u + \delta v) = (-1)^3 h(\alpha u + \beta v, \gamma u + \delta v) = h(-\alpha u - \beta v, -\gamma u - \delta v)$$
+      and so by possibly replacing $g$ with $-g$ we may assume that $f(u,v) = h(\alpha u + \beta v, \gamma u + \delta v)$.
+      %Then we see that by Problem~\ref{Ex1}
+      %$$\disc{f} = \disc{h(\alpha u + \beta v, \gamma u + \delta v)} = (\alpha\delta - \beta\gamma)^6\disc{h} = (\pm 1)^6\disc{h} = \disc{h}.$$
+      %Computing the discriminants, we see that they agree.
+      We now note that necessarily $\alpha = 1$ and with this observation, let 
       \begin{eqnarray*}
-        \disc{f} - \disc{h} &=& (-4b^3 d + b^2c^2 + 18bcd - 4c^3 - 27d^2)
-        - (b^2 c^2 - 4b^3 - 4c^3 + 18bc - 27)\\
-        &=& 4b^3(1 - d) + 18bc(d - 1) + 27(1 - d^2),
+        A &=& b\gamma 
+        + c \gamma^{2} 
+        + d \gamma^{3}\\ 
+        B &=& 3 \beta 
+        + b \delta 
+        + 2 b \beta \gamma 
+        + 2 c \gamma \delta 
+        + c \beta \gamma^{2} 
+        + 3 d \gamma^{2} \delta\\
+        C &=& 3 \beta^{2} 
+        + 2 b \beta \delta 
+        + c \delta^{2} 
+        + b \beta^{2} \gamma 
+        + 2 c \beta \gamma \delta
+        + 3 d \gamma \delta^{2}\\
+        D &=& \beta^{3} 
+        + b \beta^{2} \delta 
+        + c \beta \delta^{2} 
+        + d \delta^{3}
       \end{eqnarray*}
-      which is not zero unless $d = 1$ or 
-      $$d = -\frac{4}{27}b^{3} + \frac{2}{3}bc - 1 = \frac{1}{27}(-4b^3 + 18bc - 27).$$
+      so that, as in Exercise~\ref{Ex1}, $h(u + \beta v, \gamma u + \delta v) = Au^3 + Bu^2v + Cuv^2 + Dv^3$.
+      With a little help from Sage, we solve the system $A = 1$, $B = -2b$, $C = b^2 + c$, $D = d - bc$ for $\beta, \gamma, \delta$ to obtain the matrix $g = \left(\begin{array}{cc} 1 & -b\\ 0 & 1\end{array}\right)$.
+      %      \begin{eqnarray*}
+      %        \disc{f} - \disc{h} &=& (-4b^3 d + b^2c^2 + 18bcd - 4c^3 - 27d^2)
+      %        - (b^2 c^2 - 4b^3 - 4c^3 + 18bc - 27)\\
+      %        &=& 4b^3(1 - d) + 18bc(d - 1) + 27(1 - d^2),
+      %      \end{eqnarray*}
+      %      which is not zero unless $d = 1$ or 
+      %      $$d = -\frac{4}{27}b^{3} + \frac{2}{3}bc - 1 = \frac{1}{27}(-4b^3 + 18bc - 27).$$
   \end{proof}
 \end{thm}
 \end{document}
