@@ -114,8 +114,11 @@
     + \beta^{6} \gamma^{6}\right).
   \end{eqnarray*}
   This then reduces to 
-  $$(\alpha\delta - \beta\gamma)^6 \left(b^{2}c^{2} + 18abcd - 4 ac^{3} - 4b^{3}d - 27 a^2 d^2 \right) = \det(g)^6\disc{f},$$
-  which is, precisely, $\disc{f}$ when $g \in \SL{2}{\Z}$ since $\det(g) = 1$ in this case.
+  \begin{equation}\label{1.1}
+    (\alpha\delta - \beta\gamma)^6 \left(b^{2}c^{2} + 18abcd - 4 ac^{3} - 4b^{3}d - 27 a^2 d^2 \right) = \det(g)^6\disc{f}.
+  \end{equation}
+  Since $g \in \GL{2}{\Z}$, we have $\det(g) \in \Z^\times = \{\pm 1\}$ and so the right hand side of \eqref{1.1} reduces to $(\pm 1)^6\disc{f} = \disc{f}$.
+  We now note that $\SL{2}{\Z} \subseteq \GL{2}{\Z}$ and the result follows.
   \end{proof}
 \end{thm}
 
@@ -277,6 +280,60 @@
       $$\theta = \sigma(\theta^{p^2}) = \sigma(\theta^p \cdot g) = \frac{\sigma\alpha \sigma\theta^p + \sigma\beta}{\sigma\gamma\sigma\theta^p + \sigma\delta} = \frac{\alpha\theta^{p^2} + \beta}{\gamma\theta^{p^2} + \delta} = \theta^{p^2} \cdot g.$$
       Then we note that $g$ is not the identity matrix, giving a non-trivial automorphism of $f$ since it fixes the roots.
       The third automorphism of $f$ is the matrix that sends $\theta$ to $\theta^2$.
+  \end{proof}
+\end{thm}
+
+\setcounter{thm}{9}
+\begin{thm}
+  Is the following true or false?
+  
+  Consider the cubic ring $\Z[\alpha]$, where $\alpha^3 + b\alpha^2 + c\alpha + d = 0$.
+  Then, the corresponding cubic form is $u^3 + bu^2v + cuv^2 + dv^3$.
+  
+  \begin{proof}
+    This is false.
+    Let $\omega = \alpha + b$ and $\omega = \alpha^2 + c$.
+    This is a basis; for any $x \in \Z[\alpha]$, we see
+    $$x = \ell + m\alpha + n\alpha^2 = (\ell - mb - nc) + m\omega + n\theta$$
+    and if , then
+    $$0 = \ell + m\omega + n\theta = (\ell + mb + nc) + m\alpha + n\alpha^2$$
+    implies that $m = n = \ell = 0$.
+    Moreover, from
+    $$\omega\theta = \alpha^3 + b\alpha^2 + c\alpha + bc = -d + bc \in \Z$$
+    we see that this is a normal basis.
+    Then we can compute the corresponding form using Delone-Faddeev:
+    $$\omega^2 = (-b^2 - c) + 2b(\alpha + b) + (\alpha^2 + c) = (-b^2 - c) - (-2b)\omega + \theta$$
+    and
+    \begin{eqnarray*}
+      \theta^2 &=& \alpha^4 + 2c\alpha^2 + c^2\\
+      &=& (bd + c^2) + bc\alpha + (b^2 + 2c)\alpha^2\\
+      %&=& (bd + c^2) + bc\alpha + b^2c - b^2c + (b^2 + 2c)\alpha^2 + c(b^2+2c) - c(b^2 + 2c)\\
+      &=& (bd + c^2 - c(b^2 + 2c) - b^2c) + bc(\alpha + b) + (b^2 + 2c)(\alpha^2 + c)\\
+      &=& (bd - c^2 - 2b^2c) - (-bc)\omega + (b^2 + 2c)\theta,
+    \end{eqnarray*}
+    giving the form
+    $$f(u,v) = u^3 + (-2b)u^2v + (-bc)uv^2 + (b^2 + 2c)v^3$$
+    which is not the desired form.
+    Indeed, we show that it is not, in general, $\GL{2}{\Z}$-equivalent to the desired form.
+    
+    Let $h(u,v) = u^3 + bu^2v + cuv^2 + dv^3$ and suppose there is an element $g = \left(\begin{array}{cc} \alpha & \beta\\ \gamma & \delta\end{array}\right) \in \GL{2}{\Z}$ such that 
+      \begin{eqnarray}\label{10.1}
+        f(u,v) &=& h \cdot g(u,v)\\
+        &=& \frac{1}{\alpha\delta - \beta\gamma}h(\alpha u + \beta v, \gamma u + \delta v)\\ 
+        &=& \pm h(\alpha u + \beta v, \gamma u + \delta v).\label{10.1.3}
+      \end{eqnarray}
+      If the right-hand side of \eqref{10.1.3} is negative, then by homogeneity we note that
+      $$- h(\alpha u + \beta v, \gamma u + \delta v) = (-1)^3 h(\alpha u + \beta v, \gamma u + \delta v) = h(-\alpha u - \beta v, -\gamma u - \delta v)$$ and so by possibly replacing $g$ with $-g$ we may assume that $f(u,v) = h(\alpha u + \beta v, \gamma u - \delta v)$.
+      Then we see that by Problem~\ref{Ex1}
+      $$\disc{f} = \disc{h(\alpha u + \beta v, \gamma u + \delta v)} = (\alpha\delta - \beta\gamma)^6\disc{h} = (\pm 1)^6\disc{h} = \disc{h}.$$
+      However,
+      \begin{eqnarray*}
+        \disc{f} - \disc{h} &=& (-4b^3 d + b^2c^2 + 18bcd - 4c^3 - 27d^2)
+        - (b^2 c^2 - 4b^3 - 4c^3 + 18bc - 27)\\
+        &=& 4b^3(1 - d) + 18bc(d - 1) + 27(1 - d^2),
+      \end{eqnarray*}
+      which is not zero unless $d = 1$ or 
+      $$d = -\frac{4}{27}b^{3} + \frac{2}{3}bc - 1 = \frac{1}{27}(-4b^3 + 18bc - 27).$$
   \end{proof}
 \end{thm}
 \end{document}
