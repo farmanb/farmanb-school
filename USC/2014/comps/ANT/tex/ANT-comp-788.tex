@@ -1,0 +1,201 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath,mathtools,tikz-cd,mathrsfs}
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 788G:\\Homework 02}
+\date{April 21, 2014}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+\maketitle
+
+\providecommand{\Tr}[2]{\operatorname{Tr}_{#1}\left(#2\right)}
+\providecommand{\p}{\mathfrak{p}}
+\providecommand{\m}{\mathfrak{m}}
+\providecommand{\Deck}[1]{\operatorname{Deck}\left(#1\right)}
+%\newcommand{\Res}{\operatorname{Res}}
+\newtheorem{thm}{}
+\newtheorem{lem}{Lemma}
+\newtheorem{prop}{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[thm]
+
+\newcommand{\A}{\mathbb{A}}
+
+\begin{thm}\label{Ex1}
+\end{thm}
+
+\begin{thm}\label{Ex2}
+\end{thm}
+
+\begin{thm}\label{Ex3}
+\end{thm}
+
+\begin{thm}\label{Ex4}
+\end{thm}
+
+\begin{thm}\label{Ex5}
+\end{thm}
+
+\begin{thm}\label{Ex6}
+	Let $L/K$ be an extension of number fields, let $\mathcal{O}_L$ and $\mathcal{O}_K$ be their rings ofintegers, and let $\mathfrak{p}$ be a prime of $\mathcal{O}_K$.
+	We are interested in proving that $\mathcal{O}_L/\mathfrak{p}\mathcal{O}_L$ is an $\mathcal{O}_K/\mathfrak{p}$-vector space of dimension $n = [L : K]$.
+	(This is an important step in the $efg$ theorem).
+	\begin{enumerate}[(a)]
+		\item
+		Can we write the following, for some $\alpha_i \in \mathcal{O}_L$?
+		\begin{equation}\label{6.1}
+			\mathcal{O}_L = \mathcal{O}_K\alpha_1 \oplus \ldots \oplus \mathcal{O}_K\alpha_2.
+		\end{equation}
+		If not in general, by quoting a relevant theorem, give an example of a $K$ for which we can do this.
+		\item
+		Assume that \eqref{6.1} holds.
+		Prove that the images of the $\alpha_i$ under the natural reduction map modulo $\mathfrak{p}$ form a basis for $\mathcal{O}_L/\mathfrak{p}\mathcal{O}_L$ as an $\mathcal{O}_K/\mathfrak{p}$-vector space, thereby obtaining the result.
+		You may (and almost certainly will) give a proof that requires a condition on $\mathcal{O}_K$.
+		This is allowed, if you state your condition explicitly and if it does not restrict your proof the only $K = \Q$.
+	\end{enumerate}
+	\begin{proof}
+		\begin{lem}\label{L.6.1}
+			Let $A$ be a domain, $K$ its field of fractions, and $L/K$ a finite extension.  
+			If $B$ is the integral closure of $A$ in $L$, then every element $b \in L$ may be written as $\beta = b/a$, with $b \in B$ and $a \in A$.
+		\begin{proof}
+			Let $\beta \in L$ be given.
+			Since $L/K$ is finite, it is necessarily algebraic, and so for some $m \mid n$ we have
+			$$\alpha_0\beta^m + \alpha_1\beta^{m-1} + \ldots + \alpha_n = 0,\, \alpha_i \in K.$$
+			Multiplying both sides by $\alpha_0^{m-1}$ we obtain an equation of integral dependence for $\alpha_0\beta$,
+			$$\left(\alpha_0\beta\right)^m + \alpha_1(\alpha_0\beta)^{m-1} + \ldots + \alpha_n\alpha_0^{m-1} = 0$$
+			which gives $\alpha_0\beta \in B$.
+			Therefore there exists some $b \in B$ such that $\alpha_0\beta = b$, and so we have $\beta = b/\alpha_0$, as desired.
+		\end{proof}
+		\end{lem}
+
+		\begin{lem}\label{L.6.2}
+		 	Let $A$ be a domain, $K$ its field of fractions, and $L/K$ a finite, separable extension.
+			If $\alpha_1, \ldots, \alpha_n$ is a basis, then the discriminant
+			$$d(\alpha_1, \ldots, \alpha_n) \neq 0$$
+			and
+			\begin{align*}
+				L \times L &\rightarrow K\\
+				(x,y) &\mapsto \Tr{L/K}{xy}
+			\end{align*}
+			is a nondegenerate bilinear form on the $K$-vector space $L$.
+			\begin{proof}
+				Since $L/K$ is separable, there exists by the Primitive Element Theorem, an element $\theta \in L$ such that $L = K(\theta)$.
+				If we let $n = [L : K]$, then we have a $K$-basis for $L$, $\left\{1, \theta, \ldots, \theta^{n-1}\right\}$
+				Now we observe that if we have elements $x = \sum_{i=1}^na_i\theta^{i-1}$ and $y = \sum_{i=1}^nb_i\theta^{i-1}$, then
+				$$\Tr{L/K}{xy} = \sum_{i=1}^n\sum_{j=1}^na_ib_j\theta^{i-1}\theta^{j-1}.$$
+				If we define the matrix
+				$$M = \left(\Tr{L/K}{\theta^{i-1}\theta^{j-1}}\right)_{i=1,j=1}^{n}$$
+				and write $x = (a_1, \ldots, a_n)$ and $y = (b_1, \ldots, b_n)$, then
+				$$\Tr{L/K}{xy} = x^TMy.$$
+				If we let $\{\theta_i\}_{i=1}^n$ be the roots of the minimal polynomial for $\theta$, then because we've chosen a power basis for $L/K$,
+				$$\det(M) = d(1, \theta, \ldots, \theta^{n-1}) = \prod_{i < j}(\theta_i - \theta_j)^2 \neq 0,$$
+				as $L/K$ was assumed to be separable.
+
+				Given another basis $\alpha_1, \ldots, \alpha_n$, we observe that the matrix  
+				$$\left(\Tr{L/K}{\alpha^{i}\alpha^{j}}\right)_{i=1,j=1}^{n}$$
+				can be written as $S^TMS$ for some non-singular matrix $S$, and so
+				$$d(\alpha_1, \ldots, \alpha_n) = \det\left(\left(\Tr{L/K}{\theta^{i-1}\theta^{j-1}}\right)_{i=1,j=1}^{n}\right) = \det(S^TMS) \neq 0.$$
+			\end{proof}
+		\end{lem}
+		
+		\begin{lem}\label{L.6.3}
+			Let $A$ be a domain, $K$ its field of fractions, and $L/K$ a finite, separable extension.
+			Let $\alpha_1, \ldots, \alpha_n$ be a basis of $L/K$ which is contained in $B$, of discriminant $d = d(\alpha_1, \ldots, \alpha_n)$.
+			Then
+			$$dB \subseteq A\alpha_1 + \ldots + A\alpha_n.$$
+	
+			\begin{proof}
+				Let $\alpha \in B$ be given.
+				We may write $\alpha = a_1\alpha_1 + \ldots + a_n\alpha_n$, for some $a_i \in K$.
+				First we observe that for $i = 1, \ldots, n$ we have
+				$$\Tr{L/K}{\alpha_i\alpha} = \Tr{L/K}{\sum_{j=1}^n a_j\alpha_i\alpha_j} = \sum_{j=1}^na_j\Tr{L/K}{\alpha_i\alpha_j}.$$
+				If we let $M = \left(\Tr{L/K}{\alpha_i\alpha_j}\right)$, 
+				$x = (a_1, \ldots, a_n)^T$, and 
+				$b = \left(\Tr{L/K}{\alpha_1\alpha}, \ldots, \Tr{L/K}{\alpha_n\alpha}\right)^T$ 
+				then we have the system $Mx = b$.
+				Multiplying on the left by the classical adjoint of $M$, $M^*$, we have
+				$$M^*b = \det(M)I_nx = \left(\begin{array}{cccc}
+							     	da_1 & & & \text{\huge0}\\
+								& da_2 & \\
+								%& & da_3\\
+   								&  & \ddots\\
+    								\text{\huge0} & & & da_n
+							     \end{array}\right)$$
+				Since the entries of $M^*b$ are elements of $A$, it follows that the $da_i$ are also elements of $A$.
+				Therefore $$d\alpha = (da_1)\alpha_1 + \ldots + (da_n)\alpha_n \in A\alpha_1 + \ldots + A\alpha_n,$$
+				 as desired.
+			\end{proof}
+		\end{lem}
+
+		\begin{lem}\label{L.6.4}
+			Let $A$ be a P.I.D., $K$ its field of fractions, and $L/K$ a finite, separable extension.
+			If $B$ is the integral closure of $A$ in $L$, then $B$ is a free $A$-module of rank $n = [L : K]$.
+			\begin{proof}
+				That $B$ is an $A$-module is clear from the inclusion of $A$ in $B$.
+				Let $\alpha_1, \ldots, \alpha_n$ be a basis for $L/K$.
+				By Lemma~\ref{L.6.1} we may assume, after possibly multiplying each $\alpha_i$ by a suitable element of $A$, that $\alpha_i \in B$.
+				If we let $d = d(\alpha_1, \ldots, \alpha_n)$, then by Lemma~\ref{L.6.2}, we have
+				$$dB \subseteq A\alpha_1 + \ldots + A\alpha_n = M \subseteq B,$$
+				and so it follows that
+				$$B \subseteq A\frac{\alpha_1}{d} + \ldots + A\frac{\alpha_n}{d} = N.$$
+				Since $N$ is a free $A$-module and $A$ is a PID, it follows that $B$ is a free $A$-module.
+				For the rank of $B$ we observe that
+				$$n = \operatorname{rank}_A(M) \leq \operatorname{rank}_A(B) \leq \operatorname{rank}_A(N) = n.$$
+				%Hence $B$ is a finitely generated $A$-submodule of the free $A$-module, $N$, whence $B$ is a free $A$-module of rank at most $n$.
+				%But also $B$ contains a free rank $n$ $A$-module, $M$, so the rank of $B$ is at least $n$.
+				Therefore $B$ is a free rank $n$ $A$-module.
+			\end{proof}
+		\end{lem}
+
+		\begin{lem}\label{L.6.5}
+			If $K/\Q$ is a finite extension, then $K$ is the field of fractions of $\mathcal{O}_K$, the integral closure of $\Z$ in $K$.
+			\begin{proof}
+				Let $L$ be the field of fractions of $\mathcal{O}_K$.
+				Since we have that $\mathcal{O}_K\setminus\{0\} \subseteq K^\times$, we have by the universal property for localisations the commutative diagram
+				\begin{center}
+				\begin{tikzcd}
+				\mathcal{O}_K \arrow{r}\arrow{rd}& L\arrow[dotted]{d}{\exists !f}\\
+				& K
+				\end{tikzcd}
+				\end{center}
+				which implies that $f$ is not the zero morphism, hence is injective as $L$ and $K$ are both fields.
+				By possibly replacing $L$ by its image under $f$, we may assume that $L$ is a subfield of $K$.
+				
+				Suppose to the contrary that there exists an element $\alpha \in K \setminus L$.
+				By Lemma~\ref{L.6.1} there exists some non-zero integer $d$ such that $d\alpha \in \mathcal{O}_K \subseteq L$.
+				But then since $Z \subseteq \mathcal{O}_K$ we have that $\frac{1}{d} \in L$ and so
+				$$\frac{1}{d}(d\alpha) = \alpha \in L,$$
+				a contradiction.
+				Therefore $K = L$ is the field of fractions of $\mathcal{O}_K$.
+			\end{proof}
+		\end{lem}
+
+		\begin{lem}\label{L.6.6}
+			Let $L/K$ be an extension of number fields.
+			If $\mathcal{O}_K$ is the integral closure of $\Z$ in $K$, and $\mathcal{O}_L$ is the integral closure of $\Z$ in $L$, then $\mathcal{O}_L$ is the integral closure of $\mathcal{O}_K$ in $L$.
+
+			\begin{proof}
+				Let $A$ be the integral closure of $\mathcal{O}_K$ in $L$.
+				Since $A$ is integral over $\mathcal{O}_K$, by transitivity of integrality we have that $A$ is integral over $\Z$ and so $A \subseteq \mathcal{O}_L$.
+				For the reverse containment, let $\alpha \in \mathcal{O}_L$ be given.
+				Since $\mathcal{O}_L$ is integral over $\Z$, we have an equation of integral dependence
+				$$\alpha^n + a_1\alpha^{n-1} + \ldots + a_n = 0,\, a_i \in \Z.$$
+				Since $Z \subseteq \mathcal{O}_K$, the $a_i$ are elements of $\mathcal{O}_K$ and hence $\alpha$ is integral over $\mathcal{O}_K$.
+				Therefore $\alpha \in A$, and $A = \mathcal{O}_L$.
+			\end{proof}
+		\end{lem}
+	
+		\begin{enumerate}[(a)]
+			\item
+			Assume that $K$ has class number 1 so that $\mathcal{O}_K$ is a PID.
+			By Lemma~\ref{L.6.5} we have that the domain $A = \mathcal{O}_K$ has field of fractions $K$.
+			Since $\Q$ is a field of characteristic 0, we see that $L/K$ is a separable extension, and by Lemma~\ref{L.6.6} we have that $B = \mathcal{O}_L$ is the integral closure of $\mathcal{O}_K$ in $L$.
+			Apply Lemma~\ref{L.6.4} to see that $\mathcal{O}_L$ is a free $\mathcal{O}_K$-module of rank $[L : K]$.
+		\end{enumerate}
+	\end{proof}
+\end{thm}
+
+\end{document}
