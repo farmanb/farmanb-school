@@ -1,0 +1,82 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath,mathtools,tikz-cd,mathrsfs}
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 788G:\\Homework 02}
+\date{April 21, 2014}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+\maketitle
+
+\providecommand{\Tr}[2]{\operatorname{Tr}_{#1}\left(#2\right)}
+\providecommand{\p}{\mathfrak{p}}
+\providecommand{\m}{\mathfrak{m}}
+\providecommand{\Deck}[1]{\operatorname{Deck}\left(#1\right)}
+%\newcommand{\Res}{\operatorname{Res}}
+\newtheorem{thm}{}
+\newtheorem{lem}{Lemma}
+\newtheorem{prop}{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[thm]
+
+\newcommand{\A}{\mathbb{A}}
+
+\begin{thm}\label{Ex1}
+	Let $R$ be the algebraic integers in an algebraic number field.
+	Using Theorem 1 below, prove Theorem 2.
+	
+	\newtheorem{tthm}{Theorem}
+	\begin{tthm}\label{T.1.1}
+		For any ideal $B$ in $R$, there exists an ideal $C \neq (0)$ in $R$ such that $BC = (a)$ for some $a \in \Z$.
+	\end{tthm}
+
+	\begin{tthm}
+		Let $B$, $C$, and $D$ be ideals in $R$ with $D \neq (0)$.
+		If $BD = CD$, then $B = C$.
+	\end{tthm}
+
+	\begin{proof}
+		By Theorem~\ref{T.1.1} there exists some ideal $E \neq (0)$ in $R$ and some integer $a$ such that $DE = (a)$.
+		Since $D$ and $E$ are both not the zero ideal, there exist non-zero elements $e \in E$, $d \in D$ so that $0 \neq ed \in (a)$.
+		That $a \neq 0$ then follows from the fact that $R$ is a domain.
+		Now we have
+		$$B(a) = BDE = CDE = C(a).$$
+		Given $b \in B$, there exist elements $r_i \in R$ and $c_i \in C$ such that
+		$$ba = \sum_{i=1}^n r_ic_ia_i = a\sum_{i=1}^n r_ic_i,$$
+		Hence
+		$$a(b - \sum_{i=1}^n r_ic_i) = 0.$$
+		Since $R$ is a domain, $a \neq 0$ implies that $b = \sum_{i=1}^n r_ic_i$ and so $B \subseteq C$.
+		The reverse inclusion follows from the same argument, mutatis mutandis.
+	\end{proof}
+\end{thm}
+
+\begin{thm}\label{Ex2}
+	Let $a$, $b$, and $d$ be integers (not necessarily positive) with $a^2 - b^2d$ divisible by 4.
+	Explain why
+	$$2013\left(\frac{a + b\sqrt{d}}{2}\right)^{2014} -2012\left(\frac{a + b\sqrt{d}}{2}\right)^{2013} + 2013\left(\frac{a - b\sqrt{d}}{2}\right)^{2014} - 2012\left(\frac{a - b\sqrt{d}}{2}\right)^{2013}$$
+	is in $\Z$
+
+	\begin{proof}
+		Let $\alpha = (a + b\sqrt{d})/2$, $\overline{\alpha} = (a + b\sqrt{d})/2$, $\beta = 2013\alpha^{2014} - 2012\alpha^{2013} + 2013\overline{\alpha}^{2014} - 2012\overline{\alpha}^{2013}$, and let $K = \Q(\sqrt{d})$. 
+		First we observe that 
+		\begin{eqnarray*}
+			(x - \alpha)(x - \overline{\alpha}) &=& x^2 - (\alpha + \overline{\alpha})x + \alpha\overline{\alpha}\\
+			&=& x^2 - ax + a^2 - b^2d \in \Z[x]
+		\end{eqnarray*}
+		so that $\alpha \in \mathcal{O}_K$ and $[K : \Q] = 2$.
+		If we let $\sigma$ be the generator of $\Gal{K/\Q}$, then we see that $\sigma\alpha = \overline{\alpha}$ so that
+		$$\sigma\left(\beta\right) = 2013\overline{\alpha}^{2014} - 2012\overline{\alpha}^{2013} + 2013\alpha^{2014} - 2012\alpha^{2013} = \beta$$
+		Therefore $\beta \in \Q \cap \mathcal{O}_K$ implies that $\beta \in \Z$.
+	\end{proof}
+\end{thm}
+
+\begin{thm}\label{Ex3}
+\end{thm}
+
+\begin{thm}\label{Ex4}
+\end{thm}
+
+\end{document}
