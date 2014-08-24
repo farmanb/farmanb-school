@@ -74,9 +74,188 @@
 \end{thm}
 
 \begin{thm}\label{Ex3}
+	Let $\alpha = \sqrt{2} + \sqrt{3}$, and let $K = \Q(\alpha)$.
+	\begin{enumerate}[(a)]
+		\item\label{3.a}
+		Justify that $K = \Q(\sqrt{2},\sqrt{3})$.
+		\item\label{3.b}
+		Note that, given \eqref{3.a}, $\sqrt{6} = \sqrt{2}\cdot\sqrt{3} \in K$.
+		There is a $\beta$ (more than one) with minimal polynomial of degree 2 such that $K = \Q(\sqrt{6}, \beta)$.
+		Find such a $\beta$.
+		\item\label{3.c}
+		What is the minimal polynomial $f(x)$ for $\alpha$?
+		You should be explicit (i.e., the answer shouldn't involve any unknowns other than $x$), but you do not need to simplify your answer.
+		\item\label{3.d}
+		Explain why for every rational prime $p$, the ideal $(p)$ factors into a product of two not necessarily distinct primes in the ring of integers in at least one of $\Q(\sqrt{2})$, $\Q(\sqrt{3})$, and $\Q(\sqrt{6})$.
+		\item\label{3.e}
+		What does \eqref{3.d} imply about factorization of $f(x)$ modulo primes?
+		Explain
+		\item\label{3.f}
+		Prove that if $p$ is a prime with $p \equiv \pm 1 \pmod{24}$, then $f(x)$ factors modulo $p$ as a product of 4 linear monic polynomials.
+	\end{enumerate}
+
+	\begin{proof}
+		\begin{enumerate}[(a)]
+			\item
+			The inclusion $K \subseteq \Q(\sqrt{2},\sqrt{3})$ is clear.
+			For the reverse inclusion, observe that
+			\begin{eqnarray*}
+				\frac{1}{2}\left(\sqrt{2} + \sqrt{3} + \frac{1}{\sqrt{2} + \sqrt{3}}\right) &=& \frac{1}{2}\left(\sqrt{2} + \sqrt{3} + \frac{\sqrt{2} - \sqrt{3}}{(\sqrt{2} + \sqrt{3})(\sqrt{2} - \sqrt{3})}\right)\\
+				&=& \frac{1}{2} \left( \sqrt{2} + \sqrt{3} + \sqrt{3} - \sqrt{2} \right)\\
+				&=& \frac{2\sqrt{3}}{2}\\
+				&=& \sqrt{3} \in K
+			\end{eqnarray*}
+			so $(\sqrt{2} + \sqrt{3}) - \sqrt{3} = \sqrt{2} \in K$.
+			Therefore $\Q(\sqrt{2},\sqrt{3}) \subseteq K$, as desired.
+			\item
+			Take $\beta = \sqrt{2}$, so then $\beta^2 - 2 = 0$.
+			Since $\sqrt{6}/\beta = \sqrt{3} \in \Q(\sqrt{6}, \beta)$, it's clear that $K \subseteq \Q(\sqrt{6}, \beta)$.
+			For the reverse containment, observe that by \eqref{4.a}, $\sqrt{2}\sqrt{3} = \beta \in K$, so $\Q(\sqrt{6}, \beta) \subseteq K$.
+			Therefore $K = \Q(\sqrt{6}, \beta)$.
+			Note also that $\beta = \sqrt{3}$ works just as well.
+			\item
+			We observe that $\alpha^2 = 5 + 2\sqrt{6}$, which gives $\alpha^2 - 5 = 2\sqrt{6}$.
+			Squaring again we get $\alpha^4 - 10\alpha^2 + 25 = 24$ so that
+			$$\alpha^4 - 10\alpha^2 + 1 = 0.$$
+			
+			To see that $f(x) = x^4 - 10x^2 + 1$ is irreducible, first note that the only possible rational roots are $\pm 1$ by the rational root, but $f(\pm 1) = -7 \neq 0$.
+			Suppose to the contrary that $f$ factors as two irreducible quadratics,
+			$$f(x) = (x^2 + ax + b)(x^2 + cx + d) = x^4 + (a + c)x^3 + (ac + b + d)x^2 + (ad + bc)x + bd.$$
+			First we observe that $bd = 1$, so $b = d = \pm 1$.
+			Next we note that $a = -c$, so
+			$$-10 = ac + b + d = -c^2 + 2d = -c^2 \pm 2,$$
+			but neither $12$ nor $8$ are squares, a contradiction.
+			Therefore $f$ is irreducible of degree $4 = [K : \Q]$, so it must be the minimal polynomial for $\alpha$.			
+			\item
+			Let $p \in \Z$ be prime.
+			First note that in $\Q(\sqrt{2})$, $2$ factors as $\sqrt{2}^2$ and in $\Q(\sqrt{3})$, $3$ factors as $\sqrt{3}^2$.
+			Hence it suffices to assume that $p > 3$.
+			Now we observe that 
+			$$\left(\frac{6}{p}\right) = \left(\frac{2}{p}\right)\left(\frac{3}{p}\right)$$
+			so we may choose $D \in \{2,3,6\}$ so that it is a square modulo $p$.
+			Let $E = \Q(\sqrt{D})$.
+			We wish to show that there exist two primes, $\mathfrak{p}_1$ and $\mathfrak{p}_2$, of $\mathcal{O}_E$ such that 
+			$$p\mathcal{O}_E = \mathfrak{p}_1\mathfrak{p}_2.$$
+			Since $D$ is a square modulo $p$, there exists some $c < p$ satisfying $c^2 \equiv D \pmod{p}$, so we set about showing that
+			$$\mathfrak{p}_1= (p, c + \sqrt{D})\ \text{and}\ \mathfrak{p}_2 = (p, c - \sqrt{D}).$$
+
+			First, we show that $\mathfrak{p}_1$ and $\mathfrak{p}_2$ are proper, co-prime ideals, both clearly containing $p$.
+			Note that $D \not \equiv 1 \pmod{4}$, so $\mathcal{O}_L = \Z[\sqrt{D}] \cong \Z \oplus \Z\sqrt{D}$.
+			Suppose to the contrary that $\mathfrak{p}_1$ is not proper, so there exist integers $a_1$, $b_1$, $a_2$, and $b_2$ such that
+			\begin{eqnarray*}
+			1 &=& (a_1 + b_1\sqrt{D})p - (a_2 + b_2\sqrt{D})(c + \sqrt{D})\\
+			&=& (a_1p + a_2c + b_2D) + (b_1p + b_2c + a_2)\sqrt{D}
+			\end{eqnarray*} 
+			from which it follows that $1 = a_1p + a_2c + b_2D$ and $b_1p + b_2c + a_2 = 0.$
+			Now we see that $a_2 = -b_1p - b_2c$ and thus
+			\begin{eqnarray*}
+				1 &=& a_1p + (-b_1p - b_2c)c + b_2D\\
+				&=& (a_1 - b_1c)p + b_2(D - c^2)\\
+				&\equiv & 0 \pmod{p},
+			\end{eqnarray*}
+			a contradiction.
+			The proof that $\mathfrak{p}_2$ is proper is the same, mutatis mutandis.
+			To see that these are coprime ideals, observe that
+			$$(c + \sqrt{D}) + (c - \sqrt{D}) = 2c \in \mathfrak{p}_1 + \mathfrak{p}_2.$$
+			Since $p\Z$ is maximal, $c < p$, and $p \neq 2$, it follows that $p\Z + 2c\Z = \Z$.
+			Hence 
+			$$1 \in p\mathcal{O}_E + 2c\mathcal{O}_E \subseteq \mathfrak{p}_1 + \mathfrak{p}_2.$$
+			implies that $\mathfrak{p}_1$ and $\mathfrak{p}_2$ are coprime ideals of $\mathcal{O}_E$.
+
+			Since $\mathfrak{p}_1 + \mathfrak{p}_2 = \mathcal{O}_E$ and both contain $p$, we have
+			$$p\mathcal{O}_E \subseteq \mathfrak{p}_1 \cap \mathfrak{p}_2 = \mathfrak{p}_1\mathfrak{p}_2.$$	
+			For the reverse containment, we note that
+			$$\mathfrak{p}_1\mathfrak{p}_2 = \left(p^2, p(c + \sqrt{D}), p(c - \sqrt{D}), c^2 - D\right) \subseteq p\mathcal{O}_E$$
+			as $c^2 - D \equiv 0 \pmod{p}$.
+			Since both ideals are proper,
+			$$p^2 = \Norm{E/\Q}{p\mathcal{O}_E} = \Norm{E/\Q}{\mathfrak{p}_1}\Norm{E/\Q}{\mathfrak{p}_2}$$
+			implies that 
+			$$[\mathcal{O}_E : \mathfrak{p}_1] = \Norm{E/\Q}{\mathfrak{p}_1} = p = \Norm{E/\Q}{\mathfrak{p}_2} = [\mathcal{O}_E : \mathfrak{p}_2].$$
+			Therefore $\mathcal{O}_E/\mathfrak{p}_1 \cong \mathcal{O}_E/\mathfrak{p}_2 \cong \F_p$, so both ideals are prime with
+			$$p\mathcal{O}_E = \mathfrak{p}_1\mathfrak{p}_2,$$
+			as desired.
+			\item
+			Part (d) implies that at least one of $\F_p(\sqrt{2})$, $\F_p(\sqrt{3})$, or $\F_p(\sqrt{6})$ is a trivial extension of $\F_p$.
+			Using the same proof as in (a) and (b), mutatis mutandis, it's easy to see that $\F_p(\alpha)$ is a biquadratic extension with
+			$$\F_p(\alpha) = \F_p(\sqrt{2}, \sqrt{3}) = \F_p(\sqrt{2},\sqrt{6}) = \F_p(\sqrt{3},\sqrt{6})$$
+			so by the observation above,
+			$[\F_p(\alpha) : \F_p] < 4$
+			and thus $f$ has at least one root in $\F_p$. 
+			\item
+			First we observe that it suffices to show that 2 and 3 are squares modulo $p$, for then
+			$$\F_p(\alpha) = \F_p(\sqrt{2}, \sqrt{3}) = \F_p$$
+			and thus $f$ splits completely over $\F_p$.
+			
+			Assume $p \equiv \pm 1 \pmod{24}$.
+			We observe the following congruences
+			\begin{eqnarray*}
+				p &\equiv& \pm 1 \pmod{8},\\
+				p &\equiv& \pm 1 \pmod{3},\, \text{and}\\
+				p &\equiv& \pm 1 \pmod{4}.
+			\end{eqnarray*}
+			The first gives us that $2$ is a square modulo $p$.
+			When $p \equiv 1 \pmod{24}$ we have
+			$$\left(\frac{3}{p}\right) = \left(\frac{p}{3}\right) = \left(\frac{1}{3}\right) = 1$$
+			and when $p \equiv -1 \pmod{24}$ we have
+			$$\left(\frac{3}{p}\right) = -\left(\frac{p}{3}\right) = -\left(\frac{-1}{3}\right) = 1.$$
+			Therefore $f$ splits completely over $\F_p$.
+		\end{enumerate}
+	\end{proof}
 \end{thm}
 
 \begin{thm}\label{Ex4}
+	The equation $5^n = 3^m + 1$ has no solutions in non-negative integers $n$ and $m$ since for any such $n$ and $m$, the number $5^n$ is odd and the number $3^m + 1$ is even.
+	The purpose of this problem is to show that $5^n = 3^m + 1$ has no solutions in non-zero negative "rational" numbers $n$ and $m$.
+	By finding a common denominator, we can write $n = a/b$ and $m = c/b$, where $a$, $b$, and $c$ are non-negative integers with $b \neq 0$.
+	We set $K = \Q(5^{1/b})$.
+	\begin{enumerate}[(a)]
+		\item\label{4.a}
+		What is the minimal polynomial for $5^{1/b}$?
+		\item\label{4.b}
+		What is the norm of $1 - 5^{1/b}$?
+		In other words, calculate $\Norm{K/\Q}{1 - 5^{1/b}}$.
+		\item\label{4.c}
+		Justify that $3^{c/b} \in K$.
+		\item\label{4.d}
+		What are the values of $\Norm{K/\Q}{3^c}$ and $\Norm{K\/Q}{3^{c/b}}$?
+		\item\label{4.e}
+		Justify that there are no non-negative rational numbers $n$ and $m$ satisfying $5^n = 3^m + 1$.
+		(Hint: Connect parts \eqref{4.b} and \eqref{4.d}.
+		This may mean rethinking how you answered those parts.)
+	\end{enumerate}
+
+	\begin{proof}
+		\begin{enumerate}[(a)]
+			\item
+			The minimal polynomial for $5^{1/b}$ is $x^b - 5$, which is irreducible by Eisenstein's criterion.
+			\item
+			Let $\alpha_1 = 5^{1/b}$ and let $\alpha_2, \ldots, \alpha_b$ be the conjugates of $\alpha_1$.
+			Then
+			$$\Norm{K/\Q}{1 - \alpha_1} = \prod_{i=1}^b (1 - \alpha_i) = (1)^b - 5 = -4.$$
+			\item
+			This follows from
+			$$3^{c/b} = 5^{a/b} - 1 \in K.$$
+			\item
+			The norm of $3^c$ is
+			$$\Norm{K/\Q}{3^c} = \Norm{K/\Q}{3}^c = 3^{bc}.$$
+			Now we see that 
+			$$3^{bc} = \Norm{K/\Q}{(3^{c/b})^b} = \Norm{K/\Q}{3^{c/b}}^b$$
+			so it follows, since $3$ is prime, that $3^c = \Norm{K/\Q}{3^{c/b}}$.
+			\item
+			Suppose to the contrary that there were a solution
+			$$5^{a/b} = 3^{c/b} + 1.$$
+			This gives $-3^{c/b} = 1 - 5^{a/b}$ so that
+			$$\Norm{K/\Q}{-3^{c/b}} = (-1)^b\Norm{K/\Q}{3^{c/b}} = (-1)^b3^c = \Norm{K/\Q}{1 - 5^{a/b}}.$$
+			We observe that for each $i = 1, \ldots, b$, $\alpha_i^a$ satisfies $x^b - 5^a$, so we see that
+			$$(-1)^b3^c = \Norm{K/\Q}{1 - 5^{a/b}} = \prod_{i=1}^b (1 - \alpha_i^a) = 1 - 5^a.$$
+			It is immediate that $a \neq 0$, so it follows that $1 - 5^a < 0$ and thus $b$ is odd.
+			This then gives $-3^c = 1 - 5^a$ which rearranges to an integer solution
+			$$5^a = 3^c + 1,$$
+			a contradiction.
+			Therefore no such solution exists.
+			
+		\end{enumerate}
+	\end{proof}
 \end{thm}
 
 \end{document}
