@@ -31,9 +31,142 @@
 \end{thm}
 
 \begin{thm}\label{Ex3}
+	\begin{enumerate}[(a)]
+		\item
+		Define the $p$adic integers $\Z_p$.
+		Determine, with proof, the maximal ideal $\mathfrak{m}$ and the residue class field $\Z_p/\mathfrak{m}$.
+		\item
+		Write out the $5$-adic expansions for $1/4$, $7$, and $\sqrt{6}$ in $\Q_5$. (First three digits for $\sqrt{6}$.
+		\item
+		Suppose you defined the $10$-adic integers in an analogous way to the $p$-adics.
+		State your definition precisely, and then prove that you don't obtain an integeral domain.
+		\item
+		Like $\Z$, $\C[x]$ is also a principal ideal domain.
+		Define what should be the analogue of $\Z_p$ for $\C[x]$, and describe the rings you obtain by your construction.
+	\end{enumerate}
+		
+		\begin{proof}
+		\begin{enumerate}[(a)]
+		\item
+		Define $\Z_p = \varprojlim{\Z/p^n\Z}$ and $\mathfrak{m} = p\Z_p$.
+		Identify $\Z_p$ with a subring of $\prod_{i=1}^\infty \Z/p^n\Z$ subject to the compatability condition that the $n^\text{th}$ coordinate reduces to the $m^\text{th}$ coordinate modulo $p^m$ when $m \neq n$.
+		It's clear that this ideal is maximal as
+		$$0 \rightarrow \mathfrak{m} \rightarrow \Z_p \rightarrow \Z/p\Z \rightarrow 0$$
+		is an exact sequence.
+		To see that $\Z_p$ is local, we observe that it suffices to show that given any $z \in \Z_p$ and any $x \in \mathfrak{m}$, $1 + zx$ is a unit, for this characterizes local rings.
+		
+		Working in $\Z/p^n\Z$ we let $a_n$ be the $n^\text{th}$ coordinate of $1 + zx$ and let $\pi_n \colon \Z_p \rightarrow \Z/p^n\Z$ be the projections onto each factor.
+		We see that since $x \in \mathfrak{m}$ implies $\pi_1(x) = 0$, we have
+		$$a_1 = \pi_1(1 + zx) = \pi_1(1) + \pi_1(z)\pi_1(x) = \pi_1(1) = 1$$
+		Now we note that $p \nmid a_n$ follows from the compatability conditions, for otherwise $a_n$ would reduce to zero modulo $p$.
+		Hence $a_n$ is a unit in $\Z/p^n\Z$, so it has an inverse, say $a_nb_n \equiv 1 \pmod{p^n}$.
+		We observe that $b = (b_1, b_2, \ldots)$ is the inverse of $1 + ax$ in $\prod_{n=1}^\infty \Z/p^n\Z$, so it remains only to show that $b \in \Z_p$.
+		This follows directly from the fact that $a_nb_n \equiv 1 \pmod{p^n}$.
+		Namely, whenever $m \leq n$ we have
+		$$a_nb_n \equiv a_mb_n \pmod{p^m}$$
+		and so by uniqueness of inverses we have $b_n \equiv b_m \pmod{p^m}$.
+		\item
+		We observe that $4$ is a unit in $\Z_p$, so we consider the image of $1/4$ in each of $\Z/5^n\Z$.
+		For $n = 1$ the inverse of $4$ is $4$, for $n = 2$ we have $4(-6) \equiv 4(19) \equiv 1 \pmod 25$ and $19 = 4 + 3\cdot 5$.
+		We show by induction that $1/4 = 4 + 3\sum_{n=1}^\infty 5^n$.
+		Assume that the result holds up to $2 \leq n$.
+		We write
+		\begin{eqnarray*}
+			4\left(4 + 3\sum_{k=1}^{n-1} 5^k\right) &=&  16 + 12\sum_{k=1}^{n-1} 5^k\\
+			&=& 1 + 3\cdot 5 + (2 + 2\cdot 5)\sum_{k=1}^{n-1} 5^k\\
+			&=& 1 + 3\cdot 5 + 2\sum_{k=1}^{n-1} 5^k + 2\sum_{k=2}^{n} 5^k\\
+			&=& 1 + 3\cdot 5 + 2 \cdot 5 + 4\sum_{k=2}^{n-1} 5^k + 2 \cdot 5^n\\
+			&=& 1 + 5^2 + 4\sum_{k=2}^{n-1} 5^k + 2 \cdot 5^n\\
+			&=& 1 + 5^2 + 4\cdot 5^2 4\sum_{k=3}^{n-1} 5^k + 2\cdot 5^n\\
+			&=& 1 + 5^3 + 4\sum_{k=3}^{n-1} 5^k + 2 \cdot 5^n\\
+			&\vdots&\\
+			&=& 1 + 5^{n-1} + 4 \cdot 5^{n-1} + 2 \cdot 5^n\\
+			&=& 1 + 5^{n} + 2 \cdot 5^{n}\\
+			&=& 1 + 3\cdot 5^n \equiv 1 \pmod{5^{n}}.
+		\end{eqnarray*}
+		Now we see that
+		\begin{eqnarray*}
+			4\left(4 + \sum_{k=1}^n 5^k\right) &=& 1 + 3\cdot 5^{n} + 12\cdot5^{n}\\
+			&=& 1 + 3\cdot 5^{n} + 2\cdot 5^{n} + 2\cdot5^{n+1}\\
+			&=& 1 + 5^{n+1} + 2\cdot 5^{n+1}\\
+			&=& 1 + 3 \cdot 5^{n+1} \equiv 1 \pmod{5^{n+1}}.
+		\end{eqnarray*}
+
+		For $7$, we simply observe that $7 \equiv 2 \pmod{5}$ and for $n > 1$, $7 \equiv 7 \pmod{5^n}$, so
+		$$7 = 2 + 1\cdot 5 + 0\cdot 5^2 + 0 \cdot 5^3 + \ldots = 2 + 5.$$
+	
+		For $\sqrt{6}$, we observe that $6 \equiv 1^2 \pmod{5}$, $6 \equiv 9^2 \pmod{25}$, $6 \equiv 16 \pmod{125}$, and $6 \equiv 109^2 \pmod{625}$.
+		In order to satisfy the congruence conditions in $\Z_5$, we take
+		$$\sqrt{6} = (1, -9, 16, -109, \ldots) = (1, 16, 16, 516, \ldots)$$
+		so that
+		$$\sqrt{6} = 1 + 3\cdot 5 + 0 \cdot 5^2 + 4 \cdot 5^3 + \ldots = 1 + 3\cdot 5 + 4\cdot5^3 + \ldots.$$
+		\item
+		Let $p$ and $q$ be distinct rational primes and define $\Z_{pq} = \varprojlim{\Z/(pq)^n\Z}$.
+		We show in general that $\Z_{pq} \cong \Z_p \times \Z_q$.
+		Since $\Z/(pq)^n\Z \cong \Z/p^n\Z \times \Z/p^m\Z$ we may choose, for each $n$, elements $x_n$ and $y_n$ of $\Z/(pq)^n\Z$ such that $x_n$ maps to $(1,0)$ and $y_n$ maps to $(0,1)$ under the isomorphism.
+		Since the map 
+		$$\Z/p^n\Z \times \Z/q^n\Z \rightarrow \Z/p^m\Z \times \Z/q^m\Z$$
+		is, by the universal property for products, just reduction in each component when $m \leq n$
+		we see that the elements $x = (x_1, x_2, \ldots)$ and $y = (y_1, y_2, \ldots)$ both satisfy the relevant compatability conditions, and thus are both elements of $\Z_{pq}$
+		So we have a map
+		\begin{align*}
+			\varphi \colon \Z_{pq} &\rightarrow \Z_p \times \Z_q\\
+			(x_1, x_2, \ldots) & \rightarrow \left((x_1 \pmod{p}, x_2 \pmod{p^2}, \ldots), (x_1 \pmod{q}, x_2 \pmod{q^2}, \ldots)\right)
+		\end{align*}
+		which is clearly a morphism of rings as the reduction in each component is a morphism of rings.
+		Now we note that $\varphi(x) = (1,0)$ and $\varphi(y) = (0,1)$, so $\varphi$ is surjective.
+		For injectivity, suppose $k = (k_1, k_2, \ldots)$ is an element of the kernel.
+		Then we see that for each $n$, $k_n \equiv 0 \pmod{p^n}$ and $k_n \equiv 0 \pmod{q^n}$, so it follows that $k_n \equiv 0 \pmod{(pq)^n}$.
+		Hence $k = 0$ and $\varphi$ is injective.
+		Finally, we note that $x \not \in \ker\varphi$ and $y \not \in \ker\varphi$, but
+		$$\varphi(xy) = \varphi(x)\varphi(y) = (1,0)\cdot(0,1) = (1\cdot 0, 0 \cdot 1) = (0,0) = 0$$
+		implies $xy \in \ker\varphi = (0)$.
+		Therefore $(0)$ is not prime, and $\Z_{pq}$ is not an integeral domain.
+		\item
+		The analogue of $\Z_p$ for $\C[x]$ is $\varprojlim{\C[x]/(x - a)^n}$, where $a \in \C$.
+		These can be viewed as the ring of formal power series about $a$.
+		\end{enumerate}
+		\end{proof}
 \end{thm}
 
 \begin{thm}\label{Ex4}
+	Compute the ring of integers and class group of $\Q(\sqrt{39})$.
+	\begin{proof}
+		Since $39 \equiv 3 \pmod{4}$, the ring of integers in $\Q(\sqrt{39})$ is $\Z[\sqrt{39}]$ and the discriminant is $4\cdot39 = 156$
+		For the class group, we have that the Minkowski bound is
+		$$B_k = \sqrt{39} < 7,$$
+		so we consider the factorizations of $2$, $3$, and $5$.
+		They are
+		$(2) = (2, \sqrt{39} + 1)^2 = \mathfrak{p}_2^2$,
+		$(3) = (3, \sqrt{39})^2 = \mathfrak{p}_3$, and
+		$(5) = (5, \sqrt{39} - 1)(5, \sqrt{39} - 1) = \mathfrak{p}_5\mathfrak{p}_5^\prime$.
+	
+		Since $3 = -36 + 39 = (6 - \sqrt{39})(6 + \sqrt{39})$ we claim that $\mathfrak{p}_3 = (6 - \sqrt{39})$.
+		The inclusion $(6 - \sqrt{39}) \subseteq \mathfrak{p}_3$ is clear.
+		For the reverse inclusion, we note that since $3 \in (6 - \sqrt{39})$, we have $\sqrt{39} = 3\cdot2 - (6 - \sqrt{39}) \in (6 - \sqrt{39})$, so that $\mathfrak{p}_3 \subseteq (6 - \sqrt{39})$.
+	
+		For $\mathfrak{p}_2 = (2, \sqrt{39} + 1)$, we suppose to the contrary that $\mathfrak{p}_2$ is principal.
+		Then for some $a + b\sqrt{39}$, $a, b \in \Z$, we have $N(a + b\sqrt{39}) = a^2 - 39b^2 = 2$.
+		Reducing modulo $3$ we have
+		$$a^2 \equiv 2 \pmod{3}$$
+		a contradiction.
+
+		Now suppose to the contrary that either $\mathfrak{p}_5$ or $\mathfrak{p}_5^\prime$ are principal.
+		This implies that there exist integers $a$ and $b$ such that $a^2 - 39b^2 = 5$.
+		Reducing modulo $13$ we see
+		$$a^2 \equiv 5 \pmod{13},$$
+		but
+		$$\left(\frac{5}{13}\right) = \left(\frac{13}{5}\right) = \left(\frac{3}{5}\right) = -1$$
+		a contradiction.
+		Therefore $\mathfrak{p}_5$ and $\mathfrak{p}_5^\prime$ are not principal.
+
+		Finally, we note that we have
+		$$10 = 49 - 39 = (7 - \sqrt{39})(7 + \sqrt{39}) = \Norm{\Q(\sqrt{39})/\Q}{7 + \sqrt{39}}$$
+		so that one of $(7 + \sqrt{39}) = \mathfrak{p}_2\mathfrak{p}_5$ or $(7 + \sqrt{39}) = \mathfrak{p}_2\mathfrak{p}_5^\prime$ holds.
+		But then $\mathfrak{p}_2 \sim \mathfrak{p}_5$ or $\mathfrak{p}_2 \sim \mathfrak{p}_5^\prime$.
+		This implies that either $\mathfrak{p}_5^2$ or $(\mathfrak{p}_5^\prime)^2$ are principal.	
+		But since $(5) = \mathfrak{p}_5\mathfrak{p}_5^\prime$, we see that $\mathfrak{p}_2 \sim \mathfrak{p}_5 \sim \mathfrak{p}_5^\prime$ and the class group is thus isomorphic to $\Z/2\Z$.
+	\end{proof}
 \end{thm}
 
 \begin{thm}\label{Ex5}
