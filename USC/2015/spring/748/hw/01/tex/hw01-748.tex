@@ -1,0 +1,293 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath,mathtools,tikz-cd,mathrsfs}
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 748:\\Homework 02}
+\date{February 4, 2015}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+\maketitle
+
+\providecommand{\p}{\mathfrak{p}}
+\providecommand{\m}{\mathfrak{m}}
+\providecommand{\Deck}[1]{\operatorname{Deck}\left(#1\right)}
+%\newcommand{\Res}{\operatorname{Res}}
+\newtheorem{thm}{}
+\newtheorem{lem}{Lemma}
+\newtheorem{prop}{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[thm]
+
+\newcommand{\A}{\mathbb{A}}
+
+\begin{lem}\label{lem1}
+  Let $\mathcal{A}$ be an additive category.
+  \begin{enumerate}[(a)]
+  \item
+    A morphism $\varphi: A \rightarrow B$ is monic if and only if whenever the diagram
+    $$\begin{tikzcd}
+      Z \arrow[shift left = 0.75ex]{r}{\zeta} \arrow[shift right=0.75ex, swap]{r}{0}& A\arrow{r}{\varphi} & B
+    \end{tikzcd}
+    $$
+    commutes, then $\zeta = 0$.
+  \item
+    A morphism $\varphi: A \rightarrow B$ is epic if and only if whenever the diagram
+    $$\begin{tikzcd}
+      A\arrow{r}{\varphi} & B \arrow[shift left = 0.75ex]{r}{\zeta} \arrow[shift right=0.75ex, swap]{r}{0} & Z
+    \end{tikzcd}
+    $$
+    commutes, then $\zeta = 0$.
+  \end{enumerate}
+  \begin{proof}
+    \begin{enumerate}[(a)]
+    \item
+      First we observe that given any commutative diagram
+      $$\begin{tikzcd}
+	Z \arrow[shift left = 0.75ex]{r}{\zeta_1} \arrow[shift right=0.75ex, swap]{r}{\zeta_2}& A\arrow{r}{\varphi} & B
+      \end{tikzcd}$$
+      we have
+      $$0 = \varphi \circ \zeta_1 - \varphi \circ \zeta_2 = \varphi \circ (\zeta_1 - \zeta_2)$$
+      and so we obtain the commutative diagram
+      $$\begin{tikzcd}
+	Z \arrow[shift left = 0.75ex]{r}{\zeta} \arrow[shift right=0.75ex, swap]{r}{0}& A\arrow{r}{\varphi} & B
+      \end{tikzcd}$$
+      by letting $\zeta = \zeta_1 - \zeta_2$.
+      It is then clear that $\zeta = 0$ if and only if $\varphi$ is monic.
+    \item
+      First we observe that given any commutative diagram
+      $$\begin{tikzcd}
+	A\arrow{r}{\varphi} & B \arrow[shift left = 0.75ex]{r}{\zeta_1} \arrow[shift right=0.75ex, swap]{r}{\zeta_2}& Z
+      \end{tikzcd}$$
+      we have
+      $$0 = \zeta_1 \circ \varphi - \zeta_2 \circ \varphi = (\zeta_1 - \zeta_2) \circ \varphi $$
+      and so we obtain the commutative diagram
+      $$\begin{tikzcd}
+	A\arrow{r}{\varphi} & B \arrow[shift left = 0.75ex]{r}{\zeta} \arrow[shift right=0.75ex, swap]{r}{0} & Z
+      \end{tikzcd}$$
+      by letting $\zeta = \zeta_1 - \zeta_2$.
+      It is then clear that $\zeta = 0$ if and only if $\varphi$ is epic.
+    \end{enumerate}
+  \end{proof}
+\end{lem}
+
+\begin{lem}\label{lem2}
+  In an additive category, $\mathcal{A}$, kernels are monic and cokernels are epic.
+  \begin{proof}
+    Let $\varphi : A \rightarrow B$ be a morphism of $\mathcal{A}$ with kernel $m : K \rightarrow A$.
+    By Lemma~\ref{lem1}, it suffices to show that if we have a commutative diagram
+    $$\begin{tikzcd}
+      Z \arrow[shift left = 0.75ex]{r}{\zeta} \arrow[shift right=0.75ex, swap]{r}{0}& K\arrow{r}{m} & A
+    \end{tikzcd}$$
+    then $\zeta = 0$.
+    By the universal property for kernels, we have the diagram
+    $$\begin{tikzcd}
+      Z \arrow{r}{0} \arrow[dotted,swap]{rd}{\exists ! h}& A \arrow{r}{\varphi} & B\\
+      & K \arrow{u}{m}
+    \end{tikzcd}$$
+    Since taking $h= 0 $ or $h = \zeta$ makes the diagram commute, we see that uniqueness forces $\zeta = 0$.
+    
+    Let $\varphi : A \rightarrow B$ be a morphism of $\mathcal{A}$ with cokernel $e : B \rightarrow C$.
+    By Lemma~\ref{lem1}, it suffices to show that if we have a commutative diagram
+    $$\begin{tikzcd}
+      B\arrow{r}{e} & C \arrow[shift left = 0.75ex]{r}{\zeta} \arrow[shift right=0.75ex, swap]{r}{0} & Z
+    \end{tikzcd}$$
+    then $\zeta = 0$.
+    By the universal property for cokernels, we have the diagram
+    $$\begin{tikzcd}
+      A \arrow{r}{\varphi} & B \arrow{d}{e}\arrow{r}{0} & Z\\
+      & C \arrow[dotted,swap]{ur}{\exists ! h}
+    \end{tikzcd}$$
+    Since taking $h= 0 $ or $h = \zeta$ makes the diagram commute, we see that uniqueness forces $\zeta = 0$.
+  \end{proof}
+\end{lem}
+
+\begin{lem}\label{lem3}
+  Let $\mathcal{A}$ be an additive category.
+  \begin{enumerate}[(a)]
+  \item
+    If $\varphi : A \rightarrow B$ has a kernel, then $\varphi$ is monic if and only if $0 \rightarrow A$ is its kernel.
+  \item
+    If $\varphi : A \rightarrow B$ has a cokernel, the n$\varphi$ is epic if and only if $B \rightarrow 0$ is its kernel.
+  \end{enumerate}
+
+  \begin{proof}
+    \begin{enumerate}[(a)]
+    \item
+      Suppose $\varphi$ is a monic with kernel $m : K \rightarrow A$.
+      We have by assumption the commutative diagram
+      $$\begin{tikzcd}
+	K \arrow[shift left = 0.75ex]{r}{m} \arrow[shift right=0.75ex, swap]{r}{0}& A\arrow{r}{\varphi} & B
+      \end{tikzcd}$$
+      which, by Lemma~\ref{lem1}, forces $m = 0$.
+      Let $\zeta : Z \rightarrow A$ be any map such that $\varphi \circ \zeta = 0$.
+      By the universal property for kernels and the fact that $m$ factors uniquely through the zero object, the commutative diagram
+      $$\begin{tikzcd}
+	Z \arrow[dotted]{rd}{\exists ! h^\prime}\arrow[dotted,swap]{rdd}{\exists ! h} \arrow{r}{\zeta} & A \arrow{r}{\varphi} & B\\
+	& 0 \arrow{u}\\
+	& C \arrow{u} \arrow[bend right,swap]{uu}{m}
+      \end{tikzcd}$$
+      which shows that the zero object is a kernel for $\varphi$.
+      Since kernels are universal there exists a unique isomorphism $0 \cong K$, as desired.
+      
+      Conversely, suppose that $0 \rightarrow A$ is the kernel of $\varphi : A \rightarrow B$.
+      Given a morphism $\zeta : Z \rightarrow A$ such that $\varphi \circ \zeta = 0$, we have the diagram
+      $$\begin{tikzcd}
+	Z \arrow[dotted,swap]{rd}{\exists ! h} \arrow{r}{\zeta} &A \arrow{r} &B\\
+	& 0\arrow{u}
+      \end{tikzcd}$$
+      and so it is clear that $\zeta = 0$.
+      Therefore $\varphi$ is monic by Lemma~\ref{lem1}.
+    \item
+      Suppose $\varphi$ is a epic with cokernel $e : B \rightarrow C$.
+      We have by assumption the commutative diagram
+      $$\begin{tikzcd}
+	A\arrow{r}{\varphi} & B \arrow[shift left = 0.75ex]{r}{e} \arrow[shift right=0.75ex, swap]{r}{0} & C
+      \end{tikzcd}$$
+      which, by Lemma~\ref{lem1}, forces $e = 0$.
+      Let $\zeta : B \rightarrow Z$ be any map such that $\zeta \circ \varphi = 0$.
+      By the universal property for kernels and the fact that $e$ factors uniquely through the zero object, we have the commutative diagram
+      $$\begin{tikzcd}
+	A \arrow{r}{\varphi}& B \arrow[bend right,swap]{dd}{e}\arrow{d}\arrow{r}{\zeta}& Z\\
+	& 0\arrow{d}\arrow[dotted]{ru}{\exists ! h'}\\
+	& C\arrow[dotted, swap]{ruu}{\exists ! h}
+      \end{tikzcd}$$
+      which shows that the zero object is a cokernel for $\varphi$.
+      Since cokernels are universal there exists a unique isomorphism $0 \cong  K$, as desired.
+      
+      Conversely, suppose that $B \rightarrow 0$ is the cokernel of $\varphi : A \rightarrow B$.
+      Given a morphism $\zeta : B \rightarrow Z$ such that $\zeta \circ \varphi= 0$, we have the diagram
+      $$\begin{tikzcd}
+	A \arrow{r}{\varphi}& B \arrow{d} \arrow{r}{\zeta} & Z\\
+	& 0\arrow[dotted,swap]{ur}{\exists ! h}
+      \end{tikzcd}$$
+      and so it is clear that $\zeta = 0$.
+      Therefore $\varphi$ is epic by Lemma~\ref{lem1}.
+    \end{enumerate}
+  \end{proof}
+\end{lem}
+
+\begin{lem}\label{lem4}
+  In an abelian category $\mathcal{A}$, every kernel is the kernel of its cokernel and every cokernel is cokernel of its kernel.
+
+  \begin{proof}
+    Let $\varphi : A \rightarrow B$ be a morphism of $\mathcal{A}$, let $m : K \rightarrow A$ be its kernel, and let $e : A \rightarrow C$ be the cokernel of $m$.
+    Since $\varphi \circ m = 0$ we have by the universal property for cokernels the diagram
+    $$\begin{tikzcd}
+      K \arrow{r}{m} &A \arrow{r}{\varphi} \arrow{rd}{e} & B\\
+      & & C\arrow[swap,dotted]{u}{\exists ! h}
+    \end{tikzcd}$$
+    Let $\zeta : Z \rightarrow A$ be any map such that $e \circ \zeta = 0$.
+    As $m : K \rightarrow A$ is the kernel of $\varphi : A \rightarrow B$, we have the diagram
+    $$\begin{tikzcd}
+      Z \arrow{rd}{\zeta} \arrow[swap, dotted]{d}{\exists !h^\prime}\arrow[bend left]{rrd}{0}\\
+      K \arrow{r}{m} & A\arrow{r}{\varphi} \arrow{rd}{e}& B\\
+      & & C \arrow[dotted,swap]{u}{\exists ! h}
+    \end{tikzcd}$$
+    since 
+    $$\varphi \circ \zeta = (h \circ e) \circ \zeta = h \circ (e \circ \zeta) = h \circ 0 = 0.$$
+    Therefore $m : K \rightarrow A$ is indeed the kernel of $e : A \rightarrow C$, as desired.
+
+    Let $\varphi : A \rightarrow B$ be a morphism of $\mathcal{A}$, let $e : B \rightarrow C$ be its cokernel, and let $m : K \rightarrow B$ be the kernel of $e$.
+    Since $e \circ \varphi = 0$ we have by the universal property for kernels the diagram
+    $$\begin{tikzcd}
+      A \arrow{r}{\varphi}\arrow[dotted,swap]{d}{\exists ! h} & B \arrow{r}{e} & C\\
+      K \arrow{ur}{m}
+    \end{tikzcd}$$
+    Let $\zeta : B \rightarrow Z$ be any map such that $\zeta \circ m = 0$.
+    As $e : B \rightarrow C$ is the cokernel of $\varphi : A \rightarrow B$, we have the diagram
+    $$\begin{tikzcd}
+      A \arrow{r}{\varphi}\arrow[dotted,swap]{d}{\exists ! h} & B \arrow{r}{e}\arrow{rd}{\zeta} & C \arrow[dotted]{d}{\exists ! h^\prime}\\
+      K \arrow{ur}{m}\arrow{rr}{0} & & Z
+    \end{tikzcd}$$
+    since 
+    $$\zeta \circ \varphi = \zeta \circ (m \circ h) = (\zeta \circ m) \circ h = 0 \circ h = 0.$$
+    Therefore $e : B \rightarrow C$ is indeed the cokernel of $m : A \rightarrow C$, as desired.
+  \end{proof}
+\end{lem}
+
+\begin{thm}\label{Ex1}
+  In the additive category $\mathcal{A} = R\text{-mod}$, show that
+  \begin{enumerate}[(a)]
+  \item
+    The notions of kernels, monics, and epimorphisms are the same.
+  \item
+    The notions of cokernels, epis, and epimorphisms are the same.
+  \end{enumerate}
+  \begin{proof}
+    Let $\varphi : A \rightarrow B$ be a morphism of $\mathcal{A}$.
+    Define $\ker\varphi = \left\{ a \in A \;\middle\vert\; \varphi(a) = 0\right\}$ and $\coker\varphi = B/\im\varphi$, which are both clearly $R$-modules.
+    First we show that $\imath : \ker\varphi \rightarrow A$ is a kernel.
+    Towards that end, let $\zeta : Z \rightarrow A$ be a morphism such that $\varphi \circ \zeta = 0$.
+    Then it is clear that the codomain of $\zeta$ must be $\ker\varphi$ since $\zeta(z) \in \ker\varphi$ for each $z \in Z$, so we see that $\zeta = \imath \circ \zeta$.
+    For uniqueness, suppose that $\zeta^\prime : A \rightarrow \ker\varphi$ is any other map such that the diagram
+    $$\begin{tikzcd}
+      Z \arrow[swap]{d}{\zeta^\prime} \arrow{r}{\zeta} &A \arrow{r}{\varphi} &B \\
+      \ker\varphi\arrow{ru}{\imath}
+    \end{tikzcd}$$
+    commutes.
+    Then for each $z \in Z$ we have $\zeta(z) = i \circ \zeta^\prime(z) = \zeta^\prime(z)$ and so $\zeta = \zeta^\prime$, as desired.
+    Therefore $\ker\varphi$ is a kernel.
+
+    Next we show that $\pi : B \rightarrow B/\im\varphi$ is a cokernel.
+    Towards that end, let $\zeta : B \rightarrow Z$ be a morphism such that $\zeta \circ \varphi = 0$.
+    Define the map
+    \begin{align*}
+      \tilde{\zeta} : B/\im\varphi &\rightarrow Z\\
+      b + \im\varphi &\mapsto \zeta(b).
+    \end{align*}
+    This map is well defined, for if $b + \im\varphi = b^\prime + \im\varphi$, there exists some $a \in \varphi^{-1}(b - b^\prime)$, so it follows that
+    $$\tilde{\zeta}(b + \im\varphi) - \tilde{\zeta}(b^\prime + \im\varphi) = \zeta(b) - \zeta(b^\prime) = \zeta(b - b^\prime) = \zeta \circ \varphi(a) = 0.$$
+    For uniqueness, suppose that $\psi : B/\im\varphi \rightarrow Z$ is another map such that the diagram
+    $$\begin{tikzcd}
+      A \arrow{r}{\varphi} & B \arrow{d}{\pi} \arrow{r}{\zeta} & Z\\
+      & B/\im\varphi \arrow{ur}{\psi}
+      \end{tikzcd}$$
+    commutes.
+    Given any element $b + \im\varphi \in B/\im\varphi$, we see that by surjectivity of $\pi$ that
+    $$\tilde{\zeta}(b + \im\varphi) = \zeta(b) = \psi \circ \pi(b) = \psi(b + \im\varphi)$$
+    and so $\tilde{\zeta}$ is unique.
+    Therefore $B/\im\varphi$ is a cokernel.
+    
+    We now note that since we have shown that every morphism has a kernel and a cokernel, Lemma~\ref{lem3} implies every monic (resp. epic) $R$-module homomorphism has zero kernel (resp. cokernel).
+    If $\varphi : A \rightarrow B$ is a morphism, then we see that for any $a, a^\prime \in A$, $\varphi(a) = \varphi(a^\prime)$ if and only if
+    $$0 = \varphi(a) - \varphi(a^\prime) = \varphi(a - a^\prime),$$
+    or equivalently, $a - a^\prime \in \ker\varphi$.
+    Since $\varphi$ is monic if and only if $\ker\varphi = 0$, we see that $\varphi$ is monic if and only if $\varphi$ is injective.
+    Similarly, $b \in \im\varphi$ if and only if the image of $b$ is zero in the quotient $B/\im\varphi$.
+    So it follows that $\varphi$ is epic if and only if $\varphi$ is surjective.
+
+    Furthermore, by Lemma~\ref{lem2}, we know that every kernel is necessarily monic and every cokernel is epic, so it remains to show that every monic is a kernel and every epic is a cokernel.
+    First we show that if $\varphi : A \rightarrow B$ is monic, then $\varphi$ is the kernel of its cokernel.
+    Since $\varphi$ is monic it is also injective and so we may identify $A$ as a submodule of $B$ and the cokernel is $\pi : B \rightarrow B/A$.
+    Then for any $\zeta : Z \rightarrow B$ such that $\pi \circ \zeta = 0$, we have $\im\zeta \subseteq A$ and this inclusion gives the desired unique map making the kernel diagram
+    $$\begin{tikzcd}
+      Z \arrow{r}{\zeta}\arrow[dotted]{rd}{\exists !} &B\arrow{r}{\pi} & B/A\\
+      & A\arrow{u}{\varphi}
+    \end{tikzcd}$$
+    commute.
+    Hence $\varphi : A \rightarrow B$ is the kernel of $\pi : B \rightarrow B/A$.
+
+    Similarly, if $\varphi : A \rightarrow B$ is epic, hence surjective, then we show that $\varphi: A \rightarrow B$ is the cokernel of its kernel.
+    If the kernel of $\varphi$ is the map $\imath : \ker\varphi \rightarrow A$, suppose that $\zeta : A \rightarrow Z$ is a morphism such that $\zeta \circ \imath = 0$.
+    Then we define a map $\psi : B \rightarrow Z$ in the following way: given $b \in B$, choose $a \in \varphi^{-1}(b)$ and define $\psi(b) = \zeta(a)$.
+    This map is well-defined, for if $a, a^\prime \in \varphi^{-1}(b)$, then it's clear that $a - a^\prime \in \ker\varphi$, and since $\zeta \circ \imath = 0$, we have    
+    $$\zeta(a) - \zeta(a^\prime) = \zeta(a - a^\prime) = 0,$$
+    which shows that $\psi(b)$ is independent of the choice of representative in the fiber.
+    This map is a homomorphism, for if $a \in \varphi^{-1}(b)$ and $a^\prime \in \varphi^{-1}(b^\prime)$ and $r \in R$, we have
+    $$\varphi(ra + a^\prime) = r\varphi(a) + \varphi(a^\prime) = rb + b^\prime,$$
+    and hence
+    $$\psi(rb + b^\prime) = \zeta(ra + a^\prime) = r\zeta(a) + \zeta(a^\prime) = r\psi(b) + \psi(b^\prime).$$
+    It's clear that this is the unique map that makes the cokernel diagram
+    $$\begin{tikzcd}
+      \ker\varphi \arrow{r}{\imath} & A \arrow{d}{\varphi} \arrow{r}{\zeta} &Z\\
+      & B\arrow[dotted,swap]{ur}{\exists ! \psi}
+    \end{tikzcd}$$
+    commute.
+    Therefore $\varphi : A \rightarrow B$ is the cokernel of $\imath : \ker\varphi \rightarrow A$.
+    Finally, we note that this establishes $\mathcal{A}$ as an abelian category, so by Lemma~\ref{lem4} we see that every kernel and cokernel arises in this manner, establishing the desired equivalence.
+  \end{proof}
+\end{thm}
+\end{document}
