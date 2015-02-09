@@ -2,7 +2,7 @@
 \usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath,mathtools,tikz-cd,mathrsfs}
 \openup 5pt
 \author{Blake Farman\\University of South Carolina}
-\title{Math 748:\\Homework 02}
+\title{Math 748:\\Homework 01}
 \date{February 4, 2015}
 \pdfpagewidth 8.5in
 \pdfpageheight 11in
@@ -244,7 +244,7 @@
     $$\begin{tikzcd}
       A \arrow{r}{\varphi} & B \arrow{d}{\pi} \arrow{r}{\zeta} & Z\\
       & B/\im\varphi \arrow{ur}{\psi}
-      \end{tikzcd}$$
+    \end{tikzcd}$$
     commutes.
     Given any element $b + \im\varphi \in B/\im\varphi$, we see that by surjectivity of $\pi$ that
     $$\tilde{\zeta}(b + \im\varphi) = \zeta(b) = \psi \circ \pi(b) = \psi(b + \im\varphi)$$
@@ -289,5 +289,117 @@
     Therefore $\varphi : A \rightarrow B$ is the cokernel of $\imath : \ker\varphi \rightarrow A$.
     Finally, we note that this establishes $\mathcal{A}$ as an abelian category, so by Lemma~\ref{lem4} we see that every kernel and cokernel arises in this manner, establishing the desired equivalence.
   \end{proof}
+\end{thm}
+
+\begin{lem}\label{lem5}
+  Let $C$ be a chain complex with boundaries $B_n$ and cycles $Z_n$ in $C_n$.
+  If $C$ is split, then as $R$-modules $C_n \cong Z_n \oplus B_{n-1}$ and $Z_n \cong H_n(C) \oplus B_n$.
+
+  \begin{proof}
+    Let $s_n : C_n \rightarrow C_{n+1}$ be the splitting maps.
+    First we show that $B_n = \im ds$ and $B_{n-1} \cong \im sd$.
+    It's clear that $\im ds \subseteq B_n$.
+    Given an element $\alpha \in B_n$, there is some $\beta \in C_{n+1}$ such that $\alpha = d(\beta)$ and hence
+    $$\alpha = d(\beta) = dsd(\beta) = ds(d(\beta))= ds(\alpha)$$
+    so that $B_n \subseteq \im ds$ and thus $B_n = \im ds$.
+
+    For the isomorphism $B_{n-1} \cong \im sd$, we show that $d \colon \im sd \rightarrow B_{n-1}$ is an isomorphism.
+    For injectivity, suppose that $\alpha \in \im sd$ and $d(\alpha) = 0$.
+    Then for some $\alpha^\prime \in C_n$ we have
+    $$0 = d(\alpha) = d(sd(\alpha^\prime)) = dsd(\alpha^\prime) = d(\alpha^\prime)$$
+    so that $\alpha = sd(\alpha^\prime) = 0$.
+    Note that this implies $\im sd \cap Z_n = 0$.
+
+    Next we show that $H_n(C) \cong \ker sd + ds \subseteq Z_n$.
+    Given an element $\alpha \in \ker ds + sd$, we first note that
+    $$0 = d(ds + sd(\alpha)) = dds(\alpha) + dsd(\alpha) = d(\alpha),$$
+    so that $\alpha \in \ker d$ and thus we have a well-defined morphism
+    \begin{align*}
+      \ker sd + ds & \rightarrow H_n(C)\\
+      \alpha &\mapsto [\alpha].
+    \end{align*}
+    Given $\alpha \in \ker sd + ds$ such that $[\alpha] = 0$, choose $\beta \in C_{n+1}$ such that $\alpha = d(\beta)$.
+    Then from
+    $$0 = sd(\alpha) + ds(\alpha) = sdd(\beta) + dsd(\beta) = d(\beta) = \alpha$$
+    we see that $\varphi$ is injective.
+    For surjectivity, let $[\alpha] \in H_n(C)$ be given.
+    Since $\alpha \in \ker d$ and $dsd(\alpha) = d(\alpha)$, it follows that $\alpha - ds(\alpha) \in \ker d$, $[\alpha] = [\alpha - ds(\alpha)]$, and 
+    \begin{eqnarray*}
+      sd(\alpha - ds(\alpha)) + ds(\alpha - ds(\alpha)) &=& sd(\alpha) + ds(\alpha) - sdds(\alpha) - dsds(\alpha)\\
+      &=& ds(\alpha) - ds(\alpha)\\
+      &=& 0
+    \end{eqnarray*}
+    so that $\alpha - ds(\alpha) \in \ker sd + ds$.
+
+    To establish the isomorphism $C_n \cong B_{n-1} \oplus Z_n$, we identify $B_{n-1}$ with the image of the map $sd$.
+    Given $\alpha \in C_n$, we have
+    $$d(\alpha - sd(\alpha)) = d(\alpha) - dsd(\alpha) = d(\alpha) - d(\alpha) = 0$$
+    and so we see that since $\alpha = (\alpha - sd(\alpha)) + sd(\alpha)$, we get that $C_n = Z_n + \im sd$.
+    Directness now follows from the fact that $Z_n \cap \im sd = 0$.
+    Therefore $C_n = Z_n \oplus \im sd \cong Z_n \oplus B_{n-1}$.
+
+    For the isomorphism $Z_n \cong B_n \oplus H_n(C)$, we identify $H_n(C)$ with $\ker sd + ds$.
+    Let $\alpha \in Z_n$ be given and observe that since $d(\alpha) = 0$ we have
+    $$ds + sd(\alpha) = ds(\alpha) + s(0) = ds(\alpha)$$
+    so that 
+    $$ds + sd(\alpha - ds(\alpha)) = ds + sd(\alpha) - ds + sd(ds(\alpha)) = ds(\alpha) - dsds(\alpha) - sdds(\alpha) = ds(\alpha) - dsds(\alpha) = 0$$
+    and thus $\alpha - ds(\alpha) \in \ker ds + sd$.
+    Since we may write $\alpha = sd(\alpha) + (\alpha - ds(\alpha))$, we see that $Z_n = B_n + \ker ds + sd$.
+    For directness, assume that $\alpha \in B_n \cap \ker sd + sd$.
+    For some $\beta \in C_{n+1}$ we have $\alpha = d(\beta)$, so we see that
+    $$0 = sd(\alpha) + ds(\alpha) = sdd(\beta) + dsd(\beta) = d(\beta) = \alpha.$$
+    Therefore $Z_n = B_n \oplus \ker ds + sd \cong B_n \oplus H_n(C)$.
+  \end{proof}
+\end{lem}
+
+\begin{thm}\label{Ex2}
+  Consider the homology complex $H_*(C)$ of a complex $C$ as a chain complex with differentials equal to zero
+  Show that if the complex $C$ is split, then there is a chain homotopy equivalence between $C$ and $H_*(C)$.
+
+  \begin{proof}
+    Suppose that $s_n : C_n \rightarrow C_{n+1}$ is a set of maps such that $dsd = d$.
+    By Lemma~\ref{lem5} we have that $C_n = \im ds \oplus \ker ds + sd \oplus \im sd$, so given an element $\alpha \in C_n$ we may write $\alpha = ds(\alpha^\prime) + h + sd(\alpha^{\prime\prime})$, where $h \in \ker ds + sd$.
+    Hence
+    \begin{eqnarray*}
+      ds(\alpha) + sd(\alpha) &=& (ds + sd)(ds(\alpha^\prime)) + (ds + sd) sd(\alpha^{\prime\prime})\\
+      &=& ds(\alpha^\prime) + sd(\alpha^{\prime\prime})
+    \end{eqnarray*}
+    implies by uniqueness of representation that $ds(\alpha) = ds(\alpha^\prime)$ and $sd(\alpha) = sd(\alpha^{\prime\prime})$, so that $\alpha - (sd + ds)(\alpha) = h$.
+    Then there are well-defined morphisms
+    \begin{align*}
+      f_n \colon C_n &\rightarrow H_n(C)\\
+      \alpha &\mapsto [\alpha - (sd + ds)(\alpha)]
+    \end{align*}
+    and
+    %\begin{align*}
+    %  g_n \colon H_n(C) &\rightarrow C_n\\
+    %  [\alpha] &\mapsto \alpha - ds(\alpha)
+    %\end{align*}
+    $g_n : H_n(C) \cong \ker ds + sd \rightarrow Z_n \rightarrow C_n$.
+    To see that $f$ is a chain map, it suffices to show that $fd = 0$, as the differentials on $H_*(C)$ are all zero.
+    But this follows from that fact that $\im d \subseteq B_{n-1}$ and $C_{n-1} \cong B_{n-1} \oplus H_{n-1}(C) \oplus B_{n-2}$.
+    It's clear that $g$ is a chain map as $\im g \subseteq \ker ds + sd \subseteq Z_n$ implies $dg = 0 = gd$.
+
+    Now if $\alpha \in C_n$, then we have by the fact that $g$ is an isomorphism onto $\ker ds + sd$ and $\alpha - (ds + sd)(\alpha) \in \ker ds + sd$, that
+    $$\alpha - gf(\alpha) = \alpha - g([\alpha - (ds + sd)(\alpha)]) = \alpha - \alpha + (ds + sd)(\alpha) = (ds + sd)(\alpha).$$
+    Now if we are given a class $[\alpha] \in H_n(C)$, then we have that
+    $$\alpha - (ds + sd)(\alpha) = \alpha - ds(\alpha) \in \ker ds + sd,$$
+    so it must be the case that $g([\alpha]) = \alpha - ds(\alpha)$.
+    Noting that $d(\alpha) = 0$, we see that
+    \begin{eqnarray*}
+      [\alpha] - fg([\alpha]) &=& [\alpha] - f(\alpha - ds(\alpha))\\
+      &=& [\alpha] - [\alpha - ds(\alpha) - (sd + ds)(\alpha - ds(\alpha))]\\
+      &=& [\alpha] - [\alpha - ds(\alpha) - sd(\alpha) - ds(\alpha) + sdds(\alpha) + dsds(\alpha)]\\
+      &=& [\alpha] - [\alpha - ds(\alpha) - ds(\alpha) + ds(\alpha)]\\
+      &=& [\alpha] - [\alpha - ds(\alpha)]\\
+      &=& [\alpha] - [\alpha]\\
+      &=& 0.
+    \end{eqnarray*}
+    Therefore there is a homotopy chain equivalence, as desired.
+  \end{proof}
+\end{thm}
+
+\begin{thm}
+  Give an example in which the converse of the statement from Problem~\ref{Ex2} fails.
 \end{thm}
 \end{document}
