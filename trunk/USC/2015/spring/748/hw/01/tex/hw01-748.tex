@@ -22,6 +22,8 @@
 \newtheorem{defn}{Definition}[thm]
 
 \newcommand{\A}{\mathbb{A}}
+\newcommand{\coker}{\operatorname{coker}}
+\newcommand{\cone}[1]{\operatorname{cone}\left(#1\right)}
 
 \begin{lem}\label{lem1}
   Let $\mathcal{A}$ be an additive category.
@@ -401,5 +403,33 @@
 
 \begin{thm}
   Give an example in which the converse of the statement from Problem~\ref{Ex2} fails.
+\end{thm}
+
+\begin{thm}
+	Let $f : C \rightarrow D$ be a map of complexes.
+	Show that $f$ is null homotopic if and only if $f$ extends to a map $-s + f : \cone{C} \rightarrow D$.
+	
+	\begin{proof}
+		Assume that $f$ is null homotopic with maps $s_n : C_n \rightarrow D_{n+1}$ such that $f = sd + ds$.
+		We have by the universal property for coproducts the commutative diagram
+		$$\begin{tikzcd}
+			C_{n-1}\arrow[bend right, swap]{rdd}{-s} \arrow{rd}{\imath_1} & & C_n \arrow[swap]{ld}{\imath_2} \arrow[bend left]{ldd}{f}\\
+			& C_{n-1} \oplus C_n \arrow[dotted]{d}{\exists ! -s + f}& \\
+			& D_n &
+		\end{tikzcd}$$
+		Since $f = sd^C + d^Ds$ and $d^Df = fd^C$, it follows that 
+		\begin{eqnarray*}
+			d^D(-s + f) &=& -d^Ds + d^Df\\
+			&=& sd^C - f + d^Df\\
+			&=& sd^C - f + fd^C\\
+			&=& sd^C + f(d^c - 1)\\
+			&=& (-s + f)(-d^C, d^C - 1)\\
+			&=& (-s + f)d^{\cone{C}}
+		\end{eqnarray*}
+		so that $f$ extends to a chain map, as desired.
+
+		Conversely, suppose that $f$ extends to a chain map $-s + f : \cone{C} \rightarrow D$.
+		
+	\end{proof}
 \end{thm}
 \end{document}
