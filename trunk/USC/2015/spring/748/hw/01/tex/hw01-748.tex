@@ -15,15 +15,14 @@
 \providecommand{\m}{\mathfrak{m}}
 \providecommand{\Deck}[1]{\operatorname{Deck}\left(#1\right)}
 %\newcommand{\Res}{\operatorname{Res}}
-\newtheorem{thm}{}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{}
 \newtheorem{lem}{Lemma}
 \newtheorem{prop}{Proposition}
 \theoremstyle{definition}
-\newtheorem{defn}{Definition}[thm]
+\newtheorem{defn}{Definition}
 
 \newcommand{\A}{\mathbb{A}}
-\newcommand{\coker}{\operatorname{coker}}
-\newcommand{\cone}[1]{\operatorname{cone}\left(#1\right)}
 
 \begin{lem}\label{lem1}
   Let $\mathcal{A}$ be an additive category.
@@ -210,7 +209,7 @@
   \end{proof}
 \end{lem}
 
-\begin{thm}\label{Ex1}
+\begin{ex}\label{Ex1}
   In the additive category $\mathcal{A} = R\text{-mod}$, show that
   \begin{enumerate}[(a)]
   \item
@@ -291,7 +290,7 @@
     Therefore $\varphi : A \rightarrow B$ is the cokernel of $\imath : \ker\varphi \rightarrow A$.
     Finally, we note that this establishes $\mathcal{A}$ as an abelian category, so by Lemma~\ref{lem4} we see that every kernel and cokernel arises in this manner, establishing the desired equivalence.
   \end{proof}
-\end{thm}
+\end{ex}
 
 \begin{lem}\label{lem5}
   Let $C$ be a chain complex with boundaries $B_n$ and cycles $Z_n$ in $C_n$.
@@ -354,7 +353,7 @@
   \end{proof}
 \end{lem}
 
-\begin{thm}\label{Ex2}
+\begin{ex}\label{Ex2}
   Consider the homology complex $H_*(C)$ of a complex $C$ as a chain complex with differentials equal to zero
   Show that if the complex $C$ is split, then there is a chain homotopy equivalence between $C$ and $H_*(C)$.
 
@@ -399,37 +398,293 @@
     \end{eqnarray*}
     Therefore there is a homotopy chain equivalence, as desired.
   \end{proof}
-\end{thm}
+\end{ex}
 
-\begin{thm}
+\begin{ex}
   Give an example in which the converse of the statement from Problem~\ref{Ex2} fails.
+\end{ex}
+
+\begin{ex}
+  Let $f : C \rightarrow D$ be a map of complexes.
+  Show that $f$ is null homotopic if and only if $f$ extends to a map $-s + f : \cone{C} \rightarrow D$.
+  
+  \begin{proof}
+    First we note that from the diagram
+    $$\begin{tikzcd}
+      C_{n-1}\arrow[bend right, swap]{rdd}{-1_C} \arrow{rd}{\imath_1} & & C_n \arrow[swap]{ld}{\imath_2} \arrow[bend left]{ldd}{d}\\
+      & C_{n-1} \oplus C_n \arrow[dotted]{d}{\exists ! d - 1}& \\
+      & C_{n-1} &
+    \end{tikzcd}$$
+    so we may represent the differential on $\cone{C}$ as $(d^C, d^C - 1)$.
+    
+    Assume that $f$ is null homotopic with maps $s_n : C_n \rightarrow D_{n+1}$ such that $f = sd + ds$.
+    We have by the universal property for coproducts the commutative diagram
+    $$\begin{tikzcd}
+      C_{n-1}\arrow[bend right, swap]{rdd}{-s} \arrow{rd}{\imath_1} & & C_n \arrow[swap]{ld}{\imath_2} \arrow[bend left]{ldd}{f}\\
+      & C_{n-1} \oplus C_n \arrow[dotted]{d}{\exists ! -s + f}& \\
+      & D_n &
+    \end{tikzcd}$$
+    Since $f = sd^C + d^Ds$ and $d^Df = fd^C$, it follows that 
+    \begin{eqnarray*}
+      d^D(-s + f) &=& -d^Ds + d^Df\\
+      &=& sd^C - f + d^Df\\
+      &=& sd^C - f + fd^C\\
+      &=& sd^C + f(d^c - 1)\\
+      &=& (-s + f)(-d^C, d^C - 1)\\
+      &=& (-s + f)d^{\cone{C}}
+    \end{eqnarray*}
+    so that $f$ extends to a chain map, as desired.
+
+    Conversely, suppose that $f$ extends to a chain map $-s + f : \cone{C} \rightarrow D$.
+    We have morphisms
+    $$\begin{tikzcd}
+      C_{n} \arrow{r}\arrow{rd}{s} & C_n \oplus C_{n+1}\arrow{d}{-s + f}\\
+      & D_{n + 1}
+    \end{tikzcd}$$
+    which makes the diagrams
+    $$\begin{tikzcd}
+      C_n \arrow[bend right]{rdd}{s} \arrow{rd} & & C_{n+1}\arrow{ld}\arrow[bend left]{ldd}\\
+      & C_n \oplus C_{n+1}\arrow{d}{-s + f} & \\
+      & D &
+    \end{tikzcd}$$
+    commute, which we propose gives the null homotopy $f = sd + ds$.
+    By assumption we have
+    $$d^D(-s + f) = (-s + f)d^{\cone{C}}$$
+    so we see by computing both that we have
+    \begin{eqnarray*}
+      (-s + f)d^{\cone{C}} &=& -s(-d^C) + f(d^C - 1_C)\\
+      &=&(-s + f)(d^C, d^C - 1_C)\\
+      &=& sd^C + fd^C - f\\
+      &=& sd^C + d^Df - f\\
+    \end{eqnarray*}
+    and
+    $$d^D(-s + f) = -d^Ds + d^Df.$$
+    Equating these two it then follows from
+    $$sd^C + d^Df - f = -d^Ds + d^Df$$
+    that $f = sd + ds$, as desired.
+  \end{proof}
+\end{ex}
+
+\begin{lem}\label{lem6}
+  Let $\mathcal{A}$ be an abelian category.
+  A morphism $\varphi : A \rightarrow B$ is an isomorphism if and only if $\varphi$ is both a monomorphism and an epimorphism.
+
+  \begin{proof}
+    First assume that $\varphi$ is an isomorphism.
+    If $\zeta : Z \rightarrow A$ is any morphism such that $\varphi \circ \zeta = 0$, then we have
+    $$0 = \varphi \circ \zeta = \varphi^{-1} \circ (\varphi \circ \zeta) = (\varphi^{-1} \circ \varphi \circ \zeta) = \zeta.$$
+    Similarly, if $\zeta : B \rightarrow Z$ is any morphism such that $\zeta \circ \varphi = 0$, then
+    $$0 = \zeta \circ \varphi = (\zeta \circ \varphi) \circ \varphi^{-1} = \zeta \circ (\varphi \circ \varphi^{-1}) = \zeta.$$
+
+    Conversely, suppose $\varphi$ is both a monomorphism and an epimorphism.
+    Since $\varphi$ is monic, we have $\varphi = \ker\coker\varphi$ and thus we have the commutative diagram
+    $$\begin{tikzcd}
+      B\arrow[dotted,swap]{rd}{\exists !h} \arrow[bend left]{rr}{0}\arrow{r}{1_B} & B\arrow[swap]{r}{\coker\varphi} & 0\\
+      & A\arrow{u}{\varphi} &
+    \end{tikzcd}$$
+    Also, since $\varphi$ is epic, we have $\varphi = \coker\ker\varphi$ and thus we have the commutative diagram
+    $$\begin{tikzcd}
+      0 \arrow[bend left]{rr}{0}\arrow[swap]{r}{\ker\varphi} & A \arrow{r}{1_A} \arrow{d}{\varphi} & A\\
+      & B\arrow[swap, dotted]{ur}{\exists ! h^\prime} &
+    \end{tikzcd}$$
+    Now we see that
+    $$\varphi \circ (h^\prime \circ \varphi) = \varphi \circ 1_A = \varphi = 1_B \circ \varphi = (\varphi \circ h) \circ \varphi = \varphi \circ (h \circ \varphi)$$
+    implies, since $\varphi$ is monic, that $h^\prime \circ \varphi = h \circ \varphi$, and then the fact that $\varphi$ is epic implies $h = h^\prime$.
+    Therefore $\varphi$ is an isomorphism with inverse $h$.
+  \end{proof}
+\end{lem}
+
+\begin{defn}
+  Let $\varphi \colon A \rightarrow B$ be a morphism in an abelian category.
+  The image of $\varphi$, $\im\varphi$, is $\ker(\coker(\varphi))$, and the coimage, $\coim\varphi$, is $\coker(\ker\varphi)$.
+\end{defn}
+
+\begin{lem}\label{lem7}
+  Let $\varphi : A \rightarrow B$ be a morphism in an abelian category.
+  Then
+  \begin{enumerate}[(i)]
+  \item
+    $\im\varphi$ is a monomorphism,
+  \item
+    $\varphi$ factors through $\im\varphi$,
+  \item
+    $\im\varphi$ is initial with these properties.
+  \end{enumerate}
+  Similarly, we have the dual statement
+  \begin{enumerate}[(i)]
+  \item
+    $\coim\varphi$ is an epimorphism,
+  \item
+    $\varphi$ factors through $\coim\varphi$
+  \item
+    $\coim\varphi$ is final with these properties.
+  \end{enumerate}
+
+  \begin{proof}
+    We prove the result for $\im\varphi$ and then note that the argument for the dual statement follows by passing to the opposite category.
+    The first statement follows from Lemma~\ref{lem2}.
+    The second statement follows from the universal property for kernels,
+    $$\begin{tikzcd}
+      A \arrow[swap,dotted]{rd}{\exists !\tilde{\varphi}}\arrow{r}{\varphi}\arrow[bend left]{rr}{0}& B \arrow[swap]{r}{\coker\varphi} \arrow{r} & C\\
+      & K \arrow[swap]{u}{\im\varphi} &
+    \end{tikzcd}$$
+    For the third statement, suppose $\lambda : L \rightarrow B$ is another monomorphism through which $\varphi$ factors.
+    We have the commutative diagram
+    $$\begin{tikzcd}
+      & L \arrow{dr}{\lambda}& &\\
+      A \arrow[bend right]{drrr}{0}\arrow[bend right]{rr}{\varphi} \arrow{ur}{\tilde{\lambda}}\arrow{r}{\tilde\varphi} & K \arrow{r}{\im\varphi} & B \arrow[swap]{rd}{\coker\lambda}\arrow{r}{\coker\varphi} & C \arrow[dotted]{d}{\exists !h}\\
+      & & & C^\prime
+    \end{tikzcd}$$
+    since
+    $$\coker\lambda \circ \varphi = \coker\lambda \circ (\lambda \circ \tilde{\lambda}) = 0.$$
+    Now we note that $\lambda$ is monic, hence it is the kernel of its cokernel by Lemma~\ref{lem4}.
+    Therefore we have the commutative diagram
+    $$\begin{tikzcd}
+      K\arrow{r}{\im\varphi} \arrow[dotted]{rd}{\exists !}& B\arrow{r}{\coker\lambda} & C^\prime\\
+      & L\arrow{u}{\lambda} &
+    \end{tikzcd}$$
+    since
+    $$\coker\lambda \circ \im\varphi = (h \circ \coker\varphi) \circ \im\varphi = h \circ (\coker\varphi \circ \im\varphi) = 0$$
+    and so $\im\varphi$ is initial, as desired.
+  \end{proof}
+\end{lem}
+
+\begin{lem}\label{lem8}
+  Let $\varphi : A \rightarrow B$ be a morphism in an abelian category.
+  If $\im\varphi : K \rightarrow B$ is the image of $\varphi$, then the induced morphism $A \rightarrow K$ is an epimorphism.
+  Dually, if $\coim\varphi : A \rightarrow C$ is the coimage of $\varphi$, then the induced morphism $C \rightarrow B$ is a monomorphism.
+
+  \begin{proof}
+    Again, we prove the result for $\im\varphi$ and note that the dual statement follows by passing to the opposite category.
+    We wish to show that $\tilde{\varphi} : A \rightarrow K$ is an epimorphism, which in an abelian category is equivalent to showing that it has cokernel $K \rightarrow 0$.
+    Note that by Lemma~\ref{lem2}, $\coker\varphi$ is epic, so by Lemma~\ref{lem4} it is the cokernel of its kernel,
+    $$\coker\tilde{\varphi} = \coker(\ker(\coker\tilde{\varphi})) = \coker(\im\tilde{\varphi}).$$
+    We have the commutative diagram 
+    $$\begin{tikzcd}
+      A \arrow[bend right]{rr}{\tilde{\varphi}} \arrow[bend left]{rrr}{\varphi}\arrow{r} & K^\prime \arrow{r}{\im\tilde{\varphi}}& K \arrow{r}{\im\varphi}& B
+    \end{tikzcd}$$
+    by the previous Lemma.
+    Compressing this diagram, we see the commutative diagram
+    $$\begin{tikzcd}
+      & K \arrow{rd}{\im\varphi} \arrow[dotted]{d}{\exists !h}&\\
+      A \arrow[bend right]{rr}{\varphi} \arrow{r} \arrow{ru}{\tilde{\varphi}} & K^\prime \arrow{r}{\psi}& B
+    \end{tikzcd}$$
+    since $\psi = \im\varphi \circ \im\tilde{\varphi}$ is a monomorphism and the arrow $\im\varphi : K \rightarrow B$ is initial amongst all monomorphisms through which $\varphi$ factors by the previous Lemma.
+    Now we see that 
+    $$\im\varphi \circ 1_K = \im\varphi = \psi \circ h = (\im\varphi \circ \im\tilde{\varphi}) \circ h = \im\varphi \circ (\im\tilde{\varphi} \circ h)$$
+    and since $\im\varphi$ is a monomorphism, it follows that $\im\tilde{\varphi} \circ h = 1_K$.
+    Now we note that we have the commutative diagram
+    $$\begin{tikzcd}
+      & K^\prime \arrow{d}{\im\tilde{\varphi}} \arrow[bend left]{rdd}{\im\tilde{\varphi}}&\\
+      & K \arrow{d}{h} \arrow{rd}{1_K}& \\
+      A \arrow{ruu}\arrow{r}\arrow[bend right]{rr}{\tilde{\varphi}} & K^\prime \arrow{r}{\im\tilde{\varphi}}& K
+    \end{tikzcd}$$
+    which, by uniqueness from the previous Lemma, forces $h \circ \im\tilde{\varphi} = 1_{K^\prime}$.
+    Therefore $\im\tilde{\varphi}$ is an isomorphism, hence an epimorphism, and $\coker\tilde{\varphi} = \coker(\im\tilde{\varphi}) = 0$, as desired.
+  \end{proof}
+\end{lem}
+
+\begin{thm}\label{thm1}
+  Every morphism $\varphi : A \rightarrow B$ in an abelian category may be decomposed as
+  $$\begin{tikzcd}
+    A \arrow[bend left]{rrr}{\varphi} \arrow{r}{\coim{\varphi}}& C \arrow{r}{\tilde\varphi}& K \arrow{r}{\im\varphi}& B
+  \end{tikzcd}$$
+  where $\tilde\varphi$ is a uniquely determined isomorphism.
+
+  \begin{proof}
+    By Lemma~\ref{lem8}, the induced morphisms $\alpha : A \rightarrow K$ and $\beta : C \rightarrow B$ are, respectively, an epimorphism and a monomorphism, so by Lemma~\ref{lem7} we have the commutative diagram
+    $$\begin{tikzcd}
+      & K \arrow{rd}{\im\varphi} \arrow[dotted]{d}{\exists ! \psi}& \\
+      A \arrow[bend right]{rr}{\varphi}\arrow{ru}\arrow{r}{\coim\varphi} & C \arrow{r} & B
+    \end{tikzcd}$$
+    We show that $\psi$ is an isomorphism.
+    First assume that $\zeta : Z \rightarrow K$ is a morphism such that $\psi \circ \zeta = 0$.
+    Then we see that
+    $$0 = \psi \circ \zeta = \beta \circ (\psi \circ \zeta) = (\beta \circ \psi) \circ \zeta = \im\varphi \circ \zeta$$
+    implies that $\zeta = 0$ since $\im\varphi$ is a monomorphism, so it follows that $\psi$ is a monomorphism.
+    Now assume $\zeta : K \rightarrow Z$ is a morphism such that $\zeta \circ \psi = 0$.
+    Then from
+    $$0 = \zeta \circ \psi = (\zeta \circ \psi) \circ \alpha = \zeta \circ (\psi \circ \alpha) = \zeta \circ \coim\varphi$$
+    it follows that $\zeta = 0$ since $\coim\varphi$ is an epimorphism, so that $\psi$ is also an epimorphism.
+    Therefore $\psi$ is an isomorphism by Lemma~\ref{lem6} and we take $\tilde{\varphi} = \psi^{-1}$.
+  \end{proof}
 \end{thm}
 
-\begin{thm}
-	Let $f : C \rightarrow D$ be a map of complexes.
-	Show that $f$ is null homotopic if and only if $f$ extends to a map $-s + f : \cone{C} \rightarrow D$.
-	
-	\begin{proof}
-		Assume that $f$ is null homotopic with maps $s_n : C_n \rightarrow D_{n+1}$ such that $f = sd + ds$.
-		We have by the universal property for coproducts the commutative diagram
-		$$\begin{tikzcd}
-			C_{n-1}\arrow[bend right, swap]{rdd}{-s} \arrow{rd}{\imath_1} & & C_n \arrow[swap]{ld}{\imath_2} \arrow[bend left]{ldd}{f}\\
-			& C_{n-1} \oplus C_n \arrow[dotted]{d}{\exists ! -s + f}& \\
-			& D_n &
-		\end{tikzcd}$$
-		Since $f = sd^C + d^Ds$ and $d^Df = fd^C$, it follows that 
-		\begin{eqnarray*}
-			d^D(-s + f) &=& -d^Ds + d^Df\\
-			&=& sd^C - f + d^Df\\
-			&=& sd^C - f + fd^C\\
-			&=& sd^C + f(d^c - 1)\\
-			&=& (-s + f)(-d^C, d^C - 1)\\
-			&=& (-s + f)d^{\cone{C}}
-		\end{eqnarray*}
-		so that $f$ extends to a chain map, as desired.
+\begin{lem}\label{lem9}
+  Assume $\mathcal{A}$ is an abelian category.
+  If $f : A \rightarrow B$ is any morphism and $g : B \rightarrow C$ is a monomorphism, then $\ker g \circ f = \ker f$.
 
-		Conversely, suppose that $f$ extends to a chain map $-s + f : \cone{C} \rightarrow D$.
-		
-	\end{proof}
-\end{thm}
+  \begin{proof}
+    Since kernels are universal, it suffices only to show that $\ker f$ satisfies the universal property for $\ker g \circ f$.
+    To that end, suppose $\zeta : Z \rightarrow A$ is any morphism such that $(g \circ f) \circ \zeta = 0$.
+    Since $g$ is a monomorphism, 
+    $$0 = (g \circ f) \circ \zeta = g \circ (f \circ \zeta)$$
+    implies $f \circ \zeta = 0$ and thus we have the kernel diagram
+    $$\begin{tikzcd}
+      Z \arrow[dotted,swap]{rd}{\exists !h} \arrow{r}{\zeta}\arrow[bend left]{rr}{0} & A \arrow{r}{g \circ f} & C\\
+      & K\arrow{u}{\ker f} &
+    \end{tikzcd}$$
+    Therefore $\ker f = \ker g \circ f$.
+  \end{proof}
+\end{lem}
+\begin{ex}
+  Let $F : \mathcal{A} \rightarrow \mathcal{B}$ be an additive functor between abelian categories.
+  Show that $F$ is left exact if and only if exactness of $0 \rightarrow A \rightarrow B \rightarrow C$ implies exactness of $0 \rightarrow F(A) \rightarrow F(B) \rightarrow F(C)$.
+
+  \begin{proof}
+    Assume that $F$ is left exact.
+    Given an exact sequence
+    $$\begin{tikzcd}
+      0 \arrow{r} & A \arrow{r}{f} & B \arrow{r}{g} & C
+    \end{tikzcd}$$
+    then, by Theorem~\ref{thm1}, we may factor $g$ as
+    $$\begin{tikzcd}
+      B \arrow{d}{\varphi}\arrow{r}{g} & C\\
+      K \arrow[swap]{ur}{\im g}
+    \end{tikzcd}$$
+    with $\varphi$ an epimorphism.
+    Since $\im g$ is a monomorphism,
+    $$0 = g \circ f = (\im g \circ \varphi) \circ f = \im g \circ (\varphi \circ f)$$
+    implies that $\varphi \circ f = 0$ and so we may form the complex
+    $$\begin{tikzcd}
+      0 \arrow{r} & A \arrow{r}{f} & B \arrow{r}{\varphi} & C^\prime \arrow{r} & 0.
+    \end{tikzcd}$$
+    which is exact since $\varphi$ is an epimorphism and, by Lemma~\ref{lem9},
+    $$\im f = \ker g = \ker(\im g \circ \varphi) = \ker \varphi.$$
+    Hence we have an exact sequence of $\mathcal{B}$, 
+    $$\begin{tikzcd}
+      0 \arrow{r} & F(A) \arrow{r}{F(f)} & F(B) \arrow{r}{F(\im g)} & F(C^\prime).
+    \end{tikzcd}$$
+    By functoriality we have $F(g) = F(\im g) \circ F(\varphi)$ and so by Lemma 9 $\ker F(g) = \ker F(\varphi) = \im F(f)$.
+    Therefore
+    $$\begin{tikzcd}
+      0 \arrow{r} & F(A) \arrow{r}{F(f)} & B \arrow{r}{F(g)} & F(C)
+    \end{tikzcd}$$
+    is exact, as desired.
+
+    Conversely, suppose the second condition holds.
+    Given a short exact sequence
+    $$\begin{tikzcd}
+      0 \arrow{r} & A \arrow{r}{f} & B \arrow{r}{g} & C\arrow{r} & 0
+    \end{tikzcd}$$
+    the sequence
+    $$\begin{tikzcd}
+      0 \arrow{r} & A \arrow{r}{f} & B \arrow{r}{g} & C
+    \end{tikzcd}$$
+    is exact and thus by assumption so is
+    $$\begin{tikzcd}
+      0 \arrow{r} & F(A) \arrow{r}{F(f)} & B \arrow{r}{F(g)} & F(C)
+    \end{tikzcd}.$$
+    Therefore $F$ is left exact, as desired.
+  \end{proof}
+\end{ex}
+
+\begin{ex}
+  Show that a chain complex $P$ is a projective object in the category of chain complexes if and only if it is a split exact complex of projectives.
+
+  \begin{proof}
+    Suppose $P$ is projective.
+    
+  \end{proof}
+\end{ex}
 \end{document}
