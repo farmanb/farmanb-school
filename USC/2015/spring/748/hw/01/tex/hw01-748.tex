@@ -679,11 +679,116 @@
   \end{proof}
 \end{ex}
 
+%\begin{lem}\label{lem10}
+%  Let $\mathcal{A}$ be an abelian category.
+%  Given a short exact sequence
+%  $$\begin{tikzcd}
+%    0 \arrow{r} & A \arrow{r}{f} & B \arrow{r}{g} & P \arrow{r} & 0
+%  \end{tikzcd}$$
+%  with $P$ a projective object of $\mathcal{A}$, then $B \cong A \oplus P$.
+
+%  \begin{proof}
+%    Since $P$ is projective, we have the diagram
+%    $$\begin{tikzcd}
+%      & \arrow[dotted,swap]{ld}{\exists h}P\arrow{d}{\operatorname{id}} \\
+%      B \arrow{r}{g}& P\arrow{r} & 0
+%    \end{tikzcd}$$
+%    which induces, by the universal property for coproducts, the diagram
+%    $$\begin{tikzcd}
+%      A \arrow[bend right]{rdd}{f}\arrow{rd} & & P \arrow{ld}\arrow[bend left]%{ldd}{h}\\
+%      & B \oplus P \arrow{d}{\exists ! f \oplus h}&\\
+%      & B. &
+%    \end{tikzcd}$$
+%    Hence we have the commutative diagram
+%    $$\begin{tikzcd}
+%      0 \arrow{r} & A \arrow{r}\arrow{d}{\operatorname{id}} & B \oplus P \arro%w{d}{f \oplus h}\arrow{r} & P \arrow{d}{\operatorname{id}}\arrow{r} & 0\\
+%      0 \arrow{r} & A \arrow{r}{f} & B \arrow{r}{g} & P \arrow{r} & 0
+%    \end{tikzcd}$$
+%    and we see that $f \oplus h$ is an isomorphism by the Short Five Lemma.
+%  \end{proof}
+%\end{lem}
+
 \begin{ex}
   Show that a chain complex $P$ is a projective object in the category of chain complexes if and only if it is a split exact complex of projectives.
 
   \begin{proof}
     Suppose $P$ is projective.
+    Consider the surjection $\pi : \cone{P}[1] \rightarrow P$ given by projection onto the first coordinate.
+    Since $P$ is projective, there exists a lift of the identity on $P$
+    $$\begin{tikzcd}
+      & P \arrow{d}\arrow[dotted,swap]{ld}{\exists h} &\\
+      \cone{P}[1] \arrow{r}{\pi} & P \arrow{r} & 0
+    \end{tikzcd}$$
+    which, when composed with projection on the second coordinate, gives a morphism for each $n$
+    $$\begin{tikzcd}
+      P_n \arrow[swap]{rd}{s_n}\arrow{r}{h_n} & P_n \oplus P_{n+1}\arrow{d}\\
+      & P_{n+1}.
+    \end{tikzcd}$$
+    Since $h$ is a chain map and $h(p) = (p, s(p))$, we see that by chasing the diagram
+    $$\begin{tikzcd}
+      P_n \arrow{d}{h} \arrow{r}{d} & P_{n-1}\arrow{d}{h}\\
+      P_n \oplus P_{n+1} \arrow{r} & P_{n-1} \oplus P_{n}
+    \end{tikzcd}$$
+    that
+    $$hd(p) = (d(p), p - ds(p)) = (d(p), sd(p)) = dh(p)$$
+    and so it follows that $p = ds(p) + sd(p)$.
+    Hence $\operatorname{id}_p$ is null homotopic and so $P$ is split exact.
+
+    To see $P$ is projective in each degree, fix an integer $n$ and consider a diagram
+    $$\begin{tikzcd}
+      & P_n\arrow{d}{f} & \\
+      N \arrow{r}{g} & M\arrow{r} & 0.
+    \end{tikzcd}$$
+    Define the complexes
+    $$M_\bullet: \cdots \rightarrow 0 \rightarrow M \rightarrow M \rightarrow 0 \rightarrow \cdots$$
+    and
+    $$N_\bullet: \cdots \rightarrow 0 \rightarrow N \rightarrow N \rightarrow 0 \rightarrow \cdots$$
+    with all entries 0 except in the $n+1^\text{st}$ and $n^\text{th}$ position, and the only non-zero arrow the identity.
+    It's clear that we have a surjective morphism of complexes
+    $$\begin{tikzcd}
+      \cdots \arrow{r} & 0 \arrow{r} & N \arrow{r}{1}\arrow{d}{g} & N \arrow{r}\arrow{d}{g} & 0 \arrow{r} & \cdots\\
+      \cdots \arrow{r} & 0 \arrow{r} & M \arrow{r}{1} & M \arrow{r} & 0 \arrow{r} & \cdots
+    \end{tikzcd}$$
+    Now, we observe that for each $k$ we may write $P_k \cong B_k(P) \oplus B_{k-1}(P)$ and so we obtain a diagram
+    $$\begin{tikzcd}
+      B_n(P)\arrow{d}\arrow{rd} & & B_{n+1}(P)\arrow{dl}\arrow[bend left]{ddl}{0}\\
+      P_n\arrow[bend right]{rd}{f} & P_{n+1}\arrow[dotted]{d}{\exists! f \oplus 0} &\\
+      & M &
+    \end{tikzcd}$$
+    which induces a map of complexes
+    $$\begin{tikzcd}
+      \cdots \arrow{r} & P_{n+2}\arrow{d}{0} \arrow{r} & P_{n+1} \arrow{d}{f \oplus 0}\arrow{r} & P_n \arrow{d}{f}\arrow{r} & P_{n-1} \arrow{d}{0}\arrow{r} & \cdots\\
+      \cdots \arrow{r} & 0 \arrow{r} & M \arrow{r}{1} & M \arrow{r} & 0 \arrow{r} & \cdots
+    \end{tikzcd}$$
+    by the construction of $f \oplus 0$.
+    %since for each $k$ the differential on $P$ factors as
+    %$$\begin{tikzcd}
+    %B_{k+1}(P) \oplus B_k(P) \arrow{rd}{d}\arrow{r}{0 \oplus 1} & B_{k}(P) \arrow[hookrightarrow]{d}\\
+    %& B_{k}(P) \oplus B_{k-1}(P)
+    %\end{tikzcd}$$
+    %and $f \oplus 0$ maps $B_{n+1}$ to zero, making the left most square commute.
+    %Moreover, the map $f \oplus 0$ was constructed to be the image of $fd$, making the next square to the right commute.
+    %All the remaining squares commute trivially.
+    This induces a diagram of complexes since $P$ is projective
+    $$\begin{tikzcd}
+      & P\arrow{d}\arrow[dotted,swap]{ld}{\exists h} & \\
+      N_\bullet \arrow{r} & M_\bullet \arrow{r} & 0
+    \end{tikzcd}$$
+    and we take the map $h_n: P_n \rightarrow N$ to be the desired lift.
+    Therefore $P$ is a split exact sequence of projectives.
+
+    Conversely, suppose $P$ is a split exact complex of projectives.
+    Suppose we are given a diagram of complexes
+    $$\begin{tikzcd}
+      & P\arrow{d}{f} &\\
+      C\arrow{r}{g} & D\arrow{r} & 0.
+    \end{tikzcd}$$
+    For each $n$ we get a lift
+    $$\begin{tikzcd}
+      & P_n\arrow{d}{f_n}\arrow[dotted,swap]{ld}{\exists h_n} &\\
+      C_n\arrow[swap]{r}{g_n} & D_n\arrow{r} & 0.
+    \end{tikzcd}$$
+    and we must show that $h: P \rightarrow C$ defines a morphism of complexes.
     
   \end{proof}
 \end{ex}
