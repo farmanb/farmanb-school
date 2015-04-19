@@ -708,6 +708,66 @@
 %  \end{proof}
 %\end{lem}
 
+\begin{lem}\label{lem10}
+  Let $P$ be a projective object of an abelian category.
+  If $A$ is a summand of $P$ (i.e. $P \cong A \oplus B$), then $A$ is projective.
+  \begin{proof}
+    Suppose we are given a diagram
+    $$\begin{tikzcd}
+      & A \arrow{d}{f} &\\
+      C \arrow{r} & D \arrow{r} & 0.
+    \end{tikzcd}$$
+    Composing with the projection from $P$ gives us a lift by projectivity
+    $$\begin{tikzcd}
+      & P\arrow{d}\arrow[dotted,swap]{ddl}{\exists h} & \\
+      & A \arrow{d}{f} &\\
+      C \arrow{r} & D \arrow{r} & 0
+    \end{tikzcd}$$
+    and using the coproduct injection yields the commutative diagram
+    $$\begin{tikzcd}
+      & P \arrow{d}\arrow[swap]{ddl}{h} & A \arrow{l} \arrow{ld}{\operatorname{id}_A}\\
+      & A \arrow{d}{f} &\\
+      C \arrow{r} & D \arrow{r} & 0,
+    \end{tikzcd}$$
+    giving the desired lift $A \rightarrow C$.
+  \end{proof}
+\end{lem}
+
+\begin{lem}\label{lem11}
+  Suppose $\left\{P_i\right\}_I$ is a family of projectives in an abelian category and
+  $$P = \bigoplus_{i \in I} P_i.$$
+  exists.
+  Then $P$ is projective.
+  
+  \begin{proof}
+    Suppose we are given a diagram
+    $$\begin{tikzcd}
+      & P \arrow{d}{f} &\\
+      C \arrow{r} & D \arrow{r} & 0.
+    \end{tikzcd}$$
+    For each $i \in I$, composing with the coproduct injection yeilds a morphism $f_i : P_i \rightarrow P \rightarrow D$ and hence a diagram
+    $$\begin{tikzcd}
+      & P_i \arrow{d}{f_i}\arrow[dotted,swap]{ld}{\exists h_i} &\\
+      C \arrow{r} & D \arrow{r} & 0.
+    \end{tikzcd}$$
+    Then by the universal property for $P$, we obtain a unique morphism $h : P \rightarrow C$ making every triangle
+    $$\begin{tikzcd}
+      P_i \arrow{r}\arrow[swap]{rd}{h_i} & P \arrow{d}{h}\\
+      & C
+    \end{tikzcd}$$
+    commute.
+    Then we see that we may extend the diagram to obtain a unique morphism $P \rightarrow D$ making the outer triangle in the diagram
+    $$\begin{tikzcd}
+      P_i \arrow[swap,bend right]{rdd}{f_i} \arrow{r}\arrow[swap]{rd}{h_i} & P \arrow{d}{h}\arrow[dotted, bend left]{dd}{\exists !}\\
+      & C \arrow{d}\\
+      & D
+    \end{tikzcd}$$
+    commute.
+    However, $f$ makes this triangle commute by construction, so we see that $h$ is the desired lift.
+    Therefore $P$ is projective.
+  \end{proof}
+\end{lem}
+
 \begin{ex}
   Show that a chain complex $P$ is a projective object in the category of chain complexes if and only if it is a split exact complex of projectives.
 
@@ -778,18 +838,70 @@
     Therefore $P$ is a split exact sequence of projectives.
 
     Conversely, suppose $P$ is a split exact complex of projectives.
-    Suppose we are given a diagram of complexes
+    Since $P$ is split exact, we have $P_n \cong B_n(P) \oplus B_{n-1}(P)$ and the differential on $P$ factors through $B_{n-1}(P)$ as
     $$\begin{tikzcd}
-      & P\arrow{d}{f} &\\
+      B_n(P) \oplus B_{n-1}(P) \arrow{r}{0 \oplus 1} \arrow[swap]{rd}{d} & B_{n-1}(P) \arrow{d}{\operatorname{id}_{B_{n-1}(P)}}\\
+      & B_{n-1}(P) \oplus B_{n-2}(P).
+    \end{tikzcd}$$
+    For each $n$, let $B_{n,\bullet}$ be the complex $B_{n,n+1} = B_n(P) = B_{n,n}$, $B_{n,k} = 0$ for all other $k$, and differential zero except for the identity map $B_{n,n+1} \rightarrow B_{n,n}$.
+    Consider the direct sum of these complexes,
+    $$B_\bullet = \bigoplus_{n \in \Z} B_{n,\bullet}.$$
+    By construction, unless $k = n$ or $k = n - 1$, $B_{k,n} = 0$ and so
+    $$B_n = \bigoplus_{k \in \Z} B_{k,n} = B_{n,n} \oplus B_{n,n-1} = B_n(P) \oplus B_{n-1}(P) \cong P_n.$$
+    Now it's easy to see that the differential on $B_\bullet$, which is induced by the universal property for coproducts,
+    $$\begin{tikzcd}
+      B_n(P) \arrow{rd} \arrow[bend right]{rdd}{0} & & B_{n-1}(P) \arrow[bend left]{ldd}{\operatorname{id}_{B_{n-1}(P)}}\arrow{ld}\\
+      & B_n \arrow[dotted]{d}{\exists !} &\\
+      & B_{n-1}&
+    \end{tikzcd}$$
+    is, by uniqueness, just the differential on $P$, so that we have recovered $P$ as a direct sum of complexes.
+    By Lemma~\ref{lem11}, we are reduced to showing that for each $n$, $B_{n,\bullet}$ is projective.
+
+    Fix an $n$ and suppose we are given a diagram of complexes
+    $$\begin{tikzcd}
+      & B_{n,\bullet}\arrow{d}{f} &\\
       C\arrow{r}{g} & D\arrow{r} & 0.
     \end{tikzcd}$$
-    For each $n$ we get a lift
+    We have maps
     $$\begin{tikzcd}
-      & P_n\arrow{d}{f_n}\arrow[dotted,swap]{ld}{\exists h_n} &\\
-      C_n\arrow[swap]{r}{g_n} & D_n\arrow{r} & 0.
+      \cdots \arrow{r} & 0 \arrow{d} \arrow{r} & B_n(P) \arrow{d}{f_{n+1}} \arrow{r} & B_n(P) \arrow{d}{f_n} \arrow{r} & 0 \arrow{d} \arrow{r} & \cdots\\
+      \cdots \arrow{r} & D_{n+2} \arrow{r} & D_{n+1} \arrow{r} & D_n \arrow{r} & D_{n-1} \arrow{r} & \cdots\\
     \end{tikzcd}$$
-    and we must show that $h: P \rightarrow C$ defines a morphism of complexes.
-    
+    so by Lemma~\ref{lem10} we obtain a lift
+    $$\begin{tikzcd}
+      & B_n(P) \arrow[dotted,swap]{dl}{\exists h_{n+1}}\arrow{d}{f_{n+1}} &\\
+      C_{n+1} \arrow{r}{g_{n+1}} & D_{n+1} \arrow{r} & 0.
+    \end{tikzcd}$$
+    If we let $h_n = d^C h_{n+1}$, then it's clear that the diagram
+    $$\begin{tikzcd}
+      \cdots \arrow{r} & 0 \arrow{d} \arrow{r} & B_n(P) \arrow{r} \arrow{d}{h_{n+1}}& B_n(P) \arrow{d}{h_n} \arrow{r} & 0 \arrow{r}\arrow{d} & \cdots\\
+      \cdots \arrow{r} & C_{n+1} \arrow{r} & C_{n+1} \arrow{r} & C_n \arrow{r} & C_{n-1} \arrow{r} & \cdots
+    \end{tikzcd}$$
+    commutes so that $h : B_{n,\bullet} \rightarrow C$ is a chain map.
+
+    Finally, we check that for each $k$, $g_kh_k = f_k$.
+    For $k \neq n$ and $k \neq n+1$, it's clear that the all the maps are zero.
+    When $k = n+1$, we have constructed $h_{n+1}$ such that $g_{n+1} h_{n+1} = f_{n+1}$, so it remains only to check for $k = n$.
+    Using the fact that $g$, $h$, and $f$ are chain maps and that the differential $B_n(P) \rightarrow B_n(P)$ is the identity, we obtain
+    \begin{eqnarray*}
+      g_n h_n &=& g_n (d_{n+1}^C h_{n+1})\\
+      &=& (g_n d_{n+1}^C) h_{n+1}\\
+      &=& (d_{n+1}^D g_{n+1}) h_{n+1}\\
+      &=& d_{n+1}^D (g_{n+1} h_{n+1})\\
+      &=& d_{n+1}^D f_{n+1}\\
+      &=& f_n,
+    \end{eqnarray*}
+    as desired.
+    Therefore $B_{n,\bullet}$ is projective.
+    %For each $n$, the composition with the coproduct injection yields a map to $D$
+    %$$\begin{tikzcd}
+    %  B_{n,\bullet} \arrow{r} & P \cong \bigoplus_{k \in \Z} B_{k,\bullet} \arrow{r}{f} & D
+    %\end{tikzcd}$$
+    %and, since $B_n(P)$ is projective by Lemma~\ref{lem10}, we obtain a lift
+    %$$\begin{tikzcd}
+    %  & B_n(P)\arrow{d}{f}\arrow[swap,dotted]{ld}{\exists h_n} &\\
+    %  C_n \arrow{r}{g_n} & D_n\arrow{r} & 0.
+    %\end{tikzcd}$$
   \end{proof}
 \end{ex}
 \end{document}
