@@ -806,7 +806,7 @@
     with all entries 0 except in the $n+1^\text{st}$ and $n^\text{th}$ position, and the only non-zero arrow the identity.
     It's clear that we have a surjective morphism of complexes
     $$\begin{tikzcd}
-      \cdots \arrow{r} & 0 \arrow{r} & N \arrow{r}{1}\arrow{d}{g} & N \arrow{r}\arrow{d}{g} & 0 \arrow{r} & \cdots\\
+      \cdots \arrow{r} & 0 \arrow{d} \arrow{r} & N \arrow{r}{1}\arrow{d}{g} & N \arrow{r}\arrow{d}{g} & 0 \arrow{d} \arrow{r} & \cdots\\
       \cdots \arrow{r} & 0 \arrow{r} & M \arrow{r}{1} & M \arrow{r} & 0 \arrow{r} & \cdots
     \end{tikzcd}$$
     Now, we observe that for each $k$ we may write $P_k \cong B_k(P) \oplus B_{k-1}(P)$ and so we obtain a diagram
