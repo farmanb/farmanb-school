@@ -904,4 +904,67 @@
     %\end{tikzcd}$$
   \end{proof}
 \end{ex}
+
+\begin{ex}
+  If $0 \rightarrow M \rightarrow P \rightarrow A \rightarrow 0$ is exact with $P$ $F$-acyclic, show that $L_iF(A) \cong L_{i-1}F(M)$ for $i \geq 2$.
+  More generally, show that if
+  $$0 \rightarrow M_m \rightarrow P_m \rightarrow P_{m-1} \rightarrow \cdots \rightarrow P_0 \rightarrow A \rightarrow 0$$
+  is exact, with $P_i$ $F$-acyclic, then $L_iF(A) \cong L_{i-m-1}F(M)$.
+
+  Conclude that if $P \rightarrow A$ is an $F$-acyclic resolution of $A$, then $L_iF(A) \cong H_i(F(P))$.
+
+  \begin{proof}
+    For the first assertion, we note that by Theorem 2.4.6, the exact sequence $0 \rightarrow M \rightarrow P \rightarrow A \rightarrow 0$ induces the long exact sequence
+    $$\begin{tikzcd}
+      \cdots \arrow{r} & L_iF(M) \arrow{r} & L_iF(P) \arrow[d, phantom, ""{coordinate, name=Z}] \arrow{r} & L_iF(A) \arrow[dlll, "\delta",rounded corners, to path={ -- ([xshift=2ex]\tikztostart.east) |- (Z) [near end]\tikztonodes -| ([xshift=-2ex]\tikztotarget.west) -- (\tikztotarget)}]\\
+      L_{i-1}(M) \arrow{r} & L_{i-1}(P) \arrow{r} & L_{i-1}(A) \arrow{r} & \cdots
+    \end{tikzcd}$$
+    and, since $i, i - 1 > 0$, follows that $L_iF(P) = 0 = L_{i-1}F(P)$.
+    Therefore we obtain for each $i$ the short exact sequence
+    $$0 \rightarrow L_iF(A) \rightarrow L_{i-1}F(M) \rightarrow 0$$
+    and the desired isomorphism.
+
+    For the general case, we proceed by induction on $m$.
+    We observe that the case above is the $m = 0$ case, so we assume that the result holds up to some $m > 0$.
+    Consider the exact sequence
+    $$\begin{tikzcd}
+      0 \arrow{r} & M_{m+1} \arrow{r} & P_{m+1} \arrow{r}{f_{m+1}} & \cdots \arrow{r}{f_1} & P_0 \arrow{r} & A \arrow{r} & 0
+    \end{tikzcd}$$
+    By Lemma~\ref{lem3} and Lemma~\ref{lem7}, we can form two exact sequences
+    $$\begin{tikzcd}
+      0 \arrow{r} & M_{m+1} \arrow{r} & P_{m+1} \arrow{r}{f_{m+1}} & \cdots \arrow{r}{f_2} & P_1 \arrow{r}{f_1} & \im{f_1} \arrow{r} & 0
+    \end{tikzcd}$$
+    and
+    $$\begin{tikzcd}
+      0 \arrow{r} & \im{f_1} \arrow{r} & P_0 \arrow{r}{f_0} & A \arrow{r} & 0.
+    \end{tikzcd}$$
+    Since we have removed one of the $F$-acyclics, we may apply the induction hypothesis to the first to obtain $L_iF(\im{f_1}) \cong L_{i - m - 1}F(M_{m+1})$.
+    Then by the $m = 0$ case, the second sequence yields 
+    $$L_iF(A) \cong L_{i - 1}F(\im{f_1}) \cong L_{(i-1) - m - 1}F(M_{m+1}) = L_{i - (m + 1) - 1}F(M_{m+1}),$$
+    as desired.
+
+    As a corollary, we note that $L_{m+1}F(A) \cong \ker(F(M_m) \rightarrow F(P_m))$.
+    Take the short exact sequence
+    $$\begin{tikzcd}
+      0 \arrow{r} & M_m \arrow{r} & P_m \arrow{r} & \im{f_m} \arrow{r} & 0
+    \end{tikzcd}$$
+    and the exact sequence
+    $$\begin{tikzcd}
+      0 \arrow{r} & \ker{f_{m-1}} \arrow{r} & P_{m-1} \arrow{r} & \cdots \arrow{r} & P_0 \arrow{r} & A \arrow{r} & 0
+    \end{tikzcd}$$
+    Using Theorem 2.4.6 we see from the long exact sequence
+    $$\begin{tikzcd}
+      \cdots \arrow{r} & 0 = L_1F(P_m) \arrow{r} & L_1F(\im{f_m}) \arrow{r} & L_0F(M_m) \cong F(M_m) \arrow{r} & L_0F(P_m) \cong F(P_m) \arrow{r} & \cdots
+    \end{tikzcd}$$
+    that $L_1F(\im{f_m}) \cong \ker(F(M_m) \rightarrow F(P_m))$.
+    Now applying the result to the second sequence, we see that
+    $$L_{m+1}F(A) \cong L_{(m+1) - (m-1) - 1}F(\ker{f_{m-1}}) = L_1F(\ker{f_{m-1}}) \cong L_1(\im{f_m})$$
+    since exactness guarantees $\im{f_m} \cong \ker{f_{m-1}}$ and functors preserve isomorphisms.
+    
+    Now suppose we are given a resolution by $F$-acyclics
+    $$\begin{tikzcd}
+      \cdots \arrow{r} & P_2 \arrow{r}{f_2} & P_1 \arrow{r}{f_1} & P_0 \arrow{r}{f_0} & A \arrow{r} & 0.
+    \end{tikzcd}$$
+  \end{proof}
+\end{ex}
 \end{document}
