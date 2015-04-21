@@ -954,7 +954,7 @@
     \end{tikzcd}$$
     Using Theorem 2.4.6 we see from the long exact sequence
     $$\begin{tikzcd}
-      \cdots \arrow{r} & 0 = L_1F(P_m) \arrow{r} & L_1F(\im{f_m}) \arrow{r} & L_0F(M_m) \cong F(M_m) \arrow{r} & L_0F(P_m) \cong F(P_m) \arrow{r} & \cdots
+      \cdots \arrow{r} & 0 \arrow{r} & L_1F(\im{f_m}) \arrow{r} & F(M_m) \arrow{r} & F(P_m) \arrow{r} & F(\im{f_m}) \arrow{r} & 0
     \end{tikzcd}$$
     that $L_1F(\im{f_m}) \cong \ker(F(M_m) \rightarrow F(P_m))$.
     Now applying the result to the second sequence, we see that
@@ -965,6 +965,29 @@
     $$\begin{tikzcd}
       \cdots \arrow{r} & P_2 \arrow{r}{f_2} & P_1 \arrow{r}{f_1} & P_0 \arrow{r}{f_0} & A \arrow{r} & 0.
     \end{tikzcd}$$
+    Fix an $n$ and consider the exact sequence
+    $$\begin{tikzcd}
+      P_{n+1} \arrow{r}{f_{n+1}} & P_{n} \arrow{r}{f_n} & \im f_n = \ker f_{n-1} \arrow{r} & 0.
+    \end{tikzcd}$$
+    This gives rise to a diagram
+    $$\begin{tikzcd}
+      & F(P_{n+1}) \arrow{r}{F(f_{n+1})} \arrow{d} & F(P_n) \arrow{r}{F(f_{n})} \arrow{d}{F(f_n)} & F(\ker f_{n-1}) \arrow{d}\arrow{r} & 0\\
+      0 \arrow{r} & 0 \arrow{r} & F(P_{n-1}) \arrow{r}{\operatorname{id}} & F(P_{n-1}). & 
+    \end{tikzcd}$$
+    From the exact sequence
+    $$\begin{tikzcd}
+      0 \arrow{r} & \ker f_{n-1} \arrow{r} & P_{n-1} \arrow{r}{f_{n-1}} & \cdots \arrow{r} & P_0 \arrow{r}{f_0} & A \arrow{r} & 0
+    \end{tikzcd}$$
+    we obtain $\ker(F(\ker f_{n-1}) \rightarrow F(P_{n-1})) \cong L_nF(A)$ and so the Snake Lemma yields the exact sequence
+    $$\begin{tikzcd}
+      F(P_{n+1}) \arrow{r}{F(f_{n+1})} & \ker F(f_n) \arrow{r} & L_nF(A) \arrow{r} & 0.
+     \end{tikzcd}$$
+    Exactness of this sequence at $\ker{F(f_n)}$ gives rise to the exact sequence
+     $$\begin{tikzcd}
+       0 \arrow{r} & \im F(f_{n+1}) \arrow{r} & \ker F(f_n) \arrow{r} & L_nF(A) \arrow{r} & 0
+    \end{tikzcd}$$
+    and, by definition, $\ker{F(f_n)} \rightarrow H_n(F(P))$ is the cokernel of $\im{F(f_{n+1})} \rightarrow \ker{F(f_n)}$.
+     Therefore, since cokernels are universal, there is a unique isomorphism $L_nF(A) \cong H_n(F(P))$.
   \end{proof}
 \end{ex}
 \end{document}
