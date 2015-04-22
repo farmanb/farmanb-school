@@ -990,4 +990,43 @@
      Therefore, since cokernels are universal, there is a unique isomorphism $L_nF(A) \cong H_n(F(P))$.
   \end{proof}
 \end{ex}
+
+\begin{ex}
+\end{ex}
+
+\begin{ex}
+  Suppose that $R$ is a commutative domain with field of fractions $F$.
+  Show that $\Tor{1}{R}{F/R, B}$ is the torsion submodule $\left\{b \in B \;\middle\vert\; \exists r \in R\setminus\{0\}\ \text{s.t.}\ rb = 0\right\}$ of $B$ for every $R$-module $B$.
+
+  \begin{proof}
+    Let $A = \left\{b \in B \;\middle\vert\; \exists r \in R\setminus\{0\}\ \text{s.t.}\ rb = 0\right\}$.
+    First we show that $\Tor{1}{R}{F/R, A} \cong A$.
+    Observe that given $b/r \in A_{(0)} \cong A \otimes_R F$, there exists some $r^\prime \in R\setminus\{0\}$ such that $r^\prime b = 0$.
+    Hence $b/r = 0/1 \in A \otimes_R F$ and so $A \otimes_R F = 0$.
+    Take the flat resolution of $F/R$
+    $$0 \rightarrow R \rightarrow F \rightarrow F/R \rightarrow 0.$$
+    By Theorem 2.4.6 we have the long exact sequence
+    $$\cdots \rightarrow 0 \rightarrow \Tor{1}{R}{F/R, A} \rightarrow A \rightarrow 0 \rightarrow \cdots$$
+    which gives the desired isomorphism.
+    Also, note when $n \geq 2$, applying Exercise 7 to the flat resolution above gives
+    $$\Tor{n}{R}{F/R, M} \cong \Tor{n-1}{R}{R,M} = 0.$$
+    
+    Next we show that if $M$ is any torsion-free $R$-module, then $\Tor{1}{R}{F/R, M} = 0$.
+    Since $M$ is torsion-free, the localisation map $M \rightarrow M \otimes_R F$ is injective.
+    For if $m/1 = m^\prime/1$, then there exists some $r \in R\setminus\{0\}$ such that $r(m - m^\prime) = 0$.
+    Since $M$ is torsion-free, it follows that $m - m^\prime = 0$.
+    We thus obtain a short exact sequence
+    $$0 \rightarrow M \rightarrow M \otimes_R F \rightarrow (M \otimes_R F)/M \rightarrow 0$$
+    and $(M \otimes_R F)/M$ is a torsion module since, for each $m/r \in M \otimes_R F$, we have $r (m/r) \in M$.
+    The $F$-vector space $M \otimes_R F$ is a direct sum of flat modules, hence is itself flat, so from Theorem 2.4.6 we get the exact sequence
+    $$\cdots \rightarrow \Tor{2}{R}{(F \otimes_R M) / N, F/R} = 0 \rightarrow \Tor{1}{R}{M, F/R} \rightarrow \Tor{1}{R}{F \otimes_R M, F/R} = 0 \rightarrow \cdots$$
+    and the result follows.
+    
+    Finally we take the short exact sequence
+    $$0 \rightarrow A \rightarrow B \rightarrow A/B \rightarrow 0$$
+    and produce the long exact sequence
+    $$\cdots \rightarrow \Tor{2}{R}{F/R, A/B} = 0 \rightarrow A \rightarrow \Tor{1}{R}{F/R,B} \rightarrow \Tor{1}{R}{F/R, A/B} = 0 \rightarrow \cdots.$$
+    Therefore $\Tor{1}{R}{F/R,B} \cong A$, as desired.
+  \end{proof}
+\end{ex}
 \end{document}
