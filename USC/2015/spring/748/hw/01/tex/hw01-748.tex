@@ -992,6 +992,28 @@
 \end{ex}
 
 \begin{ex}
+  \begin{proof}
+    First we observe that we can characterize the differentials by
+    \begin{align*}
+      d_1 \colon \operatorname{Tot}^{\prod}(C)_1 = \prod_{p \leq 1} C_{p,1-p} &\rightarrow \operatorname{Tot}^{\prod}(C)_0 = \prod_{p \leq 0} C_{p,-p}\\
+      (\ldots, a_{-1, 2}, a_{0, 1}, a_{1, 0}) &\mapsto (\ldots, 2(a_{-1,2} + a_{0,1}), 2(a_{0,1} + a_{1,0}))
+    \end{align*}
+    and
+    \begin{align*}
+      d_0 \colon \operatorname{Tot}^{\prod}(C)_0 = \prod_{p \leq 0} C_{p,-p} &\rightarrow \operatorname{Tot}^{\prod}(C)_{-1} = \prod_{p \leq -1} C_{p,- 1 - p}\\
+      (\ldots, a_{-2, 2}, a_{-1, 1}, a_{0, 0}) &\mapsto (\ldots, 2(a_{-2,2} + a_{-1,1}), 2(a_{-1,1} + a_{0,0})).
+    \end{align*}
+    The first makes clear that $B_0(\operatorname{Tot}^{\prod}(C)) \cong \prod_{p \leq 0} 2\Z/4\Z$.
+    Using the characterization of $d_0$, we can see that $(\ldots, a_{-2, 2}, a_{-1, 1}, a_{0, 0}) \in \ker d_0$ if and only if the sum of two contiguous elements is even and this occurs if and only if two contiguous elements are congruent modulo 2.
+    In particular, this shows that $(\ldots, 2, 2, 2)$ and $(\ldots, 1, 1, 1)$ are both elements of $\ker d_0$ and, working right to left, we see that for any element of $\ker d_0$, $a_{p,-p} \equiv a_{0,0} \pmod{2}$ must hold for all $p \leq 0$.
+    Hence obtain a surjective homomorphism
+    \begin{align*}
+      \varphi \colon Z_0(\operatorname{Tot}^{\prod}(C)) &\rightarrow \Z/2\Z\\
+      (\ldots, a_{-2, 2}, a_{-1, 1}, a_{0, 0}) &\mapsto a_{0,0} \pmod{2}
+    \end{align*}
+    with $\ker\varphi = B_0(\operatorname{Tot}^{\prod}(C))$
+    Therefore $H_0(\operatorname{Tot}^{\prod}(C)) \cong \Z/2\Z$.
+  \end{proof}
 \end{ex}
 
 \begin{ex}
