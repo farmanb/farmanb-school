@@ -992,27 +992,43 @@
 \end{ex}
 
 \begin{ex}
+  Let $C$ denote the upper half-plane double complex with $C_{p,q} = \Z/4\Z$ for all $p$ and all $q \geq 0$ and all differentials given by multiplication by 2.
+  \begin{enumerate}[(a)]
+  \item
+    Show that $H_0(\operatorname{Tot}^{\prod}(C)) \cong \Z/2\Z$ even though the rows of $C$ are exact.
+  \item
+    Show that $\operatorname{Tot}^{\oplus}(C)$ is acyclic.
+  \end{enumerate}
   \begin{proof}
-    First we observe that we can characterize the differentials by
-    \begin{align*}
-      d_1 \colon \operatorname{Tot}^{\prod}(C)_1 = \prod_{p \leq 1} C_{p,1-p} &\rightarrow \operatorname{Tot}^{\prod}(C)_0 = \prod_{p \leq 0} C_{p,-p}\\
-      (\ldots, a_{-1, 2}, a_{0, 1}, a_{1, 0}) &\mapsto (\ldots, 2(a_{-1,2} + a_{0,1}), 2(a_{0,1} + a_{1,0}))
-    \end{align*}
-    and
-    \begin{align*}
-      d_0 \colon \operatorname{Tot}^{\prod}(C)_0 = \prod_{p \leq 0} C_{p,-p} &\rightarrow \operatorname{Tot}^{\prod}(C)_{-1} = \prod_{p \leq -1} C_{p,- 1 - p}\\
-      (\ldots, a_{-2, 2}, a_{-1, 1}, a_{0, 0}) &\mapsto (\ldots, 2(a_{-2,2} + a_{-1,1}), 2(a_{-1,1} + a_{0,0})).
-    \end{align*}
-    The first makes clear that $B_0(\operatorname{Tot}^{\prod}(C)) \cong \prod_{p \leq 0} 2\Z/4\Z$.
-    Using the characterization of $d_0$, we can see that $(\ldots, a_{-2, 2}, a_{-1, 1}, a_{0, 0}) \in \ker d_0$ if and only if the sum of two contiguous elements is even and this occurs if and only if two contiguous elements are congruent modulo 2.
-    In particular, this shows that $(\ldots, 2, 2, 2)$ and $(\ldots, 1, 1, 1)$ are both elements of $\ker d_0$ and, working right to left, we see that for any element of $\ker d_0$, $a_{p,-p} \equiv a_{0,0} \pmod{2}$ must hold for all $p \leq 0$.
-    Hence obtain a surjective homomorphism
-    \begin{align*}
-      \varphi \colon Z_0(\operatorname{Tot}^{\prod}(C)) &\rightarrow \Z/2\Z\\
-      (\ldots, a_{-2, 2}, a_{-1, 1}, a_{0, 0}) &\mapsto a_{0,0} \pmod{2}
-    \end{align*}
-    with $\ker\varphi = B_0(\operatorname{Tot}^{\prod}(C))$
-    Therefore $H_0(\operatorname{Tot}^{\prod}(C)) \cong \Z/2\Z$.
+    \begin{enumerate}[(a)]
+    \item
+      First we observe that we can characterize the differentials by
+      \begin{align*}
+        d_1 \colon \operatorname{Tot}^{\prod}(C)_1 = \prod_{p \leq 1} C_{p,1-p} &\rightarrow \operatorname{Tot}^{\prod}(C)_0 = \prod_{p \leq 0} C_{p,-p}\\
+        (\ldots, a_{-1, 2}, a_{0, 1}, a_{1, 0}) &\mapsto (\ldots, 2(a_{-1,2} + a_{0,1}), 2(a_{0,1} + a_{1,0}))
+      \end{align*}
+      and
+      \begin{align*}
+        d_0 \colon \operatorname{Tot}^{\prod}(C)_0 = \prod_{p \leq 0} C_{p,-p} &\rightarrow \operatorname{Tot}^{\prod}(C)_{-1} = \prod_{p \leq -1} C_{p,- 1 - p}\\
+        (\ldots, a_{-2, 2}, a_{-1, 1}, a_{0, 0}) &\mapsto (\ldots, 2(a_{-2,2} + a_{-1,1}), 2(a_{-1,1} + a_{0,0})).
+      \end{align*}
+      The first makes clear that $B_0(\operatorname{Tot}^{\prod}(C)) \cong \prod_{p \leq 0} 2\Z/4\Z$.
+      Using the characterization of $d_0$, we can see that $(\ldots, a_{-2, 2}, a_{-1, 1}, a_{0, 0}) \in \ker d_0$ if and only if the sum of two contiguous elements is even and this occurs if and only if two contiguous elements are congruent modulo 2.
+      In particular, this shows that $(\ldots, 2, 2, 2)$ and $(\ldots, 1, 1, 1)$ are both elements of $\ker d_0$ and, working right to left, we see that for any element of $\ker d_0$, $a_{p,-p} \equiv a_{0,0} \pmod{2}$ must hold for all $p \leq 0$.
+      Hence obtain a surjective homomorphism
+      \begin{align*}
+        \varphi \colon Z_0(\operatorname{Tot}^{\prod}(C)) &\rightarrow \Z/2\Z\\
+        (\ldots, a_{-2, 2}, a_{-1, 1}, a_{0, 0}) &\mapsto a_{0,0} \pmod{2}
+      \end{align*}
+      with $\ker\varphi = B_0(\operatorname{Tot}^{\prod}(C))$
+      Therefore $H_0(\operatorname{Tot}^{\prod}(C)) \cong \Z/2\Z$.
+    \item
+      Note that the same characterization holds for $\operatorname{Tot}^{\oplus}(C)$, but we require that all but finitely many of the elements are zero in a tuple.
+      By the same analysis, mutatis mutandis, we observe that the elements of $Z_0(\operatorname{Tot}^{\oplus}(C))$ are the elements $(\ldots, a_{-2,2}, a_{-1,1}, a_{0,0})$ with each of the $a_{p,-p}$ congruent modulo $2$ and that $B_0(\operatorname{Tot}^{\oplus}(C)) \cong \oplus_{p \leq 0}2\Z/4\Z$.
+      However, if $a_{0,0} \equiv 1 \pmod{2}$, then it follows that $a_{p,-p} \neq 0$ for each $p \leq 0$, which cannot be an element of the direct sum.
+      Therefore $H_0(\operatorname{Tot}^{\oplus}(C)) = 0$.
+      Since the proof does not depend on the indices, by replacing $1$ with $n+1$, $0$ with $n$, and $-1$ with $n-1$, it follows that $\operatorname{Tot}^{\oplus}(C)$ is acyclic.
+    \end{enumerate}
   \end{proof}
 \end{ex}
 
@@ -1049,6 +1065,52 @@
     and produce the long exact sequence
     $$\cdots \rightarrow \Tor{2}{R}{F/R, A/B} = 0 \rightarrow A \rightarrow \Tor{1}{R}{F/R,B} \rightarrow \Tor{1}{R}{F/R, A/B} = 0 \rightarrow \cdots.$$
     Therefore $\Tor{1}{R}{F/R,B} \cong A$, as desired.
+  \end{proof}
+\end{ex}
+
+\begin{ex}
+  Let $R = k[x,y]$, $I = (x,y)$.
+  Show that $k = R/I$ has the projective resolution
+  $$\begin{tikzcd}
+    0 \arrow{r}& R \arrow{r}{\varphi}& R^2 \arrow{r}{\psi}& R \arrow{r}{\pi} & k \arrow{r} & 0
+  \end{tikzcd}$$
+  where the map on the left is given by $\varphi(r) = (-yr, xr)$ and the map on the right is given by $\psi(r_1, r_2) = r_1x + r_2y$, and $\pi$ is the canonical projection.
+
+  Then compute that $\Tor{1}{R}{I,k} \cong \Tor{2}{R}{(k,k)} \cong k$, showing that $I$ is not flat.
+
+  \begin{proof}
+    It's clear that $\pi$ is surjective with kernel $I$, $\varphi$ is injective, and $\im\psi = I$, so it remains to show that $\im\varphi = \ker\psi$.
+    Given $r \in R$ we have
+    $$\psi \circ \varphi(r) = \psi(-yr, xr) = -xyr + yxr = 0$$
+    so that $\im\varphi \subseteq \ker\psi$.
+    For the reverse containment, suppose $(r_1, r_2) \in \ker\psi$.
+    Since $r_1x = -r_2y$, we see that $r_1x \in yR$ and $x \not \in yR$ implies $r_1 \in y$ and thus $r_1/y \in R$.
+    Then
+    $$\varphi\left(\frac{-r_1}{y}\right) = \left(-y\left(\frac{-r_1}{y}\right), x\left(\frac{-r_1}{y}\right)\right) = \left(r_1, \frac{r_2y}{y} \right) = \left(r_1, r_2\right)$$
+    gives the reverse containment and thus the sequence above is exact.
+
+    Since $R$ is flat, we have from the exact sequence
+    $$0 \rightarrow I \rightarrow R \rightarrow k \rightarrow 0$$
+    that $\Tor{2}{R}{k,k} \cong \Tor{1}{R}{I,k}$ by Exercise 7.
+    Applying Exercise 7 to the original exact sequence gives us the exact sequence $\begin{tikzcd} 0 \arrow{r} & \Tor{2}{R}{k,k} \arrow{r} & R \otimes_R k \arrow{r}{\varphi \otimes 1_k} & R^2 \otimes_R k\end{tikzcd}$ and so we are reduced to computing the the kernel of $\varphi \otimes 1_k$.
+
+      First we note that $k \otimes_R R \cong k$ under the map $\alpha \otimes r \mapsto \pi(r)\alpha$.
+      Since tensor is left adjoint to $\operatorname{Hom}$, tensor commutes with colomits, and so we have $k \otimes_R R^2 \cong (k \otimes_R R)^2 \cong k^2$.
+      Now, since $$\varphi \otimes k(r \otimes \alpha) = (-yr, xr) \otimes \alpha = (-yr \otimes \alpha, xr \otimes \alpha) = (\pi(-yr)\alpha, \pi(xr)\alpha) = (0,0),$$
+      it must be the case that $\varphi \otimes 1_k$ is zero map, hence $\Tor{2}{R}{k,k} \cong k$.
+  \end{proof}
+\end{ex}
+
+\begin{ex}
+  Show that a sequence of $R$-modules $A \rightarrow B \rightarrow C$ is exact if and only if its dual $C^* \rightarrow B^* \rightarrow A^*$ is exact, where $\ ^*$ denotes the Pontrjagin dual, $\Hom{\mathfrak{Ab}}{\ , \Q/\Z}$.
+
+  \begin{proof}
+    Since $\Q/\Z$ is injective, the contravariant functor $\Hom{\mathfrak{Ab}}{\ , \Q/\Z}$ is exact, so $A \rightarrow B \rightarrow C$ exact implies
+    $$C^* \rightarrow B^* \rightarrow A^*$$
+    is exact.
+
+    Conversely, suppose $C^* \rightarrow B^* \rightarrow A^*$ is exact.
+    
   \end{proof}
 \end{ex}
 \end{document}
