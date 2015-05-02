@@ -111,7 +111,7 @@
   \item
     If $\varphi : A \rightarrow B$ has a kernel, then $\varphi$ is monic if and only if $0 \rightarrow A$ is its kernel.
   \item
-    If $\varphi : A \rightarrow B$ has a cokernel, the n$\varphi$ is epic if and only if $B \rightarrow 0$ is its kernel.
+    If $\varphi : A \rightarrow B$ has a cokernel, then $\varphi$ is epic if and only if $B \rightarrow 0$ is its cokernel.
   \end{enumerate}
 
   \begin{proof}
@@ -136,13 +136,13 @@
       Conversely, suppose that $0 \rightarrow A$ is the kernel of $\varphi : A \rightarrow B$.
       Given a morphism $\zeta : Z \rightarrow A$ such that $\varphi \circ \zeta = 0$, we have the diagram
       $$\begin{tikzcd}
-	Z \arrow[dotted,swap]{rd}{\exists ! h} \arrow{r}{\zeta} &A \arrow{r} &B\\
+	Z \arrow[dotted,swap]{rd}{\exists ! h} \arrow{r}{\zeta} &A \arrow{r}{\varphi} &B\\
 	& 0\arrow{u}
       \end{tikzcd}$$
       and so it is clear that $\zeta = 0$.
       Therefore $\varphi$ is monic by Lemma~\ref{lem1}.
     \item
-      Suppose $\varphi$ is a epic with cokernel $e : B \rightarrow C$.
+      Suppose $\varphi$ is an epic with cokernel $e : B \rightarrow C$.
       We have by assumption the commutative diagram
       $$\begin{tikzcd}
 	A\arrow{r}{\varphi} & B \arrow[shift left = 0.75ex]{r}{e} \arrow[shift right=0.75ex, swap]{r}{0} & C
@@ -156,7 +156,7 @@
 	& C\arrow[dotted, swap]{ruu}{\exists ! h}
       \end{tikzcd}$$
       which shows that the zero object is a cokernel for $\varphi$.
-      Since cokernels are universal there exists a unique isomorphism $0 \cong  K$, as desired.
+      Since cokernels are universal there exists a unique isomorphism $0 \cong  C$, as desired.
       
       Conversely, suppose that $B \rightarrow 0$ is the cokernel of $\varphi : A \rightarrow B$.
       Given a morphism $\zeta : B \rightarrow Z$ such that $\zeta \circ \varphi= 0$, we have the diagram
@@ -200,8 +200,9 @@
     Let $\zeta : B \rightarrow Z$ be any map such that $\zeta \circ m = 0$.
     As $e : B \rightarrow C$ is the cokernel of $\varphi : A \rightarrow B$, we have the diagram
     $$\begin{tikzcd}
-      A \arrow{r}{\varphi}\arrow[dotted,swap]{d}{\exists ! h} & B \arrow{r}{e}\arrow{rd}{\zeta} & C \arrow[dotted]{d}{\exists ! h^\prime}\\
-      K \arrow{ur}{m}\arrow{rr}{0} & & Z
+      & & Z\\
+      A \arrow{r}{\varphi}\arrow[dotted,swap]{d}{\exists ! h} & B \arrow{r}{e}\arrow{ru}{\zeta} & C \arrow[dotted,swap]{u}{\exists ! h^\prime}\\
+      K \arrow{ur}{m} & & 
     \end{tikzcd}$$
     since 
     $$\zeta \circ \varphi = \zeta \circ (m \circ h) = (\zeta \circ m) \circ h = 0 \circ h = 0.$$
@@ -213,9 +214,9 @@
   In the additive category $\mathcal{A} = R\text{-mod}$, show that
   \begin{enumerate}[(a)]
   \item
-    The notions of kernels, monics, and epimorphisms are the same.
+    The notions of kernels, monics, and injections are the same.
   \item
-    The notions of cokernels, epis, and epimorphisms are the same.
+    The notions of cokernels, epics, and surjections are the same.
   \end{enumerate}
   \begin{proof}
     Let $\varphi : A \rightarrow B$ be a morphism of $\mathcal{A}$.
@@ -247,7 +248,7 @@
       & B/\im\varphi \arrow{ur}{\psi}
     \end{tikzcd}$$
     commutes.
-    Given any element $b + \im\varphi \in B/\im\varphi$, we see that by surjectivity of $\pi$ that
+    Given any element $b + \im\varphi \in B/\im\varphi$, we see by surjectivity of $\pi$ that
     $$\tilde{\zeta}(b + \im\varphi) = \zeta(b) = \psi \circ \pi(b) = \psi(b + \im\varphi)$$
     and so $\tilde{\zeta}$ is unique.
     Therefore $B/\im\varphi$ is a cokernel.
@@ -400,9 +401,10 @@
   \end{proof}
 \end{ex}
 
-\begin{ex}
-  Give an example in which the converse of the statement from Problem~\ref{Ex2} fails.
-\end{ex}
+\setcounter{ex}{3}
+%\begin{ex}
+%  Give an example in which the converse of the statement from Problem~\ref{Ex2} fails.
+%\end{ex}
 
 \begin{ex}
   Let $f : C \rightarrow D$ be a map of complexes.
@@ -1000,34 +1002,44 @@
     Show that $\operatorname{Tot}^{\oplus}(C)$ is acyclic.
   \end{enumerate}
   \begin{proof}
-    \begin{enumerate}[(a)]
-    \item
-      First we observe that we can characterize the differentials by
-      \begin{align*}
-        d_1 \colon \operatorname{Tot}^{\prod}(C)_1 = \prod_{p \leq 1} C_{p,1-p} &\rightarrow \operatorname{Tot}^{\prod}(C)_0 = \prod_{p \leq 0} C_{p,-p}\\
-        (\ldots, a_{-1, 2}, a_{0, 1}, a_{1, 0}) &\mapsto (\ldots, 2(a_{-1,2} + a_{0,1}), 2(a_{0,1} + a_{1,0}))
-      \end{align*}
+          First we observe that we can characterize the differentials by
+          \begin{align*}
+            d_n \colon \operatorname{Tot}^{\prod}(C)_n = \prod_{p \leq n} C_{p,n-p} &\rightarrow \operatorname{Tot}^{\prod}(C)_{n-1} = \prod_{p \leq n - 1} C_{p,n - 1 - p}\\
+            (\ldots, a_{n-1, 1}, a_{n, 0}) &\mapsto (\ldots, 2(a_{n-2,2} + a_{n - 1,1}), 2(a_{n - 1,1} + a_{n,0}))
+          \end{align*}
       and
       \begin{align*}
-        d_0 \colon \operatorname{Tot}^{\prod}(C)_0 = \prod_{p \leq 0} C_{p,-p} &\rightarrow \operatorname{Tot}^{\prod}(C)_{-1} = \prod_{p \leq -1} C_{p,- 1 - p}\\
-        (\ldots, a_{-2, 2}, a_{-1, 1}, a_{0, 0}) &\mapsto (\ldots, 2(a_{-2,2} + a_{-1,1}), 2(a_{-1,1} + a_{0,0})).
+        d_n \colon \operatorname{Tot}^{\oplus}(C)_n = \bigoplus_{p \leq n} C_{p,n-p} &\rightarrow \operatorname{Tot}^{\oplus}(C)_{n-1} = \bigoplus_{p \leq n - 1} C_{p,n - 1 - p}\\
+        (\ldots, a_{n-1, 1}, a_{n, 0}) &\mapsto (\ldots, 2(a_{n-2,2} + a_{n - 1,1}), 2(a_{n - 1,1} + a_{n,0}))
       \end{align*}
-      The first makes clear that $B_0(\operatorname{Tot}^{\prod}(C)) \cong \prod_{p \leq 0} 2\Z/4\Z$.
+      where all but finitely many of the $a_{p,n-p}$ are zero in the direct sum.
+    \begin{enumerate}[(a)]
+    \item
+%      First we observe that we can characterize the differentials by
+%      \begin{align*}
+%        d_1 \colon \operatorname{Tot}^{\prod}(C)_1 = \prod_{p \leq 1} C_{p,1-p%} &\rightarrow \operatorname{Tot}^{\prod}(C)_0 = \prod_{p \leq 0} C_{p,-p}\\
+%        (\ldots, a_{-1, 2}, a_{0, 1}, a_{1, 0}) &\mapsto (\ldots, 2(a_{-1,2} +% a_{0,1}), 2(a_{0,1} + a_{1,0}))
+%      \end{align*}
+%      and
+%      \begin{align*}
+%        d_0 \colon \operatorname{Tot}^{\prod}(C)_0 = \prod_{p \leq 0} C_{p,-p}% &\rightarrow \operatorname{Tot}^{\prod}(C)_{-1} = \prod_{p \leq -1} C_{p,- 1 %- p}\\
+%        (\ldots, a_{-2, 2}, a_{-1, 1}, a_{0, 0}) &\mapsto (\ldots, 2(a_{-2,2} %+ a_{-1,1}), 2(a_{-1,1} + a_{0,0})).
+%      \end{align*}
+      By the characterization of $d_1$, it's clear that $B_0(\operatorname{Tot}^{\prod}(C)) \cong \prod_{p \leq 0} 2\Z/4\Z$.
       Using the characterization of $d_0$, we can see that $(\ldots, a_{-2, 2}, a_{-1, 1}, a_{0, 0}) \in \ker d_0$ if and only if the sum of two contiguous elements is even and this occurs if and only if two contiguous elements are congruent modulo 2.
       In particular, this shows that $(\ldots, 2, 2, 2)$ and $(\ldots, 1, 1, 1)$ are both elements of $\ker d_0$ and, working right to left, we see that for any element of $\ker d_0$, $a_{p,-p} \equiv a_{0,0} \pmod{2}$ must hold for all $p \leq 0$.
-      Hence obtain a surjective homomorphism
+      Hence we obtain a surjective $\Z$-module homomorphism
       \begin{align*}
         \varphi \colon Z_0(\operatorname{Tot}^{\prod}(C)) &\rightarrow \Z/2\Z\\
         (\ldots, a_{-2, 2}, a_{-1, 1}, a_{0, 0}) &\mapsto a_{0,0} \pmod{2}
       \end{align*}
-      with $\ker\varphi = B_0(\operatorname{Tot}^{\prod}(C))$
+      with $\ker\varphi = B_0(\operatorname{Tot}^{\prod}(C))$.
       Therefore $H_0(\operatorname{Tot}^{\prod}(C)) \cong \Z/2\Z$.
     \item
-      Note that the same characterization holds for $\operatorname{Tot}^{\oplus}(C)$, but we require that all but finitely many of the elements are zero in a tuple.
-      By the same analysis, mutatis mutandis, we observe that the elements of $Z_0(\operatorname{Tot}^{\oplus}(C))$ are the elements $(\ldots, a_{-2,2}, a_{-1,1}, a_{0,0})$ with each of the $a_{p,-p}$ congruent modulo $2$ and that $B_0(\operatorname{Tot}^{\oplus}(C)) \cong \oplus_{p \leq 0}2\Z/4\Z$.
-      However, if $a_{0,0} \equiv 1 \pmod{2}$, then it follows that $a_{p,-p} \neq 0$ for each $p \leq 0$, which cannot be an element of the direct sum.
-      Therefore $H_0(\operatorname{Tot}^{\oplus}(C)) = 0$.
-      Since the proof does not depend on the indices, by replacing $1$ with $n+1$, $0$ with $n$, and $-1$ with $n-1$, it follows that $\operatorname{Tot}^{\oplus}(C)$ is acyclic.
+      For each $n$, we note that $B_n(\operatorname{Tot}^{\oplus}(C)) \cong \prod_{p \leq n} 2\Z/4\Z$ since we can always take an element of $\operatorname{Tot}^{\oplus}(C)_{n+1}$ with $a_{p+1, -p} = 1$ and all other entries 0.
+      By the same analysis, mutatis mutandis, we observe that the elements of $Z_n(\operatorname{Tot}^{\oplus}(C))$ are the elements $(\ldots, a_{n-2,2}, a_{n-1,1}, a_{n,0})$ with each of the $a_{p,-p}$ congruent modulo $2$.
+      However, if $a_{n,0} \equiv 1 \pmod{2}$, then it follows that $a_{p,-p} \neq 0$ for each $p \leq n$, which cannot be an element of the direct sum since all but finitely many elements must be zero.
+      Therefore $H_n(\operatorname{Tot}^{\oplus}(C)) = 0$.
     \end{enumerate}
   \end{proof}
 \end{ex}
@@ -1047,17 +1059,16 @@
     $$\cdots \rightarrow 0 \rightarrow \Tor{1}{R}{F/R, A} \rightarrow A \rightarrow 0 \rightarrow \cdots$$
     which gives the desired isomorphism.
     Also, note when $n \geq 2$, applying Exercise 7 to the flat resolution above gives
-    $$\Tor{n}{R}{F/R, M} \cong \Tor{n-1}{R}{R,M} = 0.$$
+    $$\Tor{n}{R}{F/R, M} \cong \Tor{n-1}{R}{R,M} = 0$$
+    for any $R$-module $M$.
     
     Next we show that if $M$ is any torsion-free $R$-module, then $\Tor{1}{R}{F/R, M} = 0$.
-    Since $M$ is torsion-free, the localisation map $M \rightarrow M \otimes_R F$ is injective.
-    For if $m/1 = m^\prime/1$, then there exists some $r \in R\setminus\{0\}$ such that $r(m - m^\prime) = 0$.
-    Since $M$ is torsion-free, it follows that $m - m^\prime = 0$.
+    Since $M$ is torsion-free, the localisation map $M \rightarrow M \otimes_R F$ is injective, for if $m/1 = m^\prime/1$, then there exists some $r \in R\setminus\{0\}$ such that $r(m - m^\prime) = 0$ and so it follows that $m - m^\prime = 0$.
     We thus obtain a short exact sequence
-    $$0 \rightarrow M \rightarrow M \otimes_R F \rightarrow (M \otimes_R F)/M \rightarrow 0$$
-    and $(M \otimes_R F)/M$ is a torsion module since, for each $m/r \in M \otimes_R F$, we have $r (m/r) \in M$.
+    $$0 \rightarrow M \rightarrow M \otimes_R F \rightarrow (M \otimes_R F)/M \rightarrow 0.$$
+    Moreover, for each $m/r \in M \otimes_R F$, we have $r (m/r) \in M$ and hence $(M \otimes_R F)/M$ is a torsion module.
     The $F$-vector space $M \otimes_R F$ is a direct sum of flat modules, hence is itself flat, so from Theorem 2.4.6 we get the exact sequence
-    $$\cdots \rightarrow \Tor{2}{R}{(F \otimes_R M) / N, F/R} = 0 \rightarrow \Tor{1}{R}{M, F/R} \rightarrow \Tor{1}{R}{F \otimes_R M, F/R} = 0 \rightarrow \cdots$$
+    $$\cdots \rightarrow \Tor{2}{R}{F/R, (F \otimes_R M) / M} = 0 \rightarrow \Tor{1}{R}{F/R, M} \rightarrow \Tor{1}{R}{F/R, F \otimes_R M} = 0 \rightarrow \cdots$$
     and the result follows.
     
     Finally we take the short exact sequence
@@ -1134,7 +1145,7 @@
   $\begin{tikzcd} A \arrow{r}{f} & B \arrow{r}{g} & C \end{tikzcd}$
   is exact if and only if its dual
   $\begin{tikzcd} C^* \arrow{r}{f^*} & B^* \arrow{r}{g^*} & A^* \end{tikzcd}$
-  is exact, where $\ ^*$ denotes the Pontrjagin dual, $\Hom{\Ab}{\ , \Q/\Z}$.
+  is exact, where $X^*$ denotes the Pontrjagin dual, $\Hom{\Ab}{X, \Q/\Z}$.
 
   \begin{proof}
     The forward direction follows directly from the definition of injective.
@@ -1146,7 +1157,7 @@
     Suppose to the contrary for some $a \in A$, $gf(a) \neq 0$.
     By the construction in Lemma~\ref{lem12}, if $H$ is the subgroup of $C$ generated by $gf(a)$, then there exists a non-zero morphism $h : H \rightarrow \Q/\Z$ which extends to a morphism $\tilde{h} \in C^*$.
     But then we have
-    $$f^*g^*(\tilde{h})(a) = f^*(\tilde{h} \circ g)(a) = \tilde{h} \circ g \circ f(\alpha) \neq 0,$$
+    $$f^*g^*(\tilde{h})(a) = f^*(\tilde{h} \circ g)(a) = \tilde{h} \circ g \circ f(a) \neq 0,$$
     contrary to the assumption that $f^*g^* = 0$.
 
     For the reverse inclusion, suppose to the contrary that there exists an element $b \in \ker{g}\setminus\im{f}$.
@@ -1159,7 +1170,7 @@
     $$f^*(h \circ \pi) = (h \circ \pi) \circ f = h \circ (\pi \circ f) = 0.$$
     Since $\ker{f^*} = \im{g^*}$ by assumption, there exists $h^\prime : C \rightarrow \Q/\Z$ such that $g^*(h^\prime) = h \circ \pi$.
     However this implies
-    $$h(b + \im{f}) = h \circ \pi(b) = g^*(h^\prime) = h^\prime \circ g(b) = 0,$$
+    $$h(b + \im{f}) = h \circ \pi(b) = g^*(h^\prime)(b) = h^\prime \circ g(b) = 0,$$
     a contradiction.
     Therefore $\ker{g} \subseteq \im{f}$.
   \end{proof}
@@ -1174,16 +1185,16 @@
   Then $M$ is finitely generated.
 
   \begin{proof}
-    Let $x_1, \ldots, x_n$ generate $M^\prime$,  $y_1, \ldots, y_m$ generate $M^{\prime\prime}$, and let $k_i = f(x_i)$.
+    Let $x_1, \ldots, x_n$ generate $M^\prime$,  $y_1, \ldots, y_\ell$ generate $M^{\prime\prime}$, and let $k_i = f(x_i)$.
     Since $g$ is surjective, there exist $z_i \in M$ such that $g(z_i) = y_i$.
-    For any $m \in M$, there exist $r_i \in R$ such that
-    $$g(m) = \sum r_iy_i = \sum r_ig(z_i) = \sum g(r_iz_i)$$
-    and thus $m - \sum r_iz_i \in \ker g = \im f$.
+    Given $m \in M$, there exist $r_i \in R$ such that
+    $$g(m) = \sum^\ell r_iy_i = \sum^\ell r_ig(z_i) = \sum^\ell g(r_iz_i) = g\left(\sum^\ell r_iz_i\right)$$
+    and thus $m - \sum^\ell r_iz_i \in \ker g = \im f$.
     Choose $s_i \in R$ such that
-    $$m - \sum r_iz_i = f\left(\sum s_i x_i\right) =  \sum s_ik_i$$
+    $$m - \sum^\ell r_iz_i = f\left(\sum^n s_i x_i\right) = \sum^n f(s_ix_i) = \sum^n s_if(x_i) = \sum^n s_ik_i$$
     and so it follows that
-    $$m = \sum r_iz_i + \sum s_ik_i.$$
-    Therefore $M$ is generated by $k_1, \ldots, k_n, z_1, \ldots, z_m$.
+    $$m = \sum^\ell r_iz_i + \sum^n s_ik_i.$$
+    Therefore $M$ is generated by $k_1, \ldots, k_n, z_1, \ldots, z_\ell$.
   \end{proof}
 \end{lem}
 
