@@ -15,7 +15,7 @@
 \providecommand{\m}{\mathfrak{m}}
 \newcommand{\legendre}[2]{\left(\frac{#1}{#2}\right)}
 \theoremstyle{plain}
-\newtheorem{thm}{}
+\newtheorem{thm}{Theorem}
 \newtheorem{lem}{Lemma}
 \theoremstyle{definition}
 \newtheorem{defn}{Definition}
@@ -328,7 +328,7 @@ satisfies the universal property.
   \end{proof}
 \end{prop}
 
-\begin{prop}
+\begin{prop}\label{p.4}
   Let $\mathscr{C}$ be a locally small category.
   Given natural transformations $f \colon h_X \rightarrow h_S$ and \\$g \colon h_Y \rightarrow h_S$, the fiber product $h_X \times_{h_S} h_Y$ in $\hat{\mathscr{C}}$ is representable if and only if the fiber $X \times_S Y$ exists in $\mathscr{C}$ and, in this case, is represented by $X \times_S Y$.
   
@@ -387,5 +387,229 @@ satisfies the universal property.
     $$\Nat{h_W, h_Z} \cong h_W(Z).$$
     Therefore, as $Z$ satisfies the universal property, we have $Z \cong X \times_S Y$.
   \end{proof}
-  \end{prop}
+\end{prop}
+
+Some nice properties derived from fiber products.
+
+\begin{prop}\label{p.5}
+  A morphism $f : A \rightarrow B$ of $\mathscr{C}$ is a monomorphism if and only if the fiber product $A \times_B A$ exists and the diagram
+  $$\begin{tikzcd}
+    A \arrow{d}{\operatorname{id}_A}\arrow{r}{\operatorname{id}_A} & A\arrow{d}{f}\\
+    A\arrow{r}{f} & B
+  \end{tikzcd}$$
+  is a fiber product diagram.
+
+  \begin{proof}
+    First assume that the fiber product exists and the above diagram is a fiber product diagram.
+    Given a commutative diagram
+    $$\begin{tikzcd}
+      Z \arrow[yshift=0.5ex]{r}{g} \arrow[yshift=-0.5ex,swap]{r}{h}& A \arrow{r}{f}& B
+    \end{tikzcd}$$
+    we have an induced diagram
+    $$\begin{tikzcd}
+      Z \arrow[bend right]{ddr}{g} \arrow[bend left]{rrd}{h} \arrow[dotted]{rd}{\exists !h^\prime}\\
+      & A\arrow{d}{\operatorname{id}_A}\arrow{r}{\operatorname{id}_A} & A\arrow{d}{f}\\
+      & A\arrow{r}{f} & B.
+    \end{tikzcd}$$
+    By assumption, taking $h^\prime = h$ or $h^\prime = g$ makes the diagram commute, so by uniqueness of $h^\prime$ we have $h = g$.
+    Therefore $f$ is monic.
+
+    Conversely, assume that $f$ is monic.
+    It suffices to show that $A$ equipped with the two identity morphisms as projections satisfies the universal property for the fiber product.
+    Given any object $Z$ equipped with projections $g : Z \rightarrow A$ and $h : Z \rightarrow A$ making the diagram
+    $$\begin{tikzcd}
+      Z \arrow{d}{g} \arrow{r}{h} & A\arrow{d}{f}\\
+      A\arrow{r}{f} & B
+    \end{tikzcd}$$
+    commute, we see that because $f$ is monic,
+    $f \circ g = f \circ h$
+    and thus $g = h$.
+    Therefore we have a unique morphism $g = h$ making the diagram
+    $$\begin{tikzcd}
+      Z \arrow[bend right]{ddr}{g} \arrow[bend left]{rrd}{h} \arrow[dotted]{rd}{\exists !g = h}\\
+      & A\arrow{d}{\operatorname{id}_A}\arrow{r}{\operatorname{id}_A} & A\arrow{d}{f}\\
+      & A\arrow{r}{f} & B.
+    \end{tikzcd}$$
+    commute, as desired.
+  \end{proof}
+\end{prop}
+
+\begin{cor}
+  The Yoneda functor preserves monomorphisms.
+
+  \begin{proof}
+    Given a monomorphism $f \colon A \rightarrow B$ of $\mathscr{C}$, we must show that the induced morphism $\hat{f} \colon h_A \rightarrow h_B$ is a monomorphism.
+    By Proposition~\ref{p.5} and the fact that $\hat{\operatorname{id}_A} = \operatorname{id}_{h_A}$, this is equivalent to showing that the diagram
+    $$\begin{tikzcd}
+      h_A \arrow{d}{\operatorname{id}_{h_A}}\arrow{r}{\operatorname{id}_{h_A}} & h_A\arrow{d}{\hat{f}}\\
+    h_A \arrow{r}{\hat{f}} & h_B
+  \end{tikzcd}$$
+    is a fiber product diagram.
+    But this follows from Proposition~\ref{p.4}: $h_A \times_{h_B} h_A$ exists and is represented by $A \times_B A \cong A$ if and only if $A \times_B A$ exists.
+    Therefore $h_A \times_{h_B} h_A \cong h_{A \times_B A} \cong h_A$, and so it follows that $\hat{f}$ is a monomorphism.
+  \end{proof}
+\end{cor}
+
+\section{Representable Morphisms}
+\begin{defn}
+  Let $F \colon \mathscr{C} \rightarrow \mathscr{D}$ be a functor.
+  A subfunctor of $F^\prime$ of $F$ is a functor $F \colon \mathscr{C} \rightarrow \mathscr{D}$ equipped with a natural transformation $i : F^\prime \rightarrow F$ such that for each object $X$ of $\mathscr{C}$, the morphism $i_X : F^\prime(X) \rightarrow F(X)$ of $\mathscr{D}$ is a monomorphism; that is, for for any two morphisms $f,g \colon Z \rightarrow F^\prime(X)$ of $\mathscr{D}$ such that the diagram
+  $$\begin{tikzcd}
+    Z \arrow[yshift=-.5ex,swap]{r}{g}\arrow[yshift=.5ex]{r}{f} & F^\prime(X) \arrow{r}{i_X} & F(X)
+  \end{tikzcd}$$
+  commutes, $f = g$.
+\end{defn}
+
+Let $F$ and $G$ be presheaves of sets on $\mathfrak{Sch}$.
+Let $X$ be a scheme and let $g \colon h_X \rightarrow G$ be a morphism in $\hat{\mathfrak{Sch}}$.
+Let $f \colon F \rightarrow G$ be a morphism of $\hat{\mathfrak{Sch}}$ and consider the fiber product
+$$\begin{tikzcd}
+  F \times_G h_X \arrow{r}{p}\arrow{d}{q} & F\arrow{d}{f}\\
+  h_X \arrow{r}{g} & G.
+\end{tikzcd}$$
+
+\begin{defn}
+  A morphism $f \colon F \rightarrow G$ is called representable if for all schemes $X$ and all morphisms $g : h_X \rightarrow G$, the presheaf $F \times_G h_X$ is representable.
+\end{defn}
+
+Let $F$ be a presheaf of sets on $\mathfrak{Sch}$.
+If $i : U \rightarrow X$ is an open immersion of $S$-schemes (e.g. $U$ is an open subset of $X$ and $i$ is the induced immersion), the morphism of sets
+$$F(i) : F(X) \rightarrow F(U)$$
+is called the {\em restriction morphism}.
+We think of elements $\varphi \in F(X)$ as functions on $X$ and as such we denote $F(i)(\varphi)$ by  $\varphi\mid_U$ for simplicity of notation, which we regard as a function on $U$.
+
+\begin{rmk}
+  This mode of thought is justified in the case of representable functors, which will be of the most interest to us.  When $F$ is representable, it is isomorphic to $h_Y$ for some scheme $Y$, and so an element
+  $$\varphi \in F(X) \cong h_Y(X) = \Hom{\mathfrak{Sch}/S}{X,Y}$$
+  is, legitimately, a morphism of $S$-schemes, $\varphi : X \rightarrow Y$, and the element $F(i)(\varphi)$ is the just restriction,
+  $$\begin{tikzcd}
+    U \arrow{r}{i} & X\arrow{r}{\varphi} & Y.
+  \end{tikzcd}$$
+\end{rmk}
+
+\begin{defn}
+  We say that a presheaf $F$ on $\mathfrak{Sch}$ is a {\em Zariski sheaf} (or a {\em sheaf for the Zariski topology}) if for every $S$-scheme $X$ and for every open cover $\{U_i\}_{i \in I}$, the following axioms are satisfied:
+  \begin{enumerate}[(i)]
+  \item
+    If $\xi_1, \xi_2 \in F(X)$ satisfy $\xi_1\mid_{U_i} = \xi_2\mid_{U_i}$ for each $i$, then $\xi_1 = \xi_2$, and
+  \item
+    If for each $i$ we have $\xi_i \in F(U_i)$ satisfying $\xi_i\mid_{U_i \cap U_j} = \xi_j\mid_{U_i \cap U_j}$, then there exists some $\xi \in F(X)$ such that $\xi\mid_{U_i} = \xi_i$ for each $i$.
+  \end{enumerate}
+\end{defn}
+
+In light of this definition we have the following corollary, which is immediate for those familiar with, say, section II.3 of Hartshorne:
+
+\begin{cor}
+  Every representable presheaf on $\mathfrak{Sch}/S$ is a Zariski sheaf.
+  \begin{proof}
+    It suffices to assume the functor in question is $h_Y$ for some $S$-scheme $Y$.
+    For each $S$-scheme $X$, this is exactly the statement that for an open cover $\{U_i\}_{i \in I}$ of $X$, a collection of morphisms $f_i \colon U_i \rightarrow Y$ glue to a unique $S$-morphism $f : X \rightarrow Y$ such that $f\mid_{U_i} = f_i$.
+  \end{proof}
+\end{cor}
+
+\begin{defn}
+  Let $F$ and $G$ be presheaves on $\mathfrak{Sch}/S$ and let $f \colon F \rightarrow G$ be a representable morphism.
+  For every $S$-scheme $X$ and every natural transformation $h_X \rightarrow G$, there exists and $S$-scheme $Z$, depending on $X$, such that $F \times_G h_X \cong h_Z$.
+  We say that $f$ is an {\em open immersion} if every projection $h_Z \cong F \times_G h_X \rightarrow h_X$ induces an open immersion of $S$-schemes, $Z \rightarrow X$.
+  
+  If $F$ is also a subfunctor of $G$, then we say that $F$ is an {\em open subfunctor} of $G$.
+\end{defn}
+
+\begin{defn}
+  A family $\{f_i : F_i \rightarrow F\}_{i \in I}$ of open subfunctors is called a {\em Zariski open covering} of $F$ if for every $S$-scheme $X$ and every morphism $g \colon h_X \rightarrow F$, the images of the morphisms of $S$-schemes induced by the projections
+  $$F_i \times_F h_X \rightarrow h_X$$
+  cover $X$.
+\end{defn}
+
+\begin{thm}
+  Let $F$ be a Zariski sheaf of sets on $\mathfrak{Sch}/S$.
+  If $F$ admits a Zariski open covering
+  $$\{f_i : F_i \rightarrow F\}_{i \in I}$$
+  by representable functors $F_i$, then $F$ is a representable functor.
+
+  \begin{proof}
+    For each $i$, let $X_i$ be the scheme representing $F_i$.
+    We will show that we may glue these schemes to a scheme $X$ and that this scheme represents $F$.
+
+    In order to glue the $X_i$ together, we must produce for each $i$ and $j$ open subsets $U_{i,j} \subseteq X_i$ and isomorphisms of schemes $\varphi_{i,j} : U_{i,j} \rightarrow U_{j,i}$ satisfying
+    \begin{enumerate}[(i)]
+    \item
+       $\varphi_{i,j}^{-1} = \varphi_{j,i}$,
+    \item
+      $\varphi_{i,j}(U_{i,j} \cap U_{i,k}) = U_{j,i} \cap U_{j,k}$ for all $i$, $j$, and $k$, and
+    \item
+      the diagram
+      $$\begin{tikzcd}
+        U_{i,j} \cap U_{i,k} \arrow{rd}{\varphi_{i,k}}\arrow{r}{\varphi_{i,j}} & U_{j,i} \cap U_{j,k}\arrow{d}{\varphi_{j,k}}\\
+        & U_{k,j} \cap U_{k,i}
+      \end{tikzcd}$$
+      commutes for all $i$, $j$, and $k$.
+    \end{enumerate}
+
+    For each $i$ and $j$, let $F_{i,j}$ denote the fiber product $F_i \times_F F_j$.
+    Each $F_{i,j}$ is, by assumption, a representable Zariski sheaf.
+    If we let $X_{i,j}$ be the scheme representing $F_{i,j}$, then the induced morphism of schemes,\\ $X_{i,j} \rightarrow X_i$ is an open immersion, and hence a monomorphism of $\mathfrak{Sch}/S$.
+    Since the Yoneda functor preserves monomorphisms, it follows that the projections $F_{i,j} \rightarrow F_i$ and $F_{i,j} \rightarrow F_j$ are also monomorphisms; that is, we may identify $F_{i,j}$ as a subfunctor of $F$.
+    In particular, for each $S$-scheme $T$, we may identify each $F_i(T)$ as a subset of $F(T)$, and thus identify $F_{i,j}(T)$ with $F_i(T) \cap F_j(T) \subseteq F(T)$.
+    Moreover, we see from the diagram
+    $$\begin{tikzcd}
+      F_{i,j}\arrow[dotted]{rd}{\exists !}\arrow[bend right]{ddr} \arrow[bend left]{rrd}\\
+      & F_{j,i}\arrow{r}\arrow{d} & F_i\arrow{d}{f_i}\\
+      & F_{j}\arrow{r}{f_j} & F
+    \end{tikzcd}$$
+    that under these identifications, the $T$ component of the induced morphism is simply the identity map
+    $$F_i(T) \cap F_j(T) \rightarrow F_j(T) \cap F_i(T),$$
+    giving the identification $F_{i,j} = F_{j,i}$.
+    In particular, note that this immediately implies that $F_{i,i} = F_i$.
+    Similarly, we may identify the fiber products $F_{i,j,k} = F_i \times_F F_j \times_F F_k$ for each permutation of the ordered set ${i,j,k}$ by making the identification $F_{i,j,k}(T) = F_i(T) \cap F_j(T) \cap F_k(T)$.
+
+    Now, the open immersions $X_{i,j} \rightarrow X_i$ induce an isomorphism of schemes
+    $$\psi_{i,j} : X_{i,j} \rightarrow U_{i,j}$$
+    with $U_{i,j}$ an open subset of $X_i$ and we define isomorphisms
+    $$\begin{tikzcd}
+      U_{i,j} \arrow[swap]{rd}{\varphi_{i,j}}\arrow{r}{\psi_{i,j}^{-1}} & X_{i,j} \cong X_{j,i}\arrow{d}{\psi_{j,i}}\\
+      & U_{j,i}
+    \end{tikzcd}$$
+    which clearly satisfy $\varphi_{i,j}^{-1} = \varphi_{j,i}$.
+    Identifying the schematic intersections $U_{i,j} \cap U_{i,k}$ with the fiber product $X_{i,j} \times_{X_i} X_{i,k}$ yields an isomorphism $h_{U_{i,j} \cap U_{i,k}} \cong F_{i,j} \times_{F_{i}} F_{i,k}$.
+    The diagram
+    $$\begin{tikzcd}
+      F_{i,j} \times_{F_i} F_{i,k}\arrow[bend right]{rdd}\arrow[bend left]{rrd}\arrow[dotted]{rd}{\exists !}\\
+      & F_{i,j,k}\arrow{r}\arrow{d} & F_{i,j}\arrow{d}\\
+      & F_{i,k}\arrow{r} & F
+    \end{tikzcd}$$
+    implies that for any $S$-scheme $T$, the $T$ component of the induced morphism identifies the intersections
+    $$(F_i(T) \cap F_j(T)) \cap (F_i(T) \cap F_k(T)) \rightarrow F_i(T) \cap F_j(T) \cap F_k(T),$$
+    where on the left-hand side the parenthetical intersections are taking inside $F(T)$, and then considered as the intersection of subsets of $F_i(T)$, and agree with the three intersections taken within $F(T)$ and considered as a subset of $F_i(T)$.
+    This allows us to identify $h_{U_{i,j} \cap U_{i,k}}$ with $F_{i,j,k}$.
+    This induces a commutative diagram
+    $$\begin{tikzcd}
+      h_{U_{i,j} \cap U_{i,k}}\arrow{d}[rotate=90,yshift=1ex,xshift=-1ex]{\sim}\arrow{r} & h_{U_{j,i} \cap U_{j,k}}\arrow{d}[rotate=90,yshift=1ex,xshift=-1ex]{\sim}\\
+      F_{i,j,k} \arrow{d}\arrow{r}{\sim} & F_{j, i, k}\arrow{d}\\
+      F_{i,j} \arrow{r}{\sim} & F_{j,i}
+    \end{tikzcd}$$
+    which gives $\varphi_{i,j}(U_{i,j} \cap U_{i,k}) = U_{j,i} \cap U_{j,k}$ since $\varphi_{i,j}$ was induced by the bottom isomorphism.
+    The composition condition is verified by the observation that
+    $$\varphi_{j,k} \circ \varphi_{i,j} (U_{i,j} \cap U_{i,k}) = \varphi_{j,k}(U_{j,i} \cap U_{j,k}) = U_{k,i} \cap U_{k,j} = U_{k,j} \cap U_{k,i} = \varphi_{i,k}(U_{i,j} \cap U_{i,k}).$$
+    Thus we may glue the schemes $X_i$ to a scheme $X$ that is equipped with morphisms $\xi_i: X_i \rightarrow X$ for each $i$ such that
+    \begin{enumerate}[(i)]
+    \item
+      $\xi_i$ is an open immersion onto an open subset $U_i$ of $X$, 
+    \item
+      the $U_i = \xi_i(X_i)$ cover $X$,
+    \item
+      $\xi_i(U_{i,j}) = \xi_i(X_i) \cap \xi_j(X_j) = U_i \cap U_j$, and
+    \item
+      $\xi_i = \xi_j \circ \varphi_{i,j}$ on $U_{i,j}$.
+    \end{enumerate}
+
+    By the isomorphisms $F_i \cong h_{X_i}$ and  $\Nat{h_{X_i}, F} \cong F(X_i)$, we may consider each of the $f_i : F_i \rightarrow F$ as an element of $F(X_i)$, $x_i = f_{i,X_i}(\operatorname{id}_{X_i})$.
+    We consider the image of $x_i$ under the morphism
+    $$\Nat{F_i, F} \cong F(X_i) \rightarrow F(U_{i,j}) \cong \Nat{F_{i,j}, F}$$
+    which is the morphism induced by the projection $F_{i,j} \rightarrow F_{i}$. 
+    Since the projection $F_{i,j} \rightarrow F_i$ is the same as the projection $F_{j,i} \rightarrow F_i$, we see that the restrictions $f_i \mid_{U_i \cap U_j}$ and $f_j \mid_{U_i \cap U_j}$ must agree and so we may glue the $f_i$ to a morphism $h_X \rightarrow F$.  It's routine to check that for each $S$-scheme $T$, this is an isomorphism.
+    Therefore we have $h_X \cong F$ is representable, as desired.
+  \end{proof}
+\end{thm}
 \end{document}
+
