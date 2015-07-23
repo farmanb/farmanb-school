@@ -591,25 +591,218 @@ In light of this definition we have the following corollary, which is immediate 
     which gives $\varphi_{i,j}(U_{i,j} \cap U_{i,k}) = U_{j,i} \cap U_{j,k}$ since $\varphi_{i,j}$ was induced by the bottom isomorphism.
     The composition condition is verified by the observation that
     $$\varphi_{j,k} \circ \varphi_{i,j} (U_{i,j} \cap U_{i,k}) = \varphi_{j,k}(U_{j,i} \cap U_{j,k}) = U_{k,i} \cap U_{k,j} = U_{k,j} \cap U_{k,i} = \varphi_{i,k}(U_{i,j} \cap U_{i,k}).$$
-    Thus we may glue the schemes $X_i$ to a scheme $X$ that is equipped with morphisms $\xi_i: X_i \rightarrow X$ for each $i$ such that
-    \begin{enumerate}[(i)]
-    \item
-      $\xi_i$ is an open immersion onto an open subset $U_i$ of $X$, 
-    \item
-      the $U_i = \xi_i(X_i)$ cover $X$,
-    \item
-      $\xi_i(U_{i,j}) = \xi_i(X_i) \cap \xi_j(X_j) = U_i \cap U_j$, and
-    \item
-      $\xi_i = \xi_j \circ \varphi_{i,j}$ on $U_{i,j}$.
-    \end{enumerate}
+    Thus we may glue the schemes $X_i$ to a scheme $X$.% that is equipped with morphisms $\xi_i: X_i \rightarrow X$ for each $i$ such that
+    %\begin{enumerate}[(i)]
+    %\item
+    %  $\xi_i$ is an open immersion onto an open subset $U_i$ of $X$, 
+    %\item
+    %  the $U_i = \xi_i(X_i)$ cover $X$,
+    %\item
+    %  $\xi_i(U_{i,j}) = \xi_i(X_i) \cap \xi_j(X_j) = U_i \cap U_j$, and
+    %\item
+    %  $\xi_i = \xi_j \circ \varphi_{i,j}$ on $U_{i,j}$.
+    %\end{enumerate}
 
-    By the isomorphisms $F_i \cong h_{X_i}$ and  $\Nat{h_{X_i}, F} \cong F(X_i)$, we may consider each of the $f_i : F_i \rightarrow F$ as an element of $F(X_i)$, $x_i = f_{i,X_i}(\operatorname{id}_{X_i})$.
-    We consider the image of $x_i$ under the morphism
-    $$\Nat{F_i, F} \cong F(X_i) \rightarrow F(U_{i,j}) \cong \Nat{F_{i,j}, F}$$
-    which is the morphism induced by the projection $F_{i,j} \rightarrow F_{i}$. 
-    Since the projection $F_{i,j} \rightarrow F_i$ is the same as the projection $F_{j,i} \rightarrow F_i$, we see that the restrictions $f_i \mid_{U_i \cap U_j}$ and $f_j \mid_{U_i \cap U_j}$ must agree and so we may glue the $f_i$ to a morphism $h_X \rightarrow F$.  It's routine to check that for each $S$-scheme $T$, this is an isomorphism.
-    Therefore we have $h_X \cong F$ is representable, as desired.
+    Now, we note that by identifying the $X_i$ with open subschemes of $X$ by way of the induced open immersion $\imath_i : X_i \rightarrow X$, the open immersions $\imath_{i,j} : X_i \cap X_j \rightarrow X_i$ correspond to the morphisms $F_{i,j} \rightarrow F_i$.
+    Now from the naturality square
+    $$\begin{tikzcd}
+      F_i(X_i) \arrow{r}\arrow{d}{f_{i,X_i}}& F_i(X_i \cap X_j)\arrow{d}{f_{i,X_i \cap X_j}}\\
+      F(X_i) \arrow{r} & F(X_i \cap X_j)
+    \end{tikzcd}$$
+    and the fiber product diagram
+    $$\begin{tikzcd}
+      F_{i,j} \arrow{r}\arrow{d}& F_i\arrow{d}\\
+      F_j \arrow{r} & F
+    \end{tikzcd}$$
+    we have
+    $$f_{i,X_i}(1_{X_i})\mid_{X_i \cap X_j} = f_{i,X_i \cap X_j}(\imath_{i,j}) = f_{j,X_i \cap X_j}(\imath_{i,j}) = f_{j, X_j}(1_{X_j}).$$
+    Since $F$ is a Zariski sheaf, the elements $f_{i,X_i}(1_{X_i})$ glue to give an element $f \in F(X)$.
+    Let $\eta : h_X \rightarrow F$ be the image of $f$ under the isomorphism
+    $$F(X) \cong \Nat{h_X, F}.$$
+    We note that this gives the factorization $f_i = \eta \circ \hat{\imath_i}$, where $\hat{\imath_i} : F_i \rightarrow h_X$ is the morphism induced by $\imath_i$ and has components
+    \begin{align*}
+      \hat{\imath_i}_Z \colon F_i(Z) &\rightarrow h_X(Z)\\
+      \varphi &\mapsto \imath_i \circ \varphi.
+    \end{align*}
+    The equality is verified by checking that for any $S$-scheme, $Z$, and any $S$-morphism $\varphi : X_i \rightarrow Z$, we have
+    \begin{eqnarray*}
+      \eta_Z \circ \hat{\imath_i}_Z(\varphi) &=& \eta_Z(\imath_i \circ \varphi)\\
+      &=& F(\imath_i \circ \varphi)(f)\\
+      &=& F(\varphi) \circ F(\imath_i)(f)\\
+      &=& F(\varphi)(f\mid_{X_i})\\
+      &=& F(\varphi) \circ f_{i,X_i}(1_{X_i})\\
+      &=& f_{i,Z} \circ F_i(\varphi)(1_{X_i})\\
+      &=& f_{i,Z}(\varphi).
+    \end{eqnarray*}
+    
+
+    To see that $\eta$ is an isomorphism, let $Z$ be a scheme over $S$.
+    Given $\zeta \in F(Z)$, we have the natural transformation $\nu \in \Nat{h_Z, F}$ with components
+    \begin{align*}
+      \nu_T \colon h_Z(T) &\rightarrow F(T)\\
+      \varphi &\mapsto F(\varphi)(\zeta).
+    \end{align*}
+    Since we have assumed that the $f_i$ are a Zariski open cover of $F$, there is an induced open cover $\{V_i\}_I$ of $Z$ such that for each $i$, the diagram
+    $$\begin{tikzcd}
+      h_{V_i} \arrow{r}{p_i}\arrow{d}{q_i} & F_i\arrow{d}{f_i}\\
+      h_Z \arrow{r}{\nu} & F
+    \end{tikzcd}$$
+    is a fiber product diagram; that is, $h_{V_i} \cong F_i \times_F h_Z$.
+    Let $j_i = q_{i,V_i} : V_i \rightarrow Z$ be the open immersion corresponding to the inclusion $V_i \subseteq Z$.
+    %If we let $\hat{\imath_i} : F_i \rightarrow h_X$ be the natural transformation induced by the inclusion $\imath_i : X_i \rightarrow X$, we have the commutative diagram
+    $$\begin{tikzcd}
+      h_{V_i}(V_i) \arrow{r}{p_{i,V_i}} \arrow{d}{q_{i,V_i}} & F_i(V_i)\arrow{d}{f_{i,V_i}} \arrow{r}{\hat{\imath_i}} & h_X(V_i)\arrow{ld}{\eta_{V_i}}\\
+      h_Z(V_i)\arrow{r}{\nu_{V_i}} & F(V_i)
+    \end{tikzcd}$$
+    %since the diagram
+    %$$\begin{tikzcd}
+    %  F_i(X_i) \arrow{r}{f_{i,X_i}} \arrow[swap]{d}{F_i(p_i(1_{V_i}))} & F(X_i)\arrow{d}{F(p_i(1_{V_i}))}\\
+    %  F_i(V_i) \arrow{r}{f_{i,V_i}} & F(V_i)
+    %\end{tikzcd}$$
+    commutes, which gives
+    \begin{eqnarray*}
+      \eta_{V_i}\left(\imath_i \circ p_{i,V_i}(1_{V_i})\right) &=& F(\imath_i \circ p_{i,V_i}(1_{V_i}))(f)\\
+      &=& F(p_{i,V_i}(1_{V_i})) \circ F(\imath_i)(f)\\
+      &=& F(p_{i,V_i}(1_{V_i}))(f\mid_{X_i})\\
+      &=& F(p_{i,V_i}(1_{V_i})) \circ f_{i,X_i}(1_{X_i})\\
+      &=& f_{i,V_i} \circ F_i(p_{i,V_i}(1_{V_i})(1_{X_i})\\
+      &=& f_{i,V_i} \circ p_{i,V_i}(1_{V_i})\\
+      &=& \nu_{V_i} \circ q_{i,V_i}(1_{V_i})\\
+      &=& \nu_{V_i}(j_i).
+    \end{eqnarray*}
+    We wish to rephrase this in terms of restriction maps.
+    We observe that by definition,
+    $$\nu_{V_i}(j_i) = F(j_i)(\zeta) = \zeta\mid_{V_i}$$
+    Now, using the restriction maps
+    $$\begin{tikzcd}
+      F(X) \arrow{r}{F(\imath_i)} \arrow[swap]{rd}{F(\imath_i \circ p_{i,V_i}(1_{V_i}))} & F(X_i)\arrow{d}{F(p_{i,V_i}(1_{V_i}))}\\
+      & F(V_i)
+    \end{tikzcd}$$
+    we obtain the more intuitive equality
+    $$\zeta\mid_{V_i} = \eta_{V_i}\left(\imath_i \circ p_{i,V_i}(1_{V_i})\right) = F(p_{i,V_i}(1_{V_i})) \circ F(\imath_i)(f) = F(p_{i,V_i}(1_{V_i}))(f\mid_{X_i}) = \left(f\mid_{X_i}\right)\mid_{V_i} = f\mid_{V_i}.$$
+    Since $f_{i,V_i} : F_i(V_i) \rightarrow F(V_i)$ is an injection, we can identify $p_{i,V_i}(1_{V_i})$ with $\zeta\mid_{V_i}$, and thus identify $\zeta\mid_{V_i}$ as an element of $h_X(V_i)$ under the inclusion
+    $$\hat{\imath_i}_{V_i} \colon F_i(V_i) \rightarrow h_X(V_i).$$
+    By assumption
+    $$(\zeta\mid_{V_i})\mid_{V_i \cap V_k} = \zeta\mid_{V_i \cap V_k} = (\zeta\mid_{V_k})\mid_{V_i \cap V_k},$$
+    so it follows that these $\zeta\mid_{V_i}$ glue to a unique element of $\xi \in h_X(Z)$ such that $\xi\mid_{V_i} = \imath_i \circ p_{i,V_i}(1_{V_i})$.
+    By commutativity of the naturality square
+    $$\begin{tikzcd}
+      h_X(Z) \arrow{r}{\eta_Z}\arrow{d} & F(Z)\arrow{d}\\
+      h_X(V_i) \arrow{r}{\eta_{V_i}} & F(V_i)
+    \end{tikzcd}$$
+    it follows that
+    $$\eta_Z(\xi)\mid_{V_i} = \eta_{V_i}(\xi\mid_{V_i}) = \eta_{V_i} \circ \imath_i \circ p_{i,V_i}(1_{V_i}) = f_{i,V_i} \circ p_{i,V_i}(1_{V_i}) = \zeta\mid_{V_k}$$
+    and so $\eta_Z(\xi) = \zeta$ by the Zariski sheaf condition.
+    Hence every element $\zeta \in F(Z)$ is the image of a unique $\xi \in h_X(Z)$ and so $\eta_Z$ is a bijection (i.e. an isomorphism of sets).
+    Therefore $\eta$ is a natural isomorphism, as desired.
+
+    %By the isomorphisms $F_i \cong h_{X_i}$ and  $\Nat{h_{X_i}, F} \cong F(X_i)$, we may consider each of the $f_i : F_i \rightarrow F$ as an element of $F(X_i)$, $x_i = f_{i,X_i}(\operatorname{id}_{X_i})$.
+    %We consider the image of $x_i$ under the morphism
+    %$$\Nat{F_i, F} \cong F(X_i) \rightarrow F(U_{i,j}) \cong \Nat{F_{i,j}, F}$$
+    %which is the morphism induced by the projection $F_{i,j} \rightarrow F_{i}$. 
+    %Since the projection $F_{i,j} \rightarrow F_i$ is the same as the projection $F_{j,i} \rightarrow F_i$, we see that the restrictions $f_i \mid_{U_i \cap U_j}$ and $f_j \mid_{U_i \cap U_j}$ must agree and so we may glue the $f_i$ to a morphism $h_X \rightarrow F$.  It's routine to check that for each $S$-scheme $T$, this is an isomorphism.
+    %Therefore we have $h_X \cong F$ is representable, as desired.
   \end{proof}
 \end{thm}
+
+\section{Affine Restriction}
+\begin{defn}
+  Let $S$ be a scheme.
+  We say $X$ is a {\em scheme over $S$} if $X$ is equipped with a morphism $X \rightarrow S$.
+  We denote by $\mathfrak{Sch}/S$ the slice category of $\mathfrak{Sch}$ with objects schemes over $S$ and morphisms $X \rightarrow Y$ making the diagram
+  $$\begin{tikzcd}
+    X\arrow{r}\arrow{rd} & Y\arrow{d}\\
+    & S
+  \end{tikzcd}$$
+  commute.
+  When $S = \Spec{A}$, we will denote this category by $\Sch/A$.
+\end{defn}
+
+Consider a scheme $X$ over an affine scheme $\Spec{A}$.
+We can consider the coslice category $A-\mathfrak{alg}$, with objects ring morphisms $A \rightarrow B$ and morphisms $B \rightarrow C$ such that the diagram
+$$\begin{tikzcd}
+  A\arrow{r}\arrow{rd} & B\arrow{d}\\
+  & C
+\end{tikzcd}$$
+commute.
+It can be shown (see Hartshorne, Exercise II.2.4) that there is an isomorphism
+$$\Hom{\mathfrak{Rings}}{A,B} \cong \Hom{\mathfrak{Sch}}{\Spec{B}, \Spec {A}}.$$
+This allows us to consider the restriction of the presheaf $h_X$ to the category $A-\mathfrak{alg}$, $h_X^*(B) = \Hom{\mathfrak{Sch}/A}{\Spec{B}, X}$.
+
+\begin{prop}
+  The functor
+  \begin{align*}
+    \Sch/A &\rightarrow \operatorname{Fun}({A-\mathfrak{alg}}, \Sets)\\
+    X &\mapsto h_X^*
+  \end{align*}
+  is fully faithful.
+  \begin{proof}
+    First we describe the map
+    $$\Hom{\Sch/A}{X,Y} \rightarrow \Nat{h_X^*, h_Y^*}.$$
+    Let $f \in \Hom{\Sch/A}{X,Y}$ be given.
+    Just as with the Yoneda embedding, $f$ determines for each $A$-algebra, $B$, a map
+    \begin{align*}
+      \Hom{\Sch/A}{\Spec{B},X} &\rightarrow \Hom{\Sch/A}{\Spec{B},Y}\\
+      g &\mapsto f \circ g,
+    \end{align*}
+    natural in $B$.
+    For injectivity, let $f,g : X \rightarrow Y$ be given.
+    Let $\eta^*$, $\nu^* : h_X \rightarrow h_Y$ be the natural transformations associated to $f$, $g$, respectively, and assume that $\eta^* = \nu^*$.
+    If $i : U \rightarrow X$ is the inclusion of an open affine subset, we have
+    $$f\mid_U = f \circ i = \eta^*_U(i) = \nu^*_U(i) = g \circ i = g\mid_U$$
+    so that $f = g$.
+    
+    Now assume that we are given a natural transformation $\eta^* \colon h_X^* \rightarrow h_Y^*$.
+    We will show that we may extend $\eta^*$ to a natural transformation $\eta : h_X \rightarrow h_Y$, so that we have a surjection
+    $$\Hom{\Sch/A}{X,Y} \cong \Nat{h_X, h_Y} \twoheadrightarrow \Nat{h_X^*, h_Y^*}.$$
+
+    Given an $A$-morphism $f : Z \rightarrow X$, we define for each affine open $U \subseteq Z$ the restriction $f_U = f\mid_U$
+    $$\begin{tikzcd}
+      U \arrow{r}{i_U} \arrow[swap]{rd}{f_U} & Z\arrow{d}{f}\\
+      & X.
+    \end{tikzcd}$$
+    Let $g_U = \eta^*_U(f_U)$.
+    We will show that the $g_U : U \rightarrow Y$ glue to a morphism $g : Z \rightarrow Y$.
+    If $V$ is any other affine open, we note $U \cap V$ is not necessarily affine.
+    Since $\eta^*$ is only defined on affine schemes, in order to check gluability, we must pass to affine subsets of $W \subseteq U \cap V$.
+    %, for which we use Nike's Trick to produce an open $W \subseteq U \cap V$ that is a basic affine open in $U$ and $V$, and these $W$ cover $U \cap V$.
+    
+    It is clear from the definition that $f_U\mid_W  = f_V\mid_W$, so by commutativity of the naturality square
+    $$\begin{tikzcd}
+      h_X(U)\arrow{d}{\eta^*_U}\arrow{r} & h_X(W)\arrow{d}{\eta_W^*}\\
+      h_Y(U)\arrow{r} & h_Y(W)
+    \end{tikzcd}$$
+    we have
+    $$g_U\mid_W = \eta^*_U(f_U)\mid_W = \eta^*_W(f_U\mid_W) = \eta^*_W(f_V\mid_W) = \eta^*_V(f_V)\mid_W = g_V\mid_W.$$
+    Since we may $U \cap V$ by affines, this is enough to guarantee that $g_U\mid_W$ and $g_V\mid_W$ glue to the same morphism, $g_U\mid_{U \cap V} = g_V\mid_{U \cap V}$.
+    Therefore the $g_U$ glue to a morphism, $g : Z \rightarrow Y$, as desired.
+    We define $\eta(f) = g$, and we note that $\eta(f)\mid_U = g_u = \eta^*(f\mid_U)$.
+
+    Suppose that $g : Z^\prime \rightarrow Z$ is any morphism of $A$-schemes.
+    We must check that the diagram
+    $$\begin{tikzcd}
+      h_X(Z) \arrow{r}{\eta_Z}\arrow{d} & h_Y(Z)\arrow{d}\\
+      h_X(Z^\prime)\arrow{r}{\eta_{Z^\prime}} & h_Y(Z^\prime)
+    \end{tikzcd}$$
+    commutes.
+    For $f : Z \rightarrow X$, this amounts to checking that
+    $$\eta_{Z^\prime}(f \circ h) = \eta_Z(f) \circ h.$$
+    Since we may cover $Z$ by affines, the preimages of the affines cover $Z^\prime$, and each can be covered in turn by open affines of $Z^\prime$, it suffices to show
+    $$\eta_{Z^\prime}(f \circ h)\mid_V = \left(\eta_Z(f) \circ h\right) \mid_V,$$
+    for $U \subseteq Z$ open affine and $V \subseteq h^{-1}(U)$ open affine.
+    But, this follows directly from the commutative diagram
+    $$\begin{tikzcd}
+      V\arrow{d}{h\mid_V} & h_X^*(U)\arrow{r}{\eta_U^*}\arrow{d} & h_Y^*(U)\arrow{d}\\
+      U & h_X^*(V)\arrow{r}{\eta_V^*} & h_Y^*(V)
+    \end{tikzcd}$$
+    since
+    $$\eta_{Z^\prime}(f \circ h)\mid_V = \eta_V^*\left(\left(f \circ h\right) \mid_V\right) = \eta_V^*(f_U \circ h\mid_V) = \eta_U^*(f_U) \circ h\mid_V = \eta_Z(f)\mid_U \circ h\mid_V = \left(\eta_Z(f) \circ h\right) \mid_V.$$
+    This establishes that $\eta$ is a natural transformation, and by construction $\eta_B = \eta^*_B$ for any $A$-algebra, $B$.
+    Therefore
+    $$\Hom{\Sch/A}{X,Y} \rightarrow \Nat{h_X^*, h_Y^*}$$
+    is a bijection, as desired.
+  \end{proof}
+\end{prop}
+
 \end{document}
 
