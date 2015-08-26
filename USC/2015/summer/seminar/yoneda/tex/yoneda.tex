@@ -452,6 +452,18 @@ Some nice properties derived from fiber products.
 
 \section{Representable Morphisms}
 \begin{defn}
+  Let $S$ be a scheme.
+  We say $X$ is a {\em scheme over $S$} if $X$ is equipped with a morphism $X \rightarrow S$.
+  We denote by $\mathfrak{Sch}/S$ the slice category of $\mathfrak{Sch}$ with objects schemes over $S$ and morphisms $X \rightarrow Y$ making the diagram
+  $$\begin{tikzcd}
+    X\arrow{r}\arrow{rd} & Y\arrow{d}\\
+    & S
+  \end{tikzcd}$$
+  commute.
+  When $S = \Spec{A}$, we will denote this category by $\Sch/A$.
+\end{defn}
+
+\begin{defn}
   Let $F \colon \mathscr{C} \rightarrow \mathscr{D}$ be a functor.
   A subfunctor of $F^\prime$ of $F$ is a functor $F \colon \mathscr{C} \rightarrow \mathscr{D}$ equipped with a natural transformation $i : F^\prime \rightarrow F$ such that for each object $X$ of $\mathscr{C}$, the morphism $i_X : F^\prime(X) \rightarrow F(X)$ of $\mathscr{D}$ is a monomorphism; that is, for for any two morphisms $f,g \colon Z \rightarrow F^\prime(X)$ of $\mathscr{D}$ such that the diagram
   $$\begin{tikzcd}
@@ -706,28 +718,14 @@ In light of this definition we have the following corollary, which is immediate 
 \end{thm}
 
 \section{Affine Restriction}
-\begin{defn}
-  Let $S$ be a scheme.
-  We say $X$ is a {\em scheme over $S$} if $X$ is equipped with a morphism $X \rightarrow S$.
-  We denote by $\mathfrak{Sch}/S$ the slice category of $\mathfrak{Sch}$ with objects schemes over $S$ and morphisms $X \rightarrow Y$ making the diagram
-  $$\begin{tikzcd}
-    X\arrow{r}\arrow{rd} & Y\arrow{d}\\
-    & S
-  \end{tikzcd}$$
-  commute.
-  When $S = \Spec{A}$, we will denote this category by $\Sch/A$.
-\end{defn}
-
 Consider a scheme $X$ over an affine scheme $\Spec{A}$.
 We can consider the coslice category $A-\mathfrak{alg}$, with objects ring morphisms $A \rightarrow B$ and morphisms $B \rightarrow C$ such that the diagram
 $$\begin{tikzcd}
   A\arrow{r}\arrow{rd} & B\arrow{d}\\
   & C
 \end{tikzcd}$$
-commute.
-It can be shown (see Hartshorne, Exercise II.2.4) that there is an isomorphism
-$$\Hom{\mathfrak{Rings}}{A,B} \cong \Hom{\mathfrak{Sch}}{\Spec{B}, \Spec {A}}.$$
-This allows us to consider the restriction of the presheaf $h_X$ to the category $A-\mathfrak{alg}$, $h_X^*(B) = \Hom{\mathfrak{Sch}/A}{\Spec{B}, X}$.
+commute and we define the restriction of the presheaf $h_X$ to the category $A-\mathfrak{alg}$ by
+$$h_X^*(B) =  h_X(\Spec{B}) = \Hom{\mathfrak{Sch}/A}{\Spec{B}, X}.$$
 
 \begin{prop}
   The functor
@@ -803,6 +801,19 @@ This allows us to consider the restriction of the presheaf $h_X$ to the category
     is a bijection, as desired.
   \end{proof}
 \end{prop}
+
+\begin{defn}
+  A morphism $\eta : F \rightarrow G$ of $Fun(A-\mathfrak{Alg}, \mathfrak{Set})$ is called representable if for each morphism $\nu : h_{\Spec{B}} \rightarrow G$, the fibered product
+  $$\begin{tikzcd}
+    F \times_G h_{\Spec{B}}\arrow{d}\arrow{r} & F\arrow{d}{\nu}\\
+    h_{\Spec{B}}\arrow{r}{\nu} & G
+  \end{tikzcd}$$
+  is representable, $F \times_G h_{\Spec{B}} \cong h_{\Spec{C}}$ for some $A$-algebra, $C$.
+  \begin{defn}
+    A representable morphism $\nu : F \rightarrow G$ is called an open subfunctor if for each ring $B$, the induced morphism of rings $\Spec{C} \rightarrow \Spec{B}$ induced by the morphism $h_{\Spec{C}} \rightarrow h_{\Spec{B}}$ is an open immersion.
+    That is to say, the morphism $B \rightarrow C$ of $A$-algebras identifies $B$ with some localization, $C_f$, of $C$.
+  \end{defn}
+\end{defn}
 
 \end{document}
 
