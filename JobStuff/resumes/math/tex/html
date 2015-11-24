@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+NAME="Resume-BFarman"
+HTMLDIR=../html
+FILE="$NAME.tex"
+
+htlatex $FILE
+
+if [ ! -d ../html ]; then
+    mkdir ../html
+fi
+
+mv $NAME.html $HTMLDIR/cv.html
+mv $NAME.css $HTMLDIR/
+
+rm -fr *.4ct
+rm -fr *.4tc
+rm -fr *.dvi
+rm -fr *.idv
+rm -fr *.lg
+rm -fr *.log
+rm -fr *.tmp
+rm -fr *.xref
+rm *~
