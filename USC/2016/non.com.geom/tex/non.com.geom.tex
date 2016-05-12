@@ -27,9 +27,30 @@
 \newcommand{\A}{\mathscr{A}}
 \renewcommand{\C}{\mathscr{C}}
 
-Throughout, let $\C$ be an abelian category.
-
 \section{Preliminaries}
+Let $k$ be a Noetherian commutative ring, $A$ a $\Z_{\geq 0}$-graded right Noetherian ring.
+Denote by $\Gr{A}$ (resp. $\gr{A}$) the category of graded right $A$-modules (resp. finite) with morphisms
+$$\Hom{\Gr{A}}{M,N} = \left\{f \in \Hom{A}{M,N} \;\middle\vert\; f(M_d) \subseteq N_d\right\}.$$
+This is a Grothendieck category with injective envelopes.
+That is,
+\begin{itemize}
+  \item
+    $\Gr{A}$ is abelian (zero object, finite biproducts, all kernels and cokernels, monics and epics are normal--every monic is a kernel and every epic is a cokernel),
+  \item
+    every family of objects has a direct limit/filtered colimit,
+  \item
+    the presheaf $h^A \colon \Gr{A} \rightarrow \Sets$ is faithful; for any morphism $M \rightarrow N$ the morphism
+    $$\begin{tikzcd}
+      \Hom{\Gr{A}}{M, N} \arrow{r}& \Hom{\Sets}{h^A(M), h^A(N)}\\
+      f \arrow[mapsto]{r} & h^A(f)
+    \end{tikzcd}$$
+%    $$\begin{tikzcd}
+%      \Hom{\Gr{A}}{A, M} \arrow{r} & \Hom{\Gr{A}}{A, N}\\
+%      A \rightarrow M \arrow[mapsto]{r} & A \rightarrow M \rightarrow N
+%    \end{tikzcd}$$
+    is injective.
+\end{itemize}
+
 \begin{defn}
   A full subcategory, $\A$, of $\C$ is called a Serre (or \'{e}paisse/thick/dense) subcategory if for any short exact sequence
   $$\begin{tikzcd}
@@ -37,6 +58,12 @@ Throughout, let $\C$ be an abelian category.
   \end{tikzcd}$$
   of $\C$, $X$ is an object of $\A$ if and only if both $X^\prime$ and $X^{\prime\prime}$ are.
 \end{defn}
+
+Denote by $\Tors$ (resp. $\tors$) the Serre subcategory of torsion modules (resp. finite), where a module $M$ is called torsion if
+$$\tau(M) = \left\{m \in M \;\middle\vert\; xA_{\geq s} = 0\ \text{for some}\ s\right\} = M$$
+
+\section{Quotient Categories}
+Throughout, let $\C$ be an abelian category.
 
 \begin{defn}
   Let $X$ be an object of $\C$.
@@ -70,6 +97,52 @@ Throughout, let $\C$ be an abelian category.
 \end{rmk}
 
 \begin{defn}
+  Given an object $X$ of $\C$, an essential extension is a monomorphism $i \colon X \rightarrow E$ such that for any non-zero subobject $E^\prime \rightarrow E$, $E \cap X$ is non-zero.
+  
+  If $E$ is an injective object, then we say that $i$ is an injective envelope/hull.
+\end{defn}
+
+\begin{prop}
+  Let $f : X \rightarrow Y$ be a morphism of $\C$.
+  The following are equivalent
+  \begin{enumerate}
+  \item
+    For any subobject $Y^\prime \rightarrow Y$, in the pullback diagram
+    $$\begin{tikzcd}
+      f^{-1}(Y^\prime) \arrow{r}\arrow{d} & X\arrow{d}{f}\\
+      Y^\prime \arrow{r} & Y
+    \end{tikzcd}$$
+    $f^{-1}(Y^\prime) = 0$ implies $Y^\prime = 0$, and
+  \item
+    if $\zeta : Z \rightarrow X$ is a morphism such that $\ker{(f \circ \zeta)} = \ker{f}$, then $f$ is a monomorphism.
+  \end{enumerate}
+  In particular, $f$ is an essential extension if and only if whenever $f \circ\zeta$ is a monomorphism, $\zeta$ is a morphism.
+\end{prop}
+
+\begin{prop}
+  Let $Q$ be an object of $\C$.
+  The following are equivalent.
+  \begin{enumerate}[(a)]
+  \item
+    $Q$ is injective,
+  \item
+    every morphism $X \rightarrow Q$ lifts over monics,
+    $$\begin{tikzcd}
+      0 \arrow{r} & X\arrow{d} \arrow{r} & Y \arrow[dashed]{ld}{\exists}\\
+      & Q
+    \end{tikzcd}$$
+  \item
+    the presheaf of abelain groups $h_Q$ is exact, and
+  \item
+    every short exact sequence
+    $$\begin{tikzcd}
+      0 \arrow{r} & Q \arrow{r} & X \arrow{r} & X/Q \arrow{r} & 0
+    \end{tikzcd}$$
+    splits.
+  \end{enumerate}
+\end{prop}
+
+\begin{defn}
   We say that a subobject, $X^\prime$, of an object, $X$, is an $\A$-subobject of $X$ if $X^\prime$ is an object of $\A$.
   We say that an $\A$-subobject, $X^\prime$, is maximal if for every $\A$-subobject $X^{\prime\prime}$ we have a commutative diagram
   \begin{center}
@@ -86,7 +159,7 @@ Throughout, let $\C$ be an abelian category.
   Let $X$ and $Y$ be objects of $\C$.
   The collection of pairs of subobjects $(X^\prime, Y^\prime)$ such that $X/X^\prime$ and $Y^\prime$ are objects of $\A$ is directed by the relation
   $$(X^\prime, Y^\prime) \leq (X^{\prime\prime}, Y^{\prime\prime})$$
-  if $X^{\prime\prime} \leq X^\prime$ and $Y^\prime \leq Y^{\prime\prime}x$.
+  if $X^{\prime\prime} \leq X^\prime$ and $Y^\prime \leq Y^{\prime\prime}$.
   
   Moreover, the system of Abelian groups
   $$\Hom{\C}{X^\prime, Y/Y^\prime}$$
@@ -152,6 +225,101 @@ Throughout, let $\C$ be an abelian category.
 
 \begin{prop}
   The quotient category $\C/\A$ is an abelian category and $\pi$ is an exact functor.
+\end{prop}
+
+\section{Proj}
+Denote by $\QGr{A}$ (resp. $\qgr{A}$) the quotient category $\Gr{A}/\Tors$ (resp. $\gr{A}/\tors$).
+It can be shown that $\QGr{A}$ is an $\operatorname{Ab} 5$ category; see III.4 of Des Cat\`{e}gories Ab\'{e}lienne.
+We view $\QGr{A}$ as the analogue of quasi-coherent sheaves and $\qgr{A}$ as the analogue of coherent sheaves.
+
+\begin{defn}
+  \begin{enumerate}[(i)]
+  \item
+    Let $\C$, and $\C^\prime$ be $k$-linear abelian categories; that is categories enriched over $\Mod{k}$.
+    For $X$ and $X^\prime$ objects of $\C$ and $\C^\prime$, a morphism of pairs
+    $$(\C, X) \rightarrow (\C^\prime, X^\prime)$$
+    is a pair $(f, \theta)$ consisting of an isomorphism $\theta \colon f(X) \rightarrow X^\prime$ and a $k$-linear functor $f \colon \C \rightarrow \C^\prime$; that is, the canonical morphism
+    $$\begin{tikzcd}
+      \Hom{\C}{A,B}\arrow{r}& \Hom{\C^\prime}{f(A), f(B)}.
+    \end{tikzcd}$$
+    is $k$-linear.
+    \begin{enumerate}[(a)]
+    \item
+      A morphism of pairs is said to be an isomorphism if $f$ is an equivalence of categories.
+    \item
+      A morphism of pairs is said to be right exact if $f$ preserves direct limits.
+    \item
+      Two morphisms of pairs $(f,\theta)$ and $(f^\prime, \theta^\prime)$ are said to be equivalent if there is a natural isomorphism $\eta \colon f \rightarrow f^\prime$ compatible with $\theta$ and $\theta^\prime$.
+    \end{enumerate}
+    \item
+    Given two $k$-linear abelian categories $\C$ and $\C^\prime$ equipped with autoequivalences $s : \C \rightarrow \C$ and $s^\prime : \C^\prime \rightarrow \C^\prime$, and objects $X$ of $\C$ and $X^\prime$ of $\C$, a morphism of triples
+    $$(\C, X, s) \rightarrow (\C^\prime, X^\prime, s^\prime)$$
+    is a triple $(f, \theta, \mu)$ with $f : \C \rightarrow \C^\prime$ a $k$-linear functor, $\theta : f(X) \rightarrow X^\prime$ an isomorphism, and $\mu : f \circ s \rightarrow s^\prime \circ f$ a natural isomorphism.
+    \begin{enumerate}[(a)]
+    \item
+      A morphism of triples is said to be right exact if $f$ preserves direct limits.
+    \item
+      Two morphisms of triples $(f_1, \theta_1, \mu_1)$ and $(f_2, \theta_2, \mu_2)$ are said to be equivalent if there exists a natural isomorphism $\eta : f_1 \rightarrow f_2$ such that
+      $$\theta_1 = \theta_2 \circ \eta(A)$$
+      and for all objects $A$ of $\C$
+      $$(s^\prime \circ \eta(A)) \circ \mu_1 = \mu_2 \circ \eta(s(A)).$$
+    \item
+      A morphism of triples is said to be an isomorphism if $f$ is an equivalence of categories.
+    \end{enumerate}
+  \item
+    Let $s$ be the twist functor, $s(M) = M[1]$, $s^d(M) = M[d]$, which is an automorphism of $\Gr{A}$.
+    Since $\QGr{A}$ is a quotient category, it inherits this autoequivalence in an obvious way.
+    The general (resp. Noetherian) projective scheme of $A$, $\Proj{A}$ (resp $\proj{A}$), is the pair $(\QGr{A}, \pi(A))$ (resp. $(\qgr{A}, \pi(A))$).
+  \item
+    A morphism $F :\Proj{B} \rightarrow \Proj{A}$ is an equivalence class of right exact morphisms of pairs $(\QGr{A}, \pi(A)) \rightarrow (\QGr{B}, \pi(B))$.
+  \item
+    A morphism of general schemes is an equivalence class of morphisms of triples $(\QGr{A}, \pi(A), s_A) \rightarrow (\QGr{B}, \pi(B), s_B)$.
+  \end{enumerate}
+  Analogous definitions are made for $\proj{A}$ by substituting $\QGr{A}$ with $\qgr{A}$ as necessary.
+\end{defn}
+
+The next two propositions describe the morphisms of $\QGr{A}$ explicitly.
+
+\begin{prop}
+  Given two objects $M$, $N$ of $\Gr{A}$, 
+  $$\Hom{\QGr{A}}{\pi(M), \pi(N)} = \operatorname{colim}_{M^\prime}\Hom{\Gr{A}}{M^\prime, N/\tau(N)}.$$
+  
+  \begin{proof}
+    Consider the indexing category $\mathscr{I}$ with objects pairs of subobjects $(M^\prime, N^\prime)$ such that $M/M^\prime$ and $N^\prime$ are objects of $\Tors$ and morphisms induced by the relation $\leq$ defined above.
+    We note that because $N^\prime$ is a subobject of $\tau(N)$ for all $N^\prime$, the full subcategory, $\mathscr{J}$, with objects $(M^\prime, \tau(N))$ is cofinal.
+    Therefore
+    $$\Hom{\QGr{A}}{\pi(M), \pi(N)} = \operatorname{colim}_{\mathscr{I}}\Hom{\Gr{A}}{M^\prime, N/N^\prime} = \operatorname{colim}_{\mathscr{J}}\Hom{\Gr{A}}{M^\prime, N/\tau(N)}.$$
+  \end{proof}
+\end{prop}
+
+\begin{prop}
+  If $M$ is an object of $\qgr{A}$, then 
+  $$\Hom{\QGr{A}}{\pi(M), \pi(N)} = \lim_{n \rightarrow \infty} \Hom{\Gr{A}}{M_{\geq n}, N}$$
+    where 
+    $$M_{\geq n} = \bigoplus_{d \geq n} M_d.$$
+  \begin{proof}
+    Let $M^\prime \rightarrow M$ be a subobject with torsion quotient.
+    By definition, for each $m \in M$ there is an $n_m$ such that $mA_{\geq n_m} \subseteq M^\prime$.
+    Let $m_1, \ldots, m_s$ be a set of generators for $M$ and let $n = \max\left\{\deg(m_i) + n_{m_i} \;\middle\vert\; i = 1, \ldots , s\right\}$.
+    The subobject $M_{\geq n}$ has torsion quotient, $M/M_{\geq n}$, and we get the kernel diagram
+    $$\begin{tikzcd}
+      M_{\geq n} \arrow[bend left]{rr}{0} \arrow[dashed]{rd}{\exists !}\arrow{r} & M \arrow{r} & M/M^\prime\\
+      & M^\prime \arrow{u}
+    \end{tikzcd}$$
+    because for each $m \in M_{d}$ with $n \leq d$ we can write
+    $$m = a_1m_1 + \ldots a_sm_s$$
+    and by construction we have
+    $$n_{m_i} = (\deg(m_i) + n_{m_i}) - deg(m_i) \leq n - \deg(m_1) \leq d - \deg(m_1) = \deg(a_i).$$
+    With $\mathscr{I}$ as above, we see that for any object $(M^\prime, N^\prime)$ of $\mathscr{I}$ there exists some $n$ such that
+    $$(M^\prime, N^\prime) \leq (M_{\geq n}, N)$$
+    and hence the full subcategory $\mathscr{J}$ with objects $(M_{\geq n}, N)$ is cofinal.
+    Therefore
+    \begin{eqnarray*}
+      \Hom{\QGr{A}}{\pi(M), \pi(N)} &=& \operatorname{colim}_{\mathscr{I}}\Hom{\Gr{A}}{M^\prime, N^\prime}\\
+      &=& \operatorname{colim}_{\mathscr{J}}\Hom{\Gr{A}}{M_{\geq n}, N}\\
+      &=& \lim_{n \rightarrow \infty} \Hom{\Gr{A}}{M_{\geq n}, N}.
+    \end{eqnarray*}
+  \end{proof}
 \end{prop}
 
 \section{The Section Functor}
@@ -414,7 +582,7 @@ Throughout, let $\C$ be an abelian category.
 
   \begin{proof}
     First assume that $\pi$ has a right adjoint, $\omega \colon \C/\A \rightarrow \C$, and let $Y$ be an object of $\C$.
-    There are then two natural transformations of adjunction, $\varepsilon : \id_\C \rightarrow \omega\pi$ and $\eta : \pi\omega \rightarrow \id_{\C/\A}$, the latter being an isomorphism by Lemma~\ref{lem4}.
+    There are then two natural transformations of adjunction, $\varepsilon : \id_\C \rightarrow \omega\pi$ (unit) and $\eta : \pi\omega \rightarrow \id_{\C/\A}$ (counit), the latter being an isomorphism by Lemma~\ref{lem4}.
     It follows from the commutative diagram
     \begin{center}
       \begin{tikzcd}
@@ -538,7 +706,7 @@ Throughout, let $\C$ be an abelian category.
     $$\begin{tikzcd}
       0 \arrow{r} & \pi(Q) \arrow{r}{s} & \pi(X) \arrow{r}{\coker{s}} & \pi(X/Q) \arrow{r} & 0
     \end{tikzcd}$$
-    it is enough to show that $s$ is a section; that is there exists a morphism $r \colon \pi(X) \rightarrow \pi(Q)$ such that $r \circ s = \id_{\pi(Q)}$.
+    it is enough to show that $s$ is a section; that is, there exists a morphism $r \colon \pi(X) \rightarrow \pi(Q)$ such that $r \circ s = \id_{\pi(Q)}$.
     We can lift $s$ to a morphism 
     $$\begin{tikzcd}
       0 \arrow{r} & K \arrow{r}{\ker{t}} & Q^\prime \arrow{r}{t} & X/X^\prime
@@ -732,9 +900,24 @@ Throughout, let $\C$ be an abelian category.
     \end{proof}
 \end{cor}
 
+\begin{prop}
+  Let $A$ be a right noetherian $\Z_{\geq 0}$ graded algebra over a commutative noetherian ring, $k$.
+  If $i \in \Hom{\Gr{A}}{M, N}$ is an essential extension, then
+  \begin{enumerate}[(a)]
+  \item
+    the right bounds of $N$ and $M$ are equal; that is, if there exists some $0 \ll n$ such that $M_d = 0$ for all $n \leq d$, then $N_d = 0$ for all $n \leq d$, and
+  \item
+    if $M$ is torsion, then so is $N$.
+  \end{enumerate}
+  \begin{proof}
+    See Proposition 2.2 on page 234 of {\it Noncommutative Projective Schemes}.
+  \end{proof}
+\end{prop}
+
 \begin{rmk}
-  When $A$ is a right Noetherian $\N$-graded ring, $\C = \operatorname{Gr}-A$, and $\A = \operatorname{Tors}$, then $\A$ is closed under essential extensions and hence under injective envelopes.
-  In particular, every injective module, $Q$, decomposes as $\tau(Q) \oplus Q/\tau(Q)$ with $Q/\tau(Q)$ an $\A$-closed object, and $\omega\pi(Q) \cong Q/\tau(Q)$.
+  In this case, every object $M$ of $\Gr{A}$ has a maximal $\Tors$-subobject, $\tau(M)$, and hence $\Tors$ is a localizing subcategory.
+  In particular, every injective object, $Q$, of $\Gr{A}$ decomposes as $\tau(Q) \oplus Q/\tau(Q)$ with $Q/\tau(Q)$ a $\Tors$-closed object, and $\omega\pi(Q) \cong Q/\tau(Q)$ and
+  the injective objects of $\QGr{A}$ are precisely $\pi(Q/Q(\tau))$ for $Q$ an injective object of $\Gr{A}$.
 \end{rmk}
 
 \section{Cohomology}
@@ -764,42 +947,158 @@ Throughout, let $\C$ be an abelian category.
     since for $\varphi \in \Hom{\C/\A}{\pi(X), Q^n}$ we have
     $$h^X(\omega\pi(d^n)) \circ \Phi^n(\varphi) = \omega\pi(d^n) \circ \omega(\varphi) \circ \varepsilon_X = \omega(\pi(d^n) \circ \varphi) \circ \varepsilon_X = \Phi^{n+1} \circ h^X(\pi(d^n))(\varphi).$$
     Therefore 
-    $$\Ext{i}{\C/\A}{\pi(X), \pi(Y)} \cong H^i\left(\Hom{\C/\A}{\pi(X), \pi(Q^\cdot)}\right) \cong H^i\left(\Hom{\C}{X, \omega\pi(Q^\cdot)}\right) \cong R^i \Hom{\C}{X, \omega\pi(Y)}$$
+    $$\Ext{i}{\C/\A}{\pi(X), \pi(Y)} \cong h^i\left(\Hom{\C/\A}{\pi(X), \pi(Q^\cdot)}\right) \cong h^i\left(\Hom{\C}{X, \omega\pi(Q^\cdot)}\right) \cong R^i \Hom{\C}{X, \omega\pi(Y)}$$
   \end{proof}
 \end{cor}
 
-From here on, let $A$ be a right Noetherian $\N$-graded algebra over a commutative Noetherian ring $k$, $\C = \operatorname{Gr}-A$, $\A = \operatorname{Tors}$, $\C/\A = \operatorname{QGr}-A$.
+From here on, let $A$ be a right Noetherian $\Z_{\geq 0}$-graded algebra over a commutative Noetherian ring $k$, $\C = \Gr{A}$, $\A = \Tors$, $\C/\A = \QGr{A}$.
 
 \begin{defn}
   Define the graded modules
-  $$\HOM{\C}{M,N} = \bigoplus_{d \in \Z} \Hom{\C}{M, N[d]}$$ 
+  $$\HOM{\Gr{A}}{M,N} = \bigoplus_{d \in \Z} \Hom{\Gr{A}}{M, N[d]}$$ 
   and 
-  $$\HOM{\C/\A}{\pi(M), \pi(N)} = \bigoplus_{d \in \Z} \Hom{\C/A}{\pi(M), \pi(N)[d]}.$$
+  $$\HOM{\QGr{A}}{\pi(M), \pi(N)} = \bigoplus_{d \in \Z} \Hom{\Gr{A}/A}{\pi(M), \pi(N)[d]}.$$
 \end{defn}
 
 
 \begin{prop}\label{prop2}
-  The right derived functors of $\HOM{\C}{M,N}$ and $\HOM{\C/\A}{\pi(M), \pi(N)}$ are
-  $$\EXT{i}{\C}{M,N} = \bigoplus_{d \in \Z}\Ext{i}{\C}{M,N[d]}$$
+  The right derived functors of $\HOM{\Gr{A}}{M,N}$ and $\HOM{\QGr{A}}{\pi(M), \pi(N)}$ are
+  $$\EXT{i}{\Gr{A}}{M,N} = \bigoplus_{d \in \Z}\Ext{i}{\Gr{A}}{M,N[d]}$$
   and
-  $$\EXT{i}{\C/\A}{\pi(M),\pi(N)} = \bigoplus_{d \in \Z}\Ext{i}{\C/\A}{\pi(M),\pi(N)[d]}.$$
+  $$\EXT{i}{\QGr{A}}{\pi(M),\pi(N)} = \bigoplus_{d \in \Z}\Ext{i}{\QGr{A}}{\pi(M),\pi(N)[d]}.$$
   Moreover, for $Q^\cdot$ an injective resolution of $N$, 
-  $$\EXT{i}{\C/\A}{\pi(M), \pi(N)} \cong H^i\left(\HOM{\C}{M, \omega\pi(Q^\cdot)}\right) \cong R^i\HOM{\C}{M, \omega\pi(N)}.$$
+  $$\EXT{i}{\QGr{A}}{\pi(M), \pi(N)} \cong h^i\left(\HOM{\Gr{A}}{M, \omega\pi(Q^\cdot)}\right) \cong R^i\HOM{\Gr{A}}{M, \omega\pi(N)}.$$
   
   \begin{proof}
-    The first is a consequence of the shift operator $s$ being an autoequivalence of $\C$ and cohomology being an additive functor.
+    The first is a consequence of the shift operator, $s$, being an automorphism of $\Gr{A}$ and cohomology being an additive functor.
     In particular, if $Q^\cdot$ is an injective resolution of $N$, then we have
-    $$H^i(\HOM{\C}{M, s^d(Q^\cdot)} = H^i\left(\bigoplus_{d \in \Z}\Hom{\C}{M, s^d(Q^\cdot)}\right) \cong \bigoplus_{d \in \Z} H^i\left(\Hom{\C}{M, s^d(Q^\cdot)}\right) = \bigoplus_{d \in \Z} \Ext{i}{\C}{M, N[d]}.$$
-    Similarly, for $\C/\A$ we have
     \begin{eqnarray*}
-      H^i(\HOM{\C/\A}{M, s^d(Q^\cdot)} &=& H^i\left(\bigoplus_{d \in \Z}\Hom{\C/\A}{M, s^d(Q^\cdot)}\right)\\ 
-      &\cong& \bigoplus_{d \in \Z} H^i\left(\Hom{\C/\A}{M, s^d(Q^\cdot)}\right)\\
-      &=& \bigoplus_{d \in \Z} \Ext{i}{\C/\A}{M, N[d]}.\\
-      &\cong& \bigoplus_{d \in \Z} R^i\Hom{\C}{M, \omega\pi(N)[d]}.\\
-      &\cong& \bigoplus_{d \in \Z} H^i(\Hom{\C}{M, \omega\pi(Q^\cdot)[d]}\\
-      &\cong& H^i\left(\bigoplus_{d \in \Z}\Hom{\C}{M, \omega\pi(Q^\cdot)[d]}\right)\\
-      &=& H^i\left(\HOM{\C}{M, \omega\pi(Q^\cdot)}\right)
+      h^i(\HOM{\Gr{A}}{M, Q^\cdot} &=& h^i\left(\bigoplus_{d \in \Z}\Hom{\Gr{A}}{M, (Q^\cdot)[d]}\right)\\
+      &\cong& \bigoplus_{d \in \Z} h^i\left(\Hom{\Gr{A}}{M, (Q^\cdot)[d]}\right)\\
+      &=& \bigoplus_{d \in \Z} \Ext{i}{\Gr{A}}{M, N[d]}.
+      \end{eqnarray*}
+
+    Similarly, for $\QGr{A}$ we have
+    \begin{eqnarray*}
+      h^i(\HOM{\QGr{A}}{M, (Q^\cdot)[d]} &=& h^i\left(\bigoplus_{d \in \Z}\Hom{\QGr{A}}{M,(Q^\cdot[d])}\right)\\ 
+      &\cong& \bigoplus_{d \in \Z} h^i\left(\Hom{\QGr{A}}{M, (Q^\cdot[d])}\right)\\
+      &=& \bigoplus_{d \in \Z} \Ext{i}{\QGr{A}}{M, N[d]}.\\
+      &\cong& \bigoplus_{d \in \Z} R^i\Hom{\Gr{A}}{M, \omega\pi(N)[d]}.\\
+      &\cong& \bigoplus_{d \in \Z} h^i(\Hom{\Gr{A}}{M, \omega\pi(Q^\cdot)[d]}\\
+      &\cong& h^i\left(\bigoplus_{d \in \Z}\Hom{\Gr{A}}{M, \omega\pi(Q^\cdot)[d]}\right)\\
+      &=& h^i\left(\HOM{\Gr{A}}{M, \omega\pi(Q^\cdot)}\right)
     \end{eqnarray*}
+  \end{proof}
+\end{prop}
+
+\begin{prop}
+  For any object $M$ of $\Gr{A}$, the canonical morphism
+  $$\begin{tikzcd}
+    \Hom{\Gr{A}}{A, M} \arrow{r} & M_0\\
+    \varphi \arrow[mapsto]{r} & \varphi(1)
+  \end{tikzcd}$$
+  is an isomorhism.
+  In particular, taking degree zero is an exact because $A$ is a projective object in $\Gr{A}$ and, moreover, $\Hom{\Gr{A}}{A, M[d]} \cong M_d$.
+\end{prop}
+
+\begin{defn}
+  Let $M$ be an object of $\Gr{A}$ and $Q^\cdot$ an injective resolution.
+  Define the cohomology functors
+  $$H^i(\pi(M)) = \Ext{i}{\QGr{A}}{\pi(A), \pi(M)}
+  \cong h^i(\Hom{\Gr{A}}{A, \omega\pi(Q^\cdot)})
+  \cong h^i(\omega\pi(Q^\cdot)_0)
+  \cong h^i(\omega\pi(Q^\cdot))_0,$$
+  and note that the last isomorphism follows from the fact that taking degree 0 is an exact functor.
+  Define the graded cohomology functors
+  $$\underline{H}^i(\pi(M)) = \bigoplus_{d \in \Z} H^i(\pi(M)[d])
+  \cong \bigoplus_{d \in \Z} h^i(\omega\pi(Q^\cdot))_d
+  \cong h^i(\omega\pi(Q^\cdot)).$$
+\end{defn}
+
+\begin{rmk}
+  Note that for $M$ an object of $\Gr{A}$ we have
+  $$H^0(\pi(M)) = \Ext{0}{\QGr{A}}{\pi(A), \pi(M)} \cong R^0\Hom{\Gr{A}}{A, \omega\pi(M)} = \Hom{\Gr{A}}{A, \omega\pi(M)} \cong \omega\pi(M)_0$$
+  and so it follows that $\underline{H}^0(\pi(M)) \cong \omega\pi(M)$.
+\end{rmk}
+
+\begin{prop}
+  Let $M$ be an object of $\Gr{A}$ and let $N$ be an object of $\QGr{A}$.
+  Then
+  \begin{enumerate}[(a)]
+  \item
+    For $i \geq 0$
+    $$\EXT{i}{\QGr{A}}{\pi(N), \pi(M)} \cong \lim_{n \rightarrow \infty} \EXT{i}{\Gr{A}}{N_{\geq n}, M}$$
+    and
+    $$\underline{H}^i(\pi(M)) \cong \lim_{n \rightarrow \infty} \EXT{i}{\Gr{A}}{A_{\geq n}, M}.$$
+  \item
+    There is an exact sequence
+    $$\begin{tikzcd}
+      0 \arrow{r} & \tau(M) \arrow{r} & M \arrow{r} & \underline{H}^0(\pi(M)) \arrow{r} & \lim_{n \rightarrow \infty}\EXT{1}{\Gr{A}}{A/A_{\geq n}, M} \arrow{r} & 0
+    \end{tikzcd}$$
+    and for $i \geq 1$, 
+    $$\underline{H}^i(\pi(M)) \cong \lim_{n \rightarrow \infty}\EXT{i+1}{\Gr{A}}{A/A_{\geq n}, M} \cong h^{i + 1}(\tau(Q^\cdot))$$
+    for $Q$ an injective resolution of $M$.
+  \item
+    $\underline{H}^i(\pi(M))$ is an object of $\Tors$ if $i \geq 1$.
+  \item
+    $\EXT{i}{\QGr{A}}{\pi(N), \pi(M)}$ and $\underline{H}^i(\pi(M))$ are compatible with direct limits of objects $\pi(M)$.
+  \end{enumerate}
+
+  \begin{proof}
+    \begin{enumerate}[(a)]
+    \item
+      Let $Q^\cdot$ be an injective resolution of $M$.
+      For each $0 \leq i$ and for each $d$ we have 
+      \begin{eqnarray*}
+        \lim_{n \rightarrow \infty}\Hom{\Gr{A}}{N_{\geq n}, Q^i[d]} &\cong& 
+        %\lim_{n \rightarrow \infty}\Hom{\Gr{A}}{N_{\geq n}, \tau(Q^i)[d] \oplus Q^i/\tau(Q^i)[d]}\\
+        %&\cong& \lim_{n \rightarrow \infty}\Hom{\Gr{A}}{N_{\geq n}, \tau(Q^i)[d]} \oplus \lim_{n \rightarrow \infty} \Hom{\Gr{A}}{N_{\geq n},Q^i/\tau(Q^i)[d]}\\
+        %&\cong& \Hom{\QGr{A}}{\pi(N), \pi(\tau(Q^i))[d]} \oplus \Hom{\QGr{A}}{\pi(N), \pi(Q^i/\tau(Q^i)[d])}\\
+        %&\cong& 0 \oplus \Hom{\QGr{A}}{\pi(N), \pi(Q^i)[d]}\\
+        \Hom{\QGr{A}}{\pi(N), \pi(Q^i)[d]}.
+      \end{eqnarray*}
+    \end{enumerate}
+    Since $\Gr{A}$ is an $\operatorname{Ab} 5$ category we have
+    \begin{eqnarray*}
+      \lim_{n \rightarrow \infty}\HOM{\Gr{A}}{N_{\geq n}, Q^i} &=&
+      \lim_{n \rightarrow \infty}\bigoplus_{d \in \Z} \Hom{\Gr{A}}{N_{\geq n}, Q^i[d]}\\
+      &\cong& \bigoplus_{d \in \Z} \lim_{n \rightarrow \infty}\Hom{\Gr{A}}{N_{\geq n}, Q^i[d]}\\
+      &\cong& \bigoplus_{d \in \Z} \Hom{\QGr{A}}{\pi(N), \pi(Q^i)[d]}\\
+      &=&\HOM{\QGr{A}}{\pi(N), \pi(Q^i)}.
+    \end{eqnarray*}
+    Next we note that
+    $$\left(\lim_{n \rightarrow \infty} \HOM{\Gr{A}}{N_{\geq n}, Q^\cdot}\right)_i \cong \lim_{n \rightarrow \infty}\HOM{\Gr{A}}{N_{\geq n}, Q^i} \cong \HOM{\QGr{A}}{\pi(N), \pi(Q^i)}$$ and hence
+    \begin{eqnarray*}
+      \lim_{n \rightarrow \infty} \EXT{i}{\Gr{A}}{N_{\geq n}, M} &=& 
+      \lim_{n \rightarrow \infty} h^i(\HOM{\Gr{A}}{N_{\geq n}, Q^\cdot})\\
+      &\cong& h^i\left(\lim_{n \rightarrow \infty} \HOM{\Gr{A}}{N_{\geq n}, Q^\cdot}\right)\\
+      &\cong& h^i\left(\HOM{\QGr{A}}{\pi(N), \pi(Q^\cdot)}\right)\\
+      &\cong& \EXT{i}{\QGr{A}}{\pi(N), \pi(M)}
+    \end{eqnarray*}
+    That $\underline{H}^i(\pi(M)) \cong \lim_{n \rightarrow \infty}\EXT{i}{\Gr{A}}{A_{\geq n}, M}$ follows by taking $N = A$.
+  \item
+    The short exact sequence
+    $$\begin{tikzcd}
+      0 \arrow{r} & A_{\geq n} \arrow{r} & A \arrow{r} & A/A_{\geq n} \arrow{r} & 0
+    \end{tikzcd}$$
+    gives rise to a long exact sequence
+    $$\begin{tikzcd}
+      0 \arrow{r} & \HOM{\Gr{A}}{A/A_{\geq n}, M} \arrow{r} & M \arrow{r} & \HOM{\Gr{A}}{A_{\geq n}, M}\arrow[rounded corners,out = -5, in=170]{lld}\\
+      & \EXT{1}{\Gr{A}}{A/A_{\geq n}, M} \arrow{r} & \Ext{1}{\Gr{A}}{A, M} = 0 \arrow{r} & \ldots
+  \end{tikzcd}$$
+    We see that 
+    \begin{eqnarray*}
+      \lim_{n \rightarrow \infty}\HOM{\Gr{A}}{A_{\geq n}, M} &\cong& 
+      \HOM{\QGr{A}}{\pi(A), \pi(M)}\\
+      &\cong& \HOM{\Gr{A}}{A, \omega\pi(M)}\\
+      &\cong& \omega\pi(M)\\
+      &\cong& \underline{H}^0(\pi(M))
+    \end{eqnarray*}
+    and so by taking limits we get the exact sequence
+    $$\begin{tikzcd}
+      0 \arrow{r} & \lim_{n \rightarrow \infty}\HOM{\Gr{A}}{A/A_{\geq n}, M} \arrow{r} & M \arrow{r} & \underline{H}^0(\pi(M))\arrow{r} & \lim_{n \rightarrow \infty}\EXT{1}{\Gr{A}}{A/A_{\geq n}, M} \arrow{r} & 0
+  \end{tikzcd}$$
+    It remains only to show that $\lim_{n \rightarrow \infty}\HOM{\Gr{A}}{A/A_{\geq n}, M} \cong \tau(M)$.
   \end{proof}
 \end{prop}
 \end{document}
