@@ -34,21 +34,21 @@ $$\Hom{\Gr{A}}{M,N} = \left\{f \in \Hom{A}{M,N} \;\middle\vert\; f(M_d) \subsete
 This is a Grothendieck category with injective envelopes.
 That is,
 \begin{itemize}
-  \item
-    $\Gr{A}$ is abelian (zero object, finite biproducts, all kernels and cokernels, monics and epics are normal--every monic is a kernel and every epic is a cokernel),
-  \item
-    every family of objects has a direct limit/filtered colimit,
-  \item
-    the presheaf $h^A \colon \Gr{A} \rightarrow \Sets$ is faithful; for any morphism $M \rightarrow N$ the morphism
-    $$\begin{tikzcd}
-      \Hom{\Gr{A}}{M, N} \arrow{r}& \Hom{\Sets}{h^A(M), h^A(N)}\\
-      f \arrow[mapsto]{r} & h^A(f)
-    \end{tikzcd}$$
-%    $$\begin{tikzcd}
-%      \Hom{\Gr{A}}{A, M} \arrow{r} & \Hom{\Gr{A}}{A, N}\\
-%      A \rightarrow M \arrow[mapsto]{r} & A \rightarrow M \rightarrow N
-%    \end{tikzcd}$$
-    is injective.
+\item
+  $\Gr{A}$ is abelian (zero object, finite biproducts, all kernels and cokernels, monics and epics are normal--every monic is a kernel and every epic is a cokernel),
+\item
+  every family of objects has a direct limit/filtered colimit,
+\item
+  the presheaf $h^A \colon \Gr{A} \rightarrow \Sets$ is faithful; for any morphism $M \rightarrow N$ the morphism
+  $$\begin{tikzcd}
+    \Hom{\Gr{A}}{M, N} \arrow{r}& \Hom{\Sets}{h^A(M), h^A(N)}\\
+    f \arrow[mapsto]{r} & h^A(f)
+  \end{tikzcd}$$
+  %    $$\begin{tikzcd}
+  %      \Hom{\Gr{A}}{A, M} \arrow{r} & \Hom{\Gr{A}}{A, N}\\
+  %      A \rightarrow M \arrow[mapsto]{r} & A \rightarrow M \rightarrow N
+  %    \end{tikzcd}$$
+  is injective.
 \end{itemize}
 
 \begin{defn}
@@ -194,12 +194,12 @@ Throughout, let $\C$ be an abelian category.
   \end{tikzcd}$$
   Then
   \begin{enumerate}[(i)]
-    \item
-      $\pi(f) = 0$ if and only if $f(X)$ is an object of $\A$,
-    \item
-      $\pi(f)$ is a monomorphism if and only if $K$ is an object of $\A$, and
-    \item
-      $\pi(f)$ is an epimorphism if and only if $C$ is an object of $\A$.
+  \item
+    $\pi(f) = 0$ if and only if $f(X)$ is an object of $\A$,
+  \item
+    $\pi(f)$ is a monomorphism if and only if $K$ is an object of $\A$, and
+  \item
+    $\pi(f)$ is an epimorphism if and only if $C$ is an object of $\A$.
   \end{enumerate}
 \end{lem}
 
@@ -251,7 +251,7 @@ We view $\QGr{A}$ as the analogue of quasi-coherent sheaves and $\qgr{A}$ as the
     \item
       Two morphisms of pairs $(f,\theta)$ and $(f^\prime, \theta^\prime)$ are said to be equivalent if there is a natural isomorphism $\eta \colon f \rightarrow f^\prime$ compatible with $\theta$ and $\theta^\prime$.
     \end{enumerate}
-    \item
+  \item
     Given two $k$-linear abelian categories $\C$ and $\C^\prime$ equipped with autoequivalences $s : \C \rightarrow \C$ and $s^\prime : \C^\prime \rightarrow \C^\prime$, and objects $X$ of $\C$ and $X^\prime$ of $\C$, a morphism of triples
     $$(\C, X, s) \rightarrow (\C^\prime, X^\prime, s^\prime)$$
     is a triple $(f, \theta, \mu)$ with $f : \C \rightarrow \C^\prime$ a $k$-linear functor, $\theta : f(X) \rightarrow X^\prime$ an isomorphism, and $\mu : f \circ s \rightarrow s^\prime \circ f$ a natural isomorphism.
@@ -293,10 +293,10 @@ The next two propositions describe the morphisms of $\QGr{A}$ explicitly.
 \end{prop}
 
 \begin{prop}
-  If $M$ is an object of $\qgr{A}$, then 
+  If $M$ is an object of $\gr{A}$, then 
   $$\Hom{\QGr{A}}{\pi(M), \pi(N)} = \lim_{n \rightarrow \infty} \Hom{\Gr{A}}{M_{\geq n}, N}$$
-    where 
-    $$M_{\geq n} = \bigoplus_{d \geq n} M_d.$$
+  where 
+  $$M_{\geq n} = \bigoplus_{d \geq n} M_d.$$
   \begin{proof}
     Let $M^\prime \rightarrow M$ be a subobject with torsion quotient.
     By definition, for each $m \in M$ there is an $n_m$ such that $mA_{\geq n_m} \subseteq M^\prime$.
@@ -543,7 +543,7 @@ The next two propositions describe the morphisms of $\QGr{A}$ explicitly.
       \begin{center}
         \begin{tikzcd}
           \Hom{\C}{X, \omega\pi(Y)} \arrow{r}{\sim} \arrow{d}{h_{\omega\pi(Y)}(f)} & \Hom{\C/\A}{\pi(X), \pi(Y)} \arrow{d}{h_{\pi(Y)}(\pi(f))}\\
-            \Hom{\C}{Z,\omega\pi(Y)} \arrow{r}{\sim} & \Hom{\C/\A}{\pi(Z), \pi(Y)}
+          \Hom{\C}{Z,\omega\pi(Y)} \arrow{r}{\sim} & \Hom{\C/\A}{\pi(Z), \pi(Y)}
         \end{tikzcd}
       \end{center}
       which shows that $h_{\pi(Y)}{\pi(F)}$ is an isomorphism.
@@ -720,7 +720,7 @@ The next two propositions describe the morphisms of $\QGr{A}$ explicitly.
     Since $Q$ was assumed to be injective, we have the lift
     $$\begin{tikzcd}
       0 \arrow{r} & Q^\prime \arrow{r}{t} \arrow{d}{i} & X/X^\prime\arrow[dashed]{ld}{\exists r}\\
-        & Q.
+      & Q.
     \end{tikzcd}$$
     If we let $q \colon X \rightarrow X/X^\prime$ be the canonical projection, then we have the diagram
     $$\begin{tikzcd}
@@ -750,7 +750,7 @@ The next two propositions describe the morphisms of $\QGr{A}$ explicitly.
     $$\begin{tikzcd}
       E^\prime \times_E X \arrow{r}{j^\prime}\arrow{d}{i^\prime} & X\arrow{d}{i}\\
       E^\prime \arrow{r}{j} & E
-      \end{tikzcd}$$
+    \end{tikzcd}$$
     and the morphism $i^\prime$ gives $E^\prime \times_E X$ $E$-subobject structure, hence is an object of $\A$.
     Since $X$ is $\A$-torsionfree by assumption, $E^\prime \times_E X = 0$ and thus $E^\prime$ is also zero because $i$ is essential.
     
@@ -811,93 +811,93 @@ The next two propositions describe the morphisms of $\QGr{A}$ explicitly.
 \end{prop}
 
 \begin{cor}\label{cor2}
-    Assume that $\A$ is a localizing subcategory and that $\C$ has injective envelopes.
-    If the injective envelope of an object of $\A$ is a morphism of $\A$, then
+  Assume that $\A$ is a localizing subcategory and that $\C$ has injective envelopes.
+  If the injective envelope of an object of $\A$ is a morphism of $\A$, then
+  \begin{enumerate}[(i)]
+  \item\label{cor2.1}
+    the maximal subobject of an injective is injective and thus the $\A$-envelope of an injective, $Q$, is $Q \rightarrow Q/Q_\A$, where $Q_\A$ is the maximal $\A$-subobject, 
+  \item\label{cor2.2}
+    $\pi$ preserves injectives, and
+    %      \item
+    %        $\pi$ preserves injective envelopes.
+  \end{enumerate}
+  \begin{proof}
     \begin{enumerate}[(i)]
-      \item\label{cor2.1}
-        the maximal subobject of an injective is injective and thus the $\A$-envelope of an injective, $Q$, is $Q \rightarrow Q/Q_\A$, where $Q_\A$ is the maximal $\A$-subobject, 
-      \item\label{cor2.2}
-        $\pi$ preserves injectives, and
-%      \item
-%        $\pi$ preserves injective envelopes.
+    \item
+      Let $Q$ be an injective object of $\C$ and $i \colon Q_\A \rightarrow Q$ its maximal $\A$-subobject.
+      Given an injective envelope $j \colon Q_\A \rightarrow E$, we have the lift
+      $$\begin{tikzcd}
+        0 \arrow{r} & Q_\A \arrow{d}{i} \arrow{r}{j} & E \arrow[dashed]{ld}{\exists k}\\
+        & Q
+      \end{tikzcd}$$
+      with $k$ a monomorphism because $j$ is essential.
+      Since $E$ is assumed to be an object of $\A$, $k$ factors through $i$ uniquely,
+      $$\begin{tikzcd}
+        E \arrow{rd}{k}\arrow[dashed]{r}{\exists !\varphi} & Q_\A\arrow{d}{i}\\
+        & Q.
+      \end{tikzcd}$$
+      So we see that
+      $$k \circ j \circ \varphi = i \circ \varphi = k = k \circ id_E$$
+      implies that  $j \circ \varphi = id_E$
+      and
+      $$i \circ \varphi \circ j = k \circ j = i = i \circ id_{Q_\A}$$
+      implies $\varphi \circ j = id_{Q_\A}$.
+      Hence $\varphi$ is an isomorphism.
+      Therefore by Proposition~\ref{prop1} we have the short exact sequence
+      $$\begin{tikzcd}
+        0 \arrow{r} & Q_\A \arrow{r} & Q_\A \oplus Q/Q_\A \arrow{r} & Q/Q_\A \arrow{r} & 0
+      \end{tikzcd}$$
+      and $Q/Q_\A$ is $\A$-closed, as desired.
+    \item
+      If $Q$ is an injective object of $\C$, then by the above $Q/Q_\A$ is $\A$-closed and hence $\pi(Q) \cong \pi(Q/Q_\A)$ is injective by Lemma~\ref{lem6}.
+      %      \item
+      %        Given an object $X$, let $i \colon X_\A \rightarrow X$ be the maximal $\A$-subobject of $X$, let $k \colon X \rightarrow E$ be an injective envelope, and let $j \colon E_\A \rightarrow E$ be the maximal $\A$-subobject of $E$.
+      %        We have already shown that $\pi(Q)$ is injective, so we need only show that $\pi(i)$ is an essential extension.
+      
+      %        It's clear that $k^{-1}(E_\A) \cong X_\A$, so we have an induced monomorphism 
+      %        $$\begin{tikzcd}
+      %          0 \arrow{r} & X_\A \arrow{r}{i}\arrow{d}{k^\prime} & X \arrow{r}{p}\arrow{d}{k} & X/X_\A \arrow{r}\arrow[dashed]{d}{\exists !h} & 0\\
+      %          0 \arrow{r} & E_\A \arrow{r}{j} & E \arrow{r}{q} & E/E_\A \arrow{r} & 0
+      %        \end{tikzcd}$$
+      %Since the left-most square is Cartesian if and only if the sequence
+      %$$\begin{tikzcd}
+      %  0 \arrow{r} & X_\A \arrow{r}{i} & X \arrow{r}{q \circ k} & E
+      %\end{tikzcd}$$
+      %is exact, we note that $i = \ker{(q \circ k)}$.
+      
+      %        Suppose that we are given a morphism $f \colon E/E_\A \rightarrow Y$ such that $f \circ h$ is monic and consider $\ker{f} \colon K \rightarrow E/E_\A$.
+      %        We have the pullback
+      %        $$\begin{tikzcd}
+      %          E_\A \cap q^{-1}(K) \arrow{d}\arrow{r}{\ker{(q \circ \ker{(f \circ q)})}} & q^{-1}(K) \arrow{d}{\ker{(f \circ q)}} \arrow{r}{q^\prime} & K\arrow{d}{\ker{f}}\\
+      %          E_\A \arrow{r}{j} & E \arrow{r}{q} & E/E_\A \arrow{r}{f} & Y
+      %        \end{tikzcd}$$
+      %        Then we see that $h^{-1}(K) \cong K \cap X/X_\A = 0$, so it follows that 
+      %        $$(q \circ k)^{-1}(K) = (h \circ p)^{-1}(K) \cong p^{-1}(h^{-1}(K)) = p^{-1}(0) \cong X_\A.$$
+      %        Consider
+      %        $$\begin{tikzcd}
+      %          X_\A \arrow{r}\arrow{d}{i} & q^{-1}(K) \arrow{r}\arrow{d} & K \arrow{d}{\ker{f}}\\
+      %          X \arrow[bend right]{rr}{h \circ p}\arrow{r}{k} & E \arrow{r}{q} & E/E_\A \arrow{r}{f} & Y
+      %        \end{tikzcd}$$
+      %Given a non-zero subobject \begin{tikzcd} 0 \arrow{r} & Z \arrow{r}{\varphi} & E/E_\A\end{tikzcd}, we have
+      %  $$p^{-1}(h^{-1}(Z)) \cong (h \circ p)^{-1}(Z) =  (q \circ k)^{-1}(Z) \cong k^{-1}(q^{-1}(Z))$$
+      %  and the pullback diagram
+      %  $$\begin{tikzcd}
+      %    0 \arrow{r} & X_\A \cap k^{-1}(q^{-1}(Z)) \arrow{d}{\varphi^{\prime\prime\prime}}\arrow{r}{i^\prime} & k^{-1}(q^{-1}(Z)) \arrow{r}{k^\prime}\arrow{d}{\varphi^{\prime\prime}} & q^{-1}(Z) \arrow{r}{q^\prime}\arrow{d}{\varphi^\prime} & Z \arrow{d}{\varphi}\\
+      %    0 \arrow{r} & X_\A \arrow{r}{i} & X \arrow{r}{k} & E \arrow{r}{q} & E/E_\A
+      %  \end{tikzcd}$$
+      %  with all squares cartesian.
+      %  Since $\varphi$ is not zero, clearly $Z$ is not an object of $\A$ and hence, because $q^\prime$ is epic, it follows that $q^{-1}(Z)$ is not an object of $\A$.
+      %  As $k$ is an essential extension, $\varphi^{\prime\prime} : k^{-1}(q^{-1}(Z)) \rightarrow X$ is a non-zero subobject of $X$.
+      
+      %  that is not $X_\A$ and hence it must be that $h^{-1}(Z)$ is also a non-zero subobject of $X/X_\A$.
+      %  This implies that $h$ is an essential extension.
+      %  Therefore $\pi(i)$ is an essential extension by Lemma~\ref{lem5}, as desired.
+      %  $$\begin{tikzcd}
+      %    p^{-1}(h^{-1}(Z)) \arrow{r}{p^\prime}\arrow{d}{\psi^{\prime}} & h^{-1}(Z) \arrow{r}{h^\prime}\arrow{d}{\psi} & Z \arrow{d}{\varphi}\\
+      %    X \arrow{r}{p} & X/X_\A \arrow{r}{h} & E/E_\A
+      %  \end{tikzcd}$$
     \end{enumerate}
-    \begin{proof}
-      \begin{enumerate}[(i)]
-      \item
-        Let $Q$ be an injective object of $\C$ and $i \colon Q_\A \rightarrow Q$ its maximal $\A$-subobject.
-        Given an injective envelope $j \colon Q_\A \rightarrow E$, we have the lift
-        $$\begin{tikzcd}
-          0 \arrow{r} & Q_\A \arrow{d}{i} \arrow{r}{j} & E \arrow[dashed]{ld}{\exists k}\\
-          & Q
-        \end{tikzcd}$$
-        with $k$ a monomorphism because $j$ is essential.
-        Since $E$ is assumed to be an object of $\A$, $k$ factors through $i$ uniquely,
-        $$\begin{tikzcd}
-          E \arrow{rd}{k}\arrow[dashed]{r}{\exists !\varphi} & Q_\A\arrow{d}{i}\\
-          & Q.
-        \end{tikzcd}$$
-        So we see that
-        $$k \circ j \circ \varphi = i \circ \varphi = k = k \circ id_E$$
-        implies that  $j \circ \varphi = id_E$
-        and
-        $$i \circ \varphi \circ j = k \circ j = i = i \circ id_{Q_\A}$$
-        implies $\varphi \circ j = id_{Q_\A}$.
-        Hence $\varphi$ is an isomorphism.
-        Therefore by Proposition~\ref{prop1} we have the short exact sequence
-        $$\begin{tikzcd}
-          0 \arrow{r} & Q_\A \arrow{r} & Q_\A \oplus Q/Q_\A \arrow{r} & Q/Q_\A \arrow{r} & 0
-        \end{tikzcd}$$
-        and $Q/Q_\A$ is $\A$-closed, as desired.
-      \item
-        If $Q$ is an injective object of $\C$, then by the above $Q/Q_\A$ is $\A$-closed and hence $\pi(Q) \cong \pi(Q/Q_\A)$ is injective by Lemma~\ref{lem6}.
-%      \item
-%        Given an object $X$, let $i \colon X_\A \rightarrow X$ be the maximal $\A$-subobject of $X$, let $k \colon X \rightarrow E$ be an injective envelope, and let $j \colon E_\A \rightarrow E$ be the maximal $\A$-subobject of $E$.
-%        We have already shown that $\pi(Q)$ is injective, so we need only show that $\pi(i)$ is an essential extension.
-        
-%        It's clear that $k^{-1}(E_\A) \cong X_\A$, so we have an induced monomorphism 
-%        $$\begin{tikzcd}
-%          0 \arrow{r} & X_\A \arrow{r}{i}\arrow{d}{k^\prime} & X \arrow{r}{p}\arrow{d}{k} & X/X_\A \arrow{r}\arrow[dashed]{d}{\exists !h} & 0\\
-%          0 \arrow{r} & E_\A \arrow{r}{j} & E \arrow{r}{q} & E/E_\A \arrow{r} & 0
-%        \end{tikzcd}$$
-        %Since the left-most square is Cartesian if and only if the sequence
-        %$$\begin{tikzcd}
-        %  0 \arrow{r} & X_\A \arrow{r}{i} & X \arrow{r}{q \circ k} & E
-        %\end{tikzcd}$$
-        %is exact, we note that $i = \ker{(q \circ k)}$.
-        
-%        Suppose that we are given a morphism $f \colon E/E_\A \rightarrow Y$ such that $f \circ h$ is monic and consider $\ker{f} \colon K \rightarrow E/E_\A$.
-%        We have the pullback
-%        $$\begin{tikzcd}
-%          E_\A \cap q^{-1}(K) \arrow{d}\arrow{r}{\ker{(q \circ \ker{(f \circ q)})}} & q^{-1}(K) \arrow{d}{\ker{(f \circ q)}} \arrow{r}{q^\prime} & K\arrow{d}{\ker{f}}\\
-%          E_\A \arrow{r}{j} & E \arrow{r}{q} & E/E_\A \arrow{r}{f} & Y
-%        \end{tikzcd}$$
-%        Then we see that $h^{-1}(K) \cong K \cap X/X_\A = 0$, so it follows that 
-%        $$(q \circ k)^{-1}(K) = (h \circ p)^{-1}(K) \cong p^{-1}(h^{-1}(K)) = p^{-1}(0) \cong X_\A.$$
-%        Consider
-%        $$\begin{tikzcd}
-%          X_\A \arrow{r}\arrow{d}{i} & q^{-1}(K) \arrow{r}\arrow{d} & K \arrow{d}{\ker{f}}\\
-%          X \arrow[bend right]{rr}{h \circ p}\arrow{r}{k} & E \arrow{r}{q} & E/E_\A \arrow{r}{f} & Y
-%        \end{tikzcd}$$
-        %Given a non-zero subobject \begin{tikzcd} 0 \arrow{r} & Z \arrow{r}{\varphi} & E/E_\A\end{tikzcd}, we have
-        %  $$p^{-1}(h^{-1}(Z)) \cong (h \circ p)^{-1}(Z) =  (q \circ k)^{-1}(Z) \cong k^{-1}(q^{-1}(Z))$$
-        %  and the pullback diagram
-        %  $$\begin{tikzcd}
-        %    0 \arrow{r} & X_\A \cap k^{-1}(q^{-1}(Z)) \arrow{d}{\varphi^{\prime\prime\prime}}\arrow{r}{i^\prime} & k^{-1}(q^{-1}(Z)) \arrow{r}{k^\prime}\arrow{d}{\varphi^{\prime\prime}} & q^{-1}(Z) \arrow{r}{q^\prime}\arrow{d}{\varphi^\prime} & Z \arrow{d}{\varphi}\\
-        %    0 \arrow{r} & X_\A \arrow{r}{i} & X \arrow{r}{k} & E \arrow{r}{q} & E/E_\A
-        %  \end{tikzcd}$$
-        %  with all squares cartesian.
-        %  Since $\varphi$ is not zero, clearly $Z$ is not an object of $\A$ and hence, because $q^\prime$ is epic, it follows that $q^{-1}(Z)$ is not an object of $\A$.
-        %  As $k$ is an essential extension, $\varphi^{\prime\prime} : k^{-1}(q^{-1}(Z)) \rightarrow X$ is a non-zero subobject of $X$.
-          
-        %  that is not $X_\A$ and hence it must be that $h^{-1}(Z)$ is also a non-zero subobject of $X/X_\A$.
-        %  This implies that $h$ is an essential extension.
-        %  Therefore $\pi(i)$ is an essential extension by Lemma~\ref{lem5}, as desired.
-        %  $$\begin{tikzcd}
-        %    p^{-1}(h^{-1}(Z)) \arrow{r}{p^\prime}\arrow{d}{\psi^{\prime}} & h^{-1}(Z) \arrow{r}{h^\prime}\arrow{d}{\psi} & Z \arrow{d}{\varphi}\\
-        %    X \arrow{r}{p} & X/X_\A \arrow{r}{h} & E/E_\A
-        %  \end{tikzcd}$$
-      \end{enumerate}
-    \end{proof}
+  \end{proof}
 \end{cor}
 
 \begin{prop}
@@ -976,7 +976,7 @@ From here on, let $A$ be a right Noetherian $\Z_{\geq 0}$-graded algebra over a 
       h^i(\HOM{\Gr{A}}{M, Q^\cdot} &=& h^i\left(\bigoplus_{d \in \Z}\Hom{\Gr{A}}{M, (Q^\cdot)[d]}\right)\\
       &\cong& \bigoplus_{d \in \Z} h^i\left(\Hom{\Gr{A}}{M, (Q^\cdot)[d]}\right)\\
       &=& \bigoplus_{d \in \Z} \Ext{i}{\Gr{A}}{M, N[d]}.
-      \end{eqnarray*}
+    \end{eqnarray*}
 
     Similarly, for $\QGr{A}$ we have
     \begin{eqnarray*}
@@ -1022,9 +1022,9 @@ From here on, let $A$ be a right Noetherian $\Z_{\geq 0}$-graded algebra over a 
 \end{rmk}
 
 \begin{prop}
-  Let $M$ be an object of $\Gr{A}$ and let $N$ be an object of $\QGr{A}$.
+  Let $M$ be an object of $\Gr{A}$ and let $N$ be an object of $\gr{A}$.
   Then
-  \begin{enumerate}[(a)]
+  \begin{enumerate}
   \item
     For $i \geq 0$
     $$\EXT{i}{\QGr{A}}{\pi(N), \pi(M)} \cong \lim_{n \rightarrow \infty} \EXT{i}{\Gr{A}}{N_{\geq n}, M}$$
@@ -1045,7 +1045,7 @@ From here on, let $A$ be a right Noetherian $\Z_{\geq 0}$-graded algebra over a 
   \end{enumerate}
 
   \begin{proof}
-    \begin{enumerate}[(a)]
+    \begin{enumerate}
     \item
       Let $Q^\cdot$ be an injective resolution of $M$.
       For each $0 \leq i$ and for each $d$ we have 
@@ -1057,48 +1057,222 @@ From here on, let $A$ be a right Noetherian $\Z_{\geq 0}$-graded algebra over a 
         %&\cong& 0 \oplus \Hom{\QGr{A}}{\pi(N), \pi(Q^i)[d]}\\
         \Hom{\QGr{A}}{\pi(N), \pi(Q^i)[d]}.
       \end{eqnarray*}
+      Since $\Gr{A}$ is an $\operatorname{Ab} 5$ category we have
+      \begin{eqnarray*}
+        \lim_{n \rightarrow \infty}\HOM{\Gr{A}}{N_{\geq n}, Q^i} &=&
+        \lim_{n \rightarrow \infty}\bigoplus_{d \in \Z} \Hom{\Gr{A}}{N_{\geq n}, Q^i[d]}\\
+        &\cong& \bigoplus_{d \in \Z} \lim_{n \rightarrow \infty}\Hom{\Gr{A}}{N_{\geq n}, Q^i[d]}\\
+        &\cong& \bigoplus_{d \in \Z} \Hom{\QGr{A}}{\pi(N), \pi(Q^i)[d]}\\
+        &=&\HOM{\QGr{A}}{\pi(N), \pi(Q^i)}.
+      \end{eqnarray*}
+      Next we note that
+      $$\left(\lim_{n \rightarrow \infty} \HOM{\Gr{A}}{N_{\geq n}, Q^\cdot}\right)_i \cong \lim_{n \rightarrow \infty}\HOM{\Gr{A}}{N_{\geq n}, Q^i} \cong \HOM{\QGr{A}}{\pi(N), \pi(Q^i)}$$ and hence
+      \begin{eqnarray*}
+        \lim_{n \rightarrow \infty} \EXT{i}{\Gr{A}}{N_{\geq n}, M} &=& 
+        \lim_{n \rightarrow \infty} h^i(\HOM{\Gr{A}}{N_{\geq n}, Q^\cdot})\\
+        &\cong& h^i\left(\lim_{n \rightarrow \infty} \HOM{\Gr{A}}{N_{\geq n}, Q^\cdot}\right)\\
+        &\cong& h^i\left(\HOM{\QGr{A}}{\pi(N), \pi(Q^\cdot)}\right)\\
+        &\cong& \EXT{i}{\QGr{A}}{\pi(N), \pi(M)}
+      \end{eqnarray*}
+      That $\underline{H}^i(\pi(M)) \cong \lim_{n \rightarrow \infty}\EXT{i}{\Gr{A}}{A_{\geq n}, M}$ follows by taking $N = A$.
+    \item
+      The short exact sequence
+      $$\begin{tikzcd}
+        0 \arrow{r} & A_{\geq n} \arrow{r} & A \arrow{r} & A/A_{\geq n} \arrow{r} & 0
+      \end{tikzcd}$$
+      gives rise to a long exact sequence
+      $$\begin{tikzcd}
+        0 \arrow{r} & \HOM{\Gr{A}}{A/A_{\geq n}, M} \arrow{r} & M \arrow{r} & \HOM{\Gr{A}}{A_{\geq n}, M}\arrow[rounded corners,out = -5, in=170]{lld}\\
+        & \EXT{1}{\Gr{A}}{A/A_{\geq n}, M} \arrow{r} & \EXT{1}{\Gr{A}}{A, M} = 0 \arrow{r} & \ldots
+      \end{tikzcd}$$
+      %We see that 
+      %\begin{eqnarray*}
+      %  \lim_{n \rightarrow \infty}\HOM{\Gr{A}}{A_{\geq n}, M} &\cong& 
+      %  \HOM{\QGr{A}}{\pi(A), \pi(M)}\\
+      %  &\cong& \HOM{\Gr{A}}{A, \omega\pi(M)}\\
+      %  &\cong& \omega\pi(M)\\
+      %  &\cong& \underline{H}^0(\pi(M))
+      %\end{eqnarray*}
+      and by taking limits, we get from part (a) the exact sequence
+      $$\begin{tikzcd}
+        0 \arrow{r} & \lim_{n \rightarrow \infty}\HOM{\Gr{A}}{A/A_{\geq n}, M} \arrow{r}{\ker{\varphi}} & M \arrow{r}{\varphi} & \underline{H}^0(\pi(M))\arrow{r}{\coker{\varphi}} & \lim_{n \rightarrow \infty}\EXT{1}{\Gr{A}}{A/A_{\geq n}, M}  \arrow{r} & 0
+      \end{tikzcd}$$
+      It remains only to show that $\lim_{n \rightarrow \infty}\HOM{\Gr{A}}{A/A_{\geq n}, M} \cong \tau(M)$.
+      
+      Let $p : A \rightarrow A/A_{\geq n}$ be the canonical epimorphism.
+      For each $n$, given $f \in \HOM{\Gr{A}}{A/A_{\geq n}, M}$, $\varphi(f)(1_A) = f \circ p(1_A) \in M$ is torsion; 
+      for if $a \in A_{\geq n}$, then 
+      $$f \circ p(1_A) \cdot a = f \circ p(a) = f \circ p(0) = 0$$
+      and hence the kernel diagram
+      $$\begin{tikzcd}
+        \HOM{\Gr{A}}{A/A_{\geq n}, M} \arrow[swap,dashed]{rd}{\exists !h_n}\arrow{r}{\ker{\varphi}} & M \arrow{r}{q} & M/\tau(M) \\
+        & \tau(M)\arrow{u}{\ker q}
+      \end{tikzcd}$$
+      with $h_n$ a monomorphism.
+      It's clear from the definition that for $m \leq n$ the diagram
+      $$\begin{tikzcd}
+        \HOM{\Gr{A}}{A/A_{\geq n}, M} \arrow{rd}{h_n} \arrow{rr} & & \HOM{\Gr{A}}{A/A_{\geq m}, M}\arrow{ld}{h_m}\\
+        & \tau(M)
+        ;    \end{tikzcd}$$
+      commutes and hence we have a commutative diagram for each $m \leq n$
+      $$\begin{tikzcd}
+        \HOM{\Gr{A}}{A/A_{\geq n}, M}\arrow{rd}{i_n}\arrow[bend right]{rdd}{h_n}\arrow[bend right]{rddd} & & \HOM{\Gr{A}}{A/A_{\geq m}, M}\arrow{ld}{i_n}\arrow[bend left]{ldd}{h_n}\arrow[bend left]{lddd}\\
+        & \lim_{n \rightarrow \infty}\HOM{\Gr{A}}{A/A_{\geq n}, M}\arrow[dashed]{d}{\exists ! h}\arrow[bend right, dashed, swap,yshift=2ex]{dd}{\exists !h^\prime} &\\
+        & \tau(M)\arrow{d}{\ker q} &\\
+        & M &
+      \end{tikzcd}$$
+      We note that by unicity, $h^\prime = \ker{\varphi}$.
+      However, we note that because $\omega\pi(M)$ is $\Tors$-closed, we also have a kernel diagram
+      $$\begin{tikzcd}
+        \tau(M) \arrow[bend left]{rr}{0}\arrow[dashed,swap]{rd}{\exists !g}\arrow{r}{\ker q} & M \arrow{r}{\varphi} & \omega\pi(M)\\
+        & \lim_{n \rightarrow \infty} \HOM{\Gr{A}}{A/A_{\geq n}, M} \arrow{u}{\ker{\varphi}}
+      \end{tikzcd}$$
+      with $g$ a monomorphism.
+      Therefore
+      $$\ker{\varphi} \circ g \circ h  = \ker{q} \circ h = \ker{\varphi}$$
+      and
+      $$\ker{q} \circ h \circ g = \ker{\varphi} \circ g = \ker{q}$$
+      imply that $h$ is an isomorphism with inverse $g$.
+
+      When $1 \leq i$, the isomorphism 
+      $$h^i(\omega\pi(Q^\cdot)) \cong \underline{H}^i(\pi(M)) \cong \lim_{n \rightarrow \infty}\EXT{i+1}{\Gr{A}}{A/A_{\geq n}, M}$$ 
+      results from $A$ being projective, part (a), and the limit of the induced long exact sequence of $\operatorname{\underline{Ext}}$.
+      From the short exact sequence of complexes
+      $$\begin{tikzcd}
+        0 \arrow{r} & \tau(Q^\cdot) \arrow{r} & Q^\cdot \arrow{r} & \omega\pi(Q^\cdot) \arrow{r} & 0
+      \end{tikzcd}$$
+      we get the long exact sequence of cohomology
+      $$\begin{tikzcd}
+        \cdots \arrow{r} & h^i(\tau(Q^\cdot)) \arrow{r} & h^i(Q^\cdot) \arrow{r} & h^i(\omega\pi(Q^\cdot)) \arrow{r} & h^{i+1}(\tau(Q^\cdot) \arrow{r} & h^{i+1}(Q^\cdot) \arrow{r} & \cdots
+      \end{tikzcd}$$
+      which gives $h^{i+1}(\tau(Q^\cdot)) \cong h^i(\omega\pi(Q))$ because $Q^\cdot$ is an injective resolution of $M$, hence exact.
+    \item
+      By the last isomorphism we have the exact sequence
+      $$\begin{tikzcd}
+        0 \arrow{r} & B^{i+1}(\tau(Q^\cdot)) \arrow{r} & Z^{i + 1} (\tau(Q^\cdot)) \arrow{r} & h^{i+1}(\tau(Q^\cdot)) \cong \underline{H}^i(\pi(M)) \arrow{r} & 0.
+      \end{tikzcd}$$
+      Since $Z^{i+1}(\tau(Q^\cdot))$ is a subobject of $\tau(Q)$ it is torsion and therefore so too is $\underline{H}^i(\pi(M))$ because $\Tors$ is a Serre subcategory.
+    \item
+      Note that because filtered colimits commute, by part 1 it suffices to show that for a directed system of objects $\{M_\alpha\}$
+      $$\operatorname{colim}_{\alpha}\EXT{i}{\Gr{A}}{N,M_\alpha} \cong \EXT{i}{\Gr{A}}{N,\operatorname{colim}_{\alpha} M_\alpha}.$$
+      Let 
+      $$\begin{tikzcd}
+        P_\cdot : \cdots \arrow{r} & A^{r_2} \arrow{r} & A^{r_1} \arrow{r} & N \arrow{r} & 0
+      \end{tikzcd}$$
+      be a projective resolution of $N$.
+      For each $\alpha$ and for each $d$ we have the complex
+      $$\begin{tikzcd}
+        \Hom{\Gr{A}}{P_\cdot, M_\alpha[d]} \colon \cdots \arrow{r} & (M_\alpha)_d^{r_2} \arrow{r} & (M_\alpha)_d^{r_1} \arrow{r} & \Hom{\Gr{A}}{N, M_\alpha[d]} \arrow{r} & 0
+      \end{tikzcd}$$
+      and $\Ext{i}{\Gr{A}}{N, M_\alpha[d]} = h^i\Hom{\Gr{A}}{P_\cdot, M_\alpha[d]}$.
+      Since $\Gr{A}$ is Ab 5 the colimit is exact and hence
+      \begin{eqnarray*}
+        \operatorname{colim}_\alpha \Ext{i}{\Gr{A}}{N, M_\alpha[d]}
+        &\cong& \operatorname{colim}_\alpha h^i\Hom{\Gr{A}}{P_\cdot, M_\alpha[d]}\\
+        &\cong& h^i\left(\operatorname{colim}_\alpha \Hom{\Gr{A}}{P_\cdot, M_\alpha[d]} \right)\\
+        &\cong& h^i\left(\Hom{\Gr{A}}{P_\cdot, \operatorname{colim}_\alpha M_\alpha[d]}\right)\\
+        &\cong& \Ext{i}{\Gr{A}}{N, \operatorname{colim}_\alpha M_\alpha[d]}.
+      \end{eqnarray*}
+      Therefore 
+      \begin{eqnarray*}
+        \operatorname{colim}_\alpha \EXT{i}{\Gr{A}}{N,M} 
+        &\cong& \bigoplus_{d \in \Z}\operatorname{colim}_\alpha \Ext{i}{\Gr{A}}{N, M_\alpha[d]}\\
+        &\cong& \bigoplus_{d \in \Z}\Ext{i}{\Gr{A}}{N, \operatorname{colim}_\alpha M_\alpha[d]}\\
+        &\cong& \EXT{i}{\Gr{A}}{N, \operatorname{colim}_\alpha M_\alpha}.
+      \end{eqnarray*}
+      The second assertion follows by taking $A = N$.
     \end{enumerate}
-    Since $\Gr{A}$ is an $\operatorname{Ab} 5$ category we have
-    \begin{eqnarray*}
-      \lim_{n \rightarrow \infty}\HOM{\Gr{A}}{N_{\geq n}, Q^i} &=&
-      \lim_{n \rightarrow \infty}\bigoplus_{d \in \Z} \Hom{\Gr{A}}{N_{\geq n}, Q^i[d]}\\
-      &\cong& \bigoplus_{d \in \Z} \lim_{n \rightarrow \infty}\Hom{\Gr{A}}{N_{\geq n}, Q^i[d]}\\
-      &\cong& \bigoplus_{d \in \Z} \Hom{\QGr{A}}{\pi(N), \pi(Q^i)[d]}\\
-      &=&\HOM{\QGr{A}}{\pi(N), \pi(Q^i)}.
-    \end{eqnarray*}
-    Next we note that
-    $$\left(\lim_{n \rightarrow \infty} \HOM{\Gr{A}}{N_{\geq n}, Q^\cdot}\right)_i \cong \lim_{n \rightarrow \infty}\HOM{\Gr{A}}{N_{\geq n}, Q^i} \cong \HOM{\QGr{A}}{\pi(N), \pi(Q^i)}$$ and hence
-    \begin{eqnarray*}
-      \lim_{n \rightarrow \infty} \EXT{i}{\Gr{A}}{N_{\geq n}, M} &=& 
-      \lim_{n \rightarrow \infty} h^i(\HOM{\Gr{A}}{N_{\geq n}, Q^\cdot})\\
-      &\cong& h^i\left(\lim_{n \rightarrow \infty} \HOM{\Gr{A}}{N_{\geq n}, Q^\cdot}\right)\\
-      &\cong& h^i\left(\HOM{\QGr{A}}{\pi(N), \pi(Q^\cdot)}\right)\\
-      &\cong& \EXT{i}{\QGr{A}}{\pi(N), \pi(M)}
-    \end{eqnarray*}
-    That $\underline{H}^i(\pi(M)) \cong \lim_{n \rightarrow \infty}\EXT{i}{\Gr{A}}{A_{\geq n}, M}$ follows by taking $N = A$.
-  \item
-    The short exact sequence
-    $$\begin{tikzcd}
-      0 \arrow{r} & A_{\geq n} \arrow{r} & A \arrow{r} & A/A_{\geq n} \arrow{r} & 0
-    \end{tikzcd}$$
-    gives rise to a long exact sequence
-    $$\begin{tikzcd}
-      0 \arrow{r} & \HOM{\Gr{A}}{A/A_{\geq n}, M} \arrow{r} & M \arrow{r} & \HOM{\Gr{A}}{A_{\geq n}, M}\arrow[rounded corners,out = -5, in=170]{lld}\\
-      & \EXT{1}{\Gr{A}}{A/A_{\geq n}, M} \arrow{r} & \Ext{1}{\Gr{A}}{A, M} = 0 \arrow{r} & \ldots
-  \end{tikzcd}$$
-    We see that 
-    \begin{eqnarray*}
-      \lim_{n \rightarrow \infty}\HOM{\Gr{A}}{A_{\geq n}, M} &\cong& 
-      \HOM{\QGr{A}}{\pi(A), \pi(M)}\\
-      &\cong& \HOM{\Gr{A}}{A, \omega\pi(M)}\\
-      &\cong& \omega\pi(M)\\
-      &\cong& \underline{H}^0(\pi(M))
-    \end{eqnarray*}
-    and so by taking limits we get the exact sequence
-    $$\begin{tikzcd}
-      0 \arrow{r} & \lim_{n \rightarrow \infty}\HOM{\Gr{A}}{A/A_{\geq n}, M} \arrow{r} & M \arrow{r} & \underline{H}^0(\pi(M))\arrow{r} & \lim_{n \rightarrow \infty}\EXT{1}{\Gr{A}}{A/A_{\geq n}, M} \arrow{r} & 0
-  \end{tikzcd}$$
-    It remains only to show that $\lim_{n \rightarrow \infty}\HOM{\Gr{A}}{A/A_{\geq n}, M} \cong \tau(M)$.
   \end{proof}
+
+  \begin{defn}
+    Let $M$ be an object of $\Gr{A}$.
+    \begin{enumerate}[(i)]
+    \item
+      We say $M$ is left bounded if there exists some $d_0$ such that $M_d = 0$ for all $d \leq d_0$.
+      We say $M$ is right bounded if there exists some $d_0$ such that $M_d = 0$ for all $d_0 \leq d$.
+      We say $M$ is bounded if it is left and right bounded.
+    \item
+      We say $\chi_i^0(M)$ holds if $\EXT{j}{\Gr{A}}{A_0, M}$ is bounded for all $j \leq i$.
+    \item
+      If $\chi^0_i(M)$ holds for every object $M$ of $\gr{A}$, then we say that $\chi^0_i$ holds for $A$.
+    \item
+      If $\chi^0_i(M)$ holds for $A$ for every $i$, then we say that $\chi^0$ holds for $A$.
+    \item
+      We say that $\chi_i(M)$ holds for an object of $\Gr{A}$ if for all $d$ and all $j \leq i$, there is an integer $n_0$ such that $\EXT{j}{\Gr{A}}{A/A_{\geq n}, M}_{\geq d}$ is an object of $\gr{A}$ when $n_0 \leq n$.
+    \item
+      If $\chi_i$ holds for every object of $\gr{A}$, then we say that $\chi_i$ holds for $A$.
+    \item
+      If $\chi_i$ holds for every $i$, then we say that $\chi$ holds for $A$.
+    \end{enumerate}
+  \end{defn}
+
+  \begin{prop}
+    \begin{enumerate}[(i)]
+    \item
+      Let
+      $$\begin{tikzcd}
+        0 \arrow{r} & M^\prime \arrow{r} & M \arrow{r} & M^{\prime\prime} \arrow{r} & 0
+      \end{tikzcd}$$
+      be a short exact sequence of $\Gr{A}$.
+      If $\chi^0_i(M^\prime)$ and $\chi^0_i(M^{\prime\prime})$ hold, then $\chi^0_i(M)$ holds.
+    \item
+      $\chi^0_i$ holds for $A$ if and only if every non-zero object $M$ of $\gr{A}$ has a non-zero subobject $M^\prime \rightarrow M$ such that $\chi^0_i(M^\prime)$ holds.
+    \end{enumerate}
+    \begin{proof}
+      \begin{enumerate}[(i)]
+      \item
+        We note that from the long exact sequence of $\operatorname{\underline{Ext}}$ it suffices to show that whenever
+        $$\begin{tikzcd}
+          N^\prime \arrow{r}{g} & N \arrow{r}{f} & N^{\prime\prime}
+        \end{tikzcd}$$
+        is an exact sequence of $\Gr{A}$, then $N^\prime$ and $N^{\prime\prime}$ bounded imply that $N$ is bounded.
+        Let $\ell^\prime, \ell^{\prime\prime}$ and $r^\prime, r^{\prime\prime}$ be the left and right bounds of $N^\prime$ and $N^{\prime\prime}$, and let $\ell = \min\{\ell^\prime, \ell^{\prime\prime}\}$, $r = \max\{r^\prime, r^{\prime\prime}\}$.
+        Given elements $n_d \in N_d$ and $n_e \in N_e$ with $d \leq \ell$, $r \leq e$, we see that because $f$ preserves degrees $f(n_d) = 0 = f(n_e)$.
+        Hence there exists elements $n^\prime_d \in N^\prime_d$ and $n^\prime_e \in N^\prime_e$ such that $n_d = g(n^\prime_d)$ and $n_e = g(n^\prime_e)$.
+        However, both of these elements must be zero, and hence $N_d = N_e = 0$.
+        Therefore $N$ is bounded.
+      \item
+        First note that if $\chi^0_i$ holds for $A$, then the implication is trivial.
+        Assume that every finite non-zero object $M$ of $\gr{A}$ has a non-zero subobject $i \colon M^\prime \rightarrow M$ for which $\chi^0_i(M^\prime)$ holds.
+        If $j \colon M^{\prime\prime} \rightarrow M$ is another subobject such that $i \leq j$ and  $\chi^0_i(M^{\prime\prime})$ holds, then we could replace $M^\prime$ by $M^{\prime\prime}$.
+        Hence we may assume that for any subobject $j \colon M^{\prime\prime} \rightarrow M$ for which $i < j$, $\chi^0_i(M^{\prime\prime})$ does not hold.
+        
+        By assumption, $M/M^\prime$ has a non-zero subobject $j \colon M^{\prime\prime} \rightarrow M/M^\prime$ for which $\chi^0_i(M^{\prime\prime})$ holds.
+        If we let $p \colon M \rightarrow M/M^\prime$ be the canonical epimorphism, then we get the pullback diagram
+        $$\begin{tikzcd}
+          0 \arrow{r} & K \arrow{r}{\ker{p^\prime}}\arrow[dashed]{d}{\exists !j^{\prime\prime}} & p^{-1}(M^{\prime\prime}) \arrow{d}{j^\prime}\arrow{r}{p^\prime} & M^{\prime\prime}\arrow{d}{j} \arrow{r} & 0\\
+          0 \arrow{r} & M^\prime \arrow{r}{i} & M \arrow{r}{p} & M/M^\prime \arrow{r} & 0
+        \end{tikzcd}$$
+        with $j^{\prime\prime}$ an isomorphism.
+        By the first part, we see that $\chi^0_i(p^{-1}(M^{\prime\prime}))$ holds.
+        Moreover, $M^\prime$ is a subobject of $p^{-1}(M^{\prime\prime})$ and hence by our assumptions on $M^\prime$, we see that $p^{-1}(M^{\prime\prime}) \cong M^\prime$.
+        It follows that $M^{\prime\prime} = 0$ and hence it must be the case that $M/M^\prime = 0$.
+        Therefore $M \cong M^\prime$ and $\chi^0_i(M)$ holds, as desired.
+      \end{enumerate}
+    \end{proof}
+  \end{prop}
+  
+  \begin{thm}[Serre's Finiteness Theorem]
+    \begin{enumerate}
+    \item
+      Let $A$ be a right noetherian $\Z_{\geq 0}$-graded algebra over a commutative noetherian ring $k$ satisfying $\chi$ and let $\pi(M)$ be an object of $\qgr{A}$.
+      Then
+      \begin{center}
+        \begin{flushleft}
+          (H4) for every $0 \leq j$, $H^j(\pi(M))$ is a finite right $A_0$-module, and\\
+          (H5) for every $1 \leq j$, $\underline{H}^j(\pi(M))$ is right bounded; i.e., there is an integer $d_0$ such that for all $d_0 \leq d$, $H^{j}(\pi(M)[d]) = 0$.
+        \end{flushleft}
+      \end{center}
+    \item
+      Conversely, if $A$ satisfies $\chi_1$ and if (H4) and (H5) hold for every $\pi(M) \in \qgr{A}$, then $A$ satisfies $\chi$.
+    \end{enumerate}
+
+    \begin{proof}
+      \begin{enumerate}
+      \item
+      \end{enumerate}
+    \end{proof}
+  \end{thm}
 \end{prop}
+
 \end{document}
