@@ -1,0 +1,14 @@
+\frametitle{Computing $\operatorname {Ext}$}
+Since $\QGr{A}$ has enough injectives, we can define $\operatorname{Ext}$ for $\QGr{A}$.
+  Let's compute $\Ext{i}{\QGr{A}}{\pi(M), \pi(N)}$:
+  \begin{enumerate}
+  \item
+    Take an injective resolution $\begin{tikzcd}Q^\cdot : 0 \arrow{r} & N = Q^0 \arrow{r} & Q^1 \arrow{r} & \cdots \end{tikzcd}$.
+  \item
+    $\pi(Q^\cdot)$ is an injective resolution of $\pi(N)$ by the comments above, so $$h^i(\Hom{\QGr{A}}{\pi(M), \pi(Q^\cdot)}) \cong \Ext{i}{\QGr{A}}{\pi(M), \pi(N)}$$
+  \item
+    From the adjunction we get an isomorphism of complexes
+    $$\Hom{\QGr{A}}{\pi(M), \pi(Q^\cdot)}) \cong \Hom{\Gr{A}}{M, \omega\pi(Q^\cdot)}$$
+    and we see that
+    $$\Ext{i}{\QGr{A}}{\pi(M), \pi(N)} \cong R^i\Hom{\Gr{A}}{M, \omega\pi(N)}$$
+  \end{enumerate}

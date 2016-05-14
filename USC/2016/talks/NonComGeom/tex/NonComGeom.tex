@@ -1,0 +1,946 @@
+\documentclass{beamer}
+
+\mode<presentation> {
+	\usetheme{PaloAlto}
+}
+
+%%
+\makeatletter
+\setbeamertemplate{subsubsection in sidebar}
+  {\vspace*{-\baselineskip}}
+\setbeamertemplate{subsubsection in sidebar shaded}
+  {\vspace*{-\baselineskip}}
+\makeatother
+%%
+
+%%
+\setbeamertemplate{theorems}[numbered]
+%%
+
+\definecolor{Garnet}{RGB}{130,0,20}
+\usecolortheme[named=Garnet]{structure}
+
+\logo{\includegraphics[width=1.5cm]{USClogo.png}}
+
+%\setbeamercolor{title}{fg=red!60!black,bg=white!50!black}
+%\usecolortheme{beaver}
+%\usecolortheme{crane}
+\usefonttheme{structuresmallcapsserif}
+\usefonttheme[onlysmall]{structurebold}
+
+
+
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{latexsym}
+\usepackage{amsfonts}
+\usepackage[only,ninrm,elvrm,twlrm,sixrm,egtrm,tenrm]{rawfonts}
+\usepackage{indentfirst}
+\usepackage[noend]{algorithmic}
+\usepackage{algorithm}
+\usepackage{enumerate}
+\usepackage{graphicx,psfrag}
+\usepackage{epsfig}
+%\usepackage[pdflatex]{graphicx}
+%\usepackage{epstopdf}
+\usepackage{ulem}
+\usepackage{animate} %need the animate.sty file
+\usepackage{tikz}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath,mathtools,tikz-cd,mathrsfs}
+
+\newtheorem{thm}{Theorem}
+\newtheorem{lem}{Lemma}
+\newtheorem{prop}{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}
+\newtheorem{rmk}{Remark}
+
+\newcommand{\A}{\mathscr{A}}
+\renewcommand{\C}{\mathscr{C}}
+
+\newcommand*{\defeq}{\mathrel{\vcenter{\baselineskip0.5ex \lineskiplimit0pt
+                     \hbox{\scriptsize.}\hbox{\scriptsize.}}}%
+                     =}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+\input epsf
+
+
+
+\usepackage[english]{babel}
+% or whatever
+
+\usepackage[latin1]{inputenc}
+% or whatever
+
+\usepackage{times}
+\usepackage[T1]{fontenc}
+% Or whatever. Note that the encoding and the font should match. If T1
+% does not look nice, try deleting the line with the fontenc.
+
+\title % (optional, use only with long paper titles)
+{Noncommutative Projective Schemes}
+
+
+\author[Farman]
+{Blake Farman~\inst{1}}
+
+\institute[USC]{
+\inst{1}
+University of South Carolina, Columbia, SC USA}
+%\inst{2}
+%East Carolina University, Greenville, NC USA\\
+%\inst{3}
+%University of Johannesburg, Auckland Park, South Africa}
+
+\date[May 28, 2015]
+{Temple Graduate Student Conference in Algebra, Geometry, and Topology}
+
+%\subject{Irredundant and Mixed Ramsey Numbers}
+\setbeamercolor{alerted text}{fg=red!60!black}
+\setbeamercolor{block title}{bg=white!50!black,fg=red!60!black}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{Outline}
+  \tableofcontents[pausesections]
+\end{frame}
+
+
+
+
+\section{Serre Finiteness}
+
+\begin{frame}{Commutative Case}
+  \begin{thm}[Serre]
+    Let $X$ be a projective scheme over a noetherian ring $A$, and let $\mathcal{O}_X(1)$ be a very ample invertible sheaf on $X$ over $\operatorname{Spec} A$.
+    Let $\mathscr{F}$ be a coherent sheaf on $X$. Then:
+  \end{thm}
+\end{frame}
+
+\begin{frame}{Commutative Case}
+  \setcounter{thm}{0}
+  \begin{thm}[Serre]
+    Let $X$ be a projective scheme over a noetherian ring $A$, and let $\mathcal{O}_X(1)$ be a very ample invertible sheaf on $X$ over $\operatorname{Spec} A$.
+    Let $\mathscr{F}$ be a coherent sheaf on $X$. Then:
+    \begin{enumerate}[(i)]
+    \item
+      for each $0 \leq i$, $H^i(X,\mathscr{F})$ is a finitely generated $A$-module;
+    \end{enumerate}
+  \end{thm}
+\end{frame}
+
+\begin{frame}{Commutative Case}
+  \setcounter{thm}{0}
+  \begin{thm}[Serre]
+    Let $X$ be a projective scheme over a noetherian ring $A$, and let $\mathcal{O}_X(1)$ be a very ample invertible sheaf on $X$ over $\operatorname{Spec} A$.
+    Let $\mathscr{F}$ be a coherent sheaf on $X$. Then:
+    \begin{enumerate}[(i)]
+    \item
+      for each $0 \leq i$, $H^i(X,\mathscr{F})$ is a finitely generated $A$-module;
+    \item
+      there is an integer $n_0$, depending on $\mathscr{F}$ such that for each $0 < i$ and each $n_0 \leq n$, $H^i(X, \mathscr{F}(n)) = 0$.
+    \end{enumerate}
+  \end{thm}
+\end{frame}
+
+\begin{frame}{Noncommutative Case}
+  \setcounter{thm}{1}
+  \begin{thm}[Artin-Zhang]
+    Let $A$ be a right noetherian $\Z_{\geq 0}$-graded algebra over a commutative noetherian ring $k$ satisfying $\chi$ and let $\pi(M)$ be an object of $\qgr{A}$.
+  \end{thm}
+\end{frame}
+
+\begin{frame}{Noncommutative Case}
+  \setcounter{thm}{1}
+  \begin{thm}[Artin-Zhang]
+          Let $A$ be a right noetherian $\Z_{\geq 0}$-graded algebra over a commutative noetherian ring $k$ satisfying $\chi$ and let $\pi(M)$ be an object of $\qgr{A}$.
+      Then
+    \begin{enumerate}[(i)]
+    \item
+      \begin{center}
+        \begin{flushleft}
+          (H4) for every $0 \leq j$, $H^j(\pi(M))$ is a finite right $A_0$-module, and\\
+        \end{flushleft}
+      \end{center}
+    \end{enumerate}
+  \end{thm}
+\end{frame}
+
+\begin{frame}{Noncommutative Case}
+  \setcounter{thm}{1}
+  \begin{thm}[Artin-Zhang]
+          Let $A$ be a right noetherian $\Z_{\geq 0}$-graded algebra over a commutative noetherian ring $k$ satisfying $\chi$ and let $\pi(M)$ be an object of $\qgr{A}$.
+      Then
+    \begin{enumerate}[(i)]
+    \item
+      \begin{center}
+        \begin{flushleft}
+          (H4) for every $0 \leq j$, $H^j(\pi(M))$ is a finite right $A_0$-module, and\\
+          (H5) for every $1 \leq j$, $\underline{H}^j(\pi(M))$ is right bounded; i.e., there is an integer $d_0$ such that for all $d_0 \leq d$, $H^{j}(\pi(M)[d]) = 0$.
+        \end{flushleft}
+      \end{center}
+    \end{enumerate}
+  \end{thm}
+\end{frame}
+
+\begin{frame}{Noncommutative Case}
+  \setcounter{thm}{1}
+  \begin{thm}[Artin-Zhang]
+    Let $A$ be a right noetherian $\Z_{\geq 0}$-graded algebra over a commutative noetherian ring $k$ satisfying $\chi$ and let $\pi(M)$ be an object of $\qgr{A}$.
+    Then
+    \begin{enumerate}[(i)]
+    \item
+      \begin{center}
+        \begin{flushleft}
+          (H4) for every $0 \leq j$, $H^j(\pi(M))$ is a finite right $A_0$-module, and\\
+          (H5) for every $1 \leq j$, $\underline{H}^j(\pi(M))$ is right bounded; i.e., there is an integer $d_0$ such that for all $d_0 \leq d$, $H^{j}(\pi(M)[d]) = 0$.
+        \end{flushleft}
+      \end{center}
+    \item
+      Conversely, if $A$ satisfies $\chi_1$ and if (H4) and (H5) hold for every $\pi(M) \in \qgr{A}$, then $A$ satisfies $\chi$.
+    \end{enumerate}
+  \end{thm}
+\end{frame}
+
+\section{Quotient Categories}
+
+\begin{frame}{Preliminaries}
+  Let $k$ be a Noetherian commutative ring, $A$ a $\Z_{\geq 0}$-graded right Noetherian ring.
+  Denote by $\Gr{A}$ (resp. $\gr{A}$) the category of graded right $A$-modules (resp. finite) with morphisms
+  $$\Hom{\Gr{A}}{M,N} = \left\{f \in \Hom{A}{M,N} \;\middle\vert\; f(M_d) \subseteq N_d\right\}.$$
+\end{frame}
+
+\begin{frame}[fragile]{Preliminaries}
+  $\Gr{A}$ is a Grothendieck category with injective envelopes.
+\end{frame}
+
+\begin{frame}[fragile]{Preliminaries}
+  $\Gr{A}$ is a Grothendieck category with injective envelopes.
+  That is,
+  \begin{itemize}
+  \item
+    $\Gr{A}$ is abelian (zero object, finite biproducts, all kernels and cokernels, monics and epics are normal--every monic is a kernel and every epic is a cokernel),
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Preliminaries}
+  $\Gr{A}$ is a Grothendieck category with injective envelopes.
+  That is,
+  \begin{itemize}
+  \item
+    $\Gr{A}$ is abelian (zero object, finite biproducts, all kernels and cokernels, monics and epics are normal--every monic is a kernel and every epic is a cokernel),
+  \item
+    every family of objects has a coproduct,
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Preliminaries}
+  $\Gr{A}$ is a Grothendieck category with injective envelopes.
+  That is,
+  \begin{itemize}
+  \item
+    $\Gr{A}$ is abelian (zero object, finite biproducts, all kernels and cokernels, monics and epics are normal--every monic is a kernel and every epic is a cokernel),
+  \item
+    every family of objects has a coproduct,
+  \item
+    filtered colimits are exact,
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Preliminaries}
+  $\Gr{A}$ is a Grothendieck category with injective envelopes.
+  That is,
+  \begin{itemize}
+  \item
+    $\Gr{A}$ is abelian (zero object, finite biproducts, all kernels and cokernels, monics and epics are normal--every monic is a kernel and every epic is a cokernel),
+  \item
+    every family of objects has a coproduct,
+  \item
+    filtered colimits are exact,
+  \item
+    $\Gr{A}$ has a generator: the functor $h^A \colon \Gr{A} \rightarrow \Sets$ is faithful; for any morphism $M \rightarrow N$ the morphism
+    $$\begin{tikzcd}
+      \Hom{\Gr{A}}{M, N} \arrow{r}& \Hom{\Sets}{h^A(M), h^A(N)}
+    \end{tikzcd}$$
+    is a monomorphism of sets, and
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Preliminaries}
+  $\Gr{A}$ is a Grothendieck category with injective envelopes.
+  That is,
+  \begin{itemize}
+  \item
+    $\Gr{A}$ is abelian (zero object, finite biproducts, all kernels and cokernels, monics and epics are normal--every monic is a kernel and every epic is a cokernel),
+  \item
+    every family of objects has a coproduct,
+  \item
+    filtered colimits are exact,
+  \item
+    $\Gr{A}$ has a generator: the functor $h^A \colon \Gr{A} \rightarrow \Sets$ is faithful; for any morphism $M \rightarrow N$ the morphism
+    $$\begin{tikzcd}
+      \Hom{\Gr{A}}{M, N} \arrow{r}& \Hom{\Sets}{h^A(M), h^A(N)}
+    \end{tikzcd}$$
+    is a monomorphism of sets, and
+  \item
+    every object has an injective enevelope.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Preliminaries}
+  \begin{defn}
+    A full subcategory, $\A$, of an abelian category $\C$ is called a Serre (or \'{e}paisse/thick/dense) subcategory if for any short exact sequence
+    $$\begin{tikzcd}
+      0 \arrow{r} & X^\prime \arrow{r} & X \arrow{r} & X^{\prime\prime} \arrow{r} & 0
+    \end{tikzcd}$$
+    of $\C$, $X$ is an object of $\A$ if and only if both $X^\prime$ and $X^{\prime\prime}$ are.
+  \end{defn}
+\end{frame}
+
+\begin{frame}[fragile]{Preliminaries}
+  \setcounter{defn}{0}
+  \begin{defn}
+    A full subcategory, $\A$, of an abelian category $\C$ is called a Serre (or \'{e}paisse/thick/dense) subcategory if for any short exact sequence
+    $$\begin{tikzcd}
+      0 \arrow{r} & X^\prime \arrow{r} & X \arrow{r} & X^{\prime\prime} \arrow{r} & 0
+    \end{tikzcd}$$
+    of $\C$, $X$ is an object of $\A$ if and only if both $X^\prime$ and $X^{\prime\prime}$ are.
+  \end{defn}
+  The full subcategory $\Tors$ (resp. $\tors$) of $\Gr{A}$ (resp. $\gr{A}$) with objects $M$ of $\Gr{A}$ (resp. $\gr{A}$) satisfying
+  $$\tau(M) = \left\{m \in M \;\middle\vert\; mA_{\geq s} = 0\ \text{for some}\ s\right\} = M$$
+  is a Serre subcategory.
+\end{frame}
+
+\begin{frame}[fragile]{Preliminaries}
+  Let $M$ and $N$ be objects of $\Gr{A}$.
+  Define the category $\mathscr{I}$ with
+\end{frame}
+
+\begin{frame}[fragile]{Preliminaries}
+  Let $M$ and $N$ be objects of $\Gr{A}$.
+  Define the category $\mathscr{I}$ with
+  \begin{itemize}
+    \item
+      objects pairs of subobjects $(M^\prime, N^\prime)$ such that $M/M^\prime$ and $N^\prime$ are torsion and 
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Preliminaries}
+  Let $M$ and $N$ be objects of $\Gr{A}$.
+  Define the category $\mathscr{I}$ with
+  \begin{itemize}
+    \item
+      objects pairs of subobjects $(M^\prime, N^\prime)$ such that $M/M^\prime$ and $N^\prime$ are torsion and 
+    \item
+      a unique morphism $$(M^\prime, N^\prime) \rightarrow (M^{\prime\prime}, N^{\prime\prime})$$ if and only if $M^{\prime\prime} \subseteq M^\prime$ and $N^\prime \subseteq N^{\prime\prime}$.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Preliminaries}
+  Let $M$ and $N$ be objects of $\Gr{A}$.
+  Define the category $\mathscr{I}$ with
+  \begin{itemize}
+    \item
+      objects pairs of subobjects $(M^\prime, N^\prime)$ such that $M/M^\prime$ and $N^\prime$ are torsion and 
+    \item
+      a unique morphism $$(M^\prime, N^\prime) \rightarrow (M^{\prime\prime}, N^{\prime\prime})$$ if and only if $M^{\prime\prime} \subseteq M^\prime$ and $N^\prime \subseteq N^{\prime\prime}$.
+  \end{itemize}
+  The category $\mathscr{I}$ is filtered.
+\end{frame}
+
+\begin{frame}[fragile]{Definition}
+  \begin{defn}
+    Define the quotient category, $\QGr{A} = \Gr{A}/\Tors$, to be the category with
+  \end{defn}
+\end{frame}
+
+\begin{frame}[fragile]{Definition}
+  \setcounter{defn}{1}
+  \begin{defn}
+    Define the quotient category, $\QGr{A} = \Gr{A}/\Tors$, to be the category with
+    \begin{itemize}
+    \item
+      objects the objects of $\Gr{A}$, and
+    \end{itemize}
+  \end{defn}
+\end{frame}
+
+\begin{frame}[fragile]{Definition}
+  \setcounter{defn}{1}
+  \begin{defn}
+    Define the quotient category, $\QGr{A} = \Gr{A}/\Tors$, to be the category with
+    \begin{itemize}
+    \item
+      objects the objects of $\Gr{A}$, and
+    \item
+      morphisms defined by the filtered colimit
+      $$\Hom{\QGr{A}}{M,N} = \operatorname{colim}_{\mathscr{I}} \Hom{\Gr{A}}{M^\prime, N/N^\prime}.$$
+    \end{itemize}
+  \end{defn}
+\end{frame}
+
+\begin{frame}[fragile]{Definition}
+  \setcounter{defn}{1}
+  \begin{defn}
+    Define the quotient category, $\QGr{A} = \Gr{A}/\Tors$, to be the category with
+    \begin{itemize}
+    \item
+      objects the objects of $\Gr{A}$, and
+    \item
+      morphisms defined by the filtered colimit
+      $$\Hom{\QGr{A}}{M,N} = \operatorname{colim}_{\mathscr{I}} \Hom{\Gr{A}}{M^\prime, N/N^\prime}.$$
+    \end{itemize}
+  \end{defn}
+  \begin{itemize}
+  \item
+    $\QGr{A}$ is abelian.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Definition}
+  \setcounter{defn}{1}
+  \begin{defn}
+    Define the quotient category, $\QGr{A} = \Gr{A}/\Tors$, to be the category with
+    \begin{itemize}
+    \item
+      objects the objects of $\Gr{A}$, and
+    \item
+      morphisms defined by the filtered colimit
+      $$\Hom{\QGr{A}}{M,N} = \operatorname{colim}_{\mathscr{I}} \Hom{\Gr{A}}{M^\prime, N/N^\prime}.$$
+    \end{itemize}
+  \end{defn}
+  \begin{itemize}
+  \item
+    $\QGr{A}$ is abelian.
+  \item
+    There is a functor $\pi : \Gr{A} \rightarrow \QGr{A}$ that is the identity on objects and sends a morphism $f \in \Hom{\Gr{A}}{M,N}$ to its image, $\pi(f)$, in the colimit.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Definition}
+  \setcounter{defn}{1}
+  \begin{defn}
+    Define the quotient category, $\QGr{A} = \Gr{A}/\Tors$, to be the category with
+    \begin{itemize}
+    \item
+      objects the objects of $\Gr{A}$, and
+    \item
+      morphisms defined by the filtered colimit
+      $$\Hom{\QGr{A}}{M,N} = \operatorname{colim}_{\mathscr{I}} \Hom{\Gr{A}}{M^\prime, N/N^\prime}.$$
+    \end{itemize}
+  \end{defn}
+  \begin{itemize}
+  \item
+    $\QGr{A}$ is abelian.
+  \item
+    There is a functor $\pi : \Gr{A} \rightarrow \QGr{A}$ that is the identity on objects and sends a morphism $f \in \Hom{\Gr{A}}{M,N}$ to its image, $\pi(f)$, in the colimit.
+  \item
+    $\qgr{A}$ is defined analogously.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Morphisms}
+  In $\Gr{A}$, we have a somewhat more explicit formulation of the $\operatorname{Hom}$-sets:
+\end{frame}
+
+\begin{frame}{Morphisms}
+  In $\Gr{A}$, we have a somewhat more explicit formulation of the $\operatorname{Hom}$-sets:
+  \begin{itemize}
+    \item
+      Given two objects $M$, $N$ of $\Gr{A}$, 
+      $$\Hom{\QGr{A}}{\pi(M), \pi(N)} = \operatorname{colim}_{M^\prime}\Hom{\Gr{A}}{M^\prime, N/\tau(N)}.$$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Morphisms}
+  In $\Gr{A}$, we have a somewhat more explicit formulation of the $\operatorname{Hom}$-sets:
+  \begin{itemize}
+    \item
+      Given two objects $M$, $N$ of $\Gr{A}$, 
+      $$\Hom{\QGr{A}}{\pi(M), \pi(N)} = \operatorname{colim}_{M^\prime}\Hom{\Gr{A}}{M^\prime, N/\tau(N)}.$$
+    \item
+      If in addition $M$ is an object of $\gr{A}$, then 
+      $$\Hom{\QGr{A}}{\pi(M), \pi(N)} = \lim_{n \rightarrow \infty} \Hom{\Gr{A}}{M_{\geq n}, N}$$
+      where 
+      $$M_{\geq n} = \bigoplus_{d \geq n} M_d.$$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Properties of $\pi$}
+  \begin{itemize}
+  \item
+    given an exact sequence
+    $$\begin{tikzcd}
+      0 \arrow{r} & K \arrow{r}{\ker{f}} & M \arrow{r}{f} & N \arrow{r}{\coker{f}} & C \arrow{r} & 0.
+    \end{tikzcd}$$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Properties of $\pi$}
+  \begin{itemize}
+  \item
+    given an exact sequence
+    $$\begin{tikzcd}
+      0 \arrow{r} & K \arrow{r}{\ker{f}} & M \arrow{r}{f} & N \arrow{r}{\coker{f}} & C \arrow{r} & 0.
+    \end{tikzcd}$$
+    \begin{enumerate}[(i)]
+    \item
+      $\pi(f) = 0$ if and only if $f(M) \cong M/K$ is torsion,
+    \end{enumerate}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Properties of $\pi$}
+  \begin{itemize}
+  \item
+    given an exact sequence
+    $$\begin{tikzcd}
+      0 \arrow{r} & K \arrow{r}{\ker{f}} & M \arrow{r}{f} & N \arrow{r}{\coker{f}} & C \arrow{r} & 0.
+    \end{tikzcd}$$
+    \begin{enumerate}[(i)]
+    \item
+      $\pi(f) = 0$ if and only if $f(M) \cong M/K$ is torsion,
+    \item
+      $\pi(f)$ is a monomorphism if and only if $K$ is torsion, 
+    \end{enumerate}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Properties of $\pi$}
+  \begin{itemize}
+  \item
+    given an exact sequence
+    $$\begin{tikzcd}
+      0 \arrow{r} & K \arrow{r}{\ker{f}} & M \arrow{r}{f} & N \arrow{r}{\coker{f}} & C \arrow{r} & 0.
+    \end{tikzcd}$$
+    \begin{enumerate}[(i)]
+    \item
+      $\pi(f) = 0$ if and only if $f(M) \cong M/K$ is torsion,
+    \item
+      $\pi(f)$ is a monomorphism if and only if $K$ is torsion, 
+    \item
+      $\pi(f)$ is an epimorphism if and only if $C$ is torsion,
+    \end{enumerate}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Properties of $\pi$}
+  \begin{itemize}
+  \item
+    given an exact sequence
+    $$\begin{tikzcd}
+      0 \arrow{r} & K \arrow{r}{\ker{f}} & M \arrow{r}{f} & N \arrow{r}{\coker{f}} & C \arrow{r} & 0.
+    \end{tikzcd}$$
+    \begin{enumerate}[(i)]
+    \item
+      $\pi(f) = 0$ if and only if $f(M) \cong M/K$ is torsion,
+    \item
+      $\pi(f)$ is a monomorphism if and only if $K$ is torsion, 
+    \item
+      $\pi(f)$ is an epimorphism if and only if $C$ is torsion,
+    \end{enumerate}
+  \item
+    $\pi$ is exact and admits a fully faithful adjoint, $\omega : \QGr{A} \rightarrow \Gr{A}$,
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Properties of $\pi$}
+  \begin{itemize}
+  \item
+    given an exact sequence
+    $$\begin{tikzcd}
+      0 \arrow{r} & K \arrow{r}{\ker{f}} & M \arrow{r}{f} & N \arrow{r}{\coker{f}} & C \arrow{r} & 0.
+    \end{tikzcd}$$
+    \begin{enumerate}[(i)]
+    \item
+      $\pi(f) = 0$ if and only if $f(M) \cong M/K$ is torsion,
+    \item
+      $\pi(f)$ is a monomorphism if and only if $K$ is torsion, 
+    \item
+      $\pi(f)$ is an epimorphism if and only if $C$ is torsion,
+    \end{enumerate}
+  \item
+    $\pi$ is exact and admits a fully faithful adjoint, $\omega : \QGr{A} \rightarrow \Gr{A}$,
+  \item
+    $\pi$ preserves injectives.
+  \end{itemize}
+\end{frame}
+
+\section{Cohomology}
+
+\begin{frame}[fragile]{Closed Objects}
+  \begin{defn}
+    We say an object $M$ of $\Gr{A}$ is $\Tors$-closed if $M$ is torsion-free and any short exact sequence 
+      $$\begin{tikzcd}
+          0 \arrow{r} & M \arrow{r}{f} & X \arrow{r}{\coker{f}} & X/M \arrow{r} & 0
+        \end{tikzcd}$$
+      with $X/M$ torsion splits.
+  \end{defn}
+\end{frame}
+
+\begin{frame}[fragile]{Closed Objects}
+  \begin{defn}
+    We say an object $M$ of $\Gr{A}$ is $\Tors$-closed if $M$ is torsion-free and any short exact sequence 
+      $$\begin{tikzcd}
+          0 \arrow{r} & M \arrow{r}{f} & X \arrow{r}{\coker{f}} & X/M \arrow{r} & 0
+        \end{tikzcd}$$
+      with $X/M$ torsion splits.
+  \end{defn}
+    \begin{rmk}
+    It's immediate that every torsion-free injective is $\Tors$-closed.
+  \end{rmk}
+\end{frame}
+
+\begin{frame}[fragile]{Closed Objects}
+  \begin{prop}[Gabriel]
+    For $M$ an object of $\Gr{A}$, the following are equivalent:
+    \begin{enumerate}
+    \item
+      Any exact sequence
+      $$\begin{tikzcd}
+          0 \arrow{r} & K \arrow{r}{\ker{f}} & X \arrow{r}{f} & Y \arrow{r}{\coker{f}} & C \arrow{r} & 0
+        \end{tikzcd}$$
+      with $K$ and $C$ torsion implies $h_M(f) \colon h_M(Y) \cong h_M(X)$,
+    \end{enumerate}
+  \end{prop}
+\end{frame}
+
+\begin{frame}[fragile]{Closed Objects}
+  \setcounter{prop}{0}
+  \begin{prop}[Gabriel]
+    For $M$ an object of $\Gr{A}$, the following are equivalent:
+    \begin{enumerate}
+    \item
+      Any exact sequence
+      $$\begin{tikzcd}
+          0 \arrow{r} & K \arrow{r}{\ker{f}} & X \arrow{r}{f} & Y \arrow{r}{\coker{f}} & C \arrow{r} & 0
+        \end{tikzcd}$$
+      with $K$ and $C$ torsion implies $h_M(f) \colon h_M(Y) \cong h_M(X)$,
+    \item
+      $M$ is $\Tors$-closed,
+    \end{enumerate}
+  \end{prop}
+\end{frame}
+
+\begin{frame}[fragile]{Closed Objects}
+  \setcounter{prop}{0}
+  \begin{prop}[Gabriel]
+    For $M$ an object of $\Gr{A}$, the following are equivalent:
+    \begin{enumerate}
+    \item
+      Any exact sequence
+      $$\begin{tikzcd}
+          0 \arrow{r} & K \arrow{r}{\ker{f}} & X \arrow{r}{f} & Y \arrow{r}{\coker{f}} & C \arrow{r} & 0
+        \end{tikzcd}$$
+      with $K$ and $C$ torsion implies $h_M(f) \colon h_M(Y) \cong h_M(X)$,
+    \item
+      $M$ is $\Tors$-closed,
+    \item
+      For any object $N$ of $\Gr{A}$
+      $$\pi \colon \Hom{\Gr{A}}{N, M} \cong \Hom{\QGr{A}}{\pi(N), \pi(M)}.$$ 
+    \end{enumerate}
+  \end{prop}
+\end{frame}
+
+\begin{frame}{Injective Objects}
+  \begin{rmk}
+    \begin{enumerate}
+    \item
+      If $M$ is torsion-free and $i \colon M \rightarrow E(M)$ is an injective envelope, then $E(M)$ is torsion free, hence $\Tors$-closed.
+    \end{enumerate}
+  \end{rmk}
+\end{frame}
+
+\begin{frame}{Injective Objects}
+  \setcounter{rmk}{1}
+  \begin{rmk}
+    \begin{enumerate}
+    \item
+      If $M$ is torsion-free and $i \colon M \rightarrow E(M)$ is an injective envelope, then $E(M)$ is torsion free, hence $\Tors$-closed.
+      In such a case, it can be shown that $\pi(i)$ is an injective envelope.
+    \end{enumerate}
+  \end{rmk}
+\end{frame}
+
+\begin{frame}{Injective Objects}
+  \setcounter{rmk}{1}
+  \begin{rmk}
+    \begin{enumerate}
+    \item
+      If $M$ is torsion-free and $i \colon M \rightarrow E(M)$ is an injective envelope, then $E(M)$ is torsion free, hence $\Tors$-closed.
+      In such a case, it can be shown that $\pi(i)$ is an injective envelope.
+      Since $\pi(M) \cong \pi(M/\tau(M))$, it follows that $\QGr{A}$ has injective envelopes.
+    \end{enumerate}
+  \end{rmk}
+\end{frame}
+
+\begin{frame}{Injective Objects}
+  \setcounter{rmk}{1}
+  \begin{rmk}
+    \begin{enumerate}
+    \item
+      If $M$ is torsion-free and $i \colon M \rightarrow E(M)$ is an injective envelope, then $E(M)$ is torsion free, hence $\Tors$-closed.
+      In such a case, it can be shown that $\pi(i)$ is an injective envelope.
+      Since $\pi(M) \cong \pi(M/\tau(M))$, it follows that $\QGr{A}$ has injective envelopes.
+    \item
+      It can be shown (see Artin-Zhang, Prop 2.2) that if $M$ is torsion, then so is $E(M)$.
+    \end{enumerate}
+  \end{rmk}
+\end{frame}
+
+\begin{frame}{Injective Objects}
+  \setcounter{rmk}{1}
+  \begin{rmk}
+    \begin{enumerate}
+    \item
+      If $M$ is torsion-free and $i \colon M \rightarrow E(M)$ is an injective envelope, then $E(M)$ is torsion free, hence $\Tors$-closed.
+      In such a case, it can be shown that $\pi(i)$ is an injective envelope.
+      Since $\pi(M) \cong \pi(M/\tau(M))$, it follows that $\QGr{A}$ has injective envelopes.
+    \item
+      It can be shown (see Artin-Zhang, Prop 2.2) that if $M$ is torsion, then so is $E(M)$.
+      In the case that we have an injective object, $Q$, $\tau(Q)$ is injective and gives the decomposition $Q \cong \tau(Q) \oplus Q/\tau(Q) \cong \tau(Q) \oplus \omega\pi(Q)$.
+      In fact, it follows that $Q/\tau(Q) \cong \omega\pi(Q)$ is injective.
+    \end{enumerate}
+  \end{rmk}
+\end{frame}
+
+\begin{frame}{Injective Objects}
+  \setcounter{rmk}{1}
+  \begin{rmk}
+    \begin{enumerate}
+    \item
+      If $M$ is torsion-free and $i \colon M \rightarrow E(M)$ is an injective envelope, then $E(M)$ is torsion free, hence $\Tors$-closed.
+      In such a case, it can be shown that $\pi(i)$ is an injective envelope.
+      Since $\pi(M) \cong \pi(M/\tau(M))$, it follows that $\QGr{A}$ has injective envelopes.
+    \item
+      It can be shown (see Artin-Zhang, Prop 2.2) that if $M$ is torsion, then so is $E(M)$.
+      In the case that we have an injective object, $Q$, $\tau(Q)$ is injective and gives the decomposition $Q \cong \tau(Q) \oplus Q/\tau(Q) \cong \tau(Q) \oplus \omega\pi(Q)$.
+      In fact, it follows that $Q/\tau(Q) \cong \omega\pi(Q)$ is injective.
+    \item
+      Every injective object of $\QGr{A}$ is isomorphic to $\pi(Q/\tau(Q))$ for some injective object $Q$ of $\Gr{A}$.
+    \end{enumerate}
+  \end{rmk}
+\end{frame}
+
+\begin{frame}{Computing $\operatorname{Ext}$}
+  Since $\QGr{A}$ has enough injectives, we can define $\operatorname{Ext}$ for $\QGr{A}$.
+  Let's compute $\Ext{i}{\QGr{A}}{\pi(M), \pi(N)}$:
+\end{frame}
+
+\begin{frame}[fragile]{Computing $\operatorname{Ext}$}
+  Since $\QGr{A}$ has enough injectives, we can define $\operatorname{Ext}$ for $\QGr{A}$.
+  Let's compute $\Ext{i}{\QGr{A}}{\pi(M), \pi(N)}$:
+  \begin{enumerate}
+    \item
+      Take an injective resolution $\begin{tikzcd}Q^\cdot : 0 \arrow{r} & N = Q^0 \arrow{r} & Q^1 \arrow{r} & \cdots \end{tikzcd}$.
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Computing $\operatorname{Ext}$}
+  Since $\QGr{A}$ has enough injectives, we can define $\operatorname{Ext}$ for $\QGr{A}$.
+  Let's compute $\Ext{i}{\QGr{A}}{\pi(M), \pi(N)}$:
+  \begin{enumerate}
+  \item
+    Take an injective resolution $\begin{tikzcd}Q^\cdot : 0 \arrow{r} & N = Q^0 \arrow{r} & Q^1 \arrow{r} & \cdots \end{tikzcd}$.
+  \item
+    $\pi(Q^\cdot)$ is an injective resolution of $\pi(N)$ by the comments above, so 
+    $$h^i(\Hom{\QGr{A}}{\pi(M), \pi(Q^\cdot)}) \cong \Ext{i}{\QGr{A}}{\pi(M), \pi(N)}$$
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Computing $\operatorname{Ext}$}
+  Since $\QGr{A}$ has enough injectives, we can define $\operatorname{Ext}$ for $\QGr{A}$.
+  Let's compute $\Ext{i}{\QGr{A}}{\pi(M), \pi(N)}$:
+  \begin{enumerate}
+  \item
+    Take an injective resolution $\begin{tikzcd}Q^\cdot : 0 \arrow{r} & N = Q^0 \arrow{r} & Q^1 \arrow{r} & \cdots \end{tikzcd}$.
+  \item
+    $\pi(Q^\cdot)$ is an injective resolution of $\pi(N)$ by the comments above, so $$h^i(\Hom{\QGr{A}}{\pi(M), \pi(Q^\cdot)}) \cong \Ext{i}{\QGr{A}}{\pi(M), \pi(N)}$$
+  \item
+    From the adjunction we get an isomorphism of complexes
+    $$\Hom{\QGr{A}}{\pi(M), \pi(Q^\cdot)}) \cong \Hom{\Gr{A}}{M, \omega\pi(Q^\cdot)}$$
+    and we see that 
+    $$\Ext{i}{\QGr{A}}{\pi(M), \pi(N)} \cong R^i\Hom{\Gr{A}}{M, \omega\pi(N)}$$
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}{Graded $\operatorname{Hom}$}
+  \begin{defn}
+    Define the graded modules
+  $$\HOM{\Gr{A}}{M,N} = \bigoplus_{d \in \Z} \Hom{\Gr{A}}{M, N[d]}$$ 
+  and 
+  $$\HOM{\QGr{A}}{\pi(M), \pi(N)} = \bigoplus_{d \in \Z} \Hom{\QGr{A}}{\pi(M), \pi(N)[d]}.$$
+  \end{defn}
+\end{frame}
+
+\begin{frame}{Graded $\operatorname{Ext}$}
+  The right derived functors are
+  $$\EXT{i}{\Gr{A}}{M,N} = \bigoplus_{d \in \Z}\Ext{i}{\Gr{A}}{M,N[d]}$$
+  and
+  $$\EXT{i}{\QGr{A}}{\pi(M),\pi(N)} = \bigoplus_{d \in \Z}\Ext{i}{\QGr{A}}{\pi(M),\pi(N)[d]}.$$
+\end{frame}
+
+\begin{frame}{Graded $\operatorname{Ext}$ (cont'd)}
+  For $Q^\cdot$ an injective resolution of $N$, 
+  \begin{eqnarray*}
+    \EXT{i}{\QGr{A}}{\pi(M), \pi(N)} 
+    &\cong& h^i\left(\HOM{\Gr{A}}{M, \omega\pi(Q^\cdot)}\right)\\
+    &\cong& R^i\HOM{\Gr{A}}{M, \omega\pi(N)}.
+  \end{eqnarray*}
+\end{frame}
+
+\begin{frame}{Cohomology}
+  Define the cohomology functors
+  $$H^i(\pi(M)) = \Ext{i}{\QGr{A}}{\pi(A), \pi(M)} \cong h^i(\omega\pi(Q^\cdot))_0$$
+  and
+  $$\underline{H}^i(\pi(M)) = \bigoplus_{d \in \Z} H^i(\pi(M)[d]) \cong h^i(\omega\pi(Q^\cdot)).$$
+\end{frame}
+
+\begin{frame}{Bounded Modules}
+  \begin{defn}
+    Let $M$ be an object of $\Gr{A}$.
+    \begin{enumerate}[(i)]
+    \item
+      We say $M$ is left bounded if there exists some $\ell$ such that $M_d = 0$ for all $d \leq \ell$.
+    \end{enumerate}
+  \end{defn}
+\end{frame}
+
+\begin{frame}{Bounded Modules}
+  \setcounter{defn}{5}
+  \begin{defn}
+    Let $M$ be an object of $\Gr{A}$.
+    \begin{enumerate}[(i)]
+    \item
+      We say $M$ is left bounded if there exists some $\ell$ such that $M_d = 0$ for all $d \leq \ell$.
+    \item
+      We say $M$ is right bounded if there exists some $r$ such that $M_d = 0$ for all $r \leq d$.
+    \end{enumerate}
+  \end{defn}
+\end{frame}
+
+\begin{frame}{Bounded Modules}
+  \setcounter{defn}{5}
+  \begin{defn}
+    Let $M$ be an object of $\Gr{A}$.
+    \begin{enumerate}[(i)]
+    \item
+      We say $M$ is left bounded if there exists some $\ell$ such that $M_d = 0$ for all $d \leq \ell$.
+      \item
+        We say $M$ is right bounded if there exists some $r$ such that $M_d = 0$ for all $r \leq d$.
+      \item
+        We say $M$ is bounded if it is left and right bounded.
+    \end{enumerate}
+  \end{defn}
+\end{frame}
+
+\section{The $\chi$ Condition}
+
+\begin{frame}{The $\chi$ Condition}
+  \begin{defn}
+    \begin{enumerate}
+    \item
+      We say $\chi_i^0(M)$ holds if $\EXT{j}{\Gr{A}}{A_0, M}$ is bounded for all $j \leq i$.
+    \end{enumerate}
+  \end{defn}
+\end{frame}
+
+\begin{frame}{The $\chi$ Condition}
+  \setcounter{defn}{6}
+  \begin{defn}
+    \begin{enumerate}
+    \item
+      We say $\chi_i^0(M)$ holds if $\EXT{j}{\Gr{A}}{A_0, M}$ is bounded for all $j \leq i$.
+    \item
+      If $\chi^0_i(M)$ holds for every object $M$ of $\gr{A}$, then we say that $\chi^0_i$ holds for $A$.
+    \end{enumerate}
+  \end{defn}
+\end{frame}
+
+\begin{frame}{The $\chi$ Condition}
+  \setcounter{defn}{6}
+  \begin{defn}
+    \begin{enumerate}
+    \item
+      We say $\chi_i^0(M)$ holds if $\EXT{j}{\Gr{A}}{A_0, M}$ is bounded for all $j \leq i$.
+    \item
+      If $\chi^0_i(M)$ holds for every object $M$ of $\gr{A}$, then we say that $\chi^0_i$ holds for $A$.
+    \item
+      If $\chi^0_i(M)$ holds for $A$ for every $i$, then we say that $\chi^0$ holds for $A$.
+    \end{enumerate}
+  \end{defn}
+\end{frame}
+
+\begin{frame}{The $\chi$ Condition}
+  \setcounter{defn}{6}
+  \begin{defn}
+    \begin{enumerate}
+    \item
+      We say $\chi_i^0(M)$ holds if $\EXT{j}{\Gr{A}}{A_0, M}$ is bounded for all $j \leq i$.
+    \item
+      If $\chi^0_i(M)$ holds for every object $M$ of $\gr{A}$, then we say that $\chi^0_i$ holds for $A$.
+    \item
+      If $\chi^0_i(M)$ holds for $A$ for every $i$, then we say that $\chi^0$ holds for $A$.
+    \item
+      We say that $\chi_i(M)$ holds for an object of $\Gr{A}$ if for all $d$ and all $j \leq i$, there is an integer $n_0$ such that $\EXT{j}{\Gr{A}}{A/A_{\geq n}, M}_{\geq d}$ is an object of $\gr{A}$ when $n_0 \leq n$.
+    \end{enumerate}
+  \end{defn}
+\end{frame}
+
+\begin{frame}{The $\chi$ Condition}
+  \setcounter{defn}{6}
+  \begin{defn}
+    \begin{enumerate}
+    \item
+      We say $\chi_i^0(M)$ holds if $\EXT{j}{\Gr{A}}{A_0, M}$ is bounded for all $j \leq i$.
+    \item
+      If $\chi^0_i(M)$ holds for every object $M$ of $\gr{A}$, then we say that $\chi^0_i$ holds for $A$.
+    \item
+      If $\chi^0_i(M)$ holds for $A$ for every $i$, then we say that $\chi^0$ holds for $A$.
+    \item
+      We say that $\chi_i(M)$ holds for an object of $\Gr{A}$ if for all $d$ and all $j \leq i$, there is an integer $n_0$ such that $\EXT{j}{\Gr{A}}{A/A_{\geq n}, M}_{\geq d}$ is an object of $\gr{A}$ when $n_0 \leq n$.
+    \item
+      If $\chi_i$ holds for every object of $\gr{A}$, then we say that $\chi_i$ holds for $A$.
+    \end{enumerate}
+  \end{defn}
+\end{frame}
+
+\begin{frame}{The $\chi$ Condition}
+  \setcounter{defn}{6}
+  \begin{defn}
+    \begin{enumerate}
+    \item
+      We say $\chi_i^0(M)$ holds if $\EXT{j}{\Gr{A}}{A_0, M}$ is bounded for all $j \leq i$.
+    \item
+      If $\chi^0_i(M)$ holds for every object $M$ of $\gr{A}$, then we say that $\chi^0_i$ holds for $A$.
+    \item
+      If $\chi^0_i(M)$ holds for $A$ for every $i$, then we say that $\chi^0$ holds for $A$.
+    \item
+      We say that $\chi_i(M)$ holds for an object of $\Gr{A}$ if for all $d$ and all $j \leq i$, there is an integer $n_0$ such that $\EXT{j}{\Gr{A}}{A/A_{\geq n}, M}_{\geq d}$ is an object of $\gr{A}$ when $n_0 \leq n$.
+    \item
+      If $\chi_i$ holds for every object of $\gr{A}$, then we say that $\chi_i$ holds for $A$.
+    \item
+      If $\chi_i$ holds for every $i$, then we say that $\chi$ holds for $A$.
+    \end{enumerate}
+  \end{defn}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+Thank you!
+\end{center}
+\end{frame}
+
+
+
+
+
+
+\end{document}
