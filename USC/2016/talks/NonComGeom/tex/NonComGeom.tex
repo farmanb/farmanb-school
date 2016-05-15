@@ -212,7 +212,7 @@ University of South Carolina, Columbia, SC USA}
 \section{Quotient Categories}
 
 \begin{frame}{Preliminaries}
-  Let $k$ be a Noetherian commutative ring, $A$ a $\Z_{\geq 0}$-graded right Noetherian ring.
+  Let $k$ be a Noetherian commutative ring, $A$ a $\Z_{\geq 0}$-graded right Noetherian algebra over $k$.
   Denote by $\Gr{A}$ (resp. $\gr{A}$) the category of graded right $A$-modules (resp. finite) with morphisms
   $$\Hom{\Gr{A}}{M,N} = \left\{f \in \Hom{A}{M,N} \;\middle\vert\; f(M_d) \subseteq N_d\right\}.$$
 \end{frame}
@@ -738,8 +738,8 @@ University of South Carolina, Columbia, SC USA}
   Since $\QGr{A}$ has enough injectives, we can define $\operatorname{Ext}$ for $\QGr{A}$.
   Let's compute $\Ext{i}{\QGr{A}}{\pi(M), \pi(N)}$:
   \begin{enumerate}
-    \item
-      Take an injective resolution $\begin{tikzcd}Q^\cdot : 0 \arrow{r} & N = Q^0 \arrow{r} & Q^1 \arrow{r} & \cdots \end{tikzcd}$.
+  \item
+    Take an injective resolution $\begin{tikzcd}Q^\cdot : 0 \arrow{r} & N \arrow{r} & Q^0 \arrow{r} & Q^1 \arrow{r} & \cdots \end{tikzcd}$.
   \end{enumerate}
 \end{frame}
 
@@ -748,7 +748,7 @@ University of South Carolina, Columbia, SC USA}
   Let's compute $\Ext{i}{\QGr{A}}{\pi(M), \pi(N)}$:
   \begin{enumerate}
   \item
-    Take an injective resolution $\begin{tikzcd}Q^\cdot : 0 \arrow{r} & N = Q^0 \arrow{r} & Q^1 \arrow{r} & \cdots \end{tikzcd}$.
+    Take an injective resolution $\begin{tikzcd}Q^\cdot : 0 \arrow{r} & N \arrow{r} & Q^0 \arrow{r} & Q^1 \arrow{r} & \cdots \end{tikzcd}$.
   \item
     $\pi(Q^\cdot)$ is an injective resolution of $\pi(N)$ by the comments above, so 
     $$h^i(\Hom{\QGr{A}}{\pi(M), \pi(Q^\cdot)}) \cong \Ext{i}{\QGr{A}}{\pi(M), \pi(N)}$$
@@ -760,7 +760,7 @@ University of South Carolina, Columbia, SC USA}
   Let's compute $\Ext{i}{\QGr{A}}{\pi(M), \pi(N)}$:
   \begin{enumerate}
   \item
-    Take an injective resolution $\begin{tikzcd}Q^\cdot : 0 \arrow{r} & N = Q^0 \arrow{r} & Q^1 \arrow{r} & \cdots \end{tikzcd}$.
+    Take an injective resolution $\begin{tikzcd}Q^\cdot : 0 \arrow{r} & N \arrow{r} & Q^0 \arrow{r} & Q^1 \arrow{r} & \cdots \end{tikzcd}$.
   \item
     $\pi(Q^\cdot)$ is an injective resolution of $\pi(N)$ by the comments above, so $$h^i(\Hom{\QGr{A}}{\pi(M), \pi(Q^\cdot)}) \cong \Ext{i}{\QGr{A}}{\pi(M), \pi(N)}$$
   \item
@@ -803,6 +803,10 @@ University of South Carolina, Columbia, SC USA}
   $$\underline{H}^i(\pi(M)) = \bigoplus_{d \in \Z} H^i(\pi(M)[d]) \cong h^i(\omega\pi(Q^\cdot)).$$
 \end{frame}
 
+
+
+\section{The $\chi$ Condition}
+
 \begin{frame}{Bounded Modules}
   \begin{defn}
     Let $M$ be an object of $\Gr{A}$.
@@ -840,8 +844,6 @@ University of South Carolina, Columbia, SC USA}
     \end{enumerate}
   \end{defn}
 \end{frame}
-
-\section{The $\chi$ Condition}
 
 \begin{frame}{The $\chi$ Condition}
   \begin{defn}
