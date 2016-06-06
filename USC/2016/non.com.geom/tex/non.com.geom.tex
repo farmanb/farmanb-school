@@ -956,7 +956,7 @@ The next two propositions describe the morphisms of $\QGr{A}$ explicitly.
   \begin{proof}
     Take an injective resolution
     $$\begin{tikzcd}
-      Q^\cdot \colon 0 \arrow{r} & Y = Q^0 \arrow{r}{d^0} & Q^1 \arrow{r}{d^1} \arrow{r} & \cdots 
+      Q^\cdot \colon 0 \arrow{r} & Y \arrow{r} & Q^0 \arrow{r}{d^0} & Q^1 \arrow{r}{d^1} \arrow{r} & \cdots 
     \end{tikzcd}$$
     of $Y$.
     By Corollary~\ref{cor2}.\ref{cor2.2}, $\pi(Q^\cdot)$ is an injective resolution of $\pi(Y)$.
@@ -967,8 +967,8 @@ The next two propositions describe the morphisms of $\QGr{A}$ explicitly.
     \end{tikzcd}$$
     and so we get an isomorphism of chain complexes
     $$\begin{tikzcd}[column sep=large]
-      \Hom{\C/\A}{\pi(X), \pi(Q^\cdot)} \colon 0 \arrow{r} & \Hom{\C/\A}{\pi(X),\pi(Y)} \arrow{d}{\Phi^0}\arrow{r}{h^{\pi(X)}(\pi(d^0))} & \Hom{\C/\A}{\pi(X), \pi(Q^1)}\arrow{d}{\Phi^1} \arrow{r}{h^{\pi(X)}(\pi(d^1))} & \cdots\\
-      \Hom{\C}{X, \omega\pi(Q^\cdot)} \colon 0 \arrow{r} & \Hom{\C}{X,\omega\pi(Y)} \arrow{r}{h^X(\omega\pi(d^0))} & \Hom{\C}{X, \omega\pi(Q^1)} \arrow{r}{h^X(\omega\pi(d^1))} & \cdots
+      \Hom{\C/\A}{\pi(X), \pi(Q^\cdot)} \colon 0 \arrow{r} & \Hom{\C/\A}{\pi(X),\pi(Q^0)} \arrow{d}{\Phi^0}\arrow{r}{h^{\pi(X)}(\pi(d^0))} & \Hom{\C/\A}{\pi(X), \pi(Q^1)}\arrow{d}{\Phi^1} \arrow{r}{h^{\pi(X)}(\pi(d^1))} & \cdots\\
+      \Hom{\C}{X, \omega\pi(Q^\cdot)} \colon 0 \arrow{r} & \Hom{\C}{X,\omega\pi(Q^0)} \arrow{r}{h^X(\omega\pi(d^0))} & \Hom{\C}{X, \omega\pi(Q^1)} \arrow{r}{h^X(\omega\pi(d^1))} & \cdots
     \end{tikzcd}$$
     since for $\varphi \in \Hom{\C/\A}{\pi(X), Q^n}$ we have
     $$h^X(\omega\pi(d^n)) \circ \Phi^n(\varphi) = \omega\pi(d^n) \circ \omega(\varphi) \circ \varepsilon_X = \omega(\pi(d^n) \circ \varphi) \circ \varepsilon_X = \Phi^{n+1} \circ h^X(\pi(d^n))(\varphi).$$
