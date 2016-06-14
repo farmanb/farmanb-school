@@ -1,3 +1,10 @@
 *.DS_Store
 Thumbs.db
 *~
+*.aux
+*.log
+*.nav
+*.out
+*.snm
+*.toc
+*.vrb
