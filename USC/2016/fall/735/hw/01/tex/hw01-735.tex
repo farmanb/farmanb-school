@@ -1,0 +1,135 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath,mathtools,tikz-cd,mathrsfs}
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 735:\\Homework 01}
+\date{September 7, 2016}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+\maketitle
+
+\providecommand{\p}{\mathfrak{p}}
+\providecommand{\m}{\mathfrak{m}}
+\providecommand{\Deck}[1]{\operatorname{Deck}\left(#1\right)}
+%\newcommand{\Res}{\operatorname{Res}}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{}
+\newtheorem{lem}{Lemma}
+\newtheorem{prop}{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}
+
+\newcommand{\A}{\mathbb{A}}
+
+\begin{ex}\label{thm1}
+  \begin{enumerate}[(a)]
+  \item
+    Let $A_i$ be a sequence of matrices in $\operatorname{U}(n) = \U{n}{\C}$ converging to a matrix $A \in \GL{n}{\C}$.
+    Prove that $A \in \U{n}{\C}$ (and thereby establish that $\U{n}{\C}$ is indeed a matrix Lie group).
+  \item
+    Prove the same for $\SU{n}{\C}$.
+  \end{enumerate}
+  \begin{proof}
+    \begin{enumerate}[(a)]
+    \item
+      Write $A_i = \left(a_{j,k}^{(i)}\right)$ and $A = \left(a_{j,k}\right)$ so that, by assumption, $a_{j,k}^{(i)} \rightarrow a_{j,k}$ and thus
+      \begin{eqnarray*}
+        (AA^*)_{j,k} &=& \sum_{\ell = 1}^n a_{j,\ell}\overline{a_{k,\ell}}\\
+        &=& \sum_{\ell = 1}^n \left(\lim_{i \rightarrow \infty}a_{j,\ell}^{(i)}\right)\overline{\left(\lim_{i \rightarrow \infty}a_{k,\ell}^{(i)}\right)}\\
+        &=& \lim_{i \rightarrow \infty}\sum_{\ell = 1}^n a_{j,\ell}^{(i)}\overline{a_{k,\ell}^{(i)}}\\
+        &=& \lim_{i \rightarrow \infty} (A_iA_i^*)_{j,k}\\
+        &=& \delta_{j,k}
+      \end{eqnarray*}
+      and hence $AA^* = I$.
+      Therefore $A^{-1} = A^*$ and hence $A \in \U{n}{\C}$.
+    \item
+      By definition, $\SU{n}{\C} = \U{n}{\C} \cap \SL{n}{\C}$.
+      By part (a), $\U{n}{\C}$ is closed, $\SL{n}{\C}$ is also closed, hence $\SU{n}{\C}$ is also closed.
+      Therefore every convergent sequence of $\SL{n}{\C}$ converges to a matrix in $\SL{n}{\C}$.
+    \end{enumerate}
+  \end{proof}
+\end{ex}
+
+\begin{ex}
+  Read the definition of the Euclidean group $\operatorname{E}(n)$ in Section 1.2.5 of the book, and verify that $\operatorname{E}(n)$ is a matrix Lie group by checking (1.11).
+\end{ex}
+
+\begin{ex}
+  Characterize the image of the 'restriction of scalars' map $\M{n}{\mathbb{H}} \rightarrow \M{2n}{\C}$ in as nice of a way as you can.
+\end{ex}
+
+\begin{ex}
+  Let $\omega$ be the skew-symmetric bilinear form on $\R^{2n}$ given by 
+  $$\omega(x,y) = \sum_{j = 1}^n (x_jy_{n + j} - x_{n+j}y_j).$$
+  Let $\Omega$ be the $2n \times 2n$ matrix
+  $$\Omega = \left(\begin{matrix}
+    0 & I\\
+    -I & 0
+    \end{matrix}\right).$$
+  Show that for all $x,y \in \R^{2n}$, we have
+  $$\omega(x,y) = \left<x, \Omega y\right>.$$
+  Show that a $2n \times 2n$ matrix $A$ belongs to $\operatorname{Sp}_n(\R)$ if and only if $-\Omega A^\text{tr} \Omega = A^{-1}$.\\
+  {\it Note}: A similar analysis applies to $\operatorname{Sp}_n(\C)$.
+\end{ex}
+
+\begin{ex}
+  Show that the symplectic group $\operatorname{Sp}_1(\R) \subset \GL{2}{\R}$ is equal to $\SL{2}{\R}$.
+  Show that $\operatorname{Sp}_1(\C) = \SL{2}{\C}$ and that $\operatorname{Sp}(1) = \operatorname{SU}(2)$.
+\end{ex}
+
+\begin{ex}
+  Show that if $\alpha$ and $\beta$ are arbitrary complex numbers satisfying $|\alpha|^2 + |\beta|^2 = 1$, then the matrix
+  $$A = \left(\begin{matrix}
+    \alpha & -\overline{\beta}\\
+    \beta & \overline{\alpha}
+  \end{matrix}\right)$$
+  is in $\operatorname{SU}(2)$.
+  Show that every $A \in \operatorname{SU}(2)$ can be expressed in this form for a unique pair $(\alpha, \beta)$ satisfying $|\alpha|^2 + |\beta|^2 = 1$.
+\end{ex}
+
+\begin{ex}
+  Determine the center $\cntr{H}$ of the Heisenberg group,
+  $$H = \left\{\left(\begin{matrix}1 & a & b\\0 & 1 & c\\0 & 0 & 1\end{matrix}\right) \in \M{3}{\R} \;\middle\vert\; a,b,c \in \R\right\}.$$
+    Show that the quotient group $H/\cntr{H}$ is commutative.
+    \begin{proof}
+      Let 
+      $$Z = \left(\begin{matrix}
+      1 & z_1 & z_2\\
+      0 & 1 & z_3\\
+      0 & 0 & 1
+      \end{matrix}\right) \in \cntr{H}$$
+      be given.
+      For 
+      $$A = \left(\begin{matrix}1 & a & b\\0 & 1 & c\\0 & 0 & 1\end{matrix}\right) \in H$$
+      we have  
+      $$A = Z^{-1}AZ = \left(\begin{array}{rrr}
+        1 & a & b + az_3 - cz_1\\
+        0 & 1 & c \\
+        0 & 0 & 1
+      \end{array}\right)$$
+      implies $az_3 = cz_1$ for all $a,c \in \R$ and hence $z_1 = z_3 = 0$.
+      Therefore
+      $$\cntr{H} = \left\{\left(\begin{matrix}1 & 0 & b\\0 & 1 & 0\\0 & 0 & 1\end{matrix}\right) \in \M{3}{\R} \;\middle\vert\; b \in \R\right\}.$$
+        
+        To see that $H/\cntr{H}$ is abelian, let
+        %$$A = \left(\begin{matrix}1 & a_1 & a_2\\0 & 1 & a_3\\0 & 0 & 1\end{matrix}\right)$$
+        %and
+        $$B = \left(\begin{matrix}1 & e & f\\0 & 1 & g\\0 & 0 & 1\end{matrix}\right) \in H$$
+          be given and observe that
+        $$A^{-1}B^{-1}AB = \left(\begin{array}{rrr}
+          1 & 0 & ag - ce\\
+          0 & 1 & 0 \\
+          0 & 0 & 1
+        \end{array}\right) \in \cntr{H}.$$
+    \end{proof}
+\end{ex}
+
+\begin{ex}
+  A subset $E$ of a matrix Lie group, $G$, is called {\bf discrete} if for each $A$ in $E$, there is a neighbourhood $U$ of $A$ in $G$ such that $U$ contains no point in $E$ except for the $A$.
+  Suppose that $G$ is a connected matrix Lie group and $N$ is a discrete normal subgroup of $G$.
+  Show that $N$ is contained in the center of $G$.
+\end{ex}
+\end{document}
