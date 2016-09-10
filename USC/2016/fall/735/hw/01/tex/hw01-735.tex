@@ -18,6 +18,7 @@
 \newtheorem{thm}{Theorem}
 \newtheorem{ex}{}
 \newtheorem{lem}{Lemma}
+\newtheorem{cor}{Corollary}
 \newtheorem{prop}{Proposition}
 \theoremstyle{definition}
 \newtheorem{defn}{Definition}
@@ -71,13 +72,85 @@
     \end{matrix}\right).$$
   Show that for all $x,y \in \R^{2n}$, we have
   $$\omega(x,y) = \left<x, \Omega y\right>.$$
-  Show that a $2n \times 2n$ matrix $A$ belongs to $\operatorname{Sp}_n(\R)$ if and only if $-\Omega A^\text{tr} \Omega = A^{-1}$.\\
+  Show that a $2n \times 2n$ matrix, $A$, belongs to $\operatorname{Sp}_n(\R)$ if and only if $-\Omega A^\text{tr} \Omega = A^{-1}$.\\
   {\it Note}: A similar analysis applies to $\operatorname{Sp}_n(\C)$.
+  \begin{proof}
+    First we observe that 
+    $$\left(\Omega y\right)_{i} = \sum_{j = 1}^{2n} \Omega_{i,j}y_i 
+    = \left\{
+    \begin{array}{cc}
+      y_{n + i} & i \leq n\\
+      -y_{n - i} & \text{else}.
+    \end{array}
+    \right.$$
+    Hence we have
+    \begin{eqnarray*}
+      \langle x, \Omega y \rangle &=& \sum_{i=1}^{2n} x_i(\Omega y)_i \\
+      &=& \sum_{i=1}^{n} x_i(\Omega y)_i + \sum_{i=n+1}^{2n} x_i(\Omega y)_i \\
+      &=& \sum_{i=1}^{n} x_iy_{n+i} + \sum_{i=n+1}^{2n} x_i(-y_{n -i})\\
+      &=& \sum_{i=1}^{n} x_iy_{n+i} - \sum_{i=1}^{n} x_{n + i}y_{i}\\
+      &=& \sum_{i=1}^{2n} \left(x_iy_{n+i} - x_{n + i} y_{i}\right)\\
+      &=& \omega(x,y).
+    \end{eqnarray*}
+
+    By definition, $A$ belongs to $\operatorname{Sp}_n(\R)$ if and only if 
+    $$\langle Ax, \Omega Ay\rangle = \omega(Ax,Ay) = \omega(x,y) = \langle x, \Omega y\rangle$$ for all $x,y \in \R^{2n}$.
+    This is equivalent to 
+    \begin{eqnarray*}
+      0 = \langle Ax, \Omega Ay\rangle - \langle x, \Omega y\rangle
+      &\iff& 0 = \langle x, A^\text{tr}\Omega Ay\rangle - \langle x, \Omega y\rangle\\
+      &\iff& 0 = \langle x, A^\text{tr}\Omega Ay - \Omega y\rangle\\
+      &\iff& A^\text{tr}\Omega Ay - \Omega y = 0\\
+      &\iff& A^\text{tr}\Omega Ay = \Omega y.
+    \end{eqnarray*}
+    It is straightforward to check that $-\Omega = \Omega^{-1}$, and hence it follows from
+    $$y = -\Omega(\Omega y) = 
+    -\Omega(A^\text{tr}\Omega A y)
+    = (-\Omega A^\text{tr}\Omega)(Ay)
+    = ((-\Omega A^\text{tr}\Omega)A)y$$
+    that $A^{-1} = -\Omega A^\text{tr} \Omega$.
+    Therefore $A$ belongs to $\operatorname{Sp}_n(\R)$ if and only if $A^{-1} = -\Omega A^\text{tr} \Omega$.
+  \end{proof}
 \end{ex}
 
 \begin{ex}
   Show that the symplectic group $\operatorname{Sp}_1(\R) \subset \GL{2}{\R}$ is equal to $\SL{2}{\R}$.
   Show that $\operatorname{Sp}_1(\C) = \SL{2}{\C}$ and that $\operatorname{Sp}(1) = \operatorname{SU}(2)$.
+  \begin{proof}
+    Given a $2 \times 2$ matrix with real entries
+    $$A = \left(\begin{matrix}
+      a & b\\
+      c & d
+    \end{matrix}\right)$$
+    we observe that
+    $$-\Omega A^\text{tr} \Omega = \left(\begin{matrix}
+      0 & -1\\
+      1 & 0
+    \end{matrix}\right)
+    \left(\begin{matrix}
+      a & c\\
+      b & d
+    \end{matrix}\right)
+    \left(\begin{matrix}
+      0 & 1\\
+      -1 & 0
+    \end{matrix}\right)
+    =
+    \left(\begin{matrix}
+      d & -b\\
+      -c & a
+    \end{matrix}\right)$$
+    and hence 
+    $$(-\Omega A^\text{tr} \Omega) A = \left(\begin{matrix}
+      ad - bc & 0\\
+      0 & ad - bc
+    \end{matrix}\right) = \operatorname{id}_{\Mat{2}{\R}}$$
+    if and only if $\det{A} = 1$.
+    Therefore by the previous exercise, $\operatorname{Sp}_2(\R) = \SL{2}{\R}$.
+    Changing the entries from $\R$ to $\C$, the same proof shows $\operatorname{Sp}_1(\C) = \SL{2}{\C}$ by Hall's remark at the end of the statement of the last exercise.
+    The fact that $\operatorname{Sp}(1) = \operatorname{SU}(2)$ then follows from the definition 
+    $$\operatorname{SU}(2) = \SL{2}{\C} \cap \operatorname{U}_2(\C) = \operatorname{Sp}_1(\C) \cap \operatorname{U}_2(\C) = \operatorname{Sp}(1).$$
+  \end{proof}
 \end{ex}
 
 \begin{ex}
@@ -88,6 +161,74 @@
   \end{matrix}\right)$$
   is in $\operatorname{SU}(2)$.
   Show that every $A \in \operatorname{SU}(2)$ can be expressed in this form for a unique pair $(\alpha, \beta)$ satisfying $|\alpha|^2 + |\beta|^2 = 1$.
+  \begin{proof}
+    By the previous exercises, we note that
+    \begin{eqnarray*}
+    \left(\begin{matrix}
+      \alpha & -\overline{\beta}\\
+      \beta & \overline{\alpha}
+    \end{matrix}\right)
+    \left[
+    \left(\begin{matrix}
+      0 & -1\\
+      1 & 0
+    \end{matrix}\right)
+    \left(\begin{matrix}
+      \alpha & \beta\\
+      -\overline{\beta} & \overline{\alpha}
+    \end{matrix}\right)
+    \left(\begin{matrix}
+      0 & 1\\
+      -1 & 0
+    \end{matrix}\right)\right]
+    &=&
+    \left(\begin{matrix}
+      \alpha & -\overline{\beta}\\
+      \beta & \overline{\alpha}
+    \end{matrix}\right)
+    \left(\begin{matrix}
+      \overline{\alpha} & \overline{\beta}\\
+      -\beta & \alpha
+    \end{matrix}\right)\\
+    &=&
+    AA^*\\
+    &=&
+    \left(\begin{matrix}
+      |\alpha|^2 + |\beta|^2 & 0\\
+      0 & |\alpha|^2 + |\beta|^2
+    \end{matrix}\right)\\
+    &=& \operatorname{id}_{\M{2}{\C}}
+    \end{eqnarray*}
+    implies that $A \in \operatorname{Sp}_1(\C) \cap \operatorname{U}_2(\C) = \operatorname{SU}(2)$.
+    This gives a monomorphism of sets
+    $$\left\{\left(\begin{matrix}
+    \alpha & -\overline{\beta}\\
+    \beta & \overline{\alpha}
+  \end{matrix}\right) \;\middle\vert\; |\alpha|^2 + |\beta|^2 = 1\right\} \rightarrow \operatorname{SU}(2)$$
+    For bijectivity, let
+    $$A = \left(\begin{matrix}
+      a & b\\
+      c & d
+    \end{matrix}\right) \in \operatorname{SU}(2)$$
+    be given and observe that, by assumption,
+    $$\left(\begin{matrix}
+      d & -b\\
+      -c & a
+      \end{matrix}\right) = 
+    A^{-1} = 
+    A^* =
+    \left(\begin{matrix}
+      \overline{a} & \overline{c}\\
+      \overline{b} & \overline{d}
+      \end{matrix}\right)$$
+    and hence $d = \overline{a}$ and $b = -\overline{c}$.
+    Therefore 
+    $$A = \left(\begin{matrix}
+      a & -\overline{c}\\
+      c & \overline{a}
+    \end{matrix}\right)$$
+    with $|a|^2 + |b|^2 = 1$, as desired.
+  \end{proof}
 \end{ex}
 
 \begin{ex}
@@ -127,9 +268,81 @@
     \end{proof}
 \end{ex}
 
+\begin{lem}\label{lem1}
+  If $G$ is a Lie group and $g \in G$, the maps
+  $$\begin{tikzcd}
+    G \arrow{r}{\varphi_g} & G & \text{and} & G \arrow{r}{_g\varphi} & G\\
+    x \arrow[mapsto]{r} & gx & & x \arrow[mapsto]{r} & xg
+  \end{tikzcd}$$
+  are homeomorphisms.
+  \begin{proof}
+    Since $G$ is a lie group, the multiplication map 
+    $\begin{tikzcd}
+      G \times G \arrow{r}{\mu} & G 
+    \end{tikzcd}$
+      is continuous.
+      We have an obvious morphism of topological spaces
+      $$\begin{tikzcd}
+        G \arrow{r}{g} & G\\
+        x \arrow[mapsto]{r} & g
+      \end{tikzcd}$$
+      which gives rise by the universal property for the product of topological spaces to morphisms
+      $$\begin{tikzcd}
+        & G \arrow[swap]{ld}{\operatorname{id}_G} \arrow{rd}{g} \arrow[dashed]{d}{\exists !\imath_g} & &\text{and} & & G\arrow[swap]{ld}{g} \arrow{rd}{\operatorname{id}_G}\arrow[dashed]{d}{\exists ! _g\imath}\\
+        G & \arrow{l}{\pi_1} G \times G \arrow[swap]{r}{\pi_2} & G & & G & \arrow{l}{\pi_1} G \times G \arrow[swap]{r}{\pi_2} & G
+      \end{tikzcd}$$
+      Therefore $\varphi_g = \mu \circ \imath_g$ and $_g\varphi = \mu \circ\,_g\imath$ are both continuous with continuous inverses $\varphi_{g^{-1}}$ and $_{g^{-1}}\varphi$.
+  \end{proof}
+\end{lem}
+
+\begin{cor}\label{cor1}
+  Let $G$ be a Lie group and let $g \in G$ be given.
+  The map
+  $$\begin{tikzcd}
+    G \arrow{r}{\Phi_g} &G\\
+    x \arrow[mapsto]{r}& xgx^{-1}
+  \end{tikzcd}$$
+  is continuous.
+
+  \begin{proof}
+    Since $G$ is a lie group, the inversion map
+    $$\begin{tikzcd}
+      G \arrow{r}{\_^{-1}} &G\\
+      x \arrow[mapsto]{r} & x^{-1} 
+    \end{tikzcd}$$
+    is continuous.
+    Combining this with Lemma~\ref{lem1}, we obtain morphisms from the universal property for products in $\mathfrak{Top}$,
+    $$\begin{tikzcd}
+      & G\arrow[swap]{ld}{\operatorname{id}_G}\arrow{rd}{\operatorname{id}_G}\arrow[dashed]{d}{\exists !\Delta}\\
+      G\arrow[swap]{d}{_g\varphi} & \arrow{l}{\pi_1} G \times G \arrow[dashed]{d}{\exists !_g\varphi \times \_^{-1}} \arrow[swap]{r}{\pi_2} & G\arrow{d}{\_^{-1}}\\
+      G & \arrow{l}{\pi_1} G \times G \arrow[swap]{r}{\pi_2} & G\\
+    \end{tikzcd}$$
+    and observe that 
+    $$\mu \circ \left(_g\varphi \times \_^{-1}\right) \circ \Delta(x)
+    = \mu \circ \left(_g\varphi \times \_^{-1}\right)(x,x)
+    = \mu (_g\varphi(x),x^{-1})
+    = xgx^{-1}
+    = \Phi_g(x)$$
+    is continuous, as desired.
+  \end{proof}
+\end{cor}
+
 \begin{ex}
-  A subset $E$ of a matrix Lie group, $G$, is called {\bf discrete} if for each $A$ in $E$, there is a neighbourhood $U$ of $A$ in $G$ such that $U$ contains no point in $E$ except for the $A$.
+  A subset $E$ of a matrix Lie group, $G$, is called {\bf discrete} if for each $A$ in $E$, there is a neighbourhood $U$ of $A$ in $G$ such that $U$ contains no point in $E$ except for $A$.
   Suppose that $G$ is a connected matrix Lie group and $N$ is a discrete normal subgroup of $G$.
   Show that $N$ is contained in the center of $G$.
+  \begin{proof}
+    First, observe that $N$, endowed with the subspace topology inherited from $G$, is discrete; indeed, every point $n \in N$ is open since, by assumption, we can always find a neighbourhood $U \subseteq G$ of $n$ with $U \cap N = \{n\}$.
+    %Since $G$ is a Lie group and $N$ is normal, the map
+    
+    Since $N$ is normal, the morphism of groups
+    \begin{align*}
+      \Phi_n \colon G &\rightarrow N\\
+      g & \mapsto gng^{-1}
+    \end{align*}  
+    for fixed $n \in N$ is well-defined and continuous by Corollary~\ref{cor1}.
+    Since $G$ is connected, the image of $\Phi_n$ is also connected, and hence must be a singleton.
+    Therefore as $\Phi_n(1) = n$, the image is $\{n\}$ and $N$ is central, as desired.
+  \end{proof}
 \end{ex}
 \end{document}
