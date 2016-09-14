@@ -25,6 +25,65 @@
 
 \newcommand{\A}{\mathbb{A}}
 
+\begin{lem}\label{lem1}
+  If $G$ is a Lie group and $g \in G$, the maps
+  $$\begin{tikzcd}
+    G \arrow{r}{\varphi_g} & G & \text{and} & G \arrow{r}{_g\varphi} & G\\
+    x \arrow[mapsto]{r} & gx & & x \arrow[mapsto]{r} & xg
+  \end{tikzcd}$$
+  are homeomorphisms.
+  \begin{proof}
+    Since $G$ is a lie group, the multiplication map 
+    $\begin{tikzcd}
+      G \times G \arrow{r}{\mu} & G 
+    \end{tikzcd}$
+      is continuous.
+      We have an obvious morphism of topological spaces
+      $$\begin{tikzcd}
+        G \arrow{r}{g} & G\\
+        x \arrow[mapsto]{r} & g
+      \end{tikzcd}$$
+      which gives rise by the universal property for the product of topological spaces to morphisms
+      $$\begin{tikzcd}
+        & G \arrow[swap]{ld}{\operatorname{id}_G} \arrow{rd}{g} \arrow[dashed]{d}{\exists !\imath_g} & &\text{and} & & G\arrow[swap]{ld}{g} \arrow{rd}{\operatorname{id}_G}\arrow[dashed]{d}{\exists ! _g\imath}\\
+        G & \arrow{l}{\pi_1} G \times G \arrow[swap]{r}{\pi_2} & G & & G & \arrow{l}{\pi_1} G \times G \arrow[swap]{r}{\pi_2} & G
+      \end{tikzcd}$$
+      Therefore $\varphi_g = \mu \circ \imath_g$ and $_g\varphi = \mu \circ\,_g\imath$ are both continuous with continuous inverses $\varphi_{g^{-1}}$ and $_{g^{-1}}\varphi$.
+  \end{proof}
+\end{lem}
+
+\begin{cor}\label{cor1}
+  Let $G$ be a Lie group and let $g \in G$ be given.
+  The map
+  $$\begin{tikzcd}
+    G \arrow{r}{\Phi_g} &G\\
+    x \arrow[mapsto]{r}& xgx^{-1}
+  \end{tikzcd}$$
+  is continuous.
+
+  \begin{proof}
+    Since $G$ is a lie group, the inversion map
+    $$\begin{tikzcd}
+      G \arrow{r}{\_^{-1}} &G\\
+      x \arrow[mapsto]{r} & x^{-1} 
+    \end{tikzcd}$$
+    is continuous.
+    Combining this with Lemma~\ref{lem1}, we obtain morphisms from the universal property for products in $\mathfrak{Top}$,
+    $$\begin{tikzcd}
+      & G\arrow[swap]{ld}{\operatorname{id}_G}\arrow{rd}{\operatorname{id}_G}\arrow[dashed]{d}{\exists !\Delta}\\
+      G\arrow[swap]{d}{_g\varphi} & \arrow{l}{\pi_1} G \times G \arrow[dashed]{d}{\exists !_g\varphi \times \_^{-1}} \arrow[swap]{r}{\pi_2} & G\arrow{d}{\_^{-1}}\\
+      G & \arrow{l}{\pi_1} G \times G \arrow[swap]{r}{\pi_2} & G\\
+    \end{tikzcd}$$
+    and observe that 
+    $$\mu \circ \left(_g\varphi \times \_^{-1}\right) \circ \Delta(x)
+    = \mu \circ \left(_g\varphi \times \_^{-1}\right)(x,x)
+    = \mu (_g\varphi(x),x^{-1})
+    = xgx^{-1}
+    = \Phi_g(x)$$
+    is continuous, as desired.
+  \end{proof}
+\end{cor}
+
 \begin{ex}\label{thm1}
   \begin{enumerate}[(a)]
   \item
@@ -55,11 +114,154 @@
 \end{ex}
 
 \begin{ex}
-  Read the definition of the Euclidean group $\operatorname{E}(n)$ in Section 1.2.5 of the book, and verify that $\operatorname{E}(n)$ is a matrix Lie group by checking (1.11).
+  Read the definition of the Euclidean group $\operatorname{E}(n) = \left\{\{x,R\} \;\middle\vert\; x \in \R^n, R \in \operatorname{O}(n)\right\}$ in Section 1.2.5 of the book, and verify that $\operatorname{E}(n)$ is a matrix Lie group by checking (1.11).
+  \begin{proof}
+    First observe that if $\{x,R\} = \{y, S\}$, then by the definition of the action of $\R^n$,
+    $$x = \{x,R\}0 = \{y,S\}0 = y$$
+    and hence for any basis element $e_i$ of $\R^n$,
+    $$Re_i + x = \{x,R\}e_i = \{y,S\}e_i = Se_i + y = Se_i + x$$
+    implies $Re_i = Se_i$ and thus $R = S$.
+    Hence the map
+    $$\begin{tikzcd}
+      \operatorname{E}(n) \arrow{r}{\varphi} & \GL{n+1}{\R}\\
+      \{x,R\} \arrow[mapsto]{r} & \left(
+      \begin{matrix}
+        &   & x_1\\
+        & R & \vdots\\
+        &   & x_n\\
+        0 & \ldots 0 & 1
+      \end{matrix}
+      \right)
+    \end{tikzcd}$$
+    is a well defined bijection onto its image.
+    We see that this is a morphism of groups for if $\{x,R\}$, $\{y,S\} \in \operatorname{E}(n)$, then the product of their images
+    $$
+      \left(
+      \begin{matrix}
+        r_{1,1} & r_{1,2} & \ldots & r_{1,n} & x_1\\
+        r_{2,1} & r_{2,2} & \ldots & r_{2,n} & x_2\\
+        \vdots & \vdots & \ddots & \vdots & \vdots\\
+        r_{n,1} & r_{n,2} & \ldots & r_{n,n} & x_n\\
+        0 & 0 & \ldots & 0 & 1
+      \end{matrix}
+      \right)
+      \left(
+      \begin{matrix}
+        s_{1,1} & s_{1,2} & \ldots & s_{1,n} & y_1\\
+        s_{2,1} & s_{2,2} & \ldots & s_{2,n} & y_2\\
+        \vdots & \vdots & \ddots & \vdots & \vdots\\
+        s_{n,1} & s_{n,2} & \ldots & s_{n,n} & y_n\\
+        0 & 0 & \ldots & 0 & 1
+      \end{matrix}
+      \right)\\
+      $$
+      is given by the matrix
+      $$\left(
+      \begin{matrix}
+        \sum_{i = 1}^n r_{1,i}s_{i,1} & \ldots & \sum_{i = 1}^n r_{1,i}s_{i,n} & \sum_{i = 1}^n r_{1,i}y_i + x_1\\
+        \sum_{i = 1}^n r_{2,i}s_{i,1} & \ldots & \sum_{i = 1}^n r_{2,i}s_{i,n} \ & \sum_{i = 1}^n r_{2,i}y_i + x_2\\
+        \vdots & \ddots & \vdots & \vdots\\
+        \sum_{i = 1}^n r_{n,i}s_{i,1} & \ldots & \sum_{i = 1}^n r_{n,i}s_{i,n} \ & \sum_{i = 1}^n r_{n,i}y_i + x_n\\
+        0 & \ldots & 0 & 1
+      \end{matrix}
+      \right) = 
+      \left(
+      \begin{matrix}
+        (RS)_{1,1} & \ldots & (RS)_{1,n} & (Ry)_1 + x_1\\
+        (RS)_{2,1} & \ldots & (RS)_{2,n} & (Ry)_2 + x_2\\
+        \vdots & \ddots & \vdots & \vdots\\
+        (RS)_{n,1} & \ldots & (RS)_{n,n} & (Ry)_n + x_n\\
+        0 & \ldots & 0 & 1
+      \end{matrix}
+      \right)$$
+      which is visibly the image of 
+      $$\{Ry + x, RS\} = \{x, R\}\{y,S\}.$$
+      Therefore $E(n)$ is isomorphic to a subgroup of $\GL{n+1}{\R}$, as desired.
+  \end{proof}
 \end{ex}
 
 \begin{ex}
   Characterize the image of the 'restriction of scalars' map $\M{n}{\mathbb{H}} \rightarrow \M{2n}{\C}$ in as nice of a way as you can.
+  \begin{proof}
+    First observe that we can view an element $a + ib + jc + kd$ of $\mathbb{H}$ as an element of $\M{2n}{\C}$
+    $$M = \left(\begin{matrix}
+      \alpha & -\overline{\beta}\\
+      \beta & \overline{\alpha}
+    \end{matrix}\right)$$
+    where $\alpha = a + id$ and $\beta = b - ic$.
+    If we denote 
+    $$\Omega = \left(\begin{matrix}
+      0 & 1\\
+      -1 & 0
+    \end{matrix}\right)$$
+    then we observe that
+    $$-\Omega M \Omega = 
+    \left(\begin{matrix}
+      \overline{\alpha} & -\beta\\
+      \overline{\beta} & \alpha
+    \end{matrix}\right)
+    = \overline{M}.$$
+    Indeed, this characterizes the image of $\mathbb{H}$ in $\M{2n}{\C}$, for if
+    $$\left(\begin{matrix}
+    \overline{z_{1,1}} & \overline{z_{1,2}}\\
+    \overline{z_{2,1}} & \overline{z_{2,2}}
+    \end{matrix}\right) 
+    = 
+    -\Omega \left(\begin{matrix}
+      z_{1,1} & z_{1,2}\\
+      z_{2,1} & z_{2,2}
+    \end{matrix}\right)
+    \Omega
+    = 
+    \left(\begin{matrix}
+      z_{2,2} & -z_{2,1}\\
+      -z_{1,2} & z_{1,1}
+    \end{matrix}\right)$$
+    then we see that $z_{2,2} = \overline{z_{1,1}}$ and $z_{1,2} = -\overline{z_{2,1}}$.
+    
+    Now, if we consider an element $M = \left(x_{i,j}\right)$ of $\M{n}{\mathbb{H}}$, then identifying $x_{i,j}$ with the matrix
+    $$M_{i,j} = \left(\begin{matrix}
+      \alpha_{i,j} & -\overline{\beta_{i,j}}\\
+      \beta_{i,j} & \overline{\alpha_{i,j}}
+    \end{matrix}\right)$$
+    the image of $x_{i,j}$ under $\operatorname{Res}{\mathbb{H}/\C}$ is a $2n \times 2n$ block matrix
+    $$M = \left(\begin{matrix}
+      M_{1,1} & M_{1,2} & \ldots & M_{1,n}\\
+      M_{2,1} & M_{2,2} & \ldots & M_{2,n}\\
+      \vdots & \vdots & \ddots & \vdots\\
+      M_{n,1} & M_{n,2} & \ldots & M_{n,n}
+    \end{matrix}\right).$$
+    If we denote by $0_2$ the $2 \times 2$ matrix of zeroes, we see that
+    \begin{eqnarray*}
+      \left(\begin{matrix}
+      -\Omega &  0_2 & \ldots & 0_2\\
+      0_2 & -\Omega & \ldots & 0_2\\
+      \vdots & \vdots & \ddots & \vdots\\
+      0_2 & 0_2 & \ldots & -\Omega
+    \end{matrix}\right)
+    M
+    \left(\begin{matrix}
+      \Omega &  0_2 & \ldots & 0_2\\
+      0_2 & \Omega & \ldots & 0_2\\
+      \vdots & \vdots & \ddots & \vdots\\
+      0_2 & 0_2 & \ldots & \Omega
+    \end{matrix}\right)
+    &=&
+    \left(\begin{matrix}
+        -\Omega M_{1,1}\Omega & \ldots & -\Omega M_{1,n}\Omega\\
+        \vdots & \ddots & \vdots\\
+        -\Omega M_{n,1} \Omega & \ldots & -\Omega M_{n,n} \Omega
+      \end{matrix}\right)\\
+    &=& 
+    \left(\begin{matrix}
+      \overline{M_{1,1}} & \ldots & \overline{M_{1,n}}\\
+        \vdots & \ddots & \vdots\\
+        \overline{M_{n,1}} & \ldots & \overline{M_{n,n}}
+      \end{matrix}\right)\\
+    &=& \overline{M}.
+    \end{eqnarray*}
+    Using the characterization from the embedding of $\mathbb{H}$ into $\M{2}{\C}$, we see that the image of $\operatorname{Res}(\mathbb{H}/\C)$ is the set of matrices satisfying the conjugation relation above.
+  \end{proof}
 \end{ex}
 
 \begin{ex}
@@ -267,65 +469,6 @@
         \end{array}\right) \in \cntr{H}.$$
     \end{proof}
 \end{ex}
-
-\begin{lem}\label{lem1}
-  If $G$ is a Lie group and $g \in G$, the maps
-  $$\begin{tikzcd}
-    G \arrow{r}{\varphi_g} & G & \text{and} & G \arrow{r}{_g\varphi} & G\\
-    x \arrow[mapsto]{r} & gx & & x \arrow[mapsto]{r} & xg
-  \end{tikzcd}$$
-  are homeomorphisms.
-  \begin{proof}
-    Since $G$ is a lie group, the multiplication map 
-    $\begin{tikzcd}
-      G \times G \arrow{r}{\mu} & G 
-    \end{tikzcd}$
-      is continuous.
-      We have an obvious morphism of topological spaces
-      $$\begin{tikzcd}
-        G \arrow{r}{g} & G\\
-        x \arrow[mapsto]{r} & g
-      \end{tikzcd}$$
-      which gives rise by the universal property for the product of topological spaces to morphisms
-      $$\begin{tikzcd}
-        & G \arrow[swap]{ld}{\operatorname{id}_G} \arrow{rd}{g} \arrow[dashed]{d}{\exists !\imath_g} & &\text{and} & & G\arrow[swap]{ld}{g} \arrow{rd}{\operatorname{id}_G}\arrow[dashed]{d}{\exists ! _g\imath}\\
-        G & \arrow{l}{\pi_1} G \times G \arrow[swap]{r}{\pi_2} & G & & G & \arrow{l}{\pi_1} G \times G \arrow[swap]{r}{\pi_2} & G
-      \end{tikzcd}$$
-      Therefore $\varphi_g = \mu \circ \imath_g$ and $_g\varphi = \mu \circ\,_g\imath$ are both continuous with continuous inverses $\varphi_{g^{-1}}$ and $_{g^{-1}}\varphi$.
-  \end{proof}
-\end{lem}
-
-\begin{cor}\label{cor1}
-  Let $G$ be a Lie group and let $g \in G$ be given.
-  The map
-  $$\begin{tikzcd}
-    G \arrow{r}{\Phi_g} &G\\
-    x \arrow[mapsto]{r}& xgx^{-1}
-  \end{tikzcd}$$
-  is continuous.
-
-  \begin{proof}
-    Since $G$ is a lie group, the inversion map
-    $$\begin{tikzcd}
-      G \arrow{r}{\_^{-1}} &G\\
-      x \arrow[mapsto]{r} & x^{-1} 
-    \end{tikzcd}$$
-    is continuous.
-    Combining this with Lemma~\ref{lem1}, we obtain morphisms from the universal property for products in $\mathfrak{Top}$,
-    $$\begin{tikzcd}
-      & G\arrow[swap]{ld}{\operatorname{id}_G}\arrow{rd}{\operatorname{id}_G}\arrow[dashed]{d}{\exists !\Delta}\\
-      G\arrow[swap]{d}{_g\varphi} & \arrow{l}{\pi_1} G \times G \arrow[dashed]{d}{\exists !_g\varphi \times \_^{-1}} \arrow[swap]{r}{\pi_2} & G\arrow{d}{\_^{-1}}\\
-      G & \arrow{l}{\pi_1} G \times G \arrow[swap]{r}{\pi_2} & G\\
-    \end{tikzcd}$$
-    and observe that 
-    $$\mu \circ \left(_g\varphi \times \_^{-1}\right) \circ \Delta(x)
-    = \mu \circ \left(_g\varphi \times \_^{-1}\right)(x,x)
-    = \mu (_g\varphi(x),x^{-1})
-    = xgx^{-1}
-    = \Phi_g(x)$$
-    is continuous, as desired.
-  \end{proof}
-\end{cor}
 
 \begin{ex}
   A subset $E$ of a matrix Lie group, $G$, is called {\bf discrete} if for each $A$ in $E$, there is a neighbourhood $U$ of $A$ in $G$ such that $U$ contains no point in $E$ except for $A$.
