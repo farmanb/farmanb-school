@@ -99,6 +99,41 @@
 \end{defn}
 commute.
 
+\begin{prop}\label{fulltriangles}
+  Let $\T$ be a triangulated category, let $\T^\prime$ be a full triangulated subcategory, and let 
+  $$D\colon 
+  \begin{tikzcd}
+    X \arrow{r}{f} & Y \arrow{r}{g} & Z \arrow{r}{h} & X[1] 
+  \end{tikzcd}$$
+  be a distinguished triangle of $\T$.
+  \begin{enumerate}
+  \item
+    If $D$ is distinguished in $\T$ and two out of three of $X,Y,Z$ are objects of $\T^\prime$, then the third is isomorphic to an object of $T^\prime$.
+    Moreover, if $T^\prime$ is strictly full, then all three are objects of $T^\prime$.
+  \item
+    If $D$ is a triangle in $T^\prime$, then it is distinguished in $\T^\prime$.
+  \end{enumerate}
+
+  \begin{proof}
+    For the first assertian, note that because we may rotate, it suffices to assume that $X$ and $Y$ are objects of $T^\prime$.
+    We observe that by (TR1) we obtain a distinguished triangle of $T^\prime$ 
+    $$D^\prime : 
+    \begin{tikzcd}
+      X \arrow{r}{f} & Y\arrow{r}{u} & Z^\prime \arrow{r}{v} & X[1]
+    \end{tikzcd},$$
+    which is also distinguished in $\T$.
+    By (TR3) we have a morphism of distinguished triangles of $\T$ to $D$
+    $$\begin{tikzcd}
+      D^\prime: & X \arrow{d}{\id_X}\arrow{r}{f} & Y \arrow{d}{\id_Y}\arrow{r}{u} & Z^\prime \arrow[dashed]{d}{\exists \gamma}\arrow{r}{v} & X[1]\arrow{d}{\id_{X[1]}}\\
+      D: & X \arrow{r}{f} & Y \arrow{r}{g} & Z \arrow{r}{h} & X[1]
+    \end{tikzcd}$$
+    which is an isomorphism by the 5 Lemma.
+    This proves the first assertian.
+    
+    For the second, we note that when $Z$ is an object of $\T^\prime$, we have $\Hom{\T^\prime}{Z,Z^\prime} = \Hom{T}{Z,Z^\prime}$, so that the isomorphism above is an isomorphism of triangles in $T^\prime$.
+  \end{proof}
+\end{prop}
+
 \begin{prop}
   Let $\T$ be a triangulated category.
   If 
@@ -185,6 +220,30 @@ commute.
   \end{proof}
 \end{prop}
 
+\begin{cor}\label{corsumtriangles}
+  Let $\T$ be a triangulated category and let $X,Y$ be objects of $\T$.
+  The triangle
+  $$\begin{tikzcd}
+    X \arrow{r} & X \oplus Y \arrow{r} & Y \arrow{r}{0} & X[1]
+  \end{tikzcd}$$
+  is distinguished.
+  
+  \begin{proof}
+    Realize 
+    $$\begin{tikzcd}
+      X \arrow{r} & X \oplus Y \arrow{r} & Y \arrow{r}{0} & X[1]
+    \end{tikzcd}$$
+    as the sum of the distinguished triangles
+    $$\begin{tikzcd}
+      X \arrow{r} & X \arrow{r} & 0\arrow{r} & X[1]
+    \end{tikzcd}
+    \text{and}
+    \begin{tikzcd}
+      0 \arrow{r} & Y \arrow{r} & Y \arrow{r} & 0.
+    \end{tikzcd}$$
+  \end{proof}
+\end{cor}
+
 \section{Generators of Triangulated Categories}
 
 \begin{defn}
@@ -250,13 +309,32 @@ commute.
   is a distinguished triangle, then $X$ is an object of $\langle E \rangle_{a + b}$.
 
   \begin{proof}
-    We proceed by induction.
-    When $n = 1$, the result follows from the definition of $\langle E \rangle_2$.
-    
-    Assume the result holds up to some $1 < n$.
-    
+    Given an object $E^\prime$ of $\langle E \rangle_n$, we have by Corollary~\ref{corsumtriangles} the distinguished triangle
+    $$\begin{tikzcd}
+      E \arrow{r} & E^\prime \oplus E \arrow{r} & E^\prime \arrow{r} & E[1]
+    \end{tikzcd}$$
+    which shows $E^\prime \oplus E$ is an object of $\langle E \rangle_{n+1}$.
+    Since $\langle E \rangle_{n+1}$ is closed under taking summands, it follows that $E^\prime$ is an object of $\langle E \rangle_{n+1}$.
+    Hence $\langle E \rangle_n \subseteq \langle E \rangle_{n+1}$ and so $A$, $B$ are both objects of $\langle E \rangle_{a + b}$.
+    Therefore $X$ is an object of $\langle E \rangle_{a + b}$ by Proposition~\ref{fulltriangles}.
   \end{proof}
 \end{lem}
+
+\begin{prop}
+  Let $\T$ be a triangulated category and let $E$ be an object of $\T$.
+  The subcategory
+  $$\langle E \rangle = \bigcup_{n > 0} \langle E \rangle_n$$
+  is a strictly full, saturated, triangulated subcategory of $\T$ and it is the smallest such subcategory of $\T$ containing $E$.
+
+  \begin{proof}
+    By construction, $\langle E \rangle$ is a full subcategory.
+    To see that it is strictly full, observe that given an object $E^\prime$ of $\langle E \rangle$ and an isomorphism $E^\prime \rightarrow Y$ we have a distinguished triangle
+    $$\begin{tikzcd}
+      E^\prime \arrow{r} & Y \arrow{r} & 0 \arrow{r} & E^\prime[1]
+    \end{tikzcd}$$
+    which implies $Y$ is an object of $\langle E \rangle$ by Proposition~\ref{fulltriangles}.
+  \end{proof}
+\end{prop}
 
 \begin{lem}
   Let $\T$ be a triangulated category with direct sums.
