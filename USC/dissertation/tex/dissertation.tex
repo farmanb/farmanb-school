@@ -24,22 +24,22 @@
 \newtheorem{defn}{Definition}
 
 \newcommand{\A}{\mathbb{A}}
-\newcommand{\T}{\mathcal{T}}
+\newcommand{\T}{\mathscr{T}}
 \section{Preliminaries}
 \begin{defn}
-  Let $\mathcal{C}$ be a category.
+  Let $\mathscr{C}$ be a category.
   \begin{itemize}
   \item
-    We say a subcategory $\mathcal{C^\prime}$ of $\mathcal{C}$ is {\it full} if 
-    $\Hom{\mathcal{C^\prime}}{X,Y} = \Hom{\mathcal{C}}{X,Y}$
-    for all objects $X,Y$ of $\mathcal{C^\prime}$.
+    We say a subcategory $\mathscr{C^\prime}$ of $\mathscr{C}$ is {\it full} if 
+    $\Hom{\mathscr{C^\prime}}{X,Y} = \Hom{\mathscr{C}}{X,Y}$
+    for all objects $X,Y$ of $\mathscr{C^\prime}$.
   \item
-    We say a full subcategory $\mathcal{C^\prime}$ of $\mathcal{C}$ is {\it strictly full} if whenever $X \rightarrow Y$ is an isomorphism with $X$ an object of $\mathcal{C^\prime}$, then $Y$ is an object of $\mathcal{C^\prime}$.
+    We say a full subcategory $\mathscr{C^\prime}$ of $\mathscr{C}$ is {\it strictly full} if whenever $X \rightarrow Y$ is an isomorphism with $X$ an object of $\mathscr{C^\prime}$, then $Y$ is an object of $\mathscr{C^\prime}$.
   \end{itemize}
 \end{defn}
 
 \begin{defn}
-  Let $\T$ be an additive category equipped with autoequivalences of categories, $[n] : \mathcal{C} \rightarrow \mathcal{C}$ for $n \in \Z$, and a class of distinguished triangles.
+  Let $\T$ be an additive category equipped with autoequivalences of categories, $[n] : \mathscr{C} \rightarrow \mathscr{C}$ for $n \in \Z$, and a class of distinguished triangles.
   We say $\T$ is {\it triangulated} if the distinguished triangles satisfy the following axioms:
   \begin{description}[style=nextline]
     \item[TR1]\label{TR1}
@@ -99,6 +99,16 @@
 \end{defn}
 commute.
 
+\begin{defn}
+  Let $\T$ be a triangulated category.
+  \begin{itemize}
+  \item
+    We say a subcategory $\T^\prime$ of $\T$ is a triangulated subcategory if $\T^\prime$ is triangulated and the inclusion functor preserves distinguished triangles.
+  \item
+    We say a full triangulated subcategory $\T^\prime$ of $\T$ is {\it saturated} if whenever $X \oplus Y$ is isomorphic to an object of $T^\prime$, both $X$ and $Y$ are isomorphic to objects of $T^\prime$.
+  \end{itemize}
+\end{defn}
+
 \begin{prop}\label{fulltriangles}
   Let $\T$ be a triangulated category, let $\T^\prime$ be a full triangulated subcategory, and let 
   $$D\colon 
@@ -130,7 +140,7 @@ commute.
     which is an isomorphism by the 5 Lemma.
     This proves the first assertian.
     
-    For the second, we note that when $Z$ is an object of $\T^\prime$, we have $\Hom{\T^\prime}{Z,Z^\prime} = \Hom{T}{Z,Z^\prime}$, so that the isomorphism above is an isomorphism of triangles in $T^\prime$.
+    For the second, we note that when $Z$ is an object of $\T^\prime$, we have $\Hom{\T^\prime}{Z,Z^\prime} = \Hom{\T}{Z,Z^\prime}$, so that the isomorphism above is an isomorphism of triangles in $T^\prime$.
   \end{proof}
 \end{prop}
 
@@ -164,8 +174,8 @@ commute.
 \end{prop}
 
 \begin{defn}
-  Let $\T$ be a triangulated category and let $\mathcal{A}$ be an abelian category.
-  An additive functor $H : \T \rightarrow \mathcal{A}$ (resp. $H : \T^\text{op}\rightarrow A$) is called {\it homological} (resp. {\it cohomological}) if for every distinguished triangle 
+  Let $\T$ be a triangulated category and let $\mathscr{A}$ be an abelian category.
+  An additive functor $H : \T \rightarrow \mathscr{A}$ (resp. $H : \T^\text{op}\rightarrow A$) is called {\it homological} (resp. {\it cohomological}) if for every distinguished triangle 
   \begin{tikzcd}
     X \arrow{r}{f} & Y \arrow{r}{g} & Z \arrow{r}{h} & X[1]
   \end{tikzcd}
@@ -176,11 +186,96 @@ commute.
   (resp. $\begin{tikzcd}
     HZ \arrow{r}{H(g)} & HY \arrow{r}{H(f)} & HX
   \end{tikzcd}$)
-  is exact in $\mathcal{A}$ 
+  is exact in $\mathscr{A}$ 
 \end{defn}
 
+\begin{prop}
+  Let $\T$ be a triangulated category.
+  If 
+  \begin{tikzcd}
+    X \arrow{r}{f} & Y \arrow{r}{g} & Z \arrow{r}{h} & X[1]
+  \end{tikzcd} 
+  is a distinguished triangle, then $g \circ f = 0$ and $h \circ g = 0$.
+
+  \begin{proof}
+    By (TR3) we obtain a morphism of distinguished triangles
+    $$\begin{tikzcd}
+      X \arrow{d}{\id_X}\arrow{r}{\id_X} & X \arrow{d}{f}\arrow{r} & 0\arrow[dashed]{d}{\exists !0} \arrow{r} & X[1]\arrow{d}{\id_{X[1]}}\\
+      X \arrow{r}{f} & Y \arrow{r}{g} & Z \arrow{r}{h} & X[1]
+    \end{tikzcd}$$
+    and thus $g \circ f = 0$.
+
+    That $h \circ g = 0$ follows from the same argument applied to the distinguished triangle
+    $$\begin{tikzcd}
+      Y \arrow{r}{g} & Z \arrow{r}{h} & X[1] \arrow{r}{-g[1]} & Y[1].
+    \end{tikzcd}$$
+  \end{proof}
+\end{prop}
+
+\begin{prop}
+  Let $\T$ be a triangulated category.
+  For any object $X$ of $\T$, the functor $h^X = \Hom{\T}{X,\_}$ (resp. $h_X = \Hom{\T}{\_,X}$) is homological (resp. cohomological).
+  
+  \begin{proof}
+    Given a distinguished triangle \begin{tikzcd}A \arrow{r}{f} & B \arrow{r}{g} & C \arrow{r}{h} & A[1]\end{tikzcd}, we obtain a complex
+    $$\begin{tikzcd}
+      \Hom{\T}{X,A} \arrow{r}{f_*} &\Hom{\T}{X,B} \arrow{r}{g_*} & \Hom{\T}{X,C}.
+    \end{tikzcd}$$
+    since for any morphism $\varphi : X \rightarrow A$ 
+    $$g_* \circ f_*(\varphi) = g \circ f \circ \varphi = 0.$$
+    We need only show that $f_* = \ker g_*$.
+    
+    Given a morphism $\psi : X \rightarrow B$ such that $g_*(\psi) = \psi \circ g= 0$, we have a morphism of distinguished triangles by (TR1)
+    $$\begin{tikzcd}
+      X \arrow{r}\arrow{d}{\psi} & 0 \arrow{r}\arrow{d} & X[1] \arrow[dashed]{d}{\exists \gamma}\arrow{r}{\id_{X[1]}} & X[1]\arrow{d}{\psi[1]}\\
+      B \arrow{r}{g} & C \arrow{r}{h} & A[1] \arrow{r}{-f[1]} & B[1]
+    \end{tikzcd},$$
+    which yields $f_*(-\gamma[-1]) = -f \circ \gamma[-1] = \psi$.
+    Therefore $f_* = \ker g_*$, as desired.
+    
+    By replacing $\T$ by $\T^\text{op}$, we see that $h_X$ is cohomological.
+  \end{proof}
+\end{prop}
+
+
+\begin{prop}\label{isotriangle}
+  Let $\T$ be a triangulated category.
+  If 
+  \begin{tikzcd}
+    X \arrow{r}{f} & Y \arrow{r} & Z \arrow{r} & X[1]
+  \end{tikzcd} is a distinguished triangle, then $f$ is an isomorphism if and only if $Z \cong 0$.
+  
+  \begin{proof}
+    Assume that $f$ is an isomorphism.
+    We have by (TR3) a morphism of triangles
+    $$\begin{tikzcd}
+      X \arrow{d}{\id_X}\arrow{r}{f} & Y \arrow{d}{f^{-1}}\arrow{r} & Z \arrow[dashed]{d}{\exists}\arrow{r} & X[1]\arrow{d}{\id_{X[1]}}\\
+      X \arrow{r}{\id_X} & X \arrow{r} & 0 \arrow{r} & X[1]
+    \end{tikzcd}$$
+    which is an isomorphism of triangles by the 5 Lemma.
+    Hence $Z \cong 0$.
+    
+    Conversely, if $Z \cong 0$, then we have morphisms of distinguished triangles by (TR3)
+    $$\begin{tikzcd}
+      Z \arrow{d}\arrow{r} & X[1] \arrow{d}{\id_{X[1]}}\arrow{r}{f[1]} & Y[1]\arrow[dashed]{d}{\exists g} \arrow{r} & Z[1]\arrow{d}\\
+      0 \arrow{r} & X[1] \arrow{r}{\id_{X[1]}} & X[1] \arrow{r} & 0
+    \end{tikzcd}$$
+    and the induced morphism is an isomorphism by the 5 Lemma.
+    We also have a morphism of distinguished triangles by (TR3)
+    $$\begin{tikzcd}
+      Z \arrow{d}\arrow{r} & X[1] \arrow{d}{g^{-1}}\arrow{r}{f[1]} & Y[1]\arrow[dashed]{d}{\exists h} \arrow{r} & Z[1]\arrow{d}\\
+      0 \arrow{r} & Y[1] \arrow{r}{\id_{Y[1]}} & Y[1] \arrow{r} & 0
+    \end{tikzcd}$$
+    We see that $g^{-1} = h \circ f[1]$ and thus
+    $$\id_{Y[1]} = g^{-1} \circ g = h \circ (f[1] \circ g) = h$$
+    yields $f[1]$ an isomorphism with inverse $g$.
+    Moreover $f$ is also an isomorphism because $[1]$ is an equivalence of categories and hence reflects isomorphisms.
+    Therefore $f$ is an isomorphism if and only if $Z \cong 0$.
+  \end{proof}
+\end{prop}
+
 \begin{prop}\label{sumtriangles}
-  Let $\T$ be a triangulated category admitting direct sums indexed by a set $I$.
+  Let $\T$ be a triangulated category admitting coproducts indexed by a set $I$.
   If 
   $$\left\{D_i : \begin{tikzcd}X_1 \arrow{r}{f_i} & Y_i \arrow{r}{g_i} & Z_i\arrow{r}{h_i} & X_i[1]\end{tikzcd}\right\}_{i\in I}$$ 
   is a collection of distinguished triangles, then the triangle 
@@ -188,7 +283,7 @@ commute.
   is distinguished.
 
   \begin{proof}
-    We first note that because $[1]$ is an autoequivalence it is left adjoint to $[-1]$ and hence necessarily commutes with coproducts, so that there is a unique isomorphism $\left(\oplus_{i \in I}X_i\right)[1] \cong \oplus_{i \in I}X_i[1]$.
+    We first note that because $[1]$ is an autoequivalence it is left adjoint to $[-1]$ and hence necessarily commutes with coproducts, so that there is a unique isomorphism $\left(\bigoplus_{i \in I}X_i\right)[1] \cong \bigoplus_{i \in I}X_i[1]$.
     By (TR1) and (TR3) we have for each $i$ a morphism of distinguished triangles
     $$\begin{tikzcd} 
       X_i \arrow{r}{f_i}\arrow{d} & Y_i\arrow{d}\arrow{r}{g_i} & Z_i \arrow[dashed]{d}{\exists \gamma_i}\arrow{r}{h_i} & X_i[1] \arrow{d}\\
@@ -233,7 +328,7 @@ commute.
     $$\begin{tikzcd}
       X \arrow{r} & X \oplus Y \arrow{r} & Y \arrow{r}{0} & X[1]
     \end{tikzcd}$$
-    as the sum of the distinguished triangles
+    as the coproduct of the distinguished triangles
     $$\begin{tikzcd}
       X \arrow{r} & X \arrow{r} & 0\arrow{r} & X[1]
     \end{tikzcd}
@@ -244,13 +339,30 @@ commute.
   \end{proof}
 \end{cor}
 
+\begin{cor}\label{splittriangle}
+  Let $\T$ be a triangulated category.
+  If 
+  \begin{tikzcd}
+    X \arrow{r} & Y \arrow{r} & Z \arrow{r}{0} & X[1]
+  \end{tikzcd}
+  is a distinguished triangle, then $Y \cong X \oplus Z$.
+  
+  \begin{proof}
+    By taking rotates, we obtain a morphism of distinguished triangles
+    $$\begin{tikzcd}
+      Z[-1] \arrow{d}{\id_{Z[-1]}}\arrow{r}{0} & X \arrow{d}{\id_X}\arrow{r} & Y \arrow{r}\arrow[dashed]{d}{\exists} & Z\arrow{d}{\id_{Z}}\\
+      Z[-1] \arrow{r}{0} & X \arrow{r} & X \oplus Z \arrow{r} & X[1]
+    \end{tikzcd}$$
+    and the induced morphism is an isomorphism by the 5 Lemma.
+  \end{proof}
+\end{cor}
 \section{Generators of Triangulated Categories}
 
 \begin{defn}
   Let $\T$ be a triangulated category and let $E$ be an object of $\T$.
   \begin{itemize}
     \item
-      Denote by $\langle E \rangle_1$ the strictly full subcategory of $\T$ with objects isomorphic to direct summands of finite direct sums
+      Denote by $\langle E \rangle_1$ the strictly full subcategory of $\T$ with objects isomorphic to direct summands of finite coproducts
       $$\bigoplus_{i = 1}^r E[d_i].$$
     \item
       For $1 < n$, denote by $\langle E \rangle_n$ the full subcategory of $\T$ with objects isomorphic to direct summands of objects $X$ which fit into a distinguished triangle
@@ -328,31 +440,135 @@ commute.
 
   \begin{proof}
     By construction, $\langle E \rangle$ is a full subcategory.
-    To see that it is strictly full, observe that given an object $E^\prime$ of $\langle E \rangle$ and an isomorphism $E^\prime \rightarrow Y$ we have a distinguished triangle
+    To see that it is strictly full, observe that given an object $E^\prime$ of $\langle E \rangle$, choose an $n$ such that $E^\prime$ is an object of $\langle E \rangle_n$.
+    Given an isomorphism $E^\prime \rightarrow Y$ we have a distinguished triangle by Proposition~\ref{isotriangle}
     $$\begin{tikzcd}
       E^\prime \arrow{r} & Y \arrow{r} & 0 \arrow{r} & E^\prime[1]
     \end{tikzcd}$$
-    which implies $Y$ is an object of $\langle E \rangle$ by Proposition~\ref{fulltriangles}.
+    which implies $Y$ is an object of $\langle E \rangle_n \subseteq \langle E \rangle$ by Proposition~\ref{fulltriangles}.
+    
+    To see that $\langle E \rangle$ is saturated, it suffices to observe that $\langle E \rangle_n$ is strictly full and closed under taking summands.
+    Indeed, if $X \oplus Y$ is isomorphic to an object $E^\prime$ of $\langle E \rangle$, then $E^\prime$ lies in some $\langle E \rangle_n$.
+    Hence $X$ and $Y$ are both objects of $\langle E \rangle_n \subseteq \langle E \rangle$.
+    
+    For the triangulated stucture, take the distinguished triangles of $\langle E \rangle$ to be the distinguished triangles 
+    $$\begin{tikzcd}
+      X \arrow{r} & Y \arrow{r} & Z \arrow{r} & X[1]
+    \end{tikzcd}$$
+    of $\T$ with $X$, $Y$, and $Z$ objects of $\langle E \rangle$.
+    We observe that (TR1) and (TR4) are satisfied by virtue of $\langle E \rangle$ being strictly full and Proposition~\ref{fulltriangles}.
+    The axiom (TR2) is inherited from $\T$ and (TR3) is satisfied because $\langle E \rangle$ is full.
+    The inclusion functor preserves the distinguished triangles by definition.
+
+    Suppose that $T^\prime$ is any other strictly full, saturated, triangulated subcategory of $\T$ containing $E$.
+    We show by induction that $\langle E \rangle_n$ is a subcategory of $\T^\prime$.
+    First note that by definition, $\langle E \rangle_1$ is necessarily a subcategory of $\T^\prime$.
+    Suppose that $\langle E \rangle_i$ is a subcategory of $\T^\prime$ for all $i < n$.
+    Given an object $E^\prime$ of $\langle E \rangle_n$, there exist objects $A$ of $\langle E \rangle_1$, $B$ of $\langle E \rangle_{n-1}$, and $X \cong E^\prime \oplus E^{\prime\prime}$ and a distinguished triangle
+    $$\begin{tikzcd}
+      A \arrow{r} & X \arrow{r} & B \arrow{r} & A[1].
+    \end{tikzcd}$$
+    Since $\T^\prime$ is strictly full and saturated, it follows by Proposition~\ref{fulltriangles} that $X$ is an object of $\T^\prime$ and thus $E^\prime$ is also an object of $\T^\prime$.
+    Therefore $\langle E \rangle$ is a subcategory of $\T^\prime$.
   \end{proof}
 \end{prop}
 
+\begin{defn}
+  Let $\T$ be a triangulated category and let $E$ be an object of $\T$.
+  \begin{enumerate}
+  \item
+    We say $E$ is a {\it classical generator} of $\T$ if $\T = \langle E \rangle$.
+  \item
+    We say $E$ is a {\it strong generator} of $\T$ if $\T = \langle E \rangle_n$ for some $1 \leq n$.
+  \item
+    We say $E$ is a {\it (weak) generator} of $\T$ if for every non-zero object $X$ of $\T$, there eixsts an $n$ such that $\Hom{\T}{E,X[n]} \neq 0$.
+  \end{enumerate}
+\end{defn}
+
+\begin{lem}\label{classicalgenhom}
+  Let $\T$ be a triangulated category.
+  If $E$ and $X$ are objects of $\T$, then $\Hom{\T}{E,X[n]} = 0$ for all $n$ if and only if $\Hom{\T}{E^\prime, X} = 0$ for all objects $E^\prime$ of $\langle E \rangle$.
+  
+  \begin{proof}
+    The converse is immediate.
+    Assume that $\Hom{\T}{E,X[n]} = 0$ for all $n$.
+    First we observe that because $[n]$ is an autoequivalence, we have a natural isomorphism
+    $$0 = \Hom{\T}{E[n], X} \cong \Hom{\T}{E, X[-n]}.$$
+    
+    We proceed by induction.
+    Given an object $E^\prime$ of $\langle E \rangle_1$, we may choose by the definition of $\langle E \rangle_1$ an object  $E^{\prime\prime}$ such that $E^\prime \oplus E^{\prime\prime} \cong \bigoplus_{i = 1}^r E[d_i]$.
+    Hence
+    $$\Hom{\T}{E^\prime,X} \oplus \Hom{\T}{E^{\prime\prime}, X} \cong \Hom{\T}{\bigoplus_{i=1}^rE[d_i], X} = 0$$
+    implies that $\Hom{\T}{E^\prime, X} = 0$.
+    
+    Assume the result holds up to some $1 < n$.
+    Given an object $E^\prime$ of $\langle E \rangle_n$, choose an object $E^{\prime\prime}$ and a distinguished triangle
+    $$\begin{tikzcd}
+      A \arrow{r} & E^\prime \oplus E^{\prime\prime} \arrow{r} & B \arrow{r} & A[1]
+    \end{tikzcd}$$
+    with $A$ an object of $\langle E \rangle_1$ and $B$ an object of $\langle E \rangle_{n-1}$.
+    By induction, $\Hom{\T}{A,X} = 0 = \Hom{\T}{B,X}$, and because $h_X$ is a cohomological functor we get an exact sequence
+    $$\begin{tikzcd}
+      0 \arrow{r} & \Hom{\T}{E^\prime,X} \oplus \Hom{\T}{E^{\prime\prime}, X} \arrow{r} & 0
+    \end{tikzcd}$$
+    which implies $\Hom{\T}{E^\prime,X} = 0$.
+  \end{proof}
+\end{lem}
+
+\begin{lem}\label{classicalgenisgen}
+  Let $\T$ be a triangulated category and let $E$ be an object of $\T$.
+  If $E$ is a classical generator, then $E$ is a generator.
+  
+  \begin{proof}
+    Given an object $X$ of $\T$ such that $\Hom{\T}{E,X[n]} = 0$ for all $n$, we observe that because $\T = \langle E \rangle$, Lemma~\ref{classicalgenhom} implies $\Hom{\T}{X,X} = 0$.
+    Therefore $\id_{X} = 0$ implies $X = 0$ and $E$ is a generator.
+  \end{proof}
+\end{lem}
+
+\begin{defn}
+  Let $\mathscr{C}$ be an additive category with arbitrary coproducts.
+  A {\it compact object} of $\mathscr{C}$ is an object $K$ such that the canonical morphism
+  $$\bigoplus_{i \in I} \Hom{\mathscr{C}}{K, E_i} \rightarrow \Hom{\mathscr{C}}{K, \bigoplus_{i \in I}E_i}$$
+  is an isomorphism for any indexing set $I$ and any collection $\{E_i\}_I$ of objects of $\mathscr{C}$.
+\end{defn}
+
 \begin{lem}
-  Let $\T$ be a triangulated category with direct sums.
-  If $E_i$ for $i \in I$ is a family of compact objects of $\T$ such that $\oplus{E_i}$ generates $\T$, then every object $X$ of $\T$ can be written as 
+  Let $\T$ be a triangulated category with coproducts.
+  The compact objects of $\T$ form a saturated, strictly full, triangulated subcategory, $\T_c$, of $\T$.
+\end{lem}
+
+%May need some hypothesis on $\T$ being Ab3-enriched?
+\begin{lem}\label{homhocolimiscolim}
+  Let $\T$ be a triangulated category with coproducts.
+  Let $K$ be an object of $\T_c$.
+  Given a directed system of $\T$
+  $$\begin{tikzcd}
+    \cdots \arrow{r}{f_{n+1}} & X_n \arrow{r}{f_n} & X_{n-1} \arrow{r}{f_{n-1}} & \cdots
+  \end{tikzcd}$$
+  for which $X = \operatorname{hocolim}X_n$ exists, the canonical morphism
+  $$\begin{tikzcd}
+    \operatorname{colim} \Hom{\T}{K,X_n} \arrow{r} & \Hom{\T}{K,X}
+  \end{tikzcd}$$
+  is an isomorphism.
+\end{lem}
+
+\begin{lem}\label{hocolim}
+  Let $\T$ be a triangulated category with coproducts.
+  If $\left\{E_i\right\}_{i \in I}$ is a family of compact objects of $\T$ such that $\bigoplus_{i \in I}{E_i}$ generates $\T$, then every object $X$ of $\T$ can be written as 
   $$X = \operatorname{hocolim}X_n,$$
   where $X_1$ is a direct sum of shifts of the $E_i$ and each transition morphism fits into a distinguished triangle $Y_n \rightarrow X_n \rightarrow X_{n+1} \rightarrow Y_n[1]$, where $Y_n$ is a direct sum of shifts of the $E_i$.
 \end{lem}
 
-\begin{lem}
+\begin{lem}\label{hocolimfactorization}
   With the same assumptions and notation as in the Lemma above, if $K$ is a compact object and $K \rightarrow X_n$ is a morphism, then there is a factorization 
   $$K \rightarrow E \rightarrow X_n,$$
-  where $E$ is an object of $\langle \oplus_{J}E_j \rangle$ for some finite $J \subseteq I$.
+  where $E$ is an object of $\langle \bigoplus_{J}E_j \rangle$ for some finite $J \subseteq I$.
   \begin{proof}
     We proceed by induction.
-    When $n = 1$, $X_1 = \oplus_S E_i[m]$ over the triples
+    When $n = 1$, $X_1 = \bigoplus_S E_i[m]$ over the triples
     $$S = \left\{(i,m,\varphi) \;\middle\vert\; i \in I, m \in \Z, \varphi : E_i[m] \rightarrow X\right\}.$$
     Because $K$ is compact, we have
-    $$\Hom{\T}{K,X_1} \cong \bigoplus_S\Hom{T}{K, E_i[m]}$$
+    $$\Hom{\T}{K,X_1} \cong \bigoplus_S\Hom{\T}{K, E_i[m]}$$
     and thus a morphism $K \rightarrow X_1$ maps under this ismorphism to a finite collection of morphism, $$\left\{K \rightarrow E_i[m]\right\}_{(i,m,\varphi) \in S^\prime}.$$
     Hence $K \rightarrow X_1$ factors as
     $$K \rightarrow \bigoplus_{(i,m,\varphi) \in S^\prime}E_i[m] \rightarrow X_1.$$
@@ -365,7 +581,7 @@ commute.
       K \arrow{rd}\arrow{r} & X_n \arrow{r} & Y_{n-1}[1]\\
       & E^\prime[1]\arrow{ur}
     \end{tikzcd}$$
-    for some $E^\prime \in \langle \oplus_{i \in I^\prime}E_i \rangle$ with $I^\prime \subset I$ finite.
+    for some $E^\prime \in \langle \bigoplus_{i \in I^\prime}E_i \rangle$ with $I^\prime \subset I$ finite.
     By the axioms for a triangulated category, we have a morphism of distinguished triangles
     $$\begin{tikzcd}
       K[-1] \arrow{d}\arrow{r} & E^\prime \arrow{r}\arrow{d} & K^\prime \arrow{r}\arrow[dashed]{d}{\exists} & K\arrow{d}\\
@@ -378,7 +594,7 @@ commute.
       & E^{\prime\prime}\arrow{ur}
     \end{tikzcd}$$
     for some object $E^{\prime\prime} \in \langle \bigoplus_{i \in I^{\prime\prime}} E_i \rangle$ with finite $I^{\prime\prime} \subseteq I$.
-    Taking the composition $E^\prime \rightarrow K^\prime \rightarrow E^{\prime\prime}$ we get a distinguished triangle $E^\prime \rightarrow E^{\prime\prime} \rightarrow E \rightarrow E^\prime[1]$ for some object $E \in \langle \oplus_{i \in I^\prime \cup I^{\prime\prime}}E_i\rangle$ and morphisms of distinguished triangles
+    Taking the composition $E^\prime \rightarrow K^\prime \rightarrow E^{\prime\prime}$ we get a distinguished triangle $E^\prime \rightarrow E^{\prime\prime} \rightarrow E \rightarrow E^\prime[1]$ for some object $E \in \langle \bigoplus_{i \in I^\prime \cup I^{\prime\prime}}E_i\rangle$ and morphisms of distinguished triangles
     $$\begin{tikzcd}
       E^\prime \arrow{r}\arrow{d} & K^\prime \arrow{r}\arrow{d} & K \arrow{r}\arrow[dashed]{d}{\exists} & E^\prime[1]\arrow{d}\\
       E^\prime \arrow{r}\arrow{d} & E^{\prime\prime} \arrow{r}\arrow{d} & E \arrow{r}\arrow[dashed]{d}{\exists} & E^\prime[1]\arrow{d}\\
@@ -396,40 +612,115 @@ commute.
       K \arrow{rd}\arrow{rr} && X_{n-1}\\
       & E^{\prime\prime\prime}\arrow{ur}
     \end{tikzcd}$$
-    through an object of $\langle \oplus_{i \in I^{\prime\prime\prime}} E_i\rangle$ with $I^{\prime\prime\prime} \subseteq I$ finite.
+    through an object of $\langle \bigoplus_{i \in I^{\prime\prime\prime}} E_i\rangle$ with $I^{\prime\prime\prime} \subseteq I$ finite.
     Then the composition of the induced morphisms
     $$\begin{tikzcd}
       & K\arrow[dashed]{d}{\exists !}\arrow{ld}\arrow{rd}\\
       E\arrow{rd} & E \oplus E^{\prime\prime\prime} \arrow[dashed]{d}{\exists!}\arrow{r}\arrow{l} & E^{\prime\prime\prime}\arrow{d}\arrow{ld}\\
       & X_n & \arrow{l}X_{n-1}
     \end{tikzcd}$$
-    gives the desired morphism with $E \oplus E^{\prime\prime\prime} \in \langle \oplus_{i \in I^\prime \cup I^{\prime\prime} \cup I^{\prime\prime\prime}} E_i\rangle.$
+    gives the desired morphism with $E \oplus E^{\prime\prime\prime} \in \langle \bigoplus_{i \in I^\prime \cup I^{\prime\prime} \cup I^{\prime\prime\prime}} E_i\rangle.$
   \end{proof}
 \end{lem}
 
 \begin{defn}
-  Let $\T$ be a triangulated category with direct sums.
-  We say $\T$ is compactly generated if there exists a family $E_i$, $i \in I$, of compact objects such that $\oplus_{i \in I} E_i$ generates $\T$.
+  Let $\T$ be a triangulated category with coproducts.
+  We say $\T$ is compactly generated if there exists a family $\{E_i\}_{i \in I}$ of compact objects such that $\bigoplus_{i \in I} E_i$ generates $\T$.
 \end{defn}
 
 \begin{prop}
-  Let $\T$ be a triangulated category with direct sums.
+  Let $\T$ be a triangulated category with coproducts.
   If $E$ is a compact object of $\T$, then
   $E$ is a classical generator for $\T_c$ and $\T$ is compactly generated 
   if and only if
   $E$ is a generator for $\T$.
   
   \begin{proof}
-    First assume that $E$ is a classical generator for $\T_c$.
-    Because $\T_c$ is a strictly full subcategory and $\T = \langle E \rangle$, it follows that $\T_c = \langle E \rangle = \T$.
+    First assume that $E$ is a classical generator for $\T_c$, and $\{E_i\}_{i \in I} \subseteq \T_c$ generates $\T$.
+    By Lemma~\ref{classicalgenisgen}, $E$ is a generator for $\T_c$, and $\bigoplus_{i \in I}E_i \in \langle E \rangle = \T_c$.
+    Hence, given an object $X$ of $\T$ such that $\Hom{\T}{E,X[n]} = 0$ for all $n$, it follows from Lemma~\ref{classicalgenhom} that
+    $$\Hom{\T}{\bigoplus_{i \in I}E_i, X} = 0$$
+    and thus $X = 0$.
+    Therefore $E$ is a generator for $\T$.
     
+    Conversely, assume that $E$ is a generator for $\T$.
+    By definition, $\T$ is compactly generated, so it remains to show that $\T_c = \langle E \rangle$.
+    Towards that end, let $X$ be an object of $\T_c$.
+    By applying Lemma~\ref{hocolim} with $I = \{1\}$ and $E_1 = E$, using the same notation, we can write $X = \operatorname{hocolim}X_n$.
+    By Lemma~\ref{homhocolimiscolim}, there exists a factorization
+    $$\begin{tikzcd}
+      X \arrow{rd}\arrow{rr}{\sim} & & \operatorname{hocolim} X_n\\
+      & X_n\arrow{ur}
+    \end{tikzcd}$$
+    for some $n$.
+    Using Proposition~\ref{isotriangle}, (TR1), and (TR4), we obtain a commutative diagram 
+    $$\begin{tikzcd}
+      X \arrow{r}\arrow{d} & X_n \arrow{r}\arrow{d} & A \arrow{d}\arrow{r} & X[1]\arrow{d}\\
+      X \arrow{d}\arrow{r} & \operatorname{hocolim}X_n \arrow{d}\arrow{r} & 0 \arrow{d}\arrow{r} & X[1]\arrow{d}\\
+      X_n \arrow{d}\arrow{r} & \operatorname{hocolim}X_n \arrow{d}\arrow{r} & B \arrow{r}\arrow{d} & X_n[1]\arrow{d}\\
+      A \arrow{r} & 0 \arrow{r} & B \arrow{r} & A[1]
+    \end{tikzcd}$$
+    with rows distinguished triangles, showing that $A \rightarrow X[1]$ is the zero morphism.
+    
+    Now, by Lemma~\ref{hocolimfactorization}, we obtain a factorization
+    $$\begin{tikzcd}
+      X \arrow{rr}\arrow{rd} & & X_n\\
+      & E^\prime \arrow{ur}
+    \end{tikzcd}$$
+    with $E^\prime$ an object of $\langle E \rangle$.
+    Applying (TR1) and (TR4) yields a commutative diagram
+    $$\begin{tikzcd}
+      X \arrow{d}\arrow{r} & E^\prime \arrow{r}\arrow{d} & A^\prime \arrow{r}\arrow{d} & X[1]\arrow{d}\\
+      X \arrow{r}\arrow{d} & X_n \arrow{r}\arrow{d} & A \arrow{r}{0}\arrow{d} & X[1]\arrow{d}\\
+      E^\prime \arrow{r}\arrow{d} & X_n \arrow{r}\arrow{d} & B^\prime \arrow{r}\arrow{d} & E^\prime[1]\arrow{d}\\
+      A^\prime \arrow{r} & A \arrow{r} & B^\prime \arrow{r} & A^\prime[1]
+    \end{tikzcd}$$
+    with rows distinguished triangles, which implies the morphism $A^\prime \rightarrow X[1]$ is the zero morphism.
+    Therefore $E^\prime \cong X \oplus A^\prime$ by Corollary~\ref{splittriangle}, and $X$ is an object of $\langle E \rangle$, as desired.
   \end{proof}
 \end{prop}
 
+\section{dg categories}
+
+\begin{defn}
+  Let $\mathscr{C}$ be a small dg category.
+  We have the Yoneda embedding 
+  $$\begin{tikzcd}
+    Z^0(\mathscr{C}) \arrow{r} & \mathcal{C}(\mathscr{C})\\
+    X \arrow[mapsto]{r} & h_X.
+  \end{tikzcd}$$
+  We say that $\mathscr{C}$ is {\it pretriangulated}
+  \begin{enumerate}
+  \item
+    if each morphism $f : X \rightarrow Y$ of $Z^0(\mathscr{C})$ admits a morphism $Y \rightarrow C(f)$ of $Z^0(\mathscr{C})$
+  \item
+    for each object $X$ of $Z^0(\mathscr{C})$, there is an isomorphism $h_X[n] \cong h_{X[n]}$, and
+  \item
+    the cone in $\mathcal{C}(\mathscr{C})$ of the morphism $h_X(f)$ is the image of the morphism $Y \rightarrow C(f)$.
+  \end{enumerate}
+\end{defn}
+
+\begin{prop}
+  If $\mathscr{C}$ is a pretriangulated dg category, then $H^0(\mathscr{C})$ is triangulated.
+\end{prop}
+
+\begin{defn}
+  Let $\mathscr{C}$ be a small, pretriangulated dg category admitting coproducts, let $E$ be an object of $\mathscr{C}$, and let $\mathscr{T} = H^0(\mathscr{C})$.
+  By abuse of notation, we say
+  \begin{enumerate}
+  \item
+    $E$ is a {\it classical generator} of $\mathscr{C}$ if $E$ is a classical generator of $\mathscr{T}$,
+  \item
+    $E$ is a {\it strong generator} of $\mathscr{C}$ if $E$ is a strong generator of $\mathscr{T}$, and
+  \item
+    $E$ is a {\it (weak) generator} of $\mathscr{C}$ if $E$ is a (weak) generator of $\mathscr{T}$.
+  \end{enumerate}
+\end{defn}
+
 \begin{thm}
-  Let $\mathcal{C}$ and $\mathcal{D}$ be pretriangulated dg-categories.
-  If $E_i$ is a family of generators for $\mathcal{C}$ and $F_i$ is a family of generators for $\mathcal{D}$, then the $E_i \otimes F_j$ are a family of generators for $D\left(\mathcal{C} \otimes \mathcal{D}\right)$.
+  Let $\mathscr{C}$ and $\mathscr{D}$ be pretriangulated dg-categories.
+  If $E_i$ is a family of generators for $\mathscr{C}$ and $F_i$ is a family of generators for $\mathscr{D}$, then the $E_i \otimes F_j$ are a family of generators for $D\left(\mathscr{C} \otimes \mathscr{D}\right)$.
 \end{thm}
 
 \end{document}
-p
+
