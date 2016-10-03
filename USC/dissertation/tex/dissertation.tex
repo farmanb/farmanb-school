@@ -1,9 +1,9 @@
 \documentclass[10pt]{amsart}
-\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath,mathtools,tikz-cd,mathrsfs,enumitem}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath,mathtools,tikz-cd,mathrsfs,enumitem,calligra}
 \openup 5pt
 \author{Blake Farman\\University of South Carolina}
-\title{Math 735:\\Homework 01}
-\date{September 14, 2016}
+\title{Dissertation?}
+\date{October 3, 2016}
 \pdfpagewidth 8.5in
 \pdfpageheight 11in
 \usepackage[margin=1in]{geometry}
@@ -22,9 +22,12 @@
 \newtheorem{prop}{Proposition}
 \theoremstyle{definition}
 \newtheorem{defn}{Definition}
+\newtheorem{rmk}{Remark}
 
 \newcommand{\A}{\mathbb{A}}
 \newcommand{\T}{\mathscr{T}}
+\newcommand{\CC}{\mathscr{C}}
+\newcommand{\D}{\mathscr{D}}
 \section{Preliminaries}
 \begin{defn}
   Let $\mathscr{C}$ be a category.
@@ -681,6 +684,75 @@ commute.
 \end{prop}
 
 \section{dg categories}
+Throughout, let $k$ be a commutative ring.
+
+\begin{defn}
+  A {\it differential graded $k$-module}, $M$, is a complex of $k$-modules
+  $$M \colon \begin{tikzcd}
+    \cdots \arrow{r}{d_M^{n-2}} & M^{n-1} \arrow{r}{d_M^{n-1}} & M^n \arrow{r}{d_M^n} & M^{n+1} \arrow{r}{d_M^{n+1}} & \cdots
+  \end{tikzcd},$$
+  or, equivalently, a $\Z$-graded module over the graded ring $k$, concentrated in degree 0, equipped with a degree one morphism $d_M : M \rightarrow M[1]$ such that $d_M^2 = 0$.
+  
+  The {\it shift} of a dg $k$-module is the shifted complex
+  $$M[1] \colon \begin{tikzcd}
+    \cdots \arrow{r}{-d_M^{n-1}} & M^{n} \arrow{r}{-d_M^{n}} & M^{n+1} \arrow{r}{-d_M^{n+1}} & M^{n+2} \arrow{r}{-d_M^{n+2}} & \cdots
+  \end{tikzcd}$$
+  
+  The tensor product of two dg $k$-modules is the usual tensor product in $\mathcal{C}(k)$, the category of chain complexes of $k$-modules.
+\end{defn}
+
+\begin{defn}
+  We say a category, $\mathscr{C}$, is a {\it $k$-category} if
+  \begin{enumerate}
+    \item
+      for each pair of objects $X$ and $Y$ of $\mathscr{C}$, $\Hom{\mathscr{C}}{X,Y}$ is a $k$-module, and
+      \item
+        composition 
+        $$\Hom{\mathscr{C}}{X,Y} \otimes_k \Hom{\mathscr{C}}{Y,Z} \rightarrow \Hom{\mathscr{C}}{X,Z}$$
+        in $\mathscr{C}$ is $k$-linear, associative, admitting units $\id_X \in \Hom{\mathscr{C}}{X,X}$.
+  \end{enumerate}
+\end{defn}
+
+\begin{defn}
+  A {\it differential graded} or {\it dg category} is a $k$-category, $\mathscr{C}$, satisfying
+  \begin{enumerate}
+  \item
+    $\Hom{\mathscr{C}}{X,Y}$ is a dg $k$-module for all objects $X,Y$ of $\mathscr{C}$, and
+  \item
+    composition 
+    $$\begin{tikzcd}
+      \Hom{\CC}{X,Y} \otimes_k \Hom{\CC}{Y,Z} \arrow{r} & \Hom{\CC}{X,Z}
+    \end{tikzcd}$$
+    in $\mathscr{C}$ is a morphism of dg $k$-modules;
+    that is a morphism of $\mathcal{C}(k)$.
+  \end{enumerate}
+  
+  A morphism of dg categories, $\mathscr{F} \colon \CC \rightarrow \D$, is a functor such that
+  $$F(X,Y) \colon 
+  \begin{tikzcd}
+    \Hom{\CC}{X,Y} \arrow{r} & \Hom{\D}{FX,FY}
+  \end{tikzcd}$$
+  is a morphism of dg $k$-modules.
+  Denote by $\operatorname{dgcat_k}$ the category with objects small dg categories and morphisms dg functors.
+\end{defn}
+
+\begin{defn}
+  Let $\CC$ and $\D$ be objects of $\operatorname{dgcat}_k$.
+  The {\it tensor product}, $\CC \otimes \D$, is the dg category with objects $\operatorname{ob}\CC \times \operatorname{ob}\D$ and
+  morphisms
+  $$\begin{tikzcd}
+    \Hom{\CC \otimes \D}{(X, Y), (X^\prime, Y^\prime)} = \Hom{\CC}{X,X^\prime} \otimes_k \Hom{\D}{Y,Y^\prime}.
+  \end{tikzcd}$$
+  For ease of notation, we will denote by $X \otimes Y$ the object $(X,Y)$ of $\CC \otimes \D$.
+\end{defn}
+
+\begin{defn}
+  Given two dg functors $\mathscr{F},\mathscr{G} \colon \CC \rightarrow \D$, define $\SHom{F,G}^n$ to be the $k$-module of degree $n$ natural transformations.
+  That is, morphisms of functors, $\eta \colon \mathscr{F} \rightarrow \mathscr{G}$ such that for each object $X$ of $\CC$, $\eta(X) \in \Hom{\D}{\mathscr{F}(X),\mathscr{G}(X)}^n$.
+\end{defn}
+
+\begin{rmk}
+\end{rmk}
 
 \begin{defn}
   Let $\mathscr{C}$ be a small dg category.
@@ -692,11 +764,9 @@ commute.
   We say that $\mathscr{C}$ is {\it pretriangulated}
   \begin{enumerate}
   \item
-    if each morphism $f : X \rightarrow Y$ of $Z^0(\mathscr{C})$ admits a morphism $Y \rightarrow C(f)$ of $Z^0(\mathscr{C})$
+    for each object $X$ of $Z^0(\mathscr{C})$, $h_X[n] \cong h_{X[n]}$, and
   \item
-    for each object $X$ of $Z^0(\mathscr{C})$, there is an isomorphism $h_X[n] \cong h_{X[n]}$, and
-  \item
-    the cone in $\mathcal{C}(\mathscr{C})$ of the morphism $h_X(f)$ is the image of the morphism $Y \rightarrow C(f)$.
+    for any morphism $f \in Z^0\Hom{\mathscr{C}}{A,B}$, $\operatorname{cone}(h_X(f)) = h_X(\operatorname{cone}(f))$.
   \end{enumerate}
 \end{defn}
 
@@ -705,15 +775,17 @@ commute.
 \end{prop}
 
 \begin{defn}
-  Let $\mathscr{C}$ be a small, pretriangulated dg category admitting coproducts, let $E$ be an object of $\mathscr{C}$, and let $\mathscr{T} = H^0(\mathscr{C})$.
-  By abuse of notation, we say
+  Let $\mathscr{C}$ be a pretriangulated dg category admitting coproducts, let $E$ be an object of $\mathscr{C}$, and let $\mathscr{T} = H^0(\mathscr{C})$.
+  By abuse of notation, 
   \begin{enumerate}
   \item
-    $E$ is a {\it classical generator} of $\mathscr{C}$ if $E$ is a classical generator of $\mathscr{T}$,
+    We say $E$ is a {\it classical generator} of $\mathscr{C}$ if $E$ is a classical generator of $\mathscr{T}$,
   \item
-    $E$ is a {\it strong generator} of $\mathscr{C}$ if $E$ is a strong generator of $\mathscr{T}$, and
+    We say $E$ is a {\it strong generator} of $\mathscr{C}$ if $E$ is a strong generator of $\mathscr{T}$,
   \item
-    $E$ is a {\it (weak) generator} of $\mathscr{C}$ if $E$ is a (weak) generator of $\mathscr{T}$.
+    We say $E$ is a {\it (weak) generator} of $\mathscr{C}$ if $E$ is a (weak) generator of $\mathscr{T}$, and
+  \item
+    If $\mathscr{C}$ has coproducts, we say $\mathscr{C}$ is compactly generated if $\T$ is.
   \end{enumerate}
 \end{defn}
 
