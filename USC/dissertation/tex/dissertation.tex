@@ -11,6 +11,8 @@
 \begin{document}
 %\maketitle
 
+\providecommand{\F}{\mathscr{F}}
+\providecommand{\G}{\mathscr{G}}
 \providecommand{\p}{\mathfrak{p}}
 \providecommand{\m}{\mathfrak{m}}
 \providecommand{\Deck}[1]{\operatorname{Deck}\left(#1\right)}
@@ -684,7 +686,7 @@ commute.
 \end{prop}
 
 \section{dg categories}
-Throughout, let $k$ be a commutative ring.
+{\noindent Throughout, let $k$ be a commutative ring.}
 
 \begin{defn}
   A {\it differential graded $k$-module}, $M$, is a complex of $k$-modules
@@ -692,6 +694,7 @@ Throughout, let $k$ be a commutative ring.
     \cdots \arrow{r}{d_M^{n-2}} & M^{n-1} \arrow{r}{d_M^{n-1}} & M^n \arrow{r}{d_M^n} & M^{n+1} \arrow{r}{d_M^{n+1}} & \cdots
   \end{tikzcd},$$
   or, equivalently, a $\Z$-graded module over the graded ring $k$, concentrated in degree 0, equipped with a degree one morphism $d_M : M \rightarrow M[1]$ such that $d_M^2 = 0$.
+  A {\it morphism of differential graded $k$-modules} is a morphism of chain complexes.
   
   The {\it shift} of a dg $k$-module is the shifted complex
   $$M[1] \colon \begin{tikzcd}
@@ -727,7 +730,7 @@ Throughout, let $k$ be a commutative ring.
     that is a morphism of $\mathcal{C}(k)$.
   \end{enumerate}
   
-  A morphism of dg categories, $\mathscr{F} \colon \CC \rightarrow \D$, is a functor such that
+  A {\it morphism of dg categories}, $\mathscr{F} \colon \CC \rightarrow \D$, is a functor such that
   $$F(X,Y) \colon 
   \begin{tikzcd}
     \Hom{\CC}{X,Y} \arrow{r} & \Hom{\D}{FX,FY}
@@ -747,12 +750,75 @@ Throughout, let $k$ be a commutative ring.
 \end{defn}
 
 \begin{defn}
-  Given two dg functors $\mathscr{F},\mathscr{G} \colon \CC \rightarrow \D$, define $\SHom{F,G}^n$ to be the $k$-module of degree $n$ natural transformations.
+  Given two dg functors $\mathscr{F},\mathscr{G} \colon \CC \rightarrow \D$, define $\SHom{\mathscr{F},\mathscr{G}}^n$ to be the $k$-module of degree $n$ natural transformations.
   That is, morphisms of functors, $\eta \colon \mathscr{F} \rightarrow \mathscr{G}$ such that for each object $X$ of $\CC$, $\eta(X) \in \Hom{\D}{\mathscr{F}(X),\mathscr{G}(X)}^n$.
 \end{defn}
 
+\begin{prop}
+  Given a degree $n$ natural transformation $\eta \colon \mathscr{F} \rightarrow \mathscr{G}$, the collection of morphisms
+  $$d^n_{\Hom{\D}{\mathscr{F}X, \mathscr{G}X}}\left( \eta(X) \right) \in \Hom{\D}{\mathscr{F}X, \mathscr{G}X}^{n+1}$$
+  define a natural transformation and hence endow $\SHom{\mathscr{F},\mathscr{G}}$ with the structure of a dg $k$-module, where the differential, $d_{\SHom{\mathscr{F},\mathscr{G}}}^n$ sends $\eta$ to this natural transformation.
+  
+  \begin{proof}
+    It's clear that so long as the collection of $d^n_{\D(\F X, \G X)}(\eta(X))$ defines a natural transformation, the resulting sequence
+    $$\begin{tikzcd}
+      \cdots \arrow{r} & \SHom{\F, \G}^n \arrow{r} & \SHom{\F,\G}^{n+1} \arrow{r} & \cdots
+    \end{tikzcd}$$
+    will be a complex.
+    
+    First we note that, by definition, any dg functor necessarily commutes with the differentials:
+    $$d_{\D(\mathscr{F}X, \mathscr{F}X^\prime)}\left(\mathscr{F}(f) \right) = \mathscr{F}\left(d_{\CC(X,X^\prime)}(f)\right)$$
+    and composition is a morphism of dg $k$-modules, so we have the commutative diagrams
+    $$\begin{tikzcd}
+      \D(\F X^\prime, \G X^\prime) \otimes_k \D(\F X, \F X^\prime) \arrow{r}\arrow[swap]{d}{d \otimes 1 + 1 \otimes d}& \D(\F X, \G X^\prime)\arrow{d}{d}\\
+      \D(\F X^\prime, \G X^\prime) \otimes_k \D(\F X, \F X^\prime)[1] \arrow{r}& \D(\F X, \G X^\prime)[1]
+    \end{tikzcd}$$
+    and
+    $$\begin{tikzcd}
+      \D(\G X, \G X^\prime) \otimes_k \D(\F X, \G X) \arrow{r}\arrow[swap]{d}{d \otimes 1 + 1 \otimes d}& \D(\F X, \G X^\prime)\arrow{d}{d}\\
+      \D(\G X, \G X^\prime) \otimes_k \D(\F X, \G X)[1] \arrow{r}& \D(\F X, \G X^\prime)[1]
+    \end{tikzcd}$$
+    For a morphism $f \in \CC(X,X^\prime)$, chasing $\eta(X^\prime) \otimes \F(f)$ and $\G(f) \otimes \eta(X)$ through the diagram gives
+    \begin{eqnarray*}
+      d(\eta(X^\prime)) \circ \F(f) + \eta(X^\prime) \circ d(\F(f)) 
+      &=& d(\eta(X^\prime) \circ \F(f))\\
+      &=& d(\G(f) \circ \eta(X))\\
+      &=& d(\G(f)) \circ \eta(X) + \G(f) \circ d(\eta(X)).
+    \end{eqnarray*}
+    By the fact that $\F$,$\G$ commute with differentials and $\eta$ is a natural tranformation, we see
+    $$\eta(X^\prime) \circ d(\F(f)) = \eta(X^\prime) \circ \F(d(f)) = \G(d(f)) \circ \eta(X) = d(\G(f)) \circ \eta(X).$$
+    Therefore
+    $$d(\eta(X^\prime)) \circ \F(f) = \G(f) \circ d(\eta(X)),$$
+    as desired.
+  \end{proof}
+\end{prop}
+
+\begin{defn}
+  For two objects $\CC$ and $\D$ of $\operatorname{dgcat}_k$, define the object $\SHom{\CC,\D}$ of $\operatorname{dgcat}_k$ to be the category with objects dg functors $\mathscr{F} \colon \CC \rightarrow \D$ and morphisms $\SHom{\mathscr{F},\mathscr{G}}$.
+  
+  Given two dg functors $\F,\G \colon \CC \rightarrow \D$, define a {\it morphism of dg functors}, $\eta \colon \F \rightarrow G$ to be a closed, degree zero natural transformation.
+  That is, $\eta \in \SHom{\F, \G}^0$ and its image in $\SHom{\F,\G}^1$ under the differential is zero.
+\end{defn}
+
 \begin{rmk}
+  There is a natural isomorphism of bifunctors
+  $$\Hom{\operatorname{dgcat}_k}{\CC \otimes \D, \mathscr{E}} \cong \Hom{\operatorname{dgcat}_k}{\CC, \SHom{\D,\mathscr{E}}},$$
+  which endows $\operatorname{dgcat}_k$ with a symmetric closed monoidal structure.
 \end{rmk}
+
+\begin{defn}
+  Let $\CC$ be a dg category.
+  Define
+  \begin{enumerate}
+  \item
+    the category $Z^0(\CC)$ to be the category with objects those of $\CC$ and morphisms
+    $$\Hom{Z^0(\CC)}{X,Y} = Z^0\left(\Hom{\CC}{X,Y}\right),$$
+  \item
+    the category $H^0(\CC)$ to be the category with objects those of $\CC$ and morphisms
+    $$\Hom{H^0(\CC)}{X,Y} = H^0\left(\Hom{\CC}{X,Y}\right).$$
+  \end{enumerate}
+  
+\end{defn}
 
 \begin{defn}
   Let $\mathscr{C}$ be a small dg category.
