@@ -25,6 +25,7 @@
 \theoremstyle{definition}
 \newtheorem{defn}{Definition}
 \newtheorem{rmk}{Remark}
+\newtheorem{eg}{Example}
 
 \newcommand{\A}{\mathbb{A}}
 \newcommand{\T}{\mathscr{T}}
@@ -739,6 +740,26 @@ commute.
   Denote by $\operatorname{dgcat_k}$ the category with objects small dg categories and morphisms dg functors.
 \end{defn}
 
+\begin{eg}
+  \begin{description}[style=nextline]
+  \item[dg category with one object]
+    Let $A$ be a dg $k$-algebra; that is, a graded $k$-algebra equipped with a differential
+    $$d(fg) = d(f)g + (-1)^nfd(g),\ f \in A^n, g \in A.$$
+    Define $\mathscr{A}$ to be the category with one object, $\ast$, and morphisms $\mathscr{A}(\ast, \ast) = A$, with composition defined by the multiplication in $A$.
+  \item[dg $k$-modules]
+    Define the category $\mathcal{C}_\text{dg}(k)$ to have objects chain complexes of $k$-modules, and morphisms the graded module of graded morphisms; that is, a morphism $f \in \mathcal{C}_\text{dg}(k)(C^\bullet, D^\bullet)^m$ is a collection of morphisms $f^n \colon C^n \rightarrow D^{n+m}$.
+    Equip $\mathcal{C}_\text{dg}(k)(C^\bullet, D^\bullet)$ with the differential
+    $$\begin{tikzcd}
+      \mathcal{C}_\text{dg}(k)(C^\bullet, D^\bullet)^m \arrow{r} & \mathcal{C}_\text{dg}(k)(C^\bullet, D^\bullet)^{m+1}\\
+      f \arrow[mapsto]{r} & d_D \circ f + (-1)^{n+1}f \circ d_C
+    \end{tikzcd}$$
+    and define composition of morphisms by the tensor product in $\mathcal{C}(k)$,
+    $$\begin{tikzcd}
+      \mathcal{C}_\text{dg}(k)(D^\bullet, E^\bullet) \otimes_k \mathcal{C}_\text{dg}(k)(C^\bullet, D^\bullet) \arrow{r} & \mathcal{C}_\text{dg}(k)(C^\bullet, E^\bullet).
+    \end{tikzcd}$$
+  \end{description}
+\end{eg}
+
 \begin{defn}
   Let $\CC$ and $\D$ be objects of $\operatorname{dgcat}_k$.
   The {\it tensor product}, $\CC \otimes \D$, is the dg category with objects $\operatorname{ob}\CC \times \operatorname{ob}\D$ and
@@ -817,7 +838,29 @@ commute.
     the category $H^0(\CC)$ to be the category with objects those of $\CC$ and morphisms
     $$\Hom{H^0(\CC)}{X,Y} = H^0\left(\Hom{\CC}{X,Y}\right).$$
   \end{enumerate}
+  Note that given a dg functor $\mathscr{F} \colon \CC \rightarrow \D$, for $X$ and $Y$ objects of $\CC$, $\mathscr{F}(X,Y) \colon \CC(X,Y) \rightarrow \D(\mathscr{F}X, \mathscr{F}Y)$ is a morphism of $\mathcal{C}(k)$.
+  Hence $Z^0$ and $H^0$ induce functors 
+  $$\begin{tikzcd}
+    Z^0(\mathscr{F}) \colon Z^0(\CC) \arrow{r}& Z^0(\D)
+  \end{tikzcd}
+  \text{and}
+  \begin{tikzcd}
+    H^0(\mathscr{F}) \colon H^0(\CC) \arrow{r}& H^0(\D)
+  \end{tikzcd}$$
+  in the obvious way.
+\end{defn}
+
+\begin{defn}
+  Let $\CC$ be a small dg category and let $\mathscr{M} : \CC \rightarrow \mathcal{C}_\text{dg}(k)$ be a dg functor.
+  We say that $\mathscr{M}$ is a right (resp. left) dg $\CC$-module if $\mathscr{M}$ is contravariant (resp. covariant).
   
+  Define the category $\mathcal{C}_\text{dg}(\CC) = \SHom{\CC^\text{op}, \mathcal{C}_\text{dg}(k)}$, and the category of right dg $\CC$-modules by
+  $$\mathcal{C}(\CC) = Z^0 \mathcal{C}_\text{dg}(\CC).$$
+\end{defn}
+
+\begin{defn}
+  Let $\CC$ be a small dg category.
+  The derived category $\mathcal{D}(\CC)$ is the localization of $\mathcal{C}(\CC)$ at the class of quasi-isomorphisms.
 \end{defn}
 
 \begin{defn}
@@ -855,9 +898,43 @@ commute.
   \end{enumerate}
 \end{defn}
 
+\begin{lem}[Brown representability]
+  Let $\T$ be a triangulated category with direct sums which is compactly generated.
+  Let $H$ be a cohomological functor on $\T$ which transforms direct sums into direct products.
+  Then $H$ is representable.
+\end{lem}
+
+\begin{defn}
+  A dg functor $\mathscr{F} \colon \CC \rightarrow \D$ is called a {\it quasi-equivalence} if 
+  \begin{enumerate}
+  \item
+    for all objects $X$ and $Y$ of $\CC$, the morphism
+    $$\mathscr{F}(X,Y) \colon
+    \begin{tikzcd}
+       \CC(X,Y) \arrow{r} & \D(\mathscr{F}X,\mathscr{F}Y)
+    \end{tikzcd}$$
+    of $\mathcal{C}(k)$ is a quasi-isomorphism, and
+  \item
+    the induced functor $H^0(\mathscr{F}) \colon H^0(\CC) \rightarrow H^0(\D)$ is an equivalence.
+  \end{enumerate}
+\end{defn}
+
+\begin{lem}
+  Let $\CC$ be a pretriangulated dg category and let $\T = H^0(\CC)$.
+  If $E_i$ is a family of generators for $\mathscr{C}$, then the compact objects of $\T$ are the representables.
+
+  \begin{proof}
+    
+  \end{proof}
+\end{lem}
+
 \begin{thm}
   Let $\mathscr{C}$ and $\mathscr{D}$ be pretriangulated dg-categories.
-  If $E_i$ is a family of generators for $\mathscr{C}$ and $F_i$ is a family of generators for $\mathscr{D}$, then the $E_i \otimes F_j$ are a family of generators for $D\left(\mathscr{C} \otimes \mathscr{D}\right)$.
+  If $E_i$ is a family of generators for $\mathscr{C}$ and $F_i$ is a family of generators for $\mathscr{D}$, then the $E_i \otimes F_j$ are a family of generators for $\mathcal{D}\left(\mathscr{C} \otimes \mathscr{D}\right)$.
+  
+  \begin{proof}
+    
+  \end{proof}
 \end{thm}
 
 \end{document}
