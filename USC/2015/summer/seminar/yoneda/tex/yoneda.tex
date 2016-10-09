@@ -14,6 +14,7 @@
 \providecommand{\p}{\mathfrak{p}}
 \providecommand{\m}{\mathfrak{m}}
 \newcommand{\legendre}[2]{\left(\frac{#1}{#2}\right)}
+\newcommand{\CC}{\mathscr{C}}
 \theoremstyle{plain}
 \newtheorem{thm}{Theorem}
 \newtheorem{lem}{Lemma}
@@ -22,6 +23,8 @@
 \newtheorem{prop}{Proposition}
 \newtheorem{cor}{Corollary}
 \newtheorem{rmk}{Remark}
+
+
 
 \section{The Yoneda Embedding}
 Throughout, we assume that $\mathscr{C}$ and $\mathscr{D}$ are locally small categories; that is, $\Hom{\mathscr{C}}{X,Y}$ is a small set, rather than a proper class, for any two objects $X$ and $Y$ of $\mathscr{C}$.
@@ -208,8 +211,8 @@ Similarly, define a covariant functor $h^X : \mathscr{C} \rightarrow \mathfrak{S
 \end{lem}
 
 This lemma allows us to define the Yoneda functor
-$$Y : \mathscr{C} \rightarrow \hat{\mathscr{C}} = \operatorname{Fun}(C^\text{op}, \mathfrak{Set})$$
-where $\operatorname{Fun}(C^\text{op}, \mathfrak{Set})$ is the category with objects presheaves of sets on $\mathscr{C}$ and morphisms natural transformations.
+$$Y : \mathscr{C} \rightarrow \hat{\mathscr{C}} = \operatorname{Fun}(\CC^\text{op}, \mathfrak{Set})$$
+where $\operatorname{Fun}(\CC^\text{op}, \mathfrak{Set})$ is the category with objects presheaves of sets on $\mathscr{C}$ and morphisms natural transformations.
 This functor takes an object $X$ of $\mathscr{C}$ to the presheaf $h_X$ and takes a morphism $f : Y \rightarrow X$ to the natural transformation $f_* : h_Y \rightarrow h_X$ of Proposition~\ref{p.1}.
 
 \begin{cor}\label{c.1}
