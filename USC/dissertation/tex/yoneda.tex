@@ -1,0 +1,432 @@
+\documentclass[dissertation.tex]{subfiles}
+\begin{document}
+
+\section{The Yoneda Embedding}
+Throughout, we assume that $\mathscr{C}$ and $\mathscr{D}$ are locally small categories; that is, $\Hom{\mathscr{C}}{X,Y}$ is a small set, rather than a proper class, for any two objects $X$ and $Y$ of $\mathscr{C}$.
+If $X$ is any object of $\mathscr{C}$, define the presheaf of sets (i.e. a contravariant functor from $\mathscr{C}$ to the category of sets) $h_X \colon \mathscr{C} \rightarrow \mathfrak{Set}$ with object map $X \mapsto \Hom{\mathscr{C}}{\line(1,0){10}, X}$ and arrow map sending $f : Z \rightarrow Y$ to the arrow
+\begin{align*}
+  f^*(X) \colon \Hom{\mathscr{C}}{Y,X} &\rightarrow \Hom{\mathscr{C}}{Z,X}\\
+  g &\mapsto g \circ f.
+\end{align*}
+Similarly, define a covariant functor $h^X : \mathscr{C} \rightarrow \mathfrak{Set}$ which takes objects to $\Hom{\mathscr{C}}{X,\, \line(1,0){10}}$ and morphisms to
+\begin{align*}
+  f_*(X) \colon \Hom{\mathscr{C}}{X,Z} &\rightarrow \Hom{\mathscr{C}}{X,Y}\\
+  g &\mapsto f \circ g.
+\end{align*}
+
+\begin{prop}\label{p.1}
+  For any two objects $X$ and $Y$ of $\mathscr{C}$, a morphism $f : Y \rightarrow X$ of $\mathscr{C}$ determines a natural transformation $f_* : h_Y \rightarrow h_X$.
+  
+  \begin{proof}
+    %For this, we suppose that we are given a morphism $f : Y \rightarrow X$ of $\mathscr{C}$.
+    For any object $Z$ of $\mathscr{C}$, we see $h_Y(Z) = h^Z(Y)$ and $h_X(Z) = h^Z(X)$, so by the above, we have a morphism
+    \begin{align*}
+      f_*(Z) \colon h_Y(Z) &\rightarrow h_X(Z)\\
+      g &\mapsto f \circ g.
+    \end{align*}
+    Now we can see that this morphism makes the diagram
+    $$\begin{tikzcd}
+      Z^\prime\arrow{d}{g} & h_Y(Z)\arrow{d}{g^*_Y}\arrow{r}{f_*(Z)} & h_X(Z)\arrow{d}{g^*_{X}}\\ 
+      Z & h_Y(Z^\prime) \arrow{r}{f_*(Z^\prime)} &  h_X(Z^\prime)
+    \end{tikzcd}$$
+    commute by chasing an element $\varphi : Z \rightarrow Y$ through the diagram.
+    Through the top right, we get
+    $$\varphi \mapsto f \circ \varphi \mapsto (f \circ \varphi) \circ g $$
+    and through the bottom left, we get
+    $$\varphi \mapsto \varphi \circ g \mapsto f \circ (\varphi \circ g) $$
+    which are the same since function composition is associative.
+  \end{proof}
+\end{prop}
+
+\begin{rmk}
+  By almost exactly the same proof, a morphism $f : Y \rightarrow X$ of $\mathscr{C}$ determines a natural transformation $f^* : h^X \rightarrow h^Y$.
+\end{rmk}
+
+
+%\begin{prop}
+%  For any two objects $X$ and $Y$ of $\mathscr{C}$, a morphism $f : Y \rightarr%ow X$ of $\mathscr{C}$ determines a natural transformation $f^* : h^X \rightarr%ow h^Y$.
+%  
+%  \begin{proof}
+%    For any object $Z$ of $\mathscr{C}$, we see that $h^Y(Z) = h_Z(Y)$ and $h^X%(Z) = h_Z(X)$, so by the above, we have a morphism
+%    \begin{align*}
+%      f^*_Z : h^Y(Z) &\rightarrow h^X(Z)\\
+%      g &\mapsto g \circ f
+%    \end{align*}
+%    Now we can see that this morphism makes the diagram
+%    $$\begin{tikzcd}
+%      Z\arrow{d}{g} & h^X(Z)\arrow{d}{(g_*)_X} \arrow{r}{f^*_Z} & h^Y(Z)\arrow{%d}{(g_*)_Y}\\
+%      Z^\prime & h^X(Z^\prime) \arrow{r}{f^*_{Z^\prime}} & h^Y(Z^\prime)
+%    \end{tikzcd}$$
+%    commute by chasing an element $\varphi : X \rightarrow Z$ through the diagr%am.
+%    Through the top right, we get
+%    $$\varphi \mapsto \varphi \circ f \mapsto g \circ (\varphi \circ f)$$
+%    and through the bottom left, we get
+%    $$\varphi \mapsto g \circ \varphi \mapsto (g \circ \varphi) \circ f$$
+%    which are teh same since function composition is associative.
+%  \end{proof}
+%\end{prop}
+
+\begin{defn}
+  A presheaf $F \colon \mathscr{C} \rightarrow \mathfrak{Set}$ is called {\em representable} if there exists an object $X$ of $\mathscr{C}$ and a natural isomorphism $h_X \cong F$.
+  We call $X$ the {\em representing object}, and $h_X$ is called a {\em representation} of $F$.
+\end{defn}
+
+\begin{defn}
+  Given a functor $F : \mathscr{C} \rightarrow \mathscr{D}$, there is an induced map for each object $X$ and $Y$ of $\mathscr{C}$
+  \begin{align*}
+    \Hom{\mathscr{C}}{X,Y} &\rightarrow \Hom{\mathscr{D}}{F(X), F(Y)}\\
+    f &\mapsto F(f).
+  \end{align*}
+  We say $F$ is {\em faithful} if this map is injective, {\em full} if this map is surjective, and {\em fully faithful} if this map is a bijection.
+\end{defn}
+
+\begin{prop}\label{p.2}
+  Let $F \colon \mathscr{C} \rightarrow \mathscr{D}$ be a fully faithful functor.
+  A morphism $f \colon X \rightarrow Y$ of $\mathscr{C}$ is an isomorphism if and only if $F(f) \colon F(X) \rightarrow F(Y)$ is an isomorphism of $\mathscr{D}$.
+
+  We say that $F$ {\em reflects isomorphisms}.
+
+  \begin{proof}
+    If $f$ is an isomorphism, then $F(f)$ is an isomorphism almost by the definition of a functor: 
+    $$1_{F(X)} = F(1_X) = F(f \circ f^{-1}) = F(f) \circ F(f^{-1}) \ \text{and}\ 1_{F(Y)} = F(1_Y) = F(f^{-1} \circ f) = F(f^{-1}) \circ F(f).$$
+    Conversely, assume that $F(f)$ is an isomorphism with inverse $g : F(Y) \rightarrow F(X)$.
+    Since $F$ is full, there exists some $h : Y \rightarrow X$ such that $g = F(h)$.
+    Hence
+    $$F(1_X) = 1_{F(X)} = F(f) \circ F(h) = F(f \circ h)$$
+    and
+    $$F(1_Y) = 1_{F(Y)} = F(h) \circ F(f)= F(h \circ f).$$
+    Therefore by faithfulness, $h$ is the inverse of $f$, as desired.
+  \end{proof}
+\end{prop}
+\begin{rmk}
+  Note that by possibly passing to the opposite category, every functor is covariant.
+\end{rmk}
+
+\begin{lem}[Yoneda]
+  If $F \colon \mathscr{C} \rightarrow \mathfrak{Sets}$ is any presheaf of sets, then for any object $X$ of $\mathscr{C}$ of $\mathscr{C}$, there is a natural isomorphism of sets
+  $$\operatorname{Nat}(h_X, F) \cong F(X).$$
+
+  \begin{proof}
+    First we define the morphisms of sets
+    \begin{align*}
+      \varphi \colon \Nat{h_x, F} &\rightarrow F(X)\\
+      \alpha &\mapsto \alpha_X(1_X).
+    \end{align*}
+    Next we define a morphism of sets $\psi \colon F(X) \rightarrow \Nat{h_x, F}$ as follows:
+    given a point $p \in F(X)$, define for each object $Y$ a morphism
+    \begin{align*}
+      \beta_Y \colon h_X(Y) &\rightarrow F(Y)\\
+      f &\mapsto F(f)(p).
+    \end{align*}
+    Note that $F$ is a presheaf, so $F(f)$ is a morphism from $F(X)$ to $F(Y)$!
+    It's easy to see that this definition makes the naturality square
+    $$\begin{tikzcd}
+      Z\arrow{d}{g} & h_X(Y)\arrow{d}{g^*}\arrow{r}{\beta_Y} & F(Y)\arrow{d}{F(g)}\\
+      Y & h_X(Z)\arrow{r}{\beta_Z} & F(Z)
+    \end{tikzcd}$$
+    since for any $f \in h_X(Y)$
+    $$F(g) \circ \beta_X(f) = F(g) \circ F(f) (p) = F(g \circ f)(p) = F(g^*(f))(p) = \beta_Z \circ g^* (f)$$
+    and so we let $\beta : h_X \rightarrow F$ be the image of $p$ under $\psi$.
+    We show that these these give the desired isomorphism.
+
+    Given a natural transformation $\alpha \colon h_x \rightarrow F$, the element $\alpha_X(1_X)$ of $F(X)$ determines the natural transformation $\beta : h_x \rightarrow F$ with component morphisms
+    \begin{align*}
+      \beta_Y \colon h_X(Y) &\rightarrow F(Y)\\
+      f &\mapsto F(f)(\alpha_X(1_X)).
+    \end{align*}
+    Chasing the element $1_X$ through the naturality square
+    $$\begin{tikzcd}
+      Y\arrow{d}{f} & h_X(X)\arrow{d}{f^*}\arrow{r}{\alpha_X} & F(X)\arrow{d}{F(f)}\\
+      X & h_X(Y)\arrow{r}{\alpha_Y} & F(Y)
+    \end{tikzcd}$$
+    we see that for any object $Y$ of $\mathscr{C}$
+    $$\beta_Y(f) = F(f) \circ \alpha_X (1_X) = \alpha_y \circ f^*(1_X) = \alpha_Y(1_x \circ f) = \alpha_Y(f)$$
+    implies $\psi \circ \varphi(\alpha) = \alpha$.
+    Now if $p \in F(X)$, then the natural transformation $\beta : h_X \rightarrow F$ determined by $p$ satisfies
+    $$\varphi(\beta) = \beta_X(1_X)(p) = F(1_X)(p) = 1_{F(x)}(p) = p$$
+    so that $\varphi \circ \psi (p) = p$, as desired.
+    Therefore $\varphi$ is an isomorphism.
+
+    Next we show that $\varphi$ is natural in $X$.
+    For this, we suppose that we are given a morphism $f : Y \rightarrow X$ of $\mathscr{C}$.
+    By Proposition~\ref{p.1}, this induces a natural transformation $f_* : h_Y \rightarrow h_X$ and so we obtain by composition a morphism, which we call $f^*$ by abuse of notation,
+    \begin{align*}
+      f^* \colon \Nat{h_X, F} &\rightarrow \Nat{h_Y,F}\\
+      \alpha & \mapsto \alpha \circ f_*.
+    \end{align*}
+    We check that the naturality square
+    $$\begin{tikzcd}
+      Y\arrow{d}{f} & \Nat{h_X, F}\arrow{r}{\varphi}\arrow{d}{f^*} & F(X)\arrow{d}{F(f)}\\
+      X & \Nat{h_Y, F}\arrow{r}{\varphi} & F(Y)
+    \end{tikzcd}$$
+    commutes by chasing a natural transformation $\alpha : h_X \rightarrow F$ through.
+    Through the top right, we have
+    $$\alpha \mapsto \alpha_X(1_X) \mapsto F(f)(\alpha_X(1_X))$$
+    and through the bottom left, we have
+    $$\alpha \mapsto \alpha \circ f_* \mapsto \alpha_Y \circ (f_*)_Y (1_Y) = \alpha_Y(f).$$
+    Now by chasing $1_X$ through the naturality square
+    $$\begin{tikzcd}
+      Y\arrow{d}{f} & h_X(X)\arrow{r}{\alpha_X}\arrow{d}{f^*} & F(X)\arrow{d}{F(f)}\\
+      X & h_X(Y)\arrow{r}{\alpha_Y} & F(Y)
+    \end{tikzcd}$$
+    we see that
+    $$F(f)(\alpha_X(1_X)) = \alpha_Y \circ f^* (1_X) = \alpha_Y(f),$$
+    as desired.
+
+    Now, for naturality in $F$ we assume that we are given a natural transformation $\beta : F \rightarrow G$.
+    Chasing the natural transformation $\alpha : h_x \rightarrow F$ through the naturality square
+    $$\begin{tikzcd}
+      F\arrow{d}{\beta} & \Nat{h_X, F} \arrow{r}{\varphi}\arrow{d}{\beta_*} & F(X)\arrow{d}{\beta_X} \\
+      G & \Nat{h_X, G} \arrow{r}{\varphi} & G(X)
+    \end{tikzcd}$$
+    we see that
+    $$\beta_X \circ \varphi(\alpha) = \beta_X \circ \alpha_X(1_X) = \varphi( \beta \circ \alpha) = \varphi \circ \beta_* ( \alpha).$$
+    Therefore $\varphi$ is an isomorphism of sets, natural in both $X$ and $F$.
+  \end{proof}
+\end{lem}
+
+This lemma allows us to define the Yoneda functor
+$$Y : \mathscr{C} \rightarrow \hat{\mathscr{C}} = \operatorname{Fun}(\CC^\text{op}, \mathfrak{Set})$$
+where $\operatorname{Fun}(\CC^\text{op}, \mathfrak{Set})$ is the category with objects presheaves of sets on $\mathscr{C}$ and morphisms natural transformations.
+This functor takes an object $X$ of $\mathscr{C}$ to the presheaf $h_X$ and takes a morphism $f : Y \rightarrow X$ to the natural transformation $f_* : h_Y \rightarrow h_X$ of Proposition~\ref{p.1}.
+
+\begin{cor}\label{c.1}
+  The Yoneda functor is fully faithful.
+
+  \begin{proof}
+    We must show that for any two objects $X$ and $X^\prime$ of $\mathscr{C}$, the map of sets
+    $$\Hom{\mathscr{C}}{X,X^\prime} = h_{X^\prime} \rightarrow \Nat{h_X,h_{X^\prime}}$$
+    is a bijection.
+    Taking $F = h_{X^\prime}$ and applying Yoneda's Lemma gives the desired bijection.
+  \end{proof}
+\end{cor}
+
+\begin{cor}
+  Representing objects are unique up to isomorphism.
+
+  \begin{proof}
+    Suppose $F$ is a presheaf of sets on $\mathscr{C}$ and $X, X^\prime$ are objects of $\mathscr{C}$ that represent $F$.
+    By definition, we have natural isomorphisms $h_X \cong F$ and $h_{X^\prime} \cong F$, so by composing we obtain a natural isomorphism
+    $$Y(X) = h_X \cong F \cong h_{X^\prime} \cong Y(X^\prime).$$
+    By Corollary~\ref{c.1} and Proposition~\ref{p.2}, $Y$ reflects isomorphisms and thus $X \cong X^\prime$, as desired.
+  \end{proof}
+\end{cor}
+
+\section{Fiber Products in $\hat{\mathscr{C}}$}
+
+\begin{defn}[Fiber Products]
+  For any category $\mathscr{C}$, given objects $A$, $B$, $C$ of $\mathscr{C}$, and morphisms
+  $$\begin{tikzcd}
+    A \arrow{r}{f} & C & \arrow[swap]{l}{g} B
+  \end{tikzcd}$$
+  we define the {\em fiber product} $A \times_C B$ to be an object of $C$ equipped with morphisms called {\em projections} making the diagram
+  $$\begin{tikzcd}
+    A \times_C B \arrow{d}{p} \arrow{r}{q} & B\arrow{d}{g}\\
+    A\arrow{r}{f} & C
+  \end{tikzcd}$$
+  commute and final amongst all such objects.
+  That is to say, for any object $Z$ equipped with projects to $A$ and $B$, the following diagram commutes
+  $$\begin{tikzcd}
+    Z\arrow[bend right]{ddr}\arrow[bend left]{rrd} \arrow[dotted]{rd}{\exists ! h}& &\\
+    & A \times_C B \arrow{r}{q}\arrow{d}{p} & B\arrow{d}{g}\\
+    & A\arrow{r}{f} & C
+  \end{tikzcd}$$
+  Note that by definition $A \times_C B$ is universal and hence unique up to unique isomorphism.
+\end{defn}
+
+The category $\mathfrak{Set}$ has all fiber products.  Given set maps $f: A \rightarrow C$ and $g : B \rightarrow C$, it's straightforward to check that
+$$A \times_C B = \left\{(a,b) \in A \times B \;\middle\vert\; f(a) = g(b) \in C\right\}$$
+satisfies the universal property.
+
+\begin{prop}
+  For $\mathscr{C}$ locally small, $\hat{\mathscr{C}}$ has all fiber products.
+  
+  \begin{proof}
+    Given $A$, $B$, and $C$ presheaves on $\mathscr{C}$ and natural transformations
+    $$\begin{tikzcd}A \arrow{r}{f} & C & B \arrow[swap]{l}{g}\end{tikzcd}$$
+    define the presheaf $A \times_C B$ with object map that takes an object $X$ of $\mathscr{C}$ to $A(X) \times_{C(X)} B(X)$ and arrow map that takes a morphism $\varphi : Y \rightarrow X$ of $\mathscr{C}$ to the unique map of sets
+    $$\begin{tikzcd}
+      A \times_{C} B(X) \arrow{rr}{q_X}\arrow{dd}{p_X} \arrow[dotted]{rd}{\exists !A \times_C B (\varphi)}& & B(X)\arrow[dashed]{dd}[pos=0.6]{g_X}\arrow{rd}{B(\varphi)}&\\
+      & A \times_{C} B(Y)\arrow{dd}[description, pos=0.39]{p_Y} \arrow{rr}[pos=0.4,description]{q_Y} & & B(Y)\arrow{dd}{g_Y}\\
+      A(X)\arrow{rd}{A(\varphi)}\arrow[dashed]{rr}[pos=0.4]{f_X} & & C(X)\arrow[dashed]{rd}{C(\varphi)} & \\
+      & A(Y)\arrow{rr}{f_Y} & & C(Y)
+    \end{tikzcd}$$
+    commute.
+    We can write this morphism of sets explicitly as
+    \begin{align*}
+      A \times_C B(\varphi) \colon A \times_C B(X) &\rightarrow A \times_C B (Y)\\
+      (a,b) &\mapsto (A(\varphi)(a), B(\varphi)(b))
+    \end{align*}
+    since the left face of the cube commutes by
+    $$p_Y \circ A \times_C B(a,b)  = p_Y(A(\varphi)(a), B(\varphi(b))) = A(\varphi)(a) = A(\varphi) \circ p_X(a,b),$$
+    the top face of the cube commutes by
+    $$q_Y \circ A \times_C B(a,b)  = q_Y(A(\varphi)(b), B(\varphi(b))) = A(\varphi)(b) = A(\varphi) \circ q_X(a,b),$$
+    the back and front faces of the cube commutes by assumption, and the other two faces of the cube commute by naturality of $f$ and $g$.
+    Moreover, this shows that $A \times_C B$ is equipped with two natural projections,
+    $$\begin{tikzcd}
+      A & A \times_C B \arrow{r}{q} \arrow[swap]{l}{p} & B
+    \end{tikzcd}$$
+    and so it remains only to show that this object is indeed final amongst all such objects of $\hat{\mathscr{C}}$.
+
+    Suppose that we have another presheaf $Z$ equipped with projections
+    $$\begin{tikzcd}
+      A & Z \arrow{r}{\beta} \arrow[swap]{l}{\alpha} & B
+    \end{tikzcd}$$
+    Given any object $X$ of $\mathscr{C}$, the morphisms $\alpha_X$ and $\beta_X$ induce by the universal property the morphism of sets
+    \begin{align*}
+      (\alpha \times \beta)_X \colon Z(X) &\rightarrow A \times_C B(X)\\
+      z &\mapsto (\alpha(z), \beta(z)),
+    \end{align*}
+    making the diagram
+    $$\begin{tikzcd}
+      Z(X)\arrow[bend left]{rrd}{\beta_X}\arrow[bend right]{rdd}{\alpha_X} \arrow[dotted]{rd}{\exists !(\alpha \times \beta)_X} \\
+      & A \times_C B(X) \arrow{r}{q_X}\arrow{d}{p_X} & B(X)\arrow{d}{g_X}\\
+      & A(X) \arrow{r}{f_X} & C(X).
+    \end{tikzcd}$$
+    For any morphism $\varphi \colon Y \rightarrow X$ of $\mathscr{C}$, naturality of $\alpha$ and $\beta$ ensure that the diagram
+    $$\begin{tikzcd}
+      A(X)\arrow{d}{A(\varphi)} & Z(X)\arrow[swap]{l}{\alpha_X}\arrow{r}{\beta_X}\arrow{d}{Z(\varphi)} & B(X)\arrow{d}{B(\varphi)}\\
+      A(Y) & Z(Y)\arrow[swap]{l}{\alpha_Y}\arrow{r}{\beta_Y} & B(Y)
+    \end{tikzcd}$$
+    commutes.
+    This is enough to ensure that the naturality square
+    $$\begin{tikzcd}
+      Z(X) \arrow[swap]{d}{(\alpha \times \beta)_X}\arrow{r}{Z(\varphi)}& Z(Y)\arrow{d}{(\alpha \times \beta)_Y}\\
+      A \times_C B(X) \arrow{r}{A \times_C B(\varphi)} & A \times_C B(Y)
+    \end{tikzcd}$$
+    commutes because
+    \begin{eqnarray*}
+      A \times_C B (\varphi) \circ (\alpha \times \beta)_X(z) &=& A \times_C B (\varphi)(\alpha_X(z), \beta_X(z))\\
+      &=& (A(\varphi) \circ \alpha_X(z), B(\varphi) \circ \beta_X(z))\\
+      &=& (\alpha_Y \circ Z(\varphi)(z), \beta_Y \circ Z(\varphi)(z))\\
+      &=& (\alpha \times \beta)_Y \circ Z(\varphi)(z)
+    \end{eqnarray*}
+    and hence $\alpha \times \beta \colon Z \rightarrow A \times_C B$ is a natural transformation.
+    The uniquness follows from the fact that each of the components were defined from the universal property in $\mathfrak{Set}$.
+  \end{proof}
+\end{prop}
+
+\begin{prop}\label{p.4}
+  Let $\mathscr{C}$ be a locally small category.
+  Given natural transformations $f \colon h_X \rightarrow h_S$ and \\$g \colon h_Y \rightarrow h_S$, the fiber product $h_X \times_{h_S} h_Y$ in $\hat{\mathscr{C}}$ is representable if and only if the fiber $X \times_S Y$ exists in $\mathscr{C}$ and, in this case, is represented by $X \times_S Y$.
+  
+  %    While the notation $X \times_S Y$ is potentially ambiguous (the fiber prod%uct explicitly depends on the choice of maps $X \rightarrow S$ and $Y \rightar%row S$), it will become clear in the course of the proof that there can be no %confusion.
+  
+  \begin{proof}
+    We first note that by Yoneda's Lemma, we have two isomorphisms $\Nat{h_X,h_S} \cong h_S(X)$ and $\Nat{h_Y, h_S} \cong h_S(Y)$, so we let $\varphi: X \rightarrow S$ be the image of $f$ and $\psi: Y \rightarrow S$ be the image of $g$.
+    Assume that the fibered product
+    $$\begin{tikzcd}
+      X \times_S Y \arrow{r}{q}\arrow{d}{p} & Y\arrow{d}{\psi}\\
+      X \arrow{r}{\varphi} & S
+    \end{tikzcd}$$
+    exists in $\mathscr{C}$.
+    Using the naturality of the Yoneda embedding in the second slot, the natural transformations $f$ and $g$ induce commutative diagrams
+    \begin{center}
+      \begin{tikzcd}
+        h_X(X \times_S Y) \arrow{d}[rotate=90,xshift=-1ex,yshift=1ex]{\sim}\arrow{r}{\varphi_*} & h_S(X \times_S Y)\arrow{d}[rotate=90,xshift=-1ex,yshift=1ex]{\sim}\\
+        \Nat{h_{X \times_S Y}, h_X} \arrow{r}{f_*} & \Nat{h_{X \times_S Y}, h_S}
+      \end{tikzcd}
+      and
+      \begin{tikzcd}
+        h_Y(X \times_S Y) \arrow{d}[rotate=90,xshift=-1ex,yshift=1ex]{\sim}\arrow{r}{\psi_*} & h_S(X \times_S Y)\arrow{d}[rotate=90,xshift=-1ex,yshift=1ex]{\sim}\\
+        \Nat{h_{X \times_S Y}, h_Y} \arrow{r}{g_*} & \Nat{h_{X \times_S Y}, h_S}
+      \end{tikzcd}
+    \end{center}
+    which gives us a commutative diagram
+    $$\begin{tikzcd}
+      h_{X \times_S Y}\arrow[bend right]{ddr}\arrow[bend left]{rrd}\arrow[dotted]{rd}{\exists !h} \\
+      &h_X \times_{h_S} h_Y \arrow{d}\arrow{r}& h_Y\arrow{d}{g}\\
+      &h_X\arrow{r}{f} & h_Y
+    \end{tikzcd}$$
+    where the projections from $h_{X \times_S Y}$ are the images of $p$ and $q$ in $\Nat{h_{X \times_S Y}, h_X}$ and $\Nat{h_{X \times_S Y}, h_Y}$, respectively.
+    It is enough to show that each morphism $\gamma : Z \rightarrow X \times_S Y$ comes from an element of $h_X \times_{h_S} h_Y(Z)$, but this follows from the universal property:  the element $h_Z(\gamma)$ is a pair of morphisms $\alpha : Z \rightarrow X$, $\beta : Z \rightarrow Y$ such that the diagram
+    $$\begin{tikzcd}
+      Z \arrow{r}{\beta}\arrow{d}{\alpha} & Y\arrow{d}{\psi}\\
+      X \arrow{r}{\varphi} & S
+    \end{tikzcd}$$
+    commutes, which of course induces a unique morphism of $h_{X \times_S Y}(Z)$, and this must be $\gamma$.
+    Therefore $h_Z$ is an isomorphism of sets, and so $h$ is a natural isomorphism.
+
+    Conversely, suppose that $h_X \times_{h_S} h_Y$ is represented by an object $Z$ of $\mathscr{C}$.
+    The projections $h_Z \rightarrow h_X$ and $h_Z \rightarrow h_Y$ induce projections $p : Z \rightarrow X$ and $q : Z \rightarrow Y$ making the diagram
+    $$\begin{tikzcd}
+      Z \arrow{r}{q}\arrow{d}{p} & Y\arrow{d}{\psi}\\
+      X\arrow{r}{\varphi} & S
+    \end{tikzcd}$$
+    commute.
+    Given any other object $W$ equipped projections, $W \rightarrow X$ and $W \rightarrow Y$, we obtain morphisms $\alpha : h_W \rightarrow h_X$ and $\beta : h_W \rightarrow h_Y$ making the diagram
+    $$\begin{tikzcd}
+      h_W\arrow[dotted]{rd}{\exists !}\arrow[bend left]{rrd}{\beta}\arrow[bend right]{ddr}{\alpha}\\
+      & h_Z \arrow{r}\arrow{d}& h_Y\arrow{d}{g}\\
+      & h_X \arrow{r}{f}& h_S
+    \end{tikzcd}$$
+    commute.
+    This of course induces a unique morphism $W \rightarrow Z$ by the natural isomorphism
+    $$\Nat{h_W, h_Z} \cong h_W(Z).$$
+    Therefore, as $Z$ satisfies the universal property, we have $Z \cong X \times_S Y$.
+  \end{proof}
+\end{prop}
+
+Some nice properties derived from fiber products.
+
+\begin{prop}\label{p.5}
+  A morphism $f : A \rightarrow B$ of $\mathscr{C}$ is a monomorphism if and only if the fiber product $A \times_B A$ exists and the diagram
+  $$\begin{tikzcd}
+    A \arrow{d}{\operatorname{id}_A}\arrow{r}{\operatorname{id}_A} & A\arrow{d}{f}\\
+    A\arrow{r}{f} & B
+  \end{tikzcd}$$
+  is a fiber product diagram.
+
+  \begin{proof}
+    First assume that the fiber product exists and the above diagram is a fiber product diagram.
+    Given a commutative diagram
+    $$\begin{tikzcd}
+      Z \arrow[yshift=0.5ex]{r}{g} \arrow[yshift=-0.5ex,swap]{r}{h}& A \arrow{r}{f}& B
+    \end{tikzcd}$$
+    we have an induced diagram
+    $$\begin{tikzcd}
+      Z \arrow[bend right]{ddr}{g} \arrow[bend left]{rrd}{h} \arrow[dotted]{rd}{\exists !h^\prime}\\
+      & A\arrow{d}{\operatorname{id}_A}\arrow{r}{\operatorname{id}_A} & A\arrow{d}{f}\\
+      & A\arrow{r}{f} & B.
+    \end{tikzcd}$$
+    By assumption, taking $h^\prime = h$ or $h^\prime = g$ makes the diagram commute, so by uniqueness of $h^\prime$ we have $h = g$.
+    Therefore $f$ is monic.
+
+    Conversely, assume that $f$ is monic.
+    It suffices to show that $A$ equipped with the two identity morphisms as projections satisfies the universal property for the fiber product.
+    Given any object $Z$ equipped with projections $g : Z \rightarrow A$ and $h : Z \rightarrow A$ making the diagram
+    $$\begin{tikzcd}
+      Z \arrow{d}{g} \arrow{r}{h} & A\arrow{d}{f}\\
+      A\arrow{r}{f} & B
+    \end{tikzcd}$$
+    commute, we see that because $f$ is monic,
+    $f \circ g = f \circ h$
+    and thus $g = h$.
+    Therefore we have a unique morphism $g = h$ making the diagram
+    $$\begin{tikzcd}
+      Z \arrow[bend right]{ddr}{g} \arrow[bend left]{rrd}{h} \arrow[dotted]{rd}{\exists !g = h}\\
+      & A\arrow{d}{\operatorname{id}_A}\arrow{r}{\operatorname{id}_A} & A\arrow{d}{f}\\
+      & A\arrow{r}{f} & B.
+    \end{tikzcd}$$
+    commute, as desired.
+  \end{proof}
+\end{prop}
+
+\begin{cor}
+  The Yoneda functor preserves monomorphisms.
+
+  \begin{proof}
+    Given a monomorphism $f \colon A \rightarrow B$ of $\mathscr{C}$, we must show that the induced morphism $\hat{f} \colon h_A \rightarrow h_B$ is a monomorphism.
+    By Proposition~\ref{p.5} and the fact that $\hat{\operatorname{id}_A} = \operatorname{id}_{h_A}$, this is equivalent to showing that the diagram
+    $$\begin{tikzcd}
+      h_A \arrow{d}{\operatorname{id}_{h_A}}\arrow{r}{\operatorname{id}_{h_A}} & h_A\arrow{d}{\hat{f}}\\
+    h_A \arrow{r}{\hat{f}} & h_B
+  \end{tikzcd}$$
+    is a fiber product diagram.
+    But this follows from Proposition~\ref{p.4}: $h_A \times_{h_B} h_A$ exists and is represented by $A \times_B A \cong A$ if and only if $A \times_B A$ exists.
+    Therefore $h_A \times_{h_B} h_A \cong h_{A \times_B A} \cong h_A$, and so it follows that $\hat{f}$ is a monomorphism.
+  \end{proof}
+\end{cor}
+
+\end{document}
+

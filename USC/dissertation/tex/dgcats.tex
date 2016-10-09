@@ -1,0 +1,275 @@
+\documentclass[dissertation.tex]{subfiles}
+\begin{document}
+{\noindent Throughout, let $k$ be a commutative ring.}
+
+\begin{defn}
+  A {\it differential graded $k$-module}, $M$, is a complex of $k$-modules
+  $$M \colon \begin{tikzcd}
+    \cdots \arrow{r}{d_M^{n-2}} & M^{n-1} \arrow{r}{d_M^{n-1}} & M^n \arrow{r}{d_M^n} & M^{n+1} \arrow{r}{d_M^{n+1}} & \cdots
+  \end{tikzcd},$$
+  or, equivalently, a $\Z$-graded module over the graded ring $k$, concentrated in degree 0, equipped with a degree one morphism $d_M : M \rightarrow M[1]$ such that $d_M^2 = 0$.
+  A {\it morphism of differential graded $k$-modules} is a morphism of chain complexes.
+  
+  The {\it shift} of a dg $k$-module is the shifted complex
+  $$M[1] \colon \begin{tikzcd}
+    \cdots \arrow{r}{-d_M^{n-1}} & M^{n} \arrow{r}{-d_M^{n}} & M^{n+1} \arrow{r}{-d_M^{n+1}} & M^{n+2} \arrow{r}{-d_M^{n+2}} & \cdots
+  \end{tikzcd}$$
+  
+  The tensor product of two dg $k$-modules is the usual tensor product in $\mathcal{C}(k)$, the category of chain complexes of $k$-modules.
+\end{defn}
+
+\begin{defn}
+  We say a category, $\mathscr{C}$, is a {\it $k$-category} if
+  \begin{enumerate}
+  \item
+    for each pair of objects $X$ and $Y$ of $\mathscr{C}$, $\Hom{\mathscr{C}}{X,Y}$ is a $k$-module, and
+  \item
+    composition 
+    $$\Hom{\mathscr{C}}{X,Y} \otimes_k \Hom{\mathscr{C}}{Y,Z} \rightarrow \Hom{\mathscr{C}}{X,Z}$$
+    in $\mathscr{C}$ is $k$-linear, associative, admitting units $\id_X \in \Hom{\mathscr{C}}{X,X}$.
+  \end{enumerate}
+\end{defn}
+
+\begin{defn}
+  A {\it differential graded} or {\it dg category} is a $k$-category, $\mathscr{C}$, satisfying
+  \begin{enumerate}
+  \item
+    $\Hom{\mathscr{C}}{X,Y}$ is a dg $k$-module for all objects $X,Y$ of $\mathscr{C}$, and
+  \item
+    composition 
+    $$\begin{tikzcd}
+      \Hom{\CC}{X,Y} \otimes_k \Hom{\CC}{Y,Z} \arrow{r} & \Hom{\CC}{X,Z}
+    \end{tikzcd}$$
+    in $\mathscr{C}$ is a morphism of dg $k$-modules;
+    that is a morphism of $\mathcal{C}(k)$.
+  \end{enumerate}
+  
+  A {\it morphism of dg categories}, $\mathscr{F} \colon \CC \rightarrow \D$, is a functor such that
+  $$F(X,Y) \colon 
+  \begin{tikzcd}
+    \Hom{\CC}{X,Y} \arrow{r} & \Hom{\D}{FX,FY}
+  \end{tikzcd}$$
+  is a morphism of dg $k$-modules.
+  Denote by $\operatorname{dgcat_k}$ the category with objects small dg categories and morphisms dg functors.
+\end{defn}
+
+\begin{eg}
+  \begin{description}[style=nextline]
+  \item[dg category with one object]
+    Let $A$ be a dg $k$-algebra; that is, a graded $k$-algebra equipped with a differential
+    $$d(fg) = d(f)g + (-1)^nfd(g),\ f \in A^n, g \in A.$$
+    Define $\mathscr{A}$ to be the category with one object, $\ast$, and morphisms $\mathscr{A}(\ast, \ast) = A$, with composition defined by the multiplication in $A$.
+  \item[dg $k$-modules]
+    Define the category $\mathcal{C}_\text{dg}(k)$ to have objects chain complexes of $k$-modules, and morphisms the graded module of graded morphisms; that is, a morphism $f \in \mathcal{C}_\text{dg}(k)(C^\bullet, D^\bullet)^m$ is a collection of morphisms $f^n \colon C^n \rightarrow D^{n+m}$.
+    Equip $\mathcal{C}_\text{dg}(k)(C^\bullet, D^\bullet)$ with the differential
+    $$\begin{tikzcd}
+      \mathcal{C}_\text{dg}(k)(C^\bullet, D^\bullet)^n \arrow{r} & \mathcal{C}_\text{dg}(k)(C^\bullet, D^\bullet)^{n+1}\\
+      f \arrow[mapsto]{r} & d_D \circ f + (-1)^{n+1}f \circ d_C
+    \end{tikzcd}$$
+    and define composition of morphisms by the tensor product in $\mathcal{C}(k)$,
+    $$\begin{tikzcd}
+      \mathcal{C}_\text{dg}(k)(D^\bullet, E^\bullet) \otimes_k \mathcal{C}_\text{dg}(k)(C^\bullet, D^\bullet) \arrow{r} & \mathcal{C}_\text{dg}(k)(C^\bullet, E^\bullet).
+    \end{tikzcd}$$
+  \end{description}
+\end{eg}
+
+\begin{defn}
+  Let $\CC$ and $\D$ be objects of $\operatorname{dgcat}_k$.
+  The {\it tensor product}, $\CC \otimes \D$, is the dg category with objects $\operatorname{ob}\CC \times \operatorname{ob}\D$ and
+  morphisms
+  $$\begin{tikzcd}
+    \Hom{\CC \otimes \D}{(X, Y), (X^\prime, Y^\prime)} = \Hom{\CC}{X,X^\prime} \otimes_k \Hom{\D}{Y,Y^\prime}.
+  \end{tikzcd}$$
+  For ease of notation, we will denote by $X \otimes Y$ the object $(X,Y)$ of $\CC \otimes \D$.
+\end{defn}
+
+\begin{defn}
+  Given two dg functors $\mathscr{F},\mathscr{G} \colon \CC \rightarrow \D$, define $\SHom{\mathscr{F},\mathscr{G}}^n$ to be the $k$-module of degree $n$ natural transformations.
+  That is, morphisms of functors, $\eta \colon \mathscr{F} \rightarrow \mathscr{G}$ such that for each object $X$ of $\CC$, $\eta(X) \in \Hom{\D}{\mathscr{F}(X),\mathscr{G}(X)}^n$.
+\end{defn}
+
+\begin{prop}
+  Given a degree $n$ natural transformation $\eta \colon \mathscr{F} \rightarrow \mathscr{G}$, the collection of morphisms
+  $$d^n_{\Hom{\D}{\mathscr{F}X, \mathscr{G}X}}\left( \eta(X) \right) \in \Hom{\D}{\mathscr{F}X, \mathscr{G}X}^{n+1}$$
+  define a natural transformation and hence endow $\SHom{\mathscr{F},\mathscr{G}}$ with the structure of a dg $k$-module, where the differential, $d_{\SHom{\mathscr{F},\mathscr{G}}}^n$ sends $\eta$ to this natural transformation.
+  
+  \begin{proof}
+    It's clear that so long as the collection of $d^n_{\D(\F X, \G X)}(\eta(X))$ defines a natural transformation, the resulting sequence
+    $$\begin{tikzcd}
+      \cdots \arrow{r} & \SHom{\F, \G}^n \arrow{r} & \SHom{\F,\G}^{n+1} \arrow{r} & \cdots
+    \end{tikzcd}$$
+    will be a complex.
+    
+    First we note that, by definition, any dg functor necessarily commutes with the differentials:
+    $$d_{\D(\mathscr{F}X, \mathscr{F}X^\prime)}\left(\mathscr{F}(f) \right) = \mathscr{F}\left(d_{\CC(X,X^\prime)}(f)\right)$$
+    and composition is a morphism of dg $k$-modules, so we have the commutative diagrams
+    $$\begin{tikzcd}
+      \D(\F X^\prime, \G X^\prime) \otimes_k \D(\F X, \F X^\prime) \arrow{r}\arrow[swap]{d}{d \otimes 1 + 1 \otimes d}& \D(\F X, \G X^\prime)\arrow{d}{d}\\
+      \D(\F X^\prime, \G X^\prime) \otimes_k \D(\F X, \F X^\prime)[1] \arrow{r}& \D(\F X, \G X^\prime)[1]
+    \end{tikzcd}$$
+    and
+    $$\begin{tikzcd}
+      \D(\G X, \G X^\prime) \otimes_k \D(\F X, \G X) \arrow{r}\arrow[swap]{d}{d \otimes 1 + 1 \otimes d}& \D(\F X, \G X^\prime)\arrow{d}{d}\\
+      \D(\G X, \G X^\prime) \otimes_k \D(\F X, \G X)[1] \arrow{r}& \D(\F X, \G X^\prime)[1]
+    \end{tikzcd}$$
+    For a morphism $f \in \CC(X,X^\prime)$, chasing $\eta(X^\prime) \otimes \F(f)$ and $\G(f) \otimes \eta(X)$ through the diagram gives
+    \begin{eqnarray*}
+      d(\eta(X^\prime)) \circ \F(f) + \eta(X^\prime) \circ d(\F(f)) 
+      &=& d(\eta(X^\prime) \circ \F(f))\\
+      &=& d(\G(f) \circ \eta(X))\\
+      &=& d(\G(f)) \circ \eta(X) + \G(f) \circ d(\eta(X)).
+    \end{eqnarray*}
+    By the fact that $\F$,$\G$ commute with differentials and $\eta$ is a natural tranformation, we see
+    $$\eta(X^\prime) \circ d(\F(f)) = \eta(X^\prime) \circ \F(d(f)) = \G(d(f)) \circ \eta(X) = d(\G(f)) \circ \eta(X).$$
+    Therefore
+    $$d(\eta(X^\prime)) \circ \F(f) = \G(f) \circ d(\eta(X)),$$
+    as desired.
+  \end{proof}
+\end{prop}
+
+\begin{defn}
+  For two objects $\CC$ and $\D$ of $\operatorname{dgcat}_k$, define the object $\SHom{\CC,\D}$ of $\operatorname{dgcat}_k$ to be the category with objects dg functors $\mathscr{F} \colon \CC \rightarrow \D$ and morphisms $\SHom{\mathscr{F},\mathscr{G}}$.
+  
+  Given two dg functors $\F,\G \colon \CC \rightarrow \D$, define a {\it morphism of dg functors}, $\eta \colon \F \rightarrow G$ to be a closed, degree zero natural transformation.
+  That is, $\eta \in \SHom{\F, \G}^0$ and its image in $\SHom{\F,\G}^1$ under the differential is zero.
+\end{defn}
+
+\begin{rmk}
+  There is a natural isomorphism of bifunctors
+  $$\Hom{\operatorname{dgcat}_k}{\CC \otimes \D, \mathscr{E}} \cong \Hom{\operatorname{dgcat}_k}{\CC, \SHom{\D,\mathscr{E}}},$$
+  which endows $\operatorname{dgcat}_k$ with a symmetric closed monoidal structure.
+\end{rmk}
+
+\begin{defn}
+  Let $\CC$ be a dg category.
+  Define
+  \begin{enumerate}
+  \item
+    the category $Z^0(\CC)$ to be the category with objects those of $\CC$ and morphisms
+    $$\Hom{Z^0(\CC)}{X,Y} = Z^0\left(\Hom{\CC}{X,Y}\right),$$
+  \item
+    the category $H^0(\CC)$ to be the category with objects those of $\CC$ and morphisms
+    $$\Hom{H^0(\CC)}{X,Y} = H^0\left(\Hom{\CC}{X,Y}\right),$$
+  \item
+    the {\it homology category}, $H^\ast(\CC)$, to be the category with objects those of $\CC$ and morphisms 
+    $$H^\ast\CC(X,Y) = \bigoplus H^n\CC(X,Y).$$
+  \end{enumerate}
+\end{defn}
+
+\begin{rmk}
+  Note that given a dg functor, $\mathscr{F} \colon \CC \rightarrow \D$, for $X$ and $Y$ objects of $\CC$, 
+  $$\mathscr{F}(X,Y) \colon \CC(X,Y) \rightarrow \D(\mathscr{F}X, \mathscr{F}Y)$$
+  is a morphism of $\mathcal{C}(k)$.
+  Hence $H^0$ induces a functor
+  $H^0(\mathscr{F}) \colon H^0(\CC) \rightarrow H^0(\D)$
+  with $H^0(\mathscr{F})(X) = \mathscr{F}(X)$ and $H^0(\mathscr{F})(X,Y) = H^0(\mathscr{F}(X,Y))$.
+\end{rmk}
+
+\begin{defn}
+  Let $\CC$ be a small dg category and let $\mathscr{M} : \CC \rightarrow \mathcal{C}_\text{dg}(k)$ be a dg functor.
+  \begin{enumerate}
+  \item
+    We say that $\mathscr{M}$ is a right (resp. left) dg $\CC$-module if $\mathscr{M}$ is contravariant (resp. covariant).
+  \item
+    The {\it homology of a dg $\CC$-module}, $\mathscr{M}$, is the induced functor
+    $$\begin{tikzcd}
+      H^\ast(\CC) \arrow{r}{H^\ast(\mathscr{M})}& \Gr{k}\\
+      X \arrow[mapsto]{r} & H^\ast(\mathscr{M}(X)),
+    \end{tikzcd}$$
+    where $\Gr{k}$ denotes the category of graded modules.
+  \item
+    Define the category $\mathcal{C}_\text{dg}(\CC) = \SHom{\CC^\text{op}, \mathcal{C}_\text{dg}(k)}$, and the category of right dg $\CC$-modules by
+    $$\mathcal{C}(\CC) = Z^0 \mathcal{C}_\text{dg}(\CC).$$
+  \item
+    The {\it category up to homotopy of dg $\CC$-modules} is $\mathcal{H}(\CC) = H^0(\mathcal{C}_\text{dg}(\CC))$.
+  \item
+    A morphism $\eta \colon \mathscr{L} \rightarrow \mathscr{M}$ of dg $\CC$-modules is called a {\it quasi-isomorphism} if the induced morphism $H^\ast(\eta) \colon H^\ast(\mathscr{L}) \rightarrow H^\ast(\mathscr{M})$ is an isomorphism.
+  \end{enumerate}
+\end{defn}
+
+\begin{defn}
+  Let $\CC$ be a small dg category.
+  The derived category $\mathcal{D}(\CC)$ is the localization of $\mathcal{C}(\CC)$ at the class of quasi-isomorphisms.
+
+  TODO: This needs some justification.
+\end{defn}
+
+\begin{defn}
+  Let $\mathscr{C}$ be a small dg category.
+  We have the Yoneda embedding 
+  $$\begin{tikzcd}
+    Z^0(\mathscr{C}) \arrow{r}{h_{\_}} & \mathcal{C}(\mathscr{C})\\
+    X \arrow[mapsto]{r} & h_X.
+  \end{tikzcd}$$
+  We say that $\mathscr{C}$ is {\it pretriangulated} if
+  \begin{enumerate}
+  \item
+    for each object $X$ of $Z^0(\mathscr{C})$, $h_X[n] \cong h_{X[n]}$, and
+  \item
+    for any morphism $f \in Z^0\Hom{\mathscr{C}}{A,B}$, $\operatorname{cone}(h_X(f)) = h_X(\operatorname{cone}(f))$.
+  \end{enumerate}
+\end{defn}
+
+\begin{prop}
+  If $\mathscr{C}$ is a pretriangulated dg category, then $H^0(\mathscr{C})$ is triangulated.
+  
+  \begin{proof}
+    ?
+  \end{proof}
+\end{prop}
+
+\begin{defn}
+  Let $\mathscr{C}$ be a pretriangulated dg category admitting coproducts, let $E$ be an object of $\mathscr{C}$, and let $\mathscr{T} = H^0(\mathscr{C})$.
+  By abuse of notation, 
+  \begin{enumerate}
+  \item
+    We say $E$ is a {\it classical generator} of $\mathscr{C}$ if $E$ is a classical generator of $\mathscr{T}$,
+  \item
+    We say $E$ is a {\it strong generator} of $\mathscr{C}$ if $E$ is a strong generator of $\mathscr{T}$,
+  \item
+    We say $E$ is a {\it (weak) generator} of $\mathscr{C}$ if $E$ is a (weak) generator of $\mathscr{T}$, and
+  \item
+    If $\mathscr{C}$ has coproducts, we say $\mathscr{C}$ is compactly generated if $\T$ is.
+  \end{enumerate}
+\end{defn}
+
+%\begin{lem}[Brown representability]
+%  Let $\T$ be a triangulated category with direct sums which is compactly generated.
+%  Let $H$ be a cohomological functor on $\T$ which transforms direct sums into direct products.
+%  Then $H$ is representable.
+%\end{lem}
+
+\begin{defn}
+  A dg functor $\mathscr{F} \colon \CC \rightarrow \D$ is called a {\it quasi-equivalence} if 
+  \begin{enumerate}
+  \item
+    for all objects $X$ and $Y$ of $\CC$, the morphism
+    $$\mathscr{F}(X,Y) \colon
+    \begin{tikzcd}
+      \CC(X,Y) \arrow{r} & \D(\mathscr{F}X,\mathscr{F}Y)
+    \end{tikzcd}$$
+    of $\mathcal{C}(k)$ is a quasi-isomorphism, and
+  \item
+    the induced functor $H^0(\mathscr{F}) \colon H^0(\CC) \rightarrow H^0(\D)$ is an equivalence.
+  \end{enumerate}
+\end{defn}
+
+%\begin{lem}
+%  Let $\CC$ be a pretriangulated dg category and let $\T = H^0(\CC)$.
+%  If $E_i$ is a family of generators for $\mathscr{C}$, then the compact objects of $\T$ are the representables.
+
+%  \begin{proof}
+
+%  \end{proof}
+%\end{lem}
+
+\begin{thm}
+  Let $\mathscr{C}$ and $\mathscr{D}$ be pretriangulated dg-categories.
+  If $E_i$ is a family of generators for $\mathscr{C}$ and $F_i$ is a family of generators for $\mathscr{D}$, then the $E_i \otimes F_j$ are a family of generators for $\mathcal{D}\left(\mathscr{C} \otimes \mathscr{D}\right)$.
+  
+  \begin{proof}
+    
+  \end{proof}
+\end{thm}
+
+\end{document}
