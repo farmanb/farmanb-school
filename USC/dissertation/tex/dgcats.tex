@@ -1,5 +1,6 @@
 \documentclass[dissertation.tex]{subfiles}
 \begin{document}
+\section{Differential Graded Modules and Algebras}
 {\noindent Throughout, let $k$ be a commutative ring.}
 
 \begin{defn}
@@ -29,6 +30,8 @@
     in $\mathscr{C}$ is $k$-linear, associative, admitting units $\id_X \in \Hom{\mathscr{C}}{X,X}$.
   \end{enumerate}
 \end{defn}
+
+\section{The Category of Differential Graded Categories}
 
 \begin{defn}
   A {\it differential graded} or {\it dg category} is a $k$-category, $\mathscr{C}$, satisfying
@@ -91,7 +94,7 @@
 \begin{prop}
   Given a degree $n$ natural transformation $\eta \colon \mathscr{F} \rightarrow \mathscr{G}$, the collection of morphisms
   $$d^n_{\Hom{\D}{\mathscr{F}X, \mathscr{G}X}}\left( \eta(X) \right) \in \Hom{\D}{\mathscr{F}X, \mathscr{G}X}^{n+1}$$
-  define a natural transformation and hence endow $\SHom{\mathscr{F},\mathscr{G}}$ with the structure of a dg $k$-module, where the differential, $d_{\SHom{\mathscr{F},\mathscr{G}}}^n$ sends $\eta$ to this natural transformation.
+  define a natural transformation of degree $n + 1$ and hence endow $\SHom{\mathscr{F},\mathscr{G}}$ with the structure of a dg $k$-module, where the differential, $d_{\SHom{\mathscr{F},\mathscr{G}}}^n$ sends $\eta$ to this natural transformation.
   
   \begin{proof}
     It's clear that so long as the collection of $d^n_{\D(\F X, \G X)}(\eta(X))$ defines a natural transformation, the resulting sequence
@@ -165,6 +168,8 @@
   with $H^0(\mathscr{F})(X) = \mathscr{F}(X)$ and $H^0(\mathscr{F})(X,Y) = H^0(\mathscr{F}(X,Y))$.
 \end{rmk}
 
+\section{Modules over a Differential Graded Category}
+
 \begin{defn}
   Let $\CC$ be a small dg category and let $\mathscr{M} : \CC \rightarrow \mathcal{C}_\text{dg}(k)$ be a dg functor.
   \begin{enumerate}
@@ -187,12 +192,16 @@
   \end{enumerate}
 \end{defn}
 
+\section{The Derived Category of a Differential Graded Category}
 \begin{defn}
   Let $\CC$ be a small dg category.
   The derived category $\mathcal{D}(\CC)$ is the localization of $\mathcal{C}(\CC)$ at the class of quasi-isomorphisms.
 
   TODO: This needs some justification.
 \end{defn}
+
+\section{Generators of Differential Graded Categories}
+\subsection{Pretriangulated Differential Graded Categories}
 
 \begin{defn}
   Let $\mathscr{C}$ be a small dg category.
@@ -229,7 +238,7 @@
   \item
     We say $E$ is a {\it (weak) generator} of $\mathscr{C}$ if $E$ is a (weak) generator of $\mathscr{T}$, and
   \item
-    If $\mathscr{C}$ has coproducts, we say $\mathscr{C}$ is compactly generated if $\T$ is.
+    We say $\mathscr{C}$ is compactly generated if $\T$ is.
   \end{enumerate}
 \end{defn}
 

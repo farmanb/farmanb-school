@@ -14,23 +14,22 @@
 
 \tableofcontents
 
-\newtheorem{thm}{Theorem}
-\newtheorem{ex}{}
-\newtheorem{lem}{Lemma}
-\newtheorem{cor}{Corollary}
-\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lem}{Lemma}[section]
+\newtheorem{cor}{Corollary}[section]
+\newtheorem{prop}{Proposition}[section]
 
 \theoremstyle{definition}
-\newtheorem{defn}{Definition}
-\newtheorem{rmk}{Remark}
-\newtheorem{eg}{Example}
+\newtheorem{defn}{Definition}[section]
+\newtheorem{rmk}{Remark}[section]
+\newtheorem{eg}{Example}[section]
 
 \chapter{Preliminaries}
 \section{Categories}
 %TODO: How should categories be defined?  What sort of set theoretic precautions need be taken here...
 \subfile{yoneda.tex} %Is this necessary?  Trim down?
 \subfile{preliminaries.tex}
-\chapter{Generators of Triangulated Categories}
+\section{Generators of Triangulated Categories}
 \subfile{triangulatedcats.tex}
 \chapter{Non Commutative Projective Schemes}
 \subfile{non.com.geom.tex}
