@@ -187,6 +187,8 @@
     $$\mathcal{C}(\CC) = Z^0 \mathcal{C}_\text{dg}(\CC).$$
   \item
     The {\it category up to homotopy of dg $\CC$-modules} is $\mathcal{H}(\CC) = H^0(\mathcal{C}_\text{dg}(\CC))$.
+    Note that $\mathcal{H}(\CC)$ is a triangulated category.
+    %TODO: Is this obviously just the same proof for K(A), where A is an abelian category?
   \item
     A morphism $\eta \colon \mathscr{L} \rightarrow \mathscr{M}$ of dg $\CC$-modules is called a {\it quasi-isomorphism} if the induced morphism $H^\ast(\eta) \colon H^\ast(\mathscr{L}) \rightarrow H^\ast(\mathscr{M})$ is an isomorphism.
   \end{enumerate}
@@ -210,35 +212,25 @@
     Z^0(\mathscr{C}) \arrow{r}{h_{\_}} & \mathcal{C}(\mathscr{C})\\
     X \arrow[mapsto]{r} & h_X.
   \end{tikzcd}$$
-  We say that $\mathscr{C}$ is {\it pretriangulated} if
-  \begin{enumerate}
-  \item
-    for each object $X$ of $Z^0(\mathscr{C})$, $h_X[n] \cong h_{X[n]}$, and
-  \item
-    for any morphism $f \in Z^0\Hom{\mathscr{C}}{A,B}$, $\operatorname{cone}(h_X(f)) = h_X(\operatorname{cone}(f))$.
-  \end{enumerate}
+  We say that $\CC$ is {\it pretriangulated} if every compact object of $\mathcal{H}(\CC)$ is isomorphic to $H^0(h_X)$ for some object $X$ of $\CC$.
 \end{defn}
 
-\begin{prop}
-  If $\mathscr{C}$ is a pretriangulated dg category, then $H^0(\mathscr{C})$ is triangulated.
-  
-  \begin{proof}
-    ?
-  \end{proof}
-\end{prop}
+\begin{rmk}
+  By Lemma~\ref{compactobjstriangulated}, we see that if $\CC$ is a pretriangulated dg category, then $H^0(\CC)$ is a triangulated subcategory of $\mathcal{H}(\CC)$.
+\end{rmk}
 
 \begin{defn}
-  Let $\mathscr{C}$ be a pretriangulated dg category admitting coproducts, let $E$ be an object of $\mathscr{C}$, and let $\mathscr{T} = H^0(\mathscr{C})$.
+  Let $\mathscr{C}$ be a pretriangulated dg category admitting coproducts, let $E$ be an object of $\mathscr{C}$.
   By abuse of notation, 
   \begin{enumerate}
   \item
-    We say $E$ is a {\it classical generator} of $\mathscr{C}$ if $E$ is a classical generator of $\mathscr{T}$,
+    We say $E$ is a {\it classical generator} of $\mathscr{C}$ if $E$ is a classical generator of $H^0(\mathscr{C})$,
   \item
-    We say $E$ is a {\it strong generator} of $\mathscr{C}$ if $E$ is a strong generator of $\mathscr{T}$,
+    We say $E$ is a {\it strong generator} of $\mathscr{C}$ if $E$ is a strong generator of $H^0(\mathscr{C})$,
   \item
-    We say $E$ is a {\it (weak) generator} of $\mathscr{C}$ if $E$ is a (weak) generator of $\mathscr{T}$, and
+    We say $E$ is a {\it (weak) generator} of $\mathscr{C}$ if $E$ is a (weak) generator of $H^0(\mathscr{C})$, and
   \item
-    We say $\mathscr{C}$ is compactly generated if $\T$ is.
+    We say $\mathscr{C}$ is compactly generated if $H^0(\mathscr{C})$ is.
   \end{enumerate}
 \end{defn}
 
