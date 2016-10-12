@@ -194,12 +194,35 @@
   \end{enumerate}
 \end{defn}
 
+\section{The Model Structure on $\mathcal{C}(\CC)$}
+
+%From Keller
+\begin{defn}
+  Let $\CC$ be a small dg category.
+  A dg $\CC$-module, $\mathscr{M}$, is {\it cofibrant} if for every epimorphic quasi-isomorphism $\mathscr{L} \rightarrow \mathscr{N}$, every morphism $\mathscr{M} \rightarrow \mathscr{L}$ factors through $\mathscr{L}$,
+  $$\begin{tikzcd}
+    & \mathscr{M}\arrow{d}\arrow[dashed,swap]{ld}{\exists}\\
+    \mathscr{L} \arrow{r} & \mathscr{N} \arrow{r} & 0
+  \end{tikzcd}$$
+\end{defn}
+
+\begin{rmk}
+  We note that the representables are all cofibrant by the Yoneda Lemma.
+  Namely, given an object $X$ of $\CC$ and an epimorphic quasi-isomorphism $\eta \in \SHom{\mathscr{L},\mathscr{M}}$, $\eta(X)$ is an epimorphism in $\mathcal{C}(k)$.
+  Pulling an element of $\SHom{h_X, \mathscr{M}} \cong \mathscr{M}(X)$ back along $\eta(X)$ gives the lift in $\mathscr{L}(X) \cong \SHom{h_X, \mathscr{L}}$.
+\end{rmk}
+\begin{thm}
+  The category $\mathcal{C}(\CC)$ admits a projective model structure with weak equivalences quasi-isomorphisms and fibrations epimorphisms.
+  For this structure, each object is fibrant and the cofibrant objects are the cofibrant dg $\CC$-modules.
+\end{thm}
+
 \section{The Derived Category of a Differential Graded Category}
+
 \begin{defn}
   Let $\CC$ be a small dg category.
   The derived category $\mathcal{D}(\CC)$ is the localization of $\mathcal{C}(\CC)$ at the class of quasi-isomorphisms.
-
-  TODO: This needs some justification.
+  
+  By virtue of the model structure on $\CC$, 
 \end{defn}
 
 \section{Generators of Differential Graded Categories}
@@ -212,7 +235,8 @@
     Z^0(\mathscr{C}) \arrow{r}{h_{\_}} & \mathcal{C}(\mathscr{C})\\
     X \arrow[mapsto]{r} & h_X.
   \end{tikzcd}$$
-  We say that $\CC$ is {\it pretriangulated} if every compact object of $\mathcal{H}(\CC)$ is isomorphic to $H^0(h_X)$ for some object $X$ of $\CC$.
+  We say that $\CC$ is {\it pretriangulated} if every compact object of $\mathcal{H}(\CC)$ is isomorphic to $h_X$ for some object $X$ of $\CC$.
+  %TODO: Is it equivalent to say that $\CC$ is quasi-equivalent to \mathcal{H}(\CC)_c?
 \end{defn}
 
 \begin{rmk}
@@ -224,11 +248,11 @@
   By abuse of notation, 
   \begin{enumerate}
   \item
-    We say $E$ is a {\it classical generator} of $\mathscr{C}$ if $E$ is a classical generator of $H^0(\mathscr{C})$,
+    We say $E$ is a {\it classical generator} of $\mathscr{C}$ if $h_E$ is a classical generator of $H^0(\mathscr{C})$,
   \item
-    We say $E$ is a {\it strong generator} of $\mathscr{C}$ if $E$ is a strong generator of $H^0(\mathscr{C})$,
+    We say $E$ is a {\it strong generator} of $\mathscr{C}$ if $h_E$ is a strong generator of $H^0(\mathscr{C})$,
   \item
-    We say $E$ is a {\it (weak) generator} of $\mathscr{C}$ if $E$ is a (weak) generator of $H^0(\mathscr{C})$, and
+    We say $E$ is a {\it (weak) generator} of $\mathscr{C}$ if $h_E$ is a (weak) generator of $H^0(\mathscr{C})$, and
   \item
     We say $\mathscr{C}$ is compactly generated if $H^0(\mathscr{C})$ is.
   \end{enumerate}
