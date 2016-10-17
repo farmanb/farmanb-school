@@ -20,30 +20,30 @@
 \end{defn}
 
 \begin{defn}
-  We say a category, $\mathscr{C}$, is a {\it $k$-category} if
+  We say a category, $\CC$, is a {\it $k$-category} if
   \begin{enumerate}
   \item
-    for each pair of objects $X$ and $Y$ of $\mathscr{C}$, $\Hom{\mathscr{C}}{X,Y}$ is a $k$-module, and
+    for each pair of objects $X$ and $Y$ of $\CC$, $\Hom{\CC}{X,Y}$ is a $k$-module, and
   \item
     composition 
-    $$\Hom{\mathscr{C}}{X,Y} \otimes_k \Hom{\mathscr{C}}{Y,Z} \rightarrow \Hom{\mathscr{C}}{X,Z}$$
-    in $\mathscr{C}$ is $k$-linear, associative, admitting units $\id_X \in \Hom{\mathscr{C}}{X,X}$.
+    $$\Hom{\CC}{X,Y} \otimes_k \Hom{\CC}{Y,Z} \rightarrow \Hom{\CC}{X,Z}$$
+    in $\CC$ is $k$-linear, associative, admitting units $\id_X \in \Hom{\CC}{X,X}$.
   \end{enumerate}
 \end{defn}
 
 \section{The Category of Differential Graded Categories}
 
 \begin{defn}
-  A {\it differential graded} or {\it dg category} is a $k$-category, $\mathscr{C}$, satisfying
+  A {\it differential graded} or {\it dg category} is a $k$-category, $\CC$, satisfying
   \begin{enumerate}
   \item
-    $\Hom{\mathscr{C}}{X,Y}$ is a dg $k$-module for all objects $X,Y$ of $\mathscr{C}$, and
+    $\Hom{\CC}{X,Y}$ is a dg $k$-module for all objects $X,Y$ of $\CC$, and
   \item
     composition 
     $$\begin{tikzcd}
       \Hom{\CC}{X,Y} \otimes_k \Hom{\CC}{Y,Z} \arrow{r} & \Hom{\CC}{X,Z}
     \end{tikzcd}$$
-    in $\mathscr{C}$ is a morphism of dg $k$-modules;
+    in $\CC$ is a morphism of dg $k$-modules;
     that is a morphism of $\mathcal{C}(k)$.
   \end{enumerate}
   
@@ -220,41 +220,42 @@
 
 \begin{defn}
   Let $\CC$ be a small dg category.
-  The derived category $\mathcal{D}(\CC)$ is the localization of $\mathcal{C}(\CC)$ at the class of quasi-isomorphisms.
-  
-  By virtue of the model structure on $\CC$, 
+  The derived category $\mathcal{D}(\CC)$ is the localization of $\mathcal{C}(\CC)$ at the class of quasi-isomorphisms, $\operatorname{Ho}(\mathcal{C}(\CC))$.
 \end{defn}
 
 \section{Generators of Differential Graded Categories}
 \subsection{Pretriangulated Differential Graded Categories}
 
 \begin{defn}
-  Let $\mathscr{C}$ be a small dg category.
+  Let $\CC$ be a small dg category.
   We have the Yoneda embedding 
   $$\begin{tikzcd}
-    Z^0(\mathscr{C}) \arrow{r}{h_{\_}} & \mathcal{C}(\mathscr{C})\\
+    Z^0(\CC) \arrow{r}{h_{\_}} & \mathcal{C}(\CC)\\
     X \arrow[mapsto]{r} & h_X.
   \end{tikzcd}$$
-  We say that $\CC$ is {\it pretriangulated} if every compact object of $\mathcal{H}(\CC)$ is isomorphic to $h_X$ for some object $X$ of $\CC$.
-  %TODO: Is it equivalent to say that $\CC$ is quasi-equivalent to \mathcal{H}(\CC)_c?
+  We say that $\mathscr{M} \colon \CC^\text{op} \rightarrow \mathcal{C}_\text{dg}(k)$ is {\it quasi-representable} if there is an object $X$ of $\CC$ such that $h_X$ is quasi-isomorphic to $\mathscr{M}$
+  
+  We say that $\CC$ is {\it pretriangulated} if
+  \begin{enumerate}
+  \item
+    for each $n \in \Z$ and each object $X$ of $\CC$, $h_X[n]$ is quasi-representable, and
+  \item
+    for all $f \in Z^0(\CC)(X,Y)$, $\operatorname{cone}(f_*)$ is quasi-representable, where $f_* : h_X \rightarrow h_Y$ is the image of $f$ under the Yoneda embedding.
+  \end{enumerate}
 \end{defn}
 
-\begin{rmk}
-  By Lemma~\ref{compactobjstriangulated}, we see that if $\CC$ is a pretriangulated dg category, then $H^0(\CC)$ is a triangulated subcategory of $\mathcal{H}(\CC)$.
-\end{rmk}
-
 \begin{defn}
-  Let $\mathscr{C}$ be a pretriangulated dg category admitting coproducts, let $E$ be an object of $\mathscr{C}$.
+  Let $\CC$ be a pretriangulated dg category and let $E$ be an object of $\CC$.
   By abuse of notation, 
   \begin{enumerate}
   \item
-    We say $E$ is a {\it classical generator} of $\mathscr{C}$ if $h_E$ is a classical generator of $H^0(\mathscr{C})$,
+    We say $E$ is a {\it classical generator} of $\CC$ if $h_E$ is a classical generator of $H^0(\CC)$,
   \item
-    We say $E$ is a {\it strong generator} of $\mathscr{C}$ if $h_E$ is a strong generator of $H^0(\mathscr{C})$,
+    We say $E$ is a {\it strong generator} of $\CC$ if $h_E$ is a strong generator of $H^0(\CC)$,
   \item
-    We say $E$ is a {\it (weak) generator} of $\mathscr{C}$ if $h_E$ is a (weak) generator of $H^0(\mathscr{C})$, and
+    We say $E$ is a {\it (weak) generator} of $\CC$ if $h_E$ is a (weak) generator of $H^0(\CC)$, and
   \item
-    We say $\mathscr{C}$ is compactly generated if $H^0(\mathscr{C})$ is.
+    We say $\CC$ is compactly generated if $H^0(\CC)$ is.
   \end{enumerate}
 \end{defn}
 
@@ -279,21 +280,11 @@
   \end{enumerate}
 \end{defn}
 
-%\begin{lem}
-%  Let $\CC$ be a pretriangulated dg category and let $\T = H^0(\CC)$.
-%  If $E_i$ is a family of generators for $\mathscr{C}$, then the compact objects of $\T$ are the representables.
-
-%  \begin{proof}
-
-%  \end{proof}
-%\end{lem}
-
 \begin{thm}
-  Let $\mathscr{C}$ and $\mathscr{D}$ be pretriangulated dg-categories.
-  If $E_i$ is a family of generators for $\mathscr{C}$ and $F_i$ is a family of generators for $\mathscr{D}$, then the $E_i \otimes F_j$ are a family of generators for $\mathcal{D}\left(\mathscr{C} \otimes \mathscr{D}\right)$.
+  Let $k$ be a field, and let $\CC$ and $\mathscr{D}$ be pretriangulated dg-categories.
+  If $E_i$ is a family of generators for $\CC$ and $F_i$ is a family of generators for $\mathscr{D}$, then the $E_i \otimes F_j$ are a family of generators for $\mathcal{H}\left(\CC \otimes \mathscr{D}\right)$.
   
   \begin{proof}
-    
   \end{proof}
 \end{thm}
 
