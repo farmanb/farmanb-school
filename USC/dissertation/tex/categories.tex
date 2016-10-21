@@ -11,4 +11,52 @@
     We say a full subcategory $\CC^\prime$ of $\CC$ is {\it strictly full} if whenever $X \rightarrow Y$ is an isomorphism with $X$ an object of $\CC^\prime$, then $Y$ is an object of $\CC^\prime$.
   \end{itemize}
 \end{defn}
+
+\begin{defn}
+  Let $\CC$ be a category, and let $f : X \to Y$ be a morphism of $\CC$.
+  \begin{itemize}
+    \item
+      If $f$ is a monomorphism, we say that $f$ is {\it normal} if it is the kernel of some morphism $Y \rightarrow Z$.
+    \item
+      If $f$ is an epimorphism, we say that $f$ is {\it conormal} if $f$ is the cokernel of some morphism $Z \rightarrow X$.
+    \item
+      If every monomorphism of $\CC$ is normal, then we say that $\CC$ is {\it normal}.
+    \item
+      If every epimorphism of $\CC$ is conormal, then we say that $\CC$ is {\it conormal}.
+    \item
+      If $\CC$ is both normal and conormal, then we say that $\CC$ is {\it binormal}.
+  \end{itemize}
+  
+\end{defn}
+
+\begin{defn}
+  Let $\CC$ be a category.
+  \begin{itemize}
+  \item
+    We say that $\CC$ is {\it $\Ab$-enriched} if for every pair of objects $X$ and $Y$ of $\CC$, $\Hom{\CC}{X,Y}$ is an abelian group and composition 
+    $$\Hom{\CC}{X,Y} \times \Hom{\CC}{Y,Z} \rightarrow \Hom{\CC}{X,Z}$$
+    is $\Z$-bilinear.
+  \item
+    We say that an $\Ab$-enriched category, $\CC$, is {\it pre-additive} if $\CC$ has a zero object.
+  \item
+    We say that a pre-additive category, $\CC$, is {\it additive} if $\CC$ admits all binary products or coproducts.
+    \begin{rmk}
+      Note that in this case, it is straightforward to show that any finite product is also a coproduct and vise-versa.
+    \end{rmk}
+  \item
+    We say that an additive category, $\CC$, is {\it abelian} if $\CC$ is binormal.
+  \end{itemize}
+\end{defn}
+
+\begin{defn}
+  Let $\CC$ and $\D$ be additive categories.
+  A functor $\mathscr{F} \colon \CC \rightarrow \D$ is called an {\it additive functor} if 
+  \begin{enumerate}
+  \item
+    $\mathscr{F}(0) \cong 0$, and
+  \item
+    For any two objects $X$ and $Y$ of $\CC$,
+    $$F(X \oplus Y) \cong F(X) \oplus F(Y).$$
+  \end{enumerate}
+\end{defn}
 \end{document}

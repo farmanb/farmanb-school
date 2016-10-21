@@ -1,6 +1,7 @@
 \documentclass[dissertation.tex]{subfiles}
 \begin{document}
 
+\subsection{Basic Properties of Triangulated Categories}
 \begin{defn}
   Let $\T$ be an additive category equipped with autoequivalences of categories, $[n] : \CC \rightarrow \CC$ for $n \in \Z$, and a class of distinguished triangles.
   We say $\T$ is {\it triangulated} if the distinguished triangles satisfy the following axioms:
@@ -66,7 +67,21 @@ commute.
   Let $\T$ be a triangulated category.
   \begin{itemize}
   \item
-    We say a subcategory $\T^\prime$ of $\T$ is a triangulated subcategory if $\T^\prime$ is triangulated and the inclusion functor preserves distinguished triangles.
+    If $T^\prime$ is any other triangulated category, a {\it triangulated functor}, $\F \colon \T^\prime \rightarrow \T$, is an additive functor that preserves distinguished triangles.
+
+    Formally, $\F$ is equipped with natural isomorphisms
+    $$\F(X[1]) \cong \F(X)[1]$$
+    such that for any distinguished triangle 
+    $$\begin{tikzcd}
+      X \arrow{r}{u} & Y \arrow{r}{v} & Z \arrow{r}{w} & X[1]
+    \end{tikzcd}$$
+    of $T^\prime$, the triangle
+    $$\begin{tikzcd}
+      \F(X) \arrow{r}{\F(u)} & \F(Y) \arrow{r}{\F(v)} & \F(Z) \arrow{r}{\F(w)} & F(X)[1]
+    \end{tikzcd}$$
+    is a distinguished triangle of $\T$.
+  \item
+    We say a subcategory $\T^\prime$ of $\T$ is a {\it triangulated subcategory} if $\T^\prime$ is triangulated and the inclusion functor, $\T^\prime \rightarrow \T$, is triangulated.
   \item
     We say a full triangulated subcategory $\T^\prime$ of $\T$ is {\it saturated} if whenever $X \oplus Y$ is isomorphic to an object of $T^\prime$, both $X$ and $Y$ are isomorphic to objects of $T^\prime$.
   \end{itemize}
@@ -319,4 +334,204 @@ commute.
     and the induced morphism is an isomorphism by the 5 Lemma.
   \end{proof}
 \end{cor}
+
+\begin{prop}
+  Let $\T$ be a triangulated category.
+  Any commutative diagram
+  $$\begin{tikzcd}
+    A \arrow{r}{i}\arrow{d}{u}& B\arrow{d}{u^\prime}\\
+    A^\prime \arrow{r}{i^\prime}& B^\prime
+  \end{tikzcd}$$
+  may be extended to a diagram
+  $$\begin{tikzcd}
+    A \arrow{r}{i}\arrow{d}{u}& B\arrow{d}{u^\prime}\arrow{r}{j} & C \arrow{r}{k}\arrow{d}{u^{\prime\prime}} & A[1]\arrow{d}{u[1]}\\
+    A^\prime \arrow{r}{i^\prime}\arrow{d}{v}& B^\prime\arrow{r}{j^\prime}\arrow{d}{v^\prime} & C^\prime \arrow{r}{k^\prime}\arrow{d}{v^{\prime\prime}} & A^\prime[1]\arrow{d}{v[1]}\\
+    A^{\prime\prime} \arrow{r}{i^{\prime\prime}}\arrow{d}{w} & B^{\prime\prime} \arrow{r}{j^{\prime\prime}}\arrow{d}{w^\prime} & C^{\prime\prime} \arrow{r}{k^{\prime\prime}}\arrow{d}{w^{\prime\prime}} & A^{\prime\prime}[1]\arrow{d}{-w[1]}\\
+    A[1] \arrow{r}{i[1]} & B[1] \arrow{r}{j[1]} & C[1] \arrow{r}{-k[1]} & A[2]
+  \end{tikzcd}$$
+  where all rows and columns are distinguished triangles, and all squares are commutative but the bottom right, which is anti-commutative,
+  $w[1] \circ k^{\prime\prime} = - k[1] \circ w^{\prime\prime}$.
+  
+  \begin{proof}
+    We use (TR1) to produce the first two rows and columns, and the distinguished triangle 
+    $$\begin{tikzcd}
+      A \arrow{rr}{i^\prime \circ u = u^\prime \circ i} & & B^\prime \arrow{r}{g} & D \arrow{r}{h} & A[1].
+    \end{tikzcd}$$
+    Next we apply (TR4) to the two triples of triangles
+    $$\begin{tikzcd}
+      A \arrow{r}{i}& B\arrow{r}{j} & C\arrow{r}{k} & A[1]\\
+      A \arrow{r}{u^\prime \circ i}& B^\prime \arrow{r}{g} & D \arrow{r}{h} & A[1]\\
+      B \arrow{r}{u^\prime} & B^\prime \arrow{r}{v^\prime} & B^{\prime\prime} \arrow{r}{w^\prime}& B[1]
+    \end{tikzcd}
+    \ \text{and}\ 
+    \begin{tikzcd}
+      A \arrow{r}{u} & A^\prime \arrow{r}{v} & A^{\prime\prime}\arrow{r}{w} & A[1]\\
+      A\arrow{r}{i^\prime \circ u} & B^\prime \arrow{r}{g} & D \arrow{r}{h} & A[1]\\
+      A^\prime \arrow{r}{i^\prime} & B^\prime \arrow{r}{j^\prime} & C^\prime \arrow{r}{k^\prime} & A^\prime[1]
+    \end{tikzcd}$$
+    which yields the distinguished triangles
+    $$\begin{tikzcd}
+      C \arrow{r}{\alpha} & D \arrow{r}{\beta} & B^{\prime\prime} \arrow{r}{j[1] \circ w^\prime} & C[1]
+    \end{tikzcd}
+    \ \text{and}\ 
+    \begin{tikzcd}
+      A^{\prime\prime} \arrow{r}{\alpha^\prime} & D \arrow{r}{\beta^\prime} & C^\prime \arrow{r}{v[1] \circ k^\prime} & A^{\prime\prime}[1]
+    \end{tikzcd}$$
+    as well as morphisms of triangles
+    $$\begin{tikzcd}
+      A \arrow{r}{u}\arrow{d}{\id_A} & A^\prime \arrow{r}{v}\arrow{d}{i^\prime} & A^{\prime\prime} \arrow{r}{w}\arrow{d}{\alpha^\prime} & A[1] \arrow{d}{\id_{A[1]}}\\
+      A \arrow{r}{i^\prime \circ u} \arrow{d}{i} & B^\prime \arrow{r}{g}\arrow{d}{\id_{B^\prime}} & D \arrow{r}{h}\arrow{d}{\beta} & A[1]\arrow{d}{i[1]}\\
+      B \arrow{r}{u^\prime} & B^\prime \arrow{r}{v^\prime} & B^{\prime\prime} \arrow{r}{w^\prime} & B[1]
+    \end{tikzcd}
+    \ \text{and}\ 
+    \begin{tikzcd}
+      A \arrow{r}{i} \arrow{d}{\id_A} & B \arrow{r}{j}\arrow{d}{u^\prime} & C \arrow{r}{k}\arrow{d}{\alpha} & A[1]\arrow{d}{\id_{A[1]}}\\
+      A \arrow{r}{u^\prime \circ i}\arrow{d}{u} & B^\prime \arrow{r}{g}\arrow{d}{\id_{B^\prime}} & D \arrow{r}{h}\arrow{d}{\beta^\prime} & A[1]\arrow{d}{u[1]}\\
+      A^\prime \arrow{r}{i^\prime} & B^\prime \arrow{r}{j^\prime} & C^\prime \arrow{r}{k^\prime} & A^\prime[1].
+    \end{tikzcd}$$
+
+    Define $i^{\prime\prime} = \beta \circ \alpha^\prime$, $u^{\prime\prime} = \beta^\prime \circ \alpha$.
+    Apply (TR1) to get the third row
+    $$\begin{tikzcd}
+      A^{\prime\prime} \arrow{r}{i^{\prime\prime}} & B^{\prime\prime} \arrow{r}{j^{\prime\prime}} & C^{\prime\prime} \arrow{r}{k^{\prime\prime}} & A^{\prime\prime}[1]
+    \end{tikzcd}$$
+    and then apply (TR4) to the triangles
+    $$\begin{tikzcd}
+      A^{\prime\prime} \arrow{r}{\alpha^\prime} & D \arrow{r}{\beta^\prime} & C^\prime \arrow{r}{v[1] \circ k^\prime} & A^{\prime\prime}[1]\\
+      A^{\prime\prime} \arrow{r}{i^{\prime\prime}} & B^{\prime\prime} \arrow{r}{j^{\prime\prime}} & C^{\prime\prime} \arrow{r}{k^{\prime\prime}} & A^{\prime\prime}[1]\\
+      D \arrow{r}{\beta} & B^{\prime\prime} \arrow{r}{j[1] \circ w^\prime} & C[1] \arrow{r}{-\alpha[1]} & D[1]
+    \end{tikzcd}$$
+    to produce a distinguished triangle
+    $$\begin{tikzcd}
+      C^\prime \arrow{r}{v^{\prime\prime}} & C^{\prime\prime} \arrow{r}{w^{\prime\prime}} & C[1] \arrow{rrr}{-\beta^\prime[1] \circ \alpha[1] = -u^{\prime\prime}[1]} & & & C^\prime[1],
+    \end{tikzcd}$$
+    then take its rotate
+    $$\begin{tikzcd}
+      C \arrow{r}{u^{\prime\prime}} & C^\prime \arrow{r}{v^{\prime\prime}} & C^{\prime\prime} \arrow{r}{w^{\prime\prime}} & C[1].
+    \end{tikzcd}$$
+    This gives the third column, and we note here that
+    $$u^{\prime\prime} \circ j = \beta^\prime \circ \alpha \circ j = \beta^\prime \circ g \circ u^\prime = j^\prime \circ u^\prime$$
+    and 
+    $$k^\prime \circ u^{\prime\prime} = \beta^\prime \circ \alpha \circ k^\prime = u[1] \circ h \circ \alpha = u[1] \circ k,$$
+    so the top row of the diagram is commutative.
+    
+    For the second row of the diagram, we note that the first square commutes by construction,
+    %$$i^{\prime\prime} \circ v = \beta \circ \alpha^\prime \circ v = \beta \circ g \circ i^\prime = v^\prime \circ i^\prime,$$
+    $j^\prime = \beta^\prime \circ g$ by the second octohedral diagram, whence
+    $$v^{\prime\prime} \circ j^\prime = v^{\prime\prime} \circ \beta^\prime \circ g = j^{\prime\prime} \circ \beta \circ g = j^{\prime\prime} \circ \beta \circ g = j^{\prime\prime} \circ v^\prime,$$
+    and finally $k^{\prime\prime} \circ v^{\prime\prime} = v[1] \circ k^\prime$ follows from the last octohedral diagram.
+    Hence the second row of the diagram is commutative.
+    
+    Similarly, the first square of the third row commutes by construction and the last octohodreal diagram gives $w^{\prime\prime} \circ j^{\prime\prime} = j[1] \circ w$.
+    Finally, the first octohedral diagram gives $k = h \circ \alpha$ and the last octohedral diagram gives $-\alpha[1] \circ w^{\prime\prime} = \alpha^\prime[1] \circ k^{\prime\prime}$, and hence    
+    $$-k[1] \circ w^{\prime\prime} = -(h \circ \alpha)[1] \circ w^{\prime\prime} = h[1] \circ -\alpha[1] \circ w^{\prime\prime} = h[1] \circ \alpha^\prime[1] \circ k^{\prime\prime} = w[1] \circ k^{\prime\prime},$$
+    as desired.
+  \end{proof}
+  %TODO: Maybe rewrite the TR4 steps to actually include the octohedral diagrams.
+\end{prop}
+
+\subsection{Verdier Localization}
+\begin{defn}
+  Let $\T^\prime, \T$ be triangulated categories and let $\F \colon T^\prime \rightarrow \T$ be a triangulated functor.
+  The kernel of $\F$ is the inclusion of the full subcategory $\mathscr{K}$ of $\T^\prime$ with objects $K$ such that $\F(K) \cong 0$.
+\end{defn}
+
+\begin{lem}
+  Let $\T^\prime, \T$ be  triangulated categories, $\F \colon \T^\prime \rightarrow \T$ a triangulated functor, and $\ker{\F} \colon \mathscr{K} \rightarrow \T^\prime$ its kernel.  
+  Then $\mathscr{K}$ is a strictly full, saturated triangulated subcategory of $\T^\prime$.
+  
+  \begin{proof}
+    First we note that $\mathscr{K}$ is strictly full by definition.
+    Indeed, if $X$ is an object of $\T^\prime$ isomorphic to an object $K$ of $\mathscr{K}$, then 
+    $$\F(X) \cong \F(K) \cong 0$$
+    implies $X$ is an object of $\mathscr{K}$.
+    
+    That $\mathscr{K}$ is triangulated now follows from observing that if we have a morphism 
+    \begin{tikzcd}K^\prime \arrow{r}{f} & K\end{tikzcd}
+      of $\mathscr{K}$, then by (TR1) we may embed $f$ into a distinguished triangle of $\T^\prime$,
+      $$\begin{tikzcd}
+        K^\prime \arrow{r}{f} & K \arrow{r}{g} & Z \arrow{r}{h} & K^\prime[1]
+      \end{tikzcd}$$
+      which gives an isomorphism of distinguished triangles in $\T$
+      $$\begin{tikzcd}
+        \F(K^\prime) \arrow{r}{\F(f)}\arrow{d} & \F(K) \arrow{r}{\F(g)}\arrow{d} & \F(Z) \arrow{r}{\F(h)}\arrow{d} & \F(K^\prime)[1]\arrow{d}\\
+        0 \arrow{r} & 0 \arrow{r} & \F(Z) \arrow{r} & 0
+      \end{tikzcd}$$
+      because $\F$ is triangulated.
+      It then follows from Proposition~\ref{isotriangle} that $Z$ is an object of $\mathscr{K}$, so we take the distinguished triangles of $\mathscr{K}$ to be the distinguished triangles
+      $$\begin{tikzcd}
+        K^\prime \arrow{r} & K \arrow{r} & K^{\prime\prime} \arrow{r} & K^\prime[1]
+      \end{tikzcd}$$
+      of $\T^\prime$ with $K,K^\prime, K^{\prime\prime}$ objects of $\mathscr{K}$.
+      
+      Finally, we see $\mathscr{K}$ is saturated, for if $X \oplus Y$ is isomorphic to some object $K$ of $\mathscr{K}$, then 
+      $$\F(X) \oplus \F(Y) \cong \F(X \oplus Y) \cong \F(K) \cong 0$$
+      implies $F(X) \cong 0$ and $F(Y) \cong 0$.
+      Therefore $X$ and $Y$ are objects of $\mathscr{K}$.
+  \end{proof}
+\end{lem}
+
+\begin{defn}
+  Let $\T$ be a triangulated category and let $\T^\prime$ be a strictly full triangulated subcategory.
+  For any two objects $X$ and $Y$ of $\T$, define the collection of morphisms $\operatorname{Mor}_{\T^\prime}(X,Y)$ to be the morphisms $f \in \T(X,Y)$ such that there exists some object $Z$ of $\T^\prime$ and a distinguished triangle
+  $$\begin{tikzcd}
+    X \arrow{r}{f} & Y \arrow{r}{g} & Z \arrow{r}{h} & X[1].
+  \end{tikzcd}$$
+\end{defn}
+
+\begin{defn}
+  Let $\T$ be a triangulated category and let $\T^\prime$ be a strictly full triangulated subcategory.
+  Define the subcategory $\operatorname{Mor}_{\T^\prime}$ of $\T$ to be the category with objects those of $\T$ and morphisms $\operatorname{Mor}_{\T^\prime}(X,Y)$ for objects $X$ and $Y$ of $\T$.
+\end{defn}
+
+\begin{lem}
+  Let $T^\prime$ be a triangulated subcategory of a triangulated category $\T$.
+  Then
+  \begin{enumerate}
+    \item
+      Every isomorphism $f : X \rightarrow Y$ of $\T$ is in $\operatorname{Mor}_{\T^\prime}(X,Y)$.
+    \item
+      Let $f : X \rightarrow Y$ and $g : Y \rightarrow Y^\prime$ be morphisms of $\T$.
+      If any two of 
+      $f \in \operatorname{Mor}_{\T^\prime}(X,Y)$,
+      $g \in \operatorname{Mor}_{\T^\prime}(Y,Y^\prime)$,
+      $g \circ f \in \operatorname{Mor}_{\T^\prime}(X,Y^\prime)$
+      hold, then so does the third. 
+  \end{enumerate}
+  
+  \begin{proof}
+    \begin{enumerate}
+    \item
+      If $f$ is an isomorphism, then by Proposition~\ref{isotriangle}
+      $$\begin{tikzcd}
+        X \arrow{r}{f} & Y \arrow{r} & 0 \arrow{r} & X[1]
+      \end{tikzcd}$$
+      is a distinguished triangle, and since $\T^\prime$ is an additive subcategory of $\T$, $0$ is an object of $\T^\prime$.
+      Thus $f \in \operatorname{Mor}_{\T^\prime}(X,Y)$ and, in particular, $id_X \in \operatorname{Mor}_{T^\prime}(X,X)$.
+    \item
+      
+    \end{enumerate}
+  \end{proof}
+\end{lem}
+
+%From Neeman, Triangulated Categories.
+\begin{thm}
+%  Consider the category with objects triangulated categories and morphisms triangulated functors.
+%  If $\T$ is a triangulated category and $\T^\prime$ is a strictly full subcategory, then the inclusion functor $\T^\prime \rightarrow \T$ has a cokernel.
+  Let $\T$ be a triangulated category.
+  If $\T^\prime$ a strictly full triangulated subcategory of $\T$, then there exists a triangulated category $\T/\T^\prime$ and a universal triangulated functor $\pi \colon \T \rightarrow \T/\T^\prime$ such that if $K \rightarrow \T$ is the kernel of $\pi$, then $\T^\prime$ is a subcategory of $K$.
+
+  That is, for any triangulated functor $\F : \T \rightarrow \T^{\prime\prime}$ making the diagram
+  $$\begin{tikzcd}
+    \T^\prime \arrow{r}\arrow[bend left]{rr}{0} & \T \arrow{d}{\pi}\arrow{r}{\F} & \T^{\prime\prime}\\
+    & \T/\T^\prime \arrow[dashed]{ur}{\exists !\overline{\F}}
+  \end{tikzcd}$$
+  commute, there exists a unique triangulated functor $\overline{\F}$ such that $\F = \overline{\F} \circ \pi$.
+  
+  The category $\T/\T^\prime$ is called the Verdier quotient of $\T$ by $\T^\prime$ and $\pi : \T \rightarrow \T^\prime$ is called the Verdier localisation.
+\end{thm}
+
+\begin{rmk}
+  Essentially, this says that in the category with objects triangulated categories and morphisms triangulated functors, the inclusion functor of a strictly full subcategory has a cokernel.
+\end{rmk}
 \end{document}
