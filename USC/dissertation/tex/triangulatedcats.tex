@@ -87,6 +87,30 @@ commute.
   \end{itemize}
 \end{defn}
 
+\begin{prop}
+  Let $\T, \T^\prime$ be triangulated categories and $\F \colon \T^\prime \rightarrow \T$ a triangulated functor.
+  Given any object $Z$ of $\T^\prime$, $\F(Z) \cong 0$ if and only if for any distinguished triangle
+  $$\begin{tikzcd}
+    X \arrow{r}{f} & Y \arrow{r}{g} & Z \arrow{r}{h} & X[1]
+  \end{tikzcd}$$
+  there is an isomorphism of distinguished triangles of $\T$
+  $$\begin{tikzcd}
+    \F(X) \arrow{r}{\F(f)}\arrow{d}{\id_{\F(X)}} & \F(Y) \arrow{r}{\F(g)}\arrow{d} & \F(Z) \arrow{r}{\F(h)}\arrow{d} & \F(X)[1]\arrow{d}{\id_{\F(X)}}\\
+      \F(X) \arrow{r}{\id_{F(X)}} & \F(X) \arrow{r} & 0 \arrow{r} & \F(X)[1]
+  \end{tikzcd}$$
+  
+  \begin{proof}
+    The converse is obvious from the definition of isomorphism of triangles.
+    Assume that $\F(Z) \cong 0$ and note that this immediately implies $\F(h) = 0$.    
+    By rotating the diagram and applying (TR3) we get the morphism of distinguished triangles
+    $$\begin{tikzcd}
+      \F(Z)[-1] \arrow{r}{-\F(h)}\arrow{d} & \F(X) \arrow{r}{\F(f)}\arrow{d}{\id_{\F(X)}} & \F(Y) \arrow{r}{\F(g)}\arrow[dashed]{d}{\exists} & \F(Z)\arrow{d}\\
+      0 \arrow{r} & \F(X) \arrow{r}{\id_{\F(X)}} & \F(X) \arrow{r} & 0
+    \end{tikzcd}$$
+    and this is an isomorphism by the 5 Lemma.
+  \end{proof}
+\end{prop}
+
 \begin{prop}\label{fulltriangles}
   Let $\T$ be a triangulated category, let $\T^\prime$ be a full triangulated subcategory, and let 
   $$D\colon 
@@ -325,6 +349,12 @@ commute.
   \end{tikzcd}
   is a distinguished triangle, then $Y \cong X \oplus Z$.
   
+  Moreover, if $\imath_X \colon X \rightarrow Y$, $\imath_Z \colon \rightarrow Y$, $\pi_X \colon Y \rightarrow X$, and $\pi_Z \colon Y \rightarrow Z$ are the coproduct injections and product projections, then 
+  $$\begin{tikzcd}
+    Y \arrow{rr}{\imath_X \circ p_X + \imath_Z \circ p_Z} & & Y \arrow{r} & 0 \arrow{r} & Y[1]
+  \end{tikzcd}$$
+  is a distinguished triangle.
+  
   \begin{proof}
     By taking rotates, we obtain a morphism of distinguished triangles
     $$\begin{tikzcd}
@@ -332,10 +362,21 @@ commute.
       Z[-1] \arrow{r}{0} & X \arrow{r} & X \oplus Z \arrow{r} & X[1]
     \end{tikzcd}$$
     and the induced morphism is an isomorphism by the 5 Lemma.
+    
+    For the second assertion, we note that by Corollary~\ref{splittriangle} we have $p_Z \circ i_X = 0$ and $p_X \circ i_Z = 0$, hence if we let $\varphi = \imath_X \circ p_X + \imath_Z \circ p_Z$, then the diagram
+    %$$\left(\imath_X \circ p_X + \imath_Z \circ p_Z\right)\imath_X = \imath_X \circ p_X \circ \imath_X + \imath_Z \circ p_Z \circ \imath_X = \imath_X$$
+    %and 
+    %$$\left(\imath_X \circ p_X + \imath_Z \circ p_Z\right)\imath_Z = \imath_X \circ p_X \circ \imath_Z + \imath_Z \circ p_Z \circ \imath_Z = \imath_Z$$
+    $$\begin{tikzcd}
+      X \arrow[bend right]{rdd}{i_X}\arrow{rd}{\imath_X} & & Z \arrow{ld}{\imath_Z}\arrow[bend left]{ldd}{i_Z}\\
+      & Y \arrow{d}{\varphi}\\
+      & Y
+    \end{tikzcd}$$
+    commutes, and by unicity $\varphi = \id_Y$.
   \end{proof}
 \end{cor}
 
-\begin{prop}
+\begin{prop}\label{extendsquare}
   Let $\T$ be a triangulated category.
   Any commutative diagram
   $$\begin{tikzcd}
@@ -357,27 +398,29 @@ commute.
     $$\begin{tikzcd}
       A \arrow{rr}{i^\prime \circ u = u^\prime \circ i} & & B^\prime \arrow{r}{g} & D \arrow{r}{h} & A[1].
     \end{tikzcd}$$
-    Next we apply (TR4) to the two triples of triangles
+    Next we apply (TR4) to get the octohedral diagrams 
     $$\begin{tikzcd}
-      A \arrow{r}{i}& B\arrow{r}{j} & C\arrow{r}{k} & A[1]\\
-      A \arrow{r}{u^\prime \circ i}& B^\prime \arrow{r}{g} & D \arrow{r}{h} & A[1]\\
-      B \arrow{r}{u^\prime} & B^\prime \arrow{r}{v^\prime} & B^{\prime\prime} \arrow{r}{w^\prime}& B[1]
+      A \arrow{r}{i}\arrow{d}{\id_A} & B\arrow{r}{j}\arrow{d}{u^\prime} & C\arrow{r}{k}\arrow{d}{\alpha} & A[1]\arrow{d}{\id_{A[1]}}\\
+      A \arrow{r}{u^\prime \circ i}\arrow{d}{i} & B^\prime \arrow{r}{g}\arrow{d}{\id_{B^\prime}} & D \arrow{r}{h}\arrow{d}{\beta} & A[1]\arrow{d}{i[1]}\\
+      B \arrow{r}{u^\prime}\arrow{d}{j} & B^\prime \arrow{r}{v^\prime}\arrow{d}{g} & B^{\prime\prime} \arrow{r}{w^\prime}\arrow{d}{\id_{B{\prime\prime}}} & B[1]\arrow{d}{j[1]}\\
+      C \arrow{r}{\alpha} & D \arrow{r}{\beta} & B^{\prime\prime}\arrow{r}{j[1] \circ w^\prime} & C[1]
     \end{tikzcd}
     \ \text{and}\ 
     \begin{tikzcd}
-      A \arrow{r}{u} & A^\prime \arrow{r}{v} & A^{\prime\prime}\arrow{r}{w} & A[1]\\
-      A\arrow{r}{i^\prime \circ u} & B^\prime \arrow{r}{g} & D \arrow{r}{h} & A[1]\\
-      A^\prime \arrow{r}{i^\prime} & B^\prime \arrow{r}{j^\prime} & C^\prime \arrow{r}{k^\prime} & A^\prime[1]
-    \end{tikzcd}$$
-    which yields the distinguished triangles
-    $$\begin{tikzcd}
-      C \arrow{r}{\alpha} & D \arrow{r}{\beta} & B^{\prime\prime} \arrow{r}{j[1] \circ w^\prime} & C[1]
-    \end{tikzcd}
-    \ \text{and}\ 
-    \begin{tikzcd}
+      A \arrow{r}{u}\arrow{d}{\id_A} & A^\prime \arrow{r}{v}\arrow{d}{i^\prime} & A^{\prime\prime}\arrow{r}{w}\arrow{d}{\alpha^\prime} & A[1]\arrow{d}{\id_{A[1]}}\\
+      A\arrow{r}{i^\prime \circ u}\arrow{d}{u} & B^\prime \arrow{r}{g}\arrow{d}{\id_{B^\prime}} & D \arrow{r}{h}\arrow{d}{\beta^\prime} & A[1]\arrow{d}{u[1]}\\
+      A^\prime \arrow{r}{i^\prime}\arrow{d}{v} & B^\prime \arrow{r}{j^\prime}\arrow{d}{g} & C^\prime \arrow{r}{k^\prime}\arrow{d}{\id_{C^\prime}} & A^\prime[1]\arrow{d}{v[1]}\\
       A^{\prime\prime} \arrow{r}{\alpha^\prime} & D \arrow{r}{\beta^\prime} & C^\prime \arrow{r}{v[1] \circ k^\prime} & A^{\prime\prime}[1]
     \end{tikzcd}$$
-    as well as morphisms of triangles
+    with distinguished rows, from which we obtain the morphisms of triangles
+    %which yields the distinguished triangles
+%    $$\begin{tikzcd}
+%      C \arrow{r}{\alpha} & D \arrow{r}{\beta} & B^{\prime\prime} \arrow{r}{j[1] \circ w^\prime} & C[1]
+%    \end{tikzcd}
+%    \ \text{and}\ 
+%    \begin{tikzcd}
+%      A^{\prime\prime} \arrow{r}{\alpha^\prime} & D \arrow{r}{\beta^\prime} & C^\prime \arrow{r}{v[1] \circ k^\prime} & A^{\prime\prime}[1]
+%    \end{tikzcd}$$
     $$\begin{tikzcd}
       A \arrow{r}{u}\arrow{d}{\id_A} & A^\prime \arrow{r}{v}\arrow{d}{i^\prime} & A^{\prime\prime} \arrow{r}{w}\arrow{d}{\alpha^\prime} & A[1] \arrow{d}{\id_{A[1]}}\\
       A \arrow{r}{i^\prime \circ u} \arrow{d}{i} & B^\prime \arrow{r}{g}\arrow{d}{\id_{B^\prime}} & D \arrow{r}{h}\arrow{d}{\beta} & A[1]\arrow{d}{i[1]}\\
@@ -395,17 +438,19 @@ commute.
     $$\begin{tikzcd}
       A^{\prime\prime} \arrow{r}{i^{\prime\prime}} & B^{\prime\prime} \arrow{r}{j^{\prime\prime}} & C^{\prime\prime} \arrow{r}{k^{\prime\prime}} & A^{\prime\prime}[1]
     \end{tikzcd}$$
-    and then apply (TR4) to the triangles
+    and then apply (TR4) to get the octohedral diagram
     $$\begin{tikzcd}
-      A^{\prime\prime} \arrow{r}{\alpha^\prime} & D \arrow{r}{\beta^\prime} & C^\prime \arrow{r}{v[1] \circ k^\prime} & A^{\prime\prime}[1]\\
-      A^{\prime\prime} \arrow{r}{i^{\prime\prime}} & B^{\prime\prime} \arrow{r}{j^{\prime\prime}} & C^{\prime\prime} \arrow{r}{k^{\prime\prime}} & A^{\prime\prime}[1]\\
-      D \arrow{r}{\beta} & B^{\prime\prime} \arrow{r}{j[1] \circ w^\prime} & C[1] \arrow{r}{-\alpha[1]} & D[1]
+      A^{\prime\prime} \arrow{r}{\alpha^\prime}\arrow{d}{\id_{A^{\prime\prime}}} & D \arrow{r}{\beta^\prime}\arrow{d}{\beta} & C^\prime \arrow{r}{v[1] \circ k^\prime}\arrow{d}{v^{{\prime\prime}}} & A^{\prime\prime}[1]\arrow{d}{\id_{A^{\prime\prime}}}\\
+      A^{\prime\prime} \arrow{r}{i^{\prime\prime}}\arrow{d}{\alpha^\prime} & B^{\prime\prime} \arrow{r}{j^{\prime\prime}}\arrow{d}{\id_{B^{\prime\prime}}} & C^{\prime\prime} \arrow{r}{k^{\prime\prime}}\arrow{d}{w^{\prime\prime}} & A^{\prime\prime}[1]\arrow{d}{\alpha^\prime[1]}\\
+      D \arrow{r}{\beta}\arrow{d}{\beta^\prime} & B^{\prime\prime} \arrow{r}{j[1] \circ w^\prime}\arrow{d}{j^{\prime\prime}} & C[1] \arrow{r}{-\alpha[1]}\arrow{d}{\id_{C[1]}} & D[1]\arrow{d}{\beta^\prime[1]}\\
+      C^\prime \arrow{r}{v^{\prime\prime}} & C^{\prime\prime} \arrow{r}{w^{\prime\prime}} & C[1] \arrow{r}{-u^{\prime\prime}[1]} & C^\prime[1]
     \end{tikzcd}$$
-    to produce a distinguished triangle
-    $$\begin{tikzcd}
-      C^\prime \arrow{r}{v^{\prime\prime}} & C^{\prime\prime} \arrow{r}{w^{\prime\prime}} & C[1] \arrow{rrr}{-\beta^\prime[1] \circ \alpha[1] = -u^{\prime\prime}[1]} & & & C^\prime[1],
-    \end{tikzcd}$$
-    then take its rotate
+    with distinguished rows,
+    %to produce a distinguished triangle
+    %$$\begin{tikzcd}
+    %  C^\prime \arrow{r}{v^{\prime\prime}} & C^{\prime\prime} \arrow{r}{w^{\prime\prime}} & C[1] \arrow{rrr}{-\beta^\prime[1] \circ \alpha[1] = -u^{\prime\prime}[1]} & & & C^\prime[1],
+    %\end{tikzcd}$$
+    then take the rotate of bottow row of the diagram to get the distinguished triangle
     $$\begin{tikzcd}
       C \arrow{r}{u^{\prime\prime}} & C^\prime \arrow{r}{v^{\prime\prime}} & C^{\prime\prime} \arrow{r}{w^{\prime\prime}} & C[1].
     \end{tikzcd}$$
@@ -430,9 +475,210 @@ commute.
   %TODO: Maybe rewrite the TR4 steps to actually include the octohedral diagrams.
 \end{prop}
 
+\subsection{Homotopy}
+%I have no idea where this is supposed to fit right now. 
+%Just need (some) of these things for Verdier Localization.
+%Will figure out placement later.
+\begin{defn}
+  Let $\T$ be a triangulated category.
+  Given a morphism, $f$, of triangles
+  $$\begin{tikzcd}
+    X_1 \arrow{r}{u}\arrow{d}{f_1} & X_2 \arrow{r}{v}\arrow{d}{f_2} & X_3 \arrow{r}{w}\arrow{d}{f_3} & X_1[1]\arrow{d}{f_1[1]}\\
+    Y_1 \arrow{r}{u^\prime} & Y_2 \arrow{r}{v^\prime} & Y_3 \arrow{r}{w^\prime} & Y_1[1]
+  \end{tikzcd}$$
+  we can form the {\it mapping cone} of $f$, 
+  $$\begin{tikzcd}
+    X_2 \oplus Y_1 \arrow{rr}{-v \oplus 0 + u^\prime \oplus f_2} & & X_3 \oplus Y_2 \arrow{rr}{-w \oplus 0 + v^\prime \oplus f_2} & & X_1[1] \oplus Y_3 \arrow{rrr}{-u[1] \oplus 0 + w^\prime \oplus f_1[1]} & & & X_2[1] \oplus Y_1[1]
+  \end{tikzcd}$$
+\end{defn}
+\begin{defn}
+  Two morphisms of triangles, $f$ and $g$,
+  $$\begin{tikzcd}
+    X_1 \arrow[shift left]{d}{g_1}\arrow[shift right,swap]{d}{f_1}\arrow{r}{u}
+    & X_2 \arrow[shift left]{d}{g_2}\arrow[shift right,swap]{d}{f_2}\arrow{r}{dv} 
+    & X_3 \arrow[shift left]{d}{g_3}\arrow[shift right,swap]{d}{f_3}\arrow{r}{w} 
+    & X_1[1]\arrow[shift left]{d}{g_1[1]}\arrow[shift right,swap]{d}{f_1[1]}\\
+    Y_1 \arrow{r}{u^\prime}& Y_2\arrow{r}{v^\prime} & Y_3\arrow{r}{w^\prime} & Y_3[1]
+  \end{tikzcd}$$
+  are said to be {\it homotopic} if there exist morphisms $s_i$ as in the diagram below
+  $$\begin{tikzcd}
+    X_1 \arrow{r}{u} & X_2 \arrow{r}{v}\arrow[swap]{ld}{s_2} & X_3 \arrow[swap]{ld}{s_3}\arrow{r}{w} & X_1[1] \arrow[swap]{ld}{s_1[1]}\\
+    Y_1 \arrow{r}{u^\prime} & Y_2 \arrow{r}{v^\prime} & Y_3 \arrow{r}{w^\prime} & Y_1[1]
+  \end{tikzcd}$$
+  such that 
+  \begin{eqnarray*}
+    f_1 - g_1 &=& s_2 \circ u + w^\prime[-1] \circ s_1\\
+    f_2 - g_2 &=& s_3 \circ v + u^\prime \circ s_2,\,\text{and}\\
+    f_3 - g_3 &=& s_1[1] \circ w + v^\prime \circ s_3.
+  \end{eqnarray*}
+\end{defn}
+
+\begin{defn}
+  We say that a sequence
+  $$\begin{tikzcd}
+    X \arrow{r} & Y \arrow{r} & Z \arrow{r} & X[1]
+  \end{tikzcd}$$
+  is {\it contractible} if 
+  if the morphism
+  $$\begin{tikzcd}
+    X \arrow{d}{id_X}\arrow{r} & Y \arrow{r}\arrow{d}{\id_Y} & Z \arrow{r}\arrow{d}{\id_Z} & X[1] \arrow{d}{\id_{X[1]}}\\
+    X \arrow{r} & Y \arrow{r} & Z \arrow{r} & X[1]
+  \end{tikzcd}$$
+  is null homotopic (i.e. homotopic to the zero morphism).
+\end{defn}
+
+\begin{prop}
+  If 
+  $\begin{tikzcd}
+    X \arrow{r} & Y \arrow{r} & Z \arrow{r} & X[1]
+  \end{tikzcd}$
+  is contractible, then it is distinguished.
+\end{prop}
+
+\begin{lem}
+  The mapping cone on the zero morphism between distinguished triangles is a distinguished triangle.
+\end{lem}
+
+\begin{cor}
+  Given a morphism of distinguished triangles
+  $$\begin{tikzcd}
+    X \arrow{r}\arrow{d} & Y \arrow{r}\arrow{d} & Z \arrow{r}\arrow{d} & X[1]\arrow{d}\\
+    X^\prime \arrow{r} & Y^\prime \arrow{r} & Z^\prime \arrow{r} & X^\prime[1]
+  \end{tikzcd}$$
+  if the morphism is null homotopic, then the mapping cone is a distinguished triangle.
+\end{cor}
+\begin{cor}
+  Given a commutative diagram
+  $$\begin{tikzcd}
+    X \arrow{r}\arrow{d} & Y \arrow{r}\arrow{d} & Z \arrow{r}\arrow{d} & X[1]\arrow{d}\\
+    X^\prime \arrow{r} & Y^\prime \arrow{r} & Z^\prime \arrow{r} & X^\prime[1]
+  \end{tikzcd}$$
+  if one of the rows is distinguished and the other is null homotopic, then the cone of the morphism is a distinguished triangle.
+\end{cor}
+
+%From Neeman, Some new axioms for triangulated categories.
+\begin{prop}
+  Given a commutative diagram
+  $$\begin{tikzcd}
+    X \arrow{r}{f}\arrow{d}{u} & Y\arrow{d}{u^\prime}\\
+    X^\prime \arrow{r}{f^\prime} & Y^\prime
+  \end{tikzcd}$$
+  by (TR1) and (TR3) we obtain a morphism, $u$, of distinguished triangles
+  $$\begin{tikzcd}
+      X \arrow{r}{f}\arrow{d}{u} & Y\arrow{d}{u^\prime}\arrow{r}{g} & Z \arrow{r}{h}\arrow[dashed]{d}{\exists u^{\prime\prime}} & X[1]\arrow{d}{u[1]}\\
+    X^\prime \arrow{r}{f^\prime} & Y^\prime \arrow{r}{g^\prime} & Z^\prime \arrow{r}{h^\prime} & X^\prime[1]
+  \end{tikzcd}$$
+  We may choose $h$ such that the mapping cone of $u$ is a distinguished triangle.
+
+\begin{proof}
+  First we show that we have an octohedral diagram
+  $$\begin{tikzcd}
+    X^\prime \oplus X \arrow{r}{\alpha}\arrow{d}{\id_{X^\prime \oplus X}} & X^\prime \oplus Y^\prime \oplus Y \arrow{r}{\beta}\arrow{d}{\delta} & Y^\prime \oplus Z \arrow{r}{\gamma}\arrow{d}{\varphi} & X^\prime[1] \oplus X[1]\arrow{d}{\id_{X^\prime \oplus X}[1]}\\
+    X^\prime \oplus X \arrow{r}{\delta \circ \alpha}\arrow{d}{\alpha} & Y^\prime \arrow{r}{\beta^\prime}\arrow{d}{\id_{Y^\prime}} & Z^\prime \oplus X[1] \arrow{r}{\gamma^\prime}\arrow{d}{\psi} & X^\prime[1] \oplus X[1]\arrow{d}{\alpha[1]}\\
+    X^\prime \oplus Y^\prime \oplus Y \arrow{r}{\delta}\arrow{d}{\beta} & Y^\prime \arrow{r}{\beta^{\prime\prime}}\arrow{d}{\beta^\prime} & X^\prime[1] \oplus Y[1] \arrow{r}{\gamma^{\prime\prime}}\arrow{d}{\id_{X^\prime \oplus Y}[1]} & X^\prime[1] \oplus Y[1] \oplus Y^\prime[1]\arrow{d}{\beta[1]}\\
+    Y\prime \oplus Z \arrow{r}{\varphi} & Z^\prime \oplus X[1] \arrow{r}{\psi} & X^\prime[1] \oplus Y[1] \arrow{r}{\beta[1] \circ \gamma^{\prime\prime}} & Y^\prime[1] \oplus Z[1]
+  \end{tikzcd}$$
+  
+  We construct the first row as the direct sum of the distinguished triangles
+  $$\begin{tikzcd}
+    X \arrow{r}{f} & Y \arrow{r}{g} & Z \arrow{r}{h} & X[1]
+  \end{tikzcd}$$
+  and
+  $$\begin{tikzcd}
+    X^\prime \arrow{rr}{\id_{X^\prime} \oplus f^\prime} & &
+    X^\prime \oplus Y^\prime \arrow{rr}{f^\prime \oplus -\id_{Y^\prime}} & &
+    Y^\prime \arrow{r}{0} & 
+    X^\prime[1].
+  \end{tikzcd}$$
+  The latter is distinguished because it is contractible with homotopy given by
+  $$\begin{tikzcd}
+    X^\prime \arrow{rr}{\id_{X^\prime} \oplus f^\prime} & &
+    X^\prime \oplus Y^\prime \arrow{rr}{f^\prime \oplus -\id_{Y^\prime}}\arrow[swap]{lld}{p_{X^\prime}} & &
+    Y^\prime \arrow{r}{0}\arrow[swap]{lld}{\imath_{Y^\prime}} &
+    X^\prime[1] \arrow[swap]{ld}{0}\\
+    X^\prime \arrow{rr}{\id_{X^\prime} \oplus f^\prime} & &
+    X^\prime \oplus Y^\prime \arrow{rr}{f^\prime \oplus -\id_{Y^\prime}} & &
+    Y^\prime \arrow{r}{0} & 
+    X^\prime[1]\\
+  \end{tikzcd},$$
+  since 
+  $$(\id_{X^\prime} \oplus f^\prime \circ p_{X^\prime} + \imath_{Y^\prime} \circ f^\prime \oplus -\id_{Y^\prime}) \circ \id_{X^\prime} \oplus f^\prime \circ p_{X^\prime} 
+  = \id_{X^\prime} \oplus f^\prime \circ p_{X^\prime} \circ (\id_{X^\prime} \oplus f^\prime \circ p_{X^\prime}) 
+  = \id_{X^\prime} \oplus f^\prime \circ p_{X^\prime}$$
+  and
+  $$(\id_{X^\prime} \oplus f^\prime \circ p_{X^\prime} + \imath_{Y^\prime} \circ f^\prime \oplus -\id_{Y^\prime}) \circ \imath_{Y^\prime}
+  = \imath_{Y^\prime} \circ (f^\prime \oplus -\id_{Y^\prime} \circ \imath_{Y^\prime})
+  = \imath_{Y^\prime}$$
+  implies
+  $$id_{X^\prime \oplus Y^\prime} = \id_{X^\prime} \oplus f^\prime \circ p_{X^\prime} + \imath_{Y^\prime} \circ f^\prime \oplus -\id_{Y^\prime}.$$
+\end{proof}
+\end{prop}
+
+\begin{defn}
+  Let $\T$ be a triangulated category.
+  A commutative square
+  $$\begin{tikzcd}
+    X \arrow{r}{f}\arrow{d}{g} & Y\arrow{d}{g^\prime}\\
+    Z \arrow{r}{f^\prime} & W
+  \end{tikzcd}$$
+  is called {\it homotopy cartesian} if there is a distinguished triangle
+  $$\begin{tikzcd}
+    X \arrow{r}{f \times g} & Y \oplus Z \arrow{r}{-f^\prime \oplus g^\prime} & W \arrow{r} & X[1].
+  \end{tikzcd}$$
+  We call $X$ the {\it homotopy pullback} and $W$ the {\it homotopy pushout}.
+\end{defn}
+
+\begin{prop}
+  Homotopy pullbacks and pushouts exist and are unique up to (not necessarily unique) isomorphism.
+  
+  \begin{proof}
+    First we prove the result for pushouts and note that pullbacks follow from an analogous argument with the arrows turned around.
+    Given a diagram
+    $$\begin{tikzcd}
+      X \arrow{r}{f}\arrow{d}{g} & Y\\
+      Z
+    \end{tikzcd}$$
+    we produce a triangle 
+    $$\begin{tikzcd}
+      X \arrow{r}{f \times g} & Y \oplus Z \arrow{r}{u} & W \arrow{r} & X[1]
+    \end{tikzcd}$$
+    by (TR1), then define
+    $$\begin{tikzcd}
+      Z \arrow{r}{-\imath_Z}\arrow[swap]{rd}{f^\prime} & Y \oplus Z\arrow{d}{u}\\
+      & W
+    \end{tikzcd}
+    \ \text{and}\ 
+    \begin{tikzcd}
+      Y \arrow{r}{\imath_Y}\arrow[swap]{rd}{g^\prime} & Y \oplus Z\arrow{d}{u}\\
+      & W
+    \end{tikzcd}$$
+    Now we see that
+    \begin{eqnarray*}
+      g^\prime \circ f - f^\prime \circ g &=& (u \circ \imath_Y) \circ (\pi_Y \circ f \times g) + (u \circ \imath_Z) \circ (\pi_Z \circ f \times g)\\
+      &=& u \circ (\imath_Y \circ \pi_Y + \imath_Z \circ \pi_Z) \circ f \times g\\
+      &=& u \circ f \times g\\
+      &=& 0
+    \end{eqnarray*}
+    gives the homotopy cartesian diagram
+    $$\begin{tikzcd}
+      X \arrow{r}{f}\arrow{d}{g} & Y\arrow{d}{g^\prime}\\
+      Z \arrow{r}{f^\prime} & W
+    \end{tikzcd}$$
+    
+    For uniqueness, we see that if we have another homotopy pushout, $W^\prime$, then we get an isomorphism of triangles
+    $$\begin{tikzcd}
+      X \arrow{r}{f \times g}\arrow{d}{\id_X} & Y \oplus Z \arrow{r}{u}\arrow{d}{\id_{X \oplus Y}} & W \arrow{r}\arrow[dashed]{d}{\exists} & X[1]\arrow{d}{\id_{X[1]}}\\
+      X \arrow{r}{f \times g} & Y \oplus Z \arrow{r}{u^\prime} & W^\prime \arrow{r} & X[1]
+    \end{tikzcd}$$
+    by (TR3) and the 5 Lemma.
+    Therefore $W \cong W^\prime$.
+  \end{proof}
+\end{prop}
+
+%From Neeman, Triangulated Categories.
 \subsection{Verdier Localization}
 \begin{defn}
-  Let $\T^\prime, \T$ be triangulated categories and let $\F \colon T^\prime \rightarrow \T$ be a triangulated functor.
+  Let $\T^\prime, \T$ be triangulated categories and let $\F \colon \T^\prime \rightarrow \T$ be a triangulated functor.
   The kernel of $\F$ is the inclusion of the full subcategory $\mathscr{K}$ of $\T^\prime$ with objects $K$ such that $\F(K) \cong 0$.
 \end{defn}
 
@@ -484,18 +730,18 @@ commute.
   Define the subcategory $\operatorname{Mor}_{\T^\prime}$ of $\T$ to be the category with objects those of $\T$ and morphisms $\operatorname{Mor}_{\T^\prime}(X,Y)$ for objects $X$ and $Y$ of $\T$.
 \end{defn}
 
-\begin{lem}
+\begin{lem}\label{moriscat}
   Let $T^\prime$ be a triangulated subcategory of a triangulated category $\T$.
   Then
   \begin{enumerate}
     \item
       Every isomorphism $f : X \rightarrow Y$ of $\T$ is in $\operatorname{Mor}_{\T^\prime}(X,Y)$.
     \item
-      Let $f : X \rightarrow Y$ and $g : Y \rightarrow Y^\prime$ be morphisms of $\T$.
+      Let $f : X \rightarrow Y$ and $g : Y \rightarrow Z$ be morphisms of $\T$.
       If any two of 
       $f \in \operatorname{Mor}_{\T^\prime}(X,Y)$,
-      $g \in \operatorname{Mor}_{\T^\prime}(Y,Y^\prime)$,
-      $g \circ f \in \operatorname{Mor}_{\T^\prime}(X,Y^\prime)$
+      $g \in \operatorname{Mor}_{\T^\prime}(Y,Z)$,
+      $g \circ f \in \operatorname{Mor}_{\T^\prime}(X,Z)$
       hold, then so does the third. 
   \end{enumerate}
   
@@ -509,12 +755,87 @@ commute.
       is a distinguished triangle, and since $\T^\prime$ is an additive subcategory of $\T$, $0$ is an object of $\T^\prime$.
       Thus $f \in \operatorname{Mor}_{\T^\prime}(X,Y)$ and, in particular, $id_X \in \operatorname{Mor}_{T^\prime}(X,X)$.
     \item
-      
+      By (TR1) and (TR4) we have a commutative octohedral diagram
+      $$\begin{tikzcd}
+        X \arrow{r}{f}\arrow{d}{\id_X} & Y \arrow{r}{i}\arrow{d}{g} & C^\prime \arrow{r}{\ell}\arrow{d}{u} & X[1] \arrow{d}{\id_{X[1]}}\\
+        X \arrow{r}{g \circ f}\arrow{d}{f} & Z\arrow{r}{j}\arrow{d}{\id_{Z}} & \arrow{r} C \arrow{r}{m}\arrow{d}{v} & X[1]\arrow{d}{f[1]}\\
+        Y \arrow{r}{g}\arrow{d}{i} & Z \arrow{r}{k}\arrow{d}{j} & C^{\prime\prime}\arrow{d}{\id_{C^{\prime\prime}}} \arrow{r}{n} & Y[1]\arrow{d}{i[1]}\\
+        C^\prime \arrow{r}{u} & C \arrow{r}{v} & C^{\prime\prime}\arrow{r}{i[1] \circ m} & C^\prime[1]
+      \end{tikzcd}$$
+      with distinguished rows.
+      To say that any two of 
+      $f \in \operatorname{Mor}_{\T^\prime}(X,Y)$,
+      $g \in \operatorname{Mor}_{\T^\prime}(Y,Z)$,
+      $g \circ f \in \operatorname{Mor}_{\T^\prime}(X,Z)$
+      hold is to say that any two of $C^\prime, C, C^{\prime\prime}$ are objects of $\T^\prime$.
+      Since $\T^\prime$ is a strictly full triangulated subcategory, the last row of the diagram implies by Proposition~\ref{fulltriangles} that if any two of $C^\prime, C, C^{\prime\prime}$ are objects of $\T^\prime$, then so is the third.
+      Therefore if any two of 
+      $f \in \operatorname{Mor}_{\T^\prime}(X,Y)$,
+      $g \in \operatorname{Mor}_{\T^\prime}(Y,Z)$,
+      $g \circ f \in \operatorname{Mor}_{\T^\prime}(X,Z)$
+      hold, then so does the third.
     \end{enumerate}
   \end{proof}
 \end{lem}
 
-%From Neeman, Triangulated Categories.
+\begin{defn}
+  By the previous Lemma, we are justified in defining the subcategory $\operatorname{Mor}_{\T^\prime}$ to be the category with objects those of $\T$ and morphisms $\operatorname{Mor}_{\T^\prime}(X,Y)$ for any pair of objects $X$ and $Y$ of $\T$.
+\end{defn}
+
+\begin{defn}
+  Let $\T$ be a triangulated category and let $\T^\prime$ be a strictly full triangulated subcategory.
+  Fix objects $X$ and $Y$ of $\T$.
+  Define a relation on diagrams $(Z,f,g)$ of the form 
+  $$\begin{tikzcd}
+    & Z\arrow{rd}{f}\arrow{ld}{g}\\
+    X & & Y
+  \end{tikzcd}$$
+  with $f \in \operatorname{Mor}_{T^\prime}(Z,X)$,
+  $$(Z,f,g) \sim (Z^\prime, f^\prime, g^\prime)$$
+  if and only if there exists a third diagram $(Z^{\prime\prime}, f^{\prime\prime}, g^{\prime\prime})$ and a commutative diagram
+  $$\begin{tikzcd}
+    & Z\arrow[swap]{ld}{f}\arrow{rd}{g}\\
+    X & Z^{\prime\prime} \arrow[swap]{l}{f^{\prime\prime}}\arrow{r}{g^{\prime\prime}}\arrow{u}{u}\arrow[swap]{d}{v} & Y\\
+    & Z^\prime\arrow{ul}{f^\prime}\arrow[swap]{ur}{g^\prime}
+  \end{tikzcd}$$
+\end{defn}
+
+\begin{lem}
+  The relation defined above is an equivalence relation.
+  
+  \begin{proof}
+    It's clear that the relation is reflexive and symmetric.
+    To see that it's transitive, assume that we have the relations $(Z_1,f_1,g_1) \sim (Z_2, f_2,g_2) \sim (Z_3,f_3,g_3)$
+    given by the commutative diagrams
+    $$\begin{tikzcd}
+      & Z_1\arrow[swap]{ld}{f_1}\arrow{rd}{g_1}\\
+      X & Z \arrow[swap]{l}{f}\arrow{r}{g}\arrow{u}{u}\arrow[swap]{d}{v} & Y\\
+      & Z_2\arrow{ul}{f_2}\arrow[swap]{ur}{g_2}
+    \end{tikzcd}
+    \ \text{and}\ 
+    \begin{tikzcd}
+      & Z_2\arrow[swap]{ld}{f_2}\arrow{rd}{g_2}\\
+      X & Z^\prime \arrow[swap]{l}{f^\prime}\arrow{r}{g^\prime}\arrow{u}{u^\prime}\arrow[swap]{d}{v^\prime} & Y\\
+      & Z_3\arrow{ul}{f_3}\arrow[swap]{ur}{g_3}
+    \end{tikzcd}$$
+    Take the homotopy pullback
+    $$\begin{tikzcd}
+      Z^{\prime\prime} \arrow{r}\arrow{d} & Z\arrow{d}{v}\\
+      Z^\prime \arrow{r}{u^\prime} & Z_2.
+    \end{tikzcd}$$
+    which induces a commutative diagram
+    $$\begin{tikzcd}
+      & & Z_1 \arrow{lldd}{f_1}\arrow{rrdd}{g_1}\\
+      & & Z\arrow{u}{u}\arrow{ld}{v}\arrow{rd}{v}\\
+      X & Z_2\arrow{l}{f_2} & Z^{\prime\prime}\arrow{u}\arrow{d} & Z_2\arrow{r}{g_2} & Y\\
+      & & Z^\prime\arrow{lu}{u^\prime}\arrow{ru}{u^\prime}\arrow{d}{v^\prime}\\
+      & & Z_3\arrow{lluu}{f_3} \arrow{rruu}{g_3}
+    \end{tikzcd}$$
+    By Lemma~\ref{moriscat} that $u \in \Mor{\T^\prime}(Z,Z_1)$, $u^\prime \in \Mor{\T^\prime}(Z^\prime, Z_2)$, $v \in \Mor{\T^\prime}(Z,Z_2)$, and $V^\prime \in \Mor{T^\prime}(Z^\prime,Z_3)$ because $f \in \Mor{\T^\prime}(Z,X)$, $f^\prime \in \Mor{\T^\prime}(Z^\prime,X)$, $g \in \Mor{\T^\prime}(Z,Y)$ and $g^\prime \in \Mor{\T^\prime}(Z^\prime,Y)$.
+    
+  \end{proof}
+\end{lem}
+
 \begin{thm}
 %  Consider the category with objects triangulated categories and morphisms triangulated functors.
 %  If $\T$ is a triangulated category and $\T^\prime$ is a strictly full subcategory, then the inclusion functor $\T^\prime \rightarrow \T$ has a cokernel.
