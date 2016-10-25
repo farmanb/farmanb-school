@@ -579,38 +579,55 @@ commute.
     Y\prime \oplus Z \arrow{r}{\varphi} & Z^\prime \oplus X[1] \arrow{r}{\psi} & X^\prime[1] \oplus Y[1] \arrow{r}{\beta[1] \circ \gamma^{\prime\prime}} & Y^\prime[1] \oplus Z[1]
   \end{tikzcd}$$
   
-  We construct the first row as the direct sum of the distinguished triangles
+  We first construct the first row.
+  We have a distinguished triangle
   $$\begin{tikzcd}
     X \arrow{r}{f} & Y \arrow{r}{g} & Z \arrow{r}{h} & X[1]
   \end{tikzcd}$$
-  and
+  and we form the morphisms
   $$\begin{tikzcd}
-    X^\prime \arrow{rr}{\id_{X^\prime} \oplus f^\prime} & &
-    X^\prime \oplus Y^\prime \arrow{rr}{f^\prime \oplus -\id_{Y^\prime}} & &
+    & & X^\prime \arrow[swap]{lldd}{\id_{X^\prime}}\arrow{rrdd}{f^\prime}\arrow[dashed,yshift=-1.5ex]{dd}{\exists !\id_{X^\prime} \times f^\prime}\\
+    \\
+    X^\prime & & X^\prime \oplus Y^\prime \arrow[swap]{ll}{p_{X^\prime}}\arrow{rr}{p_{Y^\prime}} & & Y^\prime
+  \end{tikzcd}
+  \ \text{and}\ 
+  \begin{tikzcd}
+    X^\prime \arrow{rrd}{\imath_{X^\prime}}\arrow[swap,bend right]{rrdd}{-f^\prime} & & & & Y^\prime \arrow[swap]{lld}{\imath_{Y^\prime}}\arrow[bend left]{lldd}{\id_{Y^\prime}}\\
+    & & X^\prime \oplus Y^\prime \arrow[dashed]{d}{\exists ! -f \oplus \id_{Y^\prime}}\\
+    & & Y^\prime
+  \end{tikzcd}$$
+  then note that by construction we have
+  $$(f^\prime \circ p_{X^\prime} + (-f \oplus \id_{Y^\prime})) \circ \imath_{X^\prime} = f^\prime - f^\prime = 0$$
+  as well as
+  $$(f^\prime \circ p_{X^\prime} + (-f \oplus \id_{Y^\prime})) \circ \imath_{Y^\prime} = 0 + \id_{Y^\prime}$$
+  which implies 
+  $$p_{Y^\prime} = f^\prime \circ p_{X^\prime} + (-f \oplus \id_{Y^\prime}).$$
+  Taking the sequence
+  $$\begin{tikzcd}
+    X^\prime \arrow{rr}{\id_{X^\prime} \times f^\prime} & &
+    X^\prime \oplus Y^\prime \arrow{rr}{-f^\prime \oplus \id_{Y^\prime}} & &
     Y^\prime \arrow{r}{0} & 
     X^\prime[1].
   \end{tikzcd}$$
-  The latter is distinguished because it is contractible with homotopy given by
+  we see it is contractible with homotopy given by
   $$\begin{tikzcd}
-    X^\prime \arrow{rr}{\id_{X^\prime} \oplus f^\prime} & &
-    X^\prime \oplus Y^\prime \arrow{rr}{f^\prime \oplus -\id_{Y^\prime}}\arrow[swap]{lld}{p_{X^\prime}} & &
+    X^\prime \arrow{rr}{\id_{X^\prime} \times f^\prime} & &
+    X^\prime \oplus Y^\prime \arrow{rr}{-f^\prime \oplus \id_{Y^\prime}}\arrow[swap]{lld}{p_{X^\prime}} & &
     Y^\prime \arrow{r}{0}\arrow[swap]{lld}{\imath_{Y^\prime}} &
     X^\prime[1] \arrow[swap]{ld}{0}\\
     X^\prime \arrow{rr}{\id_{X^\prime} \oplus f^\prime} & &
-    X^\prime \oplus Y^\prime \arrow{rr}{f^\prime \oplus -\id_{Y^\prime}} & &
+    X^\prime \oplus Y^\prime \arrow{rr}{-f^\prime \oplus \id_{Y^\prime}} & &
     Y^\prime \arrow{r}{0} & 
     X^\prime[1]\\
   \end{tikzcd},$$
-  since 
-  $$(\id_{X^\prime} \oplus f^\prime \circ p_{X^\prime} + \imath_{Y^\prime} \circ f^\prime \oplus -\id_{Y^\prime}) \circ \id_{X^\prime} \oplus f^\prime \circ p_{X^\prime} 
-  = \id_{X^\prime} \oplus f^\prime \circ p_{X^\prime} \circ (\id_{X^\prime} \oplus f^\prime \circ p_{X^\prime}) 
-  = \id_{X^\prime} \oplus f^\prime \circ p_{X^\prime}$$
-  and
-  $$(\id_{X^\prime} \oplus f^\prime \circ p_{X^\prime} + \imath_{Y^\prime} \circ f^\prime \oplus -\id_{Y^\prime}) \circ \imath_{Y^\prime}
-  = \imath_{Y^\prime} \circ (f^\prime \oplus -\id_{Y^\prime} \circ \imath_{Y^\prime})
-  = \imath_{Y^\prime}$$
-  implies
-  $$id_{X^\prime \oplus Y^\prime} = \id_{X^\prime} \oplus f^\prime \circ p_{X^\prime} + \imath_{Y^\prime} \circ f^\prime \oplus -\id_{Y^\prime}.$$
+  since if we let $\varphi = \id_{X^\prime} \times f^\prime \circ p_{X^\prime} + \imath_{Y^\prime} \circ -f^\prime \oplus \id_{Y^\prime}$, then
+  we get a commutative diagram
+  $$\begin{tikzcd}
+    & X^\prime \oplus Y^\prime \arrow{ld}{p_{X^\prime}}\arrow[swap]{rd}{p_{Y^\prime}}\arrow{d}{\varphi}\\
+    X^\prime & X^\prime \oplus Y^\prime \arrow[swap]{l}{p_{X^\prime}}\arrow{r}{p_{Y^\prime}}& Y^\prime
+  \end{tikzcd}$$
+  which implies by unicity that $\varphi = \id_{X^\prime \oplus Y^\prime}$.
+  We now obtain the first row of the diagram by taking the coproduct of these triangles.
 \end{proof}
 \end{prop}
 
