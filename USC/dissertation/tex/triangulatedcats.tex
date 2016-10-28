@@ -348,7 +348,7 @@ commute.
     X \arrow{r} & Y \arrow{r} & Z \arrow{r}{0} & X[1]
   \end{tikzcd}
   is a distinguished triangle, then $Y \cong X \oplus Z$.
-  
+n  
   Moreover, if $\imath_X \colon X \rightarrow Y$, $\imath_Z \colon \rightarrow Y$, $\pi_X \colon Y \rightarrow X$, and $\pi_Z \colon Y \rightarrow Z$ are the coproduct injections and product projections, then 
   $$\begin{tikzcd}
     Y \arrow{rr}{\imath_X \circ p_X + \imath_Z \circ p_Z} & & Y \arrow{r} & 0 \arrow{r} & Y[1]
@@ -553,7 +553,7 @@ commute.
     X \arrow{r}\arrow{d} & Y \arrow{r}\arrow{d} & Z \arrow{r}\arrow{d} & X[1]\arrow{d}\\
     X^\prime \arrow{r} & Y^\prime \arrow{r} & Z^\prime \arrow{r} & X^\prime[1]
   \end{tikzcd}$$
-  if one of the rows is distinguished and the other is null homotopic, then the cone of the morphism is a distinguished triangle.
+  if one of the rows is distinguished and the other is contractible, then the cone of the morphism is a distinguished triangle.
 \end{cor}
 
 %From Neeman, Some new axioms for triangulated categories.
@@ -563,71 +563,213 @@ commute.
     X \arrow{r}{f}\arrow{d}{u} & Y\arrow{d}{u^\prime}\\
     X^\prime \arrow{r}{f^\prime} & Y^\prime
   \end{tikzcd}$$
-  by (TR1) and (TR3) we obtain a morphism, $u$, of distinguished triangles
+  by (TR1) and (TR3) we obtain a morphism of distinguished triangles
   $$\begin{tikzcd}
       X \arrow{r}{f}\arrow{d}{u} & Y\arrow{d}{u^\prime}\arrow{r}{g} & Z \arrow{r}{h}\arrow[dashed]{d}{\exists u^{\prime\prime}} & X[1]\arrow{d}{u[1]}\\
     X^\prime \arrow{r}{f^\prime} & Y^\prime \arrow{r}{g^\prime} & Z^\prime \arrow{r}{h^\prime} & X^\prime[1]
   \end{tikzcd}$$
-  We may choose $h$ such that the mapping cone of $u$ is a distinguished triangle.
+  We may choose $u^{\prime\prime}$ such that the mapping cone of this morphism is a distinguished triangle.
 
 \begin{proof}
   First we show that we have an octohedral diagram
   $$\begin{tikzcd}
-    X^\prime \oplus X \arrow{r}{\alpha}\arrow{d}{\id_{X^\prime \oplus X}} & X^\prime \oplus Y^\prime \oplus Y \arrow{r}{\beta}\arrow{d}{\delta} & Y^\prime \oplus Z \arrow{r}{\gamma}\arrow{d}{\varphi} & X^\prime[1] \oplus X[1]\arrow{d}{\id_{X^\prime \oplus X}[1]}\\
+    X^\prime \oplus X \arrow{r}{\alpha}\arrow{d}{\id_{X^\prime \oplus X}} & X^\prime \oplus Y^\prime \oplus Y \arrow{r}{\beta}\arrow{d}{\delta} & Y^\prime \oplus Z \arrow{r}{\gamma}\arrow{d}{\varphi} & X^\prime[1] \oplus X[1]\arrow{d}{\id_{X^\prime[1] \oplus X[1]}}\\
     X^\prime \oplus X \arrow{r}{\delta \circ \alpha}\arrow{d}{\alpha} & Y^\prime \arrow{r}{\beta^\prime}\arrow{d}{\id_{Y^\prime}} & Z^\prime \oplus X[1] \arrow{r}{\gamma^\prime}\arrow{d}{\psi} & X^\prime[1] \oplus X[1]\arrow{d}{\alpha[1]}\\
-    X^\prime \oplus Y^\prime \oplus Y \arrow{r}{\delta}\arrow{d}{\beta} & Y^\prime \arrow{r}{\beta^{\prime\prime}}\arrow{d}{\beta^\prime} & X^\prime[1] \oplus Y[1] \arrow{r}{\gamma^{\prime\prime}}\arrow{d}{\id_{X^\prime \oplus Y}[1]} & X^\prime[1] \oplus Y[1] \oplus Y^\prime[1]\arrow{d}{\beta[1]}\\
-    Y\prime \oplus Z \arrow{r}{\varphi} & Z^\prime \oplus X[1] \arrow{r}{\psi} & X^\prime[1] \oplus Y[1] \arrow{r}{\beta[1] \circ \gamma^{\prime\prime}} & Y^\prime[1] \oplus Z[1]
+    X^\prime \oplus Y^\prime \oplus Y \arrow{r}{\delta}\arrow{d}{\beta} & Y^\prime \arrow{r}{\beta^{\prime\prime}}\arrow{d}{\beta^\prime} & X^\prime[1] \oplus Y[1] \arrow{r}{\gamma^{\prime\prime}}\arrow{d}{\id_{X^\prime[1] \oplus Y[1]}} & X^\prime[1] \oplus Y[1] \oplus Y^\prime[1]\arrow{d}{\beta[1]}\\
+    Y^\prime \oplus Z \arrow{r}{\varphi} & Z^\prime \oplus X[1] \arrow{r}{\psi} & X^\prime[1] \oplus Y[1] \arrow{r}{\beta[1] \circ \gamma^{\prime\prime}} & Y^\prime[1] \oplus Z[1]
   \end{tikzcd}$$
   
-  We first construct the first row.
-  We have a distinguished triangle
+  %We construct the first row.
+  %We have a distinguished triangle
+  %$$\begin{tikzcd}
+  %  X \arrow{r}{f} & Y \arrow{r}{g} & Z \arrow{r}{h} & X[1]
+  %\end{tikzcd}$$
+  %and we form the morphisms
+  %$$\begin{tikzcd}
+  %  & & X^\prime \arrow[swap]{lldd}{\id_{X^\prime}}\arrow{rrdd}{f^\prime}\arrow[dashed,yshift=-1.5ex]{dd}{\exists !\id_{X^\prime} \times f^\prime}\\
+  %  \\
+  %  X^\prime & & X^\prime \oplus Y^\prime \arrow[swap]{ll}{p_{X^\prime}}\arrow{rr}{p_{Y^\prime}} & & Y^\prime
+  %\end{tikzcd}
+  %\ \text{and}\ 
+  %\begin{tikzcd}
+  %  X^\prime \arrow{rrd}{\imath_{X^\prime}}\arrow[swap,bend right]{rrdd}{-f^\prime} & & & & Y^\prime \arrow[swap]{lld}{\imath_{Y^\prime}}\arrow[bend left]{lldd}{\id_{Y^\prime}}\\
+  %  & & X^\prime \oplus Y^\prime \arrow[dashed]{d}{\exists ! -f \oplus \id_{Y^\prime}}\\
+  %  & & Y^\prime
+  %\end{tikzcd}$$
+  %then note that by construction we have
+  %$$(f^\prime \circ p_{X^\prime} + (-f \oplus \id_{Y^\prime})) \circ \imath_{X^\prime} = f^\prime - f^\prime = 0$$
+  %as well as
+  %$$(f^\prime \circ p_{X^\prime} + (-f \oplus \id_{Y^\prime})) \circ \imath_{Y^\prime} = 0 + \id_{Y^\prime}$$
+  %which implies 
+  %$$p_{Y^\prime} = f^\prime \circ p_{X^\prime} + (-f \oplus \id_{Y^\prime}).$$
+  %Taking the sequence
+  %$$\begin{tikzcd}
+  %  X^\prime \arrow{rr}{\id_{X^\prime} \times f^\prime} & &
+  %  X^\prime \oplus Y^\prime \arrow{rr}{-f^\prime \oplus \id_{Y^\prime}} & &
+  %  Y^\prime \arrow{r}{0} & 
+  %  X^\prime[1].
+  %\end{tikzcd}$$
+  %we see it is contractible with homotopy given by
+  %$$\begin{tikzcd}
+  %  X^\prime \arrow{rr}{\id_{X^\prime} \times f^\prime} & &
+  %  X^\prime \oplus Y^\prime \arrow{rr}{-f^\prime \oplus \id_{Y^\prime}}\arrow[swap]{lld}{p_{X^\prime}} & &
+  %  Y^\prime \arrow{r}{0}\arrow[swap]{lld}{\imath_{Y^\prime}} &
+  %  X^\prime[1] \arrow[swap]{ld}{0}\\
+  %  X^\prime \arrow{rr}{\id_{X^\prime} \oplus f^\prime} & &
+  %  X^\prime \oplus Y^\prime \arrow{rr}{-f^\prime \oplus \id_{Y^\prime}} & &
+  %  Y^\prime \arrow{r}{0} & 
+  %  X^\prime[1]\\
+  %\end{tikzcd},$$
+  %since if we let $\varphi = \id_{X^\prime} \times f^\prime \circ p_{X^\prime} + \imath_{Y^\prime} \circ -f^\prime \oplus \id_{Y^\prime}$, then
+  %we get a commutative diagram
+  %$$\begin{tikzcd}
+  %  & X^\prime \oplus Y^\prime \arrow{ld}{p_{X^\prime}}\arrow[swap]{rd}{p_{Y^\prime}}\arrow{d}{\varphi}\\
+  %  X^\prime & X^\prime \oplus Y^\prime \arrow[swap]{l}{p_{X^\prime}}\arrow{r}{p_{Y^\prime}}& Y^\prime
+  %\end{tikzcd}$$
+  %which implies by unicity that $\varphi = \id_{X^\prime \oplus Y^\prime}$.
+  %We now obtain the first row of the diagram by taking the coproduct of these triangles, with morphisms induced by the universal properties.
+  The first row is just the coproduct of the distinguished triangles
   $$\begin{tikzcd}
     X \arrow{r}{f} & Y \arrow{r}{g} & Z \arrow{r}{h} & X[1]
-  \end{tikzcd}$$
-  and we form the morphisms
-  $$\begin{tikzcd}
-    & & X^\prime \arrow[swap]{lldd}{\id_{X^\prime}}\arrow{rrdd}{f^\prime}\arrow[dashed,yshift=-1.5ex]{dd}{\exists !\id_{X^\prime} \times f^\prime}\\
-    \\
-    X^\prime & & X^\prime \oplus Y^\prime \arrow[swap]{ll}{p_{X^\prime}}\arrow{rr}{p_{Y^\prime}} & & Y^\prime
   \end{tikzcd}
   \ \text{and}\ 
   \begin{tikzcd}
-    X^\prime \arrow{rrd}{\imath_{X^\prime}}\arrow[swap,bend right]{rrdd}{-f^\prime} & & & & Y^\prime \arrow[swap]{lld}{\imath_{Y^\prime}}\arrow[bend left]{lldd}{\id_{Y^\prime}}\\
-    & & X^\prime \oplus Y^\prime \arrow[dashed]{d}{\exists ! -f \oplus \id_{Y^\prime}}\\
-    & & Y^\prime
+    X^\prime \arrow{r}{\imath_{X^\prime}} & X^\prime \oplus Y^\prime \arrow{r}{p_{Y^\prime}} & Y^\prime \arrow{r}{0} & X^\prime[1].
   \end{tikzcd}$$
-  then note that by construction we have
-  $$(f^\prime \circ p_{X^\prime} + (-f \oplus \id_{Y^\prime})) \circ \imath_{X^\prime} = f^\prime - f^\prime = 0$$
-  as well as
-  $$(f^\prime \circ p_{X^\prime} + (-f \oplus \id_{Y^\prime})) \circ \imath_{Y^\prime} = 0 + \id_{Y^\prime}$$
-  which implies 
-  $$p_{Y^\prime} = f^\prime \circ p_{X^\prime} + (-f \oplus \id_{Y^\prime}).$$
-  Taking the sequence
+  To simplify notation, we denote morphisms induced by the universal property of coproducts as matrices.
+  With this notation, we have 
+  $$\alpha = \left(\begin{matrix}
+    1 & 0\\
+    0 & 0\\
+    0 & f
+  \end{matrix}\right),
+  \beta = \left(\begin{matrix}
+    0 & 1 & 0\\
+    0 & 0 & g
+  \end{matrix}\right),
+  \, \text{and}\ 
+  \gamma = \left(\begin{matrix}
+    0 & 0\\
+    0 & h
+  \end{matrix}\right).$$
+
+  For the second row, we note that we have a morphism
   $$\begin{tikzcd}
-    X^\prime \arrow{rr}{\id_{X^\prime} \times f^\prime} & &
-    X^\prime \oplus Y^\prime \arrow{rr}{-f^\prime \oplus \id_{Y^\prime}} & &
-    Y^\prime \arrow{r}{0} & 
-    X^\prime[1].
+    X \arrow{r}{\id_X}\arrow{d}{u} & X \arrow{r}\arrow{d}{f^\prime \circ u} & 0 \arrow{r}\arrow{d} & X[1]\arrow{d}{u[1]}\\
+      X^\prime \arrow{r}{f^\prime} & Y^\prime \arrow{r}{g^\prime} & Z^\prime \arrow{r}{h^\prime} & X^\prime[1]
   \end{tikzcd}$$
-  we see it is contractible with homotopy given by
+  with the top row contractible and the bottom row distinguished.
+  Hence the mapping cone
+  $$\begin{tikzcd}[ampersand replacement=\&]
+    X^\prime \oplus X \arrow{rr}{\delta \circ \alpha = \left(f^\prime\ u^\prime \circ f\right)} 
+    \& \& Y^\prime \arrow{r}{\beta^\prime = \left(\begin{matrix}g^\prime\\0\end{matrix}\right)}
+    \& Z^\prime \oplus X[1] 
+    \arrow{rrr}{\gamma^\prime = \left(\begin{matrix}h^\prime & u[1]\\0 & -1\end{matrix}\right)}
+    \& \& \& X^\prime[1] \oplus X[1]
+  \end{tikzcd}$$
+  is distinguished, which gives the second row.
+  
+  For the the third row, we define $\delta$ by the diagram
   $$\begin{tikzcd}
-    X^\prime \arrow{rr}{\id_{X^\prime} \times f^\prime} & &
-    X^\prime \oplus Y^\prime \arrow{rr}{-f^\prime \oplus \id_{Y^\prime}}\arrow[swap]{lld}{p_{X^\prime}} & &
-    Y^\prime \arrow{r}{0}\arrow[swap]{lld}{\imath_{Y^\prime}} &
-    X^\prime[1] \arrow[swap]{ld}{0}\\
-    X^\prime \arrow{rr}{\id_{X^\prime} \oplus f^\prime} & &
-    X^\prime \oplus Y^\prime \arrow{rr}{-f^\prime \oplus \id_{Y^\prime}} & &
-    Y^\prime \arrow{r}{0} & 
-    X^\prime[1]\\
+    X^\prime \oplus Y^\prime \arrow{rd}\arrow[bend right,swap]{rdd}{f^\prime \oplus \id_{Y^\prime}} & & Y \arrow{ld}\arrow[bend left]{ldd}{u^\prime}\\
+    & X^\prime \oplus Y^\prime \oplus Y \arrow[dashed]{d}{\exists !\delta}\\
+    & Y^\prime
   \end{tikzcd},$$
-  since if we let $\varphi = \id_{X^\prime} \times f^\prime \circ p_{X^\prime} + \imath_{Y^\prime} \circ -f^\prime \oplus \id_{Y^\prime}$, then
-  we get a commutative diagram
+  giving
+  $\delta = \left(\begin{matrix}
+    f^\prime & 1 & u^\prime
+    \end{matrix}\right)$,
+  and we note that $\delta$ makes the diagram
   $$\begin{tikzcd}
-    & X^\prime \oplus Y^\prime \arrow{ld}{p_{X^\prime}}\arrow[swap]{rd}{p_{Y^\prime}}\arrow{d}{\varphi}\\
-    X^\prime & X^\prime \oplus Y^\prime \arrow[swap]{l}{p_{X^\prime}}\arrow{r}{p_{Y^\prime}}& Y^\prime
+    X^\prime \oplus X \arrow{r}{\alpha}\arrow{d}{\id_{X^\prime \oplus X}} & X^\prime \oplus Y^\prime \oplus Y \arrow{d}{\delta} \\
+    X^\prime \oplus X \arrow{r}{\left(f^\prime\ u^\prime \circ f\right)} & Y^\prime
   \end{tikzcd}$$
-  which implies by unicity that $\varphi = \id_{X^\prime \oplus Y^\prime}$.
-  We now obtain the first row of the diagram by taking the coproduct of these triangles.
+  commute.
+  Write 
+  $$-\gamma^{\prime\prime}[-1] = \left(\begin{matrix}
+    1 & 0\\
+    -f^\prime & -u^\prime\\
+    0 & 1 \end{matrix}\right)$$
+  and consider the triangle
+  $$\begin{tikzcd}[ampersand replacement=\&]
+    X^\prime \oplus Y \arrow{rrr}{-\gamma^{\prime\prime}[-1]} \&\&\& X^\prime \oplus Y^\prime \oplus Y \arrow{r}{\delta} \& Y^\prime \arrow{r}{0} \& X^\prime[1] \oplus Y[1].
+  \end{tikzcd}$$
+  We note that if we denote by
+  $$\begin{tikzcd}[ampersand replacement=\&]
+    \left(\begin{matrix}0\\1\\0\end{matrix}\right) \colon Y^\prime \arrow{r} \& X^\prime \oplus Y^\prime \oplus Y 
+  \end{tikzcd}$$
+  the canonical coproduct injection, and by
+  $$\begin{tikzcd}[ampersand replacement=\&]
+    \left(\begin{matrix}1 & 0 & 0\\0 & 0 & 1\end{matrix}\right) \colon X^\prime \oplus Y^\prime \oplus Y \arrow{r} \& X^\prime \oplus Y
+  \end{tikzcd}$$
+  the canonical product projection, then it's clear that
+  %$$\left(\begin{matrix}
+  %  1 & 0 & 0\\
+  %  0 & 0 & 1
+  %\end{matrix}\right)( -\gamma^{\prime\prime}[1]) = \id_{X^\prime \oplus Y},\,
+  %-\gamma^{\prime\prime}[1] \left(\begin{matrix}
+  %  1 & 0 & 0\\
+  %  0 & 0 & 1
+  %\end{matrix}\right) 
+  %+ \left(\begin{matrix}
+  %  0\\
+  %  1\\
+  %  0\end{matrix}\right)
+  %  \delta
+  %  = \id_{X^\prime \oplus Y^\prime \oplus Y},\,\text{and}\
+  %  \delta\left(\begin{matrix}
+  %  0\\
+  %  1\\
+  %  0\end{matrix}\right) = \id_{Y^\prime}.$$
+  this gives rise to a contraction
+    $$\begin{tikzcd}
+      X^\prime \oplus Y \arrow{r}{-\gamma^{\prime\prime}[1]} & X^\prime \oplus Y^\prime \oplus Y \arrow{r}{\delta}\arrow[swap]{ld} & Y^\prime \arrow[swap]{ld}\arrow{r}{0} & X^\prime[1] \oplus Y[1]\arrow[swap]{ld}{0}\\
+      X^\prime \oplus Y \arrow{r}{-\gamma^{\prime\prime}[1]} & X^\prime \oplus Y^\prime \oplus Y \arrow{r}{\delta} & Y^\prime \arrow{r}{0} & X^\prime[1] \oplus Y[1].
+    \end{tikzcd}.$$
+  We take the third row the be the rotate
+  $$\begin{tikzcd}
+      X^\prime \oplus Y^\prime \oplus Y \arrow{r}{\delta} & Y^\prime \arrow{r}{\beta^{\prime\prime}=0} & X^\prime[1] \oplus Y^\prime[1] \arrow{r}{\gamma^{\prime\prime}} & X^\prime[1] \oplus Y^\prime[1] \oplus Y[1].
+  \end{tikzcd}$$
+  These three triangles are sufficient by (TR4) to determine the remainder of the morphisms in the octohedral diagram.
+  
+  We define $u^{\prime\prime}$ by the composition of $\varphi$ with the canonical injection and projection
+  $$\begin{tikzcd}
+    Z \arrow{r}\arrow[swap]{rrd}{u^{\prime\prime}} & Y^\prime \oplus Z \arrow{r}{\varphi} & Z^\prime \oplus X[1]\arrow{d}\\
+    & & Z^\prime
+  \end{tikzcd}$$
+  With this, it remains only to show that the mapping cone
+  $$\begin{tikzcd}[ampersand replacement=\&]
+    X^\prime \oplus Y \arrow{rr}{\left(\begin{matrix}f^\prime & u^\prime\\0 & -g\end{matrix}\right)}
+    \&\& Y^\prime \oplus Z \arrow{rr}{\left(\begin{matrix}g^\prime & u^{\prime\prime}\\0 & -h\end{matrix}\right)}
+    \&\& Z^\prime \oplus X[1] \arrow{rr}{\left(\begin{matrix}h^\prime & u[1]\\0 & -f[1]\end{matrix}\right)}
+    \&\& X^\prime[1] \oplus Y[1]
+  \end{tikzcd}$$
+  is distinguished.
+  Towards this end, we observe that 
+  $$\psi = \left(\begin{matrix}
+    -h^\prime & -u[1]\\
+    0 & f[1]
+  \end{matrix}\right)$$ 
+  is determined by the composition $\alpha[1] \circ \gamma^\prime = \gamma^{\prime\prime} \circ \psi$.
+  The morphism 
+  $$\varphi = \left(\begin{matrix}
+    g^\prime & u^{\prime\prime}\\
+    0 & -h
+  \end{matrix}\right)$$ 
+  is determined by the compositions
+  $\varphi \circ \beta = \beta^\prime \circ \delta$ 
+  and 
+  $\gamma = \gamma^\prime \circ \varphi$.
+  Taking a rotate of the fourth row of the octohedral diagram gives rise to an isomorphism of triangles
+  $$\begin{tikzcd}[ampersand replacement=\&]
+    X^\prime \oplus Y \arrow{dd}{-1}\arrow{rr}{-(\beta \circ \gamma^{\prime\prime}[-1])} \&\& Y^\prime \oplus Z \arrow{dd}{1}\arrow{rr}{\varphi} \&\& Z^\prime \oplus X[1] \arrow{dd}{1}\arrow{rr}{\psi} \&\& X^\prime[1] \oplus Y[1]\arrow{dd}{-1}\\
+    \\
+    X^\prime \oplus Y \arrow{rr}{\left(\begin{matrix}f^\prime & u^\prime\\0 & -g\end{matrix}\right)}
+    \&\& Y^\prime \oplus Z \arrow{rr}{\left(\begin{matrix}g^\prime & u^{\prime\prime}\\0 & -h\end{matrix}\right)}
+    \&\& Z^\prime \oplus X[1] \arrow{rr}{\left(\begin{matrix}h^\prime & u[1]\\0 & -f[1]\end{matrix}\right)}
+    \&\& X^\prime[1] \oplus Y[1]
+  \end{tikzcd}.$$
+  Therefore the mapping cone is distinguished, as desired.
 \end{proof}
 \end{prop}
 
