@@ -1,0 +1,1101 @@
+\documentclass[dissertation.tex]{subfiles}
+\begin{document}
+%From Neeman, Triangulated Categories.
+\subsection{Verdier Localization}
+Throughout this section, let $\T$ be a triangulated category and let $\T^\prime$ be a strictly full triangulated subcategory.
+\begin{defn}
+  Let $\T_1, \T_2$ be triangulated categories and let $\F \colon \T_1 \rightarrow \T_2$ be a triangulated functor.
+  The kernel of $\F$ is the inclusion of the full subcategory $\mathscr{K}$ of $\T_1$ with objects $K$ such that $\F(K) \cong 0$.
+\end{defn}
+
+\begin{lem}[\cite{NeemanTCats}]
+  Let $\T_1, \T_2$ be  triangulated categories, $\F \colon \T_1 \rightarrow \T_2$ a triangulated functor, and $\ker{\F} \colon \mathscr{K} \rightarrow \T_1$ its kernel.  
+  Then $\mathscr{K}$ is a strictly full, saturated triangulated subcategory of $\T_1$.
+  
+  \begin{proof}
+    First we note that $\mathscr{K}$ is strictly full by definition.
+    Indeed, if $X$ is an object of $\T_1$ isomorphic to an object $K$ of $\mathscr{K}$, then 
+    $$\F(X) \cong \F(K) \cong 0$$
+    implies $X$ is an object of $\mathscr{K}$.
+    
+    That $\mathscr{K}$ is triangulated now follows from observing that if we have a morphism 
+    \begin{tikzcd}K^\prime \arrow{r}{f} & K\end{tikzcd}
+      of $\mathscr{K}$, then by (TR1) we may embed $f$ into a distinguished triangle of $\T_1$,
+      $$\begin{tikzcd}
+        K^\prime \arrow{r}{f} & K \arrow{r}{g} & Z \arrow{r}{h} & K^\prime[1]
+      \end{tikzcd}$$
+      which gives an isomorphism of distinguished triangles in $\T_2$
+      $$\begin{tikzcd}
+        \F(K^\prime) \arrow{r}{\F(f)}\arrow{d} & \F(K) \arrow{r}{\F(g)}\arrow{d} & \F(Z) \arrow{r}{\F(h)}\arrow{d} & \F(K^\prime)[1]\arrow{d}\\
+        0 \arrow{r} & 0 \arrow{r} & \F(Z) \arrow{r} & 0
+      \end{tikzcd}$$
+      because $\F$ is triangulated.
+      It then follows from Proposition~\ref{isotriangle} that $Z$ is an object of $\mathscr{K}$, so we take the distinguished triangles of $\mathscr{K}$ to be the distinguished triangles
+      $$\begin{tikzcd}
+        K^\prime \arrow{r} & K \arrow{r} & K^{\prime\prime} \arrow{r} & K^\prime[1]
+      \end{tikzcd}$$
+      of $\T_1$ with $K,K^\prime, K^{\prime\prime}$ objects of $\mathscr{K}$.
+      
+      Finally, we see $\mathscr{K}$ is saturated, for if $X \oplus Y$ is isomorphic to some object $K$ of $\mathscr{K}$, then 
+      $$\F(X) \oplus \F(Y) \cong \F(X \oplus Y) \cong \F(K) \cong 0$$
+      implies $F(X) \cong 0$ and $F(Y) \cong 0$.
+      Therefore $X$ and $Y$ are objects of $\mathscr{K}$.
+  \end{proof}
+\end{lem}
+
+\begin{defn}[\cite{NeemanTCats}]
+  %Let $\T$ be a triangulated category and let $\T^\prime$ be a strictly full triangulated subcategory.
+  For any two objects $X$ and $Y$ of $\T$, define the collection of morphisms $\operatorname{Mor}_{\T^\prime}(X,Y)$ to be the morphisms $f \in \T(X,Y)$ such that there exists some object $Z$ of $\T^\prime$ and a distinguished triangle
+  $$\begin{tikzcd}
+    X \arrow{r}{f} & Y \arrow{r}{g} & Z \arrow{r}{h} & X[1].
+  \end{tikzcd}$$
+\end{defn}
+
+\begin{defn}[\cite{NeemanTCats}]
+  %Let $\T$ be a triangulated category and let $\T^\prime$ be a strictly full triangulated subcategory.
+  Define the subcategory $\operatorname{Mor}_{\T^\prime}$ of $\T$ to be the category with objects those of $\T$ and morphisms $\operatorname{Mor}_{\T^\prime}(X,Y)$ for objects $X$ and $Y$ of $\T$.
+\end{defn}
+
+\begin{lem}[\cite{NeemanTCats}]\label{moriscat}
+  Let $\T^\prime$ be a strictly full triangulated subcategory of a triangulated category $\T$.
+  \begin{enumerate}
+    \item
+      Every isomorphism $f : X \rightarrow Y$ of $\T$ is in $\operatorname{Mor}_{\T^\prime}(X,Y)$.
+    \item
+      Let $f : X \rightarrow Y$ and $g : Y \rightarrow Z$ be morphisms of $\T$.
+      If any two of 
+      $f \in \operatorname{Mor}_{\T^\prime}(X,Y)$,
+      $g \in \operatorname{Mor}_{\T^\prime}(Y,Z)$,
+      $g \circ f \in \operatorname{Mor}_{\T^\prime}(X,Z)$
+      hold, then so does the third. 
+  \end{enumerate}
+  
+  \begin{proof}
+    \begin{enumerate}
+    \item
+      If $f$ is an isomorphism, then by Proposition~\ref{isotriangle}
+      $$\begin{tikzcd}
+        X \arrow{r}{f} & Y \arrow{r} & 0 \arrow{r} & X[1]
+      \end{tikzcd}$$
+      is a distinguished triangle, and since $\T^\prime$ is an additive subcategory of $\T$, $0$ is an object of $\T^\prime$.
+      Thus $f \in \operatorname{Mor}_{\T^\prime}(X,Y)$ and, in particular, $\id_X \in \operatorname{Mor}_{\T^\prime}(X,X)$.
+    \item
+      By (TR1) and (TR4) we have a commutative octohedral diagram
+      $$\begin{tikzcd}
+        X \arrow{r}{f}\arrow{d}{\id_X} & Y \arrow{r}{i}\arrow{d}{g} & C^\prime \arrow{r}{\ell}\arrow{d}{u} & X[1] \arrow{d}{\id_{X[1]}}\\
+        X \arrow{r}{g \circ f}\arrow{d}{f} & Z\arrow{r}{j}\arrow{d}{\id_{Z}} & \arrow{r} C \arrow{r}{m}\arrow{d}{v} & X[1]\arrow{d}{f[1]}\\
+        Y \arrow{r}{g}\arrow{d}{i} & Z \arrow{r}{k}\arrow{d}{j} & C^{\prime\prime}\arrow{d}{\id_{C^{\prime\prime}}} \arrow{r}{n} & Y[1]\arrow{d}{i[1]}\\
+        C^\prime \arrow{r}{u} & C \arrow{r}{v} & C^{\prime\prime}\arrow{r}{i[1] \circ m} & C^\prime[1]
+      \end{tikzcd}$$
+      with distinguished rows.
+      To say that any two of 
+      $f \in \operatorname{Mor}_{\T^\prime}(X,Y)$,
+      $g \in \operatorname{Mor}_{\T^\prime}(Y,Z)$,
+      $g \circ f \in \operatorname{Mor}_{\T^\prime}(X,Z)$
+      hold is to say that any two of $C^\prime, C, C^{\prime\prime}$ are objects of $\T^\prime$.
+      Since $\T^\prime$ is a strictly full triangulated subcategory, the last row of the diagram implies by Proposition~\ref{fulltriangles} that if any two of $C^\prime, C, C^{\prime\prime}$ are objects of $\T^\prime$, then so is the third.
+      Therefore if any two of 
+      $f \in \operatorname{Mor}_{\T^\prime}(X,Y)$,
+      $g \in \operatorname{Mor}_{\T^\prime}(Y,Z)$,
+      $g \circ f \in \operatorname{Mor}_{\T^\prime}(X,Z)$
+      hold, then so does the third.
+    \end{enumerate}
+  \end{proof}
+\end{lem}
+
+\begin{defn}
+  By the previous Lemma, we are justified in defining the subcategory $\operatorname{Mor}_{\T^\prime}$ to be the category with objects those of $\T$ and morphisms $\operatorname{Mor}_{\T^\prime}(X,Y)$ for any pair of objects $X$ and $Y$ of $\T$.
+\end{defn}
+
+\begin{prop}[\cite{NeemanTCats}]
+  %Let $\T$ be a triangulated category and let $T^\prime$ be a strictly full triangulated subcategory.
+  The morphisms of $\Mor{\T^\prime}$ are stable under homotopy pullback and homotopy pushout.
+  That is, given a homotopy cartesian diagram
+  $$\begin{tikzcd}
+    X \arrow{r}{f}\arrow{d}{u} & Y \arrow{d}{u^\prime}\\
+    X^\prime \arrow{r}{f^\prime} & Y^\prime
+  \end{tikzcd},$$
+  then 
+  $f \in \Mor{\T^\prime}(X,Y)$ 
+  if and only if 
+  $f^\prime \in \Mor{\T^\prime}(X^\prime, Y^\prime)$, and
+  $u \in \Mor{\T^\prime}(X,X^\prime)$ 
+  if and only if
+  $u^\prime \in \Mor{\T^\prime}(Y,Y^\prime)$.
+  
+  \begin{proof}
+    By simply rotating the diagram, it's enough to show the result for $f$ and $f^\prime$.
+    By Corollary~\ref{homotopycokernels} we may complete the homotopy cartesian diagram to morphism of distinguished triangles
+    $$\begin{tikzcd}
+      X \arrow{r}{f}\arrow{d}{u} & Y \arrow{r}{g}\arrow{d}{u^\prime} & Z \arrow{r}{h}\arrow{d}{\id_Z} & X[1]\arrow{d}{u[1]}\\
+      X^\prime \arrow{r}{f^\prime} & Y^\prime \arrow{r}{g^\prime} & Z \arrow{r}{u[1] \circ h} & X^\prime[1]
+    \end{tikzcd}$$
+    and it's clear from the definition that $f \in \Mor{\T^\prime}(X,Y)$ if and only if $f^\prime \in \Mor{\T^\prime}(X^\prime, Y^\prime)$.
+  \end{proof}
+\end{prop}
+
+\begin{defn}[\cite{NeemanTCats}]
+  %Let $\T$ be a triangulated category and let $\T^\prime$ be a strictly full triangulated subcategory.
+  Fix objects $X$ and $Y$ of $\T$.
+  Define a relation on diagrams $(Z,f,g)$ of the form 
+  $$\begin{tikzcd}
+    & Z\arrow{rd}{f}\arrow{ld}{g}\\
+    X & & Y
+  \end{tikzcd}$$
+  with $f \in \operatorname{Mor}_{\T^\prime}(Z,X)$,
+  $$(Z,f,g) \sim (Z^\prime, f^\prime, g^\prime)$$
+  if and only if there exists a third diagram $(Z^{\prime\prime}, f^{\prime\prime}, g^{\prime\prime})$ and a commutative diagram
+  $$\begin{tikzcd}
+    & Z\arrow[swap]{ld}{f}\arrow{rd}{g}\\
+    X & Z^{\prime\prime} \arrow[swap]{l}{f^{\prime\prime}}\arrow{r}{g^{\prime\prime}}\arrow{u}{u}\arrow[swap]{d}{v} & Y\\
+    & Z^\prime\arrow{ul}{f^\prime}\arrow[swap]{ur}{g^\prime}
+  \end{tikzcd}$$
+\end{defn}
+
+\begin{rmk}
+  Note that by Lemma~\ref{moriscat}, $u \in \Mor{\T^\prime}(Z^{\prime\prime},Z)$ and $v \in \Mor{\T^\prime}(Z^{\prime\prime}, Z^\prime)$.
+\end{rmk}
+
+\begin{lem}[\cite{NeemanTCats}]
+  The relation defined above is an equivalence relation.
+  
+  \begin{proof}
+    It's clear that the relation is reflexive and symmetric.
+    To see that it's transitive, assume that we have the relations $(Z_1,f_1,g_1) \sim (Z_2, f_2,g_2) \sim (Z_3,f_3,g_3)$
+    given by the commutative diagrams
+    $$\begin{tikzcd}
+      & Z_1\arrow[swap]{ld}{f_1}\arrow{rd}{g_1}\\
+      X & Z \arrow[swap]{l}{f}\arrow{r}{g}\arrow{u}{u}\arrow[swap]{d}{v} & Y\\
+      & Z_2\arrow{ul}{f_2}\arrow[swap]{ur}{g_2}
+    \end{tikzcd}
+    \ \text{and}\ 
+    \begin{tikzcd}
+      & Z_2\arrow[swap]{ld}{f_2}\arrow{rd}{g_2}\\
+      X & Z^\prime \arrow[swap]{l}{f^\prime}\arrow{r}{g^\prime}\arrow{u}{u^\prime}\arrow[swap]{d}{v^\prime} & Y\\
+      & Z_3\arrow{ul}{f_3}\arrow[swap]{ur}{g_3}
+    \end{tikzcd}$$
+    Take the homotopy pullback
+    $$\begin{tikzcd}
+      Z^{\prime\prime} \arrow{r}\arrow{d} & Z\arrow{d}{v}\\
+      Z^\prime \arrow{r}{u^\prime} & Z_2.
+    \end{tikzcd}$$
+    which induces a commutative diagram
+    $$\begin{tikzcd}
+      & & Z_1 \arrow{lldd}{f_1}\arrow{rrdd}{g_1}\\
+      & & Z\arrow{u}{u}\arrow{ld}{v}\arrow{rd}{v}\\
+      X & Z_2\arrow{l}{f_2} & Z^{\prime\prime}\arrow{u}\arrow{d} & Z_2\arrow{r}{g_2} & Y\\
+      & & Z^\prime\arrow{lu}{u^\prime}\arrow{ru}{u^\prime}\arrow{d}{v^\prime}\\
+      & & Z_3\arrow{lluu}{f_3} \arrow{rruu}{g_3}
+    \end{tikzcd}$$
+    %By Lemma~\ref{moriscat} it follows that 
+    %$u \in \Mor{\T^\prime}(Z,Z_1)$, 
+    %$u^\prime \in \Mor{\T^\prime}(Z^\prime, Z_2)$, 
+    %$v \in \Mor{\T^\prime}(Z,Z_2)$, and 
+    %$v^\prime \in \Mor{\T^\prime}(Z^\prime,Z_3)$ 
+    %because 
+    %$f \in \Mor{\T^\prime}(Z,X)$, 
+    %$f^\prime \in \Mor{\T^\prime}(Z^\prime,X)$, 
+    %$g \in \Mor{\T^\prime}(Z,Y)$
+    %and 
+    %$g^\prime \in \Mor{\T^\prime}(Z^\prime,Y)$.
+    It now follows from the fact that morphisms of $\Mor{\T^\prime}$ are stable under homotopy pullback that this diagram gives the relation $(Z_1, f_1, g_1) \sim (Z_3, f_3, g_3)$.
+  \end{proof}
+\end{lem}
+
+\begin{defn}
+  %Let $\T$ be a triangulated category and $\T^\prime$ be a strictly full triangulated subcategory.
+  For objects $X$ and $Y$ of $\T$, denote by $\Hom{\T/\T^\prime}{X,Y}$ the equivalence classes of diagrams
+  $$\begin{tikzcd}
+    & Z \arrow[swap]{ld}{f}\arrow{rd}{g}\\
+    X & & Y
+  \end{tikzcd}$$
+  with $f \in \Mor{\T^\prime}{Z,X}$ with respect to the relation above.
+\end{defn}
+
+\begin{lem}[\cite{NeemanTCats}]
+  Given two diagrams
+  $$\begin{tikzcd}
+    & W_1 \arrow{ld}{f_1}\arrow{rd}{g_1}\\
+    X & & Y
+  \end{tikzcd}
+  \ \text{and}\ 
+  \begin{tikzcd}
+    & W_2 \arrow{ld}{f_2}\arrow{rd}{g_2}\\
+    Y & & Z
+  \end{tikzcd}$$
+  of $\T$ with $f_1 \in \Mor{\T^\prime}(X,Y)$ and $f_2 \in \Mor{\T^\prime}(Y,Z)$, we can compose these to a diagram
+  $$\begin{tikzcd}
+    W_3 \arrow{r}{u}\arrow{d}{v} & W_2 \arrow{r}{g_2}\arrow{d}{f_2} & Z\\
+    W_1 \arrow{r}{g_1}\arrow{d}{f_1} & Y\\
+    X
+  \end{tikzcd}$$
+  which gives a well defined equivalence class $[W_3,f_1 \circ v, g_2 \circ u] \in \Hom{\T/\T^\prime}{X,Z}.$
+  
+  \begin{proof}
+    We take $W_3$ to be the homotopy pullback of the diagram
+    \begin{tikzcd}
+      W_1 \arrow[swap]{r}{g_2} & Y & \arrow{l}{f_2} W_2
+    \end{tikzcd}.
+    Because morphisms of $\Mor{\T^\prime}$ are stable under homotopy pullback, $v \in \Mor{\T^\prime}(W_3,W_1)$ implies that $f_1 \circ v \in \Mor{\T^\prime}(W_3,X)$.
+    
+    To see this gives a well defined element of $\Hom{\T/\T^\prime}{X,Z}$, suppose that 
+    \begin{tikzcd}
+      W_1 & V \arrow[swap]{l}{v^\prime}\arrow{r}{u^\prime} & W_2
+    \end{tikzcd}
+    is any other homotopy pullback.
+    There is an induced isomorphism
+    $$\begin{tikzcd}[ampersand replacement=\&]
+      W_1 \oplus W_2 \arrow{rr}{\left(-g_1\ f_2\right)}\arrow{dd}{\left(\begin{matrix} 1 & 0\\0 & 1\end{matrix}\right)} \&\& Y \arrow{r}\arrow{dd}{1} \& W_3[1] \arrow{rr}{\left(\begin{matrix}-v[1]\\-u[1]\end{matrix}\right)}\arrow[dashed]{dd}{\exists \varphi} \&\& W_1[1] \oplus W_2[1]\arrow{dd}{\left(\begin{matrix}1 & 0\\0 & 1\end{matrix}\right)}\\
+      \\
+      W_1 \oplus W_2 \arrow{rr}{\left(-g_1\ f_2\right)} \&\& Y \arrow{r} \& V[1] \arrow{rr}{\left(\begin{matrix}-v^\prime[1] \\ -u^\prime[1]\end{matrix}\right)} \&\& W_1[1] \oplus W_2[1]
+    \end{tikzcd}$$
+    making the diagram
+    $$\begin{tikzcd}
+      & V \arrow[swap]{ld}{f_1 \circ v^\prime}\arrow{rd}{g_2 \circ u^\prime}\\
+      X & W_3 \arrow[swap]{l}{f_1 \circ v}\arrow{r}{g_2 \circ u}\arrow{u}{\varphi}\arrow{d}{\id_{W_3}}& Z\\
+      & W_3 \arrow{ul}{f_1 \circ v}\arrow[swap]{ur}{g_2 \circ u}
+    \end{tikzcd}$$
+    commute, as desired.
+  \end{proof}
+\end{lem}
+
+\begin{lem}[\cite{NeemanTCats}]
+  The map
+  $$\Hom{\T/\T^\prime}{X,Y} \times \Hom{\T/\T^\prime}{Y,Z} \to \Hom{\T/\T^\prime}{X,Z}$$
+  induced by the composition in the previous Lemma is well defined.
+  
+  \begin{proof}
+    We need only check that the map is independent of the choice of representatives.
+    Given a mapping
+    $$\left(\begin{tikzcd}
+      & W_1 \arrow{ld}{f_1}\arrow{rd}{g_1}\\
+      X & & Y
+    \end{tikzcd}, 
+    \begin{tikzcd}
+      & W_2 \arrow{ld}{f_2}\arrow{rd}{g_2}\\
+      Y & & Z
+    \end{tikzcd}\right) \to 
+    \begin{tikzcd}
+      W_3\arrow{r}{u}\arrow{d}{v} & W_2\arrow{r}{g_2}\arrow{d}{f_2} & Z\\
+      W_1 \arrow{r}{g_1}\arrow{d}{f_1}& Y\\
+      X
+    \end{tikzcd}$$
+    take two equivalent diagrams with equivalence given by the diagrams
+    $$\begin{tikzcd}
+      & W_1 \arrow[swap]{ld}{f_1}\arrow{rd}{g_1}\\
+      X & W \arrow[swap]{l}{f}\arrow{u}{\alpha}\arrow[swap]{d}{\beta}\arrow{r}{g} & Y\\
+      & W_1^\prime \arrow{ul}{f_1^\prime}\arrow[swap]{ur}{g_1^\prime}
+    \end{tikzcd}\ \text{and}\ 
+    \begin{tikzcd}
+      & W_2 \arrow[swap]{ld}{f_2}\arrow{rd}{g_2}\\
+      Y & W^\prime \arrow[swap]{l}{f^\prime}\arrow{u}{\alpha^\prime}\arrow{r}{g^\prime}\arrow[swap]{d}{\beta^\prime} & Z\\
+      & W_2^\prime \arrow{ul}{f_2^\prime}\arrow[swap]{ur}{g_2^\prime}
+    \end{tikzcd}$$
+    composing to 
+    $$\begin{tikzcd}
+      W_3^\prime \arrow{r}{u^\prime}\arrow{d}{v^\prime} & W_2^\prime \arrow{r}{g_2^\prime}\arrow{d}{f_2^\prime} & Z\\
+      W_1^\prime \arrow{d}{f_1^\prime}\arrow{r}{g_1^\prime}& Y\\
+      X
+    \end{tikzcd}$$
+    Take the homotopy pullback
+    $$\begin{tikzcd}
+      W^{\prime\prime} \arrow{r}{\gamma}\arrow{d}{\delta} & W^\prime\arrow{d}{f^\prime}\\
+    W \arrow{r}{g} & Y
+  \end{tikzcd}$$
+    and note that $\delta \in \Mor{\T^\prime}(W^{\prime\prime},W)$.
+    By (TR3) we get morphisms
+    $$\begin{tikzcd}[ampersand replacement=\&]
+      W \oplus W^\prime \arrow{rr}{\left(\begin{matrix}-g & f^\prime\end{matrix}\right)}\arrow{dd}{\left(\begin{matrix}\alpha & 0\\0 & \alpha^\prime\end{matrix}\right)} \&\& Y \arrow{r}\arrow{dd}{\id_Y} \& W^{\prime\prime}[1] \arrow{rr}{\left(\begin{matrix}-\delta[1]\\-\gamma[1]\end{matrix}\right)}\arrow[dashed]{dd}{\exists \alpha^{\prime\prime}} \&\& W[1] \oplus W^\prime[1] \arrow{dd}{\left(\begin{matrix}\alpha[1] & 0\\0 & \alpha^\prime[1]\end{matrix}\right)}\\
+      \\
+      W_1 \oplus W_2 \arrow{rr}{\left(\begin{matrix}-g_1 & f_2\end{matrix}\right)} \&\& Y \arrow{r} \& W_3[1] \arrow{rr}{\left(\begin{matrix}-v[1]\\-u[1]\end{matrix}\right)} \&\& W_1[1] \oplus W_2[1]
+    \end{tikzcd}$$
+    and
+    $$\begin{tikzcd}[ampersand replacement=\&]
+      W \oplus W^\prime \arrow{rr}{\left(\begin{matrix}-g & f^\prime\end{matrix}\right)}\arrow{dd}{\left(\begin{matrix}\beta & 0\\0 & \beta^\prime\end{matrix}\right)} \&\& Y \arrow{r}\arrow{dd}{\id_Y} \& W^{\prime\prime}[1] \arrow{rr}{\left(\begin{matrix}-\delta[1]\\-\gamma[1]\end{matrix}\right)}\arrow[dashed]{dd}{\exists \beta^{\prime\prime}} \&\& W[1] \oplus W^\prime[1] \arrow{dd}{\left(\begin{matrix}\beta[1] & 0\\0 & \beta^\prime[1]\end{matrix}\right)}\\
+      \\
+      W_1^\prime \oplus W_2^\prime \arrow{rr}{\left(\begin{matrix}-g_1^\prime & f_2^\prime\end{matrix}\right)} \&\& Y \arrow{r} \& W_3^\prime[1] \arrow{rr}{\left(\begin{matrix}-v^\prime[1]\\-u^\prime[1]\end{matrix}\right)} \&\& W_1^\prime[1] \oplus W_2^\prime[1]
+    \end{tikzcd}$$
+    because the left hand squares commute in each.
+    The right hand square of each diagram implies that we have a commutative diagram
+    $$\begin{tikzcd}
+      & & W_3\arrow[swap]{ld}{v}\arrow{rd}{u}\\
+      & W_1\arrow[swap]{ld}{f_1} & & W_2 \arrow{rd}{g_2}\\
+      X & W \arrow[swap]{l}{f}\arrow{u}{\alpha}\arrow[swap]{d}{\beta} & W^{\prime\prime}\arrow[swap]{l}{\delta}\arrow{r}{\gamma}\arrow{uu}{\alpha^{\prime\prime}[-1]}\arrow[swap]{dd}{\beta{\prime\prime}[-1]} & W^\prime\arrow{r}{g}\arrow{u}{\alpha^\prime}\arrow[swap]{d}{\beta^\prime} & Z\\
+      & W_1^\prime\arrow{lu}{f_1^\prime} & & W_2^\prime \arrow[swap]{ru}{g_2^\prime}\\
+      & & W_3^\prime \arrow{lu}{v^\prime}\arrow[swap]{ru}{u^\prime}
+    \end{tikzcd}$$
+    which gives the desired equivalence between the two compositions.
+  \end{proof}
+\end{lem}
+
+\begin{lem}
+  For any object $X$ of $\T$, the diagram 
+  $$\begin{tikzcd}
+    & X\arrow[swap]{ld}{\id_X}\arrow{rd}{\id_X}\\
+    X & & X
+  \end{tikzcd}$$
+  represents the identity element of $\Hom{\T/\T^\prime}{X,X}$.
+  \begin{proof}
+    This essentially follows from the observation that for any morphism $f : X \to Y$ the diagram
+    $$\begin{tikzcd}
+      X \arrow{r}{f}\arrow{d}{\id_X} & Y\arrow{d}{\id_Y}\\
+      X \arrow{r}{f} & Y
+    \end{tikzcd}$$
+    is homotopy cartesian because we have a homotopy 
+    $$\begin{tikzcd}[ampersand replacement=\&]
+      X \arrow{rr}{\left(\begin{matrix}1\\f\end{matrix}\right)} \&\& X \oplus Y \arrow{rr}{\left(\begin{matrix}-f & 1\end{matrix}\right)}\arrow[swap]{llddd}{\left(\begin{matrix}1 & 0\end{matrix}\right)} \&\& Y \arrow{r}{0}\arrow[swap]{llddd}{\left(\begin{matrix}0\\1\end{matrix}\right)} \& X[1]\arrow[swap]{lddd}{0}\\
+      \\
+      \\
+      X \arrow{rr}{\left(\begin{matrix}1\\f\end{matrix}\right)} \&\& X \oplus Y \arrow{rr}{\left(\begin{matrix}-f & 1\end{matrix}\right)} \&\& Y \arrow{r}{0} \& X[1]
+    \end{tikzcd}$$
+    which shows the rows are contractible, hence distinguished.
+    
+    In particular, for $f \in \Mor{\T^\prime}(Z,X)$ and $g \in \Hom{\T}{Z,Y}$, the composition of the diagrams $(X,\id_X, \id_X)$ and $(Z,f,g)$ is represented by
+    $$\begin{tikzcd}
+      Z \arrow{r}{\id_Z}\arrow{d}{f} & Z\arrow{d}{f}\arrow{r}{g} & Y\\
+      X \arrow{r}{\id_X}\arrow{d}{\id_X} & X\\
+      X
+    \end{tikzcd}$$
+    which is visibly equivalent to 
+    $$\begin{tikzcd}
+      & Z\arrow[swap]{ld}{f}\arrow{rd}{g}\\
+      X & & Y
+    \end{tikzcd}.$$
+    The other case follows mutatis mutandis.
+  \end{proof}
+\end{lem}
+
+\begin{lem}[\cite{NeemanTCats}]
+  This composition is associative.
+  \begin{proof}
+    See \cite{NeemanTCats}, Lemma 2.1.19.
+  \end{proof}
+\end{lem}
+
+\begin{defn}
+  %Let $\T$ be a triangulated category and $\T^\prime$ a strictly full triangulated subcategory.
+  Define the category $\T/\T^\prime$ to be the category with objects those of $\T$ and morphisms $\Hom{\T/\T^\prime}{X,Y}$ as above.
+\end{defn}
+
+%This might be overkill...
+\begin{lem}
+  There is a functor $\pi \colon \T \to \T/\T^\prime$ that is the identity on objects and takes a morphism $f \colon X \to Y$ to the class of
+  $$\begin{tikzcd}
+    & X \arrow{rd}{f}\arrow[swap]{ld}{\id_X}\\
+    X & & Y\\
+  \end{tikzcd}$$
+  
+  \begin{proof}
+    It's clear from the definition that $\pi$ preserves identity morphisms.
+    Given two morphisms $f \in \Hom{\T}{X,Y}$ and $g \in \Hom{\T}{Y,Z}$, the composition of $(X,\id_X,f)$ with $(Y,\id_Y,g)$ is represented by the diagram
+    $$\begin{tikzcd}
+      X \arrow{r}{f}\arrow{d}{\id_X} & Y \arrow{d}{\id_Y}\arrow{r}{g} & Z\\
+      X \arrow{r}{f}\arrow{d}{\id_X} & Y\\
+      X
+    \end{tikzcd}$$
+    which is visibly equivalent to 
+    $$\begin{tikzcd}
+      & X \arrow[swap]{ld}{\id_X}\arrow{rd}{g \circ f}\\
+      X & & Z
+    \end{tikzcd}$$
+    Therefore $\pi(g \circ f) = \pi(g) \circ \pi(f)$, as desired.
+  \end{proof}
+\end{lem}
+
+\begin{lem}[\cite{NeemanTCats}]
+  The image of $f \in \Mor{\T^\prime}(X,Y)$ under $\pi$ is an isomorphism with inverse represented by
+  $$\begin{tikzcd}
+    & X \arrow[swap]{ld}{f}\arrow{rd}{\id_X}\\
+    Y & & X
+  \end{tikzcd}$$
+
+  \begin{proof}
+    Composing $(X,f,\id_X)$ with $(X,\id_X,f)$ gives the diagram
+    $$\begin{tikzcd}
+      X \arrow{r}{\id_X}\arrow{d}{\id_X} & X\arrow{d}{\id_X}\arrow{r}{f} & Y\\
+      X \arrow{r}{\id_X}\arrow{d}{f} & X\\
+      Y
+    \end{tikzcd}$$
+    which we see is equivalent to the identity via the diagram
+    $$\begin{tikzcd}
+       & X \arrow[swap]{ld}{f}\arrow{rd}{f}\\
+      Y & X\arrow[swap]{l}{f}\arrow{r}{f}\arrow{u}{\id_X}\arrow[swap]{d}{f} & Y\\
+      & Y\arrow{ul}{\id_Y}\arrow[swap]{ur}{\id_Y}
+    \end{tikzcd}$$
+
+    The composition of $(X,\id_X,f)$ with $(X,f,\id_X)$ is given by the diagram
+    $$\begin{tikzcd}
+      X^\prime \arrow{r}{u}\arrow{d}{v} & X\arrow{d}{f}\arrow{r}{\id_X} & X\\
+      X \arrow{r}{f}\arrow{d}{\id_X} & Y\\
+      X
+    \end{tikzcd}$$
+    and we obtain by (TR3) a morphism of distinguished triangles
+    $$\begin{tikzcd}[ampersand replacement=\&]
+      X \arrow{r}\arrow{ddd}{\left(\begin{matrix}1\\1\end{matrix}\right)} \& 0 \arrow{r}\arrow{ddd} \& X[1] \arrow{r}{-1}\arrow[dashed]{ddd}{\exists g[1]} \& X[1]\arrow{ddd}{\left(\begin{matrix}1\\1\end{matrix}\right)}\\
+      \\
+      \\
+      X \oplus X \arrow{r}{\left(\begin{matrix}-f & f\end{matrix}\right)} \& Y \arrow{r} \& X^\prime[1] \arrow{r}{\left(\begin{matrix}-u[1]\\-v[1]\end{matrix}\right)} \& X[1] \oplus X[1]
+    \end{tikzcd}$$
+    from which obtain a diagram
+    $$\begin{tikzcd}
+      & X \arrow[swap]{ld}{u}\arrow{rd}{v}\\
+      X & X\arrow[swap]{u}{g}\arrow{d}{\id_X}\arrow{r}{\id_X}\arrow[swap]{l}{\id_X} & X\\
+      & X \arrow{ul}{\id_X}\arrow[swap]{ur}{\id_X}
+    \end{tikzcd}$$
+    whence the composition is the identity element of $\Hom{\T/\T^\prime}{X,X}$.
+  \end{proof}
+\end{lem}
+
+\begin{lem}[\cite{NeemanTCats}]
+  Given $f \in \Mor{\T^\prime}(X,Y)$ and $g \in \Hom{\T}{X,Z}$, there is a factorization of $(X,f,g)$ in $\T/\T^\prime$ as the composition of $(X,f,\id_X)$ with $(X,\id_X, g)$.
+  \begin{proof}
+    This is immediate from the diagram
+    $$\begin{tikzcd}
+      X \arrow{r}{\id_X}\arrow{d}{\id_X} & X \arrow{d}{\id_X}\arrow{r}{g} & Z\\
+      X \arrow{r}{\id_X}\arrow{d}{f} & X\\
+      Y
+    \end{tikzcd}$$
+  \end{proof}
+\end{lem}
+
+\begin{prop}[\cite{NeemanTCats}]
+  The functor $\pi \colon \T \to \T/\T^\prime$ is universal for all functors $\F \colon \T \rightarrow \T^{\prime\prime}$ which take all morphisms of $\Mor{\T^\prime}$ to isomorphisms.
+  
+  \begin{proof}
+    First we observe that by definition the morphisms of $\Hom{\T/\T^\prime}{X,Y}$ are equivalence classes of diagrams
+    $$\begin{tikzcd}
+      & Z \arrow[swap]{ld}{f} \arrow{rd}{g}\\
+      X & & Y
+    \end{tikzcd}$$
+    with $f \in \Mor{\T^\prime}(Z,X)$.
+    By the previous Lemma we can express any such morphism as the composition
+    $\pi(g) \circ \pi(f)^{-1}$.
+    
+    Given such a functor, $\F$, we define $\overline{\F}: \T/\T^\prime \rightarrow \T^{\prime\prime}$ by $\overline{\F}(X) = \F(X)$ on objects and for $\pi(g) \circ \pi(f)^{-1} \in \Hom{\T/\T^\prime}{X,Y}$, we define
+    $$\overline{\F}\left(\pi(g) \circ \pi(f)^{-1}\right) = \F(g) \circ \F(f)^{-1}.$$
+    To see that this is well defined, suppose we have a relation given by the diagram
+    $$\begin{tikzcd}
+      & Z_1 \arrow[swap]{ld}{f_1}\arrow{rd}{g_1}\\
+      X & Z \arrow[swap]{l}{f} \arrow[swap]{u}{u} \arrow{d}{v} \arrow{r}{g} & Y\\
+      & Z_2 \arrow{ul}{f_2} \arrow[swap]{ur}{g_2}
+    \end{tikzcd}$$
+    Then we see $\overline{\F}\left(\pi(g_1) \circ \pi(f_1)^{-1}\right) = \overline{\F}\left(\pi(g_2)\circ\pi(f_2)^{-1}\right)$ from
+    \begin{eqnarray*}
+      \F(g_1)\circ\F(f_1)^{-1} 
+      &=& \left(\F(g)\circ\F(u)^{-1}\right)\circ\left(\F(u)\circ\F(f)^{-1}\right)\\
+      &=& \F(g)\circ\F(f)^{-1}\\
+      &=& \left(\F(g_2)\circ\F(v)\right)\circ\left(\F(v)^{-1}\circ\F(g_2)^{-1}\right)\\
+      &=& \F(g_2) \circ \F(f_2)^{-1}
+    \end{eqnarray*}
+    so that the image is independent of the choice of representative.
+    That $\overline{\F}$ is unique is clear.
+
+    Finally, assume that there is a factorization
+    $$\begin{tikzcd}
+      X \arrow{r}\arrow[swap]{rd}{f - g} & Z\arrow{d}\\
+      & Y
+    \end{tikzcd}$$
+  \end{proof}
+\end{prop}
+
+\begin{lem}[\cite{NeemanTCats}]
+  Let $f,g \in \Hom{\T}{X,Y}$ be given.
+  The following are equivalent:
+  \begin{enumerate}
+  \item
+    $\pi(f) = \pi(g)$,
+  \item
+    There exists a morphism $\alpha \in \Mor{\T^\prime}(W,X)$ with $f \circ \alpha = g \circ \alpha$, and
+  \item
+    There exists a factorization
+    $$\begin{tikzcd}
+      X \arrow{r}\arrow[swap]{rd}{f - g} & Z \arrow{d}\\
+      & Y
+    \end{tikzcd}$$
+    with $Z$ an object of $\T^\prime$.
+  \end{enumerate}
+  
+  \begin{proof}
+    Assume $\pi(f) = \pi(g)$.
+    By definition we have a diagram
+    $$\begin{tikzcd}
+      & X \arrow[swap]{ld}{\id_X} \arrow{rd}{f}\\
+      X & W \arrow[swap]{l}{\alpha}\arrow[swap]{u}{u}\arrow{d}{v}\arrow{r}{\beta}& Y\\
+      & X \arrow[swap]{ul}{\id_X}\arrow{ur}{g}
+    \end{tikzcd}$$
+    From the left side of the diagram we see $u = \alpha = v$ and from the right side of the diagram we get $f \circ \alpha = \beta = g \circ \alpha$.
+    
+    Assume that there exists $\alpha \in \Mor{\T^\prime}(W,X)$ such that $f \circ \alpha = g \circ \alpha$.
+    We use (TR1) to produce a distinguished triangle
+    $$\begin{tikzcd}
+      W \arrow{r}{\alpha} & X \arrow{r} & Z \arrow{r} & W[1]
+    \end{tikzcd}$$
+    and then apply the cohomological functor $h_Y$ to get the exact sequence
+    $$\begin{tikzcd}
+      h_Y(Z) \arrow{r} & h_Y(X) \arrow{r}{h_Y(\alpha)} & h_Y(W).
+    \end{tikzcd}$$
+    Now the fact that
+    $$h_Y(\alpha)(f-g) = (f - g)\circ \alpha = 0$$
+    implies there exists by exactness a morphism $Z \to Y$ making the diagram
+    $$\begin{tikzcd}
+      X \arrow{r}\arrow[swap]{rd}{f - g} & Z\arrow{d}\\
+      & Y
+    \end{tikzcd}$$
+    commute.
+    We note that $Z$ is an object of $\T^\prime$ because $\alpha \in \Mor{\T^\prime}(W,X)$ by assumption.
+    
+    Finally, assume that there exists a factorization 
+    $$\begin{tikzcd}
+      X \arrow{r}\arrow[swap]{rd}{f - g} & Z\arrow{d}\\
+      & Y
+    \end{tikzcd}$$
+    with $Z$ an object of $\T^\prime$.
+    By (TR1) there exists a distinguished triangle
+    \begin{tikzcd}
+      X \arrow{r} & Z \arrow{r} & W \arrow{r}{-\alpha[1]} & X[1]
+    \end{tikzcd}
+    which, by rotating, gives the commutative diagram
+    $$\begin{tikzcd}
+      W \arrow{r}{\alpha}\arrow{d} & X \arrow{r}\arrow[swap]{rd}{f-g} & Z \arrow{r}\arrow{d} & W[1]\\
+      0 \arrow{rr} & & Y
+    \end{tikzcd}$$
+    with distinguished top row.
+    By definition $\alpha \in \Mor{\T^\prime}(W,X)$, hence the commutative diagram
+    $$\begin{tikzcd}
+      & & X\arrow[swap]{lld}{\id_X}\arrow{rrd}{f}\\
+      X & & W\arrow[swap]{ll}{\alpha}\arrow[swap]{u}{\alpha}\arrow{d}{\alpha}\arrow{rr}{f \circ \alpha = g \circ \alpha} & & Y\\
+      & & X \arrow{llu}{\id_X}\arrow[swap]{rru}{g}
+    \end{tikzcd}$$
+    gives the equivalence $\pi(f) = \pi(g)$.
+  \end{proof}
+\end{lem}
+
+\begin{lem}[\cite{NeemanTCats}]
+  Given a commutative diagram
+  $$\begin{tikzcd}
+    W \arrow{r}{f}\arrow{d}{g} & X\arrow{d}{g^\prime}\\
+    Y \arrow{r}{f^\prime} & Z
+  \end{tikzcd}$$
+  of $\T/\T^\prime$, there is a commutative diagram
+  $$\begin{tikzcd}
+    W^\prime \arrow{r}\arrow{d} & X^\prime\arrow{d}\\
+    Y^\prime \arrow{r} & Z
+  \end{tikzcd}$$
+  of $\T$ and morphisms $W^\prime \to W$, $X^\prime \to X$, and $Y^\prime \to Y$ of $\Mor{\T^\prime}$.
+  
+  Moreover, the image of the commutative square and these morphisms give an isomorphism of diagrams of $\T/\T^\prime$ in the sense that there is a commutative cube
+  $$\begin{tikzcd}
+    W^\prime\arrow{rr}\arrow{rd}\arrow{dd} & & X^\prime\arrow[dashed]{dd}\arrow{rd}\\
+    & W \arrow{rr}\arrow{dd} & & X\arrow{dd}\\
+    Y^\prime\arrow[dashed]{rr}\arrow{rd} & & Z\arrow[dashed]{rd}{\id_Z}\\
+    & Y\arrow{rr} & & Z
+  \end{tikzcd}$$
+  and the morphisms connecting the back and front faces are all isomorphisms.
+  \begin{proof}
+    First we note that we may choose diagrams $(W_1, W_1 \overset{f_1}\to W, W_1 \overset{g_1}\to X)$, $(X^\prime, X^\prime \overset{f_2}\to X, X^\prime \overset{g_2}\to Z)$, $(W_3, W_3 \overset{f_3}\to W, W_3 \overset{g_3}\to Y)$, and $(Y^\prime, Y^\prime \overset{f_4}\to Y, Y^\prime \overset{g_4}\to Z)$
+    that compose to the diagrams
+    $$\begin{tikzcd}
+      W_2 \arrow{r}{u_1}\arrow{d}{v_1} & X^\prime \arrow{r}{g_2}\arrow{d}{f_2} & Z\\
+      W_1 \arrow{r}{g_1}\arrow{d}{f_1} & X\\
+      W
+    \end{tikzcd}$$
+    giving $g^\prime \circ f$
+    and
+    $$\begin{tikzcd}
+      W_4 \arrow{r}{u_2}\arrow{d}{v_2} & Y^\prime \arrow{r}{g_4}\arrow{d}{f_4} & Z\\
+      W_3 \arrow{r}{g_3}\arrow{d}{f_3} & Y\\
+      W
+    \end{tikzcd}$$
+    giving $f^\prime \circ g$.
+    Taking the homotopy pullback
+    $$\begin{tikzcd}
+      W_5 \arrow{r}{u_3}\arrow{d}{v_3} & W_2\arrow{d}{f_1 \circ v_1}\\
+      W_4 \arrow{r}{f_3 \circ v_2} & W
+    \end{tikzcd}$$
+    we see that $g^\prime \circ f$ is represented by
+    $$\begin{tikzcd}
+      W & W_5\arrow[swap]{l}{f_1 \circ v_1 \circ u_3}\arrow{r}{u_1 \circ u_3} & X^\prime \arrow{r}{g_2} & Z\\
+    \end{tikzcd}$$
+    and $f^\prime \circ g$ is represented by
+    $$
+    \begin{tikzcd}
+      W & W_5 \arrow[swap]{l}{f_3 \circ v_2 \circ v_3}\arrow{r}{u_2 \circ v_3} & Y^\prime \arrow{r}{g_4} & Z\\
+    \end{tikzcd}.$$
+    Hence
+    $$\pi(g_2 \circ u_1 \circ u_3)\circ\pi(f_1 \circ v_1 \circ u_3)^{-1} = \pi(g_4 \circ u_2 \circ v_3) \circ \pi(f_3 \circ v_2 \circ v_3)^{-1}$$
+    implies
+    $$\pi(g_2 \circ u_1 \circ u_3) =  \pi(g_4 \circ u_2 \circ v_3)$$
+    giving, by the previous Lemma, a morphism $\alpha \in \Mor{\T^\prime}(W^\prime, W_5)$ making the diagram
+    $$\begin{tikzcd}
+      W^\prime \arrow{r}{u_1 \circ u_3 \circ \alpha}\arrow{d}{u_2 \circ v_3 \circ \alpha} & X^\prime\arrow{d}{g_2}\\
+      Y^\prime \arrow{r}{g_4} & Z
+    \end{tikzcd}$$
+    of $\T$ commute.
+    
+    We now construct the cube and show that it is indeed an isomorphism of diagrams of $\T/\T^\prime$.
+    We note that the front face commutes by assumption and the back face commutes by construction.
+    
+    The left face is given by
+    $$\begin{tikzcd}
+      W_1 \arrow{r}{\pi(\alpha)}\arrow{d}{\pi(u_2 \circ v_3 \circ \alpha)} 
+      & W_5 \arrow{rr}{\pi(f_3 \circ v_2 \circ v_3)} 
+      & & W\arrow{d}{\pi(g_3)\circ\pi(f_3)^{-1}}\\
+      Y^\prime \arrow{rrr}{\pi(f_4)} & & & Y
+    \end{tikzcd}$$
+    and commutes because
+    $$\pi(f_4) \circ \pi(u_2 \circ v_3 \circ \alpha) = \pi(g_3 \circ v_2 \circ v_3 \circ \alpha) = \pi(g_3) \circ \pi(f_3)^{-1} \circ \pi(f_3 \circ v_2 \circ v_3) \circ \pi(\alpha).$$
+    
+    The right face is given by
+    $$\begin{tikzcd}
+      X^\prime \arrow{r}{\pi(f_2)}\arrow{d}{\pi(g_2)} & X\arrow{d}{g^\prime}\\
+      Z \arrow{r}{\id_Z} & Z
+    \end{tikzcd}$$
+    and commutes because
+    $$g^\prime \circ \pi(f_2) = \left(\pi(g_2) \circ \pi(f_2)^{-1}\right) \circ \pi(f_2) = \pi(g_2).$$
+
+    The top face is given by
+    $$\begin{tikzcd}
+      W^\prime \arrow{rr}{\pi(u_1 \circ u_3 \circ \alpha)}\arrow{d}{\pi(\alpha)} & & X^\prime\arrow{dd}{\pi(f_2)}\\
+      W_5\arrow{d}{\pi(f_1 \circ v_1 \circ u_3)}\\
+      W \arrow{rr}{f} & & X
+    \end{tikzcd}$$
+    and commutes because
+    \begin{eqnarray*}
+      \pi(f_2) \circ \pi(u_1 \circ u_3 \circ \alpha) &=& \pi(g_1 \circ v_1 \circ u_3 \circ \alpha)\\
+      &=& \pi(g_1) \circ \pi(f_1)^{-1} \circ \pi(f_1 \circ v_1 \circ u_3) \circ \pi(\alpha)\\
+      &=& f \circ \pi(f_1 \circ v_1 \circ u_3)\circ\pi(\alpha).
+    \end{eqnarray*}
+    
+    The bottom face is given by
+    $$\begin{tikzcd}
+      Y^\prime\arrow{r}{\pi(g_4)}\arrow{d}{\pi(f_4)} & Z\arrow{d}{\id_Z}\\
+      Y\arrow{r}{f^\prime} & Z
+    \end{tikzcd}$$
+    and commutes because
+    $$f^\prime \circ \pi(f_4) = \left(\pi(g_4) \circ \pi(f_4)^{-1}\right) \circ \pi(f_4) = \pi(g_4).$$
+    
+    To see this is an isomorphism of diagrams, we note that by construction $f_2$, $f_3$, and $f_4$ are all morphisms of $\Mor{\T^\prime}$.
+    Since $v_1$ and $v_2$ are obtained by homotopy pullback of $f_2$ and $f_4$, respectively, both are morphisms of $\Mor{\T^\prime}$, and so it follows that $v_3$ and $f_3 \circ v_2 \circ v_3$ are also morphisms of $\Mor{\T^\prime}$.
+    Therefore $\pi(f_2)$, $\pi(f_4)$, and $\pi(f_3 \circ v_2 \circ v_3) \circ \pi(\alpha)$ are all isomorphisms of $\T/\T^\prime$, as desired.
+  \end{proof}
+\end{lem}
+
+\begin{lem}[\cite{NeemanTCats}]\label{verdierzero}
+  The object $0$ is a zero object of $\T/\T^\prime$.
+  
+  \begin{proof}
+    To see that $0$ is final, take two diagrams
+    $$\begin{tikzcd}
+      & Z \arrow[swap]{ld}{f}\arrow{rd}\\
+      X & & 0
+    \end{tikzcd}\ \text{and}\ 
+    \begin{tikzcd}
+      & Z^\prime \arrow[swap]{ld}{f^\prime}\arrow{rd}\\
+      X & & 0
+    \end{tikzcd}$$
+    with $f,f^\prime$ morphisms of $\Mor{\T^\prime}$.
+    The homotopy pullback
+    $$\begin{tikzcd}
+      Z^{\prime\prime}\arrow{r}{u}\arrow{d}{v} & Z\arrow{d}{f}\\
+      Z^\prime \arrow{r}{f^\prime} & X
+    \end{tikzcd}$$
+    gives the equivalence
+    $$\begin{tikzcd}
+      & Z\arrow[swap]{ld}{f}\arrow{rd}\\
+      X & Z^{\prime\prime}\arrow{l}\arrow{r}\arrow[swap]{u}{u}\arrow{d}{v} & 0\\
+      & Z^\prime \arrow{ul}{f^\prime}\arrow{ur}
+    \end{tikzcd}$$
+    Hence $\Hom{\T/\T^\prime}{X,0}$ is a singleton.
+    
+    Similarly, given two diagrams
+    $$\begin{tikzcd}
+      & Z \arrow{rd}{g}\arrow{ld}\\
+      0 & & X
+    \end{tikzcd}\ \text{and}\ 
+    \begin{tikzcd}
+      & Z^\prime \arrow{rd}{g^\prime}\arrow{ld}\\
+      0 & & X
+    \end{tikzcd}$$
+    the homotopy pullback
+    $$\begin{tikzcd}
+      Z^{\prime\prime}\arrow{r}{u}\arrow{d}{v} & Z\arrow{d}{f}\\
+      Z^\prime \arrow{r}{f^\prime} & X
+    \end{tikzcd}$$
+    gives the equivalence
+    $$\begin{tikzcd}
+      & Z\arrow{ld}\arrow{rd}{g}\\
+      0 & Z^{\prime\prime}\arrow{l}\arrow{r}\arrow[swap]{u}{u}\arrow{d}{v} & X\\
+      & Z^\prime \arrow{ul}\arrow{ur}{g^\prime}
+    \end{tikzcd}$$
+    Therefore $\Hom{\T/\T^\prime}{0,X}$ is a singleton, and $0$ is a zero object.
+  \end{proof}
+\end{lem}
+
+\begin{lem}[\cite{NeemanTCats}]\label{verdierprods}
+  For any two objects $X$ and $Y$ of $\T$,
+  $$\begin{tikzcd}
+    X \oplus Y & & X\oplus Y\\
+    & X \oplus Y \arrow[swap]{ur}{1}\arrow{ul}{1}\arrow{ld}{\left(1\ 0\right)}\arrow{rd}{\left(0\ 1\right)}\\
+    X & & Y
+  \end{tikzcd}$$
+  is a biproduct in $\T/\T^\prime$.
+  
+  \begin{proof}
+    Assume that we are given an object $Z$ equipped with morphisms $f \in \Hom{\T/\T^\prime}{Z,X}$ and $g \in \Hom{\T/\T^\prime}{Z,Y}$ represented by diagrams
+    $$\begin{tikzcd}
+      & W \arrow[swap]{ld}{f_1}\arrow{rd}{g_1}\\
+      Z & & X
+    \end{tikzcd}
+    \ \text{and}\ 
+    \begin{tikzcd}
+      & W \arrow[swap]{ld}{f_2}\arrow{rd}{g_2}\\
+      Z & & Y
+    \end{tikzcd}$$
+    and take the homotopy pullback
+    $$\begin{tikzcd}
+      W_3 \arrow{r}{u}\arrow{d}{v} & W_1\arrow{d}{f_1}\\
+      W_2 \arrow{r}{f_2} & Z
+    \end{tikzcd}$$
+    These morphisms induce the diagram
+    $$\begin{tikzcd}
+      & W_3\arrow[swap]{ld}{g_1 \circ u}\arrow{rd}{g_2 \circ v}\arrow[dashed]{d}{\exists !h}\\
+      X & X \oplus Y \arrow[swap]{l}{p_X}\arrow{r}{p_Y} & Y
+    \end{tikzcd}$$
+    in $\T$ and hence a morphism $\pi(h) \circ \pi(f_1 \circ u)^{-1} = \pi(h) \circ \pi(f_2 \circ v)^{-1} \in \Hom{\T/\T^\prime}{Z,X \oplus Y}$.
+    Moreover, 
+    $$\pi(p_X) \circ \pi(h) \circ \pi(f_1 \circ u)^{-1} = \pi(g_1) \circ \pi(u) \circ \pi(u)^{-1} \circ \pi(f_1)^{-1} = \pi(g_1) \circ \pi(f_1)^{-1} = f$$ 
+    and
+    $$\pi(p_Y) \circ \pi(h) \circ \pi(f_2 \circ v)^{-1} = \pi(g_2) \circ \pi(v) \circ \pi(v)^{-1} \circ \pi(f_2)^{-1} = \pi(g_2) \circ \pi(f_2)^{-1} = g.$$
+    
+    For unicity, assume that $\zeta \in \Hom{\T/\T^\prime}{Z,X \oplus Y}$ is any other morphism such that $\pi(p_X) \circ \zeta = f$ and $\pi(p_Y) \circ \zeta = g$.
+    We can represent $\zeta$ by a diagram
+    $$\begin{tikzcd}
+      & Z^\prime \arrow[swap]{ld}{f_4}\arrow{rd}{g_4}\\
+      Z & & X \oplus Y
+    \end{tikzcd}$$
+    and take the homotopy pullback
+    $$\begin{tikzcd}
+      W_4 \arrow{r}{u^\prime}\arrow{d}{v^\prime} & Z^\prime \arrow{d}{f_4}\\
+      W_3 \arrow{r}{f_1 \circ u} & Z
+    \end{tikzcd}$$
+    First we note that from
+    $$\pi(p_X) \circ \pi(g_4) \circ \pi(f_4)^{-1} = 
+    \pi(p_X) \circ \zeta 
+    = f 
+    = \pi(g_1) \circ \pi(f_1)^{-1}$$
+    we obtain $\pi(g_1) = \pi(p_X) \circ \pi(g_4) \circ \pi(f_4)^{-1} \circ \pi(f_1)$ and hence
+    \begin{eqnarray*}
+      \pi(p_X) \circ \pi(g_4) \circ \pi(u^\prime) &=&
+      \pi(p_X) \circ \pi(g_4) \circ \pi(f_4)^{-1} \circ \pi(f_4) \circ \pi(u^\prime)\\
+      &=& \pi(p_X) \circ \pi(g_4) \circ \pi(f_4)^{-1} \circ \pi(f_1) \circ \pi(u) \circ \pi(v^\prime)\\
+      &=& \pi(g_1) \circ \pi(u) \circ \pi(v^\prime)\\
+      &=& \pi(p_X) \circ \pi(h) \circ \pi(v^\prime).
+    \end{eqnarray*}
+    We may choose $\alpha \in \Mor{\T^\prime}(W_5,W_4)$ equalizing these arrows.
+    Similarly, we have
+    $$\pi(p_Y) \circ \pi(g_4) \circ \pi(f_4)^{-1} = \pi(g_2) \circ \pi(f_2)^{-1}$$
+    implies $\pi(g_2) = \pi(p_Y) \circ \pi(g_4) \circ \pi(f_4)$
+    and hence
+    \begin{eqnarray*}
+      \pi(p_Y) \circ \pi(g_4) \circ \pi(u^\prime) &=&
+      \pi(p_Y) \circ \pi(g_4) \circ \pi(f_4)^{-1} \circ \pi(f_4) \circ \pi(u^\prime)\\
+      &=& \pi(p_Y) \circ \pi(g_4) \circ \pi(f_4)^{-1} \circ \pi(f_2) \circ \pi(v) \circ \pi(u^\prime)\\
+      &=& \pi(g_2) \circ \pi(v) \circ \pi(v^\prime)\\
+      &=& \pi(p_Y) \circ \pi(h) \circ \pi(v^\prime).
+    \end{eqnarray*}
+    Again, we may choose $\beta \in \Mor{\T^\prime}(W_6,W_4)$ equalizing these arrows and we now take the homotopy pullback
+    $$\begin{tikzcd}
+      W \arrow{r}{u^{\prime\prime}}\arrow{d}{v^{\prime\prime}} & W_5\arrow{d}{\alpha}\\
+      W_6\arrow{r}{\beta} & W_4
+    \end{tikzcd}$$
+    which gives the desired equivalence diagram
+    $$\begin{tikzcd}
+      & & Z^\prime \arrow[swap]{lldd}{f_4}\arrow{rrdd}{g_4}\\
+      & & W_4\arrow[swap]{u}{u^\prime}\\
+      Z & W_4 \arrow{l}& W\arrow{l}\arrow{u}\arrow{d}\arrow{r} & W_4\arrow{r}{h \circ v^\prime} & X \oplus Y\\
+      & & W_4\arrow{d}{v^\prime}\\
+      & & W_3 \arrow{uull}{f_1 \circ u}\arrow{uurr}{h}
+    \end{tikzcd}$$
+    The proof that this object is also a coproduct follows from a formally dual argument.
+  \end{proof}
+\end{lem}
+
+\begin{lem}[\cite{NeemanTCats}]
+  The category $\T/\T^\prime$ is additive and $\pi \colon \T \to \T^\prime$ is an additive functor.
+  
+  \begin{proof}
+    First we note that $\pi$ preserves the zero object by Lemma~\ref{verdierzero} and $\pi$ preserves biproducts by Lemma~\ref{verdierprods}.  Hence it is an additive functor.
+    
+    Given $f,g \in \Hom{\T/\T^\prime}{X,Y}$ we define $f + g$ to be either of the compositions
+    $$\begin{tikzcd}
+      X \arrow{r}{\left(\begin{matrix}1\\1\end{matrix}\right)} & X \oplus X \arrow{r}{\left(f\ g\right)} & Y
+    \end{tikzcd}
+    \ \text{and}\ 
+    \begin{tikzcd}
+      X \arrow{r}{\left(\begin{matrix}f\\g\end{matrix}\right)} & Y \oplus Y \arrow{r}{\left(1\ 1\right)} & Y
+    \end{tikzcd}$$
+    and note that $f + g = g + f$.
+    It's also clear from the definition that this is associative and the zero morphism is the identity object.
+    
+    Given a morphism $f \in \Hom{\T/\T^\prime}{X,Y}$ we can express this as a diagram
+    $$\begin{tikzcd}
+      & Z \arrow[swap]{ld}{f^\prime}\arrow{rd}{g}\\
+      X & & Y
+    \end{tikzcd}$$
+    so that $f = \pi(g)\circ\pi(f^\prime)^{-1}$.
+    If we take $-f = \pi(-g)\circ\pi(f^\prime)^{-1}$ then
+    $$f + -f = \pi(g)\circ \pi(f^\prime)^{-1} + \pi(-g)\circ\pi(f^\prime)^{-1} 
+    = \left(\pi(g) + \pi(-g)\right)\circ\pi(f^\prime)^{-1} = \pi(g - g)\circ \pi(f^\prime)^{-1} = 0$$
+    because $\pi$ preserves products and $g - g$ in $\T$ is given by the diagram
+    $$\begin{tikzcd}
+      Z \arrow{rd}{0}\arrow{r}{\left(\begin{matrix}1\ 1\end{matrix}\right)} & Z \oplus Z \arrow{d}{\left(g\ -g\right)}\\
+      & X
+    \end{tikzcd}$$
+    which is mapped by $\pi$ to the diagram
+    $$\begin{tikzcd}
+      Z \arrow{r}{\left(\begin{matrix}1\ 1\end{matrix}\right)} & Z \oplus Z \arrow{rr}{\left(\pi(g)\ \pi(-g)\right)} && X
+    \end{tikzcd}$$
+    Therefore $\Hom{\T/\T^\prime}{X,Y}$ is an abelian group.
+  \end{proof}
+\end{lem}
+
+\begin{lem}[\cite{NeemanTCats}]
+  If a morphism of $\Hom{\T/\T^\prime}{X,X}$ represented by
+  $$\begin{tikzcd}
+    & Z\arrow[swap]{ld}{f}\arrow{rd}{g}\\
+    X & & X
+  \end{tikzcd}$$
+  is equivalent to the identity, then $g \in \Mor{\T^\prime}(Z,X)$.
+  
+  \begin{proof}
+    Since we have assumed this morphisms is equivalent to the identity, there is a commutative diagram
+    $$\begin{tikzcd}
+      & Z \arrow[swap]{ld}{f}\arrow{rd}{g}\\
+      X & Z^\prime \arrow[swap]{l}{f^\prime}\arrow{r}{g^\prime}\arrow[swap]{u}{u}\arrow{d}{v} & X\\
+      & X\arrow{ul}{\id_X}\arrow[swap]{ur}{\id_X}
+    \end{tikzcd}$$
+    with $u,v \in \Mor{\T^\prime}(Z^\prime,X)$.
+    Therefore by 2-out-of-3 we see that
+    $$v = g^\prime = g \circ u$$
+    implies $g \in \Mor{\T^\prime}(Z,X)$.
+  \end{proof}
+\end{lem}
+
+\begin{lem}[\cite{NeemanTCats}]\label{VerdierIsos}
+  A diagram
+  $$\begin{tikzcd}
+    & Z \arrow[swap]{ld}{f} \arrow{rd}{g}\\
+    X & & Y
+  \end{tikzcd}$$
+  represents an invertible morphism in $\Hom{\T/\T^\prime}{X,Y}$ if and only if there exist objects $V,W$ of $\T$ and morphisms $\alpha \in \Hom{\T}{V,Z}$ and $\beta \in \Hom{\T}{Y,W}$ such that $g \circ \alpha \in \Mor{\T^\prime}(V,Y)$ and $\beta \circ g \in \Mor{\T^\prime}(Z,W)$.
+  
+  \begin{proof}
+    First assume that there exist objects $V,W$ of $\T$ and morphisms $\alpha \in \Hom{\T}{V,Z}$, $\beta \in \Hom{\T}{Y,W}$ such that $g \circ \alpha \in \Mor{\T^\prime}(V,Y)$ and $\beta \circ g \in \Mor{\T^\prime}(Z,W)$.
+    We observe that
+    $$\pi(\beta \circ g)^{-1} \circ \pi(\beta) = \pi(\beta \circ g)^{-1} \circ \pi(\beta) \circ \left(\pi(g) \circ \pi(\alpha) \circ \pi(g \circ \alpha)^{-1}\right) = \pi(\alpha) \circ \pi(g \circ \alpha)^{-1}$$
+    and gives an inverse for $\pi(g)$.
+    Therefore 
+    $$\left(\pi(g) \circ \pi(f)^{-1}\right) \circ \left(\pi(f) \circ \pi(g)^{-1}\right) = \id_Y \in \Hom{\T/\T^\prime}{Y,Y}$$ 
+    and 
+    $$\left(\pi(f) \circ \pi(g)^{-1}\right) \circ \left(\pi(g) \circ \pi(f)^{-1}\right) = \id_X\Hom{\T/\T^\prime}{X,X}$$ 
+    shows the diagram represents an invertible morphism.
+    
+    Conversely, assume the diagram represents an invertible morphism.
+    For some diagram
+    $$\begin{tikzcd}
+      & Z^\prime \arrow[swap]{ld}{f^\prime}\arrow{rd}{g^\prime}\\
+      Y & & X
+    \end{tikzcd}$$
+    the composition
+    $$\begin{tikzcd}
+      V\arrow{r}{\alpha}\arrow{d} & Z \arrow{r}{g}\arrow{d}{f} & Y\\
+      Z^\prime\arrow{d}{g^\prime} \arrow{r}{f^\prime} & X\\
+      Y
+    \end{tikzcd}$$
+    is equivalent to the identity and hence $g \circ \alpha \in \Mor{\T^\prime}(V,Y)$.
+    Since $f^\prime \in \Mor{\T^\prime}(Z^\prime, X)$, it follows that $\alpha \in \Mor{\T^\prime}(V,Z)$ and hence $g \in \Mor{\T^\prime}(Z,Y)$ by 2-out-of-3.
+    Therefore we may take $W = Y$ and $\beta = \id_Y$.
+  \end{proof}
+\end{lem}
+
+\begin{lem}[\cite{NeemanTCats}]\label{VerdierZeroIso}
+  The image of the morphism $X \rightarrow 0$ under $\pi$ is an isomorphism if and only if there exists some object $Y$ of $\T$ such that $X \oplus Y$ is an object of $\T^\prime$.
+  
+  \begin{proof}
+    Assume the image of $X \rightarrow 0$ under $\pi$ is an isomorphism.
+    By Lemma~\ref{VerdierIsos} there exists a morphism $0 \rightarrow Y$ such that
+    $$\begin{tikzcd}
+      X \arrow{r} & 0 \arrow{r} & Y \in \Mor{\T^\prime}(X,Y)
+    \end{tikzcd}$$
+    and hence a distinguished triangle
+    $$\begin{tikzcd}
+      X \arrow{r}{0} & Y \arrow{r} & Z \arrow{r} & X[1]
+    \end{tikzcd}$$
+    with $Z$ an object of $\T^\prime$.
+    Rotating the triangle gives the distinguished triangle
+    $$\begin{tikzcd}
+      Y \arrow{r} & Z \arrow{r} & X[1] \arrow{r}{0} & Y[1]
+    \end{tikzcd}$$
+    which splits to give $Y \oplus X[1] \cong Z$ and hence $Z[-1] \cong Y[-1] \oplus X$ is an object of $\T^\prime$.
+    
+    Conversely, assume that $X \oplus Y$ is an object of $\T^\prime$ for some object $Y$ of $\T$.
+    The morphism $0 \rightarrow X \rightarrow 0$ is an isomorphism and hence in $\Mor{\T^\prime}(0,0)$.
+    The morphism $X \rightarrow 0 \rightarrow Y[1]$ fits into the distinguished triangle
+    $$\begin{tikzcd}
+      Y \arrow{r} & X \oplus Y \arrow{r} & X \arrow{r}{0} & Y[1]
+    \end{tikzcd}$$
+    and is in $\Mor{\T^\prime}(X,Y[1])$ because the triangle
+    $$\begin{tikzcd}
+      X \arrow{r}{0} & Y[1] \arrow{r} & X[1] \oplus Y[1] \arrow{r} & X[1]
+    \end{tikzcd}$$
+    is distinguished as it is obtained by rotating the distinguished triangle
+    $$\begin{tikzcd}
+      Y[1] \arrow{r} & X[1] \oplus Y[1] \arrow{r} & X[1] \arrow{r}{0} & Y[2]
+    \end{tikzcd}$$
+    Therefore $X \rightarrow 0$ is an isomorphism by Lemma~\ref{VerdierIsos}.
+  \end{proof}
+\end{lem}
+
+\begin{prop}[\cite{NeemanTCats}]
+  Let $f \colon X \rightarrow Y$ be a morphism of $\T$.
+  Then $\pi(f)$ is an isomorphism if and only if for any distinguished triangle
+  $$\begin{tikzcd}
+    X \arrow{r}{f} & Y \arrow{r}{g} & Z \arrow{r}{h} & X[1]
+  \end{tikzcd}$$
+  of $\T$, there is an object $Z^\prime$ of $\T$ such that $Z \oplus Z^\prime$ is an object of $\T^\prime$.
+
+  \begin{proof}
+    Assume that $\pi(f)$ is an isomorphism let
+    $$\begin{tikzcd}
+      X \arrow{r}{f} & Y \arrow{r}{g} & Z \arrow{r}{h} & X[1]
+    \end{tikzcd}$$
+    be a distinguished triangle.
+    By Lemma~\ref{VerdierIsos}, there exist morphisms
+    $$\begin{tikzcd}
+      V \arrow{r}{\alpha} & X \arrow{r}{f} & Y \arrow{r}{\beta} & W
+    \end{tikzcd}$$
+    such that $\beta \circ f \in \Mor{\T^\prime}(X,W)$ and $f \circ \alpha \in \Mor{\T^\prime}(V,Y)$.
+    We have a morphism of triangles
+    $$\begin{tikzcd}
+      X \arrow{r}{f}\arrow{dd}{\beta \circ f} & Y \arrow{r}{g}\arrow{dd}{\left(\begin{matrix}\beta\\ g\end{matrix}\right)} & Z \arrow{r}{h}\arrow{dd}{1} & X[1]\arrow{dd}{\beta[1] \circ f[1]}\\
+      \\
+      W \arrow{r}{\imath_W} & W \oplus Z \arrow{r}{p_Z} & Z \arrow{r}{0} & W[1]
+    \end{tikzcd}$$
+    and, because the bottom row is contractible, the cone is distinguished.
+    It is straightforward, though tedious, to show that the cone decomposes into the direct sum of the two triangles
+    $$\begin{tikzcd}[ampersand replacement=\&]
+      W \oplus Y \arrow{r}{\left(\begin{matrix}1 & \beta\\0 & g\end{matrix}\right)} \& W \oplus Z \arrow{r}{\left(0\ h\right)} \& X[1] \arrow{r}{\left(\begin{matrix}(\beta \circ f)[1]\\-f[1]\end{matrix}\right)} \& W[1] \oplus Y[1]\\
+      0 \arrow{r} \& Z \arrow{r}{\id_Z} \& Z \arrow{r} \& 0
+    \end{tikzcd}$$
+    and hence the square
+    $$\begin{tikzcd}
+      X \arrow{r}{f}\arrow{dd}{\beta \circ f} & Y \arrow{dd}{\left(\begin{matrix}\beta\\ g\end{matrix}\right)}\\
+      \\
+      W \arrow{r}{\imath_W} & W \oplus Z
+    \end{tikzcd}$$
+    is homotopy cartesian.
+    Since $\beta \circ f \in \Mor{\T^\prime}(X,W)$ and $\pi(f)$ is an isomorphism, it follows that the image of $X \to Y \to W \oplus Z$ under $\pi$ is an isomorphism.
+    In particular, $\pi(\imath_W)$ is an isomorphism.
+    Since in $\T/\T^\prime$ we have $\pi(p_W) \circ \pi(\imath_W) = \id_W$ it follows that
+    $$\pi(p_W) = \pi(p_W) \circ \pi(\imath_W) \circ \pi(\imath_W)^{-1} = \pi(\imath_W)^{-1}.$$
+    %It then follows that
+    %$$\begin{tikzcd}[ampersand replacement=\&]
+    %  W \oplus Z \arrow{r}{\left(1\ 0\right)}\arrow[swap]{rd}{\left(\begin{matrix}1 & 0\\0 & 1\end{matrix}\right)} \& W \arrow{d}{\left(\begin{matrix}1 \\ 0\end{matrix}\right)}\\
+    %  \& W \oplus Z
+    %\end{tikzcd}$$
+    %commutes in $\T/\T^\prime$.
+    This implies that in $\T/\T^\prime$ we have
+    $$
+    \left(\begin{matrix}
+      1 & 0\\
+      0 & 1
+    \end{matrix}\right) = 
+    \pi(\imath_W) \circ \pi(p_W) = 
+    \left(\begin{matrix}
+      1\\
+      0
+    \end{matrix}\right)
+    \left(\begin{matrix}
+      1 & 0
+    \end{matrix}\right)= 
+    \left(\begin{matrix}
+      0 & 1\\
+      0 & 0
+    \end{matrix}\right)$$
+    and hence
+    $$\id_Z =
+    \left(\begin{matrix}
+      0 & 1
+    \end{matrix}\right)
+    \left(\begin{matrix}
+      1 & 0\\
+      0 & 1
+    \end{matrix}\right)\left(\begin{matrix}
+      0\\
+      1
+    \end{matrix}\right)
+    =
+    \left(\begin{matrix}
+      0 & 1
+    \end{matrix}\right)
+    \left(\begin{matrix}
+      0 & 1\\
+      0 & 0
+    \end{matrix}\right)
+    \left(\begin{matrix}
+      0\\
+      1
+    \end{matrix}\right)
+    = 0.$$
+    By Lemma~\ref{VerdierZeroIso} there exists an object $Z^\prime$ of $\T$ such that $Z \oplus Z^\prime$ is an object of $\T^\prime$, as desired.
+    
+    Conversely, assume that for every distinguished triangle
+    $$\begin{tikzcd}
+      X \arrow{r}{f} & Y \arrow{r}{g} & Z \arrow{r}{h} & X[1]
+    \end{tikzcd}$$
+    there exists an object $Z^\prime$ of $\T$ such that $Z \oplus Z^\prime$ is an object of $\T^\prime$.
+    Taking the direct sum with\\
+    $0 \to Z^\prime \overset{\id_{Z^\prime}}\to Z^\prime \to 0$ we obtain the distinguished triangle
+    $$\begin{tikzcd}
+      X \arrow{r} & Y \oplus Z^\prime \arrow{r} & Y \oplus Z^\prime \arrow{r} & Z \oplus Z^\prime \arrow{r} & X[1]
+    \end{tikzcd}$$
+    and taking the direct sum with
+    $Z^\prime[-1] \to 0 \to Z^\prime \overset{-\id_{Z^\prime}}\to Z^\prime$
+    we obtain the distinguished triangle
+    $$\begin{tikzcd}
+      X \oplus Z^\prime[-1] \arrow{r} & Y \arrow{r} & Z \oplus Z^\prime \arrow{r} & X[1] \oplus Z^\prime
+    \end{tikzcd}.$$
+    Since $Z \oplus Z^\prime$ is an object of $T^\prime$ the first morphism in each triangle is a morphism of $\Mor{\T^\prime}$ and have factorizations
+    $$\begin{tikzcd}
+      X \arrow{r}{f}\arrow{rd} & Y\arrow{d}{\imath_Y}\\
+      & Y \oplus Z^\prime
+    \end{tikzcd}
+    \ \text{and}\ 
+    \begin{tikzcd}
+      X \oplus Z^\prime[-1] \arrow{r}{p_X}\arrow{rd} & X\arrow{d}{f}\\
+      & Y
+    \end{tikzcd}$$
+    Therefore, by Lemma~\ref{VerdierIsos}, $\pi(f)$ is an isomorphism.
+  \end{proof}
+\end{prop}
+
+\begin{thm}[\cite{NeemanTCats}]
+%  Consider the category with objects triangulated categories and morphisms triangulated functors.
+%  If $\T$ is a triangulated category and $\T^\prime$ is a strictly full subcategory, then the inclusion functor $\T^\prime \rightarrow \T$ has a cokernel.
+  Let $\T$ be a triangulated category.
+  If $\T^\prime$ a strictly full triangulated subcategory of $\T$, then there exists a triangulated category $\T/\T^\prime$ and a universal triangulated functor $\pi \colon \T \rightarrow \T/\T^\prime$ such that if $K \rightarrow \T$ is the kernel of $\pi$, then $\T^\prime$ is a subcategory of $K$.
+
+  That is, for any triangulated functor $\F : \T \rightarrow \T^{\prime\prime}$ making the diagram
+  $$\begin{tikzcd}
+    \T^\prime \arrow{r}\arrow[bend left]{rr}{0} & \T \arrow{d}{\pi}\arrow{r}{\F} & \T^{\prime\prime}\\
+    & \T/\T^\prime \arrow[dashed]{ur}{\exists !\overline{\F}}
+  \end{tikzcd}$$
+  commute, there exists a unique triangulated functor $\overline{\F}$ such that $\F = \overline{\F} \circ \pi$.
+  
+  The category $\T/\T^\prime$ is called the Verdier quotient of $\T$ by $\T^\prime$ and $\pi : \T \rightarrow \T^\prime$ is called the Verdier localisation.
+\end{thm}
+
+\begin{rmk}
+  Essentially, this says that in the category with objects triangulated categories and morphisms triangulated functors, the inclusion functor of a strictly full subcategory has a cokernel.
+\end{rmk}
+\end{document}

@@ -491,6 +491,68 @@ n
     X_2 \oplus Y_1 \arrow{rr}{-v \oplus 0 + u^\prime \oplus f_2} & & X_3 \oplus Y_2 \arrow{rr}{-w \oplus 0 + v^\prime \oplus f_2} & & X_1[1] \oplus Y_3 \arrow{rrr}{-u[1] \oplus 0 + w^\prime \oplus f_1[1]} & & & X_2[1] \oplus Y_1[1]
   \end{tikzcd}$$
 \end{defn}
+
+\begin{defn}
+  Let $\T$ be a triangulated category.
+  A commutative square
+  $$\begin{tikzcd}
+    X \arrow{r}{f}\arrow{d}{g} & Y\arrow{d}{g^\prime}\\
+    Z \arrow{r}{f^\prime} & W
+  \end{tikzcd}$$
+  is called {\it homotopy cartesian} if there is a distinguished triangle
+  $$\begin{tikzcd}
+    X \arrow{r}{f \times g} & Y \oplus Z \arrow{r}{-f^\prime \oplus g^\prime} & W \arrow{r} & X[1].
+  \end{tikzcd}$$
+  We call $X$ the {\it homotopy pullback} and $W$ the {\it homotopy pushout}.
+\end{defn}
+
+\begin{prop}
+  Homotopy pullbacks and pushouts exist and are unique up to (not necessarily unique) isomorphism.
+  
+  \begin{proof}
+    First we prove the result for pushouts and note that pullbacks follow from an analogous argument with the arrows turned around.
+    Given a diagram
+    $$\begin{tikzcd}
+      X \arrow{r}{f}\arrow{d}{g} & Y\\
+      Z
+    \end{tikzcd}$$
+    we produce a triangle 
+    $$\begin{tikzcd}
+      X \arrow{r}{f \times g} & Y \oplus Z \arrow{r}{u} & W \arrow{r} & X[1]
+    \end{tikzcd}$$
+    by (TR1), then define
+    $$\begin{tikzcd}
+      Z \arrow{r}{-\imath_Z}\arrow[swap]{rd}{f^\prime} & Y \oplus Z\arrow{d}{u}\\
+      & W
+    \end{tikzcd}
+    \ \text{and}\ 
+    \begin{tikzcd}
+      Y \arrow{r}{\imath_Y}\arrow[swap]{rd}{g^\prime} & Y \oplus Z\arrow{d}{u}\\
+      & W
+    \end{tikzcd}$$
+    Now we see that
+    \begin{eqnarray*}
+      g^\prime \circ f - f^\prime \circ g &=& (u \circ \imath_Y) \circ (\pi_Y \circ f \times g) + (u \circ \imath_Z) \circ (\pi_Z \circ f \times g)\\
+      &=& u \circ (\imath_Y \circ \pi_Y + \imath_Z \circ \pi_Z) \circ f \times g\\
+      &=& u \circ f \times g\\
+      &=& 0
+    \end{eqnarray*}
+    gives the homotopy cartesian diagram
+    $$\begin{tikzcd}
+      X \arrow{r}{f}\arrow{d}{g} & Y\arrow{d}{g^\prime}\\
+      Z \arrow{r}{f^\prime} & W
+    \end{tikzcd}$$
+    
+    For uniqueness, we see that if we have another homotopy pushout, $W^\prime$, then we get an isomorphism of triangles
+    $$\begin{tikzcd}
+      X \arrow{r}{f \times g}\arrow{d}{\id_X} & Y \oplus Z \arrow{r}{u}\arrow{d}{\id_{X \oplus Y}} & W \arrow{r}\arrow[dashed]{d}{\exists} & X[1]\arrow{d}{\id_{X[1]}}\\
+      X \arrow{r}{f \times g} & Y \oplus Z \arrow{r}{u^\prime} & W^\prime \arrow{r} & X[1]
+    \end{tikzcd}$$
+    by (TR3) and the 5 Lemma.
+    Therefore $W \cong W^\prime$.
+  \end{proof}
+\end{prop}
+
 \begin{defn}
   Two morphisms of triangles, $f$ and $g$,
   $$\begin{tikzcd}
@@ -533,10 +595,18 @@ n
     X \arrow{r} & Y \arrow{r} & Z \arrow{r} & X[1]
   \end{tikzcd}$
   is contractible, then it is distinguished.
+
+  \begin{proof}
+    See \cite{NeemanTCats}, Proposition 1.3.8.
+  \end{proof}
 \end{prop}
 
 \begin{lem}
   The mapping cone on the zero morphism between distinguished triangles is a distinguished triangle.
+
+  \begin{proof}
+    See \cite{NeemanTCats}, Lemma 1.3.10.
+  \end{proof}
 \end{lem}
 
 \begin{cor}
@@ -546,7 +616,12 @@ n
     X^\prime \arrow{r} & Y^\prime \arrow{r} & Z^\prime \arrow{r} & X^\prime[1]
   \end{tikzcd}$$
   if the morphism is null homotopic, then the mapping cone is a distinguished triangle.
+  
+  \begin{proof}
+    See \cite{NeemanTCats}, Corollary 1.3.11.
+  \end{proof}
 \end{cor}
+
 \begin{cor}
   Given a commutative diagram
   $$\begin{tikzcd}
@@ -554,10 +629,15 @@ n
     X^\prime \arrow{r} & Y^\prime \arrow{r} & Z^\prime \arrow{r} & X^\prime[1]
   \end{tikzcd}$$
   if one of the rows is distinguished and the other is contractible, then the cone of the morphism is a distinguished triangle.
+  
+  \begin{proof}
+    See \cite{NeemanTCats}, Corollary 1.3.12.
+  \end{proof}
 \end{cor}
 
 %From Neeman, Some new axioms for triangulated categories.
-\begin{prop}
+\begin{prop}\label{tr3cones}
+  Let $\T$ be a triangulated category.
   Given a commutative diagram
   $$\begin{tikzcd}
     X \arrow{r}{f}\arrow{d}{u} & Y\arrow{d}{u^\prime}\\
@@ -773,245 +853,48 @@ n
 \end{proof}
 \end{prop}
 
-\begin{defn}
-  Let $\T$ be a triangulated category.
-  A commutative square
+\begin{cor}\label{homotopycokernels}
+  Let $T$ be a triangulated category and let
   $$\begin{tikzcd}
-    X \arrow{r}{f}\arrow{d}{g} & Y\arrow{d}{g^\prime}\\
-    Z \arrow{r}{f^\prime} & W
+    X \arrow{r}{f}\arrow{d}{u} & Y\arrow{d}{u^\prime}\\
+    X^\prime \arrow{r}{f^\prime} & Y^\prime
   \end{tikzcd}$$
-  is called {\it homotopy cartesian} if there is a distinguished triangle
+  be a homotopy cartesian diagram.
+  If
   $$\begin{tikzcd}
-    X \arrow{r}{f \times g} & Y \oplus Z \arrow{r}{-f^\prime \oplus g^\prime} & W \arrow{r} & X[1].
+    X \arrow{r}{f} & Y \arrow{r}{g} & Z \arrow{r}{h} & X[1]
   \end{tikzcd}$$
-  We call $X$ the {\it homotopy pullback} and $W$ the {\it homotopy pushout}.
-\end{defn}
-
-\begin{prop}
-  Homotopy pullbacks and pushouts exist and are unique up to (not necessarily unique) isomorphism.
+  is distinguished, then there exists a distinguished triangle
+  $$\begin{tikzcd}
+    X^\prime \arrow{r}{f^\prime} & Y^\prime \arrow{r}{g^\prime} & Z \arrow{r}{h^\prime} & X^\prime[1]
+  \end{tikzcd}$$
+  such that the diagram
+  $$\begin{tikzcd}
+    X \arrow{r}{f}\arrow{d}{u} & Y \arrow{r}{g}\arrow{d}{u^\prime} & Z \arrow{r}{h}\arrow{d}{\id_Z} & X[1]\arrow{d}{u[1]}\\
+    X^\prime \arrow{r}{f^\prime} & Y^\prime \arrow{r}{g^\prime} & Z \arrow{r}{h^\prime} & X^\prime[1]
+  \end{tikzcd}$$
+  is a morphism of triangles.
   
   \begin{proof}
-    First we prove the result for pushouts and note that pullbacks follow from an analogous argument with the arrows turned around.
-    Given a diagram
-    $$\begin{tikzcd}
-      X \arrow{r}{f}\arrow{d}{g} & Y\\
-      Z
-    \end{tikzcd}$$
-    we produce a triangle 
-    $$\begin{tikzcd}
-      X \arrow{r}{f \times g} & Y \oplus Z \arrow{r}{u} & W \arrow{r} & X[1]
-    \end{tikzcd}$$
-    by (TR1), then define
-    $$\begin{tikzcd}
-      Z \arrow{r}{-\imath_Z}\arrow[swap]{rd}{f^\prime} & Y \oplus Z\arrow{d}{u}\\
-      & W
-    \end{tikzcd}
-    \ \text{and}\ 
-    \begin{tikzcd}
-      Y \arrow{r}{\imath_Y}\arrow[swap]{rd}{g^\prime} & Y \oplus Z\arrow{d}{u}\\
-      & W
-    \end{tikzcd}$$
-    Now we see that
-    \begin{eqnarray*}
-      g^\prime \circ f - f^\prime \circ g &=& (u \circ \imath_Y) \circ (\pi_Y \circ f \times g) + (u \circ \imath_Z) \circ (\pi_Z \circ f \times g)\\
-      &=& u \circ (\imath_Y \circ \pi_Y + \imath_Z \circ \pi_Z) \circ f \times g\\
-      &=& u \circ f \times g\\
-      &=& 0
-    \end{eqnarray*}
-    gives the homotopy cartesian diagram
-    $$\begin{tikzcd}
-      X \arrow{r}{f}\arrow{d}{g} & Y\arrow{d}{g^\prime}\\
-      Z \arrow{r}{f^\prime} & W
-    \end{tikzcd}$$
-    
-    For uniqueness, we see that if we have another homotopy pushout, $W^\prime$, then we get an isomorphism of triangles
-    $$\begin{tikzcd}
-      X \arrow{r}{f \times g}\arrow{d}{\id_X} & Y \oplus Z \arrow{r}{u}\arrow{d}{\id_{X \oplus Y}} & W \arrow{r}\arrow[dashed]{d}{\exists} & X[1]\arrow{d}{\id_{X[1]}}\\
-      X \arrow{r}{f \times g} & Y \oplus Z \arrow{r}{u^\prime} & W^\prime \arrow{r} & X[1]
-    \end{tikzcd}$$
-    by (TR3) and the 5 Lemma.
-    Therefore $W \cong W^\prime$.
+    See \cite{NeemanTCats}, Lemma 1.4.4.
+    %By definition, we have a distinguished triangle
+    %$$\begin{tikzcd}[ampersand replacement=\&]
+    %  X \arrow{r}{{\left(\begin{matrix}f\\ u\end{matrix}\right)}} \& Y \oplus X^\prime \arrow{r}{\left(-u^\prime \ f^\prime\right)} \& Y^\prime \arrow{r}{v} \& X[1]
+    %\end{tikzcd}.$$
+    %By (TR1) and Proposition~\ref{tr3cones}, we may choose a morphism of triangles
+    %$$\begin{tikzcd}[ampersand replacement=\&]
+    %  X \arrow{r}{{\left(\begin{matrix}f\\ u\end{matrix}\right)}}\arrow{d}{\id_X} \& Y \oplus X^\prime \arrow{r}{\left(-u^\prime \ f^\prime\right)}\arrow{d}{\left(1\ 0\right)} \& Y^\prime \arrow{r}{v}\arrow[dashed]{d}{\exists g^\prime} \& X[1]\arrow{d}{\id_{X[1]}}\\
+    %  X \arrow{r}{f} \& Y \arrow{r}{g} \& Z \arrow{r}{h} \& X[1]
+    %\end{tikzcd}$$
+    %such that the cone
+    %$$\begin{tikzcd}[ampersand replacement=\&]
+    %  X \oplus Y \oplus X^\prime \arrow{rr}{\left(\begin{matrix} f & 1 & 0\\0 & u^\prime & -f^\prime\end{matrix}\right)} 
+    %  \&\& Y \oplus Y^\prime \arrow{r}{\left(\begin{matrix}g & g^\prime\\ 0 & -v \end{matrix}\right)} 
+    %  \& Z \oplus X[1] \arrow{rr}{\left(\begin{matrix} h & 1\\ 0 & -f[1]\\ 0 & -u[1] \end{matrix}\right)}
+    %  \& \& X[1] \oplus Y[1] \oplus X^\prime[1]
+    %\end{tikzcd}$$
+    %is distinguished.
   \end{proof}
-\end{prop}
 
-%From Neeman, Triangulated Categories.
-\subsection{Verdier Localization}
-\begin{defn}
-  Let $\T^\prime, \T$ be triangulated categories and let $\F \colon \T^\prime \rightarrow \T$ be a triangulated functor.
-  The kernel of $\F$ is the inclusion of the full subcategory $\mathscr{K}$ of $\T^\prime$ with objects $K$ such that $\F(K) \cong 0$.
-\end{defn}
-
-\begin{lem}
-  Let $\T^\prime, \T$ be  triangulated categories, $\F \colon \T^\prime \rightarrow \T$ a triangulated functor, and $\ker{\F} \colon \mathscr{K} \rightarrow \T^\prime$ its kernel.  
-  Then $\mathscr{K}$ is a strictly full, saturated triangulated subcategory of $\T^\prime$.
-  
-  \begin{proof}
-    First we note that $\mathscr{K}$ is strictly full by definition.
-    Indeed, if $X$ is an object of $\T^\prime$ isomorphic to an object $K$ of $\mathscr{K}$, then 
-    $$\F(X) \cong \F(K) \cong 0$$
-    implies $X$ is an object of $\mathscr{K}$.
-    
-    That $\mathscr{K}$ is triangulated now follows from observing that if we have a morphism 
-    \begin{tikzcd}K^\prime \arrow{r}{f} & K\end{tikzcd}
-      of $\mathscr{K}$, then by (TR1) we may embed $f$ into a distinguished triangle of $\T^\prime$,
-      $$\begin{tikzcd}
-        K^\prime \arrow{r}{f} & K \arrow{r}{g} & Z \arrow{r}{h} & K^\prime[1]
-      \end{tikzcd}$$
-      which gives an isomorphism of distinguished triangles in $\T$
-      $$\begin{tikzcd}
-        \F(K^\prime) \arrow{r}{\F(f)}\arrow{d} & \F(K) \arrow{r}{\F(g)}\arrow{d} & \F(Z) \arrow{r}{\F(h)}\arrow{d} & \F(K^\prime)[1]\arrow{d}\\
-        0 \arrow{r} & 0 \arrow{r} & \F(Z) \arrow{r} & 0
-      \end{tikzcd}$$
-      because $\F$ is triangulated.
-      It then follows from Proposition~\ref{isotriangle} that $Z$ is an object of $\mathscr{K}$, so we take the distinguished triangles of $\mathscr{K}$ to be the distinguished triangles
-      $$\begin{tikzcd}
-        K^\prime \arrow{r} & K \arrow{r} & K^{\prime\prime} \arrow{r} & K^\prime[1]
-      \end{tikzcd}$$
-      of $\T^\prime$ with $K,K^\prime, K^{\prime\prime}$ objects of $\mathscr{K}$.
-      
-      Finally, we see $\mathscr{K}$ is saturated, for if $X \oplus Y$ is isomorphic to some object $K$ of $\mathscr{K}$, then 
-      $$\F(X) \oplus \F(Y) \cong \F(X \oplus Y) \cong \F(K) \cong 0$$
-      implies $F(X) \cong 0$ and $F(Y) \cong 0$.
-      Therefore $X$ and $Y$ are objects of $\mathscr{K}$.
-  \end{proof}
-\end{lem}
-
-\begin{defn}
-  Let $\T$ be a triangulated category and let $\T^\prime$ be a strictly full triangulated subcategory.
-  For any two objects $X$ and $Y$ of $\T$, define the collection of morphisms $\operatorname{Mor}_{\T^\prime}(X,Y)$ to be the morphisms $f \in \T(X,Y)$ such that there exists some object $Z$ of $\T^\prime$ and a distinguished triangle
-  $$\begin{tikzcd}
-    X \arrow{r}{f} & Y \arrow{r}{g} & Z \arrow{r}{h} & X[1].
-  \end{tikzcd}$$
-\end{defn}
-
-\begin{defn}
-  Let $\T$ be a triangulated category and let $\T^\prime$ be a strictly full triangulated subcategory.
-  Define the subcategory $\operatorname{Mor}_{\T^\prime}$ of $\T$ to be the category with objects those of $\T$ and morphisms $\operatorname{Mor}_{\T^\prime}(X,Y)$ for objects $X$ and $Y$ of $\T$.
-\end{defn}
-
-\begin{lem}\label{moriscat}
-  Let $T^\prime$ be a triangulated subcategory of a triangulated category $\T$.
-  Then
-  \begin{enumerate}
-    \item
-      Every isomorphism $f : X \rightarrow Y$ of $\T$ is in $\operatorname{Mor}_{\T^\prime}(X,Y)$.
-    \item
-      Let $f : X \rightarrow Y$ and $g : Y \rightarrow Z$ be morphisms of $\T$.
-      If any two of 
-      $f \in \operatorname{Mor}_{\T^\prime}(X,Y)$,
-      $g \in \operatorname{Mor}_{\T^\prime}(Y,Z)$,
-      $g \circ f \in \operatorname{Mor}_{\T^\prime}(X,Z)$
-      hold, then so does the third. 
-  \end{enumerate}
-  
-  \begin{proof}
-    \begin{enumerate}
-    \item
-      If $f$ is an isomorphism, then by Proposition~\ref{isotriangle}
-      $$\begin{tikzcd}
-        X \arrow{r}{f} & Y \arrow{r} & 0 \arrow{r} & X[1]
-      \end{tikzcd}$$
-      is a distinguished triangle, and since $\T^\prime$ is an additive subcategory of $\T$, $0$ is an object of $\T^\prime$.
-      Thus $f \in \operatorname{Mor}_{\T^\prime}(X,Y)$ and, in particular, $id_X \in \operatorname{Mor}_{T^\prime}(X,X)$.
-    \item
-      By (TR1) and (TR4) we have a commutative octohedral diagram
-      $$\begin{tikzcd}
-        X \arrow{r}{f}\arrow{d}{\id_X} & Y \arrow{r}{i}\arrow{d}{g} & C^\prime \arrow{r}{\ell}\arrow{d}{u} & X[1] \arrow{d}{\id_{X[1]}}\\
-        X \arrow{r}{g \circ f}\arrow{d}{f} & Z\arrow{r}{j}\arrow{d}{\id_{Z}} & \arrow{r} C \arrow{r}{m}\arrow{d}{v} & X[1]\arrow{d}{f[1]}\\
-        Y \arrow{r}{g}\arrow{d}{i} & Z \arrow{r}{k}\arrow{d}{j} & C^{\prime\prime}\arrow{d}{\id_{C^{\prime\prime}}} \arrow{r}{n} & Y[1]\arrow{d}{i[1]}\\
-        C^\prime \arrow{r}{u} & C \arrow{r}{v} & C^{\prime\prime}\arrow{r}{i[1] \circ m} & C^\prime[1]
-      \end{tikzcd}$$
-      with distinguished rows.
-      To say that any two of 
-      $f \in \operatorname{Mor}_{\T^\prime}(X,Y)$,
-      $g \in \operatorname{Mor}_{\T^\prime}(Y,Z)$,
-      $g \circ f \in \operatorname{Mor}_{\T^\prime}(X,Z)$
-      hold is to say that any two of $C^\prime, C, C^{\prime\prime}$ are objects of $\T^\prime$.
-      Since $\T^\prime$ is a strictly full triangulated subcategory, the last row of the diagram implies by Proposition~\ref{fulltriangles} that if any two of $C^\prime, C, C^{\prime\prime}$ are objects of $\T^\prime$, then so is the third.
-      Therefore if any two of 
-      $f \in \operatorname{Mor}_{\T^\prime}(X,Y)$,
-      $g \in \operatorname{Mor}_{\T^\prime}(Y,Z)$,
-      $g \circ f \in \operatorname{Mor}_{\T^\prime}(X,Z)$
-      hold, then so does the third.
-    \end{enumerate}
-  \end{proof}
-\end{lem}
-
-\begin{defn}
-  By the previous Lemma, we are justified in defining the subcategory $\operatorname{Mor}_{\T^\prime}$ to be the category with objects those of $\T$ and morphisms $\operatorname{Mor}_{\T^\prime}(X,Y)$ for any pair of objects $X$ and $Y$ of $\T$.
-\end{defn}
-
-\begin{defn}
-  Let $\T$ be a triangulated category and let $\T^\prime$ be a strictly full triangulated subcategory.
-  Fix objects $X$ and $Y$ of $\T$.
-  Define a relation on diagrams $(Z,f,g)$ of the form 
-  $$\begin{tikzcd}
-    & Z\arrow{rd}{f}\arrow{ld}{g}\\
-    X & & Y
-  \end{tikzcd}$$
-  with $f \in \operatorname{Mor}_{T^\prime}(Z,X)$,
-  $$(Z,f,g) \sim (Z^\prime, f^\prime, g^\prime)$$
-  if and only if there exists a third diagram $(Z^{\prime\prime}, f^{\prime\prime}, g^{\prime\prime})$ and a commutative diagram
-  $$\begin{tikzcd}
-    & Z\arrow[swap]{ld}{f}\arrow{rd}{g}\\
-    X & Z^{\prime\prime} \arrow[swap]{l}{f^{\prime\prime}}\arrow{r}{g^{\prime\prime}}\arrow{u}{u}\arrow[swap]{d}{v} & Y\\
-    & Z^\prime\arrow{ul}{f^\prime}\arrow[swap]{ur}{g^\prime}
-  \end{tikzcd}$$
-\end{defn}
-
-\begin{lem}
-  The relation defined above is an equivalence relation.
-  
-  \begin{proof}
-    It's clear that the relation is reflexive and symmetric.
-    To see that it's transitive, assume that we have the relations $(Z_1,f_1,g_1) \sim (Z_2, f_2,g_2) \sim (Z_3,f_3,g_3)$
-    given by the commutative diagrams
-    $$\begin{tikzcd}
-      & Z_1\arrow[swap]{ld}{f_1}\arrow{rd}{g_1}\\
-      X & Z \arrow[swap]{l}{f}\arrow{r}{g}\arrow{u}{u}\arrow[swap]{d}{v} & Y\\
-      & Z_2\arrow{ul}{f_2}\arrow[swap]{ur}{g_2}
-    \end{tikzcd}
-    \ \text{and}\ 
-    \begin{tikzcd}
-      & Z_2\arrow[swap]{ld}{f_2}\arrow{rd}{g_2}\\
-      X & Z^\prime \arrow[swap]{l}{f^\prime}\arrow{r}{g^\prime}\arrow{u}{u^\prime}\arrow[swap]{d}{v^\prime} & Y\\
-      & Z_3\arrow{ul}{f_3}\arrow[swap]{ur}{g_3}
-    \end{tikzcd}$$
-    Take the homotopy pullback
-    $$\begin{tikzcd}
-      Z^{\prime\prime} \arrow{r}\arrow{d} & Z\arrow{d}{v}\\
-      Z^\prime \arrow{r}{u^\prime} & Z_2.
-    \end{tikzcd}$$
-    which induces a commutative diagram
-    $$\begin{tikzcd}
-      & & Z_1 \arrow{lldd}{f_1}\arrow{rrdd}{g_1}\\
-      & & Z\arrow{u}{u}\arrow{ld}{v}\arrow{rd}{v}\\
-      X & Z_2\arrow{l}{f_2} & Z^{\prime\prime}\arrow{u}\arrow{d} & Z_2\arrow{r}{g_2} & Y\\
-      & & Z^\prime\arrow{lu}{u^\prime}\arrow{ru}{u^\prime}\arrow{d}{v^\prime}\\
-      & & Z_3\arrow{lluu}{f_3} \arrow{rruu}{g_3}
-    \end{tikzcd}$$
-    By Lemma~\ref{moriscat} that $u \in \Mor{\T^\prime}(Z,Z_1)$, $u^\prime \in \Mor{\T^\prime}(Z^\prime, Z_2)$, $v \in \Mor{\T^\prime}(Z,Z_2)$, and $V^\prime \in \Mor{T^\prime}(Z^\prime,Z_3)$ because $f \in \Mor{\T^\prime}(Z,X)$, $f^\prime \in \Mor{\T^\prime}(Z^\prime,X)$, $g \in \Mor{\T^\prime}(Z,Y)$ and $g^\prime \in \Mor{\T^\prime}(Z^\prime,Y)$.
-    
-  \end{proof}
-\end{lem}
-
-\begin{thm}
-%  Consider the category with objects triangulated categories and morphisms triangulated functors.
-%  If $\T$ is a triangulated category and $\T^\prime$ is a strictly full subcategory, then the inclusion functor $\T^\prime \rightarrow \T$ has a cokernel.
-  Let $\T$ be a triangulated category.
-  If $\T^\prime$ a strictly full triangulated subcategory of $\T$, then there exists a triangulated category $\T/\T^\prime$ and a universal triangulated functor $\pi \colon \T \rightarrow \T/\T^\prime$ such that if $K \rightarrow \T$ is the kernel of $\pi$, then $\T^\prime$ is a subcategory of $K$.
-
-  That is, for any triangulated functor $\F : \T \rightarrow \T^{\prime\prime}$ making the diagram
-  $$\begin{tikzcd}
-    \T^\prime \arrow{r}\arrow[bend left]{rr}{0} & \T \arrow{d}{\pi}\arrow{r}{\F} & \T^{\prime\prime}\\
-    & \T/\T^\prime \arrow[dashed]{ur}{\exists !\overline{\F}}
-  \end{tikzcd}$$
-  commute, there exists a unique triangulated functor $\overline{\F}$ such that $\F = \overline{\F} \circ \pi$.
-  
-  The category $\T/\T^\prime$ is called the Verdier quotient of $\T$ by $\T^\prime$ and $\pi : \T \rightarrow \T^\prime$ is called the Verdier localisation.
-\end{thm}
-
-\begin{rmk}
-  Essentially, this says that in the category with objects triangulated categories and morphisms triangulated functors, the inclusion functor of a strictly full subcategory has a cokernel.
-\end{rmk}
+\end{cor}
 \end{document}

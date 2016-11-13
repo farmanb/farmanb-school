@@ -15,14 +15,14 @@
 \tableofcontents
 
 \newtheorem{thm}{Theorem}[section]
-\newtheorem{lem}{Lemma}[section]
-\newtheorem{cor}{Corollary}[section]
-\newtheorem{prop}{Proposition}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
 
 \theoremstyle{definition}
-\newtheorem{defn}{Definition}[section]
-\newtheorem{rmk}{Remark}[section]
-\newtheorem{eg}{Example}[section]
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{rmk}[thm]{Remark}
+\newtheorem{eg}[thm]{Example}
 
 \chapter{Preliminaries}
 \section{Categories}
@@ -33,12 +33,14 @@
 \subsection{Fiber Products in $\hat{\mathscr{C}}$} %Maybe necessary?
 %\subfile{fiberproducts.tex}
 \section{Triangulated Categories}
-\subfile{triangulatedcats.tex}
+%\subfile{triangulatedcats.tex}
+\subfile{verdier.tex}
 \subsection{Generators of Triangulated Categories}
 %\subfile{triangulatedgens.tex}
 \chapter{Differential Graded Categories}
 %\subfile{dgcats.tex}
 \chapter{Non Commutative Projective Schemes}
 %\subfile{non.com.geom.tex}
+\subfile{bib.tex}
 \end{document}
 
