@@ -956,7 +956,7 @@ Throughout this section, let $\T$ be a triangulated category and let $\T^\prime$
   \end{proof}
 \end{lem}
 
-\begin{prop}[\cite{NeemanTCats}]
+\begin{prop}[\cite{NeemanTCats}]\label{VerdierIsomorphism}
   Let $f \colon X \rightarrow Y$ be a morphism of $\T$.
   Then $\pi(f)$ is an isomorphism if and only if for any distinguished triangle
   $$\begin{tikzcd}
@@ -1049,11 +1049,11 @@ Throughout this section, let $\T$ be a triangulated category and let $\T^\prime$
     = 0.$$
     By Lemma~\ref{VerdierZeroIso} there exists an object $Z^\prime$ of $\T$ such that $Z \oplus Z^\prime$ is an object of $\T^\prime$, as desired.
     
-    Conversely, assume that for every distinguished triangle
+    Conversely, assume that
     $$\begin{tikzcd}
       X \arrow{r}{f} & Y \arrow{r}{g} & Z \arrow{r}{h} & X[1]
     \end{tikzcd}$$
-    there exists an object $Z^\prime$ of $\T$ such that $Z \oplus Z^\prime$ is an object of $\T^\prime$.
+    is distinguished and there exists an object $Z^\prime$ of $\T$ such that $Z \oplus Z^\prime$ is an object of $\T^\prime$.
     Taking the direct sum with\\
     $0 \to Z^\prime \overset{\id_{Z^\prime}}\to Z^\prime \to 0$ we obtain the distinguished triangle
     $$\begin{tikzcd}
@@ -1078,6 +1078,113 @@ Throughout this section, let $\T$ be a triangulated category and let $\T^\prime$
     Therefore, by Lemma~\ref{VerdierIsos}, $\pi(f)$ is an isomorphism.
   \end{proof}
 \end{prop}
+
+\begin{lem}[\cite{NeemanTCats}]\label{VerdierExtendSquare}
+  Let
+  $$\begin{tikzcd}
+    X \arrow{r}{f}\arrow{d}{\id_X} & Y \arrow{r}{g}\arrow{d}{v} & Z \arrow{r}{h} & X[1]\arrow{d}{\id_{X[1]}}\\
+    X \arrow{r}{v \circ f} & Y^\prime \arrow{r}{g^\prime} & Z^\prime \arrow{r}{h^\prime} & X[1]
+  \end{tikzcd}$$
+  be a commutative diagram of $\T$ with distinguished rows.
+  If $\pi(v)$ is invertible, then we may extend the diagram to 
+  $$\begin{tikzcd}
+    X \arrow{r}{f}\arrow{d}{\id_X} & Y \arrow{r}{g}\arrow{d}{v} & Z \arrow{r}{h}\arrow[dashed]{d}{\exists w} & X[1]\arrow{d}{\id_{X[1]}}\\
+    X \arrow{r}{v \circ f} & Y^\prime \arrow{r}{g^\prime} & Z^\prime \arrow{r}{h^\prime} & X[1]
+  \end{tikzcd}$$
+  such that $\pi(w)$ is invertible.
+
+  \begin{proof}
+    By Proposition~\ref{extendsquare}, we obtain a diagram
+    $$\begin{tikzcd}
+      X \arrow{r}{f}\arrow{d}{\id_X} & Y \arrow{r}{g}\arrow{d}{v} & Z \arrow{r}{h}\arrow{d}{w} & X[1]\arrow{d}{\id_{X[1]}}\\
+      X \arrow{r}{v \circ f}\arrow{d} & Y^\prime \arrow{r}{g^\prime}\arrow{d}{v^{\prime}} & Z^\prime \arrow{r}{h^\prime}\arrow{d}{w^{\prime}} & X[1]\arrow{d}\\
+      0 \arrow{r}\arrow{d} & Y^{\prime\prime} \arrow{r}{g^{\prime\prime}}\arrow{d}{v^{\prime\prime}} & Z^{\prime\prime} \arrow{r}{h^{\prime\prime}}\arrow{d}{w^{\prime\prime}}& 0\arrow{d}\\
+      X[1] \arrow{r}{f[1]} & Y[1] \arrow{r}{g[1]} & Z[1] \arrow{r}{-h[2]} & X[2]
+    \end{tikzcd}$$
+    with distinguished rows and columns, and all squares commutative except the bottom right, which anti-commutes.
+    Since $\pi(v)$ was assumed to be an isomorphism, there exists an object $W$ of $\T$ such that $Y^{\prime\prime} \oplus W$ is an object of $\T^{\prime}$ by Proposition~\ref{VerdierIsomorphism}, and the third row implies that $g^{\prime\prime}$ is an isomorphism, hence $Z^{\prime\prime} \oplus W$ is also an object of $\T^\prime$.
+    Therefore by Proposition~\ref{VerdierIsomorphism}, $\pi(w)$ is an isomorphism.
+  \end{proof}
+\end{lem}
+
+\begin{lem}\label{VerdierExtendSquareDual}
+  Dually, if we are given a commutative diagram
+  $$\begin{tikzcd}
+    X \arrow{r}{f}\arrow{d}{\id_X} & Y \arrow{r}{g} & Z \arrow{r}{h}\arrow{d}{v} & X[1]\arrow{d}{\id_{X[1]}}\\
+    X \arrow{r}{f^\prime} & Y \arrow{r}{g^\prime} & Z^\prime \arrow{r}{h^\prime} & X[1]
+  \end{tikzcd}$$
+  with $\pi(v)$ an isomorphism, we may complete the diagram to 
+  $$\begin{tikzcd}
+    X \arrow{r}{f}\arrow{d}{\id_X} & Y \arrow{r}{g}\arrow[dashed]{d}{\exists u} & Z \arrow{r}{h}\arrow{d}{v} & X[1]\arrow{d}{\id_{X[1]}}\\
+    X \arrow{r}{f^\prime} & Y \arrow{r}{g^\prime} & Z^\prime \arrow{r}{h^\prime} & X[1]
+  \end{tikzcd}$$
+  such that $\pi(u)$ is also an isomorphism.
+  
+  \begin{proof}
+    Apply the same argument as above to the diagram
+    $$\begin{tikzcd}
+      Z[-1] \arrow{r}{-h[-1]}\arrow{d}{v[-1]} & X \arrow{r}{f}\arrow{d}{\id_X} & Y \arrow{r}{g}\arrow{d}{w} & Z\arrow{d}{v}\\
+      Z^\prime[-1] \arrow{r}{-h^\prime[-1]}\arrow{d} & X \arrow{r}{f^\prime}\arrow{d} & Y^\prime\arrow{r}{g^\prime}\arrow{d} & Z^\prime\arrow{d}\\
+      Z^{\prime\prime}[-1] \arrow{r}\arrow{d} & 0 \arrow{r}\arrow{d} & Y^{\prime\prime} \arrow{r}\arrow{d} & Z^{\prime\prime}\arrow{d}\\
+      Z \arrow{r} & X[1] \arrow{r} & Y[1] \arrow{r} & Z[1]
+    \end{tikzcd}$$
+  \end{proof}
+\end{lem}
+
+\begin{lem}[\cite{NeemanTCats}]
+  Given two distinguished triangles
+  $$\begin{tikzcd}
+    X \arrow{r}{f} & Y \arrow{r}{g} & Z \arrow{r}{h} & X[1]\\
+    X^\prime \arrow{r}{f^\prime} & Y^\prime \arrow{r}{g^\prime} & Z^\prime \arrow{r}{h^\prime} & X^\prime[1]
+  \end{tikzcd}$$
+  of $\T$ and a commutative diagram
+  $$\begin{tikzcd}
+    X \arrow{r}{\pi(f)}\arrow{d}{u} & Y\arrow{d}{v}\\
+    X^\prime \arrow{r}{\pi(f^\prime)} & Y^\prime
+  \end{tikzcd}$$
+  of $\T/\T^\prime$ with vertical isomorphisms, we may extend the diagram to 
+  $$\begin{tikzcd}
+    X \arrow{r}{\pi(f)}\arrow{d}{u} & Y\arrow{d}{v} \arrow{r}{\pi(g)} & Z \arrow{r}{\pi(h)}\arrow[dashed]{d}{\exists w} & X[1] \arrow{d}{u[1]}\\
+    X^\prime \arrow{r}{\pi(f^\prime)} & Y^\prime \arrow{r}{\pi(g^\prime)} & Z^\prime \arrow{r}{\pi(h^{\prime})} & X^\prime[1]
+  \end{tikzcd}$$
+  with $w$ an isomorphism.
+  
+  \begin{proof}
+    We may represent $v$ as a diagram
+    $$\begin{tikzcd}
+      & Y \arrow[swap]{ld}{v_1}\arrow{rd}{v_2}\\
+      Y & & Y^\prime
+    \end{tikzcd}$$
+    and, because $v$ is an isomorphism, both are morphisms of $\Mor{T^\prime}$.
+    Using (TR1) we obtain distinguished triangles
+    $$\begin{tikzcd}
+      Y^{\prime\prime} \arrow{r}{-(g^\prime \circ v_2)} & Z^\prime \arrow{r}{h^{\prime\prime}} & X^{\prime\prime}[1] \arrow{r}{f^{\prime\prime}[1]} & Y^{\prime\prime}[1]
+    \end{tikzcd}$$
+    and
+    $$\begin{tikzcd}
+      Y^{\prime\prime} \arrow{r}{-(g \circ v_1)} & Z \arrow{r}{g^{\prime\prime\prime}} & X^{\prime\prime\prime}[1] \arrow{r}{f^{\prime\prime\prime}[1]} & Y^{\prime\prime}[1]
+    \end{tikzcd}$$
+    By rotating we obtain two morphisms of triangles
+    $$\begin{tikzcd}
+      Z^\prime \arrow{r}{h^{\prime\prime}}\arrow{d}{\id_{Z^\prime}} & X^{\prime\prime}[1] \arrow{r}{f^{\prime\prime}[1]}\arrow[dashed]{d}{\exists u^\prime[1]} & Y^{\prime\prime}[1] \arrow{rr}{(g^\prime \circ v_2)[1]}\arrow{d}{v_2[1]} & & Z^\prime[1]\arrow{d}{\id_{Z^\prime[1]}}\\
+      Z^\prime \arrow{r}{h^\prime} & X^\prime[1] \arrow{r}{f^\prime[1]} & Y^\prime[1] \arrow{rr}{g^\prime[1]} & & Z^\prime[1]
+    \end{tikzcd}$$
+    and
+    $$\begin{tikzcd}
+      Z \arrow{r}{h^{\prime\prime\prime}}\arrow{d}{\id_Z} & X^{\prime\prime\prime}[1] \arrow{r}{f^{\prime\prime\prime}[1]}\arrow[dashed]{d}{\exists u^{\prime\prime}[1]} & Y^{\prime\prime}[1] \arrow{rr}{(g \circ v_1)[1]}\arrow{d}{v_1[1]} & & Z^\prime[1]\arrow{d}{\id_{Z[1]}}\\
+      Z \arrow{r}{h} & X[1] \arrow{r}{f[1]} & Y[1] \arrow{rr}{g[1]} & & Z[1]
+    \end{tikzcd}$$
+    with $\pi(u^\prime)$ and $\pi(u^{\prime\prime})$ both isomorphisms by the previous Lemma.
+    This gives an isomorphic diagram in $\T/\T^\prime$,
+    $$\begin{tikzcd}
+      X^{\prime\prime\prime} \arrow[swap]{dd}{\pi(u^\prime)^{-1} \circ u \circ \pi(u^{\prime\prime})}\arrow{rr}{\pi(f^{\prime\prime\prime})}\arrow{rd}{\pi(u^{\prime\prime})} & & Y^{\prime\prime}\arrow[dashed,pos=0.8]{dd}{\id_{Y^\prime\prime}}\arrow{rd}{\pi(v_1)}\\
+      & X\arrow[pos=0.35]{rr}{\pi(f)}\arrow[swap,pos=0.4]{dd}{u} & & Y\arrow{dd}{v}\\
+      X^{\prime\prime}\arrow[dashed,pos=0.75]{rr}{\pi(f^{\prime\prime})}\arrow{rd}{\pi(u^\prime)} & & Y^{\prime\prime}\arrow[dashed,pos=0.2]{rd}{\pi(v_2)^{-1}}\\
+      & X^\prime \arrow{rr}{\pi(f^\prime)} & & Y^\prime
+    \end{tikzcd}$$
+
+  \end{proof}
+\end{lem}
 
 \begin{thm}[\cite{NeemanTCats}]
 %  Consider the category with objects triangulated categories and morphisms triangulated functors.
