@@ -45,7 +45,7 @@ Throughout this section, let $\T$ be a triangulated category and let $\T^\prime$
 
 \begin{defn}[\cite{NeemanTCats}]
   %Let $\T$ be a triangulated category and let $\T^\prime$ be a strictly full triangulated subcategory.
-  For any two objects $X$ and $Y$ of $\T$, define the collection of morphisms $\operatorname{Mor}_{\T^\prime}(X,Y)$ to be the morphisms $f \in \T(X,Y)$ such that there exists some object $Z$ of $\T^\prime$ and a distinguished triangle
+  For any two objects $X$ and $Y$ of $\T$, define the collection of morphisms $\Mor{\T^\prime}(X,Y)$ to be the morphisms $f \in \T(X,Y)$ such that there exists some object $Z$ of $\T^\prime$ and a distinguished triangle
   $$\begin{tikzcd}
     X \arrow{r}{f} & Y \arrow{r}{g} & Z \arrow{r}{h} & X[1].
   \end{tikzcd}$$
@@ -53,20 +53,20 @@ Throughout this section, let $\T$ be a triangulated category and let $\T^\prime$
 
 \begin{defn}[\cite{NeemanTCats}]
   %Let $\T$ be a triangulated category and let $\T^\prime$ be a strictly full triangulated subcategory.
-  Define the subcategory $\operatorname{Mor}_{\T^\prime}$ of $\T$ to be the category with objects those of $\T$ and morphisms $\operatorname{Mor}_{\T^\prime}(X,Y)$ for objects $X$ and $Y$ of $\T$.
+  Define the subcategory $\Mor{\T^\prime}$ of $\T$ to be the category with objects those of $\T$ and morphisms $\Mor{\T^\prime}(X,Y)$ for objects $X$ and $Y$ of $\T$.
 \end{defn}
 
 \begin{lem}[\cite{NeemanTCats}]\label{moriscat}
   Let $\T^\prime$ be a strictly full triangulated subcategory of a triangulated category $\T$.
   \begin{enumerate}
     \item
-      Every isomorphism $f : X \rightarrow Y$ of $\T$ is in $\operatorname{Mor}_{\T^\prime}(X,Y)$.
+      Every isomorphism $f : X \rightarrow Y$ of $\T$ is in $\Mor{\T^\prime}(X,Y)$.
     \item
       Let $f : X \rightarrow Y$ and $g : Y \rightarrow Z$ be morphisms of $\T$.
       If any two of 
-      $f \in \operatorname{Mor}_{\T^\prime}(X,Y)$,
-      $g \in \operatorname{Mor}_{\T^\prime}(Y,Z)$,
-      $g \circ f \in \operatorname{Mor}_{\T^\prime}(X,Z)$
+      $f \in \Mor{\T^\prime}(X,Y)$,
+      $g \in \Mor{\T^\prime}(Y,Z)$,
+      $g \circ f \in \Mor{\T^\prime}(X,Z)$
       hold, then so does the third. 
   \end{enumerate}
   
@@ -106,6 +106,25 @@ Throughout this section, let $\T$ be a triangulated category and let $\T^\prime$
 \begin{defn}
   By the previous Lemma, we are justified in defining the subcategory $\operatorname{Mor}_{\T^\prime}$ to be the category with objects those of $\T$ and morphisms $\operatorname{Mor}_{\T^\prime}(X,Y)$ for any pair of objects $X$ and $Y$ of $\T$.
 \end{defn}
+
+\begin{lem}
+  The subcategory $\Mor{\T^\prime}$ is stable under translation.
+  
+  \begin{proof}
+    Given a morphism $f \in \Mor{\T^\prime}(X,Y)$, there exists a distinguished triangle
+    $$\begin{tikzcd}
+      X \arrow{r}{f} & Y \arrow{r}{g} & Z \arrow{r}{h} & X[1]
+    \end{tikzcd}$$
+    with $Z$ an object of $\T^\prime$.
+    We obtain a morphism of triangles
+    $$\begin{tikzcd}
+      X[1] \arrow{r}{-f[1]}\arrow{d}{\id_{X[1]}} & Y[1]\arrow{d}{-\id_{Y[1]}} \arrow{r}{-g[1]} & Z[1] \arrow{r}{-h[1]}\arrow{d}{\id_{Z[1]}} & X[2]\arrow{d}{\id_{X[2]}}\\
+      X[1] \arrow{r}{f[1]} & Y[1] \arrow{r}{g[1]} & Z[1] \arrow{r}{-h[1]} & X[2]\\
+    \end{tikzcd}$$
+    with the top row distinguished because it was obtained by successive rotations of the original triangle.
+    Therefore $f[1] \in \Mor{\T^\prime}(X[1], Y[1])$ because $Z[1]$ is an object of $\T^\prime$.
+  \end{proof}
+\end{lem}
 
 \begin{prop}[\cite{NeemanTCats}]
   %Let $\T$ be a triangulated category and let $T^\prime$ be a strictly full triangulated subcategory.
@@ -458,7 +477,7 @@ Throughout this section, let $\T$ be a triangulated category and let $\T^\prime$
   \end{proof}
 \end{lem}
 
-\begin{prop}[\cite{NeemanTCats}]
+\begin{prop}[\cite{NeemanTCats}]\label{VerdierLocalizationUniversal}
   The functor $\pi \colon \T \to \T/\T^\prime$ is universal for all functors $\F \colon \T \rightarrow \T^{\prime\prime}$ which take all morphisms of $\Mor{\T^\prime}$ to isomorphisms.
   
   \begin{proof}
@@ -498,7 +517,7 @@ Throughout this section, let $\T$ be a triangulated category and let $\T^\prime$
   \end{proof}
 \end{prop}
 
-\begin{lem}[\cite{NeemanTCats}]
+\begin{lem}[\cite{NeemanTCats}]\label{VerdierEqualizer}
   Let $f,g \in \Hom{\T}{X,Y}$ be given.
   The following are equivalent:
   \begin{enumerate}
@@ -570,7 +589,7 @@ Throughout this section, let $\T$ be a triangulated category and let $\T^\prime$
   \end{proof}
 \end{lem}
 
-\begin{lem}[\cite{NeemanTCats}]
+\begin{lem}[\cite{NeemanTCats}]\label{VerdierLiftSquare}
   Given a commutative diagram
   $$\begin{tikzcd}
     W \arrow{r}{f}\arrow{d}{g} & X\arrow{d}{g^\prime}\\
@@ -1131,7 +1150,7 @@ Throughout this section, let $\T$ be a triangulated category and let $\T^\prime$
   \end{proof}
 \end{lem}
 
-\begin{lem}[\cite{NeemanTCats}]
+\begin{lem}[\cite{NeemanTCats}]\label{ExtendTriangleIsomorphism}
   Given two distinguished triangles
   $$\begin{tikzcd}
     X \arrow{r}{f} & Y \arrow{r}{g} & Z \arrow{r}{h} & X[1]\\
@@ -1155,24 +1174,24 @@ Throughout this section, let $\T$ be a triangulated category and let $\T^\prime$
       & Y \arrow[swap]{ld}{v_1}\arrow{rd}{v_2}\\
       Y & & Y^\prime
     \end{tikzcd}$$
-    and, because $v$ is an isomorphism, both are morphisms of $\Mor{T^\prime}$.
+    and, because $v$ is an isomorphism, both are morphisms of $\Mor{\T^\prime}$.
     Using (TR1) we obtain distinguished triangles
     $$\begin{tikzcd}
-      Y^{\prime\prime} \arrow{r}{-(g^\prime \circ v_2)} & Z^\prime \arrow{r}{h^{\prime\prime}} & X^{\prime\prime}[1] \arrow{r}{f^{\prime\prime}[1]} & Y^{\prime\prime}[1]
+      Y^{\prime\prime} \arrow{r}{g^\prime \circ v_2} & Z^\prime \arrow{r}{h^{\prime\prime}} & X^{\prime\prime}[1] \arrow{r}{-f^{\prime\prime}[1]} & Y^{\prime\prime}[1]
     \end{tikzcd}$$
     and
     $$\begin{tikzcd}
-      Y^{\prime\prime} \arrow{r}{-(g \circ v_1)} & Z \arrow{r}{g^{\prime\prime\prime}} & X^{\prime\prime\prime}[1] \arrow{r}{f^{\prime\prime\prime}[1]} & Y^{\prime\prime}[1]
+      Y^{\prime\prime} \arrow{r}{g \circ v_1} & Z \arrow{r}{g^{\prime\prime\prime}} & X^{\prime\prime\prime}[1] \arrow{r}{-f^{\prime\prime\prime}[1]} & Y^{\prime\prime}[1]
     \end{tikzcd}$$
     By rotating we obtain two morphisms of triangles
     $$\begin{tikzcd}
-      Z^\prime \arrow{r}{h^{\prime\prime}}\arrow{d}{\id_{Z^\prime}} & X^{\prime\prime}[1] \arrow{r}{f^{\prime\prime}[1]}\arrow[dashed]{d}{\exists u^\prime[1]} & Y^{\prime\prime}[1] \arrow{rr}{(g^\prime \circ v_2)[1]}\arrow{d}{v_2[1]} & & Z^\prime[1]\arrow{d}{\id_{Z^\prime[1]}}\\
-      Z^\prime \arrow{r}{h^\prime} & X^\prime[1] \arrow{r}{f^\prime[1]} & Y^\prime[1] \arrow{rr}{g^\prime[1]} & & Z^\prime[1]
+      Z^\prime \arrow{r}{h^{\prime\prime}}\arrow{d}{\id_{Z^\prime}} & X^{\prime\prime}[1] \arrow{r}{-f^{\prime\prime}[1]}\arrow[dashed]{d}{\exists u^\prime[1]} & Y^{\prime\prime}[1] \arrow{rr}{-(g^\prime \circ v_2)[1]}\arrow{d}{v_2[1]} & & Z^\prime[1]\arrow{d}{\id_{Z^\prime[1]}}\\
+      Z^\prime \arrow{r}{h^\prime} & X^\prime[1] \arrow{r}{-f^\prime[1]} & Y^\prime[1] \arrow{rr}{-g^\prime[1]} & & Z^\prime[1]
     \end{tikzcd}$$
     and
     $$\begin{tikzcd}
-      Z \arrow{r}{h^{\prime\prime\prime}}\arrow{d}{\id_Z} & X^{\prime\prime\prime}[1] \arrow{r}{f^{\prime\prime\prime}[1]}\arrow[dashed]{d}{\exists u^{\prime\prime}[1]} & Y^{\prime\prime}[1] \arrow{rr}{(g \circ v_1)[1]}\arrow{d}{v_1[1]} & & Z^\prime[1]\arrow{d}{\id_{Z[1]}}\\
-      Z \arrow{r}{h} & X[1] \arrow{r}{f[1]} & Y[1] \arrow{rr}{g[1]} & & Z[1]
+      Z \arrow{r}{h^{\prime\prime\prime}}\arrow{d}{\id_Z} & X^{\prime\prime\prime}[1] \arrow{r}{-f^{\prime\prime\prime}[1]}\arrow[dashed]{d}{\exists u^{\prime\prime}[1]} & Y^{\prime\prime}[1] \arrow{rr}{-(g \circ v_1)[1]}\arrow{d}{v_1[1]} & & Z^\prime[1]\arrow{d}{\id_{Z[1]}}\\
+      Z \arrow{r}{h} & X[1] \arrow{r}{-f[1]} & Y[1] \arrow{rr}{-g[1]} & & Z[1]
     \end{tikzcd}$$
     with $\pi(u^\prime)$ and $\pi(u^{\prime\prime})$ both isomorphisms by the previous Lemma.
     This gives an isomorphic diagram in $\T/\T^\prime$,
@@ -1183,6 +1202,64 @@ Throughout this section, let $\T$ be a triangulated category and let $\T^\prime$
       & X^\prime \arrow{rr}{\pi(f^\prime)} & & Y^\prime
     \end{tikzcd}$$
 
+    Replacing the front face of the cube by the rear face, we may assume that $Y = Y^\prime$ and we have a commutative diagram
+    $$\begin{tikzcd}
+      X \arrow{r}{\pi(f)}\arrow{d}{u} & Y\arrow{d}{\id_Y}\\
+      X^\prime \arrow{r}{\pi(f^\prime)} & Y
+    \end{tikzcd}$$
+    in $\T/\T^\prime$, with $u$ an isomorphism.
+    Represent $u$ by a diagram
+    $$\begin{tikzcd}
+      & X^{\prime\prime}\arrow[swap]{ld}{u_1}\arrow{rd}{u_2}\\
+      X & & X^\prime
+    \end{tikzcd}$$
+    Since 
+    $$\pi(f) = \pi(f^\prime) \circ u = \pi(f^\prime) \circ \pi(u_2) \circ \pi(u_1)^{-1}$$
+    it follows from Lemma~\ref{VerdierEqualizer} that there exists some $\alpha \in \Mor{\T^\prime}(X^{\prime\prime\prime},X^{\prime\prime})$ making the diagram
+    $$\begin{tikzcd}
+      X^{\prime\prime\prime} \arrow{r}{u_1 \circ \alpha}\arrow{d}{u_2 \circ \alpha} & X\arrow{d}{f}\\
+      X^\prime \arrow{r}{f^\prime} & Y
+    \end{tikzcd}$$
+    commute in $\T$.
+    By (TR1) we have a distinguished triangle
+    $$\begin{tikzcd}
+      X^{\prime\prime\prime} \arrow{r} & Y \arrow{r}{g^{\prime\prime}} & Z^{\prime\prime} \arrow{r}{h^{\prime\prime}} & X^{\prime\prime\prime}[1]
+    \end{tikzcd},$$
+    hence by Lemma~ \ref{VerdierExtendSquareDual} we obtain two diagrams
+    $$\begin{tikzcd}
+      Y \arrow{r}{g^{\prime\prime}}\arrow{d}{\id_Y} & Z^{\prime\prime} \arrow{r}{h^{\prime\prime}}\arrow[dashed]{d}{\exists w_1} & X^{\prime\prime\prime}[1]\arrow{d}{(u_1 \circ \alpha)[1]} \arrow{rr}{-(f \circ u_1 \circ \alpha)[1]} & & Y[1]\arrow{d}{\id_{Y[1]}}\\
+        Y \arrow{r}{g} & Z \arrow{r}{h} & X[1] \arrow{rr}{-f[1]} & & Y[1]
+    \end{tikzcd}$$
+    and
+    $$\begin{tikzcd}
+      Y \arrow{r}{g^{\prime\prime}}\arrow{d}{\id_Y} & Z^{\prime\prime} \arrow{r}{h^{\prime\prime}}\arrow[dashed]{d}{\exists w_2} & X^{\prime\prime\prime}[1] \arrow{rr}{-(f^\prime \circ u_2 \circ \alpha)[1]}\arrow{d}{(u_2 \circ \alpha)[1]} & & Y[1]\arrow{d}{\id_{Y[1]}}\\
+      Y \arrow{r}{g^\prime} & Z^\prime \arrow{r}{h^\prime} & X^\prime[1] \arrow{rr}{-f^\prime[1]} & & Y[1]
+    \end{tikzcd}$$
+    with $\pi(w_1)$, $\pi(w_2)$ isomorphisms.
+    Therefore if we take $w = \pi(w_2) \circ \pi(w_1)^{-1}$ and $u[1] = \pi(u_2[1]) \circ \pi(u_1[1])^{-1}$, then in $\T/\T^\prime$ we have the commutative diagram
+    $$\begin{tikzcd}
+      X \arrow{rr}{\pi(f)}\arrow{d}{u} && Y \arrow{rr}{\pi(g)}\arrow{d}{\id_Y} && Z \arrow{rr}{\pi(h)}\arrow{d}{w} && X[1]\arrow{d}{u[1]}\\
+        X^\prime \arrow{rr}{\pi(f^\prime)} && Y \arrow{rr}{\pi(g^{\prime})} && Z^\prime \arrow{rr}{\pi(h^{\prime})} && X^\prime[1]
+    \end{tikzcd}$$
+    as desired.
+    %%This seems unnecessary for the document.
+    %%Kept in case I decide it's useful later.
+    
+    %since
+    %\begin{eqnarray*}
+    %  w \circ \pi(g) &=& \pi(w_2) \circ \pi(w_1)^{-1} \circ \pi(g)\\
+    %  &=& \pi(w_2) \circ \pi(w_1)^{-1} \circ \pi(w_1) \circ \pi(g^{\prime\prime})\\
+    %  &=& \pi(w_2) \circ \pi(g^{\prime\prime})\\
+    %  &=& \pi(g^\prime)
+    %\end{eqnarray*}
+    %and
+    %\begin{eqnarray*}
+    %  \pi(h^{\prime}) \circ w &=& \pi(h^{\prime}) \circ \pi(w_2) \circ \pi(w_1)^{-1}\\
+    %  &=& \pi(u_2[1]) \circ \pi(\alpha[1]) \circ \pi(h^{\prime\prime}) \circ \pi(w_1)^{-1}\\
+    %  &=& \pi(u_2[1]) \circ \pi(u_1[1])^{-1} \circ \pi(u_1[1]) \circ \pi(\alpha[1]) \circ \pi(h^{\prime\prime}) \circ \pi(w_1)^{-1}\\
+    %  &=& u[1] \circ \pi(h) \circ \pi(w_1) \circ \pi(w_1)^{-1}\\
+    %  &=& u[1] \circ \pi(h).
+    %\end{eqnarray*}
   \end{proof}
 \end{lem}
 
@@ -1190,7 +1267,7 @@ Throughout this section, let $\T$ be a triangulated category and let $\T^\prime$
 %  Consider the category with objects triangulated categories and morphisms triangulated functors.
 %  If $\T$ is a triangulated category and $\T^\prime$ is a strictly full subcategory, then the inclusion functor $\T^\prime \rightarrow \T$ has a cokernel.
   Let $\T$ be a triangulated category.
-  If $\T^\prime$ a strictly full triangulated subcategory of $\T$, then there exists a triangulated category $\T/\T^\prime$ and a universal triangulated functor $\pi \colon \T \rightarrow \T/\T^\prime$ such that if $K \rightarrow \T$ is the kernel of $\pi$, then $\T^\prime$ is a subcategory of $K$.
+  If $\T^\prime$ a strictly full triangulated subcategory of $\T$, then there exists a triangulated category $\T/\T^\prime$ and a universal triangulated functor $\pi \colon \T \rightarrow \T/\T^\prime$ such that if $\K \rightarrow \T$ is the kernel of $\pi$, then $\T^\prime$ is a subcategory of $\K$.
 
   That is, for any triangulated functor $\F : \T \rightarrow \T^{\prime\prime}$ making the diagram
   $$\begin{tikzcd}
@@ -1200,9 +1277,180 @@ Throughout this section, let $\T$ be a triangulated category and let $\T^\prime$
   commute, there exists a unique triangulated functor $\overline{\F}$ such that $\F = \overline{\F} \circ \pi$.
   
   The category $\T/\T^\prime$ is called the Verdier quotient of $\T$ by $\T^\prime$ and $\pi : \T \rightarrow \T^\prime$ is called the Verdier localisation.
+  
+  \begin{proof}
+    We have already shown that $\T/\T^\prime$ is an additive category and $\pi$ is an additive functor.
+    It remains to show that $\T/\T^\prime$ is a triangulated category, $\pi$ is a triangulated functor, and $\pi$ satisfies the universal property.
+    
+    For any object $X$ of $\T/\T^\prime$, define $X[1]$ to be the object $X[1]$ of $\T$ viewed as an object of $\T/\T^\prime$, and for $f \in \Hom{\T/\T^\prime}{X,Y}$, define $f[1]$ to be $\pi(f_2[1]) \circ \pi(f_1[1])^{-1}$ for a diagram
+    $$\begin{tikzcd}
+      & Z \arrow[swap]{ld}{f_1}\arrow{rd}{f_2}\\
+      X & & Y
+    \end{tikzcd}$$
+    representing $f$.
+    Define the distinguished triangles in $\T/\T^\prime$ to be all triangles isomorphic to 
+    $$\begin{tikzcd}
+      X \arrow{r}{\pi(f)} & Y \arrow{r}{\pi(g)} & Z \arrow{r}{\pi(h)} & X[1]
+    \end{tikzcd}$$
+    for
+    $$\begin{tikzcd}
+      X \arrow{r}{f} & Y \arrow{r}{g} & Z \arrow{r}{h} & X[1]
+    \end{tikzcd}$$
+    a distinguished triangle of $\T$.
+    Note that, by definition, $\pi$ is a triangulated functor provided $\T/\T^\prime$ is triangulated.
+    
+    For (TR1), let $f \in \Hom{\T/\T^\prime}{X,Y}$ be given.
+    Choose a diagram
+    $$\begin{tikzcd}
+      & W \arrow[swap]{ld}{f_1}\arrow{rd}{f_2}\\
+      X & & Y
+    \end{tikzcd}$$
+    representing $f$.
+    Use (TR1) in $\T$ to obtain a distinguished triangle
+    $$\begin{tikzcd}
+      W \arrow{r}{f_2} & Y \arrow{r}{g} & Z \arrow{r}{h} & W[1]
+    \end{tikzcd}$$
+    and note that we obtain an isomorphism of triangles
+    $$\begin{tikzcd}
+      X \arrow{rr}{f}\arrow{d}{\pi(f_1)^{-1}} && Y \arrow{rr}{\pi(g)}\arrow{d}{\id_Y} && Z \arrow{rr}{\pi(f_1) \circ \pi(h)}\arrow{d}{\id_Z} && X[1]\arrow{d}{\pi(f_1[1])^{-1}}\\
+      W \arrow{rr}{\pi(f_2)} && Y \arrow{rr}{\pi(g)} && Z \arrow{rr}{\pi(h)} && W[1]
+    \end{tikzcd}$$
+    in $\T/\T^\prime$.
+    Applying this construction to the identity morphism in $\Hom{\T/\T^\prime}{X,X}$, which is represented by the diagram
+    $$\begin{tikzcd}
+      & X \arrow[swap]{ld}{\id_X}\arrow{rd}{\id_X}\\
+      X & & X
+    \end{tikzcd}$$
+    it's clear that in $\T/\T^\prime$
+    $$\begin{tikzcd}
+      X \arrow{r}{\id_X} & X \arrow{r} & 0 \arrow{r} & X[1]
+    \end{tikzcd}$$
+    is distinguished.
+
+    That (TR2) holds for $\T/\T^\prime$ follows from the fact that (TR2) holds for $\T$.
+    Indeed, for any distinguished triangle
+    $$\begin{tikzcd}
+      X \arrow{r}{f} & Y \arrow{r}{g} & Z \arrow{r}{h} & X[1]
+    \end{tikzcd}$$
+    of $\T/\T^\prime$ there is an isomorphism
+    $$\begin{tikzcd}
+      X^\prime \arrow{r}{\pi(f^\prime)}\arrow{d}{u} & Y^\prime \arrow{r}{\pi(g^\prime)}\arrow{d}{v} & Z^\prime \arrow{r}{\pi(h^\prime)}\arrow{d}{w} & X^\prime[1]\arrow{d}{u[1]}\\
+      X \arrow{r}{f} & Y \arrow{r}{g} & Z \arrow{r}{h} & X[1]
+    \end{tikzcd}$$
+    The triangles
+    $$\begin{tikzcd}
+      Y^\prime \arrow{r}{g^\prime} & Z^\prime \arrow{r}{h^\prime} & X^\prime[1] \arrow{r}{-f[1]} & Y^\prime[1]
+    \end{tikzcd}$$
+    and
+    $$\begin{tikzcd}
+      Z^\prime[-1] \arrow{r}{-h^\prime[-1]} & X^\prime \arrow{r}{f^\prime} & Y^\prime\arrow{r}{g^\prime} & Z^\prime
+    \end{tikzcd}$$
+    are both distinguished in $\T$, and there are isomorphisms
+    $$\begin{tikzcd}
+      Y^\prime \arrow{rr}{\pi(g^\prime)}\arrow{d}{v} && Z^\prime \arrow{rr}{\pi(h^\prime)}\arrow{d}{w} && X^\prime[1] \arrow{rr}{-\pi(f^\prime[1])}\arrow{d}{u[1]}&& Y^\prime[1]\arrow{d}{v[1]}\\
+      Y \arrow{rr}{g} && Z \arrow{rr}{h} && X[1] \arrow{rr}{-f[1]} && Y[1]
+    \end{tikzcd}$$
+    and
+    $$\begin{tikzcd}
+      Z^\prime[-1] \arrow{rr}{-\pi(h^\prime[-1])}\arrow{d}{w[-1]} && X^\prime\arrow{rr}{\pi(f^\prime)}\arrow{d}{u} && Y^\prime \arrow{rr}{\pi(g^\prime)}\arrow{d}{v} && Z^\prime \arrow{d}{w}\\
+      Z[-1] \arrow{rr}{-h[-1]} && X \arrow{rr}{f} && Y \arrow{rr}{g} && Z
+    \end{tikzcd}$$
+    
+    For (TR3), suppose we are given a commutative diagram
+    $$\begin{tikzcd}
+      X_1 \arrow{r}\arrow{d} & Y_1 \arrow{r}\arrow{d} & Z_1 \arrow{r} & X_1[1]\arrow{d}\\
+      X_2 \arrow{r} & Y_2 \arrow{r} & Z_2 \arrow{r} & X_2[1]
+    \end{tikzcd}$$
+    of $\T/\T^\prime$.
+    By Lemma~\ref{VerdierLiftSquare} we may lift the left-hand square to a commutative square in $\T$ and apply (TR3) to get the diagram
+    $$\begin{tikzcd}
+      X_1^\prime \arrow{r}\arrow{d} & Y_1^\prime \arrow{r}\arrow{d} & Z_1^\prime \arrow{r}\arrow[dashed]{d} & X_1^{\prime}[1] \arrow{d}\\
+      X_2^\prime \arrow{r} & Y_2^\prime\arrow{r} & Z_2^\prime \arrow{r} & X_2^\prime[1]
+    \end{tikzcd}$$
+    of $\T$.
+    Passing to $\T/\T^\prime$ and stacking the original diagram in front of the induced diagram, we obtain a commutative diagram 
+    $$\begin{tikzcd}
+      X_1^\prime \arrow{rr}\arrow{rd}\arrow{dd} & & Y_1^\prime \arrow{rr}\arrow{rd}\arrow[dashed]{dd} & & Z_1^\prime \arrow{rr}\arrow[dotted]{rd}\arrow[dashed]{dd} & & X_1^\prime[1]\arrow{rd}\arrow[dashed]{dd}\\
+      & X_1\arrow{rr}\arrow{dd} & & Y_1\arrow{rr}\arrow{dd} & & Z_1\arrow{rr}\arrow[dashed]{dd} & & X_1[1]\arrow{dd}\\
+      X_2^\prime \arrow{rd}\arrow[dashed]{rr}& & Y_2^\prime\arrow[dashed]{rr}\arrow[dashed]{rd} & & Z_2^\prime\arrow[dashed]{rr}\arrow[dotted]{rd} & & X_2^\prime[1]\arrow[dashed]{rd}\\
+      & X_2 \arrow{rr}& & Y_2\arrow{rr} & & Z_2\arrow{rr} & & X_2[1]
+    \end{tikzcd}$$
+    in the following way.
+    The left-hand cube is the isomorphism of diagrams obtained from Lemma~\ref{VerdierLiftSquare}; 
+    the dotted isomorphisms $Z_1^\prime \to Z_1$ and $Z_2^\prime \to Z_2$ are obtained by applying Lemma~\ref{ExtendTriangleIsomorphism} to the top and bottom faces of the left-hand cube;
+    the morphism $Z_1 \rightarrow Z_2$ is filled in by the composition 
+    $$Z_1 \to Z_1^\prime \to Z_2^\prime \to Z_2.$$
+    This establishes (TR3).
+    
+    For (TR4), assume that we have three distinguished triangles
+    $$\begin{tikzcd}
+      X_1 \arrow{r}{f} & Y_1 \arrow{r} & Z_1 \arrow{r} & X_1[1]\\
+      X_1 \arrow{r}{g \circ f} & Y_2 \arrow{r} & Z_2 \arrow{r} & X_1[1]\\
+      Y_1 \arrow{r}{g} & Y_2 \arrow{r} & Z_3 \arrow{r} & Y_1[1]
+    \end{tikzcd}$$
+    of $\T/\T^\prime$.
+    Apply Lemma~\ref{VerdierLiftSquare} to obtain the diagram
+    $$\begin{tikzcd}
+      X_1^\prime \arrow{r}{f^\prime}\arrow{d} & Y_1^\prime\arrow{d}{g^\prime}\\
+      X_1^\prime \arrow{r}{g^\prime \circ f^\prime} & Y_2
+    \end{tikzcd}$$
+    in $\T$.
+    Next we apply (TR1) and (TR4) in $\T$ to produce the octohedral diagram
+    $$\begin{tikzcd}
+      X_1^\prime \arrow{r}{f^\prime}\arrow{d} & Y_1^\prime\arrow{d}{g^\prime} \arrow{r} & Z_1^\prime \arrow{r}\arrow{d} & X_1^\prime[1] \arrow{d}\\
+      X_1^\prime \arrow{r}{g^\prime \circ f^\prime}\arrow{d}{f^\prime} & Y_2 \arrow{r}\arrow{d}{1} & Z_2^\prime\arrow{d}\arrow{r} & X_1^\prime[1]\arrow{d}\\
+      Y_1^\prime \arrow{r}{g^\prime}\arrow{d} & Y_2 \arrow{r}\arrow{d} & Z_3^\prime \arrow{r}\arrow{d}{1} &  Y_1^\prime[1]\arrow{d}\\
+      Z_1^\prime \arrow{r} & Z_2^\prime \arrow{r} & Z_3^\prime \arrow{r} & Z_1^\prime[1]
+    \end{tikzcd}$$
+    which we transport to $\T/\T^\prime$ in an analogous way as before:
+    stack the image of this diagram under $\pi$ behind the desired diagram
+    $$\begin{tikzcd}
+      X_1^\prime \arrow{rr}\arrow{dd}\arrow{rd} & & Y_1^\prime\arrow{rr}\arrow[dashed]{dd}\arrow{rd} & & Z_1^\prime\arrow{rr}\arrow[dashed]{dd}\arrow[dotted]{rd} & & X_1^\prime[1]\arrow[dashed]{dd}\arrow{rd}\\
+      & X_1 \arrow{rr}\arrow{dd} & & Y_1\arrow{rr}\arrow{dd} & & Z_1\arrow{rr}\arrow[dashed]{dd} & & X_1[1]\arrow{dd}\\
+      X_1^\prime \arrow{rd}\arrow[dashed]{rr}\arrow{dd}& & Y_2\arrow[dashed]{rd}\arrow[dashed]{rr}\arrow[dashed]{dd} & & Z_2^\prime\arrow[dotted]{rd}\arrow[dashed]{rr}\arrow[dashed]{dd} & & X_1^\prime[1]\arrow[dashed]{dd}\arrow[dashed]{rd}\\
+      & X_1\arrow{rr}\arrow{dd} & & Y_2\arrow{rr}\arrow{dd}& & Z_2\arrow{rr}\arrow[dashed]{dd} & & X_1[1]\arrow{dd}\\
+      Y_1^\prime\arrow[dashed]{rr}\arrow{dd}\arrow{rd} & & Y_2\arrow[dashed]{rr}\arrow[dashed]{rd}\arrow[dashed]{dd} & & Z_3^\prime\arrow[dashed]{dd}\arrow[dashed]{rr}\arrow[dotted]{rd} & & Y_1^\prime[1]\arrow[dashed]{dd}\arrow[dashed]{rd}\\
+      & Y_1\arrow{rr}\arrow{dd} & & Y_2\arrow{rr}\arrow{dd} & & Z_3\arrow{rr}\arrow{dd} & & Y_1[1]\arrow{dd}\\
+      Z_1^\prime\arrow[dashed]{rr}\arrow[dotted]{rd} & & Z_2^\prime\arrow[dashed]{rr}\arrow[dotted]{rd} & & Z_3^\prime\arrow[dashed]{rr}\arrow[dotted]{rd} & & Z_1^\prime[1]\arrow[dotted]{rd}\\
+      & Z_1 \arrow{rr} & & Z_2\arrow{rr} & & Z_3\arrow{rr} & & Z_1[1]
+    \end{tikzcd}$$
+    Along the left-hand column, the top two cubes are both isomorphisms of diagrams by construction.
+    The dotted isomorphisms $Z_i^\prime \to Z_i$ are induced by applying Lemma~\ref{ExtendTriangleIsomorphism} to the top face of the top left cube for $i = 1$, to the bottom face of the same cube for $i = 2$, and to the bottom face of the middle cube in the left-hand column when $i = 3$.
+    The dashed arrows $Z_i \to Z_{i+1}$ are just the compositions
+    $$Z_i \to Z_i^\prime \to Z_{i+1}^\prime \to Z_{i+1}$$
+    It's clear that from the construction the front face of the diagram commutes, and the bottom face of the cube gives the isomorphism of triangles making 
+    $$\begin{tikzcd}
+      Z_1 \arrow{r} & Z_2 \arrow{r} & Z_3 \arrow{r} & Z_1[1]
+    \end{tikzcd}$$
+    distinguished.
+    This establishes (TR4).
+    
+    Finally, we show that $\pi$ is universal.
+    Given a triangulated functor $\F \colon \T \to \T^{\prime\prime}$ making the diagram 
+    $$\begin{tikzcd}
+      \T^\prime \arrow{r}\arrow[bend left]{rr}{0} & \T \arrow{r}{\F} & \T^{\prime\prime}\\
+    \end{tikzcd}$$
+  commute, consider $f \in \Mor{\T^\prime}(X,Y)$.
+  By definition there exists a distinguished triangle
+  $$\begin{tikzcd}
+    X \arrow{r}{f} & Y \arrow{r} & Z \arrow{r} & X[1]
+  \end{tikzcd}$$
+  with $Z$ an object of $\T$.
+  By assumption, $\F$ takes this distinguished triangle to a distinguished triangle
+  $$\begin{tikzcd}
+    \F(X) \arrow{r}{\F(f)} & \F(Y) \arrow{r} & 0 \arrow{r} & \F(X)[1]
+  \end{tikzcd}$$
+  of $\T^{\prime\prime}$, which implies that $\F(f)$ is an isomorphism.
+  Therefore by Proposition~\ref{VerdierLocalizationUniversal}, we have the factorization
+  $$\begin{tikzcd}
+    \T^\prime \arrow{r}\arrow[bend left]{rr}{0} & \T \arrow{d}{\pi}\arrow{r}{\F} & \T^{\prime\prime}\\
+    & \T/\T^\prime \arrow[dashed]{ur}{\exists !\overline{\F}}
+  \end{tikzcd}$$
+  as desired.
+  \end{proof}
 \end{thm}
 
-\begin{rmk}
-  Essentially, this says that in the category with objects triangulated categories and morphisms triangulated functors, the inclusion functor of a strictly full subcategory has a cokernel.
-\end{rmk}
+%\begin{rmk}
+%  Essentially, this says that in the category with objects triangulated categories and morphisms triangulated functors, the inclusion functor of a strictly full subcategory has a cokernel.
+%\end{rmk}
 \end{document}

@@ -37,7 +37,7 @@
       for $i = 1, 2$ and a diagram
       $$\begin{tikzcd}
         X_1 \arrow{d}{\alpha}\arrow{r}{f_1} & Y_1 \arrow{d}{\beta}\arrow{r}{g_1} & Z_1 \arrow[dashed]{d}{\exists \gamma}\arrow{r}{h_1} & X_1[1]\arrow{d}{\alpha[1]}\\
-        X_2 {\alpha}\arrow{r}{f_2} & Y_2 \arrow{r}{g_2} & Z_2 \arrow{r}{h_2} & X_2[1]
+        X_2 \arrow{r}{f_2} & Y_2 \arrow{r}{g_2} & Z_2 \arrow{r}{h_2} & X_2[1]
       \end{tikzcd}$$
       such that the left-hand square commutes, the dashed arrow can be filled in with a morphism $\gamma$, which is not necessarily unique.
       
@@ -151,11 +151,13 @@ commute.
   If 
   \begin{tikzcd} X \arrow{r}{f} & Y \arrow{r}{g} & Z \arrow{r}{h} & X[1]\end{tikzcd} 
   is a distinguished triangle, then so is
-  $$\begin{tikzcd}X[n] \arrow{r}{f[n]} & Y[n] \arrow{r}{g[n]} & Z[n] \arrow{r}{h[n]} & X[n+1]\end{tikzcd}.$$
+  $$\begin{tikzcd}X[n] \arrow{r}{f[n]} & Y[n] \arrow{r}{g[n]} & Z[n] \arrow{rr}{(-1)^{n}h[n]} && X[n+1]\end{tikzcd}.$$
 
   \begin{proof}
-    We note that it suffices to show that the result holds for $n = 1$ since $[n] = [n - 1] \circ [1]$.
-    We have by (TR2) the successive rotations
+    We proceed by induction on $n$.
+    %We note that it suffices to show that the result holds for $n = 1$ since $[n] = [n - 1] \circ [1]$.
+    When $n = 1$, 
+    we have by (TR2) the successive rotations
     $$\begin{tikzcd}
       Y \arrow{r}{g} & Z\arrow{r}{h} & X[1]\arrow{r}{-f[1]} & Y[1]\\
       Z \arrow{r}{h}& X[1]\arrow{r}{-f[1]} & Y[1]\arrow{r}{-g[1]} & Z[1]\\
@@ -164,14 +166,24 @@ commute.
     all of which are distinguished triangles.
     We then have an isomorphism of triangles
     $$\begin{tikzcd}
-      X[1] \arrow{d}{\id_{X[1]}}\arrow{r}{f[1]} & Y[1] \arrow{d}{-\id_{Y[1]}}\arrow{r}{g[1]} & Z[1]\arrow{d}{\id_{Z[1]}}\arrow{r}{h[1]} & X[2]\arrow{d}{-\id_{X[2]}}\\
+      X[1] \arrow{d}{\id_{X[1]}}\arrow{r}{f[1]} & Y[1] \arrow{d}{-\id_{Y[1]}}\arrow{r}{g[1]} & Z[1]\arrow{d}{\id_{Z[1]}}\arrow{r}{-h[1]} & X[2]\arrow{d}{\id_{X[2]}}\\
       X[1] \arrow{r}{-f[1]} & Y[1] \arrow{r}{-g[1]} & Z[1]\arrow{r}{-h[1]} & X[2].
     \end{tikzcd}$$
     Therefore 
     $$\begin{tikzcd}
-      X[1] \arrow{r}{f[1]} & Y[1] \arrow{r}{g[1]} & Z[1]\arrow{r}{h[1]} & X[2]
+      X[1] \arrow{r}{f[1]} & Y[1] \arrow{r}{g[1]} & Z[1]\arrow{r}{-h[1]} & X[2]
     \end{tikzcd}$$
     is distinguished, as desired.
+    
+    Assume the result holds up to some $n$.
+    Applying the $n = 1$ case to the distinguished triangle
+    $$\begin{tikzcd}
+      X[n - 1] \arrow{r}{f[n-1]} & Y[n - 1] \arrow{r}{g[n-1]} & Z[n - 1] \arrow{rr}{(-1)^{n-1}h[n - 1]} && X[n]
+    \end{tikzcd}$$
+    we obtain the distinguished triangle
+    $$\begin{tikzcd}
+      X[n] \arrow{r}{f[n]} & Y[n] \arrow{r}{g[n]} & Z[n] \arrow{rr}{(-1)^{n}h[n]} && X[n+1]
+    \end{tikzcd}.$$
   \end{proof}
 \end{prop}
 
