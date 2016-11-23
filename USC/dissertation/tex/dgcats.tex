@@ -159,13 +159,22 @@
   \end{enumerate}
 \end{defn}
 
-\begin{rmk}
+\begin{rmk}\label{DGInducedHomology}
   Note that given a dg functor, $\mathscr{F} \colon \CC \rightarrow \D$, for $X$ and $Y$ objects of $\CC$, 
   $$\mathscr{F}(X,Y) \colon \CC(X,Y) \rightarrow \D(\mathscr{F}X, \mathscr{F}Y)$$
-  is a morphism of $\mathcal{C}(k)$.
-  Hence $H^0$ induces a functor
-  $H^0(\mathscr{F}) \colon H^0(\CC) \rightarrow H^0(\D)$
-  with $H^0(\mathscr{F})(X) = \mathscr{F}(X)$ and $H^0(\mathscr{F})(X,Y) = H^0(\mathscr{F}(X,Y))$.
+  is a morphism of $\mathcal{C}(k)$ and this immediately implies the diagram
+  $$\begin{tikzcd}
+    B^n(\CC(X,Y))\arrow{r}{\imath^n}\arrow[bend left]{rr}{\im d^{n-1}}\arrow[dashed]{d}{\exists !B^n(\F(X,Y))} & Z^n(\CC(X,Y)) \arrow{r}{\ker d^n}\arrow[dashed]{d}{\exists !Z^n(\F(X,Y))} & \CC(X,Y)^{n} \arrow{d}{\F(X,Y)}\\
+    B^n(\D(\F X,\F Y) \arrow{r}{\imath^n}\arrow[bend right]{rr}{\im d^{n-1}} & Z^n(\D(\F X,\F Y))\arrow{r}{\ker d^n} & \D(\F X,\F Y)^{n}
+  \end{tikzcd}$$
+  commutes for each $n$.
+  Hence $H^n$ induces a functor
+  $H^n(\mathscr{F}) \colon H^n(\CC) \rightarrow H^n(\D)$
+  with object map\\ $H^n(\mathscr{F})(X) = \mathscr{F}(X)$ and induced arrow map 
+  $$\begin{tikzcd}
+    0 \arrow{r} & B^n(\CC(X,Y))\arrow{r}{\imath^n}\arrow{d}{B^n(\F(X,Y))} & Z^n(\CC(X,Y)) \arrow{r}{\coker \imath^n}\arrow{d}{Z^n(\F(X,Y))} & H^n(\CC(X,Y)) \arrow[dashed]{d}{\exists !H^n(\F(X,Y))}\arrow{r} & 0 \\
+    0 \arrow{r} & B^n(\D(\F X,\F Y) \arrow{r}{\imath^n} & Z^n(\D(\F X,\F Y))\arrow{r}{\coker \imath^n} & H^n(\D(\F X,\F Y)) \arrow{r} & 0
+  \end{tikzcd}$$
 \end{rmk}
 
 \section{Modules over a Differential Graded Category}
@@ -179,21 +188,75 @@
     The {\it homology of a dg $\CC$-module}, $\mathscr{M}$, is the induced functor
     $$\begin{tikzcd}
       H^\ast(\CC) \arrow{r}{H^\ast(\mathscr{M})}& \Gr{k}\\
-      X \arrow[mapsto]{r} & H^\ast(\mathscr{M}(X)),
+      X \arrow[mapsto]{r} & H^\ast(\mathscr{M}(X))
+      %H^\ast(\CC(Y,X)) \arrow[mapsto]{r} & H^\ast(\mathcal{C}_\text{dg}(\mathscr{M}(X),\mathscr{M}(Y))
     \end{tikzcd}$$
     where $\Gr{k}$ denotes the category of graded modules.
   \item
-    Define the category $\mathcal{C}_\text{dg}(\CC) = \SHom{\CC^\text{op}, \mathcal{C}_\text{dg}(k)}$, and the category of right dg $\CC$-modules by
+    Define the category of right dg $\CC$-modules $\mathcal{C}_\text{dg}(\CC) = \SHom{\CC^\text{op}, \mathcal{C}_\text{dg}(k)}$, and the category of right $\CC$-modules by
     $$\mathcal{C}(\CC) = Z^0 \mathcal{C}_\text{dg}(\CC).$$
-  \item
-    The {\it category up to homotopy of dg $\CC$-modules} is $\mathcal{H}(\CC) = H^0(\mathcal{C}_\text{dg}(\CC))$.
-    Note that $\mathcal{H}(\CC)$ is a triangulated category.
-    %TODO: Is this obviously just the same proof for K(A), where A is an abelian category?
-  \item
-    A morphism $\eta \colon \mathscr{L} \rightarrow \mathscr{M}$ of dg $\CC$-modules is called a {\it quasi-isomorphism} if the induced morphism $H^\ast(\eta) \colon H^\ast(\mathscr{L}) \rightarrow H^\ast(\mathscr{M})$ is an isomorphism.
+    Note that this is an abelian category.
+    %TODO: This should probably be justified at some point; either in here, or somewhere else.  It's not immediately clear at the moment.
+    \item
+      A morphism $\eta \colon \mathscr{L} \rightarrow \mathscr{M}$ of dg $\CC$-modules is called a {\it quasi-isomorphism} if the induced morphism $H^\ast(\eta) \colon H^\ast(\mathscr{L}) \rightarrow H^\ast(\mathscr{M})$ is an isomorphism.
   \end{enumerate}
 \end{defn}
 
+\subsection{The Category up to Homotopy}
+\begin{defn}
+    Let $\CC$ be a small dg category.
+    The {\it category up to homotopy of dg $\CC$-modules} is defined to be $\mathcal{H}(\CC) = H^0(\mathcal{C}_\text{dg}(\CC))$.
+    %Note that $\mathcal{H}(\CC)$ is a triangulated category.
+    %TODO: Is this obviously just the same proof for K(A), where A is an abelian category?
+\end{defn}
+
+Given a dg $\CC$-module, $\mathscr{M} \colon \CC^\text{op} \rightarrow \mathcal{C}_\text{dg}(k)$, by Remark~\ref{DGInducedHomology} we have a well-defined map
+$$Z^0(\mathscr{M}(Y,X)) \colon
+\begin{tikzcd}
+  Z^0(\CC(Y,X)) \arrow{r} & Z^0(\mathcal{C}_\text{dg}(k)(\mathscr{M}X,\mathscr{M}Y)) = \mathcal{C}(k)(X,Y)
+\end{tikzcd}$$
+which allows us to view the image of $\mathscr{M}$ in $\mathcal{C}(\CC)$ as a presheaf $\mathscr{M} \colon Z^0(\CC) \to \mathcal{C}(k)$.
+
+\begin{defn}
+  Given a morphism $\eta \in \mathcal{C}(\CC)(\mathscr{L}, \mathscr{M})$, we note that for each object $X$ of $\CC$, $\eta(X)$ is a morphism of chain complexes.
+  Hence we are justified in defining the $\CC$-module $\cone{\eta} \colon Z^0(\CC) \to \mathcal{C}(k)$ by $\cone{\eta}(X) = \cone{\eta(X)}$ equipped with differential 
+  $$d_{\cone{\eta}}^n = 
+  \left(\begin{matrix}
+    d_{\mathscr{L}[1]}^n & 0\\
+    -\eta & d_{\mathscr{M}}^n
+  \end{matrix}\right)$$
+  on objects $X$ of $\CC$, and on morphisms $f \in Z^0(\CC(Y,X))$
+  $$\begin{tikzcd}
+    \mathscr{L}(X)[1]\arrow{rd}{\left(\begin{matrix}-1\\0\end{matrix}\right)}\arrow{dd}{\mathscr{L}(f)[1]} & & \mathscr{M}(X) \arrow[swap]{ld}{\left(\begin{matrix}0\\1\end{matrix}\right)}\arrow{dd}{\mathscr{M}(f)}\\
+    & \cone{\eta}(X)\arrow[dashed]{dd}{\exists !\cone{\eta}(f)}\\
+    \mathscr{L}(Y)[1]\arrow[swap]{rd}{\left(\begin{matrix}-1\\0\end{matrix}\right)} & & \mathscr{M}(Y)\arrow{ld}{\left(\begin{matrix}0\\1\end{matrix}\right)}\\
+    & \cone{\eta}(Y)
+  \end{tikzcd}$$
+  By writing
+  $$\cone{\eta}(f) = \left(\begin{matrix}
+    \mathscr{L}(f)[1] & 0\\
+    0 & \mathscr{M}(f)
+  \end{matrix}\right)$$
+  it's clear that this is indeed a morphism of complexes.
+\end{defn}
+
+\begin{rmk}
+  We note that we have a short exact sequence of $\CC$-modules
+  $$\begin{tikzcd}
+    0 \arrow{r} & \mathscr{M} \arrow{r}{\left(\begin{matrix}0\\1\end{matrix}\right)} & \cone{\eta} \arrow{r}{\left(-1\ 0\right)} & \mathscr{L}[1] \arrow{r} & 0
+  \end{tikzcd}$$
+\end{rmk}
+
+\begin{prop}
+  The category $\mathcal{H}(\CC)$ with distinguished triangles those triangles that are isomorphic to the image of
+  $$\begin{tikzcd}
+    \mathscr{L} \arrow{r}{\eta} & \mathscr{M} \arrow{r} & \cone{\eta} \arrow{r} & \mathscr{L}[1] 
+  \end{tikzcd}$$
+  in $\mathcal{H}(\CC)$ is triangulated.
+
+  \begin{proof}
+  \end{proof}
+\end{prop}
 \section{The Model Structure on $\mathcal{C}(\CC)$}
 
 %From Keller
