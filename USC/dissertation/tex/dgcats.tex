@@ -47,7 +47,7 @@
     that is a morphism of $\mathcal{C}(k)$.
   \end{enumerate}
   
-  A {\it morphism of dg categories}, $\mathscr{F} \colon \CC \rightarrow \D$, is a functor such that
+  A {\it morphism of dg categories}, or {\it dg functor}, $\mathscr{F} \colon \CC \rightarrow \D$, is a functor such that
   $$F(X,Y) \colon 
   \begin{tikzcd}
     \Hom{\CC}{X,Y} \arrow{r} & \Hom{\D}{FX,FY}
@@ -133,7 +133,7 @@
 \begin{defn}
   For two objects $\CC$ and $\D$ of $\operatorname{dgcat}_k$, define the object $\SHom{\CC,\D}$ of $\operatorname{dgcat}_k$ to be the category with objects dg functors $\mathscr{F} \colon \CC \rightarrow \D$ and morphisms $\SHom{\mathscr{F},\mathscr{G}}$.
   
-  Given two dg functors $\F,\G \colon \CC \rightarrow \D$, define a {\it morphism of dg functors}, $\eta \colon \F \rightarrow G$ to be a closed, degree zero natural transformation.
+  Given two dg functors $\F,\G \colon \CC \rightarrow \D$, define a {\it morphism of dg functors}, $\eta \colon \F \rightarrow \G$ to be a closed, degree zero natural transformation.
   That is, $\eta \in \SHom{\F, \G}^0$ and its image in $\SHom{\F,\G}^1$ under the differential is zero.
 \end{defn}
 
@@ -219,32 +219,37 @@ which allows us to view the image of $\mathscr{M}$ in $\mathcal{C}(\CC)$ as a pr
 
 \begin{defn}
   Given a morphism $\eta \in \mathcal{C}(\CC)(\mathscr{L}, \mathscr{M})$, we note that for each object $X$ of $\CC$, $\eta(X)$ is a morphism of chain complexes.
-  Hence we are justified in defining the $\CC$-module $\cone{\eta} \colon Z^0(\CC) \to \mathcal{C}(k)$ by $\cone{\eta}(X) = \cone{\eta(X)}$ equipped with differential 
-  $$d_{\cone{\eta}}^n = 
-  \left(\begin{matrix}
-    d_{\mathscr{L}[1]}^n & 0\\
-    -\eta & d_{\mathscr{M}}^n
-  \end{matrix}\right)$$
-  on objects $X$ of $\CC$, and on morphisms $f \in Z^0(\CC(Y,X))$
+  Define the dg functor $\cone{\eta} \colon \CC^\text{op} \rightarrow \mathcal{C}_\text{dg}(k)$ as follows.
+  For each object $X$ of $\CC$ we have the chain complex $\cone{\eta}(X) = \cone{\eta(X)}$ equipped with the differential
+  $$d_{\cone{\eta}(X)} = \left(\begin{matrix}
+    d_{\mathscr{L}(X)[1]} & 0\\
+    \\
+    -\eta(X)[1] & d_{\mathscr{M}(X)}
+  \end{matrix}\right).$$
+
+  Given a morphism $f \in \CC(Y,X)^n$, we define $\cone{\eta}(f)$ by
+  $$\begin{tikzcd}[ampersand replacement=\&]
+      \cone{\eta}(X) \arrow{rrrr}{\left(\begin{matrix}(-1)^n\mathscr{L}(f)[1] & 0\\0 & \mathscr{M}(f)\end{matrix}\right)} \&\&\&\& \cone{\eta}(Y)[n]
+    \end{tikzcd}.$$
+  Since both $\mathscr{L}$ and $\mathscr{M}$ are dg functors and $\eta$ is natural, it is straightforward to see that this gives a morphism of complexes
   $$\begin{tikzcd}
-    \mathscr{L}(X)[1]\arrow{rd}{\left(\begin{matrix}-1\\0\end{matrix}\right)}\arrow{dd}{\mathscr{L}(f)[1]} & & \mathscr{M}(X) \arrow[swap]{ld}{\left(\begin{matrix}0\\1\end{matrix}\right)}\arrow{dd}{\mathscr{M}(f)}\\
-    & \cone{\eta}(X)\arrow[dashed]{dd}{\exists !\cone{\eta}(f)}\\
-    \mathscr{L}(Y)[1]\arrow[swap]{rd}{\left(\begin{matrix}-1\\0\end{matrix}\right)} & & \mathscr{M}(Y)\arrow{ld}{\left(\begin{matrix}0\\1\end{matrix}\right)}\\
-    & \cone{\eta}(Y)
+    \CC(Y,X) \arrow{r} & \mathcal{C}(k)(\cone{\eta(X)}, \cone{\eta(Y)})
   \end{tikzcd}$$
-  By writing
-  $$\cone{\eta}(f) = \left(\begin{matrix}
-    \mathscr{L}(f)[1] & 0\\
-    0 & \mathscr{M}(f)
-  \end{matrix}\right)$$
-  it's clear that this is indeed a morphism of complexes.
 \end{defn}
 
 \begin{rmk}
-  We note that we have a short exact sequence of $\CC$-modules
-  $$\begin{tikzcd}
-    0 \arrow{r} & \mathscr{M} \arrow{r}{\left(\begin{matrix}0\\1\end{matrix}\right)} & \cone{\eta} \arrow{r}{\left(-1\ 0\right)} & \mathscr{L}[1] \arrow{r} & 0
-  \end{tikzcd}$$
+  \begin{enumerate}
+  \item
+    Note that if we are given a morphism $f \in Z^0(\CC(Y,X))$, then $\mathscr{L}(f)$ and $\mathscr{M}(f)$ are both morphisms of complexes and $\eta$ is natural, so we obtain a morphism of complexes, $\cone{\eta}(f)$,
+    $$\begin{tikzcd}[ampersand replacement=\&]
+      \cone{\eta}(X) \arrow{rrr}{\left(\begin{matrix}\mathscr{L}(f)[1] & 0\\0 & \mathscr{M}(f)\end{matrix}\right)} \&\&\& \cone{\eta}(Y)
+    \end{tikzcd}.$$
+  \item
+    We also note that we have a short exact sequence of $\CC$-modules
+    $$\begin{tikzcd}
+      0 \arrow{r} & \mathscr{M} \arrow{r}{\left(\begin{matrix}0\\1\end{matrix}\right)} & \cone{\eta} \arrow{r}{\left(-1\ 0\right)} & \mathscr{L}[1] \arrow{r} & 0
+    \end{tikzcd}$$
+  \end{enumerate}
 \end{rmk}
 
 \begin{prop}
@@ -255,6 +260,24 @@ which allows us to view the image of $\mathscr{M}$ in $\mathcal{C}(\CC)$ as a pr
   in $\mathcal{H}(\CC)$ is triangulated.
 
   \begin{proof}
+    First, suppose that we are given two morphisms $\eta, \nu \in \mathcal{C}(\CC)(\mathscr{L},\mathscr{M})$ having the same image in $\mathcal{H}(\CC)(\mathscr{L},\mathscr{M})$.
+    By definition, there exists a morphism $h \in \mathcal{C}_\text{dg}(\CC)(\mathscr{L},\mathscr{M})^{-1}$ such that 
+    $$\eta - \nu = d_{\mathcal{C}_\text{dg}(\CC)(\mathscr{L},\mathscr{M})}^{-1}(h) = d_\mathscr{M} \circ h + h \circ d_\mathscr{L}.$$
+    It's straightforward to show that
+    $$\begin{tikzcd}[ampersand replacement=\&]
+      \cone{\eta} \arrow{r}{\left(\begin{matrix}1 & 0\\-h & 1\end{matrix}\right)} \& \cone{\nu}
+    \end{tikzcd}
+    \ \text{and}\ 
+    \begin{tikzcd}[ampersand replacement=\&]
+      \cone{\nu} \arrow{r}{\left(\begin{matrix}1 & 0\\h & 1\end{matrix}\right)} \& \cone{\eta}
+    \end{tikzcd}$$
+    give mutually inverse morphisms of $\mathcal{C}(\CC)$, so the triangles are well-defined.
+    
+    For (TR1) we see that given any morphism $\overline{\eta} \in \mathcal{H}(\CC)(\mathscr{L},\mathscr{M})$, we can fit $\overline{\eta}$ into a distinguished triangle by lifting to $\mathcal{C}(\CC)$ and taking the image of
+    $$\begin{tikzcd}
+      \mathscr{L} \arrow{r}{\eta} & \mathscr{M} \arrow{r} & \cone{\eta} \arrow{r} & \mathscr{L}[1]
+    \end{tikzcd}$$
+    in $\mathcal{H}(\CC)$.
   \end{proof}
 \end{prop}
 \section{The Model Structure on $\mathcal{C}(\CC)$}
