@@ -406,8 +406,15 @@ which allows us to view the image of $\mathscr{M}$ in $\mathcal{C}(\CC)$ as a pr
     It then follows from Lemma~\ref{GeneratorIFFClassicAndCompactlyGenerated} that the representables clasically generate $\mathcal{D}(\CC \otimes \D)_c$.
     By another application of Lemma~\ref{GeneratorIFFClassicAndCompactlyGenerated}, it suffices to show that $h_G \otimes h_H$ classically generates the representables, for then we have that $\mathcal{D}(\CC \otimes \D)$ is compactly generated and 
     $$\langle h_G \otimes h_H \rangle = \mathcal{D}(\CC \otimes \D)_c$$
-    from which it follows that $h_G \otimes h_H$ generates $\mathcal{D}(\CC \otimes \D)_c$.
-
+    from which it follows that $h_G \otimes h_H$ generates $\mathcal{D}(\CC \otimes \D)$.
+    
+    We observe that because $\CC$ and $\D$ are pre-triangulated categories, the Yoneda functors
+    $$H^0(\CC) \to \mathcal{H}(\CC)\ \text{and}\ H^0(\D) \to \mathcal{H}(\D)$$
+    are both triangulated.
+    Identifying $H^0(\CC)$ and $H^0(\D)$ with their images we have
+    $$H^0(\CC) \subseteq \langle h_G \rangle\ \text{and}\ H^0(\D) \subseteq \langle h_H \rangle$$
+    by Lemma~\ref{TriangulatedFunctorsPreserveGens}.
+    
     Fix an object $X$ of $\CC$ and view $h_X$ as an object of $\mathcal{D}(\CC)$.
     Consider the additive functor $h_X \otimes -: \mathcal{D}(\D) \to \mathcal{D}\left(\CC \otimes \mathscr{D}\right)$. %TODO: Is this really additive?  Does it make sense?
     It follows from Lemma~\ref{AdditiveFunctorsCommuteWithCones} that $\F$ is triangulated and hence 
