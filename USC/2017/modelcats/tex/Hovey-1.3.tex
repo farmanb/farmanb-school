@@ -1,0 +1,1021 @@
+\documentclass[10pt]{amsart}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate,mymath,mathtools,tikz-cd,mathrsfs}
+\openup 5pt
+\author{Blake Farman\\University of South Carolina}
+\title{Math 748:\\Homework 01}
+\date{April 24, 2016}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+%\maketitle
+
+\providecommand{\p}{\mathfrak{p}}
+\providecommand{\m}{\mathfrak{m}}
+\providecommand{\Deck}[1]{\operatorname{Deck}\left(#1\right)}
+%\newcommand{\Res}{\operatorname{Res}}
+\newtheorem{thm}{Theorem}
+\newtheorem{lem}{Lemma}
+\newtheorem{cor}{Corollary}
+\newtheorem{prop}{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}
+\newtheorem{rmk}{Remark}
+\newtheorem{ex}{Example}
+
+\newcommand{\A}{\mathscr{A}}
+\renewcommand{\C}{\mathscr{C}}
+\newcommand{\D}{\mathscr{D}}
+\newcommand{\F}{\mathscr{F}}
+\newcommand{\G}{\mathscr{G}}
+
+\section{Adjoints}
+
+\begin{lem}\label{factorization}
+  Let $\F \colon \C \to \D$ be a functor and let $\imath_0 \colon \D_0 \to \D$ be a full subcategory of $\D$.
+  If for each object $X$ of $\C$ there exists an object $Y$ of $\D_0$ and an isomorphism $\F X \overset{\sim}\to \imath_0(Y)$, then there exists a functor $\F_0 \colon \C \to \D_0$ and a natural isomorphism $\theta_0 \colon \F \to \imath_0 \circ \F_0$.
+  Moreover, $\F_0$ is unique up to unique isomorphism.
+  
+  \begin{proof}
+    For each object $X$ of $\C$, choose an object $Y$ of $\D_0$ such that $\theta_0(X) \colon \F X \cong \imath_0(Y)$ and define $\F_0(X) = Y$.
+    Since $\F$ is a functor we have a morphism 
+    $$\F(X_1,X_2) \colon \C(X_1,X_2) \to \D(\F X_1, \F X_2).$$
+    for each pair of objects $X_1$, $X_2$ of $\C,$
+    and since $\D_0$ is a full subcategory, we also have an isomorphism
+    $$\imath_0(Y_1,Y_2) \colon \D_0(Y_1, Y_2) \overset{\sim}\to \D(\imath_0 Y_1, \imath_0 Y_2)$$
+    for any pair of objects $Y_1, Y_2$ of $\D_0$.
+    We thus obtain a morphism
+    $$\begin{tikzcd}
+      \C(X_1, X_2) \arrow[swap,bend right=52]{dddddddrrr}{\F_0(X_1,X_2)}\arrow{rrr}{\F(X_1,X_2)} & & & \D(\F X_1, \F X_2) \arrow{dd}{h_{\F X_2}(\theta_0(X_1)^{-1})}\\
+      & f \arrow[mapsto]{r} & \F(f)\arrow[mapsto]{d}\\
+      & & \F(f) \circ \theta_0(X_1)^{-1}\arrow[mapsto]{dd}& \D(\imath_0 \circ \F_0 X_1, \F X_2) \arrow{dd}{h^{i_0\circ \F_0 X}(\theta_0(X_2))}\\
+      \\
+      & & \theta_0(X_2) \circ \F(f) \circ \theta_0(X_1)^{-1} \arrow[mapsto]{dd}& \D(\imath_0 \circ \F_0 X_1, \imath_0 \circ \F_0 X_2)\arrow{ddd}{\imath_0(\F_0 X_1, \F_0 X_2)^{-1}}\\
+      \\
+      & & \imath_0^{-1}(\theta_0(X_2) \circ \F(f) \circ \theta_0(X_1)^{-1})\\
+      & & & \D_0(\F_0 X_1, \circ \F_0 X_2)
+    \end{tikzcd}$$
+    Since all the morphisms involved respect composition, it's clear that this assignment is functorial and by construction makes the isomorphism $\theta_0 \colon \F \to \imath_0 \circ \F_0$ natural.
+
+    For uniqueness, suppose that $\G_0 \colon \C \to \D_0$ is another functor equipped with a natural isomorphism $\phi_0 \colon \F \to \imath_0 \circ \G_0$.
+    We have by assumption an isomorphism of functors
+    $$\imath_0 \circ G_0 \overset{\phi_0^{-1}}\longrightarrow \F \overset{\theta_0}\longrightarrow \imath_0 \F_0.$$
+    Since $\imath_0$ is fully faithful, for each object $X$ of $\C$ it reflects the isomorphism $\theta_0(X) \circ \varphi_0(X)^{-1}$ giving an isomorphism 
+    $$\imath_0^{-1}(\theta_0(X) \circ \varphi_0(X)^{-1}) = \eta(X) \colon \G_0(X) \longrightarrow \F_0(X).$$
+    To see that this is natural, we consider the diagram
+    $$\begin{tikzcd}
+      X\arrow{d}{f} & & \G_0(X) \arrow{d}{\G_0(f)}\arrow{r}{\eta(X)} & \F_0(X)\arrow{d}{\F_0(f)}\\
+      X^\prime & & G_0(X^\prime) \arrow{r}{\eta(X^\prime)} & \F_0(X^\prime)
+    \end{tikzcd}$$
+    and note that from the two naturality squares
+    $$\begin{tikzcd}
+      \F(X) \arrow{d}{\F(f)}\arrow{r}{\theta_0(X)} & \imath_0 \circ \F_0(X)\arrow{d}{\imath_0 \circ \F_0(f)}\\
+      \F(X^\prime) \arrow{r}{\theta_0(X^\prime)} & \imath_0 \circ \F_0(X^\prime)
+    \end{tikzcd}
+    \ \text{and}\ 
+    \begin{tikzcd}
+      \F(X) \arrow{d}{\F(f)}\arrow{r}{\phi_0(X)} & \imath_0 \circ \G_0(X)\arrow{d}{\imath_0 \circ \G_0(f)}\\
+      \F(X^\prime) \arrow{r}{\phi_0(X^\prime)} & \imath_0 \circ \G_0(X^\prime)
+    \end{tikzcd}$$
+    we obtain
+    \begin{eqnarray*}
+      \imath_0(\F_0(f) \circ \eta(X)) &=& \imath_0 \circ \F_0(f)) \circ \theta_0(X) \circ \varphi_0(X)^{-1}\\
+      &=& \theta_0(X^\prime) \circ \F(f) \circ \theta_0(X)^{-1} \circ \theta_0(X) \circ \varphi_0(X)^{-1}\\
+      &=& \theta_0(X^\prime) \circ \F(f) \circ \varphi_0(X)^{-1}\\
+      &=& \theta_0(X^\prime) \circ \varphi_0(X^\prime)^{-1} \circ \imath_0 \circ \G_0(f)\\
+      &=& \imath_0(\eta(X^\prime)) \circ \imath_0 \circ \G_0(f)\\
+      &=& \imath_0(\eta(X^\prime) \circ \G_0(f))
+    \end{eqnarray*}
+    which implies $\F_0(f) \circ \eta(X) = \eta(X^\prime) \circ \G_0(f)$ because $\imath_0$ is fully faithful.
+  \end{proof}
+\end{lem}
+
+\newcommand{\LA}{\mathscr{L}}
+\newcommand{\RA}{\mathscr{R}}
+\begin{prop}\label{adjoints}
+  Consider the two functors $\mathscr{L} \colon \C \to \D$ and $\mathscr{R} \colon \D \to \C$.
+  The following are equivalent:
+  \begin{enumerate}[(i)]
+  \item
+    for each object $X$ of $\C$ and $Y$ of $\D$, there is an isomorphism
+    $$\D(\LA X, Y) \cong \C(X, \RA Y)$$
+    natural in both $X$ and $Y$,
+  \item
+    there exist natural transformations
+    $$\epsilon \colon \id_\C \to \RA \circ \LA\ \text{and}\ \eta \colon \LA \circ \RA \to \id_\D$$
+    called the unit and counit of adjunction, respectively, that make the diagrams
+    $$\begin{tikzcd}
+      \LA X \arrow[swap]{rd}{\id_{\LA X}}\arrow{r}{\LA(\epsilon_X)} & \LA \circ \RA \circ \LA X \arrow{d}{\eta_{\LA X}}\\
+      & \LA X
+    \end{tikzcd}
+    \ \text{and}\ 
+    \begin{tikzcd}
+      \RA Y \arrow{r}{\epsilon_{\RA Y}}\arrow[swap]{rd}{\id_{\RA Y}} & \RA \circ \LA \circ \RA Y \arrow{d}{\RA(\eta_Y)}\\
+      & \RA Y
+    \end{tikzcd}$$
+    commute for all objects $X$ of $\C$ and $Y$ of $\D$,
+  \item
+    for every object $Y$ of $\D$, the functor 
+    $$\D(\LA( - ), Y) \colon \C \to \Sets$$
+    is representable by $\RA Y$.
+  \end{enumerate}
+  If any of these conditions holds, we say that $\LA$ is left adjoint to $\RA$ (symmetrically, $\RA$ is right adjoint to $\LA$), and write $\LA \dashv \RA$.
+  
+  Note that condition (iii) implies that the right adjoint of $\LA$ is unique up to unique isomorphism and, symmetrically, the left adjoint of $\RA$ is as well.
+  \begin{proof}
+    (i $\Rightarrow$ ii)\\For each object $X$ of $\C$ and $Y$ of $\D$ define $\epsilon_X$ and $\eta_Y$ to be the images of the identity morphism under the isomorphisms
+    $$\D(\LA X, \LA X) \overset{\sim}\to \C(X, \RA \circ \LA X)\ \text{and}\ \C(\RA Y, \RA Y) \overset{\sim}\to \D(\LA \circ \RA Y, Y),$$
+    respectively.
+    One sees that these are natural transformations by chasing the identities through the commutative diagrams
+    $$\begin{tikzcd}
+      X\arrow{dddd}{f} & & \D(\LA X, \LA X)\arrow{rr}{\sim}\arrow{dd}{h^{\LA X} \circ \LA(f)} & & \C(X, \RA \circ \LA X) \arrow{dd}{h^X(\RA \circ \LA(f))}\\
+      \\
+      & & \D(\LA X, \LA X^\prime)\arrow{rr}{\sim} & & \C(X, \RA \circ \LA X^\prime)\\
+      \\
+      X^\prime & & \D(\LA X^\prime, \LA X^\prime) \arrow{rr}{\sim}\arrow[swap]{uu}{h_{\LA X^\prime}(\LA f)} (& & \C(X^\prime, \RA \circ \LA X^\prime)\arrow[swap]{uu}{h_{\RA \circ \LA X^\prime}(f)}
+    \end{tikzcd}$$
+    and
+    $$\begin{tikzcd}
+      Y \arrow{dddd}{g} & & \C(\RA Y, \RA Y)\arrow{rr}{\sim}\arrow{dd}{h^{\RA Y}(\RA(g))} & & \D(\LA \circ \RA Y, Y) \arrow{dd}{h^{\LA \RA Y}(g)}\\
+      \\
+      & & \C(\RA Y, \RA Y^\prime)\arrow{rr}{\sim} & & \D(\LA \circ \RA Y, Y^\prime)\\
+      \\
+      Y^\prime & & \C(\RA Y^\prime, \RA Y^\prime) \arrow{rr}{\sim}\arrow[swap]{uu}{h_{\RA Y^\prime}(\RA g)} & & \D(\LA \circ \RA Y^\prime, Y^\prime)\arrow[swap]{uu}{h_{Y^\prime}(\LA \circ \RA(g))}
+    \end{tikzcd}$$
+    To establish the commutativity conditions, we chase the identities through the commutative diagrams
+    $$\begin{tikzcd}
+      X \arrow{dd}{\epsilon_X} & & \C(\RA \circ \LA X, \RA \circ \LA X) \arrow{rr}{\sim}\arrow{dd}{h_{\RA \circ \LA X}(\epsilon_X)} & & \D(\LA \circ \RA \circ \LA X, \LA X)\arrow{dd}{h_{\LA X}(\LA(\epsilon_X))}\\
+      \\
+      \RA \circ \LA X & & \C(X, \RA \circ \LA X) \arrow{rr}{\sim} & & \D(\LA X, \LA X)
+    \end{tikzcd}$$
+    and
+    $$\begin{tikzcd}
+      \LA \circ \RA Y \arrow{dd}{\eta_Y} & & \D(\LA \circ \RA Y, \LA \circ \RA Y) \arrow{rr}{\sim}\arrow{dd}{h^{\LA \circ \RA Y}(\eta_Y)} & & \C(\LA \circ \LA \circ \RA Y, \LA Y) \arrow{dd}{h^{\RA Y}(\RA(\eta_Y))}\\
+      \\
+      Y & & \D(\LA \circ \RA Y, Y) \arrow{rr}{\sim}  & & \C(\RA Y, \RA Y)
+    \end{tikzcd}$$
+    and use the definition of $\epsilon$ and $\eta$.
+    This establishes (ii).
+    
+    (ii $\Rightarrow$ iii)\\
+    Define the morphisms
+    $$\D(\LA X, Y) \overset{\RA(\LA X, Y)}\longrightarrow \C(\RA \circ \LA X, \RA Y) \overset{h_{\RA Y}(\epsilon_X)}\longrightarrow \C(X, \RA Y)$$
+    and
+    $$\C(X, \RA Y) \overset{\LA(X, \RA Y)}\longrightarrow \D(\LA X, \LA \circ \RA Y) \overset{h^{\LA X}(\eta_Y)}\longrightarrow \D(\LA X, Y).$$
+    Using the naturality diagrams
+    $$\begin{tikzcd}
+      X \arrow{r}{\epsilon_X}\arrow{d}{f} & \RA \circ \LA X \arrow{d}{\RA \circ \LA(f)}\\
+      \RA Y \arrow{r}{\epsilon_{\RA Y}} & \RA \circ \LA \circ \RA Y
+    \end{tikzcd}
+    \ \text{and}\ 
+    \begin{tikzcd}
+      \LA \circ \RA \circ \LA X \arrow{r}{\eta_{\LA X}}\arrow{d}{\RA \circ \LA(g)} & \LA X \arrow{d}{g}\\
+      \LA \circ \RA Y \arrow{r}{\eta_Y} & Y
+    \end{tikzcd}$$
+    we see
+    \begin{eqnarray*}
+      h_{\RA Y}(\epsilon_X) \circ \RA(\LA X, Y) \circ h^{\LA X}(\eta_Y) \circ \LA(X, \RA Y)(f) &=& \RA(\eta_Y \circ \LA(f)) \circ \epsilon_X\\
+      &=& \RA(\eta_Y) \circ \RA \circ \LA(f) \circ \epsilon_X\\
+      &=& \RA(\eta_Y) \circ \epsilon_{\RA Y} \circ f\\
+      &=& f
+    \end{eqnarray*}
+    and
+    \begin{eqnarray*}
+      h^{\LA X}(\eta_Y) \circ \LA(X, \RA Y) \circ h_{\RA Y}(\epsilon_X) \circ \RA(\LA X, Y)(g) &=& \eta_Y \circ \LA(\RA(g) \circ \epsilon_X)\\
+      &=& \eta_Y \circ \LA \circ \RA(g) \circ \LA(\epsilon_X)\\
+      &=& g \circ \eta_{\LA X} \circ \LA(\epsilon_X)\\
+      &=& g
+    \end{eqnarray*}
+    giving isomorphisms
+    $$\D(\LA X, Y) \cong \C(X, \RA Y)$$
+    for each object $X$ of $\C$.
+    
+    Naturality in $X$ follows directly from naturality of $\epsilon$ and $\eta$.
+    Namely, given a morphism $f \in \C(X^\prime, X)$ we have the commutative diagram
+    $$\begin{tikzcd}
+      X\arrow{ddd}{f} & \D(\LA X, Y) \arrow{rrrr}{\sim}\arrow{ddd}{h_{\RA Y}(f)}& & & & \C(X, \RA Y)\arrow{ddd}{h_{Y}(\LA(f))}\\
+      & & \alpha \arrow[mapsto]{rr}\arrow[mapsto]{d}& & \RA(\alpha) \circ \epsilon_X\arrow[mapsto]{d}\\
+      & & \alpha \circ \LA(f) \arrow[mapsto]{rr} & & \RA(\alpha \circ \LA(f)) \circ \epsilon_{X^\prime} = \RA(\alpha) \circ \epsilon_X \circ f\\
+      X^\prime & \D(\LA X^\prime, Y) \arrow{rrrr}{\sim} & & & & \C(X^\prime, \RA Y)
+    \end{tikzcd}$$
+    and, similarly, the commutative diagram
+    $$\begin{tikzcd}
+      X\arrow{ddd}{f} & \C(X, \RA Y) \arrow{rrrr}{\sim}\arrow{ddd}{h_{\RA Y}(f)}& & & & \D(\LA X, Y)\arrow{ddd}{h_{Y}(\LA(f))}\\
+      & & \beta \arrow[mapsto]{rr}\arrow[mapsto]{d}& & \eta_Y \circ \LA(\beta)\arrow[mapsto]{d}\\
+      & & \beta \circ f \arrow[mapsto]{rr} & & \eta_Y \circ \LA(\beta \circ f) = \eta_y \circ \LA(\beta) \circ \LA(f)\\
+      X^\prime & \C(X^\prime, \RA Y) \arrow{rrrr}{\sim} & & & & \D(\LA X, Y)
+    \end{tikzcd}$$
+    This establishes the isomorphism of functors.
+    
+    
+    (iii $\Rightarrow$ i)\\
+    First define the functor
+    $$\LA_\ast \colon \Fun{\D^\text{op}}{\Sets} \to \Fun{\C^\text{op}}{\Sets}$$
+    as follows.
+    Given $\F \colon \D \to \Sets$ and an object $X$ of $\C$ define
+    $$\LA_\ast(\F)(X) = \F \circ \LA(X).$$
+    Given a morphism $\eta \in \Fun{\D^\text{op}}{\Sets}(\F_1, \F_2)$ define natural transformation
+    $\LA_\ast(\eta) \colon \LA_\ast(\F_1) \to \LA_\ast(\F_2)$ by
+    $$\LA_\ast(\eta)_X = \eta_{\LA X}.$$
+    
+    Let $h_-^{\D} \colon \D \to \Fun{\D^\text{op}}{\Sets}$ and $h_-^{\C} \colon \C \to \Fun{\C^\text{op}}{\Sets}$ denote the Yoneda embeddings, which we note identify $\C$ and $\D$ as full subcategories of $\Fun{\D^\text{op}}{\Sets}$ and $\Fun{\C^\text{op}}{\Sets}$ by the Yoneda Lemma.
+    By assumption, we have for each object $Y$ of $\D$ a representing object $\RA Y$ of $\C$ for the functor 
+    $$\LA_\ast(h_Y) = \D(\LA( - ), Y) \cong \C(-, \RA Y) = h_-^\C(\RA Y)$$
+    Hence by Lemma~\ref{factorization} we obtain a factorization
+    $$\begin{tikzcd}
+      \D \arrow{r}{h_-^{\D}}\arrow[dashed,swap]{rd}{\exists ! \RA} & \Fun{\D^\text{op}}{\Sets} \arrow{r}{\LA_\ast} & \Fun{\C^\text{op}}{\Sets}\\
+      & \C \arrow[swap]{ur}{h_-^{\C}}
+    \end{tikzcd}$$
+    by the same argument, giving an isomorphism of functors
+    $$\C(-, \RA( - )) = h_-^\C \circ \RA \cong \LA_\ast \circ h_-^\D = \D(\LA( - ), -),$$
+    natural in $Y$.
+    
+    Similarly, define the functor $\RA_\ast \colon \Fun{\C}{\Sets} \to \Fun{\D}{\Sets}$ and note that using the co-Yoneda embeddings $h^-_\D \colon \D \to \Fun{\C}{\Sets}$ and $h^-_\D \colon \C \to \Fun{\D}{\Sets}$ we obtain a factorization 
+    $$\begin{tikzcd}
+      \C \arrow{r}{h^-_\C}\arrow[dashed,swap]{rd}{\exists ! \LA} & \Fun{\C}{\Sets} \arrow{r}{\RA_\ast} & \Fun{\D}{\Sets}\\
+      & \D \arrow[swap]{ur}{h^-_{\D}}
+    \end{tikzcd}$$
+    giving an isomorphism of functors
+    $$\D(\LA(-), -) = h_\D^- \circ \LA \cong \RA_\ast \circ h_\C^- = \C(-, \RA( - )),$$
+    natural in $X$.
+    This establishes (i).
+  \end{proof}
+\end{prop}
+
+\begin{prop}\label{composeadjunctions}
+  Let $\C, \D, \D^\prime$ be categories equipped with adjunctions
+  $$\begin{tikzcd}
+    \C \arrow[shift left]{r}{\LA} & \D \arrow[shift left]{l}{\RA}
+  \end{tikzcd}
+  \ \text{and}\ 
+  \begin{tikzcd}
+    \D \arrow[shift left]{r}{\LA^\prime} & \D^\prime \arrow[shift left]{l}{\RA^\prime}
+  \end{tikzcd}$$
+  Then 
+  $$\begin{tikzcd}
+    \C \arrow[shift left]{r}{\LA^\prime \circ \LA} & \D^\prime \arrow[shift left]{l}{\RA \circ \RA^\prime}
+  \end{tikzcd}$$
+  is an adjunction.
+
+  \begin{proof}
+    The composition of functors is clearly well defined, so we obtain a natural isomorphism
+    \begin{eqnarray*}
+      \D^\prime(\LA^\prime \circ \LA(X), Y^\prime) &\cong& 
+      \D(\LA(X), \RA^\prime Y^\prime)\\
+      &\cong& \C(X, \RA \circ \RA^\prime Y^\prime).
+    \end{eqnarray*}
+  \end{proof}
+\end{prop}
+
+\begin{defn}
+  Given two categories $\C$ and $\D$, an {\it equivalence of categories} is a pair of functors $\F \colon \C \to \D$ and $\G \colon \D \to \C$ and natural isomorphisms $\epsilon \colon \id_\C \to \G \circ \F$, $\eta \colon \F \circ \G \to \id_\D$.
+\end{defn}
+
+\begin{prop}
+  Let $\LA \colon \C \to \D$ and $\RA \colon \C \to \D$ be adjoint functors with unit $\epsilon \colon \id_\C \to \RA \circ \LA$ and counit $\eta \colon \LA \circ \RA \to \id_\D$.
+  \begin{enumerate}[(i)]
+  \item
+    The functor $\RA$ is fully faithful if and only if $\eta$ is an isomorphism,
+  \item
+    The functor $\LA$ is fully faithful if and only if $\epsilon$ is an isomorphism
+  \item
+    The following are equivalent:
+    \begin{enumerate}[(a)]
+    \item
+      $\LA$ is an equivalence of categories,
+    \item
+      $\RA$ is an equivalence of categories,
+    \item
+      $\LA$ and $\RA$ are fully faithful.
+      In this case, $\LA$ and $\RA$ are quasi-inverses of one another, and $\epsilon$, $\eta$ are both isomorphism.
+    \end{enumerate}
+  \end{enumerate}
+  
+  \begin{proof}
+    For (i), we observe from the diagram
+    $$\begin{tikzcd}
+      \D(Y, Y^\prime) \arrow[swap]{rrdd}{h_{Y^\prime}(\eta_Y)}\arrow{rr}{\RA(Y,Y^\prime)} && \C(\RA Y, \RA Y^\prime)\arrow{dd}[rotate=90,yshift=-0.5 ex]{\sim}\\
+      \\
+      && \D(\LA \circ \RA Y, Y^\prime)
+    \end{tikzcd}$$
+    that $\RA(Y,Y^\prime)$ is an isomorphism if and only if $h_{Y^\prime}(\eta_Y)$ is an isomorphism.
+    Hence $\RA$ is fully faithful if and only if $h_{Y^\prime}(\eta_Y)$ is an isomorphism for all objects $Y$, $Y^\prime$ of $\D$, and we are reduced to showing this is equivalent to $\eta_Y$ being an isomorphism.
+    
+    Clearly if $\eta_Y$ is an isomorphism, then $h_{Y^\prime}(\eta_Y)$ is an isomorphism for all objects $Y, Y^\prime$ of $\D$ with inverse
+    $$h_{Y^\prime}(\eta_Y^{-1}) \colon \D(\LA \circ \RA Y, Y^\prime).$$
+    Conversely, taking $Y^\prime = Y$ we obtain an inverse to $\eta_Y$ by applying the the inverse morphism:
+    $$\eta_Y^{-1} = h_{Y}(\eta_Y)^{-1}(\eta_Y).$$
+    
+    For (ii), we apply the same argument, mutatis mutandis, to the diagram
+    $$\begin{tikzcd}
+      \C(X,X^\prime) \arrow{rrdd}{h^X(\epsilon_X)}\arrow{rr}{\LA(X,X^\prime)} && \D(\LA X, \LA X^\prime)\arrow{dd}[rotate=90,yshift=-.5ex]{\sim}\\
+      \\
+      && \C(X, \RA \circ \LA X^\prime)
+    \end{tikzcd}$$
+    
+    Part (iii) follows from the definition of an equivalence of categories and the uniqueness of the adjoints.
+  \end{proof}
+\end{prop}
+
+\section{The Homotopy Category}
+
+\begin{cor}
+  Let $\C$ be a model category.
+  Let $\gamma \colon \C_{cf} \to \Ho{\C_{cf}}$ and $\delta \colon \C_{cf} \to \C_{cf}/\sim$ be the canonical functors.
+  Then there is a unique isomorphism of categories making the diagram
+  $$\begin{tikzcd}
+    \C_{cf} \arrow{rdd}{\delta} \arrow{rr}{\gamma} & & \Ho{\C_{cf}}\\
+      \\
+      & \C_{cf}/\sim \arrow[dashed]{uur}{\exists ! j}
+  \end{tikzcd}$$
+  commute.
+  Furthermore, $j$ is the identity on objects.
+
+  \begin{proof}
+    We show that $\C_{cf}/\sim$ satisfies the same universal property as $\Ho{\C_{cf}}$.
+    We note that $\delta$ takes homotopy equivalences to isomorphisms and so by Proposition 1.2.8, $\delta$ also takes weak equivalences to isomorphisms.
+    Let $\F \colon \C_{cf} \to \D$ be a functor that takes weak equivalences to isomorphisms.
+    Given an object $X$, take the functorial cylinder object $X \times I$.
+    This guarantees that $X \times I$ is cofibrant and fibrant, since $X \coprod X$ is also cofibrant and $X$ is fibrant.
+    Now note that we have a commutative diagram
+    $$\begin{tikzcd}
+      X \arrow[shift left]{rr}{u_0} \arrow[shift right,swap]{rr}{u_1} \arrow[bend left]{rrrr}{\id_X} \arrow[bend right,shift left]{rrrd}{\imath_1}\arrow[bend right,shift right,swap]{rrrd}{\imath_0}
+      && 
+      X \coprod X \arrow{rr}{\nabla}\arrow[swap]{rd}{\imath_0 \coprod \imath_1} 
+      && X\\
+      && 
+      & X \times I \arrow{ur}{s}
+    \end{tikzcd}$$
+    Since $s$ and $\id_X$ are weak equivalences we have that $\imath_0$ and $\imath_1$ are both weak equivalences by 2-out-of-3.
+    Hence 
+    $$\F(s) \circ \F(\imath_0) = \F(s \circ \imath_0) = \id_{\F X} = \F(s \circ \imath_1) = \F(s) \circ \F(\imath_1)$$
+    implies $\F(\imath_0) = \F(\imath_1)$.
+    
+    Given a homotopy 
+    $$\begin{tikzcd}
+      X \arrow[shift left]{rrdd}{f_1} \arrow[shift right,swap]{rrdd}{f_0} \arrow[shift left]{rr}{\imath_0} \arrow[shift right,swap]{rr}{\imath_1} && X \times I \arrow{dd}{H}\\
+      \\
+      && Y
+    \end{tikzcd}$$
+    we have
+    $$\F(f_0) = 
+    \F(H \circ \imath_0) =
+    \F(H) \circ \F(\imath_0) = 
+    \F(H) \circ \F(\imath_1) = 
+    \F(H \circ \imath_1) = 
+    \F(f_1)$$
+    so that $\F$ identifies left homotopic maps.
+    By duality, we see that $\F$ also identifies right homotopic maps.
+    This allows us to define a unique functor $\G \colon \C_{cf}/\sim \to \D$ by $\G \delta X = \F X$ and $\G \delta(f) = \F(f)$.
+    The result now follows by uniqueness of universal objects.
+  \end{proof}
+\end{cor}
+
+\begin{thm}
+  Suppose $\C$ is a model category.
+  Let $\gamma \colon \C \to \Ho{\C}$ denote the canonical functor, $Q$ the cofibrant replacement functor of $\C$, and $R$ the fibrant replacement functor.
+  \begin{enumerate}[(i)]
+  \item
+    The inclusion $\C_{cf} \to \C$ induces an equivalence of categories
+    $$\C_{cf}/\sim \overset{\sim}\longrightarrow \Ho{\C_{cf}} \longrightarrow \Ho{\C}$$
+  \item
+    There are natural isomorphisms
+    $$\C(QRX, QRY)/\sim \overset{\sim}\longrightarrow \Ho{C}\left(\gamma X, \gamma Y\right) \overset{\sim}\longrightarrow \C(RQX, RQY)/\sim$$
+    In addition, there is a natural isomorphism $\Ho{C}\left(\gamma X, \gamma Y\right) \cong \C(QX, RY)/\sim$, and, if $X$ is cofibrant and $Y$ is fibrant, there is a natural isomorphism $\Ho{C}\left(\gamma X, \gamma Y\right) \cong \C(X,Y)/\sim.$
+    In particular, $\Ho{C}$ is a category without moving to a higher universe.
+  \item
+    The functor $\gamma \colon \C \to \Ho{C}$ identifies left or right homotopic maps.
+  \item
+    If $f \colon A \longrightarrow B$ is a map in $\C$ such that $\gamma f$ is an isomorphism in $\Ho{C}$, then $f$ is a weak equivalence.
+  \end{enumerate}
+
+  \begin{proof}
+    Part (i) is just the composition of the isomorphism from the Corollary above and the equivalence $\Ho{\C_{cf}} \longrightarrow \Ho{C}$ of Proposition 1.2.3.
+    
+  \end{proof}
+\end{thm}
+
+\section{Quillen Adjunctions and Derived Functors}
+\begin{defn}
+  Let $\C$ and $\D$ be model categories.
+  \begin{enumerate}
+  \item
+    A functor $\LA \colon \C \to \D$ is {\it left Quillen} if $\LA$ is a left adjoint and preserves cofibrations and trivial cofibrations.
+  \item
+    A functor $\RA \colon \D \to \C$ is {\it right Quillen} if $\RA$ is a right adjoint and preserves fibrations and trivial fibrations.
+  \item
+    An adjunction $(\LA, \RA, \phi)$, where $\phi$ is the natural isomorphism 
+    $$\varphi_{X,Y} \colon \D(\LA X, Y) \overset{\sim}\to \C(X, \RA Y),$$
+    is called a {\it Quillen adjunction} if $\LA$ is left Quillen.
+  \end{enumerate}
+\end{defn}
+
+\begin{rmk}
+  Hovey always uses $\eta$ for the unit of adjunction and $\epsilon$ for the counit of adjunction; my notation is exactly the opposite.
+\end{rmk}
+
+\begin{ex}
+  Let $\C$ be a model category and let $I$ be a set.
+  Equip the product category $\C^I$ with the product model structure.
+  We can view an object of $\C^I$ as a discrete diagram of $\C$ and a morphism of this category as a morphisms of discrete diagrams.
+  For example, in the case where $I$ has two elements, a morphism between two objects, $f = (f_1, f_2) \colon X = (X_1, X_2) \to Y = (Y_1, Y_2)$ is just two morphisms of $\C$:
+  $$\begin{tikzcd}
+    X_1\arrow{d}{f_1} & & X_2\arrow{d}{f_2}\\
+    Y_1 & & Y_2\\
+  \end{tikzcd}$$
+  with no commutativity relations.
+  
+  As $\C$ has all small limits by assumption, we can define a product functor $\lim_I \colon \C^I \to C$ which takes an object $X = (X_i)_I$ of $\C^I$ to the limit over the discrete diagram, 
+  $$\lim_I X = \lim_I X_i = \prod_{i \in I} X_i.$$
+  For any morphism of $f \in \C^I(X,Y)$, $\lim_I(f)$ is the unique map induced by the universal property of limit, which is determined by the diagrams
+  $$\begin{tikzcd}
+    \lim_I X \arrow{r}{\lim_I(f)}\arrow{d} & \lim_I Y\arrow{d}\\
+    X_i \arrow{r}{f_i} & Y_i
+  \end{tikzcd}$$
+  indexed over $I$.
+  For example, when $I$ has two elements, the image of a morphism $(f_1, f_2) \colon (X_1,X_2) \to (Y_1, Y_2)$ is just the product map,
+  $$\begin{tikzcd}
+    X_1 \arrow{d}{f_1} & X_1 \times X_2\arrow{r}\arrow{l}\arrow[dashed]{d}{\exists ! f_1 \times f_2} & X_2\arrow{d}{f_2}\\
+    Y_1 & Y_1 \times Y_2 \arrow{l}\arrow{r} & Y_2
+  \end{tikzcd}$$
+
+  We can define a a diagonal functor
+  $\Delta \colon \C \to \C^I$
+  which takes an object of $X$ of $\C$ to the discrete diagram with $I$ copies of $X$.
+  A morphism $f \in \C(X,X)$ defines a morphism of discrete diagrams by taking $f$ in each component.
+  We note that, by definition, a morphism $f \in \C^I(\Delta X, Y)$ is simply a collection of morphisms $f_i \in \C(X, Y_i)$, giving
+  $$\C^I(\Delta X, Y) = \prod_{i \in I}\C(X, Y_i)$$
+  With this observation, it's easy to see that this functor is left adjoint to $\lim_I$ since we can view the universal property of products as a representability statement:
+  The object $\lim_I Y_i = \prod_{i \in I} Y_i$ is the representing object of the functor $\prod_{i \in I} \C(- ,Y_i)$, and hence
+  $$\C\left(-, \lim_I Y\right) = \C\left(-,\prod_{i \in I} Y_i\right) \cong \prod_{i \in I} \C\left( -, Y_i\right) = \C^I\left(- , Y\right) = \C^I\left(\Delta\left(-\right), Y\right).$$
+  By Proposition~\ref{adjoints} we obtain the desired natural isomorphism
+  $$\C^I\left(\Delta X, Y\right) = \prod_{i \in I} \C\left(\Delta X, Y_i\right) \cong \C\left(\Delta X, \lim_I Y\right).$$
+  Note that by definition of the product model structure, $\Delta$ necessarily preserves cofibrations and weak equivalences, so this adjunction is Quillen.
+\end{ex}
+
+%\begin{rmk}
+%  Note that as a corollary, the product functor is left exact and the diagonal functor is right exact.
+%\end{rmk}
+
+\begin{lem}
+  Let $\C$ and $\D$ be model categories and suppose $\LA \colon \C \to \D$ is left adjoint to $\RA \colon \D \to \C$.
+  This adjunction is Quillen if and only if $\RA$ is right Quillen.
+
+  \begin{proof}
+    By Lemma 1.1.10 of Hovey it suffices to show that given a fibration (resp. trivial fibration) $p \in \D(Y_1, Y_2)$, then $\RA p \in \C(\RA Y_1, \RA Y_2)$ has the right lifting property with respect to all trivial cofibrations (resp. cofibrations).
+    Let $f \in \C(X_1, X_2)$ be a trivial cofibration (resp. cofibration).
+    To say that $\RA p$ has the right lifting property with respect to $f$ is to say that for every commutative diagram
+    $$\begin{tikzcd}
+      X_1 \arrow{r}{\phi}\arrow{d}{f} & \RA Y_1\arrow{d}{\RA p}\\
+      X_2 \arrow{r}{\psi} & \RA Y_2
+    \end{tikzcd}$$
+    there is a lift $\ell \colon X_2 \to \RA Y_1$ such that $\ell \circ f = \varphi$ and $\RA p \circ \ell = \psi$.
+    This is equivalent to the morphisms of sets
+    $$\D(\LA X_2, Y_1) \cong \C(X_2, \RA Y_1) \overset{h^{X_2}(\RA p)}\longrightarrow \C(X_2, \RA Y_2) \cong \D(\LA X_2, Y_2)$$
+    and
+    $$\D(\LA X_2,Y_1) \cong \C(X_2, \RA Y_1) \overset{h_{\RA Y_1}(f)}\longrightarrow \C(X_1, \RA Y_1) \cong \D(\LA X_1, Y_1)$$
+    being surjective.
+    However, by the naturality squares
+    $$\begin{tikzcd}
+      \D(\LA X_2, Y_1) \arrow{rr}{\sim} \arrow{dd}{h^{\LA X_2}(p)} && \C(X_2, \RA Y_1)\arrow{dd}{h^{X_2}(\RA p)}\\
+      \\
+      \D(\LA X_2, Y_2) \arrow{rr}{\sim} && \C(X_2, \RA Y_2)
+    \end{tikzcd}
+    \ \text{and}\ 
+    \begin{tikzcd}
+      \D(\LA X_2, Y_1) \arrow{rr}{\sim}\arrow{dd}{h_{Y_1}(\LA(f))} && \C(X_2, \RA Y_1)\arrow{dd}{h_{\RA Y_1}(f)}\\
+      \\
+      \D(\LA X_1, Y_1) \arrow{rr}{\sim} && \C(X_1, \RA Y_1)
+    \end{tikzcd}$$
+    this is equivalent to $\LA(f)$ having the left lifting property with respect to $p$.
+    This is equivalent to $\LA(f)$ being a cofibration (resp. trivial cofibration), which in turn is equivalent to the adjunction being Quillen.
+  \end{proof}
+\end{lem}
+
+%\begin{prop}
+%  A Quillen adjunction $(F,U,\phi) \colon \C \to \D$ induces a Quillen adjunction $(F_\ast, U_\ast, \phi) \colon \C_\ast \to \D_\ast$ between the model categories of Proposition 1.1.8.
+%  Furthermore, $\F_\ast(X_+)$ is naturally isomorphic to $(\F X)_+$.
+%  This correspondence is functorial.
+%  
+%  \begin{proof}
+%    As noted by Hovey in the remarks before 1.1.8, we have adjunctions
+%    $$\begin{tikzcd}
+%      \C \arrow[shift left]{r}{F^\prime} & \C_\ast \arrow[shift left]{l}{U^\prime}
+%    \end{tikzcd}
+%    \ \text{and}\ 
+%    \begin{tikzcd}
+%      \D \arrow[shift left]{r}{F^{\prime\prime}} & \D_\ast \arrow[shift left]{l}{U^{\prime\prime}}
+%    \end{tikzcd}$$
+%    and these are both Quillen by 1.1.8.
+%    
+%    We define $U_\ast$ by the composition
+%    $$\D_\ast \overset{U^{\prime\prime}}\to \D \overset{U}\to \C \overset{F^\prime}\to \C_\ast.$$
+%    Let $P \colon \C_\ast \to \D$ be the pushout functor, which takes an object $\ast_\C \overset{v}\to X$ of $\C_\ast$ to 
+%    $$\begin{tikzcd}
+%      F(\ast_\C) \arrow{r}{F(v)}\arrow{d} & FX\arrow{d}{v^\prime}\\
+%      \ast_\D \arrow{r}{s} & P(X,v)
+%    \end{tikzcd}$$
+%    and a morphism
+%    $$\begin{tikzcd}
+%      & \ast_\C\arrow{ld}{v_1}\arrow{rd}{v_2}\\
+%      X_1 \arrow{rr}{f} & & X_2
+%    \end{tikzcd}$$
+%    to the morphism
+%    $$\begin{tikzcd}
+%      F(\ast_\C)\arrow{rr}{F(v_1)}\arrow{dd}\arrow{rd}{\id} & & FX_1\arrow{rd}{F(f)}\arrow[dashed]{dd}[yshift = -2ex]{v_1^\prime}\\
+%      & F(\ast_\C)\arrow{rr}[xshift=-3ex]{F(v_2)}\arrow{dd} & & FX_2\arrow{dd}{v_2^\prime}\\
+%      \ast_\D \arrow{rd}{\id}\arrow[dashed]{rr}{s_1} & & P(X_1, v_1)\arrow[dashed]{rd}{\exists !P(f)}\\
+%      & \ast_\D \arrow{rr}{s_2}& & P(X_2,v_2)
+%    \end{tikzcd}$$
+%    and define $\F_\ast = \F^{\prime\prime} \circ P$.
+%    We note that we have natural isomorphism
+%    $$\D_\ast(F_\ast(X,v), (Y,w)) \cong \D(P(X,v), Y) \cong \D(FX, Y) \cong \C(X, UY)$$
+%    since $f \in \D_\ast(F_\ast(X,v), (Y,w))$ is just a morphism
+%    $$\begin{tikzcd}
+%      & \ast_\D \arrow{ld}{s}\arrow{rd}{w}\\
+%      P(X,v) \arrow{rr}{f} && Y
+%    \end{tikzcd}$$
+%    corresponding by the defining diagram to
+%    $$\begin{tikzcd}
+%      F(\ast_\C) \arrow{r}{F(v)}\arrow{d} & FX\arrow{d}{v^\prime}\arrow[bend left]{ddr}{f \circ v^\prime}\\
+%      \ast_\D \arrow{r}{s}\arrow[bend right]{rrd}{w} & P(X,v)\arrow{rd}{f}\\
+%      & & Y
+%    \end{tikzcd}.$$
+%  \end{proof}
+%\end{prop}
+
+\begin{rmk}
+  \begin{enumerate}[(i)]
+  \item
+    If $\LA \colon \C \to \D$ and $\RA \colon \D \to \C$ is a Quillen adjunction, then, by Ken Brown's Lemma, $\LA$ preserves weak equivalences between cofibrant objects and $\RA$ preserves weak equivalences between fibrant objects.
+    By abuse of notation, we write $\LA \colon \C_c \to \D$ and $\RA \colon \D_f \to \C$ for the restrictions, then observe that we obtain
+    $$\begin{tikzcd}
+      \C \arrow{r}{Q}\arrow{d}{\gamma_{\C}} & \C_c \arrow{r}{\LA}\arrow{d}{\gamma_{\C_c}} & \D \arrow{d}{\gamma_\D}\\
+      \Ho{\C} \arrow{r}{\Ho{Q}} & \Ho{\C_c} \arrow[dashed]{ur}{\exists !}\arrow{r}{\Ho{\LA}} & \Ho{\D}
+    \end{tikzcd}$$
+    and
+    $$\begin{tikzcd}
+      \D \arrow{r}{R}\arrow{d}{\gamma_{\D}} & \D_f \arrow{r}{\RA}\arrow{d}{\gamma_{\D_f}} & \C \arrow{d}{\gamma_\C}\\
+      \Ho{\D} \arrow{r}{\Ho{R}} & \Ho{\D_f} \arrow[dashed]{ur}{\exists !}\arrow{r}{\Ho{\RA}} & \Ho{\C}
+    \end{tikzcd}$$
+    by the universal property for the homotopy category.
+
+    We also note that given natural transformations $\eta \colon \LA \to \LA^\prime$, $\nu \colon \RA \to \RA^\prime$ between Quillen functors, we obtain natural transformations $\Ho{\eta} \colon \Ho{\LA} \to \Ho{\LA^\prime}$ and $\Ho{\nu} \colon \Ho{\RA} \to \Ho{\RA^\prime}$ defined by $\Ho{\eta}_X = \eta_X$ and $\Ho{\nu}_X = \nu_X$.
+    Since all the functors involved preserve weak equivalences, these are indeed natural by Lemma 1.2.2.
+    
+    Note that on objects, 
+    $$\Ho{\LA}(X) = \LA(QX)\ \text{and}\ \Ho{\RA}(Y) = \RA(QY).$$ 
+  \item
+    This construction does not require Quillen functors.
+    We only used the fact that these functors preserve weak equivalences between cofibrant (resp. fibrant) objects.
+  \end{enumerate}
+\end{rmk}
+
+\begin{defn}
+  Let $\C$ and $\D$ be model categories.
+  \begin{enumerate}
+  \item
+    If $\F \colon \C \to \D$ is a left Quillen functor, define the {\it total left derived functor} $L\F \colon \Ho{\C} \to \Ho{D}$ to be the composition
+    $$\Ho{\C} \overset{\Ho{Q}}\longrightarrow \Ho{\C_c} \overset{\Ho{\F}}\longrightarrow \Ho{\D}$$
+    Given a natural transformation $\tau \colon \F \to \F^\prime$ of left Quillen functors, define the {\it total derived natural transformation} $L\tau$ to be $\Ho{\tau} \circ \Ho{Q}$, so that $(L\tau)_X = \tau_{QX}$.
+  \item
+    If $\G \colon \D \to \C$ is a right Quillen functor, define the {\it total right derived functor} $R\G \colon \Ho{\D} \to \Ho{\C}$ to be the composition
+    $$\Ho{\D} \overset{\Ho{R}}\longrightarrow \Ho{\D_f} \overset{\Ho{\G}}\longrightarrow \Ho{\C}$$
+    Given a natural transformation $\tau \colon \G \to \G^\prime$ of right Quillen functors, define the {\it total derived natural transformation} $R\tau$ to be $\Ho{\tau} \circ \Ho{R}$, so that $(R\tau)_X = \tau_{RX}$.
+  \end{enumerate}
+\end{defn}
+
+\newcommand{\E}{\mathscr{E}}
+\begin{thm}
+  For every model category, $\C$, there is a natural isomorphism $\alpha \colon L(\id_\C) \to \id_{\Ho{\C}}$.
+  Also for every pair of left Quillen functors $F \colon \C \to \D$ and $F^\prime \colon \D \to \E$, there is a natural isomorphism $m = m_{\F^\prime\F} \colon L\F^\prime \circ L\F \to L(\F^\prime \circ \F)$.
+  These natural isomorphisms satisfy the following properties.
+  \begin{enumerate}
+  \item
+    An associativity coherence diagram is commutative.
+    That is, if $\F \colon \C \to \C^\prime$, $\F^\prime \colon C^\prime \to \C^{\prime\prime}$, and $F^{\prime\prime} \colon \C^{\prime\prime} \to \C^{\prime\prime\prime}$ are left Quillen functors, then the diagram
+    $$\begin{tikzcd}
+      \arrow[equals]{d}(L\F^{\prime\prime} \circ L\F^\prime) \circ L\F \arrow{rr}{m_{\F^{\prime\prime}\F^\prime} \circ L\F} && L(\F^{\prime\prime} \circ \F^\prime) \circ L\F \arrow{rr}{m_{(\F^{\prime\prime} \circ \F^\prime)\F}} && L((\F^{\prime\prime} \circ \F^\prime) \circ \F)\arrow[equals]{d}\\
+      L\F^{\prime\prime} \circ (L\F^\prime \circ L\F) \arrow{rr}{L\F^{\prime\prime} \circ m_{\F^\prime\F}} && L\F^{\prime\prime} \circ L(\F^\prime \circ \F) \arrow{rr}{m_{\F^{\prime\prime}(\F^\prime \circ \F)}} && L(\F^{\prime\prime} \circ (\F^\prime \circ \F))
+    \end{tikzcd}$$
+    commutes.
+  \item
+    A left unit coherence diagram is commutative.
+    That is, if $\F \colon \C \to \D$ is a left Quillen functor, then the diagram
+    $$\begin{tikzcd}
+      L(\id_\D) \circ L\F \arrow{rr}{m}\arrow{d}{\alpha \circ L\F} && L(\id_\D \circ \F) \arrow[equals]{d}\\
+      1_{\Ho{\D}} \circ L\F \arrow[equals]{rr} && L\F
+    \end{tikzcd}$$
+    commutes.
+  \item
+    A right unit coherence diagram is commutative.
+    That is, if $\F \colon \C \to \D$ is a left Quillen functor, then the diagram
+    $$\begin{tikzcd}
+      L\F \circ L(\id_{\C}) \arrow{rr}{m}\arrow{d}{L\F \circ \alpha} & & L(\F \circ \id_\C)\arrow[equals]{d}\\
+      L\F \circ \id_{\Ho{\C}} \arrow[equals]{rr} && L\F
+    \end{tikzcd}$$
+    commutes.
+  \end{enumerate}
+
+  \begin{proof}
+    Let $\imath \colon \C_c \to \C$ be the natural inclusion.
+    We observe from the functorial factorization
+    $$\begin{tikzcd}
+      0 \arrow{rr}\arrow{rd}&  & X\\
+      & QX \arrow[swap]{ur}{q_X}
+    \end{tikzcd}$$
+    that we obtain a natural transformation $q \colon \imath \circ Q \to \id_\C$.
+    Taking the derived natural transformation $\Ho{q}$ gives the natural isomorphism 
+    $$\id_{\Ho{\C}} \overset{\sim}\to \Ho{\imath} \circ \Ho{Q} \overset{\Ho{q}}\to L(\id_\C)$$
+    because $q_X$ is a trivial fibration.
+    
+    Define $m_{\F^\prime\F}$ to be the collection of maps
+    $$L\F^\prime \circ L\F X = \F^\prime(Q(\F(QX))) \overset{F^\prime(q_{\F(QX)})}\longrightarrow \F^\prime(\F(QX)) = L(\F^\prime \circ \F(X))$$
+    which is natural in $X$ as a functor on $\C$, for if $f^\prime \in \C(X, X^\prime)$ then we have the commutative diagram
+    $$\begin{tikzcd}
+      QX \arrow{r}{q_X}\arrow{d}{Qf} & X\arrow{d}{f}\\
+      QX^\prime \arrow{r}{q_{X^\prime}} & X^\prime
+    \end{tikzcd}$$
+    which gives rise to the commutative diagram in $\D$
+    $$\begin{tikzcd}
+      Q(\F(QX)) \arrow{r}{q_{\F(QX)}}\arrow{d}{Q\F(Qf)} & \F(QX) \arrow{r}{\F(q_X)}\arrow{d}{\F(Qf)} & \F(X)\arrow{d}{\F(f)}\\
+      Q(\F(QX^\prime))\arrow{r}{q_{\F(QX^\prime)}} & \F(QX^\prime) \arrow{r}{\F(q_{X^\prime})} & \F(X^\prime)
+    \end{tikzcd}$$
+    and hence a commutative diagram in $\E$
+    $$\begin{tikzcd}
+      \F^\prime(Q(\F(QX))) \arrow{rr}{\F^\prime(q_{\F(QX)})}\arrow{dd}{\F^\prime(Q\F(Qf))} && \F^\prime \circ \F(QX) \arrow{rr}{\F^\prime \circ \F(q_X)}\arrow{dd}{\F^\prime \circ \F(Qf)} && \F^\prime \circ \F(X)\arrow{dd}{\F^\prime \circ \F(f)}\\
+      \\
+      \F^\prime(Q(\F(QX^\prime)))\arrow{rr}{\F^\prime(q_{\F(QX^\prime)})} && \F^\prime \circ \F(QX^\prime) \arrow{rr}{\F^\prime \circ \F(q_{X^\prime})} && \F^\prime \circ \F(X^\prime)
+    \end{tikzcd}$$
+    Since all functors involved preserve weak equivalences, $m_{\F^\prime\F}$ is also natural in $X$ as a functor on $\Ho{\C}$.
+    Moreover, $\F$ preserves cofibrant objects because it preserves cofibrations as a left Quillen functor, hence $\F^\prime$ preserves the weak equivalence $q_{\F(QX)}$ between cofibrant objects and thus it follows that $m_{\F^\prime\F}$ is an isomorphism in $\Ho{\E}$.
+
+    For the associativity coherence diagram, we must show that
+    $$(\F^{\prime\prime} \circ \F^\prime(q_{\F QX})) \circ (F^{\prime\prime}(q_{\F^\prime Q\F QX})) = (F^{\prime\prime}(q_{\F^\prime\F QX})) \circ ((\F^{\prime\prime}\circ Q \circ \F^\prime(q_{\F Q X})).$$
+    This follows from naturality of $q$ and a construction similar to the one above.
+    
+    The left unit coherence diagram commutes because by definition
+    $$m_{\id_\D\F}(X) = \id_\D(q_{\F Q X}) = q_{\F Q X}$$
+    and
+    $$\alpha \circ L\F(X) = \alpha_{\F QX} = q_{\F Q X}$$
+
+    For the right unit coherence diagram, we have
+    $$m_{\F\id_\C}(X) = \F(q_{\id_\C(q_{QX})}) = \F(q_{QX}) \colon \F(QQX) \to \F(QX)$$
+    and 
+    $$L\F \circ \alpha(X) = \F(Q(q_{X})) \colon \F(QQX) \to \F(QX).$$
+    Given a cofibrant object $X$ we have the commutative diagram
+    $$\begin{tikzcd}
+      QQX \arrow{r}{q_{QX}}\arrow{d}{Q(q_X)} & QX\arrow{d}{q_X}\\
+      QX \arrow{r}{q_X} & X
+    \end{tikzcd}$$
+    because $q$ is natural.
+    Since $q_X$ is a weak equivalence between cofibrant objects it follow that $\F(q_X)$ is invertible in $\Ho{\D}$ and hence
+    $$\F(q_{QX}) = \F Q(q_X).$$
+    Since every object of $\Ho{\C}$ is weakly equivalent to a cofibrant object, this completes the proof.
+  \end{proof}
+\end{thm}
+
+\begin{defn}
+  Let $\C$, $\D$, and $\E$ be categories and let $\F, \G \colon \C \to \D$, $\F^\prime, \G^\prime \colon \D \to \E$ be functors.
+  Given natural transformations $\eta \colon \F \to \G$ and $\nu \colon \F^\prime \to \G^\prime$, defin the {\it horizontal composition} $\eta \ast \nu \colon \F^\prime \circ \F \to \G^\prime \circ \G$ is the natural transformation defined by the collection of morphisms of $\E$
+  $$\begin{tikzcd}
+    \F^\prime \circ \F(X) \arrow{r}{\F^\prime(\eta_X)}\arrow{d}{\nu_{\F X}} & \F^\prime \circ \G(X)\arrow{d}{\nu_{\G X}}\\
+    \G^\prime \circ \F(X) \arrow{r}{\G^\prime(\eta_X)}& \G^\prime \circ \G(X)
+  \end{tikzcd}$$
+\end{defn}
+
+\begin{lem}
+  Let $\C$, $\D$, and $\E$ be model categories.
+  Let $\F,\G \colon \C \to \D$ and $\F^\prime, \G^\prime \colon \D \to \E$ be left Quillen functors.
+  Suppose $\eta \colon \F \to \G$ and $\nu \colon \F^\prime \to \G^\prime$ be natural transformations.
+  If $m$ is the composition isomorphism of the Theorem above, then the diagram
+  $$\begin{tikzcd}
+    L\F^\prime \circ L\F \arrow{r}{m}\arrow{d}{L\eta \ast L\nu} & L(\F^\prime \circ \F)\arrow{d}{L(\eta \ast \nu)}\\
+    L\G^\prime \circ L\G \arrow{r}{m} & L(\G^\prime \circ \G)
+  \end{tikzcd}$$
+  commutes.
+
+  \begin{proof}
+    We unravel the definitions.
+    The morphism 
+    $$L(\eta \ast \nu) \circ m_X : \F^\prime Q \F Q X \to \G^\prime \G Q X$$
+    is given by the composition across the top of the commutative diagram
+    $$\begin{tikzcd}
+      \F^\prime Q \F Q X \arrow{rr}{\F^\prime(q_{\F Q X})}\arrow{dd}{\F^\prime Q(\eta_{QX})} && 
+      \F^\prime \F QX \arrow{dd}{\F^\prime(\eta_{Q X})}\arrow{rr}{\nu_{\F Q X}} &&
+      \G^\prime \F Q X \arrow{dd}{\G^\prime(\nu_{Q X})}
+      \\
+      \\
+      \F^\prime Q \G Q X \arrow{rr}{\F^\prime(q_{\G Q X})}\arrow{dd}{\nu_{Q\G Q X}}&& 
+      \F^\prime \G Q X \arrow{rr}{\nu_{\G Q X}}\arrow{dd}{\nu_{\G Q X}} && 
+      \G^\prime\G QX \arrow[equals]{dd}\\
+      \\
+      \G^\prime Q \G Q X \arrow{rr}{\G^\prime(q_{\G Q X})} &&
+      \G^\prime \G Q X \arrow[equals]{rr} &&
+      \G^\prime \G Q X
+    \end{tikzcd}$$
+    and the morphism $m \circ L\eta \ast L\nu_X \colon \F^\prime Q \F Q X \to \G^\prime \G Q X$ is given by the composition across the bottom of the commutative diagram
+    $$\begin{tikzcd}
+      \F^\prime Q \F(QX) \arrow{dd}{\F^\prime Q(\eta_{QX})}\arrow{rr}{\nu_{Q\F Q X}} && 
+      \G^\prime Q \F Q X \arrow{dd}{\G^\prime Q(\eta_{QX})}\arrow{rr}{\G^\prime(q_{\F Q X})}&&
+      \G^\prime \F Q X \arrow{dd}{\G^\prime(\eta_{QX})}
+      \\
+      \\
+      \F^\prime Q \G Q X \arrow{rr}{\nu_{Q\G Q X}}&& 
+      \G^\prime Q \G QX \arrow{rr}{\G^\prime(q_{\G Q X})} &&
+      \G^\prime \G Q X
+    \end{tikzcd}$$
+    Chasing the bottom left side of each diagram gives us the desired equality.
+  \end{proof}
+\end{lem}
+
+\begin{rmk}
+  Essentially, this says we have a 2-category (modulo some set theoretic issues...) with 0-cells model categories, 1-cells left Quillen functors, 2-cells the natural transformations and the homotopy category, total derived functor, and total derived natural transformation define a pseudo 2-functor to the 2-category of categories.
+\end{rmk}
+
+\begin{lem}
+  Let $\C$ be a model category and assume we have homotopic morphisms $f_0 \sim f_1 \in \C(X,Y)$.
+  If $Y$ is fibrant object, then we may always choose a fibrant path object.
+  Dually, if $X$ cofibrant we may always choose a cofibrant cylinder object.
+  
+  \begin{proof}
+    Since $Y$ is assumed to be fibrant, the pullback
+    $$\begin{tikzcd}
+      Y \times Y \arrow{r}{\pi_0}\arrow{d}{\pi_1} & Y\arrow{d}\\
+      Y \arrow{r} & 0
+    \end{tikzcd}$$
+    is fibrant, as fibrations are stable under pullback.
+    Choose a path object
+    $$\begin{tikzcd}
+      Y \arrow{rr}{\Delta}\arrow{rd}{t} & & Y \times Y\\
+      & Y^\prime \arrow{ur}{p_0 \times p_1}
+    \end{tikzcd}$$
+    with $p_0 \times p_1$ a fibration, $t$ a weak equivalence, and a homotopy
+    $$\begin{tikzcd}
+      X \arrow{r}{K}\arrow[swap]{rd}{f_i} & Y^\prime \arrow{d}{p_i}\\
+      & Y
+    \end{tikzcd}$$
+    Taking a fibrant replacement, $Y \overset{r_Y}\to RY^\prime$, we obtain a lift
+    $$\begin{tikzcd}
+      Y \arrow{dd}{t} \arrow{rrdd}{\Delta}\\
+      \\
+      Y^\prime \arrow{dd}{r_Y}\arrow{rr}{p_0 \times p_1} && Y \times Y\arrow{dd}\\
+      \\
+      RY^\prime \arrow{rr}\arrow[dashed]{uurr}{\exists q_0 \times q_1} && 0
+    \end{tikzcd}$$
+    because $Y \times Y$ is fibrant and $r_Y$ is a trivial cofibration, making $RY^\prime$ a path object.
+    We also obtain a homotopy $r_Y \circ K$ since the diagrams
+    $$\begin{tikzcd}
+      X \arrow{rr}{K}\arrow[swap]{rrrrdddd}{f_i} 
+      && 
+      Y^\prime \arrow{rr}{r_Y}\arrow{rrdd}{p_0 \times p_1}\arrow[swap]{rrdddd}{p_i} 
+      && 
+      RY^\prime\arrow{dd}{q_0 \times q_1}\\
+      \\
+      & & & & Y \times Y \arrow{dd}{\pi_i}\\
+      \\
+      & & & & Y
+    \end{tikzcd}$$
+    commute for $i = 0, 1$.
+  \end{proof}
+\end{lem}
+
+\begin{lem}
+  Let $\C$ and $\D$ be model categories.
+  Given a Quillen adjunction
+  $$\begin{tikzcd}
+    \C \arrow[shift left]{r}{\F} & \D \arrow[shift left]{l}{\G}
+  \end{tikzcd}$$
+  we obtain a {\it derived adjunction}
+  $$\begin{tikzcd}
+    \Ho{\C} \arrow[shift left]{r}{L\F} & \Ho{\D} \arrow[shift left]{l}{R\G}
+  \end{tikzcd}$$
+
+  \begin{proof}
+    Denote by $\epsilon$ and $\eta$ the unit and counit of adjunction, respectively, and by $[-,-]_\C$, $[-,-]_\D$ the morphisms of the homotopy category.
+    Also, recall that the isomorphism of adjunction is given by the morphisms
+    $$\begin{tikzcd}
+      \D(\F X, Y) \arrow{rr}{\G(\F X, Y)} && \C(\G \F X, \G Y) \arrow{rr}{h_{\G Y}(\epsilon_X)} && \C(X, \G Y) 
+    \end{tikzcd}$$
+    and
+    $$\begin{tikzcd}
+      \C(X, \G Y) \arrow{rr}{\F(X, \G Y)} && \D(\F X, \F \G Y) \arrow{rr}{h^{\F X}(\eta_Y)}&& \D(\F X, Y)
+    \end{tikzcd}$$
+    
+    We first observe that we have natural isomorphisms
+    $$[L\F X, Y]_\D \cong \D(\F Q X, R Y)/\sim\ \text{and}\ 
+    [X, R\G Y]_\C \cong \C(Q X, \G R Y)/\sim.$$
+    This reduces the problem to showing that the isomorphism of adjunction both preserves and reflects homotopies between cofibrant objects of $\C$ and fibrant objects of $\D$, for then we can see that for any object $X$ of $\C$ and any object $Y$ of $\D$, the isomorphism of adjunction descends to a well-defined isomorphism
+    $$\begin{tikzcd}
+      & \D(\F Q X, R Y) \arrow{r}{\sim}\arrow{d} & \C(Q X, \G R Y)\arrow{d}\\
+      & \D(\F Q X, RY)/\sim \arrow{r} & \C(QX, \G R Y)/\sim
+    \end{tikzcd}$$
+    
+    
+    Towards that end, assume that $X$ is a cofibrant object of $\C$ and $Y$ is a fibrant object of $\D$.
+    Given $f_0 \sim f_1 \in \D(\F X, Y)$, choose a homotopy from a fibrant path object.
+    $$\begin{tikzcd}
+      Y \arrow{rr}{\Delta}\arrow{rd}{t} & & Y \times Y\\
+      & Y^\prime \arrow{ur}{p_0 \times p_1}
+    \end{tikzcd}$$
+    with $p_0 \times p_1$ a fibration, $t$ a weak equivalence, and a homotopy
+    $$\begin{tikzcd}
+      \F X \arrow{r}{K}\arrow[swap]{rd}{f_i} & Y^\prime \arrow{d}{p_i}\\
+      & Y
+    \end{tikzcd}$$
+    Since $\G$ is right Quillen it preserves products, fibrant objects, weak equivalences between fibrant objects, and (trivial) fibrations, hence we obtain a path object of $\C$
+    $$\begin{tikzcd}
+      \G Y \arrow{rr}{\G(\Delta)}\arrow[swap]{rd}{\G(t)} && \G(Y \times Y) \cong \G(Y) \times \G(Y)\\
+      & \G Y^\prime \arrow[swap]{ur}{\G(p_0 \times p_1) = \G(p_0) \times \G(p_1)}
+    \end{tikzcd}$$
+    and a homotopy
+    $$\begin{tikzcd}
+      X \arrow{rr}{\G(K) \circ \epsilon_X}\arrow[swap]{rrdd}{\G(f_i) \circ \epsilon_X} && \G Y^\prime \arrow{dd}{\G(p_i)}\\
+      \\
+      & & \G Y
+    \end{tikzcd}$$
+    by the commutativity of the naturality square
+    $$\begin{tikzcd}
+      \D(\F X, Y^\prime) \arrow{r}{\sim}\arrow{d}{h^{\F X}(p_i)} & \C(X, \G Y^\prime)\arrow{d}{h^X(\G(p_i))}\\
+      \D(\F X, Y) \arrow{r}{\sim} & \C(X, \G Y)
+    \end{tikzcd}$$
+    It's clear that this morphism is surjective and natural, so it remains to show that that it reflects homotopies.
+    
+    Assume that there is a homotopy $\G(f_0) \circ \epsilon_X \sim \G(f_1) \circ \epsilon_X$ in $\C$.
+    By duality, the argument above implies that we may choose a cofibrant cylinder object
+    $$\begin{tikzcd}
+      X \coprod X \arrow{rr}{\nabla}\arrow[swap]{rd}{\imath_0 \coprod \imath_1} && X\\
+      & X^\prime \arrow[swap]{ur}{s}
+    \end{tikzcd}$$
+    and a homotopy
+    $$\begin{tikzcd}
+      X \arrow{r}{\imath_i}\arrow[swap]{rd}{\G(f_i) \circ \epsilon_X} & X^\prime \arrow{d}{H}\\
+      & \G Y
+    \end{tikzcd}$$
+    As $\F$ is left Quillen it preserves cofibrant objects, (trivial) cofibrations, and weak equivalences between cofibrant objects by which we obtain a cylinder object in $\D$
+    $$\begin{tikzcd}
+      \F (X \coprod X) \cong \F X \coprod \F X \arrow[swap]{rd}{\F(\imath_0 \coprod \imath_1) = \F(\imath_0) \coprod \F(\imath_1)}\arrow{rr}{\F(\nabla)} && \F X\\
+      & \F X^\prime \arrow[swap]{ur}{\F(s)}
+    \end{tikzcd}$$
+    and a homotopy
+    $$\begin{tikzcd}
+      \F X \arrow[swap]{rrdd}{\eta_Y \circ \F (\G(f_i) \circ \epsilon_X)} \arrow{rr}{\F(\imath_i)} & & \F X^\prime \arrow{dd}{\eta_Y \circ \F(H)}\\
+      \\
+      & & Y
+    \end{tikzcd}$$
+    and we note that 
+    $$\eta_Y \circ \F \circ \G(f_i) \circ \F(\epsilon_X) = f_i$$
+    implies that we have a homotopy $f_0 \sim f_1$, as desired.
+    Therefore the induced map is injective, hence an isomorphism.
+  \end{proof}
+\end{lem}
+
+\section{Quillen Equivalences}
+\begin{defn}
+  A Quillen adjunction $(\F, \G, \phi) \colon \C \to \D$ is a {\it Quillen equivalence} if and only if, for all cofibrant $X$ in $\C$ and fibrant $Y$ in $\D$, a map $f \colon \F X \to Y$ is a weak equivalence in $\D$ if and only if $\phi(f) \colon X \to \G Y$ is a weak equivalence in $\C$.
+\end{defn}
+
+\begin{rmk}
+  Note that a Quillen equivalence is {\it not} always an equivalence of categories.
+  This could be thought of as a weak equivalence of model categories.
+\end{rmk}
+
+\begin{prop}
+  Let $(\F, \G, \phi) \colon \C \to \D$ be a Quillen adjunction with unit $\epsilon \colon \id_\C \to \G \circ \F$ and counit $\eta \colon \F \circ \G \to \id_\D$.
+  The following are equivalent:
+  \begin{enumerate}[(a)]
+  \item
+    $(\F, \G, \phi)$ is a Quillen equivalence,
+  \item
+    The composition 
+    $X \overset{\epsilon_X}\longrightarrow \G \F X \overset{\G(r_{\F X})}\longrightarrow \G R \F X$
+    is a weak equivalence for all cofibrant $X$, and the composition
+    $\F Q \G Y \overset{\F(q_{\G Y})}\longrightarrow \F Q Y \overset{\eta_Y}\longrightarrow Y$ is a weak equivalence for all fibrant $Y$,
+  \item
+    The derived adjunction is an equivalence of categories.
+  \end{enumerate}
+
+  \begin{proof}
+    (a) $\Rightarrow$ (b)\\
+    Assume $X$ is cofibrant in $\C$ and $Y$ is fibrant in $\D$.
+    Note that $r_{\F X}$ and $q_{\G Y}$ are both weak equivalences.
+    From the diagrams
+    $$\begin{tikzcd}      
+      \D(\F X, R \F X)\arrow{rr}{\F(X, R \F X)}\arrow[bend left]{rrrr}{\phi} 
+      && 
+      \C(\G \F X, \G R \F X) \arrow{rr}{h_{\G R \F X}(\epsilon_X)} && 
+      \C(X, \G R \F X)\\
+      r_{\F X} \arrow[mapsto]{rr} && \G(r_{\F X}) \arrow[mapsto]{rr} & & \G(r_{\F X}) \circ \epsilon _X
+    \end{tikzcd}$$
+    and
+    $$\begin{tikzcd}
+      \C(Q\G Y, \G Y) \arrow{rr}\arrow[bend left]{rrrr}{\phi^{-1}} && \D(\F Q \G Y, \F \G Y) \arrow{rr} && \D(\F G \G Y, Y)\\
+      q_{\G Y} \arrow[mapsto]{rr} && \F(q_{\G Y}) \arrow[mapsto]{rr} && \eta_{Y} \circ \F(q_{\G Y})
+    \end{tikzcd}$$
+    we see $\phi(r_{\F X}) = \G(r_{\F X} \circ \epsilon_X)$ and $\phi(\eta_Y \circ \F(q_{\G Y})) = q_{\G Y}$ imply $\G(r_{\F X}) \circ \epsilon_X$ and $\eta_Y \circ \F(q_{\G Y})$ are weak equivalences by the definition of a Quillen equivalence.
+    
+    (b) $\Rightarrow$ (c)\\
+    It suffices to show that the unit and counit of the adjunction are both isomorphisms.
+    First assume that $X$ is a cofibrant object of $\C$ and note that $\F X$ is cofibrant in $X$.
+    Chasing the identity through the diagram
+    $$\begin{tikzcd}
+      \D(\F X, \F X) \arrow{rr}{\sim}\arrow{dd}{h^{\F X}(r_{\F X})} && \C(X, \G \F X) \arrow{dd}{h^{X}(\G(r_{\F X}))}\\
+      \\
+      \D(\F X, R \F X) \arrow{dd}\arrow{rr}{\sim} && \C(X, \G R \F X)\arrow{dd}\\
+      \\
+      \D(\F X, R \F  X)/\sim \arrow{rr}{\sim}\arrow{dd}[rotate=90,yshift=-0.5ex]{\sim} && \C(X,\G R \F  X)/\sim\arrow{dd}[rotate=90,yshift=-0.5ex]{\sim}\\
+      \\
+      \left[L\F X, L\F X\right]_\D \arrow{rr}{\sim} && \left[X, R\G \circ L\F X\right]_\C
+    \end{tikzcd}$$
+    we see that the image in the bottom right hand corner is
+    $$X \overset{\epsilon_X}\longrightarrow \G \F X \overset{\G(r_{\F X})}\longrightarrow \G R \F X$$
+    and thus for arbitrary $X$ we obtain the unit of the derived adjunction 
+    $$X \overset{q_X^{-1}}\longrightarrow QX \overset{\epsilon_{QX}}\longrightarrow \G \F QX \overset{\G(r_{\F QX})}\longrightarrow \G R \F QX$$
+  \end{proof}
+\end{prop}
+
+\section{Appendix}
+
+\begin{lem}
+  If $X$ is a cofibrant object of $\C$, then $q_X \colon QX \to X$ is an isomorphism.
+  Dually, if $Y$ is a fibrant object of $\C$, then $r_Y \colon Y \to RY$ is an isomorphism.
+  
+  \begin{proof}
+    We have
+    $$\begin{tikzcd}
+      0 \arrow{rd}\arrow{rr} & & X\\
+      & QX\arrow{ur}{q_X}
+    \end{tikzcd}$$
+    with $q_X$ a trivial fibration, which gives a lift
+    $$\begin{tikzcd}
+      0 \arrow{rr}\arrow{dd} && QX \arrow{dd}{q_X}\\
+      \\
+      X \arrow[dashed]{rruu}{\exists h}\arrow{rr}{\id_X} && X
+    \end{tikzcd}$$
+    because $X$ is cofibrant.
+    We note that $h$ is a weak equivalence by 2-out-of-3.
+    By the functorial factorization we get
+    $$\begin{tikzcd}
+      X \arrow{rr}{h}\arrow[swap]{ddr}{\alpha(h)} && QX\\
+        \\
+      & X^\prime \arrow[swap]{uur}{\beta(h)}
+    \end{tikzcd}$$
+    giving a retract
+    $$\begin{tikzcd}
+      X \arrow[bend left]{rrrr}{id_{X}}\arrow{rr}{\alpha(h)}\arrow{dd}{h} && X^\prime \arrow{rr}{q_X \circ \beta(h)}\arrow{dd}{\beta(h)} && X\arrow{dd}{h}\\
+      \\
+      QX \arrow[bend right]{rrrr}{\id_{QX}}\arrow{rr}{\id_{QX}} && QX \arrow{rr}{\id_{QX}} && QX
+    \end{tikzcd}$$
+    and hence $h$ is a trivial fibration.
+    This now gives a lift
+    $$\begin{tikzcd}
+      0 \arrow{rr}\arrow{dd} && X\arrow{dd}{h}\\
+      \\
+      QX \arrow{rr}{\id_{QX}}\arrow[dashed]{rruu}{\exists h^\prime} && QX
+    \end{tikzcd}$$
+    and so we see
+    $$q_X = q_X \circ \id_{QX} = q_X \circ h \circ h^\prime = \id_X \circ h^\prime = h^\prime.$$
+  \end{proof}
+\end{lem}
+
+%\begin{prop}
+%  The functor $\imath_c \colon \C_c \to \C$ is left adjoint to the functor $Q \colon \C \to \C_c$.
+%  Dually, the functors $R \colon \C \to \C_f$ and $\imath_f \colon \C_f \to \C$ are an adjoint pair.
+%  
+%  \begin{proof}
+%    First we note that we have a natural transformation
+%    $$\begin{tikzcd}
+%      QX \arrow{rr}{q_X}\arrow{dd}{Qf} && X\arrow{dd}{f}\\
+%      \\
+%      QX^\prime \arrow{rr}{q_{X^\prime}} && X^\prime.
+%    \end{tikzcd}$$
+%    given by the functorial factorization.
+%    The Lemma implies that for each object pair of objects $Y, Y^\prime$ of $\C_c$ we obtain a commutative diagram
+%    $$\begin{tikzcd}
+%      Y \arrow{rr}{q_Y^{-1}}\arrow{dd}{g} && QY\arrow{dd}{Qg}\\
+%      \\
+%      Y^\prime \arrow{rr}{q_{Y^\prime}^{-1}} && QY
+%    \end{tikzcd}$$
+%    because
+%    $$Qg \circ q_Y^{-1} = q_{Y^\prime}^{-1} \circ q_{Y^\prime} \circ Qg \circ q_{Y}^{-1} = q_{Y^\prime}^{-1} \circ g \circ q_Y \circ q_Y^{-1} = q_{Y^\prime}^{-1} \circ g.$$
+%    We show that the second map is the unit of adjunction and the first map is the counit of adjunction.
+%    
+%    For this, we need only show that the diagrams
+%    $$\begin{tikzcd}
+%      Y \arrow{rr}{q_Y^{-1}}\arrow[swap]{rrdd}{\id_Y} && QY\arrow{dd}{q_Y}\\
+%      \\
+%      && Y
+%    \end{tikzcd}
+%    \ \text{and}\ 
+%    \begin{tikzcd}
+%      QX \arrow{rr}{q_{QX}^{-1}}\arrow[swap]{rrdd}{\id_{QX}} && QQX\arrow{dd}{Q(q_X)}\\
+%      \\
+%      && QX
+%    \end{tikzcd}$$
+%    commute.
+%    The left-hand diagram commutes by construction.
+%    For the right-hand diagram, we observe that 
+%  \end{proof}
+%\end{prop}
+\end{document}
