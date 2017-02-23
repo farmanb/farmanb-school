@@ -1,0 +1,44 @@
+\documentclass[dissertation.tex]{subfiles}
+\begin{document}
+\subsection{Tensored and Cotensored Categories}
+
+\begin{defn}[\cite{Borceux2}]
+  Let $\V$ be a symmetric monoidal closed category, $\CC$ a $\V$-category, $X$ an object of $\CC$, and $V$ an object of $\V$.
+  \begin{itemize}
+  \item
+    The {\it tensor of $V$ and $X$} exists if there is an object $V \otimes X$ of $\CC$ together with isomorphisms
+    $$\CC(V \otimes X, Y) \cong [V, \CC(X,Y)]_{\V}$$
+    of $\V$, $\V$-natural in the object $Y$ of $\CC$.
+    We say that $\CC$ is tensored if $V \otimes X$ exists for all objects $V$ of $V$ and $X$ of $\CC$.
+  \item
+    The {\it cotensor of $V$ and $X$} exists if there is an object $[V,X]$ of $\CC$ together with isomorphisms
+    $$\CC(Y, [V,X]) \cong [V, \CC(Y,X)]_{\V}$$
+    of $\V$, $\V$-natural in the object $Y$ of $\CC$.
+    We say that $\CC$ is cotensored if $[V,X]$ exists for all objects $V$ of $V$ and $X$ of $\CC$.
+  \end{itemize}
+\end{defn}
+
+\begin{prop}[\cite{Borceux2}]
+  If $\V$ is a symmetric monoidal closed category, then $\V$ is both a tensored and cotensored $\V$-category, with tensor $\otimes$ and cotensor $[- , -]_{\V}$
+\end{prop}
+
+\begin{prop}[\cite{Borceux2}, 6.5.5]
+  Let $\V$ be a symmetric monoidal closed category and let $V$ be an object of $\V$.
+  If $\CC$ is a tensored (resp. cotensored) $\V$-category, then the correspondence
+  $$V \otimes - \colon \CC \to \CC, X \mapsto V \otimes X$$
+  (resp. $[V, -] \colon \CC \to \CC, X \mapsto [V, X]$)
+  induced a $\V$-functor.
+\end{prop}
+
+\begin{prop}[\cite{Borceux2}, 6.5.6]
+  Let $\V$ be a symmetric monoidal closed category.
+  If $\CC$ is a tensored and cotensored $\V$-category, then for every object $V$ of $\V$ the two $\V$-functors above induce isomorphisms
+  $$\CC(V \otimes X, Y) \cong \CC(X, [V,Y]),$$
+  $\V$-natural in $X$ and $Y$.
+\end{prop}
+
+\begin{prop}[\cite{Borceux2}, 6.5.7]\label{modulesaretensored}
+  Let $\V$ be a complete symmetric monoidal closed category.
+  For every small $\V$-category $\CC$, the $\V$-category of $\V$-functors from $\CC$ to $\V$ and $\V$-natural transformations is both tensored and cotensored.
+\end{prop}
+\end{document}

@@ -1,0 +1,290 @@
+\documentclass[dissertation.tex]{subfiles}
+\begin{document}
+Let $A$ be a commutative ring.
+
+\subsection{Tensor Products of Chain Complexes}
+Given two complexes, 
+$$C : \cdots \to C^{n-1} \overset{d^{n-1}_C}\to C^n \overset{d^n_C}\to C^{n+1} \to \cdots$$
+and 
+$$D : \cdots \to D^{n-1} \overset{d^{n-1}_D}\to D^n \overset{d^n_D}\to D^{n+1} \to \cdots,$$
+of $A$-modules,
+consider the double complex
+$$\begin{tikzcd}
+  & & \vdots & \vdots & \vdots & \\
+  C \otimes_A D^{y + 1}: & \cdots \arrow{r}& C^{x - 1} \otimes_A D^{y + 1}\arrow{u}\arrow{r} & C^x \otimes_A D^{y + 1}\arrow{u}\arrow{r} & C^{x + 1} \otimes_A D^{y + 1}\arrow{u}\arrow{r} & \cdots\\
+  C \otimes_A D^{y} & \cdots \arrow{r} & C^{x - 1} \otimes_A D^{y}\arrow{u}\arrow{r} & C^x \otimes_A D^{y}\arrow{u}\arrow{r} & C^{x + 1} \otimes_A D^{y}\arrow{u}\arrow{r} & \cdots\\
+  C \otimes_A D^{y - 1} & \cdots \arrow{r} & C^{x - 1} \otimes_A D^{y - 1}\arrow{u}\arrow{r} & C^x \otimes_A D^{y - 1}\arrow{u}\arrow{r} & C^{x + 1} \otimes_A D^{y - 1}\arrow{u}\arrow{r} & \cdots\\
+  & & \vdots\arrow{u} & \vdots\arrow{u} & \vdots\arrow{u} & \\
+  & & C^{x-1} \otimes_A D & C^x \otimes_A D & C^{x + 1} \otimes_A D
+\end{tikzcd}$$
+with horizontal differentials
+$$\begin{tikzcd}
+  C^x \times D^y \arrow{r}{\otimes}\arrow{d}{d^x_C \times D^y} & C^x \otimes_A D^y \arrow[dashed]{d}{\exists ! d^x_C \otimes_A D^y}\\
+  C^{x + 1} \times D^y \arrow{r}{\otimes} & C^{x + 1}\otimes_A D^y
+\end{tikzcd}$$
+and vertical differentials
+$$\begin{tikzcd}
+  C^x \times D^y \arrow{r}{\otimes}\arrow{d}{(-1)^x \times d_D^y} & C^x \otimes_A D^y \arrow[dashed]{d}{\exists ! (-1)^x \otimes_A d_D^y}\\
+  C^{x} \times D^{y+1} \arrow{r}{\otimes} & C^{x + 1}\otimes_A D^{y + 1}
+\end{tikzcd}$$
+induced by the universal property for the tensor product in $\operatorname{Mod}-{A}$.
+For fixed $n$ the differentials
+$$\begin{tikzcd}
+  & \ddots\\
+  & C^{x - 1} \otimes_A D^{y + 1} \arrow{r} & C^x \otimes_A D^{y + 1}\\
+  & & C^x \otimes_A D^{y} \arrow{r} & C^{x + 1} \otimes_A D^{y}\\
+  & & & C^{x + 1} \otimes_A D^{y - 1} \arrow{r} & C^{x + 2} \otimes D^{y - 1}\\
+  & & & & \ddots &
+\end{tikzcd}$$
+and
+$$\begin{tikzcd}
+  \ddots
+   & C^{x - 1} \otimes_A D^{y + 2}\\
+  & C^{x - 1} \otimes_A D^{y + 1} \arrow{u}& C^x \otimes_A D^{y + 1}\\
+  & & C^x \otimes_A D^y \arrow{u} & C^{x + 1} \otimes_A D^y\\
+  & & & C^{x + 1} \otimes_A D^{y - 1}\arrow{u} & \ddots\\
+\end{tikzcd}$$
+induce morphisms
+$$d^n_c \otimes_A 1 \colon \bigoplus_{x + y = n} C^x \otimes_A D^y \to \bigoplus_{x + y = n} C^{x+1} \otimes_A D^{y}$$
+and
+$$(-1)^x \otimes_A d^n_D \colon \bigoplus_{x + y = n} C^x \otimes_A D^y \to \bigoplus{x + y = n} C^{x} \otimes_A D^{y + 1}.$$
+\begin{defn}
+  For two chain complexes $C$ and $D$, define the tensor product of chain complexes to be the object
+  $$\left(C \otimes_A D\right)^n = \bigoplus_{x + y = n}C^x \otimes_A D^y$$
+  equipped with the differential
+  $$d^n_C \otimes_A 1 + (-1)^x \otimes_A d^n_D.$$
+\end{defn}
+
+Fix a morphism of chain complexes $f \colon C \to D$ and a chain complex $E$.
+For each $x$ and $y$, there is an induced morphism
+$$\begin{tikzcd}
+  C^x \times E^y \arrow{r}\arrow{d}{f^x \times 1} & C^x \otimes_A E^y \arrow[dashed]{d}{\exists ! f^x \otimes E^y}\\
+  D^x \times E^y \arrow{r} & D^x \otimes_A E^y
+\end{tikzcd}$$
+and hence a unique morphism
+$$\left(f \otimes_A E\right)^n \colon \left(C \otimes_A E\right)^n \to \left(D \otimes_A E\right)^n$$
+defined by the collection of commutative diagrams
+$$\begin{tikzcd}
+  C^x \otimes_A E^y \arrow{r}\arrow{d}{f^x \otimes_A E^y} & \left(C \otimes_A E\right)^n \arrow{d}{(f \otimes_A E)^n}\\
+  D^x \otimes_A E^y \arrow{r} & \left(D^x \otimes_A E^y\right)^n
+\end{tikzcd}$$
+indexed by $x + y = n$.
+
+\begin{lem}
+  The morphism $f \otimes_A E = \left(\left(f \otimes_A E\right)^n\right)$ is a morphism of complexes.
+  
+  \begin{proof}
+    Since the differential on the tensor product is the sum of the horiztonal and vertical differentials, it suffices to check that $f \otimes_A E$ commutes with each separately.
+    %For let $d^n_{h,C \otimes_A E}$, $d^n_{v,C \otimes_A E}$, $d^n_{h, D \otimes_A E}$, and $d^n_{v, D \otimes_A E}$ be the horizontal and vertical differentials, then
+    %\begin{eqnarray*}
+    %  \left(f \otimes_A E\right)^{n+1} \circ d_{C \otimes_A E}^n - 
+    %  d_{D \otimes_A E}^n \circ \left(f \otimes_A E\right)^n &=& 
+    %  \left(f \otimes_A E\right)^{n+1} \circ d^n_{h, C \otimes_A E} -
+    %  d^n_{h,D \otimes_A E} \circ \left(f \otimes_A E\right)^{n}\\
+    %  &+&
+    %  \left(f \otimes_A E\right)^{n+1} \circ d^n_{v, C \otimes_A E}
+    %  -
+    %  d^n_{v,D \otimes_A E} \circ \left(f \otimes_A E\right)^{n}\\
+    %\end{eqnarray*}
+    We exhibit the horizontal differential and then observe that the argument for the vertical differential is a simpler version of the same argument, mutatis mutandis.
+    
+    First note that the diagram
+    $$\begin{tikzcd}
+      C^x \times E^y \arrow{rr}{d^x_c \times E^y} \arrow{d}{f^x \times E^y} &&C^{x + 1} \times E^y\arrow{d}{f^{x + 1} \times E^y}\\
+      D^x \times E^y \arrow{rr}{d_D^x \times E^y} && D^{x+1} \times E^y
+    \end{tikzcd}$$
+    commutes because each composition makes both diagrams
+    $$\begin{tikzcd}
+      C^x \arrow{rd}\arrow{dd}{f^x}\arrow[bend right,swap]{dddd}{f^{x+1} \circ d^x_C} & & E^y \arrow{ld}\arrow{dd}{1} & & C^x \arrow{rd}\arrow{dd}{d_C^x}\arrow[bend right,swap]{dddd}{d_D^x \circ f^x} & & E^y \arrow{ld}\arrow{dd}{1}\\
+      & C^x \times E^y\arrow[swap]{dd}{f^x \times E^y}\arrow[dashed,bend left]{dddd}{\exists!} & & & & C^x \times E^y \arrow[swap]{dd}{d_C^x \times E^y}\arrow[dashed,bend left]{dddd}{\exists !}\\
+      D^x \arrow{rd}\arrow{dd}{d_D^x} & & E^y \arrow{ld}\arrow{dd}{1} & & C^{x+ 1} \arrow{rd}\arrow{dd}{f^{x+1}}& & E^y\arrow{ld}\arrow{dd}{1}\\
+      & D^x \times E^y\arrow[swap]{dd}{d_D^x \times E^y} & & & & C^{x+1} \times E^y\arrow[swap]{dd}{f^{x+1} \times E^y}\\
+      D^{x+1} \arrow{rd} & & E^y\arrow{ld} & & D^x \arrow{rd} & & E^y \arrow{ld}\\
+      & D^{x+1} \times E^y & & & & D^{x+1} \times E^y
+    \end{tikzcd}$$
+    commute, hence they must be the same by unicity.
+    Since $(C \otimes_A E)^n$ is a coproduct, the moprhism
+    $$h = (f \otimes_A E)^{n+1} \circ d^n_{h,C \otimes_A E} - d^n_{h,D \otimes_A E} \circ (f \otimes_A E)^n$$
+    is determined by the diagrams
+    \begin{equation}\label{triangle}
+      \begin{tikzcd}
+        C^x \times E^y \arrow{r}\arrow{rd} & (C \otimes_A E)^n \arrow{d}{h}\\
+        & (D \otimes_A E)^{n+1}
+      \end{tikzcd}
+    \end{equation}
+    indexed by $x + y = n$, with diagonal morphism the composition.
+    For all $x + y = n$, all faces other than the front face of the cube with diagonal morphisms the canonical inclusions into the coproducts
+    $$\begin{tikzcd}
+      C^x \times E^y \arrow{rd}\arrow{rr}{d^x_C \times E^y}\arrow{dd}{f^x \times E^y} & & C^{x+1} \times E^y\arrow[pos=0.75,dashed]{dd}{f^{x + 1} \times E^y}\arrow{rd}\\
+      & (C \otimes_A E)^n \arrow[pos=0.15]{rr}{d^n_{h,C \otimes_A E}}\arrow[pos=0.75]{dd}{(f \otimes_A E)^n} & & (C \otimes E)^{n+1}\arrow{dd}{(f \otimes_A E)^{n+1}}\\
+      D^x \times E^y \arrow[pos=0.75,dashed]{rr}{d^x_D \times E^y}\arrow{rd}& & D^{x + 1} \times E^y\arrow[dashed]{rd}\\
+      & (D \otimes_A E)^n \arrow{rr}{d^n_{h,D \otimes_A E}} & & (D \otimes_A E)^{n+1}
+    \end{tikzcd}$$
+    commute.
+    Hence we deduce that the diagonal morphism
+    $$C^x \times E^y \to (D \otimes_A E)^{n+1}$$
+    in \ref{triangle}
+    is the zero morphism and
+    $$(f \otimes_A E)^{n+1} \circ d^n_{h,C \otimes_A E} = d^n_{h,D \otimes_A E} \circ (f \otimes_A E)^n$$
+    holds by unicity.
+    Therefore $f \otimes_A E$ is a morphism of complexes, as desired.
+  \end{proof}
+\end{lem}
+
+An immediate consequence of the Lemma is
+\begin{cor}
+  For a fixed chain complex $E$, we have functors
+  $$- \otimes_A E, E \otimes_A - \colon \Ch{A} \to \Ch{A}$$
+  that take a chain complex, $C$, to $C \otimes_A E$ (resp. $E \otimes_A C$) and a morphism $f \in \Ch{A}(C,D)$ to $f \otimes_A E$ (resp. $E \otimes_A f$).
+\end{cor}
+
+\subsection{Hom Total Complex}
+Given two complexes, $C$ and $D$, form the double complex
+$$\begin{tikzcd}
+  & & \vdots & \vdots & \vdots\\
+  h_{D^{y+1}}\left(C\right) & \cdots \arrow{r} & h_{D^{y+1}}\left(C^{x+1}\right)\arrow{u}\arrow{r} & h_{D^{y+1}}\left(C^x\right)\arrow{u}\arrow{r} & h_{D^{y+1}}\left(C^{x-1}\right) \arrow{u}\arrow{r} & \cdots\\
+  h_{D^{y}}\left(C\right) & \cdots \arrow{r} & h_{D^{y}}\left(C^{x+1}\right)\arrow{u}\arrow{r} & h_{D^{y}}\left(C^x\right)\arrow{u}\arrow{r} & h_{D^{y}}\left(C^{x-1}\right) \arrow{u}\arrow{r} & \cdots\\
+  h_{D^{y-1}}\left(C\right) & \cdots \arrow{r} & h_{D^{y-1}}\left(C^{x+1}\right)\arrow{u}\arrow{r} & h_{D^{y-1}}\left(C^x\right)\arrow{u}\arrow{r} & h_{D^{y-1}}\left(C^{x-1}\right) \arrow{u}\arrow{r} & \cdots\\
+  & & \vdots\arrow{u} & \vdots\arrow{u} & \vdots\arrow{u}\\
+  & & h^{C^{x+1}}\left(D\right) & h^{C^x}\left(D\right) & h^{C^{x-1}}\left(D\right)
+\end{tikzcd}$$
+with horizontal morphisms $h_{D^{y}}\left(d_C^x\right)$ and vertical morphisms $(-1)^{y+x+1}h^{C^x}\left(d_D^y\right)$.
+\begin{defn}\label{ChInternalHomDefn}
+  Define 
+  $$[C,D]^n = \prod_{y - x = n} \Hom{A}{C^x,D^y} = \prod_{x \in \Z} \Hom{A}{C^x,D^{x+n}}$$
+  with differential the sum of the induced morphisms
+  $$\begin{tikzcd}
+    \left[C,D\right]^n = \prod_{x \in \Z} \Hom{A}{C^x,D^{x + n}} \arrow{rrr}{\prod_{x \in \Z} h_{D^{x + n}}\left(d_C^{x - 1}\right)} &&& \prod_{x \in \Z} \Hom{A}{C^{x-1},D^{x + n}} = \left[C,D\right]^{n+1}
+  \end{tikzcd}$$
+  and
+  $$\begin{tikzcd}
+    \left[C,D\right]^n = \prod_{x \in \Z} \Hom{A}{C^x,D^{x + n}} \arrow{rrr}{\prod_{x \in \Z} (-1)^{n + 1}h^{C^{x}}\left(d_D^{x + n}\right)} &&& \prod_{x \in \Z} \Hom{A}{C^{x-1},D^{x + n + 1}} = \left[C,D\right]^{n+1}
+  \end{tikzcd}$$
+\end{defn}
+
+Fix a morphism of complexes $f : C \to D$ and a complex $E$.
+For each $x$ and $n$, there is a morphism
+$$h^{E^x}(f^{x+n}) \colon \Hom{A}{E^x,C^{x + n}} \to \Hom{A}{E^x,D^{x+n}}.$$
+Fixing $n$, this collection of morphisms indexed by $x \in \Z$ induces a unique morphism\\ $[E,f]^n \colon [E,C]^n \to [E,D]^n$ determined by the commutative diagrams 
+$$\begin{tikzcd}
+  \left[E,C\right]^n \arrow{r}\arrow{d}{[E,f]^n} & \Hom{A}{E^x,C^{x+n}}\arrow{d}{h^{E^x}\left(f^{x+n}\right)}\\
+  \left[E,D\right]^n \arrow{r} & \Hom{A}{E^x,D^{x+n}}
+\end{tikzcd}$$
+with horizontal morphisms the canonical projections from the product.
+
+\begin{lem}
+  The morphism $[E,f] = ([E,f]^n) \colon [E,C] \to [E,D]$ defines a morphism of complexes.
+
+  \begin{proof}
+    As in the case of the tensor product, it suffices to show that $[E,f]^n$ commutes with the horizontal and vertical differentials independently.
+    Here we exhibit the vertical case and note that the horizontal case follows from a simpler version of the same argument, mutatis mutandis.
+
+    Fix an integer $n$.
+    For the vertical morphisms, we observe first that the diagram
+    $$\begin{tikzcd}
+      \Hom{A}{E^x,C^{x+n}} \arrow{d}{h^{E^x}\left(f^{x+n}\right)}\arrow{rrr}{(-1)^{n+1}h^{E^x}\left(d^{x+n}_C\right)} &&& \Hom{A}{E^x,C^{x+n+1}}\arrow{d}{h^{E^x}\left(f^{x+n+1}\right)}\\
+      \Hom{A}{E^x,D^{x+n}} \arrow{rrr}{(-1)^{n+1}h^{E^x}\left(d^{x+n}_D\right)} &&& \Hom{A}{E^x,D^{x+n+1}}
+    \end{tikzcd}$$
+    commutes since
+    \begin{eqnarray*}
+      (-1)^{n+1} h^{E^x}(f^{x+n+1}) \circ h^{E^x}(d^{x+n}_C) &=& (-1)^{n+1}h^{E^x}(f^{x+n+1} \circ d^{x+n}_C)\\
+      &=& (-1)^{n+1}h^{E^x}(d^{x+n}_D \circ f^{x+n})\\
+      &=& (-1)^{n+1} h^{E^x}(d^{x+n}_D) \circ h^{E^x}(f^{x+n}).
+    \end{eqnarray*}
+    Since $[E,D]$ is a product, we note that the morphism
+    $$h = [E,f]^{n+1} \circ \prod_{x \in \Z} h^{E^{x}}(d^{x+n}_C) - \prod_{x \in \Z} h^{E^{x}}(d^{x+n}_D) \circ [E,f]^n \colon [E,C]^n \to [E,D]^{n+1}$$
+    is determined by the diagrams
+    \begin{equation}\label{homtriangle}
+      \begin{tikzcd}
+        \left[E,C\right]^n \arrow{r}{h}\arrow{rd} & \left[E,D\right]^{n+1}\arrow{d}\\
+        & \Hom{A}{E^x,D^{x + n+1}}
+      \end{tikzcd}
+    \end{equation}
+    indexed by $x$, with the vertical morphism the canonical projection.
+    Using the square above, we obtain for all $x$ a cube with diagonal morphisms the canonical projections
+    $$\begin{tikzcd}
+      \left[E,C\right]^n \arrow{rd}\arrow{rr}{\prod_{x \in \Z} (-1)^{n+1}h^{E^x}(d^{x+n}_C)}\arrow{dd}{[E,f]^n} & & \left[E,C\right]^{n+1} \arrow{rd}\arrow[dashed,pos=0.75]{dd}{[E,f]^{n+1}}\\
+      & \Hom{A}{E^x,C^{x+n}} \arrow[pos=0.4]{rr}{(-1)^{n+1}h^{E^x}(d^{x+n}_C)}\arrow[pos=0.75]{dd}{h^{E^x}(f^{x+n})} & & \Hom{A}{E^x,C^{x+n+1}} \arrow{dd}{h^{E^x}(f^{x+n})}\\
+      \left[E,D\right]^n \arrow{rd}\arrow[pos=0.46,dashed]{rr}{\prod_{x \in \Z} (-1)^{n+1}h^{E^x}(d^{x+n}_D)} & & \left[E,D\right]^{n+1}\arrow[dashed]{rd}\\
+      & \Hom{A}{E^x,D^{x+n}} \arrow{rr}{(-1)^{n+1}h^{E^x}(d^{x+n}_D)} & & \Hom{A}{E^x,D^{x+n+1}}
+    \end{tikzcd}$$
+    with all faces except the back face commutative.
+    By chasing through the cube, we deduce that the diagonal arrow
+    $$[E,C]^n \to \Hom{A}{E^x,D^{x+n+1}}$$
+    of \ref{homtriangle} must be zero.
+    Hence by unicity we have
+    $$[E,f]^{n+1} \circ \prod_{x \in \Z} h_{C^{x+n}}(d^{x-1}(E)) = \prod_{x \in \Z} h_{D^{x+n}}(d^{x-1}(E)) \circ [E,f]^n.$$
+    Therefore $[E,f]$ is a morphism of complexes, as desired.
+  \end{proof}
+\end{lem}
+
+As an immediate consequence of the Lemma, we have
+
+\begin{cor}
+  For a fixed chain complex $E$, we have functors
+  $$[E,-], [-,E] \colon \Ch{A} \to \Ch{A}$$
+  that take a chain complex, $C$, to $[E,C]$ (resp. $[C,E]$) and a morphism $f \in \Ch{A}(C,D)$ to $[E,f]$ (resp. $[f,E] \colon [D,E] \to [C,E]$).
+\end{cor}
+
+\begin{prop}\label{ChHomTensorAdjunction}
+  The functor $[E,-]$ is right adjoint to the functor $E \otimes_A -$.
+\end{prop}
+
+\begin{cor}
+  The category $\Ch{A}$ is a complete symmetric monoidal closed category.
+  %TODO: Maybe some justification for complete?
+\end{cor}
+
+\begin{rmk}\label{MorphismsOfDGModules}
+  \begin{enumerate}
+    The adjunction above gives rise to the following morphisms in $\Ch{A}$:
+  \item
+    For any pair of chain complexes, $C$ and $D$, an evaluation morphism
+    $$\begin{tikzcd}
+      \Ch{A}\left([C,D],[C,D]\right) \arrow{r}{\sim} & \Ch{A}\left([C,D] \otimes_A C, D\right)\\
+      \id_{[C,D]} \arrow[mapsto]{r} & \operatorname{ev}_{C,D}
+    \end{tikzcd}$$
+  \item\label{MorphismsOfDGModules.composition}
+    For any three chain complexes, $C$, $D$, and $E$, an associative composition 
+    $$\begin{tikzcd}
+      \left[C,D\right] \otimes_A \left[D,E\right] \arrow{r} & \left[C,E\right]
+    \end{tikzcd}$$
+    given by the image of the morphism
+    $$\begin{tikzcd}
+      \left[C,D\right] \otimes_A \left[D,E\right] \otimes_A C \arrow{r}{\sim} &
+      \left[C,D\right] \otimes_A C \otimes_A \left[D,E\right] \arrow[swap]{ldd}{\operatorname{ev}_{C,D} \otimes_A [D,E]}\\
+      \\
+      D \otimes_A \left[D,E\right] \arrow{r}{\sim} & 
+      \left[D,E\right] \otimes_A D \arrow{r}{\operatorname{ev}_{D,E}} &
+      E
+    \end{tikzcd}$$
+    under the adjunction
+    $$\Ch{A}\left([C,D] \otimes_A [D,E] \otimes_A C, E\right) \cong 
+    \Ch{A}\left([C,D] \otimes [D,E], [C,E]\right)$$
+  \item
+    Regarding $A$ as the complex with $A$ in degree 0 and 0 elsewhere, for every chain complex, $C$, a unit morphism $A \to [C,C]$
+    $$\begin{tikzcd}
+      \Ch{A}(C,C) \arrow{r}{\sim} & \Ch{A}(A \otimes_A C, C) \arrow{r}{\sim} & \Ch{A}\left(A, [C,C]\right)\\
+      \id_C \arrow[mapsto]{rr} & & u_C
+    \end{tikzcd}$$
+    making the diagram
+    $$\begin{tikzcd}
+      \left[C,D\right] \otimes_A A \arrow[swap]{d}{[C,D] \otimes_A u_D}\arrow{rd}{\sim} & & A \otimes_A \left[C,D\right]\arrow[swap]{ld}{\sim}\arrow{d}{u_C \otimes_A [C,D]}\\
+      \left[C,D\right] \otimes_A \left[D,D\right]\arrow{r} & \left[C,D\right] &  \left[C,C\right] \otimes_A \left[C,D\right]\arrow{l}
+    \end{tikzcd}$$
+    with horizontal morphisms composition commute.
+  \item
+    Again regarding $A$ as a complex concentrated in degree 0, an isomorphism for all chain complexes $C$
+    $$\begin{tikzcd}
+      \Ch{A}\left(C,C\right) \arrow{r}{\sim} & 
+      \Ch{A}\left(C \otimes_A,C\right) \arrow{r}{\sim}&
+      \Ch{A}\left(C,\left[A,C\right]\right)\\
+      \id_C \arrow{rr} & & \imath_C
+    \end{tikzcd}$$
+    with inverse
+    $$\begin{tikzcd}
+      \left[A,C\right] \arrow{r}{\sim} & \left[A,C\right] \otimes_A A \arrow{r}{\operatorname{ev}_{A,C}} & C.
+    \end{tikzcd}$$
+  \end{enumerate}
+\end{rmk}
+\end{document}

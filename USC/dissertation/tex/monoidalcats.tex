@@ -1,0 +1,75 @@
+\documentclass[dissertation.tex]{subfiles}
+\begin{document}
+\subsection{Monoidal Categories}
+\begin{defn}[\cite{Borceux2}]
+  We say a category $\V$ is {\it monoidal} if there is a bifunctor $\otimes \colon \V \times \V \to \V$ and a unit object $I$ of $\V$ equipped with
+  \begin{itemize}
+  \item
+    for every triple of objects $X, Y, Z$ of $\V$ an associativity isomorphism
+    $$a_{XYZ} \colon \left(X \otimes Y\right) \otimes Z \to X \otimes \left(Y \otimes Z\right),$$ 
+    natural in $X$, $Y$, and $Z$,
+  \item
+    for each object $X$ of $\V$ a left unit isomorphism
+    $$l_X \colon I \otimes X \to X,$$
+    natural in $X$,
+  \item
+    for each object $X$ of $\V$ a right unit isomorphism
+    $$r_X \colon I \otimes X \to X,$$
+    natural in $X$,
+  \end{itemize}
+  such that the diagram
+  $$\begin{tikzcd}
+    \left(\left(X \otimes Y\right) \otimes Z\right) \otimes W \arrow{rr}{a_{X \otimes Y,Z,W}}\arrow{dd}{a_{XYZ} \otimes 1} && (X \otimes Y) \otimes (Z \otimes W)\arrow{dddd}{a_{X,Y,Z \otimes W}}\\
+    \\
+    \left(X \otimes \left(Y \otimes Z\right)\right) \otimes W\arrow{dd}{a_{X,Y\otimes Z,W}}\\
+    \\
+    X \otimes \left(\left(Y \otimes Z\right) \otimes W\right) \arrow{rr}{1 \otimes a_{YZW}}& & X \otimes \left(Y \otimes \left(Z \otimes W\right)\right)
+  \end{tikzcd}$$
+  commutes for every quadruple $X,Y,Z,W$ of objects of $\V$ and the diagram
+  $$\begin{tikzcd}
+    (X \otimes I) \otimes Y \arrow{rrdd}{r_{a \otimes 1}}\arrow{rr}{a_{XIY}} && X \otimes (I \otimes Y) \arrow{dd}{1 \otimes l_Y}\\
+    \\
+    && A \otimes B
+  \end{tikzcd}$$
+  commutes for every pair of objects $X,Y$ of $\V$.
+\end{defn}
+
+\begin{defn}[\cite{Borceux2}]
+  A monoidal category, $\V$, is called {\it symmetric} when for every pair of objects $X,Y$ of $\V$ there is an isomorphism
+  $$s_{XY} \colon X \otimes Y \to Y \otimes X$$
+  natural in $X$ and $Y$ such that the diagram
+  $$\begin{tikzcd}
+    (X \otimes Y) \otimes Z \arrow{rr}{s_{XY} \otimes 1} \arrow{dd}{a_{XYZ}} && (Y \otimes X) \otimes Z \arrow{dd}{a_{YXZ}}\\
+    \\
+    X \otimes (Y \otimes Z)\arrow{dd}{s_{X,Y \otimes Z}} && Y \otimes(X \otimes Z)\arrow{dd}{1 \otimes s_{XZ}}\\
+    \\
+    (Y \otimes Z) \otimes X \arrow{rr}{a_{YZX}} && Y \otimes (Z \otimes X)
+  \end{tikzcd}$$
+  commutes for every triple of objects $X,Y,Z$ of $\V$, the diagram
+  $$\begin{tikzcd}
+    X \otimes I  \arrow{rr}{s_{XI}}\arrow{rrdd}{r_X} && I \otimes X \arrow{dd}{l_X}\\
+    \\
+    && A
+  \end{tikzcd}$$
+  commutes for every object $X$ of $\V$, and the diagram
+  $$\begin{tikzcd}
+    X \otimes Y \arrow{rrdd}{1}\arrow{rr}{s_{XY}} && Y \otimes X\arrow{dd}{s_{YX}}\\
+    \\
+    && X \otimes Y
+  \end{tikzcd}$$
+  commutes for every pair of objects $X,Y$ of $\V$.
+\end{defn}
+
+\begin{defn}[\cite{Borceux2}]
+  A monoidal category, $\V$, is called {\it biclosed} if for each object $X$ of $\V$ both functors
+  $$- \otimes X \colon \V \to \V\ \text{and}\ X \otimes - \colon \V \to \V$$
+  have a right adjoint.
+  When $\V$ is symmetric, we say that $\V$ is {\it symmetric monoidal closed}.
+\end{defn}
+
+\begin{rmk}
+  If $\V$ is a symmetric monoidal category, then for any object $X$ of $\V$, there is a natural isomorphism between the functors $- \otimes X$ and $X \otimes -$.
+  Hence $\V$, is symmetric monoidal closed if and only if for each object $X$ of $\V$ the functor $- \otimes X \colon \V \to \V$ has a right adjoint.
+  We normally write $[X,-]_\V$ for the adjoint, or simply $[X,-]$ when the category is clear from context.
+\end{rmk}
+\end{document}
