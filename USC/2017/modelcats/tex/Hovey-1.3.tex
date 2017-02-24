@@ -30,6 +30,102 @@
 \newcommand{\F}{\mathscr{F}}
 \newcommand{\G}{\mathscr{G}}
 
+\section{The Homotopy Category}
+
+\begin{cor}
+  Let $\C$ be a model category.
+  Let $\gamma \colon \C_{cf} \to \Ho{\C_{cf}}$ and $\delta \colon \C_{cf} \to \C_{cf}/\sim$ be the canonical functors.
+  Then there is a unique isomorphism of categories making the diagram
+  $$\begin{tikzcd}
+    \C_{cf} \arrow{rdd}{\delta} \arrow{rr}{\gamma} & & \Ho{\C_{cf}}\\
+      \\
+      & \C_{cf}/\sim \arrow[dashed]{uur}{\exists ! j}
+  \end{tikzcd}$$
+  commute.
+  Furthermore, $j$ is the identity on objects.
+
+  \begin{proof}
+    We show that $\C_{cf}/\sim$ satisfies the same universal property as $\Ho{\C_{cf}}$.
+    We note that $\delta$ takes homotopy equivalences to isomorphisms and so by Proposition 1.2.8, $\delta$ also takes weak equivalences to isomorphisms.
+    Let $\F \colon \C_{cf} \to \D$ be a functor that takes weak equivalences to isomorphisms.
+    Given an object $X$, take the functorial cylinder object $X \times I$.
+    This guarantees that $X \times I$ is cofibrant and fibrant, since $X \coprod X$ is also cofibrant and $X$ is fibrant.
+    Now note that we have a commutative diagram
+    $$\begin{tikzcd}
+      X \arrow[shift left]{rr}{u_0} \arrow[shift right,swap]{rr}{u_1} \arrow[bend left]{rrrr}{\id_X} \arrow[bend right,shift left]{rrrd}{\imath_1}\arrow[bend right,shift right,swap]{rrrd}{\imath_0}
+      && 
+      X \coprod X \arrow{rr}{\nabla}\arrow[swap]{rd}{\imath_0 \coprod \imath_1} 
+      && X\\
+      && 
+      & X \times I \arrow{ur}{s}
+    \end{tikzcd}$$
+    Since $s$ and $\id_X$ are weak equivalences we have that $\imath_0$ and $\imath_1$ are both weak equivalences by 2-out-of-3.
+    Hence 
+    $$\F(s) \circ \F(\imath_0) = \F(s \circ \imath_0) = \id_{\F X} = \F(s \circ \imath_1) = \F(s) \circ \F(\imath_1)$$
+    implies $\F(\imath_0) = \F(\imath_1)$.
+    
+    Given a homotopy 
+    $$\begin{tikzcd}
+      X \arrow[shift left]{rrdd}{f_1} \arrow[shift right,swap]{rrdd}{f_0} \arrow[shift left]{rr}{\imath_0} \arrow[shift right,swap]{rr}{\imath_1} && X \times I \arrow{dd}{H}\\
+      \\
+      && Y
+    \end{tikzcd}$$
+    we have
+    $$\F(f_0) = 
+    \F(H \circ \imath_0) =
+    \F(H) \circ \F(\imath_0) = 
+    \F(H) \circ \F(\imath_1) = 
+    \F(H \circ \imath_1) = 
+    \F(f_1)$$
+    so that $\F$ identifies left homotopic maps.
+    By duality, we see that $\F$ also identifies right homotopic maps.
+    This allows us to define a unique functor $\G \colon \C_{cf}/\sim \to \D$ by $\G \delta X = \F X$ and $\G \delta(f) = \F(f)$.
+    The result now follows by unicity of universal objects.
+  \end{proof}
+\end{cor}
+
+\begin{thm}
+  Suppose $\C$ is a model category.
+  Let $\gamma \colon \C \to \Ho{\C}$ denote the canonical functor, $Q$ the cofibrant replacement functor of $\C$, and $R$ the fibrant replacement functor.
+  \begin{enumerate}[(i)]
+  \item
+    The inclusion $\C_{cf} \to \C$ induces an equivalence of categories
+    $$\C_{cf}/\sim \overset{\sim}\longrightarrow \Ho{\C_{cf}} \longrightarrow \Ho{\C}$$
+  \item
+    There are natural isomorphisms
+    $$\C(QRX, QRY)/\sim \overset{\sim}\longrightarrow \Ho{C}\left(\gamma X, \gamma Y\right) \overset{\sim}\longrightarrow \C(RQX, RQY)/\sim$$
+    In addition, there is a natural isomorphism $\Ho{C}\left(\gamma X, \gamma Y\right) \cong \C(QX, RY)/\sim$, and, if $X$ is cofibrant and $Y$ is fibrant, there is a natural isomorphism $\Ho{C}\left(\gamma X, \gamma Y\right) \cong \C(X,Y)/\sim.$
+    In particular, $\Ho{C}$ is a category without moving to a higher universe.
+  \item
+    The functor $\gamma \colon \C \to \Ho{C}$ identifies left or right homotopic maps.
+  \item
+    If $f \colon A \longrightarrow B$ is a map in $\C$ such that $\gamma f$ is an isomorphism in $\Ho{C}$, then $f$ is a weak equivalence.
+  \end{enumerate}
+
+  \begin{proof}
+    Part (i) is just the composition of the isomorphism from the Corollary above and the equivalence $\Ho{\C_{cf}} \longrightarrow \Ho{C}$ of Proposition 1.2.3.
+    
+    The first part of (ii) follows from the equivalences
+    $$\Ho{\C} \overset{\Ho{Q}}\longrightarrow \Ho{\C_c} \overset{\Ho{R}}\longrightarrow \Ho{\C_{cf}}\ \text{and}\ 
+    \Ho{\C} \overset{\Ho{R}}\longrightarrow \Ho{\C_f} \overset{\Ho{Q}}\longrightarrow \Ho{\C_{cf}}$$
+    The rest follows from Proposition 1.2.5 and the fact that
+    $$QX \overset{q_X}\longrightarrow X \overset{r_X}\longrightarrow RX$$
+    is a weak equivalence.
+
+    Part (iii) was proved in Corollary 1.2.9.
+    
+    For part (iv), assume that $f \in \C(X,Y)$ is a morphism such that $\gamma f$ is an isomorphism in $\Ho{\C}$.
+    This implies that the image of $QRf$ in $\C_{cf}/\sim$ is an isomorphism, and from Corollary 1.2.7 it follows that $QRf$ is a homotopy equivalence.
+    By Proposition 1.2.8, $QRf$ is a weak equivalence and so the left-hand side of the commutative diagram
+    $$\begin{tikzcd}
+      QRX \arrow{rr}{q_{RX}}\arrow{dd}{QRf} && RX \arrow{dd}{Rf} && X \arrow{ll}{r_X}\arrow{dd}{f}\\
+      \\
+      QRY\arrow{rr}{q_{RY}} && RY && Y \arrow{ll}{r_Y}
+    \end{tikzcd}$$
+    implies by 2-out-of-3 that $Rf$ is a weak equivalence, and thus the right-hand square implies by 2-out-of-3 that $f$ is a weak equivalence, as desired.
+  \end{proof}
+\end{thm}
+
 \section{Adjoints}
 
 \begin{lem}\label{factorization}
@@ -58,7 +154,7 @@
     \end{tikzcd}$$
     Since all the morphisms involved respect composition, it's clear that this assignment is functorial and by construction makes the isomorphism $\theta_0 \colon \F \to \imath_0 \circ \F_0$ natural.
 
-    For uniqueness, suppose that $\G_0 \colon \C \to \D_0$ is another functor equipped with a natural isomorphism $\phi_0 \colon \F \to \imath_0 \circ \G_0$.
+    For unicity, suppose that $\G_0 \colon \C \to \D_0$ is another functor equipped with a natural isomorphism $\phi_0 \colon \F \to \imath_0 \circ \G_0$.
     We have by assumption an isomorphism of functors
     $$\imath_0 \circ G_0 \overset{\phi_0^{-1}}\longrightarrow \F \overset{\theta_0}\longrightarrow \imath_0 \F_0.$$
     Since $\imath_0$ is fully faithful, for each object $X$ of $\C$ it reflects the isomorphism $\theta_0(X) \circ \varphi_0(X)^{-1}$ giving an isomorphism 
@@ -243,6 +339,88 @@
   \end{proof}
 \end{prop}
 
+\begin{prop}
+  Given an adjunction
+    $$\begin{tikzcd}
+      \C \arrow[shift left]{r}{\LA} & \D \arrow[shift left]{l}{\RA}
+    \end{tikzcd}$$
+  the functor $\RA$ commutes with limits and, dually, the functor $\LA$ commutes with colimits.
+  
+  \begin{proof}
+    Let $\F \colon \mathscr{I} \to \D$ be a functor for which $\lim \F$ exists.
+    For every morphism $\alpha \colon i \to j$ of $\mathscr{I}$ we have a commutative diagram of $\D$
+    $$\begin{tikzcd}
+      & \lim \F \arrow[swap]{ld}{\lambda_i}\arrow{rd}{\lambda_j}\\
+      \F(i)\arrow{rr}{\F(\alpha)} && \F(j)
+    \end{tikzcd}$$
+    and hence obtain a commutative diagram
+    $$\begin{tikzcd}
+      & \RA\left(\lim \F\right) \arrow[swap]{ld}{\RA(\lambda_i)}\arrow{rd}{\RA(\lambda_j)}\\
+      \RA \circ \F(i)\arrow{rr}{\RA \circ \F(\alpha)} && \RA \circ \F(j)
+    \end{tikzcd}$$
+    of $\C$.
+
+  Given any other object $Z$ of $\C$ equipped with morphisms $\zeta_i \colon Z \to \F(i)$ such that $\RA \circ \F(\alpha) \circ \zeta_i = \zeta_j$ for all $\alpha \in \mathscr{I}(i,j)$ for all $i,j$, we obtain by the natural isomorphism
+  $$\begin{tikzcd}
+    \C(Z, \RA \circ \F(i)) \arrow{rr}{\LA(Z,\RA \circ \F(i))} && 
+  \D(\LA Z, \LA \circ \RA \circ \F(i)) \arrow{rr}{h^{\LA Z}(\epsilon_{\F(i)})} &&
+  \D(\LA Z, \F(i))\\
+  \zeta_i \arrow[mapsto]{rr} && \LA(\zeta_i) \arrow[mapsto]{rr} && \LA(\zeta_i)\circ \epsilon_{\F(i)}
+  \end{tikzcd}$$
+  for all objects $i$ of $\mathscr{I}$.
+  By the naturality diagram 
+  $$\begin{tikzcd}
+    \C(Z,\RA \circ \F(i))\arrow{rr}{\sim}\arrow{dd}{h^Z(\RA \circ \F(\alpha))} && \D(\RA Z, \F(i))\arrow{dd}{h^{\RA Z}(\F(\alpha))}\\
+    \\
+    \C(Z,\RA \circ \F(j)) \arrow{rr}{\sim} && \D(\RA Z, \F(j))
+  \end{tikzcd}$$
+  we see that for all $\alpha \in \mathscr{I}(i,j)$ over all objects $i,j$ of $\mathscr{I}$
+  $$\F(\alpha) \circ \LA(\zeta_i) \circ \epsilon_{\F(i)} = 
+  \LA (\RA \circ \F(\alpha) \circ\zeta_i) \circ \epsilon_{\F(j)} = 
+  \LA(\zeta_j) \circ \epsilon_{\F(j)}$$
+  and hence we obtain a unique morphism $h \in \D(\RA Z, \lim \F)$ making all diagrams
+  $$\begin{tikzcd}
+    &\LA Z \arrow[bend right,swap]{ldd}{\LA(\zeta_i) \circ \epsilon_{\F(i)}} \arrow[bend left]{rdd}{\LA(\zeta_j) \circ \epsilon_{\F(j)}}\arrow[dashed]{d}{\exists !h}\\
+    &\lim \F\arrow[swap]{ld}{\lambda_i}\arrow{rd}{\lambda_j}\\
+    \F(i) \arrow{rr}{\F(\alpha)} & & \F(j)
+  \end{tikzcd}$$
+  indexed over $\alpha \in \mathscr{I}(i,j)$ commute.
+  Pulling this map back along the isomorphism
+  $$\begin{tikzcd}
+    \D(\LA Z, \lim \F) \arrow{rr} && \C(\RA \circ \LA Z, \RA \lim \F) \arrow{rr} && \C(Z, \RA \lim \F)\\
+    h \arrow[mapsto]{rr} && \RA(h) \arrow[mapsto]{rr} && \eta_Z \circ \RA(h)
+  \end{tikzcd}$$
+  gives a moprhism, which we see makes all diagrams
+  $$\begin{tikzcd}
+    & Z \arrow[bend right,swap]{ldd}{\zeta_i} \arrow[bend left]{rdd}{\zeta_j}\arrow[dashed]{d}[xshift = -.5ex,yshift=-1ex]{\exists ! \eta_Z \circ \RA(h)}\\
+    &\RA \lim \F\arrow[swap]{ld}{\RA(\lambda_i)}\arrow{rd}{\RA(\lambda_j)}\\
+    \RA \circ \F(i) \arrow{rr}{\RA \circ \F(\alpha)} & & \RA \circ \F(j)
+  \end{tikzcd}$$
+  commute by chasing $h$ through the triangular prism
+  $$\begin{tikzcd}
+    & \D(\LA Z, \lim \F) \arrow[swap]{lddddd}{h^{\LA Z}(\lambda_i)}\arrow{rddddd}{h^{\LA Z}(\lambda_j)}\arrow{ddd}[rotate=90,yshift=-1ex,xshift=-1ex]{\sim}\\
+    \\
+    \\
+    & \C(Z, \RA \lim \F)\arrow[crossing over]{lddddd}[pos=0.6]{h^Z(\RA(\lambda_i))}\arrow[crossing over,swap]{rddddd}[pos=0.6]{h^Z(\RA(\lambda_j))}\\
+    \\
+    \D(\LA Z, \F(i)) \arrow[dashed]{rr}{h^{\LA Z}(\F(\alpha))}\arrow{ddd}[rotate=90,yshift=-1ex,xshift=-1ex]{\sim}& & \D(\LA Z, \F(j))\arrow{ddd}[rotate=90,yshift=-1ex,xshift=-1ex]{\sim}\\
+    \\
+    \\
+    \C(Z, \RA \circ \F(i))\arrow{rr}{h^Z(\RA \circ \F(\alpha))} & & \C(Z, \RA \circ \F(j))
+  \end{tikzcd}$$
+%  $$\begin{tikzcd}
+%    \D(\LA Z, \lim \F)\arrow{rr}{h^{\LA Z}(\lambda_j)}\arrow{rd}{\sim}\arrow{dd}{h^{\LA Z}(\lambda_i)} & & \D(\LA Z, \F(j))\arrow{rd}{\sim}\arrow[dashed]{dd}\\
+%    & \C(Z, \RA \lim \F))\arrow{rr}[xshift=-5ex]{h^Z(\RA(\lambda_j))}\arrow[swap]{dd}[yshift=4ex]{h^{Z}(\RA(\lambda_i))} && \C(Z, \RA \circ \F(j))\arrow{dd}\\
+%    \D(\LA Z, \F(i)) \arrow[dashed]{rr}[xshift=7ex]{h^{\LA Z}(\F(\alpha)}\arrow{rd}{\sim}& & \D(\LA Z, \F(j))\arrow[dashed]{rd}{\sim}\\
+%    & \C(Z,\RA \circ \F(i)) \arrow{rr}{h^Z(\RA \circ \F(\alpha))} && \C(Z, \RA \circ \F(j))
+%  \end{tikzcd}$$
+  which commutes since the left, right, and bottom faces are naturality squares and the rear face commutes by construction of $h$.
+  
+  We note that $\eta_Z \circ \RA(h)$ is necessarily unique, for if we had some other morphism $h^\prime \in \C(Z, \RA \lim \F)$ making the relevant diagrams of $\C$ commute, then pushing it along the isomorphism gives $\LA(h^\prime) \circ \epsilon_{\lim \F} \in \D(\LA Z, \lim \F)$ making the relevant diagrams of $\D$ commute, which implies $\LA(h^\prime) \circ \epsilon_{\lim \F} = h$ by unicity, and hence $h^\prime = \eta_Z \circ \RA(h)$.
+  Therefore $\RA \lim \F \cong \lim \RA \circ \F$ by unicity of universals.
+  \end{proof}
+\end{prop}
+
 \begin{prop}\label{composeadjunctions}
   Let $\C, \D, \D^\prime$ be categories equipped with adjunctions
   $$\begin{tikzcd}
@@ -314,87 +492,9 @@
       && \C(X, \RA \circ \LA X^\prime)
     \end{tikzcd}$$
     
-    Part (iii) follows from the definition of an equivalence of categories and the uniqueness of the adjoints.
+    Part (iii) follows from the definition of an equivalence of categories and the unicity of the adjoints.
   \end{proof}
 \end{prop}
-
-\section{The Homotopy Category}
-
-\begin{cor}
-  Let $\C$ be a model category.
-  Let $\gamma \colon \C_{cf} \to \Ho{\C_{cf}}$ and $\delta \colon \C_{cf} \to \C_{cf}/\sim$ be the canonical functors.
-  Then there is a unique isomorphism of categories making the diagram
-  $$\begin{tikzcd}
-    \C_{cf} \arrow{rdd}{\delta} \arrow{rr}{\gamma} & & \Ho{\C_{cf}}\\
-      \\
-      & \C_{cf}/\sim \arrow[dashed]{uur}{\exists ! j}
-  \end{tikzcd}$$
-  commute.
-  Furthermore, $j$ is the identity on objects.
-
-  \begin{proof}
-    We show that $\C_{cf}/\sim$ satisfies the same universal property as $\Ho{\C_{cf}}$.
-    We note that $\delta$ takes homotopy equivalences to isomorphisms and so by Proposition 1.2.8, $\delta$ also takes weak equivalences to isomorphisms.
-    Let $\F \colon \C_{cf} \to \D$ be a functor that takes weak equivalences to isomorphisms.
-    Given an object $X$, take the functorial cylinder object $X \times I$.
-    This guarantees that $X \times I$ is cofibrant and fibrant, since $X \coprod X$ is also cofibrant and $X$ is fibrant.
-    Now note that we have a commutative diagram
-    $$\begin{tikzcd}
-      X \arrow[shift left]{rr}{u_0} \arrow[shift right,swap]{rr}{u_1} \arrow[bend left]{rrrr}{\id_X} \arrow[bend right,shift left]{rrrd}{\imath_1}\arrow[bend right,shift right,swap]{rrrd}{\imath_0}
-      && 
-      X \coprod X \arrow{rr}{\nabla}\arrow[swap]{rd}{\imath_0 \coprod \imath_1} 
-      && X\\
-      && 
-      & X \times I \arrow{ur}{s}
-    \end{tikzcd}$$
-    Since $s$ and $\id_X$ are weak equivalences we have that $\imath_0$ and $\imath_1$ are both weak equivalences by 2-out-of-3.
-    Hence 
-    $$\F(s) \circ \F(\imath_0) = \F(s \circ \imath_0) = \id_{\F X} = \F(s \circ \imath_1) = \F(s) \circ \F(\imath_1)$$
-    implies $\F(\imath_0) = \F(\imath_1)$.
-    
-    Given a homotopy 
-    $$\begin{tikzcd}
-      X \arrow[shift left]{rrdd}{f_1} \arrow[shift right,swap]{rrdd}{f_0} \arrow[shift left]{rr}{\imath_0} \arrow[shift right,swap]{rr}{\imath_1} && X \times I \arrow{dd}{H}\\
-      \\
-      && Y
-    \end{tikzcd}$$
-    we have
-    $$\F(f_0) = 
-    \F(H \circ \imath_0) =
-    \F(H) \circ \F(\imath_0) = 
-    \F(H) \circ \F(\imath_1) = 
-    \F(H \circ \imath_1) = 
-    \F(f_1)$$
-    so that $\F$ identifies left homotopic maps.
-    By duality, we see that $\F$ also identifies right homotopic maps.
-    This allows us to define a unique functor $\G \colon \C_{cf}/\sim \to \D$ by $\G \delta X = \F X$ and $\G \delta(f) = \F(f)$.
-    The result now follows by uniqueness of universal objects.
-  \end{proof}
-\end{cor}
-
-\begin{thm}
-  Suppose $\C$ is a model category.
-  Let $\gamma \colon \C \to \Ho{\C}$ denote the canonical functor, $Q$ the cofibrant replacement functor of $\C$, and $R$ the fibrant replacement functor.
-  \begin{enumerate}[(i)]
-  \item
-    The inclusion $\C_{cf} \to \C$ induces an equivalence of categories
-    $$\C_{cf}/\sim \overset{\sim}\longrightarrow \Ho{\C_{cf}} \longrightarrow \Ho{\C}$$
-  \item
-    There are natural isomorphisms
-    $$\C(QRX, QRY)/\sim \overset{\sim}\longrightarrow \Ho{C}\left(\gamma X, \gamma Y\right) \overset{\sim}\longrightarrow \C(RQX, RQY)/\sim$$
-    In addition, there is a natural isomorphism $\Ho{C}\left(\gamma X, \gamma Y\right) \cong \C(QX, RY)/\sim$, and, if $X$ is cofibrant and $Y$ is fibrant, there is a natural isomorphism $\Ho{C}\left(\gamma X, \gamma Y\right) \cong \C(X,Y)/\sim.$
-    In particular, $\Ho{C}$ is a category without moving to a higher universe.
-  \item
-    The functor $\gamma \colon \C \to \Ho{C}$ identifies left or right homotopic maps.
-  \item
-    If $f \colon A \longrightarrow B$ is a map in $\C$ such that $\gamma f$ is an isomorphism in $\Ho{C}$, then $f$ is a weak equivalence.
-  \end{enumerate}
-
-  \begin{proof}
-    Part (i) is just the composition of the isomorphism from the Corollary above and the equivalence $\Ho{\C_{cf}} \longrightarrow \Ho{C}$ of Proposition 1.2.3.
-    
-  \end{proof}
-\end{thm}
 
 \section{Quillen Adjunctions and Derived Functors}
 \begin{defn}
