@@ -93,17 +93,17 @@
     $$\C_{cf}/\sim \overset{\sim}\longrightarrow \Ho{\C_{cf}} \longrightarrow \Ho{\C}$$
   \item
     There are natural isomorphisms
-    $$\C(QRX, QRY)/\sim \overset{\sim}\longrightarrow \Ho{C}\left(\gamma X, \gamma Y\right) \overset{\sim}\longrightarrow \C(RQX, RQY)/\sim$$
-    In addition, there is a natural isomorphism $\Ho{C}\left(\gamma X, \gamma Y\right) \cong \C(QX, RY)/\sim$, and, if $X$ is cofibrant and $Y$ is fibrant, there is a natural isomorphism $\Ho{C}\left(\gamma X, \gamma Y\right) \cong \C(X,Y)/\sim.$
-    In particular, $\Ho{C}$ is a category without moving to a higher universe.
+    $$\C(QRX, QRY)/\sim \overset{\sim}\longrightarrow \Ho{\C}\left(\gamma X, \gamma Y\right) \overset{\sim}\longrightarrow \C(RQX, RQY)/\sim$$
+    In addition, there is a natural isomorphism $\Ho{\C}\left(\gamma X, \gamma Y\right) \cong \C(QX, RY)/\sim$, and, if $X$ is cofibrant and $Y$ is fibrant, there is a natural isomorphism $\Ho{\C}\left(\gamma X, \gamma Y\right) \cong \C(X,Y)/\sim.$
+    In particular, $\Ho{\C}$ is a category without moving to a higher universe.
   \item
-    The functor $\gamma \colon \C \to \Ho{C}$ identifies left or right homotopic maps.
+    The functor $\gamma \colon \C \to \Ho{\C}$ identifies left or right homotopic maps.
   \item
-    If $f \colon A \longrightarrow B$ is a map in $\C$ such that $\gamma f$ is an isomorphism in $\Ho{C}$, then $f$ is a weak equivalence.
+    If $f \colon A \longrightarrow B$ is a map in $\C$ such that $\gamma f$ is an isomorphism in $\Ho{\C}$, then $f$ is a weak equivalence.
   \end{enumerate}
 
   \begin{proof}
-    Part (i) is just the composition of the isomorphism from the Corollary above and the equivalence $\Ho{\C_{cf}} \longrightarrow \Ho{C}$ of Proposition 1.2.3.
+    Part (i) is just the composition of the isomorphism from the Corollary above and the equivalence $\Ho{\C_{cf}} \longrightarrow \Ho{\C}$ of Proposition 1.2.3.
     
     The first part of (ii) follows from the equivalences
     $$\Ho{\C} \overset{\Ho{Q}}\longrightarrow \Ho{\C_c} \overset{\Ho{R}}\longrightarrow \Ho{\C_{cf}}\ \text{and}\ 
@@ -154,9 +154,9 @@
     \end{tikzcd}$$
     Since all the morphisms involved respect composition, it's clear that this assignment is functorial and by construction makes the isomorphism $\theta_0 \colon \F \to \imath_0 \circ \F_0$ natural.
 
-    For unicity, suppose that $\G_0 \colon \C \to \D_0$ is another functor equipped with a natural isomorphism $\phi_0 \colon \F \to \imath_0 \circ \G_0$.
+    For unicity, suppose that $\G_0 \colon \C \to \D_0$ is another functor equipped with a natural isomorphism $\varphi_0 \colon \F \to \imath_0 \circ \G_0$.
     We have by assumption an isomorphism of functors
-    $$\imath_0 \circ G_0 \overset{\phi_0^{-1}}\longrightarrow \F \overset{\theta_0}\longrightarrow \imath_0 \F_0.$$
+    $$\imath_0 \circ G_0 \overset{\varphi_0^{-1}}\longrightarrow \F \overset{\theta_0}\longrightarrow \imath_0 \F_0.$$
     Since $\imath_0$ is fully faithful, for each object $X$ of $\C$ it reflects the isomorphism $\theta_0(X) \circ \varphi_0(X)^{-1}$ giving an isomorphism 
     $$\imath_0^{-1}(\theta_0(X) \circ \varphi_0(X)^{-1}) = \eta(X) \colon \G_0(X) \longrightarrow \F_0(X).$$
     To see that this is natural, we consider the diagram
@@ -171,8 +171,8 @@
     \end{tikzcd}
     \ \text{and}\ 
     \begin{tikzcd}
-      \F(X) \arrow{d}{\F(f)}\arrow{r}{\phi_0(X)} & \imath_0 \circ \G_0(X)\arrow{d}{\imath_0 \circ \G_0(f)}\\
-      \F(X^\prime) \arrow{r}{\phi_0(X^\prime)} & \imath_0 \circ \G_0(X^\prime)
+      \F(X) \arrow{d}{\F(f)}\arrow{r}{\varphi_0(X)} & \imath_0 \circ \G_0(X)\arrow{d}{\imath_0 \circ \G_0(f)}\\
+      \F(X^\prime) \arrow{r}{\varphi_0(X^\prime)} & \imath_0 \circ \G_0(X^\prime)
     \end{tikzcd}$$
     we obtain
     \begin{eqnarray*}
@@ -199,15 +199,15 @@
     natural in both $X$ and $Y$,
   \item
     there exist natural transformations
-    $$\epsilon \colon \id_\C \to \RA \circ \LA\ \text{and}\ \eta \colon \LA \circ \RA \to \id_\D$$
+    $$\varepsilon \colon \id_\C \to \RA \circ \LA\ \text{and}\ \eta \colon \LA \circ \RA \to \id_\D$$
     called the unit and counit of adjunction, respectively, that make the diagrams
     $$\begin{tikzcd}
-      \LA X \arrow[swap]{rd}{\id_{\LA X}}\arrow{r}{\LA(\epsilon_X)} & \LA \circ \RA \circ \LA X \arrow{d}{\eta_{\LA X}}\\
+      \LA X \arrow[swap]{rd}{\id_{\LA X}}\arrow{r}{\LA(\varepsilon_X)} & \LA \circ \RA \circ \LA X \arrow{d}{\eta_{\LA X}}\\
       & \LA X
     \end{tikzcd}
     \ \text{and}\ 
     \begin{tikzcd}
-      \RA Y \arrow{r}{\epsilon_{\RA Y}}\arrow[swap]{rd}{\id_{\RA Y}} & \RA \circ \LA \circ \RA Y \arrow{d}{\RA(\eta_Y)}\\
+      \RA Y \arrow{r}{\varepsilon_{\RA Y}}\arrow[swap]{rd}{\id_{\RA Y}} & \RA \circ \LA \circ \RA Y \arrow{d}{\RA(\eta_Y)}\\
       & \RA Y
     \end{tikzcd}$$
     commute for all objects $X$ of $\C$ and $Y$ of $\D$,
@@ -220,7 +220,7 @@
   
   Note that condition (iii) implies that the right adjoint of $\LA$ is unique up to unique isomorphism and, symmetrically, the left adjoint of $\RA$ is as well.
   \begin{proof}
-    (i $\Rightarrow$ ii)\\For each object $X$ of $\C$ and $Y$ of $\D$ define $\epsilon_X$ and $\eta_Y$ to be the images of the identity morphism under the isomorphisms
+    (i $\Rightarrow$ ii)\\For each object $X$ of $\C$ and $Y$ of $\D$ define $\varepsilon_X$ and $\eta_Y$ to be the images of the identity morphism under the isomorphisms
     $$\D(\LA X, \LA X) \overset{\sim}\to \C(X, \RA \circ \LA X)\ \text{and}\ \C(\RA Y, \RA Y) \overset{\sim}\to \D(\LA \circ \RA Y, Y),$$
     respectively.
     One sees that these are natural transformations by chasing the identities through the commutative diagrams
@@ -241,7 +241,7 @@
     \end{tikzcd}$$
     To establish the commutativity conditions, we chase the identities through the commutative diagrams
     $$\begin{tikzcd}
-      X \arrow{dd}{\epsilon_X} & & \C(\RA \circ \LA X, \RA \circ \LA X) \arrow{rr}{\sim}\arrow{dd}{h_{\RA \circ \LA X}(\epsilon_X)} & & \D(\LA \circ \RA \circ \LA X, \LA X)\arrow{dd}{h_{\LA X}(\LA(\epsilon_X))}\\
+      X \arrow{dd}{\varepsilon_X} & & \C(\RA \circ \LA X, \RA \circ \LA X) \arrow{rr}{\sim}\arrow{dd}{h_{\RA \circ \LA X}(\varepsilon_X)} & & \D(\LA \circ \RA \circ \LA X, \LA X)\arrow{dd}{h_{\LA X}(\LA(\varepsilon_X))}\\
       \\
       \RA \circ \LA X & & \C(X, \RA \circ \LA X) \arrow{rr}{\sim} & & \D(\LA X, \LA X)
     \end{tikzcd}$$
@@ -251,18 +251,18 @@
       \\
       Y & & \D(\LA \circ \RA Y, Y) \arrow{rr}{\sim}  & & \C(\RA Y, \RA Y)
     \end{tikzcd}$$
-    and use the definition of $\epsilon$ and $\eta$.
+    and use the definition of $\varepsilon$ and $\eta$.
     This establishes (ii).
     
     (ii $\Rightarrow$ iii)\\
     Define the morphisms
-    $$\D(\LA X, Y) \overset{\RA(\LA X, Y)}\longrightarrow \C(\RA \circ \LA X, \RA Y) \overset{h_{\RA Y}(\epsilon_X)}\longrightarrow \C(X, \RA Y)$$
+    $$\D(\LA X, Y) \overset{\RA(\LA X, Y)}\longrightarrow \C(\RA \circ \LA X, \RA Y) \overset{h_{\RA Y}(\varepsilon_X)}\longrightarrow \C(X, \RA Y)$$
     and
     $$\C(X, \RA Y) \overset{\LA(X, \RA Y)}\longrightarrow \D(\LA X, \LA \circ \RA Y) \overset{h^{\LA X}(\eta_Y)}\longrightarrow \D(\LA X, Y).$$
     Using the naturality diagrams
     $$\begin{tikzcd}
-      X \arrow{r}{\epsilon_X}\arrow{d}{f} & \RA \circ \LA X \arrow{d}{\RA \circ \LA(f)}\\
-      \RA Y \arrow{r}{\epsilon_{\RA Y}} & \RA \circ \LA \circ \RA Y
+      X \arrow{r}{\varepsilon_X}\arrow{d}{f} & \RA \circ \LA X \arrow{d}{\RA \circ \LA(f)}\\
+      \RA Y \arrow{r}{\varepsilon_{\RA Y}} & \RA \circ \LA \circ \RA Y
     \end{tikzcd}
     \ \text{and}\ 
     \begin{tikzcd}
@@ -271,28 +271,28 @@
     \end{tikzcd}$$
     we see
     \begin{eqnarray*}
-      h_{\RA Y}(\epsilon_X) \circ \RA(\LA X, Y) \circ h^{\LA X}(\eta_Y) \circ \LA(X, \RA Y)(f) &=& \RA(\eta_Y \circ \LA(f)) \circ \epsilon_X\\
-      &=& \RA(\eta_Y) \circ \RA \circ \LA(f) \circ \epsilon_X\\
-      &=& \RA(\eta_Y) \circ \epsilon_{\RA Y} \circ f\\
+      h_{\RA Y}(\varepsilon_X) \circ \RA(\LA X, Y) \circ h^{\LA X}(\eta_Y) \circ \LA(X, \RA Y)(f) &=& \RA(\eta_Y \circ \LA(f)) \circ \varepsilon_X\\
+      &=& \RA(\eta_Y) \circ \RA \circ \LA(f) \circ \varepsilon_X\\
+      &=& \RA(\eta_Y) \circ \varepsilon_{\RA Y} \circ f\\
       &=& f
     \end{eqnarray*}
     and
     \begin{eqnarray*}
-      h^{\LA X}(\eta_Y) \circ \LA(X, \RA Y) \circ h_{\RA Y}(\epsilon_X) \circ \RA(\LA X, Y)(g) &=& \eta_Y \circ \LA(\RA(g) \circ \epsilon_X)\\
-      &=& \eta_Y \circ \LA \circ \RA(g) \circ \LA(\epsilon_X)\\
-      &=& g \circ \eta_{\LA X} \circ \LA(\epsilon_X)\\
+      h^{\LA X}(\eta_Y) \circ \LA(X, \RA Y) \circ h_{\RA Y}(\varepsilon_X) \circ \RA(\LA X, Y)(g) &=& \eta_Y \circ \LA(\RA(g) \circ \varepsilon_X)\\
+      &=& \eta_Y \circ \LA \circ \RA(g) \circ \LA(\varepsilon_X)\\
+      &=& g \circ \eta_{\LA X} \circ \LA(\varepsilon_X)\\
       &=& g
     \end{eqnarray*}
     giving isomorphisms
     $$\D(\LA X, Y) \cong \C(X, \RA Y)$$
     for each object $X$ of $\C$.
     
-    Naturality in $X$ follows directly from naturality of $\epsilon$ and $\eta$.
+    Naturality in $X$ follows directly from naturality of $\varepsilon$ and $\eta$.
     Namely, given a morphism $f \in \C(X^\prime, X)$ we have the commutative diagram
     $$\begin{tikzcd}
       X\arrow{ddd}{f} & \D(\LA X, Y) \arrow{rrrr}{\sim}\arrow{ddd}{h_{\RA Y}(f)}& & & & \C(X, \RA Y)\arrow{ddd}{h_{Y}(\LA(f))}\\
-      & & \alpha \arrow[mapsto]{rr}\arrow[mapsto]{d}& & \RA(\alpha) \circ \epsilon_X\arrow[mapsto]{d}\\
-      & & \alpha \circ \LA(f) \arrow[mapsto]{rr} & & \RA(\alpha \circ \LA(f)) \circ \epsilon_{X^\prime} = \RA(\alpha) \circ \epsilon_X \circ f\\
+      & & \alpha \arrow[mapsto]{rr}\arrow[mapsto]{d}& & \RA(\alpha) \circ \varepsilon_X\arrow[mapsto]{d}\\
+      & & \alpha \circ \LA(f) \arrow[mapsto]{rr} & & \RA(\alpha \circ \LA(f)) \circ \varepsilon_{X^\prime} = \RA(\alpha) \circ \varepsilon_X \circ f\\
       X^\prime & \D(\LA X^\prime, Y) \arrow{rrrr}{\sim} & & & & \C(X^\prime, \RA Y)
     \end{tikzcd}$$
     and, similarly, the commutative diagram
@@ -363,9 +363,9 @@
   Given any other object $Z$ of $\C$ equipped with morphisms $\zeta_i \colon Z \to \F(i)$ such that $\RA \circ \F(\alpha) \circ \zeta_i = \zeta_j$ for all $\alpha \in \mathscr{I}(i,j)$ for all $i,j$, we obtain by the natural isomorphism
   $$\begin{tikzcd}
     \C(Z, \RA \circ \F(i)) \arrow{rr}{\LA(Z,\RA \circ \F(i))} && 
-  \D(\LA Z, \LA \circ \RA \circ \F(i)) \arrow{rr}{h^{\LA Z}(\epsilon_{\F(i)})} &&
+  \D(\LA Z, \LA \circ \RA \circ \F(i)) \arrow{rr}{h^{\LA Z}(\varepsilon_{\F(i)})} &&
   \D(\LA Z, \F(i))\\
-  \zeta_i \arrow[mapsto]{rr} && \LA(\zeta_i) \arrow[mapsto]{rr} && \LA(\zeta_i)\circ \epsilon_{\F(i)}
+  \zeta_i \arrow[mapsto]{rr} && \LA(\zeta_i) \arrow[mapsto]{rr} && \LA(\zeta_i)\circ \varepsilon_{\F(i)}
   \end{tikzcd}$$
   for all objects $i$ of $\mathscr{I}$.
   By the naturality diagram 
@@ -375,12 +375,12 @@
     \C(Z,\RA \circ \F(j)) \arrow{rr}{\sim} && \D(\RA Z, \F(j))
   \end{tikzcd}$$
   we see that for all $\alpha \in \mathscr{I}(i,j)$ over all objects $i,j$ of $\mathscr{I}$
-  $$\F(\alpha) \circ \LA(\zeta_i) \circ \epsilon_{\F(i)} = 
-  \LA (\RA \circ \F(\alpha) \circ\zeta_i) \circ \epsilon_{\F(j)} = 
-  \LA(\zeta_j) \circ \epsilon_{\F(j)}$$
+  $$\F(\alpha) \circ \LA(\zeta_i) \circ \varepsilon_{\F(i)} = 
+  \LA (\RA \circ \F(\alpha) \circ\zeta_i) \circ \varepsilon_{\F(j)} = 
+  \LA(\zeta_j) \circ \varepsilon_{\F(j)}$$
   and hence we obtain a unique morphism $h \in \D(\RA Z, \lim \F)$ making all diagrams
   $$\begin{tikzcd}
-    &\LA Z \arrow[bend right,swap]{ldd}{\LA(\zeta_i) \circ \epsilon_{\F(i)}} \arrow[bend left]{rdd}{\LA(\zeta_j) \circ \epsilon_{\F(j)}}\arrow[dashed]{d}{\exists !h}\\
+    &\LA Z \arrow[bend right,swap]{ldd}{\LA(\zeta_i) \circ \varepsilon_{\F(i)}} \arrow[bend left]{rdd}{\LA(\zeta_j) \circ \varepsilon_{\F(j)}}\arrow[dashed]{d}{\exists !h}\\
     &\lim \F\arrow[swap]{ld}{\lambda_i}\arrow{rd}{\lambda_j}\\
     \F(i) \arrow{rr}{\F(\alpha)} & & \F(j)
   \end{tikzcd}$$
@@ -416,7 +416,7 @@
 %  \end{tikzcd}$$
   which commutes since the left, right, and bottom faces are naturality squares and the rear face commutes by construction of $h$.
   
-  We note that $\eta_Z \circ \RA(h)$ is necessarily unique, for if we had some other morphism $h^\prime \in \C(Z, \RA \lim \F)$ making the relevant diagrams of $\C$ commute, then pushing it along the isomorphism gives $\LA(h^\prime) \circ \epsilon_{\lim \F} \in \D(\LA Z, \lim \F)$ making the relevant diagrams of $\D$ commute, which implies $\LA(h^\prime) \circ \epsilon_{\lim \F} = h$ by unicity, and hence $h^\prime = \eta_Z \circ \RA(h)$.
+  We note that $\eta_Z \circ \RA(h)$ is necessarily unique, for if we had some other morphism $h^\prime \in \C(Z, \RA \lim \F)$ making the relevant diagrams of $\C$ commute, then pushing it along the isomorphism gives $\LA(h^\prime) \circ \varepsilon_{\lim \F} \in \D(\LA Z, \lim \F)$ making the relevant diagrams of $\D$ commute, which implies $\LA(h^\prime) \circ \varepsilon_{\lim \F} = h$ by unicity, and hence $h^\prime = \eta_Z \circ \RA(h)$.
   Therefore $\RA \lim \F \cong \lim \RA \circ \F$ by unicity of universals.
   \end{proof}
 \end{prop}
@@ -447,16 +447,16 @@
 \end{prop}
 
 \begin{defn}
-  Given two categories $\C$ and $\D$, an {\it equivalence of categories} is a pair of functors $\F \colon \C \to \D$ and $\G \colon \D \to \C$ and natural isomorphisms $\epsilon \colon \id_\C \to \G \circ \F$, $\eta \colon \F \circ \G \to \id_\D$.
+  Given two categories $\C$ and $\D$, an {\it equivalence of categories} is a pair of functors $\F \colon \C \to \D$ and $\G \colon \D \to \C$ and natural isomorphisms $\varepsilon \colon \id_\C \to \G \circ \F$, $\eta \colon \F \circ \G \to \id_\D$.
 \end{defn}
 
-\begin{prop}
-  Let $\LA \colon \C \to \D$ and $\RA \colon \C \to \D$ be adjoint functors with unit $\epsilon \colon \id_\C \to \RA \circ \LA$ and counit $\eta \colon \LA \circ \RA \to \id_\D$.
+\begin{prop}\label{adjointequiv}
+  Let $\LA \colon \C \to \D$ and $\RA \colon \C \to \D$ be adjoint functors with unit $\varepsilon \colon \id_\C \to \RA \circ \LA$ and counit $\eta \colon \LA \circ \RA \to \id_\D$.
   \begin{enumerate}[(i)]
   \item
     The functor $\RA$ is fully faithful if and only if $\eta$ is an isomorphism,
   \item
-    The functor $\LA$ is fully faithful if and only if $\epsilon$ is an isomorphism
+    The functor $\LA$ is fully faithful if and only if $\varepsilon$ is an isomorphism
   \item
     The following are equivalent:
     \begin{enumerate}[(a)]
@@ -466,7 +466,7 @@
       $\RA$ is an equivalence of categories,
     \item
       $\LA$ and $\RA$ are fully faithful.
-      In this case, $\LA$ and $\RA$ are quasi-inverses of one another, and $\epsilon$, $\eta$ are both isomorphism.
+      In this case, $\LA$ and $\RA$ are quasi-inverses of one another, and $\varepsilon$, $\eta$ are both isomorphisms.
     \end{enumerate}
   \end{enumerate}
   
@@ -487,7 +487,7 @@
     
     For (ii), we apply the same argument, mutatis mutandis, to the diagram
     $$\begin{tikzcd}
-      \C(X,X^\prime) \arrow{rrdd}{h^X(\epsilon_X)}\arrow{rr}{\LA(X,X^\prime)} && \D(\LA X, \LA X^\prime)\arrow{dd}[rotate=90,yshift=-.5ex]{\sim}\\
+      \C(X,X^\prime) \arrow{rrdd}{h^X(\varepsilon_X)}\arrow{rr}{\LA(X,X^\prime)} && \D(\LA X, \LA X^\prime)\arrow{dd}[rotate=90,yshift=-.5ex]{\sim}\\
       \\
       && \C(X, \RA \circ \LA X^\prime)
     \end{tikzcd}$$
@@ -505,14 +505,14 @@
   \item
     A functor $\RA \colon \D \to \C$ is {\it right Quillen} if $\RA$ is a right adjoint and preserves fibrations and trivial fibrations.
   \item
-    An adjunction $(\LA, \RA, \phi)$, where $\phi$ is the natural isomorphism 
+    An adjunction $(\LA, \RA, \varphi)$, where $\varphi$ is the natural isomorphism 
     $$\varphi_{X,Y} \colon \D(\LA X, Y) \overset{\sim}\to \C(X, \RA Y),$$
     is called a {\it Quillen adjunction} if $\LA$ is left Quillen.
   \end{enumerate}
 \end{defn}
 
 \begin{rmk}
-  Hovey always uses $\eta$ for the unit of adjunction and $\epsilon$ for the counit of adjunction; my notation is exactly the opposite.
+  Hovey always uses $\eta$ for the unit of adjunction and $\varepsilon$ for the counit of adjunction; my notation is exactly the opposite.
 \end{rmk}
 
 \begin{ex}
@@ -567,7 +567,7 @@
     Let $f \in \C(X_1, X_2)$ be a trivial cofibration (resp. cofibration).
     To say that $\RA p$ has the right lifting property with respect to $f$ is to say that for every commutative diagram
     $$\begin{tikzcd}
-      X_1 \arrow{r}{\phi}\arrow{d}{f} & \RA Y_1\arrow{d}{\RA p}\\
+      X_1 \arrow{r}{\varphi}\arrow{d}{f} & \RA Y_1\arrow{d}{\RA p}\\
       X_2 \arrow{r}{\psi} & \RA Y_2
     \end{tikzcd}$$
     there is a lift $\ell \colon X_2 \to \RA Y_1$ such that $\ell \circ f = \varphi$ and $\RA p \circ \ell = \psi$.
@@ -594,7 +594,7 @@
 \end{lem}
 
 %\begin{prop}
-%  A Quillen adjunction $(F,U,\phi) \colon \C \to \D$ induces a Quillen adjunction $(F_\ast, U_\ast, \phi) \colon \C_\ast \to \D_\ast$ between the model categories of Proposition 1.1.8.
+%  A Quillen adjunction $(F,U,\varphi) \colon \C \to \D$ induces a Quillen adjunction $(F_\ast, U_\ast, \varphi) \colon \C_\ast \to \D_\ast$ between the model categories of Proposition 1.1.8.
 %  Furthermore, $\F_\ast(X_+)$ is naturally isomorphic to $(\F X)_+$.
 %  This correspondence is functorial.
 %  
@@ -676,7 +676,7 @@
   Let $\C$ and $\D$ be model categories.
   \begin{enumerate}
   \item
-    If $\F \colon \C \to \D$ is a left Quillen functor, define the {\it total left derived functor} $L\F \colon \Ho{\C} \to \Ho{D}$ to be the composition
+    If $\F \colon \C \to \D$ is a left Quillen functor, define the {\it total left derived functor} $L\F \colon \Ho{\C} \to \Ho{\D}$ to be the composition
     $$\Ho{\C} \overset{\Ho{Q}}\longrightarrow \Ho{\C_c} \overset{\Ho{\F}}\longrightarrow \Ho{\D}$$
     Given a natural transformation $\tau \colon \F \to \F^\prime$ of left Quillen functors, define the {\it total derived natural transformation} $L\tau$ to be $\Ho{\tau} \circ \Ho{Q}$, so that $(L\tau)_X = \tau_{QX}$.
   \item
@@ -893,10 +893,10 @@
   \end{tikzcd}$$
 
   \begin{proof}
-    Denote by $\epsilon$ and $\eta$ the unit and counit of adjunction, respectively, and by $[-,-]_\C$, $[-,-]_\D$ the morphisms of the homotopy category.
+    Denote by $\varepsilon$ and $\eta$ the unit and counit of adjunction, respectively, and by $[-,-]_\C$, $[-,-]_\D$ the morphisms of the homotopy category.
     Also, recall that the isomorphism of adjunction is given by the morphisms
     $$\begin{tikzcd}
-      \D(\F X, Y) \arrow{rr}{\G(\F X, Y)} && \C(\G \F X, \G Y) \arrow{rr}{h_{\G Y}(\epsilon_X)} && \C(X, \G Y) 
+      \D(\F X, Y) \arrow{rr}{\G(\F X, Y)} && \C(\G \F X, \G Y) \arrow{rr}{h_{\G Y}(\varepsilon_X)} && \C(X, \G Y) 
     \end{tikzcd}$$
     and
     $$\begin{tikzcd}
@@ -931,7 +931,7 @@
     \end{tikzcd}$$
     and a homotopy
     $$\begin{tikzcd}
-      X \arrow{rr}{\G(K) \circ \epsilon_X}\arrow[swap]{rrdd}{\G(f_i) \circ \epsilon_X} && \G Y^\prime \arrow{dd}{\G(p_i)}\\
+      X \arrow{rr}{\G(K) \circ \varepsilon_X}\arrow[swap]{rrdd}{\G(f_i) \circ \varepsilon_X} && \G Y^\prime \arrow{dd}{\G(p_i)}\\
       \\
       & & \G Y
     \end{tikzcd}$$
@@ -942,7 +942,7 @@
     \end{tikzcd}$$
     It's clear that this morphism is surjective and natural, so it remains to show that that it reflects homotopies.
     
-    Assume that there is a homotopy $\G(f_0) \circ \epsilon_X \sim \G(f_1) \circ \epsilon_X$ in $\C$.
+    Assume that there is a homotopy $\G(f_0) \circ \varepsilon_X \sim \G(f_1) \circ \varepsilon_X$ in $\C$.
     By duality, the argument above implies that we may choose a cofibrant cylinder object
     $$\begin{tikzcd}
       X \coprod X \arrow{rr}{\nabla}\arrow[swap]{rd}{\imath_0 \coprod \imath_1} && X\\
@@ -950,7 +950,7 @@
     \end{tikzcd}$$
     and a homotopy
     $$\begin{tikzcd}
-      X \arrow{r}{\imath_i}\arrow[swap]{rd}{\G(f_i) \circ \epsilon_X} & X^\prime \arrow{d}{H}\\
+      X \arrow{r}{\imath_i}\arrow[swap]{rd}{\G(f_i) \circ \varepsilon_X} & X^\prime \arrow{d}{H}\\
       & \G Y
     \end{tikzcd}$$
     As $\F$ is left Quillen it preserves cofibrant objects, (trivial) cofibrations, and weak equivalences between cofibrant objects by which we obtain a cylinder object in $\D$
@@ -960,12 +960,12 @@
     \end{tikzcd}$$
     and a homotopy
     $$\begin{tikzcd}
-      \F X \arrow[swap]{rrdd}{\eta_Y \circ \F (\G(f_i) \circ \epsilon_X)} \arrow{rr}{\F(\imath_i)} & & \F X^\prime \arrow{dd}{\eta_Y \circ \F(H)}\\
+      \F X \arrow[swap]{rrdd}{\eta_Y \circ \F (\G(f_i) \circ \varepsilon_X)} \arrow{rr}{\F(\imath_i)} & & \F X^\prime \arrow{dd}{\eta_Y \circ \F(H)}\\
       \\
       & & Y
     \end{tikzcd}$$
     and we note that 
-    $$\eta_Y \circ \F \circ \G(f_i) \circ \F(\epsilon_X) = f_i$$
+    $$\eta_Y \circ \F \circ \G(f_i) \circ \F(\varepsilon_X) = f_i$$
     implies that we have a homotopy $f_0 \sim f_1$, as desired.
     Therefore the induced map is injective, hence an isomorphism.
   \end{proof}
@@ -973,7 +973,7 @@
 
 \section{Quillen Equivalences}
 \begin{defn}
-  A Quillen adjunction $(\F, \G, \phi) \colon \C \to \D$ is a {\it Quillen equivalence} if and only if, for all cofibrant $X$ in $\C$ and fibrant $Y$ in $\D$, a map $f \colon \F X \to Y$ is a weak equivalence in $\D$ if and only if $\phi(f) \colon X \to \G Y$ is a weak equivalence in $\C$.
+  A Quillen adjunction $(\F, \G, \varphi) \colon \C \to \D$ is a {\it Quillen equivalence} if and only if, for all cofibrant $X$ in $\C$ and fibrant $Y$ in $\D$, a map $f \colon \F X \to Y$ is a weak equivalence in $\D$ if and only if $\varphi(f) \colon X \to \G Y$ is a weak equivalence in $\C$.
 \end{defn}
 
 \begin{rmk}
@@ -982,14 +982,14 @@
 \end{rmk}
 
 \begin{prop}
-  Let $(\F, \G, \phi) \colon \C \to \D$ be a Quillen adjunction with unit $\epsilon \colon \id_\C \to \G \circ \F$ and counit $\eta \colon \F \circ \G \to \id_\D$.
+  Let $(\F, \G, \varphi) \colon \C \to \D$ be a Quillen adjunction with unit $\varepsilon \colon \id_\C \to \G \circ \F$ and counit $\eta \colon \F \circ \G \to \id_\D$.
   The following are equivalent:
   \begin{enumerate}[(a)]
   \item
-    $(\F, \G, \phi)$ is a Quillen equivalence,
+    $(\F, \G, \varphi)$ is a Quillen equivalence,
   \item
     The composition 
-    $X \overset{\epsilon_X}\longrightarrow \G \F X \overset{\G(r_{\F X})}\longrightarrow \G R \F X$
+    $X \overset{\varepsilon_X}\longrightarrow \G \F X \overset{\G(r_{\F X})}\longrightarrow \G R \F X$
     is a weak equivalence for all cofibrant $X$, and the composition
     $\F Q \G Y \overset{\F(q_{\G Y})}\longrightarrow \F Q Y \overset{\eta_Y}\longrightarrow Y$ is a weak equivalence for all fibrant $Y$,
   \item
@@ -1002,18 +1002,18 @@
     Note that $r_{\F X}$ and $q_{\G Y}$ are both weak equivalences.
     From the diagrams
     $$\begin{tikzcd}      
-      \D(\F X, R \F X)\arrow{rr}{\F(X, R \F X)}\arrow[bend left]{rrrr}{\phi} 
+      \D(\F X, R \F X)\arrow{rr}{\F(X, R \F X)}\arrow[bend left]{rrrr}{\varphi} 
       && 
-      \C(\G \F X, \G R \F X) \arrow{rr}{h_{\G R \F X}(\epsilon_X)} && 
+      \C(\G \F X, \G R \F X) \arrow{rr}{h_{\G R \F X}(\varepsilon_X)} && 
       \C(X, \G R \F X)\\
-      r_{\F X} \arrow[mapsto]{rr} && \G(r_{\F X}) \arrow[mapsto]{rr} & & \G(r_{\F X}) \circ \epsilon _X
+      r_{\F X} \arrow[mapsto]{rr} && \G(r_{\F X}) \arrow[mapsto]{rr} & & \G(r_{\F X}) \circ \varepsilon _X
     \end{tikzcd}$$
     and
     $$\begin{tikzcd}
-      \C(Q\G Y, \G Y) \arrow{rr}\arrow[bend left]{rrrr}{\phi^{-1}} && \D(\F Q \G Y, \F \G Y) \arrow{rr} && \D(\F G \G Y, Y)\\
+      \C(Q\G Y, \G Y) \arrow{rr}\arrow[bend left]{rrrr}{\varphi^{-1}} && \D(\F Q \G Y, \F \G Y) \arrow{rr} && \D(\F G \G Y, Y)\\
       q_{\G Y} \arrow[mapsto]{rr} && \F(q_{\G Y}) \arrow[mapsto]{rr} && \eta_{Y} \circ \F(q_{\G Y})
     \end{tikzcd}$$
-    we see $\phi(r_{\F X}) = \G(r_{\F X} \circ \epsilon_X)$ and $\phi(\eta_Y \circ \F(q_{\G Y})) = q_{\G Y}$ imply $\G(r_{\F X}) \circ \epsilon_X$ and $\eta_Y \circ \F(q_{\G Y})$ are weak equivalences by the definition of a Quillen equivalence.
+    we see $\varphi(r_{\F X}) = \G(r_{\F X} \circ \varepsilon_X)$ and $\varphi(\eta_Y \circ \F(q_{\G Y})) = q_{\G Y}$ imply $\G(r_{\F X}) \circ \varepsilon_X$ and $\eta_Y \circ \F(q_{\G Y})$ are weak equivalences by the definition of a Quillen equivalence.
     
     (b) $\Rightarrow$ (c)\\
     It suffices to show that the unit and counit of the adjunction are both isomorphisms.
@@ -1028,10 +1028,32 @@
       \\
       \left[L\F X, L\F X\right]_\D \arrow{rr}{\sim} && \left[X, R\G \circ L\F X\right]_\C
     \end{tikzcd}$$
-    we see that the image in the bottom right hand corner is
-    $$X \overset{\epsilon_X}\longrightarrow \G \F X \overset{\G(r_{\F X})}\longrightarrow \G R \F X$$
-    and thus for arbitrary $X$ we obtain the unit of the derived adjunction 
-    $$X \overset{q_X^{-1}}\longrightarrow QX \overset{\epsilon_{QX}}\longrightarrow \G \F QX \overset{\G(r_{\F QX})}\longrightarrow \G R \F QX$$
+    we see that the image in the bottom right hand corner is the isomorphism
+    $$X \overset{\varepsilon_X}\longrightarrow \G \F X \overset{\G(r_{\F X})}\longrightarrow \G R \F X$$
+    and thus for arbitrary $X$ we obtain the isomorphism 
+    $$X \overset{q_X^{-1}}\longrightarrow QX \overset{\varepsilon_{QX}}\longrightarrow \G \F QX \overset{\G(r_{\F QX})}\longrightarrow \G R \F QX$$
+    The proof that 
+    $$\F Q \G R Y \overset{\F(q_{\G R Y})}\longrightarrow \F \G R Y \overset{\eta_{RY}}\longrightarrow RY \overset{r_Y^{-1}}\longrightarrow Y$$
+    is an isomorphism follows similarly.
+    One need only check that the diagrams from part (ii) of Proposition~\ref{adjoints} commute.
+    
+    (c) $\Rightarrow$ (a)\\
+    This follows formally from part (iii) of Propostion~\ref{adjointequiv}.
+    Let $X$ be a cofibrant object of $\C$, $Y$ a cofibrant object of $\D$, and $\varepsilon \colon \id_{\Ho{\C}} \to R\G \circ L\F$ the unit of the derived adjunction.
+    Note that by assumption $\varepsilon$ is a natural isomorphism.
+    
+    Given a morphism $f \in \D(\F X, Y)$ denote its image under the ismorphism of adjunction $\tilde{f} \in \C(X, \G Y)$.
+    We have a commutative diagram
+    $$\begin{tikzcd}
+      \D(\F X, Y) \arrow{r}{\sim}\arrow{d} & \C(X, \G Y)\arrow{d}\\
+      \D(\F X, Y)/\sim \arrow{r}{\sim}\arrow[rotate=90,yshift=-.05ex]{d}{\sim} & \C(X, \G Y)/\sim\arrow[rotate=90,yshift=-.05ex]{d}{\sim}\\
+      \left[L\F X, Y\right]_\D \arrow{r}{\sim} & \left[X, R\G Y\right]_\C
+    \end{tikzcd}$$
+    and note that $f$ is a weak equivalence if and only if its image in $\Ho{\D}$ is an isomorphism.
+    The image of $f$ in $[X, R\G Y]$ is $R\G(f) \circ \varepsilon_X$, which is an isomorphism if and only if $R\G(f)$ is an isomorphism.
+    Noting that $R \G$ reflects isomorphisms because it is fully faithful, we see that $R\G(f)$ is an isomorphism if and only if the image of $f$ in $\Ho{\D}$ is an isomorphism.
+    Since $R \G(f) \circ \varepsilon_X$ is the image of $\tilde{f}$ in $\Ho{\C}$, it now follows that $f$ is a weak equivalence if and only if $\tilde{f}$ is a weak equivalence. 
+    Therefore the adjoint pair $\F,\G$ form a Quillen equivalence.
   \end{proof}
 \end{prop}
 
