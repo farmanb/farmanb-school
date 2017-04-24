@@ -1,0 +1,101 @@
+\documentclass[dissertation.tex]{subfiles}
+\begin{document}
+\subsection{Graded Modules as Modules}
+
+\begin{defn}
+  Let $G$ be a group, written as a multiplicative group.
+  A ring $A$ is $G$-graded if there exist additive subgroups $A_g \subset A$ such that $A = \oplus_{g \in G} A_g$ and $A_gA_h \subseteq A_{gh}$ for all $g,h \in G$.
+  
+  The elements of $A_g$ will be called homogeneous of degree $g$.
+\end{defn}
+
+\begin{defn}
+  Let $G$ be a group.
+  A left $G$-graded $A$-module is a left $A$-module, $M$, with a decomposition $M = \oplus_{g \in G} M_g$ such that $A_gM_h \subseteq M_{gh}$.
+  The elements of $M_g$ will be called homogenous of degree $g$.
+  
+  For $h \in G$, define the shift of a $G$-graded $A$-module, $M$, to be
+  $$M(h) = \oplus_{g \in G} M_{gh}.$$
+  A morphism of $G$-graded $A$-modules is a morphism $f \colon M \to N$ of $A$-modules that preserves degree:
+  $$f(M_g) \subseteq N_{g+h}.$$
+  We say a morphism $f \colon M \to N[h]$ of $G$-graded $A$-modules is a morphism $f \colon M \to N$ of degree $h$.
+  The category $\Gr{A}$ will denote the category of $G$-graded left $A$-modules with morphisms of degree zero.
+  The graded module of morphisms will be denoted
+  $$\HOM{A}{M,N} = \bigoplus_{g \in G}\Gr{A}(M,N(g)).$$
+\end{defn}
+
+\begin{rmk}
+  Note that as $A$-modules there is an obvious isomorphism $M(g) \cong M$, so that by viewing $\Gr{A}(A(g), M)$ and $\Gr{A}(A, M(g^{-1})$ as subsets of $\operatorname{Mod}(A)(A, M) \cong M$ we see that there is an isomorphism
+$$\Gr{A}(A(g), M) \cong M_{g^{-1}} \cong \Gr{A}(A,M(g^{-1}))$$
+  since $\id_A$ lies in $A_{\id_g} = A_{gg^{-1}} = A(g)_{g^{-1}}$.
+\end{rmk}
+
+The category $\Ch{A}$ will denote the category of chain complexes of graded left $A$-modules with morphisms $f \in \Ch{A}(C,D)$ a collection of morphisms $f \in \Gr{A}(C^n,D^n)$ such that $d^n_D \circ f^n = f^{n+1} \circ d^n_C$.
+We define $\dgr{A}$ to be the $\Ch{k}$-enhancement of $\Ch{A}$.
+That is, for any pair of objects $C$ and $D$, a morphism $f \in \dgr{A}(C,D)^p$ is said to be of (homological) degree $p$ if $f$ is a collection of morphisms
+%$$\begin{tikzcd}
+%  C \colon \cdots \arrow{rr} && C^{n-1} \arrow{rr}{d^{n-1}_C}\arrow{d}{f^{n-1}} && C^n \arrow{rr}{d^n_C}\arrow{d}{f^{n}} && C^{n+1} \arrow{rr}\arrow{d}{f^{n+1}} && \cdots\\
+%  D[p] \colon \cdots \arrow{rr} && D^{n-1+p} \arrow{rr}{(-1)^p d^{n-1+p}_D} && D^{n+p} \arrow{rr}{(-1)^p d^{n+p}_D} && D^{n+1+p} \arrow{rr} && \cdots\\
+%\end{tikzcd}$$
+$f^{n} \in \Gr{A}(C^n,D^{n + p})$, and we define $\dgr{A}(C,D)$ to be the chain complex with differential
+$$\begin{tikzcd}
+  \dgr{A}(C,D)^p \arrow{r} &\dgr{A}(C,D)^{p+1}\\
+  f \arrow[mapsto]{r} & d_{D[p]} \circ f + (-1)^{p+1} f \circ d_C.
+\end{tikzcd}$$
+Note that the closed morphisms are precisely the morphisms of complexes $C \to D[p]$ and, in particular, the closed degree zero morphisms are precisely the usual morphisms of complexes.
+
+Let $A$ be a $\Z$-graded algebra over a commutative ring $k$.
+We form the category $\A$ with objects $\Z$, morphisms $\A(i,j) = A_{j-i}$, and composition given by the multiplication in $A$
+$$\A(i,j) \times \A(j,k) = A_{j - i}A_{k - j} \subseteq A_{j - i + k - j} = A_{k - i} = \A(i,k);$$
+that is, if $f \colon i \to j$ and $g \colon j \to k$, then $g \circ f = g f$.
+From this perspective, we can view the category $\Gr{A}$ as the category $\Mod{k}$-functors $M \colon \A \to \Mod{k}$ by observing that the data of such a functor is simply a collection of $k$-modules, $M_i = M(i)$, indexed by the integers and an action $A_i M_j \subset M_{i+j}$ given by
+$$M(i, i+j) \colon \A(j,i+j) = A_{i} \to \Mod{k}(M_i, M_j)$$
+and the data of a natural transformation $M \to N$ is simply a collection of morphisms of $k$-modules $M_i \to N_i$ indexed by $\Z$ and commuting with the action of $A$.
+
+By viewing $\A(i,j) = A_{j - i}$ as the chain complex with $A_{j - i}$ in degree zero, we can regard $\A$ as a dg-category, thereby enhancing the previous construction by considering the category of $\Ch{k}$-functors $M \colon \A \to \cdg{k}$, which we denote by $\cdg{\A}$.
+The data of such a functor is a collection, $M_i = M(i)$, of chain complexes indexed by the integers and morphisms of complexes
+$$\begin{tikzcd}
+  \cdots \arrow{r} & 0 \arrow{r}\arrow{d} & A_{j-i}\arrow{d} \arrow{r} & 0\arrow{r}\arrow{d} & \cdots\\
+  \cdots \arrow{r} & \cdg{k}(M_i,M_j)^{-1} \arrow{r} & \cdg{k}(M_i,M_j)^0 \arrow{r} & \cdg{k}(M_i,M_j)^1 \arrow{r} & \cdots
+\end{tikzcd}$$
+which are just morphisms $A_{j-i} \to \Ch{k}(M_i,M_j)$.
+Thus $M$ determines a complex of graded $A$-modules,
+$$\tilde{M} = \bigoplus_{i \in \Z} M_{-i}$$
+
+A morphism $\eta \in \cdg{\A}(M, N)$ is a collection of morphisms $\eta^p \in \cdg{\A}(M, N)^p$ such that for each $i \in \Z$ we have $\eta^p(i) \in \cdg{k}(M_i, N_i)^p$ and the diagrams
+$$\begin{tikzcd}[sep=large]
+  i \arrow{d}{a} & M_i \arrow{r}{\eta(i)}\arrow{d}{M(a)} & N_i \arrow{d}{N(a)}\\
+  j & M_j \arrow{r}{\eta(j)} & N_j
+\end{tikzcd}$$
+commute for all $i,j \in \Z$.
+The natural transformation $\eta^p$ thus determines a morphism \\$\oplus_{i \in \Z} \eta(-i) \in \dgr{A}(\tilde{M}, \tilde{N})^p$, and hence $\eta$ determines a morphism in $\dgr{A}(\tilde{M}, \tilde{N})$, which is the collection of all such homogeneous components.
+This defines a $\Ch{k}$-functor $\cdg{\A} \to \dgr{A}$.
+%\begin{rmk}
+%  If we denote by $\HOM{\dgcat_k}{-,-}$ the internal hom for $\dgcat_k$, then $\cdg{\A} = \HOM{\dgcat_k}{\A,\cdg{k}}$ and, viewing $\dgcat_k$ as the category of small $\Ch{k}$-enriched categories, this is just the evaluation morphism
+%  $$\HOM{\dgcat_k}{\A,\cdg{k}} \otimes \A \to \cdg{k}$$
+%  corresponding under adjuntion to the identity of $\cdg{\A}$.
+%\end{rmk}
+
+Conversely, we can define a functor $\dgr{A} \to \cdg{\A}$.
+For each $i \in \Z$, denote by $A(i)[0]$ the complex with $A(i)$ in degree zero and consider the full subcategory of $\dgr{A}$ of all such complexes.
+We see that a morphism $A(i)[0] \to M$ of degree $n$ is just the data of a morphism $A(i) \to M^n$
+%$$\begin{tikzcd}
+%  \cdots \arrow{r} & 0 \arrow{r}\arrow{d} & A(i)\arrow{d} \arrow{r}\arrow{d} & 0 \arrow{r}\arrow{d} & \cdots\\
+%  \cdots \arrow{r} & M^{n-1} \arrow{r} & M^n \arrow{r} & M^{n+1} \arrow{r} & \cdots
+%\end{tikzcd}$$
+which gives
+$$\dgr{A}(A(i)[0],M)^n \cong \Gr{A}(A(i), M^n) \cong M^n_{-i}$$
+and hence $\dgr{A}(A(i)[0],M)$ is the complex
+$$\begin{tikzcd}
+  M_{-i} \colon \cdots \arrow{r} & M^{n-1}_{-i} \arrow{r} & M^n_{-i} \arrow{r} & M^{n+1}_{-i} \arrow{r} & \cdots
+\end{tikzcd}$$
+In particular, when $M = A(j)[0]$, we have 
+$$\dgr{A}(A(i)[0], A(j)[0]) \cong \Gr{A}(A(i), A(j)) \cong A_{j - i} = \A(i,j)$$
+and hence we have an obvious equivalence of this subcategory with $\A$.
+Define the image of $M$ in $\cdg{\A}$ to be the $\Ch{k}$-functor 
+$$\dgr{A}(A( - )[0], M) \colon \A \to \cdg{k}$$
+and define the image of a morphism $f \in \dgr{A}(M,N)$ to be the collection of morphisms
+$$\dgr{A}(A(i)[0], M) \to \dgr{A}(A(i)[0], N)$$
+which are natural precisely because $M$ and $N$ are complexes of graded $A$-modules.
+It's clear that this gives the inverse of the functor constructed above.
+\end{document}

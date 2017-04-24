@@ -63,7 +63,7 @@
     $$d(fg) = d(f)g + (-1)^nfd(g),\ f \in A^n, g \in A.$$
     Define $\mathscr{A}$ to be the category with one object, $\ast$, and morphisms $\mathscr{A}(\ast, \ast) = A$, with composition defined by the multiplication in $A$.
   \item[dg $k$-modules]
-    Define the category $\mathcal{C}_\text{dg}(k)$ to have objects chain complexes of $k$-modules, and morphisms $\mathcal{C}_\text{dg}(k)(C,D) = [C,D]_{\Ch{k}}$, the internal hom for $\Ch{k}$ as in Definition~\ref{ChInternalHomDefn}.
+    Define the category $\cdg{k}$ to have objects chain complexes of $k$-modules, and morphisms $\cdg{k}(C,D) = [C,D]_{\Ch{k}}$, the internal hom for $\Ch{k}$ as in Definition~\ref{ChInternalHomDefn}.
     The composition of morphisms
     $$\begin{tikzcd}
       \cdg{k}(C,D) \otimes_k \cdg{k}(D,E) \arrow{r} & \cdg{k}(C,E)
@@ -292,7 +292,7 @@
 \section{Modules over a Differential Graded Category}
 
 \begin{defn}
-  Let $\CC$ be a small dg category and let $\mathscr{M} : \CC \rightarrow \mathcal{C}_\text{dg}(k)$ be a dg functor.
+  Let $\CC$ be a small dg category and let $\mathscr{M} : \CC \rightarrow \cdg{k}$ be a dg functor.
   \begin{enumerate}
   \item
     We say that $\mathscr{M}$ is a right (resp. left) dg $\CC$-module if $\mathscr{M}$ is contravariant (resp. covariant).
@@ -305,8 +305,8 @@
     \end{tikzcd}$$
     where $\Gr{k}$ denotes the category of graded modules.
   \item
-    Define the category of dg $\CC$-modules $\mathcal{C}_\text{dg}(\CC) = \SHom{\CC, \mathcal{C}_\text{dg}(k)}$, and the category of right $\CC$-modules by
-    $$\mathcal{C}(\CC) = Z^0 \mathcal{C}_\text{dg}(\CC).$$
+    Define the category of dg $\CC$-modules $\cdg{\CC} = \SHom{\CC, \cdg{k}}$, and the category of right $\CC$-modules by
+    $$\mathcal{C}(\CC) = Z^0 \cdg{\CC}.$$
     Note that the morphisms of this category are just $\Ch{k}$-natural transformations and this endows $\mathcal{C}(\CC)$ with the structure of an abelian category.
     %TODO: This should probably be justified at some point; either in here, or somewhere else.  It's not immediately clear at the moment.
   \item
@@ -322,21 +322,21 @@
 \subsection{The Category up to Homotopy}
 \begin{defn}
   Let $\CC$ be a small dg category.
-  The {\it category up to homotopy of dg $\CC$-modules} is defined to be $\mathcal{H}(\CC) = H^0(\mathcal{C}_\text{dg}(\CC))$.
+  The {\it category up to homotopy of dg $\CC$-modules} is defined to be $\mathcal{H}(\CC) = H^0(\cdg{\CC})$.
   %Note that $\mathcal{H}(\CC)$ is a triangulated category.
   %TODO: Is this obviously just the same proof for K(A), where A is an abelian category?
 \end{defn}
 
-Given a dg $\CC$-module, $\mathscr{M} \colon \CC^\text{op} \rightarrow \mathcal{C}_\text{dg}(k)$, by Remark~\ref{DGInducedHomology} we have a well-defined map
+Given a dg $\CC$-module, $\mathscr{M} \colon \CC^\text{op} \rightarrow \cdg{k}$, by Remark~\ref{DGInducedHomology} we have a well-defined map
 $$Z^0(\mathscr{M}(Y,X)) \colon
 \begin{tikzcd}
-  Z^0(\CC(Y,X)) \arrow{r} & Z^0(\mathcal{C}_\text{dg}(k)(\mathscr{M}X,\mathscr{M}Y)) = \mathcal{C}(k)(X,Y)
+  Z^0(\CC(Y,X)) \arrow{r} & Z^0(\cdg{k}(\mathscr{M}X,\mathscr{M}Y)) = \mathcal{C}(k)(X,Y)
 \end{tikzcd}$$
 which allows us to view the image of $\mathscr{M}$ in $\mathcal{C}(\CC)$ as a presheaf $\mathscr{M} \colon Z^0(\CC) \to \mathcal{C}(k)$.
 
 \begin{defn}
   Given a morphism $\eta \in \mathcal{C}(\CC)(\mathscr{L}, \mathscr{M})$, we note that for each object $X$ of $\CC$, $\eta(X)$ is a morphism of chain complexes.
-  Define the dg functor $\cone{\eta} \colon \CC^\text{op} \rightarrow \mathcal{C}_\text{dg}(k)$ as follows.
+  Define the dg functor $\cone{\eta} \colon \CC^\text{op} \rightarrow \cdg{k}$ as follows.
   For each object $X$ of $\CC$ we have the chain complex $\cone{\eta}(X) = \cone{\eta(X)}$ equipped with the differential
   $$d_{\cone{\eta}(X)} = \left(\begin{matrix}
     d_{\mathscr{L}(X)[1]} & 0\\
@@ -378,8 +378,8 @@ which allows us to view the image of $\mathscr{M}$ in $\mathcal{C}(\CC)$ as a pr
 
   \begin{proof}
     First, suppose that we are given two morphisms $\eta, \nu \in \mathcal{C}(\CC)(\mathscr{L},\mathscr{M})$ having the same image in $\mathcal{H}(\CC)(\mathscr{L},\mathscr{M})$.
-    By definition, there exists a morphism $h \in \mathcal{C}_\text{dg}(\CC)(\mathscr{L},\mathscr{M})^{-1}$ such that 
-    $$\eta - \nu = d_{\mathcal{C}_\text{dg}(\CC)(\mathscr{L},\mathscr{M})}^{-1}(h) = d_\mathscr{M} \circ h + h \circ d_\mathscr{L}.$$
+    By definition, there exists a morphism $h \in \cdg{\CC}(\mathscr{L},\mathscr{M})^{-1}$ such that 
+    $$\eta - \nu = d_{\cdg{\CC}(\mathscr{L},\mathscr{M})}^{-1}(h) = d_\mathscr{M} \circ h + h \circ d_\mathscr{L}.$$
     It's straightforward to show that
     $$\begin{tikzcd}[ampersand replacement=\&]
       \cone{\eta} \arrow{r}{\left(\begin{matrix}1 & 0\\-h & 1\end{matrix}\right)} \& \cone{\nu}
@@ -466,11 +466,22 @@ which allows us to view the image of $\mathscr{M}$ in $\mathcal{C}(\CC)$ as a pr
     %  \end{tikzcd}$$
     indexed by the objects of $\CC$, we reduce to the case that $(f \square \eta)(X)$ is a cofibration that is trivial provided either one $\eta(X)$ or $f$ is.
     By definition of the model structure on $\mathcal{C}(\CC$, $\eta(X)$ is a cofibration, so this follows directly from the fact that $\mathcal{C}(k)$ is a symmetric monoidal model category.
-    We note that by \cite{HoveyMC} 4.3.1 this induces a Quillen adjunction 
+    We note that when we restrict to the subcategory of $\cdg{\CC}$ with cofibrant and fibrant objects, then by \cite{HoveyMC} 4.3.1 this induces a Quillen adjunction 
     $$[C,\mathbb{R}\Hom{\cdg{\CC}}{\F,\G}]_{\mathcal{C}(k)}
     \cong [C \otimes^\mathbb{L} \F, \G]_{\mathcal{C}(\CC)}
     \cong [\F, \mathbb{R}\Hom{\cdg{k}}{C,\G}]_{\mathcal{C}(\CC)},$$
     where $[-,-]$ denotes morphisms of the homotopy category, $\mathbb{R}\operatorname{Hom}$ and $\otimes^\mathbb{L}$ are the right and left derived functors, respectively.
+    In particular, denoting by $\mathcal{I}$ the dg category with one object and endomorphisms the complex with $k$ concentrated in degree zero, we note that $\mathcal{C}(\CC)$ is obtained from
+    \begin{eqnarray*}
+      \dgcat_k(\mathcal{I}, \cdg{\CC}) &=& \dgcat_k(\mathcal{I}, \SHom{\CC^\text{op}, \cdg{k}}\\
+      &\cong& \dgcat_k(\mathcal{I} \otimes_k \CC^\text{op}, \cdg{k})\\
+      &\cong& \dgcat_k(\CC^\text{op}, \cdg{k})\\
+      &=& Z^0 \SHom{\CC^{op}, \cdg{k}}\\
+      &=& Z^0\cdg{\CC}\\
+      &=:& \mathcal{C}(\CC).
+    \end{eqnarray*}
+    Denoting by $\cdg{\CC}_\text{cf}$ the subcategory of cofibrant and fibrant objects, we obtain an equivalence between $H^0\cdg{\CC}_\text{cf}$ and $\mathcal{D}(\CC) = \operatorname{Ho}(\mathcal{C}(\CC))$ by the isomorphism
+    $$H^0(\mathbb{R}\Hom{\cdg{C}}{\F,\G}) \cong [k,\mathbb{R}\Hom{\cdg{\CC}}{\F,\G}]_{\mathcal{C}(k)} \cong [k \otimes^\mathbb{L} \F, \G]_{\mathcal{C}(\CC)} \cong [\F,\G]_{\mathcal{C}(\CC)}.$$
   \end{itemize}
 \end{rmk}
 
@@ -498,7 +509,7 @@ which allows us to view the image of $\mathscr{M}$ in $\mathcal{C}(\CC)$ as a pr
     Z^0(\CC) \arrow{r}{h_{\_}} & \mathcal{C}(\CC)\\
     X \arrow[mapsto]{r} & h_X.
   \end{tikzcd}$$
-  We say that $\mathscr{M} \colon \CC^\text{op} \rightarrow \mathcal{C}_\text{dg}(k)$ is {\it quasi-representable} if there is an object $X$ of $\CC$ such that $h_X$ is quasi-isomorphic to $\mathscr{M}$
+  We say that $\mathscr{M} \colon \CC^\text{op} \rightarrow \cdg{k}$ is {\it quasi-representable} if there is an object $X$ of $\CC$ such that $h_X$ is quasi-isomorphic to $\mathscr{M}$
   
   We say that $\CC$ is {\it pretriangulated} if
   \begin{enumerate}
@@ -547,7 +558,7 @@ which allows us to view the image of $\mathscr{M}$ in $\mathcal{C}(\CC)$ as a pr
 
 \begin{lem}
   Let $k$ be a field, and let $\CC$, $\D$ be objects of $\dgcat_k$.
-  Given an object $\mathscr{L}$ of $\mathcal{C}_\text{dg}(\CC)$ (resp. an object $\mathscr{M}$ of $\mathcal{C}_\text{dg}(\D)$), there is a well-defined dg functor $\mathscr{L} \otimes - \colon \mathcal{C}_\text{dg}(\D) \to \mathcal{C}_\text{dg}(\CC \otimes \D)$ (resp. $- \otimes \mathscr{M} \colon \mathcal{C}_\text{dg}(\CC) \to \mathcal{C}_\text{dg}(\CC \otimes \D)$).
+  Given an object $\mathscr{L}$ of $\cdg{\CC}$ (resp. an object $\mathscr{M}$ of $\cdg{\D}$), there is a well-defined dg functor $\mathscr{L} \otimes - \colon \cdg{\D} \to \cdg{\CC \otimes \D}$ (resp. $- \otimes \mathscr{M} \colon \cdg{\CC} \to \cdg{\CC \otimes \D}$).
   
 
   \begin{proof}

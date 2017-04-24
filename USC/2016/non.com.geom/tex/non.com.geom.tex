@@ -85,6 +85,48 @@ That is,
   of $\C$, $X$ is an object of $\A$ if and only if both $X^\prime$ and $X^{\prime\prime}$ are.
 \end{defn}
 
+\begin{prop}
+  A full subcategory, $\A$, of $\C$ is Serre if and only if for every exact sequence 
+  $$X^\prime \to X \to X^{\prime\prime}$$
+  with $X^\prime$, $X^{\prime\prime}$ objects of $\A$, then $X$ is an object of $\A$.
+  
+  \begin{proof}
+    Assume that $\A$ is Serre.
+    Given an exact sequence $X^\prime \overset{f}\to X \overset{g}\to X^{\prime\prime}$ with $X^\prime$, $X^{\prime\prime}$ objects of $\A$, we have the diagram
+    $$\begin{tikzcd}
+      0 \arrow{rd} & & & & 0 \arrow{rd} & & 0\\
+      & K \arrow{rd}{\ker{f}} & & & & g(X) \arrow{rd}{\im{g}}\arrow{ur}\\
+      & & X^\prime \arrow{rr}{f}\arrow{rd}{\coim{f}} & & X \arrow{rr}{g}\arrow{ur}{\coim{g}} & & X^{\prime\prime}\arrow{rd}{\coker{g}}\\
+      & & & f(X^\prime) \arrow{rd}\arrow{ur}{\im{f}} & & & & C \arrow{rd}\\
+      & & 0 \arrow{ur} & & 0 & & & & 0
+    \end{tikzcd}$$
+    It now follows from the definition that $f(X^\prime)$ and $g(X)$ are objects of $\A$, hence $X$ is also an object of $\A$.
+
+    For the converse, we note that it suffices to show that 0 is an object of $\A$.
+    Take a short exact sequence
+    $$0 \to X^\prime \overset{f}\to X \overset{g}\to X^{\prime\prime} \to 0.$$
+    If $X^\prime$, $X^{\prime\prime}$ are objects of $\A$, then by assumption we have that $X$ is an object of $\A$ because $X^\prime \overset{f}\to X \overset{g}\to X^{\prime\prime}$ is exact.
+    Moreover, if $X$, 0 are objects of $\A$ then $0 \to X^\prime \overset{f}\to X$ and $X \to X^{\prime\prime} \to 0$ are exact sequences that imply $X^\prime$, $X^{\prime\prime}$ are objects of $\A$.
+    The result now follows from the fact that the sequence
+    $$X \to 0 \to X$$
+    is exact.
+  \end{proof}
+\end{prop}
+
+
+\begin{cor}
+  A subcategory, $\A$, of $\C$ is Serre if and only if the following conditions are satisfied:
+  \begin{enumerate}[(i)]
+  \item
+    0 is an object of $\A$,
+  \item
+    $\A$ is replete,
+  \item
+    $\A$ is closed under subobjects and quotients,
+  \item
+    $\A$ is closed under extensions.
+  \end{enumerate}
+\end{cor}
 Denote by $\Tors$ (resp. $\tors$) the Serre subcategory of torsion modules (resp. finite), where a module $M$ is called torsion if
 $$\tau(M) = \left\{m \in M \;\middle\vert\; xA_{\geq s} = 0\ \text{for some}\ s\right\} = M$$
 
