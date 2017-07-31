@@ -39,7 +39,7 @@ $$\begin{tikzcd}
 and
 $$\begin{tikzcd}
   \ddots
-   & C^{x - 1} \otimes_A D^{y + 2}\\
+  & C^{x - 1} \otimes_A D^{y + 2}\\
   & C^{x - 1} \otimes_A D^{y + 1} \arrow{u}& C^x \otimes_A D^{y + 1}\\
   & & C^x \otimes_A D^y \arrow{u} & C^{x + 1} \otimes_A D^y\\
   & & & C^{x + 1} \otimes_A D^{y - 1}\arrow{u} & \ddots\\
@@ -287,4 +287,76 @@ As an immediate consequence of the Lemma, we have
     \end{tikzcd}$$
   \end{enumerate}
 \end{rmk}
+
+%Stuff written down so I don't forget the damn proof.
+%Probably not relevant; may need to be (re)moved.
+\subsection{Miscellaneous}
+
+\begin{prop}
+  Let $\A$ be an abelian category and let
+  $$0 \to A \overset{i}\to B \overset{p}\to C \to 0$$
+  be a short exact sequence.
+  The following are equivalent:
+  \begin{enumerate}[(i)]
+  \item
+    There exists a section, $s \in \A(C,B)$, of $p$,
+  \item
+    There exists a retract, $r \in \A(B,A)$, of $i$,
+  \item
+    There exists a unique isomorphism of complexes
+    $$\begin{tikzcd}[ampersand replacement=\&]
+      0 \arrow{r} \& A \arrow{r}{i}\arrow{dd}{1} \& B \arrow{r}{p}\arrow{dd}{\left(\begin{matrix}r\\p\end{matrix}\right)} \& C \arrow{r}\arrow{dd}{1} \& 0\\
+      \\
+      0 \arrow{r} \& A \arrow{r}{\left(\begin{matrix}1\\0\end{matrix}\right)} \& A \oplus C \arrow{r}{\left(\begin{matrix}0 & 1\end{matrix}\right)} \& C \arrow{r} \& 0
+    \end{tikzcd}$$
+  \end{enumerate}
+
+  \begin{proof}
+    We first show that $(i)$ and $(ii)$ are equivalent, then show the equivalence of $(i)$ and $(iii)$.
+
+    Assume that we have a section, $s$, of $p$.
+    We construct a retract from the universal property for kernels:
+    $$\begin{tikzcd}
+      B \arrow{rr}{1 - s \circ p}\arrow[bend left]{rrr}{0}\arrow[dashed]{rrd}{\exists ! r} && B \arrow{r}{p} & C\\
+      && A \arrow[swap]{u}{i}
+    \end{tikzcd}$$
+    We note that because $i$ is monic
+    $$i \circ r \circ i = (1 - s \circ p) \circ i = i = i \circ \id_A$$
+    implies that $r \circ i = \id_A$.
+
+    Assuming we have a retract, $r$, of $i$, we obtain the section $s$ of $p$ by a formally dual argument.
+    Namely, from the universal property for cokernels:
+    $$\begin{tikzcd}
+      A \arrow{r}{i}\arrow[bend left]{rrr}{0} & B\arrow{d}{p} \arrow{rr}{1 - i \circ r} && B\\
+      & C \arrow[dashed]{urr}{\exists !s}
+    \end{tikzcd}$$
+    Here we note that because $p$ is an epimorphism we have
+    $$p \circ s \circ p = p \circ (1 - i \circ r) = p = \id_C \circ p$$
+    and hence  $s \circ p = \id_C$.
+
+    It's clear that $(iii)$ implies $(ii)$, which is equivalent to $(i)$, with the retact given by the component $r$ of the isomorphism.
+    Assuming $(i)$, we observe that
+    $$i \circ r \circ s = (1 - s \circ p) \circ s = s - s = 0$$
+    implies $r \circ s = 0$ and, by construction,
+    $$i \circ r + s \circ p = \id_B.$$
+    Taking advantage of the biproduct structure in abelian categories we have induced morphisms
+    $$\begin{tikzcd}[ampersand replacement=\&]
+      A \arrow[swap,bend right]{rrddd}{i}\arrow{rrd}{\left(\begin{matrix}1\\0\end{matrix}\right)}\&\& \&\& C\arrow[bend left]{llddd}{s}\arrow[swap]{lld}{\left(\begin{matrix}0\\1\end{matrix}\right)}\\
+      \& \& A \oplus C\arrow[dashed]{dd}{\exists !\left(\begin{matrix}i & s\end{matrix}\right)}\\
+      \\
+      \& \& B
+    \end{tikzcd}$$
+    and
+    $$\begin{tikzcd}[ampersand replacement=\&]
+      \& \& B \arrow[dashed]{dd}{\exists !\left(\begin{matrix}r\\p\end{matrix}\right)}\arrow[bend right]{lldd}{r}\arrow[bend left]{rrdd}{p}\\
+      \\
+      A \& \& A \oplus C \arrow{ll}{\left(\begin{matrix}1 & 0\end{matrix}\right)} \arrow{rr}{\left(\begin{matrix}0 & 1\end{matrix}\right)}\&\& C
+    \end{tikzcd}$$
+    Their compositions give the desired identities:
+    $$\left(\begin{matrix}r\\p\end{matrix}\right)\left(\begin{matrix}i & s\end{matrix}\right) = \left(\begin{matrix}r \circ i & r \circ s\\p \circ i & p \circ s\end{matrix}\right) = \left(\begin{matrix}1 & 0\\0 & 1\end{matrix}\right)$$
+    and
+            $$\left(\begin{matrix}i & s\end{matrix}\right)\left(\begin{matrix}r\\p\end{matrix}\right) = i \circ r + s \circ p = \id_B,$$
+   whence the isomorphism of complexes.
+  \end{proof}
+\end{prop}
 \end{document}
