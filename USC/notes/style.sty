@@ -1,0 +1,104 @@
+\ProvidesPackage{style}
+
+%Formatting
+\oddsidemargin  0.0in
+\evensidemargin 0.0in
+\textwidth      6.5in
+\headheight     0.0in
+\topmargin      0.0in
+\textheight=9.0in
+
+%Packages
+\usepackage{tikz-cd}
+\usepackage{array}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{enumerate}
+%\usepackage{mnsymbol}
+\usepackage{amsthm}
+\usepackage{amsmath, amscd}
+\usepackage{bm}
+\usepackage{xy}
+\xyoption{all}
+\usepackage{color}
+\usepackage{marvosym}
+\usepackage{amsbsy}
+%\usepackage[geometry]{ifsym}
+\usepackage[marginpar=2cm]{geometry} %Added this to stop sidenotes running off page.
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{matrix,arrows,backgrounds}%, decorations, pathmorphing, positioning, fit}
+\usepackage{leftidx}
+
+%Theorems
+\newtheorem{introtheorem}{Theorem}
+\newtheorem{introcor}{Corollary}
+\newtheorem{introconjecture}{Conjecture}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{Theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{Corollary}[Theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{condition}[theorem]{Condition}
+
+%Definitions, etc.
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+%\newtheorem{definition-lemma}[theorem]{Definition/Lemma}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{Example}[Theorem]{Example}
+\newtheorem{example}[theorem]{Example}
+
+%Commands
+\newcommand{\op}[1]{\operatorname{#1}}
+
+%Operators
+\newcommand{\Ho}[1]{\op{Ho}\left(#1\right)}
+\newcommand{\colim}{\op{colim}}
+
+%Exponents
+\newcommand{\rqr}{{\op{rqr}}}
+\newcommand{\opp}{{\op{op}}}
+
+%Categories
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\C}{\mathcal{C}}
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\K}{\mathcal{K}}
+\newcommand{\dgcat}[1]{\op{dgcat}_#1}
+\newcommand{\DGCAT}[1]{\underline{\dgcat{#1}}}
+\newcommand{\Ch}[1]{C\left(#1\right)}
+\newcommand{\CH}[1]{\mathcal{C}\left(#1\right)}
+\newcommand{\Mod}[1]{\op{Mod}\left(#1\right)}
+\newcommand{\Ab}{\op{Ab}}
+\newcommand{\Fun}{\op{Fun}}
+\newcommand{\RHom}[1]{\mathbf{R}\underline{\op{Hom}}\left(#1\right)}
+\newcommand{\RHomc}[1]{\mathbf{R}\underline{\op{Hom}}_c\left(#1\right)}
+%Sets
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+
+%Graded Modules
+\newcommand{\Gr}[1]{\op{Gr}\left(#1\right) }
+\newcommand{\GR}[1]{\underline{\op{Gr}}\left(#1\right)}
+\newcommand{\QGr}[1]{\op{QGr}\left(#1\right)}
+%DG Modules
+\newcommand{\dgMod}[1]{\op{dgMod}\left(#1\right)} %Left DG-Modules
+\newcommand{\rdgMod}[1]{\ldgMod{#1^{\opp}}} %Right DG-modules; no need for ^\opp on the call.
+\newcommand{\hproj}[1]{\op{h-proj}\left(#1\right)}
+\newcommand{\ldgGrMod}[1]{\op{dgGrMod}\left(#1\right)}
+\newcommand{\rdgGrMod}[1]{\ldgGrMod{#1^{\opp}}}
+\newcommand{\dgBiGrMod}[1]{\op{dgBiGrMod}\left(#1\right)}
+
+%Arrows
+\def\ra{\rightarrow}
+
+%Functors
+\newcommand{\Ind}[1]{\op{Ind}_{#1}}
+\newcommand{\Res}[1]{\op{Res}_{#1}}
+\newcommand{\id}{\op{id}}
+\newcommand{\Iso}[1]{\op{Iso}\left(#1\right)}

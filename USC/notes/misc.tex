@@ -1,0 +1,41 @@
+\documentclass[reqno, 12pt]{amsart}
+\usepackage{style}
+
+\begin{document}
+\begin{proposition}
+  Let $A$ and $B$ be rings.
+  Every $B$-$A$-bimodule, $P$, induces a natural isomorphism of abelian groups
+  $$\Mod{B}(P \otimes_A M, N) \cong \Mod{A}(M, \Mod{B}(P,N)).$$
+  Similarly, every $A$-$B$-bimodule, $Q$, induces a natural isomorphism of abelian groups
+  $$\Mod{A}(N \otimes_B Q, M) \cong \Mod{B}(N, \Mod{A}(Q,N)).$$
+\end{proposition}
+\begin{proof}
+  It's clear that $P \otimes_A M$ has the structure of a left $B$-module by the action
+  $$b \cdot (p \otimes m) := (bp) \otimes m.$$
+  We define the left $A$ action of $\Mod{B}(P,N)$ for any left $B$-module, $N$, by 
+  $$(a \cdot \varphi)(p) = \varphi(p \cdot a).$$
+  We define a $\Z$-linear morphism
+  $$\Phi \colon \Mod{B}(P \otimes_A M, N) \to \Mod{A}(M, \Mod{B}(P,N))$$
+  by
+  $$\Phi(f)(m) = f(- \otimes m) \in \Mod{B}(P,N)$$
+  and note that by the left $A$-action on $\Mod{B}(P,N)$ we have
+  $$a \cdot \Phi(f)(m)(p) = a \cdot f(p\otimes m) = f(pa \otimes m) = f(p \otimes am) = \Phi(f)(am)(p)$$
+  for any $a \in A$.
+
+  We define a $\Z$-linear morphism
+  $$\Psi \colon \Mod{A}(M, \Mod{B}(P,N)) \to \Mod{B}(P \otimes_A M, N)$$
+  by
+  $$\Psi(g)(p \otimes m) = g(m)(p).$$
+  We note that this is $B$-linear since for any $b \in B$
+  $$b \cdot \Psi(g)(p \otimes m) = b \cdot g(m)(p) = g(m)(bp) = \Psi(g)(bp \otimes m)$$
+  as $g(m)$ is $B$-linear.
+  
+  It's clear that
+  $$\left(\Psi \circ \Phi(f)\right)(m \otimes p) = \Phi(f)(m)(p) = f(p \otimes m)$$
+  and
+  $$\left(\Phi \circ \Psi(g)\right)(m)(p) = \Psi(g)(m \otimes p) = g(m)(p)$$
+  implies these two morphisms are mutally inverse.
+
+  Naturality is clear, but tedious.
+\end{proof}
+\end{document}
