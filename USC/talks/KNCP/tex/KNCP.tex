@@ -1,0 +1,530 @@
+\documentclass[reqno, 12pt]{amsart}
+\usepackage{style}
+
+\title[Noncommutative kernels]{Kernels for noncommutative projective schemes}
+\author{Matthew Ballard and Blake Farman}
+
+\email{ballard@math.sc.edu \\ farmanb@math.sc.edu}
+\address{University of South Carolina, Columbia, SC, USA}
+
+\keywords{moduli spaces, derived categories, variation of stability}
+
+\thanks{Both authors were partially supported by a NSF Standard Grant DMS-1501813.}
+
+\begin{document}
+\begin{abstract}
+  In their 1994 paper, Noncommutative Projective Schemes, Michael Artin and J.J. Zhang introduce a generalization of usual projective schemes to the setting of not necessarily commutative algebras over a commutative ring. Gon\c{ç}alo Tabuada in \cite{Tab05} endows the category of differential graded categories with the structure of a model category and, in \cite{Toen}, Toën shows that its homotopy category is symmetric monoidal closed. In this talk, we’ll give a brief overview of these results, adapting Artin and Zhang’s noncommutative projective schemes for the language of DG categories, and discuss a “geometric” description of this internal Hom for two noncommutative projective schemes in the style of To\"en's Morita theory for DG categories.
+  As an immediate application, we give a noncommutative projective derived Morita statement along the lines of Rickard and Orlov.
+\end{abstract}
+
+\maketitle
+
+\section{Morita Theory  for Rings} \label{section: Morita for Rings}
+The classical example of Morita theory is for rings:
+
+\begin{theorem}\label{thm: Morita}
+  If $A$ and $B$ are unital rings, then the categories $\Mod{A}$ and $\Mod{B}$ of left modules are equivalent if and only if there exists a $B$-$A$-bimodule, $P$ and an $A$-$B$-bimodule $Q$ such that
+  $$Q \otimes_B P \cong B\ \text{and}\ P \otimes_A Q \cong A.$$
+\end{theorem}
+
+\begin{lemma}\label{lem: endomorphisms of identity functor are the center}
+  Let $A$ be a unital ring.
+  Denoting by $\Abcat$ the 2-category of \newline$\Ab$-enriched categories, define 
+  $$\End_{\Mod{A}} = \Abcat(\Mod{A},\Mod{A}).$$
+There is an isomorphism
+$$Z(A) \cong \End_{\Mod{A}}(\id_{\Mod{A}}, \id_{\Mod{A}}).$$
+\end{lemma}
+
+\begin{remark}
+  We note that when $A$ is not necessarily commutative, it is imperative that $z \in Z(A)$, for otherwise the associated morphism $\eta_A$ does not commute with left multiplication by some element of $a \in A$, since
+  $$\varphi_a \circ \eta_A(a^\prime) = a(za^\prime) \neq z(aa^\prime) = \eta_A \circ \varphi_a(a^\prime),$$
+  which breaks the naturality of $\eta$.
+\end{remark}
+
+\begin{corollary}\label{cor: morita implies isomorphic centers}
+  If $A$ and $B$ are Morita equivalent, then $Z(A) \cong Z(B)$.
+\end{corollary}
+
+We now obtain the obvious corollary
+\begin{corollary}
+  If $A$ and $B$ are commutative, then $\Mod{A}$ and $\Mod{B}$ are equivalent if and only if $A$ and $B$ are isomorphic.
+\end{corollary}
+
+\begin{corollary}\label{cor: morita example}
+  If $A$ is a unital ring, then $A$ is Morita equivalent to the matrix ring $M_n(A)$.
+\end{corollary}
+
+\section{Morita for $D(\Mod{A})$}
+
+One attempts to slacken the relationship by extending Morita to the setting of derived categories, as was done by Rickard in \cite{JR89}.
+\begin{theorem}
+  Let $A$ and $B$ be rings.  If
+  $$F \colon D(\Mod{A}) \to D(\Mod{B})$$
+  is an equivalence of derived categories of modules, then there exists a complex of $A$-$B$-bimodules which is perfect as a complex of $A$-modules and whose derived endomorphisms as $B$-modules are just $B$ in degree 0.
+  Consequently, $P \otimes^\mathbf{L}_A -$ is an equivalence.
+\end{theorem}
+
+However, even here two commutative rings are derived Morita equivalent if and only if they are isomorphic.
+
+\section{Global Morita}
+To obtain more interesting relationships between commutative rings, one should globalize the notion of a commutative ring by passing to schemes.
+Orlov gives a specific version for smooth projective schemes in \cite{Orlov}, and later the results from \cite{Toen} and \cite{Lunts Orlov} give the more general result.
+
+\begin{theorem}[Lunts-Orlov \cite{Lunts Orlov}, To\"en \cite{Toen}]
+  Let $X$ and $Y$ be quasi-compact and separated schemes over a field $k$.
+  If
+  $$F \colon D(\Qcoh{X}) \to D(\Qcoh{Y})$$
+  is an equivalence, then there exists an object $E \in D(\Qcoh{X \otimes_k Y})$ such that
+  $$\Phi_E \colon D(\Qcoh{X}) \overset{\sim}\to D(\Qcoh{Y})$$
+  is an equivalence.
+\end{theorem}
+
+One can describe $\Phi_E$ as follows.
+The object $X \times_k Y$ is equipped with the two projections,
+$$\begin{tikzcd}
+  X  & X \times_k Y \arrow[swap]{l}{\pi_X}\arrow{r}{\pi_Y}& Y
+\end{tikzcd}$$
+which induce morphisms
+$$\pi_X^\ast \colon \Qcoh{X} \to \Qcoh{X \times_k Y}$$
+and
+$${\pi_{Y}}_\ast \colon \Qcoh{X \times_k Y} \to \Qcoh{Y}.$$
+An object, $M$, of $D(\Qcoh{X})$ is sent by $\Phi_E$ to the object
+$$\mathbf{R}{\pi_Y}_\ast \left(E \otimes^{\mathbf{L}} \mathbf{L}\pi_X^\ast M\right).$$
+
+\begin{remark}
+  The category $\Qcoh{X}$ is a Grothendieck category and thus we may equip $\Ch{\Qcoh{X}}$ with the cofibrantly generated injective model structure.
+  For any morphism $f \colon X \to Y$ of schemes we have an adjunction
+  $$\Qcoh{X}(f^\ast G, F) \cong \Qcoh{Y}(G,f_\ast F)$$
+  This adjunction is Quillen if and only if $f$ is flat and, in this case, we can define
+  $$\mathbf{R}f_\ast(F) = f_\ast(RF)\ \text{and}\ \mathbf{L}f^\ast(G) = f^\ast(QG) = f^\ast(G),$$
+  where $RF$ is a fibrant replacement of $F$ and $QG = G$ is a cofibrant replacement (since every object is cofibrant in the injective model structure).
+  In the case where $X$ and $Y$ are flat over $k$, then both projections are flat, so both $\mathbf{L}\pi_X^\ast$ and $\mathbf{R}{\pi_Y}_\ast$ are well-defined.
+
+  Note that when $F$ is just a quasi-coherent sheaf, $RF$ is an injective resolution, and the cohomology groups of the total right derived functor correspond to the classical right derived functors:
+  $$H^i\mathbf{R}f^\ast(F) \cong \mathbf{R}^i f^\ast (F).$$
+  For more information, one should consult \cite{Hov01}.
+  
+\end{remark}
+\section{Noncommutative Global Morita}
+
+\subsection{Noncommutative Geometry}
+Let $k$ be a commutative ring, and let $A$ be a $\Z$-graded $k$ algebra.
+Define $A_{\geq n} = \oplus_{n \leq d} A_d$.
+We denote by $\Gr{A}$ the category of $\Z$-graded $A$-modules and by $\Tors{A}$ the Serre subcategory of graded $A$-modules, where $M$ is torsion if for every element $m \in M$ there exists some $n$, possibly depending on $m$, such that $A_{\geq n}m = 0$.
+
+\begin{definition}
+  Following \cite{AZ}, we denote the quotient category of graded $A$-modules of torsion by
+  $$\QGr{A} = \Gr{A}/\Tors{A}.$$
+\end{definition}
+By definition, the objects of this category are the objects of $\Gr{A}$ and the morphisms are given by the colimit over the directed system of pairs of subobjects $(M^\prime, N^\prime)$ such that $M/M^\prime$ and $N^\prime$ are objects of $\Tors{A}$
+$$\QGr{A}(\pi M, \pi N) = \colim_{(M^\prime, N^\prime)} \Gr{A}(M^\prime, N/N^\prime)$$
+where $\pi: \Gr{A} \to \QGr{A}$ is the canonical projection functor.
+It is well known that $\pi$ is exact and admits a fully faithful right adjoint,
+$$\omega \colon \QGr{A} \to \Gr{A}$$
+and this allows us to view $\QGr{A}$ as the full subcategory of torsion-free graded $A$-modules, $M \cong QM$, that are injective with respect to the class $J$ of monomorphisms $M \to N$ with torsion cokernel.
+In the language of \cite{DCA}, the objects in the image of $\QGr{A}$ under $\omega$ are precisely the $\Tors{A}$-closed objects.
+In particular, defining $Q = \omega\pi$ allows one to view $\QGr{A}$ as $Q(\Gr{A})$.
+
+The category $\QGr{A}$ is defined to be the quasi-coherent sheaves on the noncommutative projective scheme $X$ associated to $A$.
+In general, $X$ is not a space in the traditional sense (see \cite{AZ}), however, when $A$ is commutative and $X = \operatorname{Proj}(A)$, then this definition is justified by the following famous result of Serre.
+\begin{theorem}[Serre]
+  If $A$ is generated over $k$ by elements of degree 1, then the functor
+  $$\begin{tikzcd}[row sep=tiny]
+    \Gamma_\ast \colon \Qcoh{X} \arrow{r}& \QGr{A}\\
+    M \arrow[mapsto]{r} & \bigoplus_{d \in \Z} H^0(X, M \otimes \mathcal{O}_X(d))
+  \end{tikzcd}$$
+  is an equivalence.
+\end{theorem}
+
+\subsection{What is the analogue of $X \times Y$?}
+Following the line of reasoning in the globalized Morita statement for commutative rings, one is naturally led to think about a globalized version for noncommutative rings.
+The framework of \cite{AZ} allows one to pose such a question.
+In analogy with the way that one associates the scheme $X \times_k Y$ to the tensor product of commutative rings $A \otimes_k B$, one can associate a noncommutative (bi)projective scheme $X^\opp \times Y$ to the bigraded $k$-algebra $A^\opp \otimes_k B$.
+
+\subsection{Cohomological Conditions}
+In general, good behavior of $\QGr{A}$ occurs with some cohomological assumptions on the ring $A$.
+We recall here some common assumptions.
+\begin{definition}
+  For a connected graded $k$-algebra, $A$, we say
+  \begin{enumerate}[(i)]
+  \item
+    (\cite{VdB}) $A$ is \textbf{Ext-finite} if the ungraded Ext-groups, $\Ext^n_A(k,k)$, are finite dimensional $k$-modules for $n \geq 0$, and
+  \item
+    (\cite{AZ}) $A$ satisfies $\chi^\circ(M)$ if $\EXT_A^n(k,M)$ has \textbf{right limited grading} for each $0 \leq n$; that is, there exists some $d_0$ such that $\EXT_A^n(k,M)_d = 0$ for all $d_0 < d$.
+  \end{enumerate}
+\end{definition}
+
+We recall some basic facts about Ext-finite from \cite{VdB}.
+\begin{lemma}[{\cite[Lemma 4.2]{VdB}}]
+  If $A$ is Ext-finite, then so is $A^\opp$.
+  Moreover, for each $n$, $A_n$ is a finite-dimensional $k$-vector space.
+
+  If in addition, $B$ is Ext-finite, then so is $A \otimes_k B$.
+\end{lemma}
+
+We can give a more geometric interpretation of $\chi^\circ$ through noncommutative sheaf cohomology.
+As in the commutative case, one views the image of $A$ in $\QGr{A}$ as the structure sheaf, $\mathcal{O}_X$, of the noncommutative projective scheme $X$ associated to $A$.
+From standard torsion theory, $\Tors{A}$ and the full subcategory of torsion-free objects gives a torsion pairing on $\Gr{A}$, which implies that $\Tors{A}$ is a coreflective subcategory of $\Gr{A}$.
+The right adjoint to the inclusion is the functor $\tau$, which takes $M$ to its maximal torsion submodule, $\tau(M)$.
+There is an exact sequence
+$$0 \to \tau M \to M \to Q M \to \mathbf{R}^1\tau M \to 0$$
+and isomorphisms $\mathbf{R}^iQ M \cong \mathbf{R}^{i+1}\tau M$ for $1 \leq i$.
+Of particular interest here is the fact that both $\tau$ and $Q$ preserve injective objects (see, e.g., \cite{AZ}), hence for an injective object, $E$, of $\Gr{A}$ we have a split exact sequence of injectives
+$$0 \to \tau E \to E \to Q E \to 0.$$
+\begin{definition}
+  One defines sheaf cohomology of a quasi-coherent sheaf $\mathcal{M} := \pi(M)$ to be
+  $$\underline{H}^i(\mathcal{M}) := \EXT^i_{\QGr{A}}(\mathcal{O}_X, \mathcal{M}) \cong \mathbf{R}^iQ (M)$$
+  and the un-graded sheaf cohomology by
+  $$H^i(\mathcal{M}) := \underline{H}^i(\mathcal{M})_0 \cong (\mathbf{R}^iQ(M))_0.$$
+\end{definition}
+
+With this in hand, we can understand $\chi^\circ$ geometrically through the following proposition.
+\begin{proposition}
+  Let $\mathcal{M} = \pi(M)$.
+  Then $\chi_i^\circ(M)$ holds if and only if
+  $$\colim_n \EXT^j_A(A/A_{\geq n}, M) \cong \mathbf{R}^j\tau_A(M) \cong \mathbf{R}^{j-1}Q_A (M) = \underline{H}^{j-1}(\mathcal{M})$$
+  is right limited for $2 \leq j \leq i$.
+\end{proposition}
+\begin{proof}
+  The first isomorphism is \cite[Lem. 4.1.2]{VdB} and the rest of the statement is \cite[Cor. 3.6 (3)]{AZ}.
+\end{proof}
+To say that $A$ satisfies $\chi^\circ(A)$ is to say that $\chi_i^\circ(A)$ holds for all $i$, which is to say that for all $1 \leq j$ the cohomology of the twisting sheaves $\mathcal{O}_X(n)$ vanish for sufficiently large $n$.
+One can think of a ring $A$ which is Ext-finite, and satisfies $\chi^\circ(A)$ and $\chi^\circ(A^\opp)$ as requiring Serre vanishing for the twisting sheaves (on $X$ and $X^\opp$) plus some local finite-dimensionality over $k$.
+
+%One can relate $\chi$ to $\chi^\circ$ through the following proposition.
+We make the following definition
+\begin{definition}
+  Let $k$ be a commutative ring and let $A$ and $B$ be connected graded $k$-algebras.
+  If $A$ is Ext-finite, left and right Noetherian, and satisfies $\chi^\circ(A)$ and $\chi^\circ(A^\opp)$, then we say that $A$ is \textbf{truly tasty}.
+  If $A$ and $B$ are both truly tasty, then we say that $A$ and $B$ form a \textbf{tasty pair}.
+\end{definition}
+
+\subsection{Some examples of algebras that satisfy $\chi$}
+The following are some examples of algebras that actually satisfy the stronger condition, $\chi$, from \cite{AZ}:
+$A$ satisfies $\chi(M)$ if for each $n$ and $x$ there is a $y_0$ such that $\EXT^n_A(A/A_{\geq y},M)_{\geq x}$ is a finite $A$-module for each $n$, $x$, and $y_0 \leq y$.
+We say that $A$ satisfies $\chi$ if for all finite graded $A$-modules, $M$, $A$ satisfies $\chi(M)$.
+In particular, these algebras satisfy $\chi(A)$.
+
+The connection between $\chi$ and $\chi^\circ$ is the following.
+
+\begin{proposition}
+  Let $A$ be left Noetherian and let $M$ be a graded left $A$-module. Then $\chi(M)$ holds if and only if $\chi^\circ(M)$ holds and for each $n,x$ the graded module $\underline{\op{Ext}}_A^n(A/A_{\geq y},M)_{\geq x}$ is a finitely generated $k$-module for $y \gg 0$.
+\end{proposition}
+\begin{proof}
+  This is \cite[Prop 3.8 (1)]{AZ}.
+\end{proof}
+
+\subsubsection{\cite{AS} Regular}
+We say a graded algebra, $A$, over a field $k$ is \textbf{regular} if it is connected graded and if it has the following properties
+\begin{enumerate}
+\item
+  A has finite global dimension, $d$,
+\item
+  $A$ has finite GK-dimension (Gelfand-Kirillov),
+\item
+  $A$ is Gorenstein, meaning that $\EXT^i_A(k,A) = 0$ if $i \neq d$ and for some $l$, $\EXT^d_A(k,A) \cong k[l]$.
+\end{enumerate}
+
+\begin{remark}
+  If $A$ is a noetherian connected graded algebra having global dimension 1, then $A$ is isomorphic to $k[x]$, where $\op{deg}(x) = n$ for some $0 < n$.
+\end{remark}
+
+\subsubsection{PI-Algebras (Polynomial Identity)}
+If $A$ is such that for some non-zero element $P$ of the free algebra $k<X_1, X_2, \ldots, X_N>$ and for all $a \in A^N$
+$$P(a) = 0$$
+then $A$ satisfies $\chi$.
+
+\subsubsection{Veronese Subrings}
+Let $B$ be a left Noetherian graded algebra.
+If the Veronese subring, $A = B^{(r)}$, for some $2 \leq r$, is Noetherian, then $B$ satisfies $\chi$ if and only if $A$ satisfies $\chi$.
+\section{The Main Result}
+As an application of our main result, we have a Morita-style statement for the noncommutative projective schemes associated to a tasty pair
+\begin{theorem}[Ballard, F.]
+  Let $k$ be a field, let $A$ and $B$ be a tasty pair, and let $X$ and $Y$ be noncommutative projective schemes associated to $A$ and $B$, respectively.
+  If there exists an equivalence of categories
+  $$F \colon D(\Qcoh{X}) \to D(\Qcoh{Y})$$
+  then there exists an object $P \in D(\Qcoh{X \times Y})$ such that
+  $$\begin{tikzcd}[row sep=tiny]
+    \Phi_P \colon D(\Qcoh{X}) \arrow{r}& D(\Qcoh{Y})\\
+    M \arrow[mapsto]{r} & \mathbf{R}{\pi_Y}_\ast(E \otimes^\mathbf{L} \pi_X^\ast M)
+  \end{tikzcd}$$
+  is an equivalence.
+\end{theorem}
+
+\section{Internals}
+
+Our result is a corollary of a more general result characterizing internal Homs in the homotopy category of the category of small differential graded categories,
+$\Ho{\dgcat{k}}$.
+We briefly recall the basic definitions, and state the relevant theorems of To\"en.
+
+A dg-category over a commutative ring $k$ is simply a category enriched over the symmetric monoidal closed category of chain complexes of $k$-modules.
+The category of small differential graded categories, $\dgcat{k}$, has all small dg-categories as objects, and $\Ch{k}$-enriched functors as morphisms.
+
+\begin{example}
+  The canonical example of a dg-category is the category $\CH{A}$ of chain complexes of modules over a commutative $k$-algebra, $A$, equipped with the Hom total complex.
+\end{example}
+
+One of the major benefits of working with dg-categories is as suitable replacements of triangulated categories, which are well known to have somewhat unsatisfying properties.
+In particular, one has pretriangulated dg-categories, for which the category $H^0(\A)$, which has the same objects as $\A$ and morphisms
+$$H^0(\A)(X,Y) = H^0(\A(X,Y)),$$
+are triangulated.
+\begin{definition}
+  One defines an \textbf{enhancement} of a triangulated category, $\D$, as a pretriangulated dg-category $\A$ equipped with an equivalence
+  $$H^0(\A) \to \D$$
+  of triangulated categories.
+\end{definition}
+In \cite{Lunts Orlov} it is shown that in sufficiently nice situations, these enhancements are unique up to quasi-equivalence.
+In particular, under mild hypotheses, derived categories of Grothendieck categories have unique enhancements; this makes dg-categories a natural choice for investigating derived categories of noncommutative projective schemes.
+
+Since we are working with derived categories of Grothendieck categories, we're interested in coproduct preserving triangulated functors between them.
+We define $\Ho{\dgcat{k}}$ and motivate its usage.
+One says that a dg-functor, $F \colon \A \to \B$, is
+\begin{enumerate}
+\item
+  \textbf{quasi-fully faithful} if for any two objects $A_1$, $A_2$ of $\A$ the morphism
+  $$F(A_1, A_2) \colon \A(A_1, \A_2) \to \B(FA_1, FA_2)$$
+  is a quasi-isomorphism of chain complexes,
+\item
+  \textbf{quasi-essentially surjective} if the induced functor $H^0(F) \colon H^0(\A) \to H^0(\B)$ is essentially surjective,
+\item
+  a \textbf{quasi-equivalence} if $F$ is quasi-fully faithful and quasi-essentially surjective,
+\end{enumerate}
+Quasi-equivalences could reasonably be thought of as analogous to quasi-isomorphisms in the setting of homological algebra.
+By analogy with the derived category of modules, one obtains the category $\Ho{\dgcat{k}}$ by formally inverting the quasi-equivalences in $\dgcat{k}$.
+The morphisms of $\Ho{\dgcat{k}}$ between $\A$ and $\B$ are denoted $[\A,\B]$.
+
+Before \cite{Toen}, it was well known that $\dgcat{k}$ is symmetric monoidal closed, that $\Ho{\dgcat{k}}$ is symmetric monoidal, and it was suspected that $\Ho{\dgcat{k}}$ was also closed, although the most obvious techniques of model categories fail to yield the result.
+To\"en constructs for two small dg-categories, $\A$ and $\B$, a dg-category $\RHom{\A,\B}$ and proves the following theorem.
+\begin{theorem}[{\cite[Theorem 1.1]{Toen}}] \label{theorem: Toen}
+  Let $\A$, $\B$, and $\C$ be objects of $\dgcat{k}$.
+  There is a natural bijection
+  $$[\A \otimes \B, \C] \overset{1:1}\longleftrightarrow [\A, \RHom{\B,\C}]$$
+  proving that the symmetric monoidal category $\Ho{\dgcat{k}}$ is closed.
+\end{theorem}
+
+Given a dg-category $\A$, we denote by $\D(\A)$ the enhancement of the triangulated category $D(\A)$.
+
+\begin{example}
+  As a particularly nice example, one should keep in mind the dg-category $\CH{A}$ for $A$ a commutative $k$-algebra, where $k$ is a commutative ring; in this case, $H^0(\CH{A})$ is equivalent to the usual homotopy category, $K(A)$, $D(\CH{A})$ is obtained by inverting quasi-isomorphisms and is equivalent to the usual derived category $D(\Mod{A})$, which has an enhancement $\D(\CH{A})$ by \cite{Lunts Orlov}.
+\end{example}
+Of particular interest here is the subcategory $\RHomc{\D(A),\D(B)}$, which if we view the objects of $\RHom{\D(\A),\D(\B)}$ as dg-functors $F \colon \D(\A) \to \D(\B)$, is the subcategory of functors that induce coproduct preserving triangulated functors
+$$H^0(F) \colon D(\A) \to D(\B).$$
+As a corollary to the main theorem, To\"en proves the following, which goes by the name of Derived Morita Theory.
+\begin{corollary}[{\cite[7.6]{Toen}}] \label{corollary: Toen}
+  Given two dg categories $\A$ and $\B$, there is an isomorphism in $\Ho{\dgcat{k}}$
+  $$\RHomc{\D(\A), \D(\B)} \cong \D(\A^\opp \otimes \B).$$
+\end{corollary}
+
+%Should say something about sorting out the homological conditions.
+\section{Further Questions}
+The statement of our theorem specifies that given two noncommutative projective schemes, $X$ and $Y$, and an equivalence of their derived categories, $F \colon D(\Qcoh{X}) \to D(\Qcoh{Y})$, there exists a quasi-equivalence $G \colon \D(\Qcoh{X}) \to \D(\Qcoh{Y})$, which in turn corresponds to a bimodule $P \in \D(\A^\opp \otimes \B)$ such that $H^0(G) = \Phi_P$.
+
+The first obvious question is
+\begin{question}
+  What is a tasty pair, $A$ and $B$, such that $X$ and $Y$ are derived equivalent?
+\end{question}
+It is known that noncommutative projective curves are actually commutative (see \cite{AS}), so standard techniques from the commutative situation can be used to produce equivalences.
+Similarly, for $A$ and $B$ commutative, one can produce derived equivalences by identifying the noncommutative projective schemes with the commutative projective schemes, and our result coincides with To\"en's.
+However, we don't yet know any other examples of derived equivalent noncommutative projective schemes.
+
+The next natural question is also obvious:
+\begin{question}
+  Given a bimodule $P$, when does $P$ induce an equivalence of the associated derived categories?
+\end{question}
+Further still is the less precise range of questions, generally expressed as
+\begin{question}
+  What properties/invariants are preserved by such a Morita equivalence?
+\end{question}
+Obvious answers, as is the case for commutative rings, should include purely categorical properties/invariants.
+%TODO: Maybe add something more precise here?
+
+In a different direction, one could also investigate various invariants such as Hochschild (co)homology.
+Work has been done in this direction for general dg-categories (see, e.g., \cite{Kel06}).
+\section{Appendix: Proofs}
+\begin{proof}[Proof of Theorem~\ref{thm: Morita}]
+  If $L \colon \Mod{A} \to \Mod{B}$ is an equivalence, then $L$ is fully faithful with fully faithful right adjoint, $R \colon \Mod{B} \to \Mod{A}$.
+  We have an isomorphism $\varphi \colon A \to \Mod{A}(A,A)$ given by
+  $$\varphi_a(a^\prime) = aa^\prime,$$
+  hence taking $P = L(A)$ it's clear that the isomorphism of abelian groups
+  $$A \cong \Mod{A}(A,A) \cong \Mod{B}(LA, LA) = \Mod{B}(P,P)$$
+  that the action
+  $$p \cdot a = L(\varphi_a)(p)$$
+  endows $P$ with the structure of a right $A$-module which is compatible with the left $B$-module structure in the sense that
+  $$(b\cdot p)\cdot a = L(\varphi_a)(b \cdot p) = b \cdot L(\varphi_a)(p) = b \cdot (p \cdot a).$$
+  Similarly, if we define $Q = R(B)$, the isomorphism of abelian groups
+  $$B \cong \Mod{B}(B,B) \cong \Mod{A}(RB,RB) = \Mod{A}(Q,Q)$$
+  endows $Q$ with the structure of an $A$-$B$-bimodule.
+
+  The functor
+  $$P \otimes_A - \colon \Mod{A} \to \Mod{B}$$
+  has right adjoint
+  $$\Mod{B}(P, -) \colon \Mod{B} \to \Mod{A}$$
+  and hence we obtain the following natural isomorphisms
+  \begin{eqnarray*}
+    \Mod{A}(M, \Mod{B}(P,N)) &\cong& \Mod{A}(M, \Mod{A}(A,RN))\\
+    &\cong& \Mod{A}(M, RN)
+  \end{eqnarray*}
+  and
+  \begin{eqnarray*}
+    \Mod{B}(P \otimes_A M, N) &\cong& \Mod{A}(M, \Mod{B}(P,N))\\
+    &\cong& \Mod{A}(M, \Mod{A}(A, RN))\\
+    &\cong& \Mod{A}(M,RN)\\
+    &\cong& \Mod{B}(LA, N),
+  \end{eqnarray*}
+  giving  $L \cong P \otimes_A -$ and $R \cong \Mod{B}(P, -)$ by Yoneda's Lemma.
+  It's now immediate that
+  $$P \otimes_A Q \cong LQ = LRB \cong B$$
+  and
+  \begin{eqnarray*}
+    Q \otimes_B P &\cong& RL(Q \otimes_BP)\\
+    &\cong& R(P \otimes_A (Q \otimes_B P))\\
+    &\cong& R((P \otimes_A Q) \otimes_B P)\\
+    &\cong& R(B \otimes_B P)\\
+    &\cong& R(P)\\
+    &=& RLA \cong A.
+  \end{eqnarray*}
+
+  Conversely, assume that $P$ and $Q$ are as in the statement.
+  If we define $$L = P \otimes_A -\ \text{and}\ R = Q \otimes_B -,$$ then we obtain the unit and counit of adjunction from
+  $$RL(M) = Q \otimes_B (P \otimes_A M) \cong (Q \otimes_B P) \otimes_A M \cong A \otimes_A M \cong M$$
+  and
+  $$LR(N) = P \otimes_A (Q \otimes_B N) \cong (P \otimes_A Q) \otimes_B N \cong B \otimes_B N \cong N.$$
+  This establishes that $R,L$ give the desired equivalence.
+\end{proof}
+
+\begin{proof}[Proof of Lemma~\ref{lem: endomorphisms of identity functor are the center}]
+  The data of a natural transformation $\eta \in \End_{\Mod{A}}(\id_{\Mod{A}},\id_{\Mod{A}})$ is just the data of a collection of morphisms $\eta_M$ for each object $M$ of $\Mod{A}$ such that all diagrams
+$$\begin{tikzcd}
+  M \arrow{r}{\eta_M}\arrow{d}{f} & M\arrow{d}{f}\\
+  M^\prime \arrow{r}{\eta_{M^\prime}} & M^\prime
+\end{tikzcd}$$
+commute.
+We note that by choosing a morphism $f \colon A \to M$ such that $f(1_A) = m$ we have
+\begin{equation}\label{eqn: eta determined by 1_A}
+  \eta_M(m) = \eta_M \circ f(1_A) = f \circ \eta_A(1_A) = \eta_A(1_A) f(1_A) = \eta_A(1_A) m
+\end{equation}
+by the $A$-linearity of $f$.
+This implies that $\eta_M$ is determined by $\eta_A(1_A)$.
+
+Taking $M = A$ we consider two interesting types of morphisms in $\Mod{A}(A,A)$:
+For any $a \in A$ there is the left multiplication morphism, $\varphi_a(a^\prime) = aa^\prime$, and also the right multiplication morphism
+$$\psi_a(a^\prime) = a^\prime a = (a \cdot \varphi_{1_A})(a^\prime)$$
+coming from the left $A$-module structure on $\Mod{A}(A,A)$
+$$(a \cdot f)(a^\prime) := f(a^\prime a).$$
+Thus for any $a \in A$ we have $\varphi_a(1_A) = a = \psi_a(1_A)$
+and so it follows from (\ref{eqn: eta determined by 1_A}) that
+$$a \eta_A(1_A) = \varphi_a(\eta_A(1_A)) = \eta_A(a) = \psi_a(\eta_A(1_A))= \eta_A(1_A)a.$$
+The mapping $\eta \mapsto \eta_A(1_A)$ is by definition $\Z$-linear and respects the ring structures since
+\begin{eqnarray*}
+  \nu_A(1_A) \eta_A(1_A) &=& \eta_A(1_A) \nu_A(1_A)\\
+  &=& \varphi_{\eta_A(1_A)} \circ \nu_A(1_A)\\
+  &=& \nu_A \circ \varphi_{\eta_A(1_A)}(1_A)\\
+  &=& \nu_A \circ \eta_A(1_A)
+\end{eqnarray*}
+holds for any other endomorphism, $\nu$.
+
+For the reverse mapping, we note that it's clear that an element $z \in Z(A)$ determines for each module $M$ a morphism $\eta_M(m) = zm$ and this is natural in $M$ since for any $f \in \Mod{A}(M,M^\prime)$ we have
+$$\eta_M \circ f(m) = zf(m) = f(zm) = f \circ \eta_M(m).$$
+This mapping gives the inverse to the morphism of rings constructed above.
+\end{proof}
+
+\begin{proof}[Proof of Corollary~\ref{cor: morita implies isomorphic centers}]
+  Denote by $\varepsilon \colon \id_{\Mod{A}} \to RL$ and $\eta \colon LR \to \id_{\Mod{B}}$ the unit and counit of the equivalence.
+  Since the equivalence is necessarily $\Ab$-enriched, we have $\Ab$-enriched functors
+  $$\begin{tikzcd}[row sep=tiny]
+    \Abcat(\Mod{A},\Mod{A}) \arrow{r} & \Abcat(\Mod{B},\Mod{B})\\
+    F \arrow[mapsto]{r} & LFR\\
+    \varphi \colon F_1 \to F_2 \arrow[mapsto]{r} & L(\varphi_{R(-)}) \colon LF_1R \to LF_2R
+  \end{tikzcd}$$
+  and
+  $$\begin{tikzcd}[row sep=tiny]
+    \Abcat(\Mod{B},\Mod{B}) \arrow{r} & \Abcat(\Mod{A},\Mod{A})\\
+    G \arrow[mapsto]{r} & RGL\\
+    \psi \colon G_1 \to G_2 \arrow[mapsto]{r} & R(\varphi_{L(-)}) \colon RG_1L \to RG_2L
+  \end{tikzcd}$$
+  which we show give an equivalence of categories.
+  We handle one composition, and note that the other composition is the same argument, swapping $\eta$ for $\varepsilon$.
+  Given an endomorphism $F$ of $\Mod{A}$, for any object $M$ of $\Mod{A}$, it's clear that we have the isomorphism
+  $$FM \overset{\varepsilon_{FM}}\longrightarrow RLFM \overset{RLF(\varepsilon_M)}\longrightarrow RLFRLM$$
+  and for any morphism $\varphi \colon F_1 \to F_2$ the diagram
+  $$\begin{tikzcd}[column sep=huge]
+    F_1M \arrow{d}{\varepsilon_{F_1M}}\arrow{r}{\varphi_M} & F_2M\arrow{d}{\varepsilon_{F_2M}}\\
+    RLF_1M \arrow{d}{RLF_1(\varepsilon_{M})}\arrow{r}{RL(\varphi_M)} & RLF_2M\arrow{d}{RLF_2(\varepsilon_M)}\\
+    RLF_1RLM \arrow{r}{RL(\varphi_{RLM})} & RLF_2RLM
+  \end{tikzcd}$$
+  commutes since the top square commutes by naturality of $\varepsilon$ and the bottom square is just $RL$ applied to the top square.
+  Taking $F_1 = \id_{\Mod{A}} = F_2$, the equivalence gives the desired isomorphism
+  $$Z(A) \cong \End_{\Mod{A}}(\id_{\Mod{A}}, \id_{\Mod{A}}) \cong \End_{\Mod{B}}(\id_{\Mod{B}},\id_{\Mod{B}}) \cong Z(B).$$
+\end{proof}
+
+\begin{proof}[Proof of Corollary~\ref{cor: morita example}]
+  View $P = A^n$ as column vectors equipped with the natural $M_n(A)$-$A$-bimodule structure by matrix multiplication on the left, and scalar multiplication on the right, and $Q = A^n$ as row vectors equipped with the natural $A$-$M_n(A)$-bimodule structure by scalar multiplication on the left and matrix multiplication on the right.
+  The two morphisms
+  $$\begin{tikzcd}[row sep=tiny]
+    P \otimes_A Q \arrow{r} & A\\
+    p \otimes q \arrow[mapsto]{r} & \sum p_i q_i
+  \end{tikzcd}$$
+  and
+  $$\begin{tikzcd}[row sep=tiny]
+    Q \otimes_{M_n(A)} P \arrow{r} & M_n(A)\\
+    q \otimes p \arrow[mapsto]{r} & (q_ip_j)
+  \end{tikzcd}$$
+  give the morphita equivalence.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                %
+%                 Bibliography                   %
+%                                                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{thebibliography}{99}
+\bibitem[AS]{AS} M. Artin and W. Schelter, Graded algebras of dimension 3, Adv. Math. \textbf{66} (1987), 172-216.
+  
+\bibitem[AZ94]{AZ}
+  M. Artin, J. J. Zhang, \emph{Noncommutative projective schemes}, Adv. Math. 109 (1994), no. 2, pp. 228--287.
+\bibitem[AS95]{AS}
+  Artin, M., and Stafford, J.T.. \emph{Noncommutative graded domains with quadratic..}, Inventiones mathematicae 122.2 (1995): 231-276
+\bibitem[BvdB03]{BV}
+  A. Bondal, M. van den Bergh, \emph{Generators and representability of functors in commutative and noncommutative geometry}, Mosc. Math. J., 3 (2003), no. 1, pp. 1--36, 258.
+  
+\bibitem[CS15]{CS}
+  A. Canonaco, P. Stellari, \emph{Internal Homs via extensions of dg functors}, Adv. Math. 277 (2015), 100-123.
+
+\bibitem[Dyc11]{Dyckerhoff}
+  Dyckerhoff, Tobias. Compact generators in categories of matrix factorizations. Duke Math. J. 159 (2011), no. 2, 223--274.
+
+\bibitem[Ga73]{DCA}
+  Gabriel, P.. "Des catégories abéliennes." Bulletin de la Société Mathématique de France 90 (1962): 323-448.
+\bibitem[Hov01]{Hov01}{}
+  M. Hovey, \emph{Model category structures on chain complexes of sheaves}, Trans. Amer. Math. Soc. 353 (2001), no. 6, 2441--2457.
+
+\bibitem[Kel95]{Kel95}
+  B. Keller, \emph{Deriving DG categories}, Ann. Sci. \'{E}cole Norm. Sup. \textbf{27} (1995), 63-102.
+
+\bibitem[Kel06]{Kel06}
+  B. Keller, \emph{On differential graded categories}, International Congress of Mathematicians, Vol. II, 151–190, Eur. Math. Soc., Zu ̈rich, 2006.
+  
+\bibitem[LO10]{Lunts Orlov}
+  Lunts, Valery A.; Orlov, Dmitri O. {\em Uniqueness of enhancement for triangulated categories}. J. Amer. Math. Soc. 23 (2010), no. 3, 853--908.
+
+\bibitem[Orl97]{Orlov}
+  Orlov, D. O. {\em Equivalences of derived categories and K3 surfaces}. Algebraic geometry, 7. J.
+  Math. Sci. (New York) 84 (1997), no. 5, 1361–1381.
+\bibitem[Ric89]{JR89}
+  Rickard, J. {\em Morita Theory for Derived Categories}. Journal of the London Mathematical Society \textbf{2} (1989), no. 3, 436.
+
+\bibitem[Spa88]{Spaltenstein}
+  Spaltenstein, N. {\em Resolutions of unbounded complexes}. Compositio Math. 65 (1988), no. 2, 121--154.
+
+\bibitem[Tab05]{Tab05}
+  G. Tabuada, \emph{Une structure de cat\'{e}gorie de mod\`{e}les de Quillen sur la cat\'{e}gorie des dg-cat\`{e}gories}, Comptes Rendus de l'Academie de Sciences de Paris \textbf{340} (2005), 15--19.
+  
+\bibitem[To\"e07]{Toen}
+  B. To\"en. \emph{The homotopy theory of dg-categories and derived Morita theory}. Invent. Math. 167 (2007), no. 3, 615--667. 
+  
+\bibitem[VdB97]{VdB}
+  M. van den Bergh, \emph{Existence theorems for dualizing complexes over non-commutative graded and filtered rings}, J. Algebra 195 (1997), no. 2, pp. 662--679.
+
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,1245 @@
+\documentclass[reqno, 12pt]{amsart}
+\usepackage{style}
+
+\title[Seminar]{Homological Algebra Seminar}
+\author{Blake Farman}
+\date{October 4, 2017}
+
+\begin{document}
+\maketitle
+
+\section{\cite[Section 1.6]{Weibel95}: More on Abelian Categories}
+\begin{lemma}
+  Let $\C$ be a full subcategory of an abelian category, $\A$.
+  \begin{enumerate}
+  \item
+    $\C$ is additive if and only if $\C$ contains the zero object and $\C$ is closed under biproducts.
+  \item
+    $\C$ is abelian and the inclusion functor $\imath \colon \C \to \A$ is exact if and only if $\C$ is additive and $\C$ is closed under taking kernels and cokernels.
+  \end{enumerate}
+\end{lemma}
+
+\begin{remark}
+  The usage of 'closed' in the second statement is ambiguous.
+  There are two possible readings of closed.
+  The first is the literal reading, which says that whenever $f \in \C(X,Y)$, taking the kernel, $\op{ker}(f) \colon K \to X$, in $\A$ implies that $K$ is actually an object of $\C$.
+  This seems overly restrictive (if not false), for reasons that will become clear in the proof.
+
+  Instead, we take the second possible reading, which seems more appropriate in the categorical setting.
+  For any morphism $f \in \C(X,Y)$, denote by $\op{ker}(f)_{\A} \colon K \to X$ and by $\op{ker}(f)_{\C} \colon K^\prime \to X$ the kernels taken in $\A$ and $\C$, respectively.
+  To say that $\C$ is closed under kernels is to say that there exists a unique isomorphism $h \in \A(K^\prime,K)$ making the diagram
+  $$\begin{tikzcd}[column sep=huge]
+      & K^\prime \arrow{d}{\op{ker}(f)_\A}\arrow[dashed,swap]{ld}{\exists !h}\\
+      K \arrow{r}{\op{ker}(f)_\C} & X \arrow{r}{f} & Y
+  \end{tikzcd}$$
+  commute.
+  Closure under cokernels is formally dual.
+
+  It should be noted that this says that we can always \emph{choose} an object of $K$ of $\C$ and a morphism $K \to X$ that satisfies the universal property for kernels, not that all choices of a kernel have domain an object of $\C$.
+  This is a subtle but somewhat important distinction.
+\end{remark}
+\begin{proof}
+  \noindent
+  \begin{enumerate}
+  \item
+    First assume that $\C$ is additive.
+    By definition, $\C$ admits a zero object, say $Z$ and is closed under biproducts.
+    Using that 0 is final and initial in $\A$, there exist unique morphisms $Z \to 0$ and $0 \to Z$ of $\A$.
+    Composing
+    $$0 \to Z \to 0$$
+    is necessarily the identity since $\A(0,0)$ is a singleton.
+    Similarly, the composition
+    $$Z \to 0 \to Z$$
+    must also be the identity because, by assumption,
+    $$\A(Z,Z) = \C(Z,Z)$$
+    is a singleton.
+    Therefore $Z \cong 0$.
+
+    Conversely, we note that $\C$ is an $\Ab$-category because it is a full subcategory of an abelian category; that is, for all objects $X$ and $Y$ of $\C$,
+    $$\C(X,Y) = \A(X,Y)$$
+    is an abelian group.
+    The fact that $\C$ is additive now follows from the definition.
+
+  \item
+    If $\C$ is abelian, then, by definition, $\C$ is additive, has all kernels and cokernels, and is binormal (i.e. every monic is the kernel of its cokernel, and every epi is the cokernel of its kernel).
+    The fact that the inclusion is exact says that taking the kernel in $\C$ and taking the kernel in $\A$ is the same (up to unique isomorphism) in the following sense.
+    If we denote by $\op{ker}(f)_{\C} \colon K \to X$ the kernel of $f \in \C(X,Y) = \A(X,Y)$ in $\C$ and by $\op{ker}(f)_{\A} \colon K^\prime \to X$ the kernel of $f$ in $\A$, then we have a commutative diagram
+    $$\begin{tikzcd}[column sep=huge]
+      & K^\prime \arrow{d}{\op{ker}(f)_\A}\arrow[dashed,swap]{ld}{\exists !h}\\
+      K \arrow{r}{\op{ker}(f)_\C} & X \arrow{r}{f} & Y
+    \end{tikzcd}$$
+    with $h \in \A(K^\prime, K)$ an isomorphism.
+    This is our definition of closed under kernels in the remarks above.
+    Passing to the opposite category, we obtain by duality that $\C$ is closed under cokernels.
+    
+    \begin{remark}
+      We note that without further assumptions on $\C$, such as replete (meaning any object of $\A$ isomorphic to an object of $\C$ is itself an object of $\C$), it's not necessarily true that $K^\prime$ is an object of $\C$.
+    \end{remark}
+
+    
+    Conversely, assume that $\C$ is additive and closed under taking kernels and cokernels.
+    By assumption, the inclusion functor is exact: for any morphism $f \in \C(X,Y)$, any kernel $\op{ker}(f) \colon K \to X$ is again a kernel in for $f$ in $\A$.
+    To see that $\C$ is abelian, we need only show that $\C$ is binormal.
+    We show that monics are normal and note that the formally dual argument shows epis are also normal.
+    
+    Assume that $f \in \C(X,Y)$ is monic.
+    We have a commutative diagram
+    $$\begin{tikzcd}
+      & K \arrow{d}{\op{im}(f)}\\
+      X \arrow{rd}{0}\arrow{r}{f}\arrow[dashed]{ur}{\exists !h} & Y  \arrow{d}{\op{coker}(f)} \\& C
+    \end{tikzcd}$$
+    in $\C$ and include it into $\A$.
+    By exactness of the inclusion functor and the fact that $\A$ is abelian, it follows that $h$ admits an inverse
+    $$h^{-1} \in \A(K, X) = \C(K,X).$$
+    Therefore $f$ is the kernel of $\op{coker}(f)$, as desired.
+  \end{enumerate}
+\end{proof}
+
+\subsection{Functor Categories}
+Let $\C$ and $\D$ be categories and let $F, G \colon \C \to \D$ be functors.
+A natural transformation, $\eta \colon F \to G$, is a collection of morphisms, $\eta(X) \in \D(F(X), G(X))$, indexed by the objects of $\C$ subject to the condition that for all morphisms $f \in \C(X,Y)$ the diagram
+$$\begin{tikzcd}
+  X \arrow{d}{f} & F(X)\arrow{d}{F(f)}\arrow{r}{\eta(X)} & F(X)\arrow{d}{G(f)}\\
+  Y & F(Y) \arrow{r}{\eta(Y)} & G(Y)
+\end{tikzcd}$$
+commutes.
+
+The functor category, $\Fun(\C,\D)$, is the category with objects functors $F \colon \C \to \D$ and morphisms natural transformations, $\eta \colon F \to G$.
+
+\begin{example}
+  Let $A$ be a ring.
+  Define the additive category $\A$ to be the category with one object, $\ast$, and morphisms $\A(\ast,\ast) = A$.
+  The category $\A$ is called a ringoid (with one object).
+  The full additive subcategory of $\Fun(\A, \Ab)$ is usually denoted by $\Mod{A}$, the category of left $A$-modules, and the full additive subcategory of $\Fun(\A^\opp, \Ab)$ is usually denoted by $\Mod{A^\opp}$, the category of right $A$-modules.
+  Here, the ring $A^\opp$ is just the ring with its $A$-action reversed:
+  $$a_1 \cdot a_2 := a_2a_1$$
+  which makes no difference when $A$ is commutative.
+
+  The equivalence of these categories is the following observation.
+  The functor $F \colon \A \to \Ab$ identifies an abelian group, $M = F(\ast)$, and an $A$-action given by a morphism of abelian groups
+  $$F(\ast,\ast) \colon \A(\ast,\ast) = A \to \Ab(M,M).$$
+  Explicitly, for an element $a \in A = \A(\ast,\ast)$ and an element $m \in M$, the endomorphism $F(a)$ of the abelian group, $M$, defines the the action of $A$ on $M$ by
+  $$\begin{tikzcd}[row sep=tiny]
+    F(a) \colon M \arrow{r}& M\\
+    m \arrow[mapsto]{r} & a \cdot m
+  \end{tikzcd}$$
+  This action is associative because $F$ is a functor
+  $$(ab) \cdot m = F(ab)(m) = F(a) \circ F(b)(m) = F(a)(b \cdot m) = a \cdot( b \cdot m)$$
+  and respects the addition on $M$ because $F$ is additive
+  $$a \cdot (m_1 + m_2) = F(a)(m_1 + m_2) = F(a)(m_1) + F(a)(m_2) = a \cdot m_1 + a \cdot m_2.$$
+
+  For two functors $F,G \colon \A \to \Ab$, let $M = F(\ast)$ and $N = G(\ast)$.
+  A natural transformation $\eta \colon F \to G$ is the data of a morphism $\varphi = \eta(\ast) \colon M \to N$ such that for all $a \in A$ the diagram  
+  $$\begin{tikzcd}
+    \ast \arrow{d}{a} & M \arrow{r}{\varphi}\arrow{d}{a} & N\arrow{d}{a}\\
+    \ast & M \arrow{r}{\varphi} & M
+  \end{tikzcd}$$
+  commutes.
+  That is,
+  $$a \cdot \varphi(m) = G(a) \circ \eta(\ast)(m)= \eta(\ast) \circ F(a)(m) = \varphi(a \cdot m).$$
+\end{example}
+
+\begin{example}
+  Let $G = (G,+)$ be an abelian group.
+  A $G$-graded ring, $A$, is a ring with a decomposition as abelian groups
+  $$A = \bigoplus_{g \in G} A_g$$
+  such that $A_g A_h \subseteq A_{g + h}$.
+  The objects of the abelian group $A_g$ are called the \textbf{homogenous degree $g$ elements of $A$}.
+  The canonical example is the $\Z$-graded ring $A[x_1, \ldots, x_n]$ where one defines for $n < 0$ the abelian groups $A_{-n} = 0$, $A_0 = A$, and $A_n$ the $A$-span of degree $n$ monomials (here, e.g., $x_1x_2\cdots x_n$ has degree $n$).
+
+  A $G$-graded module over a $G$-graded ring, $A$, is just an abelian group $M$ with a decomposition
+  $$M = \bigoplus_{g \in G} M_g$$
+  such that $A_g M_h \subseteq M_{g + h}$.
+  A morphism $\varphi \colon M \to N$ of $G$-graded modules is a morphism of $A$-modules that respects the grading
+  $$\varphi(M_g) \subseteq N_g.$$
+  
+  Analogous to the previous example, we construct a ringoid, $\A$, with $G$ objects.
+  The objects of $\A$ are the elements of $G$ and the morphisms are
+  $$\A(g,h) = A_{h - g}.$$
+  Composition of morphisms is simply the multiplication
+  $$\begin{tikzcd}[row sep=tiny]
+    \A(g,h) \times \A(h,k) \arrow{r} & \A(g,k)\\
+    (a,b) \arrow[mapsto]{r} & ab
+  \end{tikzcd}$$
+  since
+  $$\A(g,h)\A(h,k) = A_{h - g}A_{k - h} \subseteq A_{k - g} = \A(g,k).$$
+
+  An additive functor $\M \colon \A \to \Ab$ is just the data of $G$-many abelian groups, $M_g := \M(g)$, equipped a structure morphism
+  $$\M(g,h) \colon \A(g,h) = A_{h - g} \to \Ab(M_g, M_h).$$
+  For any two elements $g,h \in G$, this defines an action of $A_g$ on $M_h$ in the following way.
+  Consider the morphism of abelian groups
+  $$\M(h,g + h) \colon \A(h,g+h) = A_{g} \to \Ab(M_h, M_{g + h}).$$
+  For any element $a \in A_g = \A(h,g+h)$ we define the action of $a$ on $M_h$ by the morphism
+  $$\M(a) \colon M_h \to M_{g + h}.$$
+  This ensures that the abelian group
+  $$M := \bigoplus_{g \in G} M_g$$
+  is a $G$-graded module over the $G$-graded ring, $A$.
+
+  A morphism, $\eta$, of functors $\M,\N \colon \A \to \Ab$ is just the data of $G$-many morphisms of abelian groups
+  $$\eta(g) \colon M_g \to N_g$$
+  such that all diagrams
+  $$\begin{tikzcd}
+    g\arrow{d}{a} & M_g\arrow{d}\arrow{r} & N_g\arrow{d}\\
+    h & M_h\arrow{r} & N_h
+  \end{tikzcd}$$
+  The morphism $\varphi \colon M \to N$ induced from the $\eta(g)$ by the universal property for coproducts is easily seen to be an $A$-linear morphism of abelian groups that respects the grading via the defining commutative diagrams
+  $$\begin{tikzcd}
+    M_g \arrow{r}\arrow{d}{\eta(g)} & M\arrow{d}{\varphi}\\
+    N_g \arrow{r} & N 
+  \end{tikzcd}$$
+\end{example}
+
+\begin{exercise}[Chain Complexes Are Modules]
+  An $\Ab$-enriched category, $\C$, is essentially a category with morphism sets $\C(X,Y)$ abelian groups.
+  An $\Ab$-enriched functor, $F \colon \C \to \D$, between two $\Ab$-enriched categories is essentially just a functor for which the morphisms
+  $$F(X,Y) \colon \C(X,Y) \to \D(X,Y)$$
+  are morphisms of abelian groups.
+
+  Fix your favorite commutative ring, $k$.
+  For the two sentences above, replace $\Ab$ now with the category of chain complexs, $\Ch{k}$ and essentially you have the definition of $\Ch{k}$-enriched and $\Ch{k}$-enriched functor.
+  The natural transformations require some care, but essentially it boils down to just saying that a degree $n$ natural transformation is a collection of morphisms $\eta(C) \colon F(C) \to G(C)[n]$ for all objects $C$ of the domain.
+  The natural transformations will naturally collate themselves into a chain complex, with the collection of all degree $n$ natural transformations being the $k$-module in degree $n$.
+  Since $\Ch{k}$-enriched is terrible to write, one usually calls these Differential Graded Categories (or dg-categories) and Differential Graded Functors (or dg-functors).
+
+  Fix two cochain complexes, $C$ and $D$, over $k$.
+  One computes the internal hom (read: the cochain complex of homomorphisms between cochain complexes) by forming the double complex
+  $$\begin{tikzcd}
+  & & \vdots & \vdots & \vdots\\
+  h_{D^{y+1}}\left(C\right) & \cdots \arrow{r} & h_{D^{y+1}}\left(C^{x+1}\right)\arrow{u}\arrow{r} & h_{D^{y+1}}\left(C^x\right)\arrow{u}\arrow{r} & h_{D^{y+1}}\left(C^{x-1}\right) \arrow{u}\arrow{r} & \cdots\\
+  h_{D^{y}}\left(C\right) & \cdots \arrow{r} & h_{D^{y}}\left(C^{x+1}\right)\arrow{u}\arrow{r} & h_{D^{y}}\left(C^x\right)\arrow{u}\arrow{r} & h_{D^{y}}\left(C^{x-1}\right) \arrow{u}\arrow{r} & \cdots\\
+  h_{D^{y-1}}\left(C\right) & \cdots \arrow{r} & h_{D^{y-1}}\left(C^{x+1}\right)\arrow{u}\arrow{r} & h_{D^{y-1}}\left(C^x\right)\arrow{u}\arrow{r} & h_{D^{y-1}}\left(C^{x-1}\right) \arrow{u}\arrow{r} & \cdots\\
+  & & \vdots\arrow{u} & \vdots\arrow{u} & \vdots\arrow{u}\\
+  & & h^{C^{x+1}}\left(D\right) & h^{C^x}\left(D\right) & h^{C^{x-1}}\left(D\right)
+  \end{tikzcd}$$
+  where $h_{D^{y}}(C^x) = \Mod{(k)}(C^x, D^y)$ and $h^{C^x}(D^y) = \Mod{(k)}(D^y,C^x)$ are the morphisms as $k$-modules.
+  Generally speaking, this is not a bounded complex, so totalising with respect to the product and coproduct are \emph{not} the same.
+  One totalizes this complex with respect to the product to get the hom cohain complex
+  $$\CH{k}(C,D)^n = \prod_{x + y = n} \Mod{(k)}(C^x, D^{x+n})$$
+  with the differential applied to an element $f \in \CH{k}(C,D)^n$ given by
+  $$d_D \circ f + (-1)^{n+1} f \circ d_C.$$
+  \begin{remark}
+    \noindent
+    \begin{enumerate}
+    \item
+      The specifics of this construction are not entirely important at the moment.
+      The idea is just to realize that one can construct such an object.
+    \item
+      One can perform a similar operation with tensor products, totalizing with the coproduct instead of the product, which is the left adjoint of this Hom total complex (in complete analogy with the usual Tensor-Hom adjunction of modules).
+      This makes $\CH{k}$ an example of a symmetric monoidal closed category.
+      The tensor product equipped with natural isomorphisms $C \otimes_k D \cong D \otimes_k C$ is the symmetric monoidal structure, and the internal hom (which is the right adjoint of the tensor product) is the closed structure.
+      This appears later in \cite{Weibel95}.
+    \end{enumerate}
+  \end{remark}
+  We can take the category $\CH{k}$ to be the category with objects chain complexes and morphisms given by this Hom-total complex, $\CH{k}(C,D)$.
+  This is the canonical dg-category.
+  Note that the degree zero cocycles of $\CH{k}(C,D)$ are \emph{exactly} the usual morphisms of chain complexes, $\Ch{k}(C,D)$.
+  One can construct from any dg-category, $\A$, ancillary categories $Z^0(\A)$ and $H^0(\A)$ which have the same objects as $\A$, but morphisms
+  $$Z^0(\A)(X,Y) = Z^0(\A(X,Y))\ \text{and}\ H^0(\A)(X,Y) = H^0(\A(X,Y))$$
+  (recall that $\A(X,Y)$ is a \emph{cochain complex}).
+  In our current language, $\Ch{k} = Z^0(\CH{k})$, and the category $\mathbf{K}(k)$ from \cite[Exercise 1.4.5]{Weibel95} is just $H^0(\CH{k})$.
+  
+
+  Now fix your favorite unital (ungraded) $k$-algebra, $A$; this means a ring, $A$, equipped with a morphism $k \to A$.
+  If you choose $k = \Z$, and like to think about commutative things, this just means $A$ is a commutative ring.
+  Take your associated ringoid, $\A$, and recognize this as a dg-category by viewing the morphisms $\A(\ast,\ast)$ as the chain complex with $A$ in degree 0 and differentials the zero morphisms.
+  Now recognize the full dg-subcategory of $\Fun(\A^\opp,\CH{k})$ (this means all contravariant functors $F \colon \A \to \CH{k}$ such that the structure morphism $A \to \CH{k}(F(\ast), F(\ast))$ is a morphism of complexes) as the dg-category $\CH{A^\opp}$ with objects chain complexes of right $A$-modules.
+  Moreover, one recovers the usual category of chain complexes as $\Ch{A^\opp} = Z^0(\CH{A^\opp})$, and the homotopy category $\mathbf{K}(A) = H^0(\CH{A^\opp})$.
+  One regards the category $\CH{A}$ as the so-called dg $\A$-modules, $\dgMod{\A}$.
+
+  The seemingly strange choice of defining $\dgMod{\A}$ to be contravariant functors arises from the convenience of having an enriched Yoneda embedding
+  $$\begin{tikzcd}[row sep=tiny]
+    \A \arrow{r}& \dgMod{\A}\\
+    X \arrow[mapsto]{r} & \A(-, X)
+  \end{tikzcd}$$
+  In the world of commutative rings, this choice is artificial since the rings $A$ and $A^\opp$ are morita equivalent, meaning that the categories of left and right modules are equivalent.
+
+  The truly adventurous reader will attempt to formulate such an equivalence for a graded ring, $A$.
+  The generalization is more or less straightforward, but without being a little bit clever, is quite tedious.
+  There is an explcit construction in \cite{KNCP} (shameless, I know).
+\end{exercise}
+
+As the example of modules over a ring might suggest, the main advantage of functor categories is that they inherit the properties of the codomain in the following sense.
+
+\begin{proposition}\label{prop: functor cats to ab are ab}
+  Let $\C$ be any category and let $\A$ be an abelian category.
+  The full additive subcategory of the functor category $\Fun(\C,\A)$ is abelian.
+\end{proposition}
+
+\begin{proof}
+  The main observation here is that all the nice properties of the abelian category are inherited from $\A$ levelwise.
+
+  The $\Ab$-enrichment comes from defining the levelwise addition of natural transformations.
+  Given two natural transformations $\eta,\nu \colon F \to G$, they are simply the data of morphisms
+  $$\eta(X), \nu(X) \in \A(FX,GX)$$
+  indexed by the elements of $\C$ subject to commutativity of naturality squares.
+  We define their sum to be
+  $$\eta + \nu(X) = \eta(X) + \nu(X) \in \A(FX,GX)$$
+  and need only check that the diagrams
+  $$\begin{tikzcd}[column sep=large]
+    X \arrow{d}{f} & FX \arrow{d}{F(f)}\arrow{r}{\eta(X) + \nu(X)} & GX\arrow{d}{G(f)}\\
+    Y & FY \arrow{r}{\eta(Y) + \nu(Y)} & GY
+  \end{tikzcd}$$
+  But this follows from bilinearity of composition in $\A$
+  \begin{eqnarray*}
+    G(f) \circ (\eta(X) + \nu(X)) &=& G(f) \circ \eta(X) + G(F) \circ \eta(X)\\
+    &=& \eta(Y) \circ F(f) + \nu(Y) \circ F(f)\\
+    &=& \left(\eta(Y) + \nu(Y)\right) \circ F(f).
+  \end{eqnarray*}
+
+  Next we define kernels and cokernels levelwise.
+  Given a natural transformation $\eta \colon F \to G$, for each object $X$ we have a short exact sequence of $\A$
+  $$\begin{tikzcd}
+    0 \arrow{r} & K(X) \arrow{r}{\op{ker} \eta(X)} & F(X) \arrow{r}{\eta(X)} & G(X) \arrow{r}{\op{coker} \eta(X)} & C(X) \arrow{r} & 0.
+  \end{tikzcd}$$
+  We define the two functors
+  $$\begin{tikzcd}[row sep=tiny]
+    K \colon \C \arrow{r}& \A & & C \colon \C \arrow{r} & \A\\
+    X \arrow[mapsto]{r}& K(X) & & X \arrow[mapsto]{r} & C(X)
+  \end{tikzcd}$$
+  then check that the collection of morphisms $(\op{ker} \eta)(X) := \op{ker} \eta(X)$ and $(\op{coker} \eta)(X) := \op{coker} \eta(X)$ form natural transformations.
+
+  We exhibit the kernel and note that the cokernel is formally dual.
+  For any morphism $f \in \C(X,Y)$, we have the commutative diagram
+  $$\begin{tikzcd}
+    K(X) \arrow{r}{\op{ker} \eta(X)}\arrow[dashed]{d}{\exists !K(f)} & F(X) \arrow{r}{\eta(X)}\arrow{d}{F(f)} & G(X)\arrow{d}{G(f)}\\
+    K(Y) \arrow{r}{\op{ker} \eta(Y)} & F(Y) \arrow{r}{\eta(Y)} & G(Y)
+  \end{tikzcd}$$
+  because
+  $$\eta(Y) \circ F(f) \circ \op{ker} \eta(X) = G(f) \circ \eta(X) \circ \op{ker} \eta(X) = 0.$$
+  Hence $\op{ker} \eta \colon K \to F$ is a natural transformation.
+
+  Finally, we note that the normality of kernels and cokernels is equivalent to the factorization of any natural transformation $\eta \colon F \to G$.
+  Since the factorization of a morphism of $\A$ is a decomposition into a coimage morphism followed by an image morphism
+  $$\begin{tikzcd}
+    A \arrow{rr}{f}\arrow[swap]{rd}{\op{coim} f = \op{coker}(\op{ker}f)} && B\\
+    & f(A) \arrow[swap]{ur}{\op{im} f = \op{ker}(\op{coker} f)}
+  \end{tikzcd}$$
+  the factorization in $\Fun(\C,\A)$ can be defined level-wise
+  $$\begin{tikzcd}
+    FX \arrow{rr}{\eta(X)} \arrow[swap]{rd}{\op{coim} \eta(X)} && GX\\
+    & \eta(X)(FX) \arrow[swap]{ur}{\op{im} \eta(X)}
+  \end{tikzcd}$$
+  In particular, $\op{ker} \eta$ is the kernel of $\op{coim} \eta$ and $\op{coker} \eta$ is the cokernel of $\op{im} \eta$.
+\end{proof}
+
+\begin{definition}
+  Let $F \colon \A \to \B$ be a an additive functor between abelian categories.
+  We say $F$ is \textbf{left exact} (resp. \textbf{right exact}) if for every short exact sequence
+  $$0 \to A \to B \to C \to 0$$
+  of $\A$ the sequence
+  $$0 \to FA \to FB \to FC\ (\text{resp.}\ FA \to FB \to FC \to 0)$$
+  is exact in $\B$.
+  If $F$ is both left exact and right exact, then we say that $F$ is \textbf{exact}.
+  That is to say, $F$ preserves exact sequences.
+
+  Formally, we say that a contravariant functor $F \colon \A \to \B$ is (left/right) exact if the covariant functor $F \colon \A^\opp \to \B$ is (left/right) exact.
+\end{definition}
+
+\begin{lemma}
+  Let $\A$ be an abelian category and consider two morphisms
+  $$A \overset{f} \to B \overset{g} \to C.$$
+  If $g$ is monic, then $\op{ker}(g \circ f) = \op{ker} f$.
+  Dually, if $f$ is epic, then $\op{coker}(g \circ f) = \op{coker} g$.
+\end{lemma}
+\begin{proof}
+  It suffices to show that $\op{ker} f \colon K \to A$ satisfies the universal property.
+  Towards that end, suppose we have a morphism $\zeta \colon Z \to B$ such $(g \circ f) \circ \zeta = 0$.
+  Since $g$ is monic, this implies that $f \circ \zeta = 0$ and so we have a commutative diagram
+  $$\begin{tikzcd}
+    &Z\arrow{d}{\zeta}\arrow[dashed,swap]{ld}{\exists !h}\\
+    K \arrow{r}{\op{ker} f} &A \arrow{r}{g \circ f} & C
+  \end{tikzcd}$$
+  Therefore $\op{ker} f = \op{ker}(g \circ f)$.
+\end{proof}
+
+\begin{exercise}
+  Show that the above definitions are equivalent to the following.
+  A functor $F \colon \A \to \B$ is left (resp. right) exact if exactness of the sequence
+  $$0 \to A \to B \to C\ (\text{resp.}\ A \to B \to C \to 0)$$
+  implies exactness of the sequence
+  $$0 \to FA \to FB \to FC\ (\text{resp.}\ FA \to FB \to FC \to 0).$$
+\end{exercise}
+
+\begin{proof}
+  We handle here the equivalence of definitions of left exact, since the equivalence of definitions of right exact are formally dual.
+
+  One should note the two subtly different statements these definitions make.
+  The first definition says, precisely, that $F$ preserves kernels of cokernels, while the second says that $F$ preserves kernels of all morphisms.
+  Given that every morphism in an abelian category factors as an epimorphism followed by a monomorphism
+  $$\begin{tikzcd}
+    B \arrow{rr}{g}\arrow[swap]{rd}{\op{coim} g} && C\\
+    & g(B) \arrow[swap]{ur}{\op{im} g}
+  \end{tikzcd},$$
+  and abelian categories are binormal, this suggests that the two notions should be the same in an abelian category.
+  Moreover, this factorization should be the key to the forward direction.
+
+  The reverse implication is trivial, since kernels of cokernels are, obviously, kernels.
+  Explicitly, given an exact sequence
+  $$0 \to A \to B \to C \to 0$$
+  the sequence
+  $$0 \to A \to B \to C$$
+  is also exact, so
+  $$0 \to FA \to FB \to FC$$
+  is exact.
+  
+  Assume that $F$ is left exact as in the first definition and consider an exact sequence
+  $$0 \to A \overset{f}\to B \overset{g}\to C.$$
+  The first definition asserts that
+  $$F(f) = F(\op{im}f) = F(\op{ker}(\op{coker}f) = \op{ker}F(\op{coker}f)$$
+  while the second definition says that we should have
+  $$\op{ker}F(g) = F(\op{ker}g) = F(f).$$
+  This implies that the desired result is
+  $$\op{ker} F(\op{coker} f) = \op{ker} F(g) = \op{ker}\left( F(\op{im}g) \circ F(\op{coim} g)\right).$$
+  We reduce further by observing that $F(\op{im}g)$ is necessarily monic because
+  $$F(\op{im}g) = F(\op{ker}(\op{coker}g)) = \op{ker}F(\op{coker} g),$$
+  hence
+  $$\op{ker} F(g) = \op{ker}\left( F(\op{im}g) \circ F(\op{coim} g)\right) = \op{ker} F(\op{coim} g).$$
+  The key observation is now that, since $f = \op{ker} g$,
+  $$\op{coker}f = \op{coker}(\op{ker}g) =: \op{coim}g$$
+  and the result now follows.
+\end{proof}
+
+\begin{remark}
+  Alternatively, we could rephrase the latter argument with the following diagram argument.
+  We have, by unicity, a commutative diagram
+  $$\begin{tikzcd}
+    0 \arrow{r} & A \arrow[bend left]{rr}{0}\arrow{r}{f} & B \arrow{r}{\op{coim}(g)}\arrow{d}{g} & B/A \arrow[dashed]{ld}{\exists !\op{im}(g)} \to 0\\
+    & & C
+  \end{tikzcd}$$
+  with exact top row.
+  Now assume that we have a morphism $\zeta \colon Z \to F(B)$ such that $F(g) \circ \zeta = 0$.
+  We obtain by applying $F$ a commutative diagram of $\B$
+  $$\begin{tikzcd}[column sep=huge]
+    &&Z\arrow{d}{\zeta}\arrow[dashed,swap]{ld}{\exists !h}\\
+    0 \arrow{r} & FA \arrow{r}{F(f)} & FB \arrow{d}{F(g)}\arrow{r}{F(\op{coim}g)} & FC^\prime \arrow{ld}{F(\op{im}g)}\\
+    & & FC
+  \end{tikzcd}$$
+  since the middle row is exact, and, as $F(\op{im}g)$ is monic,
+  \begin{eqnarray*}
+    F(\op{im}g) \circ F(\op{coim}g) \circ \zeta
+    &=& F(\op{im}g \circ \op{coim}g) \circ \zeta\\
+    &=& F(g) \circ \zeta\\
+    &=& 0
+  \end{eqnarray*}
+  implies $F(\op{coim}g) \circ \zeta = 0$.
+  Therefore $F(f) = \op{ker} F(g)$, as desired.
+\end{remark}
+
+\begin{proposition}
+  Let $\A$ be an abelian category.
+  For every object $A$ of $\A$, the covariant functor
+  $$\begin{tikzcd}[row sep=tiny]
+    h^A \colon \A \arrow{r} & \Ab\\
+    B \arrow[mapsto]{r} & \A(A,B)
+  \end{tikzcd}$$
+  is left exact.
+\end{proposition}
+\begin{proof}
+  Fix an object $A$ of $\A$.
+  For any exact sequence
+  $$0 \to X \overset{f}\to Y \overset{g}\to Z \to 0$$
+  consider the sequence
+  $$\begin{tikzcd}
+    \A(A,X) \arrow{r}{h^A(f)} & \A(A,Y) \arrow{r}{h^A(g)} & \A(A,Z)
+  \end{tikzcd}$$
+  It's clear that for any morphism $A \to X$ such that the composition
+  $A \to X \overset{f}\to Y$ is the zero morphism, then the morphism $A \to X$ is necessarily zero by the definition of monic.
+  Hence $h^A(f)$ is monic.
+
+  It's similarly clear that
+  $$h^A(g) \circ h^A(f) = h^A(g \circ f) = 0$$
+  so it suffices to show that $h^A(f)$ is the kernel of $h^A(g)$.
+  Let $h \in \A(A,Y)$ be a morphism for which $h^A(g)(h) = 0$.
+  Since $f = \ker{g}$ we have a commutative diagram
+  $$\begin{tikzcd}
+    & A\arrow{d}{h}\arrow[dashed,swap]{ld}{\exists !k}\\
+    X \arrow{r}{f} & Y \arrow{r}{g} & Z
+  \end{tikzcd}$$
+  and so we see that $h^A(f)(k) = f \circ k = h$.
+\end{proof}
+
+\begin{corollary}\label{cor: reps are lex}
+  Let $\A$ be an abelian category.
+  For every object $A$ of $\A$, the contravariant functor
+  $$\begin{tikzcd}[row sep=tiny]
+    h_A \colon \A \arrow{r} & \Ab\\
+    B \arrow[mapsto]{r} & \A(B,A)
+  \end{tikzcd}$$
+  is left exact.
+\end{corollary}
+\begin{proof}
+  Apply the previous Proposition to $\A^\opp$.
+\end{proof}
+
+\subsection{The Yoneda Embedding}
+For any locally small category, $\C$, there is a functor
+$$\begin{tikzcd}[row sep=tiny]
+  h \colon \C \arrow{r} & \Fun(\C^\opp, \op{{\bf Sets}})\\
+  X \arrow[mapsto]{r} & h_X
+\end{tikzcd}$$
+called the Yoneda embedding.
+The objects in the essential image of the Yoneda embedding are called \textbf{representable functors}.
+When $\A$ is an abelian category, we can modify this functor to have codomain $\widehat{\A}$, the full additive subcategory of $\Fun(\A,\Ab)$.
+Here, the word embedding means that the Yoneda functor is fully faithful.
+That is, for every pair of objects $A$,$B$ of $\A$, there is an isomorphism of abelian groups
+$$\A(A,B) \cong \widehat{\A}(h_B, h_A).$$
+A morphism $f \colon A \to B$ is sent to the collection of morphisms
+$$\begin{tikzcd}[row sep=tiny]
+  h^X(f) \colon \A(X,B) \arrow{r} & \A(X,A)\\
+  g \arrow[mapsto]{r} & f \circ g
+\end{tikzcd}$$
+which is easily verified to be natural by way of the diagram
+$$\begin{tikzcd}
+  Y\arrow{d}{g} & \A(X,B) \arrow{d}{h^B(g)}\arrow{r}{h^X(f)} & \A(X,A)\arrow{d}{h^A(g)}\\
+  X & \A(Y,B) \arrow{r}{h^Y(f)} & \A(Y,A)
+\end{tikzcd}$$
+and the fact that the composition is associative.
+
+The isomorphism follows from the more general fact.
+\begin{proposition}[Yoneda Lemma]
+  Let $\A$ be a locally small abelian category.
+  For any functor $F \colon \A^\opp \to \Ab$ there is an isomorphism of abelian groups
+  $$\widehat{\A}(h_A, F) \cong F(A).$$
+
+  In particular,
+  $$\widehat{\A}(h_A, h_B) \cong h_B(A) = \A(A,B)$$
+\end{proposition}
+
+\begin{proof}
+  The obvious morphism is defined by
+  $$\begin{tikzcd}[row sep=tiny]
+    \widehat{\A}(h_A, F) \arrow{r} & F(A)\\
+    \eta \arrow[mapsto]{r} & \eta(A)(\id_A)
+  \end{tikzcd}$$
+  One constructs a morphism in the other direction as follows.
+  Given an element $p \in F(A)$, define for each object $X$ of $\A$ the morphism
+  $$\begin{tikzcd}[row sep=tiny]
+    p(X) \colon \A(X,A) \arrow{r} & F(X)\\
+    f \arrow[mapsto]{r} & F(f)(p)
+  \end{tikzcd}$$
+  The naturality square
+  $$\begin{tikzcd}
+    Y \arrow{d}{g} & \A(X,A) \arrow{d}{h_A(g)}\arrow{r}{p(X)} & F(X)\arrow{d}{F(g)}\\
+    X & \A(Y,A) \arrow{r}{p(Y)} & F(Y)
+  \end{tikzcd}$$
+  commutes since for any $f \colon X \to A$ we have
+  $$F(g) \circ p(X)(f) = F(g) \circ F(f)(p) = F(f \circ g)(p) = F(h_A(g)(f))(p) = p(Y) \circ h_A(g)(f).$$
+
+  Finally, one verifies that these compose to the respective identities essentially by chasing the identity on $A$ through the diagram
+  $$\begin{tikzcd}
+    X\arrow{d}{f} & \A(A,A) \arrow{d}{h_A(f)}\arrow{r}{\eta(A)}& F(A)\arrow{d}{F(f)}\\
+    A & \A(X,A) \arrow{r}{\eta(X)} & F(X)
+  \end{tikzcd}$$
+  for arbitrary $\eta \colon h_A \to F$ to see that if $p = \eta(A)(\id_A) \in F(A)$, then
+  $$p(X)(f) = F(f)(p) = \eta(X)(f)$$
+\end{proof}
+
+A nice fact about the Yoneda embedding is that it suffices to study functors, which often times are nicer than the objects, in the following sense.
+
+\begin{proposition}
+  Let $F \colon \C \to \D$ be a fully faithful functor.
+  An element $f \in \C(X,Y)$ is an isomorphism if and only if $F(f) \in \D(FX,FY)$ is an isomorphism.
+  Any such functor is said to \textbf{reflect isomorphisms}.
+\end{proposition}
+
+\begin{proof}
+  The forward direction is clear from the definition of functor, so assume that $F(f)$ is an isomorphism with inverse $g \in \D(FY, FX)$.
+  Since $F$ is full, there exists some $h$ such that $g = F(h)$.
+  Since $F$ is faithful we see that $h = f^{-1}$ by
+  $$F(\id_X) = \id_{F(X)} =  F(f) \circ F(h) = F(f \circ h)$$
+  and
+  $$F(\id_Y) = \id_{F(Y)} =  F(h) \circ F(f) = F(h \circ f).$$
+\end{proof}
+\begin{proposition}
+  For a locally small abelian category, $\A$, the Yoneda embedding is left exact.
+  Moreover, the Yoneda functor reflects exactness.
+\end{proposition}
+
+\begin{proof}
+  The first statement is essentially just combining the fact that kernels are computed levelwise and Corollary~\ref{cor: reps are lex}.
+  Given a short exact sequence of $\A$
+  $$0 \to A \overset{f}\to B \overset{g}\to C \to 0$$
+  the morphisms 
+  $$h_A \overset{h(f)} \to h_B \overset{h(g)}\to h_C$$
+  are levelwise the exact sequences
+  $$\begin{tikzcd}
+    0 \arrow{r} & \A(X,A) \arrow{r}{h^X(f)} & \A(X,B) \arrow{r}{h^X(g)} & \A(X,C).
+  \end{tikzcd}$$
+  This establishes that $h_A \overset{h(f)}\to h_B$ is the kernel of $h(g)$.
+
+  For the second statement, assume that
+  $$h_A \overset{\eta} \to h_B \overset{\nu}\to h_C$$
+  is an exact sequence of $\widehat{\A}$.
+  Under the isomorphism
+  $$\widehat{\A}(h_X, h_Y) \cong \A(X,Y)$$
+  we see that by defining $f = \eta(A)(\id_A)$ and $g = \nu(B)(\id_B)$ we have $\eta = h(f)$ and $\nu h(g)$.
+  The sequence
+  $$A \to B \to C$$
+  is indeed a complex since
+  $$g \circ f = h^A(g) \circ h^A(f)(\id_A) = \eta(A) \circ \nu(A)(\id_A) = 0.$$
+
+  We have the inclusion
+  $$\begin{tikzcd}
+    A \arrow{r}{f}\arrow{d}[swap]{\op{coim}f} & B \arrow{r}{\op{coim} g} & g(B) \arrow{r}{\op{im}g} & C\\
+    f(A) \arrow{ur}{\op{im} f}\arrow[dashed]{r}{\exists !\alpha} & K \arrow[swap]{u}{\op{ker} g}
+  \end{tikzcd}$$
+  induced by the universal property of $\op{ker} g = \op{ker}(\op{coim} g)$.
+  Namely, $\op{coim} g \circ \op{im} f = 0$ since $\op{im} g$ is monic, $\op{coim} f$ is epic, and
+  $$0 = g \circ f = \op{im}g \circ \op{coim} g \circ \op{im} f \circ \op{coim} f.$$
+  Using the exactness of the original sequence, we have a morphism $\beta \in \A(K,A)$ by
+  $$\begin{tikzcd}[row sep=tiny]
+    \A(K,A) \arrow{r}{h^K(f)} & \A(K,B) \arrow{r}{h^K(g)} & \A(K,C)\\
+    \exists \beta \arrow[mapsto]{r} & \op{ker} g \arrow[mapsto]{r} & 0
+  \end{tikzcd}$$
+  We show that $\alpha^{-1} = \op{coim} f \circ \beta$.
+
+  We see that
+  $$\op{ker} g \circ \id_K
+  = \op{ker} g
+  = \op{im} f \circ \op{coim} f \circ \beta
+  = \op{ker} g \circ \alpha \circ \op{coim} f \circ \beta$$
+  implies, because $\op{ker} g$ is monic, that
+  $$\id_K = \alpha \circ (\op{coim} f \circ \beta).$$
+  In the other direction we have
+  $$\op{im} f \circ \op{coim} f \circ \beta \circ \alpha = f \circ \beta \circ \alpha = \op{ker} g \circ \alpha = \op{im} f \circ \id_{f(A)}$$
+  which implies that $\id_{f(A)} = \op{coim} f \circ \beta \circ \alpha$ because $\op{im} f$ is monic.
+  Therefore $\alpha$ is an isomorphism and the sequence
+  $$A \overset{f}\to B \overset{g}\to C$$
+  is exact.
+\end{proof}
+
+\subsection{Weakly Effaceable Functors}
+For the original reference, see Grothendieck's landmark Tohoku paper, \cite{Tohoku}.
+
+\begin{definition}
+  We say that a functor $W \colon \A^\opp \to \Ab$ is \textbf{weakly effaceable} if for every object $X$ of $\A$ and every element $x \in W(X)$, there exists an epimorphism $P \overset{f}\to X \to 0$ of $\A$ such that $W(f)(x) = 0$.
+\end{definition}
+
+Consider the failure of the exactness of the Yoneda embedding.
+For a given exact sequence
+$$0 \to A \overset{f}\to B \overset{g}\to C \to 0$$
+we can define for each object $X$ the object $W(X)$ by the exact sequence
+$$\begin{tikzcd}
+  0 \arrow{r} \A(X,A) \arrow{r}{h^X(f)} & \A(X,B) \arrow{r}{h^X(g)} & \A(X,C) \arrow{r}{p(X)} & W(X) \arrow{r} & 0 
+\end{tikzcd}$$
+with $p(X) = \op{coker} h^X(g)$.
+It's clear from the universal nature of $p$ and $W(X)$ that this assignment is functorial and $p$ is a natural transformation.
+
+Given an object $x \in W(X)$, we can always choose a representative $h \in \A(X,C)$ and construct the pullback in $\A$
+$$\begin{tikzcd}
+0 \arrow{r} &  K \arrow{r}{\op{ker} g^\prime}\arrow[dashed]{d}{\exists !\op{iso}} & X \times_C B \arrow{d}{h^\prime}\arrow{r}{g^\prime} & X \arrow{d}{h}\arrow{r} & 0\\
+0 \arrow{r} & A \arrow{r}{f} & B \arrow{r}{g} & C \arrow{r} & 0
+\end{tikzcd}$$
+with exact rows.
+We obtain by the naturality of $p$ a commutative diagram
+$$\begin{tikzcd}
+  \A(X,C) \arrow{r}{p(X)}\arrow{d}{h_C(g^\prime)} & W(X)\arrow{d}{W(g^\prime)}\\
+  \A(X \times_C B, C) \arrow{r}{p(X \times_C B)} & W(X \times_C B)
+\end{tikzcd}$$
+and see that $W$ is effaceable by
+\begin{eqnarray*}
+  W(g^\prime)(x) &=& W(g^\prime) \circ p(X)(h)\\
+  &=& p(X \times_C B) \circ h_C(g^\prime)(h)\\
+  &=& p(X \times_C B)(h \circ g^\prime)\\
+  &=& p(X \times_C B)(g \circ h^\prime)\\
+  &=& p(X \times_C B)\circ h^{X \times_C B}(g)(h)\\
+  &=& 0
+\end{eqnarray*}
+
+\begin{remark}
+  In general, this weakly effaceable functor is \emph{not} trivial.
+  As an easy example, take a PID, $A$, $T \to T^\prime$ a non-zero morphism of torsion $A$-modules, and
+  $$0 \to F_1 \to F_2 \to T^\prime \to 0$$
+  a free resolution.
+  The sequence
+  $$0 \to \Mod{A}(T,F_1) \to \Mod{A}(T,F_2) \to \Mod{A}(T,T^\prime) \to 0$$
+  will be exact if and only if we have a lift of every diagram
+  $$\begin{tikzcd}
+    & T\arrow{d}\arrow[dashed,swap]{ld}{\exists}\\
+    F_2 \arrow{r} & T^\prime \arrow{r} & 0
+  \end{tikzcd}$$
+  However, this is impossible because torsion is left orthogonal to free; that is for any free $A$-module, $F$, $\Mod{A}(F, T) \cong 0$.
+
+  Concretely, take $A = Z$, and the resolution
+  $$0 \to \Z \overset{2}\to \Z \overset{p}\to \Z/2\Z \to 0.$$
+  The sequence
+  $$0\to \Ab(\Z/6\Z,\Z/2\Z) \to 0$$
+  is not exact because of the canonical quotient $\Z/6\Z \to \Z/2\Z.$
+\end{remark}
+
+We can now make a somewhat unusual definition.
+\begin{definition}
+  An object $P$ of $\A$ for which \emph{every} weakly effaceable functor, $W$, constructed as above satisfies $W(P) = 0$ are \textbf{projective objects}, which correspond precisely to \textbf{injective objects} of the opposite category, $\A^\opp$.
+\end{definition}
+
+This is a somewhat perverse definition; the normal way to define a projective object of $\A$ is as an object $P$ for which the functor $\A(P, -)$ is exact, and the injective objects of $\A$ are those $Q$ for which the functor $\A(-, Q)$ is exact.
+
+\subsection{Injective Envelopes and Grothendieck Categories: An Interlude}
+We will have use for specific types of injective objects, that are in some sense maximal.
+The existence of such objects is nontrivial and, frankly, out of scope for these notes.  As such, we simply define the objects and loosely quote a result about Grothendieck categories.
+
+We start with a couple of definitions.
+
+\begin{definition}
+  An object $G$ of a category $\C$ is called a generator if for any two morphisms $f \neq g \in \C(X,Y)$, there exists a morphism $h \in \C(G,X)$ such that the diagram
+  $$\begin{tikzcd}
+    & G \arrow{rd}{h}\arrow{ld}{h}\\
+    X \arrow{d}{f} & & X\arrow{d}{g}\\
+    Y \arrow{rr}{\id_Y} && Y
+  \end{tikzcd}$$
+  does not commute.
+\end{definition}
+
+\begin{definition}
+  An abelian category $\mathcal{A}$ is called a \textbf{Grothendieck category} if
+  \begin{itemize}
+  \item
+    $\A$ has a generator,
+  \item
+    $\A$ has all coproducts, and
+  \item
+    filtered colimits (it's likely you know these by the unfortunate name 'direct limit') are exact.
+  \end{itemize}
+\end{definition}
+
+The canonical Grothendieck categories are module categories.
+
+\begin{definition}
+  Let $\A$ be an abelian category.
+  \begin{enumerate}
+  \item
+    An \textbf{essential monomorphism} is a monomorphism, $e \colon X \to E$, such that for every non-zero monomorphism, $m \colon Y \to E$, the pullback
+    $$\begin{tikzcd}
+      X \times_E Y \arrow{r}\arrow{d} & Y\arrow{d}{m}\\
+      X \arrow{r}{e} & E
+    \end{tikzcd}$$
+    is non-zero.
+  \item
+    An essential monomorphism $e \colon X \to Q$ for $Q$ an injective object of $\A$ is called an \textbf{injective envelope}.
+  \end{enumerate}
+\end{definition}
+
+\begin{remark}
+  In the world of commutative algebra, it seems common to call an essential monomorphism an essential extension.
+  One defines such an object, $E$, to be a module containing $M$ such that every submodule $E^\prime$ of $E$ intersects $M$ non-trivially.
+  Since modules are just group objects in the category of sets equipped with a ring action, the fiber product over the canonical inclusions $M \to E$, $E^\prime \to E$ above is easily recognizable as $M \times_E E^\prime = M \cap E^\prime$, the fiber product in the category of sets.
+  Since module categories are canonically Grothendieck abelian categories, this justifies the extension to arbitrary abelian categories.
+  
+  Injective hull and maximal essential extensions are also commonly used alternatives for injective envelope.
+\end{remark}
+
+\begin{proposition}
+  For $\A$ any locally small abelian category, the functor category $\widehat{\A}$ has injective envelopes.
+\end{proposition}
+
+\begin{proof}
+  This essentially follows from the fact that $\Ab$ is Grothendieck, and hence so is $\widehat{\A}$.  See, for example, \cite[Section 9.6]{KaSch05}.
+\end{proof}
+
+\subsection{Localizing Subcategories and Sections of a Quotient}
+In this section, we will provide a nice characterization of the full subcategory, $\mathcal{L}$, of left exact functors $\mathcal{\A}$.
+
+\begin{definition}
+  A full subcategory, $\mathcal{S}$, of an abelian category, $\A$ is called a Serre (or \'{e}paisse/thick/dense) subcategory if for any short exact sequence
+  $$\begin{tikzcd}
+    0 \arrow{r} & X^\prime \arrow{r} & X \arrow{r} & X^{\prime\prime} \arrow{r} & 0
+  \end{tikzcd}$$
+  of $\A$, $X$ is an object of $\mathcal{S}$ if and only if both $X^\prime$ and $X^{\prime\prime}$ are.
+\end{definition}
+
+\begin{proposition}
+  The full subcategory $\mathcal{W}$ of $\widehat{\A}$ with objects weakly effaceable functors is a Serre subcategory.
+\end{proposition}
+
+\begin{proof}
+  Let
+  $$0 \to F \overset{\eta}\to G \overset{\nu} \to H \to 0$$
+  be a short exact sequence of $\widehat{\A}$.
+
+  First assume that $G$ is weakly effaceable.
+  Given an object $X$ of $\A$, choose an element $y \in HX$ and let $x \in \nu(X)^{-1}(y)$.
+  Choose an epimorphism $P \overset{f}\to X \to 0$ of $\A$ such that $G(f)(x) = 0$.
+  Then
+  $$H(f)(y) = H(f) \circ \nu(X) (x) = \nu(P) \circ G(f)(x) = 0.$$
+  Similarly, choose an element $z \in FX$ and an epimorphism $g \colon P^\prime \to X$ such that
+  $$0 = G(g) \circ \eta(X)(z) = \eta(P^\prime) \circ F(g)(z).$$
+  Since $\eta$ is monic, $F(g)(z) = 0$.
+  Hence $F$ and $H$ are weakly effaceable.
+
+  Conversely, assume that $F$ and $H$ are both weakly effaceable.
+  Given an object $X$ of $\A$ and an element $x \in GX$, choose an epimorphism $f \colon P \to X$ such that
+  $$H(f) \circ \nu(X)(x) = \nu(P) \circ G(f)(x) = 0$$
+  and pull $G(f)(x)$ back to $z \in FP$ along $\eta(P)$.
+  Choose an epimorphism $g \colon P^\prime \to P$ such that $F(g)(z) = 0$.
+  Then we have
+  $$G(g) \circ G(f)(x) = G(g) \circ \eta(P)(z) = \eta(P^\prime) \circ F(g)(z) = 0.$$
+  Therefore $G$ is weakly effaceable.
+\end{proof}
+
+
+Serre subcategories of an abelian category could, reasonably, be thought of as something like normal subgroups in the following sense.
+
+\begin{definition}
+  Let $\A$ be an abelian category and let $\mathcal{S}$ be a Serre subcategory.
+  The quotient category $\A/\mathcal{S}$ is the category with the same objects as $\A$ and morphisms given by the filtered colimit
+  $$\A/\mathcal{S}(X,Y) = \colim_{X^\prime, Y^\prime} \A(X^\prime, Y/Y^\prime)$$
+  over the collection of all subobjects $X^\prime$ of $X$ such that $X/X^\prime$ is an object of $\mathcal{S}$ and $Y^\prime$ is an $\mathcal{S}$-subobject of $Y$.
+
+  This category is also abelian and there is a canonical additive functor $\pi \colon \A \to \A/\mathcal{S}$.
+\end{definition}
+
+\begin{remark}
+  This is not necessarily trivial.  For the original reference, see \cite{Ga62}.
+\end{remark}
+
+Our eventual goal is to identify the full subcategory, $\mathcal{L}$, of left exact functors as the quotient category of $\widehat{\A}$ by the Serre subcategory $\mathcal{W}$.
+The quotient category $\widehat{\A}/\mathcal{W}$ indeed exists, but we want the following nicer characterization.
+
+\begin{proposition}\label{prop: quotient by effaceable is lex}
+  Let $\A$ be a locally small abelian category.
+  There exists an exact functor
+  $$\pi \colon \widehat{\A} \to \mathcal{L}$$
+  that is the identity on left exact functors and is zero only on $\mathcal{W}$.
+
+  Moreover, this functor is the left adjoint of the canonical inclusion of $\mathcal{L}$ into $\widehat{\A}$.
+  Such a functor is called a \textbf{reflection} and the category $\mathcal{L}$ is called a \textbf{reflective subcategory}.
+\end{proposition}
+
+Recall that a pair of functors $L \colon \C \to \D$ and $R \colon \D \to \C$ are said to be an \textbf{adjoint pair} if for all objects $X$ of $\C$ and $Y$ of $\D$ there is an isomorphism
+$$\D(LX, Y) \cong \C(X, RY)$$
+natural in both slots.
+
+In the language of localization of categories, this Proposition boils down to saying that the Serre subcategory $\mathcal{W}$ is a localizing subcategory and $\widehat{\A}/\mathcal{W}$ is equivalent to $\mathcal{L}$.
+More precisely,
+
+\begin{definition}
+  A Serre subcategory, $\mathcal{S}$, of an abelian category, $\A$, is called \textbf{localizing} if the canonical projection $\pi \colon \A \to \A/\mathcal{S}$ admits a fully faithful right adjoint, $\omega \colon \A/\mathcal{S} \to \A$.
+
+  The functor $\omega$ is usually called the section functor because it gives rise to a natural isomorphism, $\varepsilon \colon \id_\A \to \omega \circ \pi$, called the unit of adjunction.
+  In this sense, $\omega$ truly is a section of $\pi$.
+\end{definition}
+
+\begin{remark}
+  Every adjunction $L \dashv R \colon \C \to \D$ gives rise to a unit $\varepsilon \colon \id_{\C} \to RL$ (as well as a counit, $\eta \colon LR \to \id_{\D}$), and the condition that $R$ is fully faithful is equivalent to the unit being an isomorphism.
+  Dually, the condition that $L$ is fully faithful is equivalent to the counit being an isomorphism.
+  Assuming these two results, it's clear that $L$ is an equivalence if and only if $L$ and $R$ are both fully faithful.
+\end{remark}
+
+We introduce some language to make the formulation of this result easier.
+
+\begin{definition}
+  Let $\A$ be an abelian category and $\mathcal{S}$ a Serre subcategory.
+  \begin{enumerate}
+  \item
+    We say an object $X$ of $\A$ is {\bf $\mathcal{S}$-torsion free} if every monomorphism $S \to X$ with $S$ an object of $\mathcal{S}$ is zero.
+
+    Equivalently, the $\mathcal{S}$-torsion free objects are right orthogonal to $\mathcal{S}$.
+  \item
+    We say an $\mathcal{S}$-torsion free object, $X$, of $\A$ is {\bf $\mathcal{S}$-closed} if every short exact sequence
+    $$0 \to X \to Y \to S \to 0$$
+    with $S$ an object of $\mathcal{S}$ splits.
+  \end{enumerate}
+\end{definition}
+
+\begin{remark}
+  Note that one can equivalently define an injective object, $Q$, of an abelian category to be an object that splits any short exact sequence
+  $$0 \to Q \to X \to Y \to 0,$$
+  so this is very much the statement that the $\mathcal{S}$-closed objects are a certain type of injective.
+  In particular, $\mathcal{S}$-torsion free injective objects are \emph{always} $\mathcal{S}$-closed.
+\end{remark}
+
+\begin{theorem}
+  Let $\A$ be an abelian category and $\mathcal{S}$ a Serre subcategory.
+  The following are equivalent.
+  \begin{enumerate}
+  \item
+    The canonical projection $\pi \colon \A \to \A/\mathcal{S}$ admits a right adjoint, and
+  \item
+    Every object of $\A$ has a maximal $\mathcal{S}$-subobject, and every object with trivial maximal $\mathcal{S}$-subobject has a monomorphism into an $\mathcal{S}$-closed object.
+  \end{enumerate}
+  In this case, the essential image of the section functor is the full subcategory of $\mathcal{S}$-closed objects.
+\end{theorem}
+
+This effectively states that in the case of $\widehat{\A}$ and the Serre subcategory, $\mathcal{W}$, we need only show the following:
+\begin{itemize}
+\item
+  every functor admits a maximal weakly effaceable subfunctor,
+\item
+  every functor with trivial maximal weakly effaceable subfunctor has a monomorphism into a $\mathcal{W}$-closed object, and
+\item
+  the $\mathcal{W}$-closed objects are the left exact functors.
+\end{itemize}
+
+The first statement is not difficult to prove.
+\begin{proposition}
+  Every additive functor $F \colon \mathcal{A}^\opp \to \Ab$ has a maximal weakly effaceable subfunctor.
+\end{proposition}
+
+\begin{proof}
+  Let $X$ be an object of $\A$.
+  We will call an element $x \in FX$ effaceable if there exists an epimorphism $f \colon P \to X$ such that $F(f)(x) = 0$.
+  Define the set $WX$ to be the subset of effaceable elements of $FX$.
+  Note that this is clearly non-empty since it always contains the zero element.
+  For any pair of elements $x_1, x_2 \in WX$, we can choose epimorphisms
+  $f_1 \colon P_1 \to X$ and $f_2 \colon P_2 \to X$, and it's easy to see that if $f \colon P_1 \times_X P_2 \to X$ is the epimorphism from the pullback to $X$, then
+  $$F(f)(x_1 - x_2) = 0.$$
+  This establishes that $WX$ is indeed an abelian group.
+
+  To see this is indeed a functorial assignment, take a morphism $\varphi \in \A(Y, X)$.
+  For any object $x \in WX$ we can choose an epimorphism $f \colon P \to X$ such that $F(f)(x) = 0$.
+  Taking the pullback in $\A$
+  $$\begin{tikzcd}
+    P \times_X Y\arrow{r}{f^\prime}\arrow{d}{\varphi^\prime} & Y \arrow{r}\arrow{d}{\varphi} & 0\\
+    P \arrow{r}{f} & X \arrow{r} & 0
+  \end{tikzcd}$$
+  we see that
+  $$F(f^\prime) \circ F(\varphi)(x) = F(\varphi^\prime) \circ F(f)(x) = 0.$$
+  Hence we can simply define the morphism $W(\varphi) = F(\varphi)|_{WX}$.
+
+  The canonical inclusion of $W$ into $F$ is clearly natural, and $W$ is necessarily maximal by construction.
+\end{proof}
+
+If the statement we wish to prove is true, then at the very least we must have the following.
+\begin{lemma}
+  An object $F$ of $\widehat{\A}$ is $\mathcal{W}$-torsion free if and only if $F$ transforms epimorphisms in $\A$ into monomorphisms in $\widehat{\A}$.
+  In particular, the objects of $\mathcal{L}$ are $\mathcal{W}$-torsion free.
+\end{lemma}
+\begin{proof}
+  Assume that $M$ transforms epimorphisms of $\A$ into monomorphisms of $\widehat{\A}$.
+  For an object $X$ of $\A$ there exists an effaceable element, $x \in MX$.
+  By definition there exists an epimorphism $f \colon P \to X$ such that $M(f)(x) = 0$.
+  However, by assumption, we have an exact sequence of abelian groups
+  $$0 \to MX \overset{M(f)}\to MP$$
+  and thus $x = 0$.
+  Hence $M$ is $\mathcal{W}$-torsion free.
+
+  Conversely, assume that $F$ is $\mathcal{W}$-torsion free.
+  Given an epimorphism $f \colon P \to X$ of $\A$, suppose that for some $x \in F(X)$ that $F(f)(x) = 0$.
+  By definition, the element $x$ is effaced, so it follows that $x$ must be zero.
+  Therefore $F(f)$ is a monomorphism.
+\end{proof}
+
+To prove the remaining statements, we make use of the fact that $\widehat{\A}$ has injective envelopes.  First a nice statement about the injective objects of $\widehat{\A}$.
+
+\begin{lemma}
+  If $Q \colon \A^\opp \to \Ab$ is an injective object of $\widehat{\A}$, then $Q$ is right exact.
+\end{lemma}
+
+\begin{proof}
+  Consider an exact sequence
+  $$0 \to A \to B \to C \to 0$$
+  of $\A$.
+  Then we have an exact sequence
+  $$0 \to h_A \to h_B \to h_C$$
+  of $\widehat{\A}$.
+  Applying $\widehat{\A}(-,Q)$ we obtain by the Yoneda Lemma the commutative diagram
+  $$\begin{tikzcd}
+    \widehat{\A}(h_C, Q) \arrow{d}[rotate=90,yshift=-.5ex,xshift=-.5ex]{\sim}\arrow{r} & \widehat{\A}(h_B, Q) \arrow{r}\arrow{d}[rotate=90,yshift=-.5ex,xshift=-.5ex]{\sim} & \widehat{\A}(h_A, Q)\arrow{d}[rotate=90,yshift=-.5ex,xshift=-.5ex]{\sim} \arrow{r} & 0\\
+    Q(C) \arrow{r} & Q(B) \arrow{r} & Q(A)
+  \end{tikzcd}$$
+  with exact top row.
+  Therefore $Q$ is right exact.
+\end{proof}
+
+Next we characterize the injective envelopes of $\mathcal{W}$-torsion free objects.
+This characterization will prove important as it will allow us to conclude that $\mathcal{W}$ is indeed a localizing subcategory.
+
+\begin{lemma}
+  If $M$ is a $\mathcal{W}$-torsion free object, then any essential extension, $e \colon M \to E$, is also $\mathcal{W}$-torsion free.
+  Consequently, the injective envelope of an object of any $\mathcal{W}$-torsion free object is exact.
+\end{lemma}
+
+\begin{proof}
+  The second statement boils down to noting that if $E$ is injective, then for any short exact sequence of $\A$
+  $$0 \to A \to B \to C \to 0$$
+  the sequence of abelian groups
+  $$EC \to EB \to EA \to 0$$
+  is exact.
+  The fact that $E$ is torsion free implies $EC \to EB$ is monic and hence
+  $$0 \to EC \to EB \to EA \to 0$$
+  is exact.
+  
+  Assume to the contrary that there exists an epimorphism $f \colon P \to X$ for which $E(f) \colon EX \to EP$ is not monic.
+  Choose an element $0 \neq x \in EX$ such that $E(f)(x) = 0$.
+  Define for each object $Y$ of $\A$ the set
+  $$F(Y) = \left\{y \in EY \;\middle\vert\; \exists g \in \A(Y,X), E(f)(x) = y\right\}.$$
+  If we have a morphism $h \in \A(Y^\prime, Y)$ then for any element $y \in F(Y)$ we have a morphism $g \in \A(Y,X)$ such that $E(g)(x) = y$, so
+  $$E(g \circ h)(x) = E(h) \circ E(g)(x) = E(h)(y)$$
+  implies we have a morphism $F(h) = E(f)|_{FY} \colon FY \to FY^\prime$.
+  That $FY$ is a subgroup is easy to verify.
+
+  It's clear that this is not the zero functor, since $x \in F(X)$, so the pullback $F \times_E M$ is necessarily non-zero because $e$ is essential.
+  In particular, for some $Y$, $F(Y) \times_E M(Y) = F(Y) \cap M(Y) \neq 0$.
+  This implies that there exists a non-zero element $y \in M(Y)$ and a morphism $g \colon Y \to X$ such that $E(g)(x) = y$.
+  If we take pullback in $\A$
+  $$\begin{tikzcd}
+    P \times_X Y \arrow{d}{g^\prime}\arrow{r}{f^\prime} & Y\arrow{d}{g} \arrow{r} & 0\\
+    P \arrow{r}{f} & X \arrow{r} & 0
+  \end{tikzcd}$$
+  then we have a commutative diagram in $\Ab$
+  $$\begin{tikzcd}
+    0 \arrow{r} & M(X) \arrow{r}{M(f)}\arrow{d}{M(g)} & M(P)\arrow{d}{M(g^\prime)}\\
+    0 \arrow{r} & M(Y) \arrow{r}{M(f^\prime)} & M(P \times_X Y)
+  \end{tikzcd}$$
+  We observe that $M(f^\prime)(y) \neq 0$ since $M(f^\prime)$ is monic.
+  But by the diagram
+  $$\begin{tikzcd}
+    E(X) \arrow{r}{E(f)}\arrow{d}{E(g)} & E(P)\arrow{d}{E(g^\prime)}\\
+    E(Y) \arrow{r}{E(f^\prime)} & E(P \times_X Y)\\
+    M(Y)\arrow{u}{e(Y)}\arrow{r}{M(f^\prime)} & M(P \times_X Y)\arrow{u}{e(P \times_XY)}
+  \end{tikzcd}$$
+  we have
+  \begin{eqnarray*}
+    0 
+    &=& E(g^\prime) \circ E(f)(x)\\
+    &=& E(f^\prime) \circ E(g)(x)\\
+    &=& E(f^\prime)(y)\\
+    &=& E(f^\prime) \circ e(Y)(y)\\
+    &=& e(P \times_X Y) \circ M(f^\prime)(y).
+  \end{eqnarray*}
+  Since $e(P \times_X Y)$ is, by assumption, a monomorphism, it follows that $M(f^\prime)(y) = 0$, a contradiction.
+  Therefore $E$ transforms epimorphisms of $\A$ into monomorphisms.
+\end{proof}
+
+\begin{corollary}\label{cor: effaceables are localizing}
+  The Serre subcategory $\mathcal{W}$ is a localizing subcategory.
+\end{corollary}
+
+\begin{proof}
+  For any $\mathcal{W}$-closed object $F$ of $\widehat{\A}$, the injective envelope $e \colon F \to E$ is an essential monomorphism, so $E$ is also $\mathcal{W}$-torsion free.
+  Since $E$ is injective it splits every short exact sequence
+  $$0 \to E \to F \to W \to 0$$
+  and hence is $\mathcal{W}$-closed.
+  Moreover, as will prove useful later, we observe that not only is this a monomorphism into an $\A$-closed object, but it is in fact a monomorphism into an exact functor.
+\end{proof}
+
+It remains only to show that an object is $\mathcal{W}$-closed if and only if it is left exact.
+
+\begin{proposition}\label{prop: effaceable closed iff lex}
+  An object $F$ of $\widehat{\A}$ is $\mathcal{W}$-closed if and only if it is an object of $\mathcal{L}$.
+\end{proposition}
+
+\begin{proof}
+  Given a $\mathcal{W}$-torsion free object $F$ of $\widehat{\A}$, let $e \colon F \to E$ be its injective envelope, and let $p \colon E \to E/F$ be the cokernel of $e$.
+  Note that $E$ is necessarily an exact functor.
+  For a short exact sequence of $\A$
+  $$0 \to A \overset{f}\to B \overset{g}\to C \to 0$$
+  we obtain a commutative diagram
+  $$\begin{tikzcd}
+    & 0\arrow{d} & 0\arrow{d} & 0\arrow{d}\\
+    0 \arrow{r} & F(C) \arrow{r}{F(g)}\arrow{d}{e(C)} & F(B) \arrow{r}{F(f)}\arrow{d}{e(B)} & F(A) \arrow{d}{e(A)}\\
+    0 \arrow{r} & E(C)\arrow{d}{p(C)}\arrow{r}{E(g)} & E(B)\arrow{d}{p(B)}\arrow{r}{E(f)} & E(A)\\
+    0 \arrow{r} & E/F(C)\arrow{r}{E/F(g)} & E/F(B)
+  \end{tikzcd}$$
+  with exact columns and exact middle row.
+  Since the top row is exact if and only if the bottom row is exact, we reduce to showing that $F$ is $\mathcal{W}$-closed if and only if $E/F$ is $\mathcal{W}$-torsion free.
+  
+  First assume that $F$ is $\widehat{\A}$-closed and let $e \colon F \to E$ be its injective envelope.
+  We have a short exact sequence of $\widehat{\A}$
+  $$0 \to F \overset{e}\to E \overset{p}\to E/F \to 0.$$
+  If $m \colon W \to E/F$ is a weakly effaceable subfunctor, then we have the pullback diagram
+  $$\begin{tikzcd}
+    0 \arrow{r} & K \arrow[dashed]{d}{\exists !h}\arrow{r}{\op{ker} p^\prime}& E \times_{E/F} W \arrow{d}{m^\prime}\arrow{r}{p^\prime} & W\arrow{d}{m}\arrow{r} & 0\\
+    0 \arrow{r} & F \arrow{r}{e} & E \arrow{r}{p} & E/F \arrow{r} & 0
+  \end{tikzcd}$$
+  with $h$ an isomorphism.
+  Since $F$ is assumed to be $\mathcal{W}$-closed, the top sequence splits $E \times_{E/F} W \cong F \oplus W$, and we see that the canonical inclusion composes with $m^\prime$ to be the zero morphism
+  $$\begin{tikzcd}
+    W \arrow{rrd}{0}\arrow{r} & F \oplus W \arrow{r}{\sim} & E \times_{E/F} W \arrow{d}{m^\prime}\\
+    & & E
+  \end{tikzcd}$$
+  because $E$ is also $\mathcal{W}$-closed.
+  Since $m^\prime$ is monic, the canonical inclusion is necessarily the zero morphism and by the commutative diagram
+  $$\begin{tikzcd}
+    W \arrow{r}\arrow[swap]{rd}{\id_W} & F \oplus W \arrow{d}\\
+    & W
+  \end{tikzcd}$$
+  we see that $\id_W = 0$ implies $W \cong 0$.
+  Hence $E/F$ is $\mathcal{W}$-torsion free.
+
+  Conversely, assume that $E/F$ is $\mathcal{W}$-torsion free.
+  Necessarily, $F$ is $\mathcal{W}$-torsion free since it is a subfunctor of the $\mathcal{W}$-closed object $E$.
+  Since $E$ is injective we have an extension
+  $$\begin{tikzcd}
+    0 \arrow{r} & F \arrow{d}{e}\arrow{r}{\eta} & G\arrow[dashed]{ld}{\exists \tau}\\
+    & E
+  \end{tikzcd}$$
+  We have a commutative diagram
+  $$\begin{tikzcd}
+    0 \arrow{r} & F \arrow{r}{\eta}\arrow{d}{\id_F} & G \arrow{r}{\nu}\arrow{d}{\tau} & W \arrow{r}\arrow[dashed]{d}{\exists !0} & 0\\
+    0 \arrow{r} & F \arrow{r}{e} & E \arrow{r}{p} & E/F \arrow{r} & 0
+  \end{tikzcd}$$
+  since $\nu = \op{coker} \eta$,
+  $$(p \circ \tau) \circ \eta = p \circ e = 0,$$
+  and $E/F$ is assumed to be $\mathcal{W}$-torsion free.
+  This implies that $p \circ \tau = 0$, so we obtain by the universal property of $e = \op{ker} p$ a commutative diagram
+  $$\begin{tikzcd}
+    & G \arrow[dashed,swap]{ld}{\exists !\gamma}\arrow{d}{\tau}\\
+    F \arrow{r}{e} & E \arrow{r}{p} & E/F
+  \end{tikzcd}$$
+  This gives the desired splitting since $e$ monic and
+  $$e \circ \id_F = e = \tau \circ \eta = e \circ \gamma \circ \eta$$
+  implies $\id_F = \gamma \circ \eta$.
+  Therefore $F$ is $\mathcal{W}$-closed.
+  
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\ref{prop: quotient by effaceable is lex}]
+  By Corollary~\ref{cor: effaceables are localizing}, $\mathcal{W}$ is a localizing subcategory, which means we have a fully faithful section, $\omega \colon \widehat{\A}/\mathcal{W} \to \widehat{\A}$, of the canonical projection, $\pi \colon \widehat{\A} \to \widehat{\A}/\mathcal{W}$.
+  The essential image of $\omega$ is the full subcategory of $\mathcal{W}$-closed objects, which by by Proposition~\ref{prop: effaceable closed iff lex}, is precisely the full subcategory, $\mathcal{L}$, of left exact functors.
+  Since a fully faithful functor induces an equivalence with its essential image, we conclude that $\widehat{\A}/\mathcal{W}$ is equivalent to $\mathcal{L}$, and the reflection onto $\mathcal{L}$ is precisely the composition of $\pi$ with this equivalence.
+\end{proof}
+
+\begin{corollary}
+  The Yoneda embedding
+  $$h \colon \A \to \widehat{\A}$$
+  is exact and fully faithful.
+\end{corollary}
+\begin{proof}
+  We have already shown that $h$ is fully faithful, has essential image in $\mathcal{L}$, and is left exact.
+  We simply observe that we have shown above that for any exact sequence
+  $$0 \to A \to B \to C \to 0$$
+  of $\A$, we have an exact sequence of $\widehat{\A}$
+  $$0 \to h_A \to h_B \to h_C \to W \to 0$$
+  with $W$ a weakly effaceable functor.
+  Since $\pi \colon \widehat{\A} \to \mathcal{L}$ is exact and takes weakly effaceable functors to 0, we obtain a short exact sequence
+  $$0 \to h_A \to h_B \to h_C \to 0$$
+  of $\mathcal{L}$.
+\end{proof}
+\subsection{The Embedding}
+
+We sketch the embedding,
+\begin{theorem}[Mitchell]
+  Let $\A$ be a small abelian category.
+  Then there exists a ring, $A$, and an exact, fully faithful functor $\A \to \Mod{A^\opp}$, the category of right $A$-modules.
+\end{theorem}
+
+\begin{theorem}
+  If $\A$ is a Grothendieck category and $\mathcal{S}$ is a localizing subcategory of $\A$, then $\A/\mathcal{S}$ is again a Grothendieck category.
+\end{theorem}
+
+The heart of the argument is showing that $\mathcal{L}$, which is a Grothendieck category, admits a projective generator, $P$, which, as the name suggests, is both a generator and a projective object of $P$.
+One then applies the following form of a theorem of Gabriel and Mitchell, 
+\begin{theorem}
+  Let $\A$ be a Grothendieck category with a projective generator, $P$.
+  The endomorphisms $A = \A(P,P)$ form a ring, and there is an equivalence of categories between $\Mod{A}$ and $\A$.
+\end{theorem}
+
+For $P$ a projective generator of $\mathcal{L}$, $A = \mathcal{L}(P,P)$, the composition of the functors
+$$\A \to \mathcal{L} \to \Mod{A}$$
+gives the desired embedding.
+\section{\cite[Section 2.1]{Weibel95}: Derived Functors}
+
+\subsection{$\delta$-Functors}
+\begin{definition}
+  A (covariant) \textbf{homological} (resp. \textbf{cohomological}) $\delta$-functor between $\A$ and $\B$ is a collection of additive functors $T_n \colon A \to \B$ (resp. $T^n \colon \A \to \B$) for $0 \leq n$, together with morphisms
+  $$\delta_n \colon T_n(C) \to T_{n-1}(A)\quad (\text{resp.}\ \delta^n \colon T^n(C) \to T^{n+1}(A))$$
+  defined for each short exact sequence $0 \to A \to B \to C \to 0$ of $\A$.
+  Here, we make the convention that $T^n = T_n = 0$ for $n < 0$.
+  These two conditions are imposed:
+  \begin{enumerate}
+  \item
+    For each short exact sequence as above, there is a long exact sequence
+    $$\cdots \to T_{n+1}(C) \overset{\delta}\to T_n(A) \to T_n(B) \to T_n(C) \overset{\delta}\to T_{n-1}(A) \to \cdots$$
+    or, respectively,
+    $$\cdots \to T^{n-1}(C) \overset{\delta}\to T^n(A) \to T^n(B) \to T^n(C) \overset{\delta}\to T^{n+1}(A) \to \cdots$$
+    In particular, $T_0$ is right exact and $T^0$ is left exact.
+  \item
+    For each morphism of short exact sequences
+    $$\begin{tikzcd}
+      0 \arrow{r} & A^\prime \arrow{d}\arrow{r} & B^\prime \arrow{d}\arrow{r} & C^\prime \arrow{d}\arrow{r} & 0\\
+      0 \arrow{r} & A \arrow{r} & B \arrow{r} & C \arrow{r} & 0
+    \end{tikzcd}$$
+    the $\delta$'s give a commutative diagram
+    $$\begin{tikzcd}
+      T_n(C^\prime) \arrow{r}{\delta}\arrow{d} & T_{n-1}(A^\prime)\arrow{d}\\
+      T_n(C) \arrow{r}{\delta} & T_{n-1}(A)
+    \end{tikzcd}$$
+    or, respectively,
+    $$\begin{tikzcd}
+      T^n(C^\prime) \arrow{r}{\delta}\arrow{d} & T^{n+1}(A^\prime)\arrow{d}\\
+      T^n(C) \arrow{r}{\delta} & T^{n+1}(A)
+    \end{tikzcd}$$
+  \end{enumerate}
+\end{definition}
+
+\begin{example}
+  Homology and cohomology give $\delta$-functors from bounded below (co)chain complexes.
+\end{example}
+
+\begin{exercise}
+  Let $\mathcal{S}$ be the category of short exact sequences of $\A$.
+  Show that $\delta_n$ is a natural transformation from the functor sending a short exact
+  $$0 \to A \to B \to C \to 0$$
+  to $T_n(C)$ to the functor sending the same short exact sequence to $T_{n-1}(C)$.
+\end{exercise}
+\begin{proof}
+  Use the naturality square in part 2 of the definition.
+\end{proof}
+
+\begin{example}[$p$-torsion]
+  If $p$ is an integer, the functors $T_0(A) = A/pA$ and
+  $$T_1(A) =\ _pA \equiv \left\{ a \in A \;\middle\vert\; pa = 0\right\}$$
+  fit together to form a homological $\delta$-functor, or a cohomological $\delta$-functor (with $T^0 = T_1$ and $T^1 = T_0$) from $\Ab$ to $\Ab$.
+  To see this, apply the Snake Lemma to
+  $$\begin{tikzcd}
+    0 \arrow{r} & A\arrow{r}\arrow{d}{p} & B \arrow{d}{p}\arrow{r} & C\arrow{d}{p}\arrow{r} & 0\\
+    0 \arrow{r} & A \arrow{r} & B \arrow{r} & C \arrow{r} & 0
+  \end{tikzcd}$$
+  to get the long exact sequence
+  $$0 \to\ _pA \to\ _pB \to\ _pC \overset{\delta}\to A/pA \to B/pB \to C/pC \to 0.$$
+
+  One can easily generalize this to an arbitrary ring element $a \in A$ and a cohomological delta functor $\Mod{A}$ to $\Ab$.
+  Once we define left derived functors, we will see that we obtain a homological $\delta$-functor, $\op{Tor}$, associated to tensor products.
+  In particular, for any short exact sequence of $\Mod{A}$
+  $$0 \to M \to N \to P \to 0$$
+  we have, in this particular example,
+  $$\begin{tikzcd}
+    \cdots \arrow{r} & \op{Tor}^A_2(A/aA, P) \arrow{r} & \op{Tor}^A_1(A/aA, M) \arrow[out=-30,in=150]{lld}\\
+    \op{Tor}^A_1(A/aA, N) \arrow{r} & \op{Tor}^A_1(A/aA,P) \arrow{r} & N/aN\arrow[out=-30,in=150]{lld}\\
+    \arrow{r} M/Am & P/aP \arrow{r} & 0
+  \end{tikzcd}$$
+  
+  where
+  $$M/aM \cong M \otimes_A A/a.$$
+
+  If $a$ is a non-zero divisor, then $\op{Tor}^A_1(A/aA, M) =\ _aM$ and $\op{Tor}^A_n(A/a, M) = 0$ for $2 \leq n$.
+  In general, $\ _aA \neq 0$, while $A$ being a flat $A$-module implies $\op{Tor}_1^A(A/a, A) = 0$, so they aren't the same.
+
+  $\op{Tor}_1^A(M, A/a)$ is the quotient of $\ _aM$ by the submodule ($\ _aA)M$ generated by
+  $$\left\{bm \;\middle\vert\; ab = 0, b \in A, m \in M\right\}.$$
+  These funtors are universal in the following sense.
+\end{example}
+
+\begin{definition}
+  A morphism $S \to T$ of $\delta$-functors is a system of natural transformations $S_n \to T_n$ (resp. $S^n \to T^n$) that commute with $\delta$.
+  This is fancy language for the assertion that there is a commutative ladder diagram connecting the long exact sequences for $S$ and $T$ associated to any short exact sequence in $\A$.
+
+  A homological $\delta$-functor is \textbf{universal} if, given any other $\delta$-functor $S$ and a natural transformation $f_0 \colon S_0 \to T_0$, there exists a unique morphism $\{f_n \colon S_n \to T_n\}$ of $\delta$-functors that extends $f_0$.
+
+  A cohomological $\delta$-functor, $T$, is universal if, given any other $\delta$-functor $S$ and $f^0 \colon T^0 \to S^0$, there exists a unique morphism $T \to S$ of $\delta$-functors extending $f^0$.
+\end{definition}
+
+\begin{example}
+  Homology and cohomology are the canonical universal delta functors.
+  In fact, this will be used to show that left and right derived functors are universal, since they're defined using (co)homology.
+\end{example}
+
+\begin{exercise}
+  If $F \colon \A \to \B$ is an exact functor, show that $T_0 = F$ and $T_n = 0$ for $n \neq 0$ defines a universal $\delta$-functor (of both homological and cohomological type).
+\end{exercise}
+\begin{proof}
+  For any homological $\delta$-functor $S$ with a morphism $f_0 \colon S_0 \to F$, define the $f_n$ to be the zero morphism.
+  This is clearly the unique morphism since for any short exact sequence
+  $$0 \to A \to B \to C \to 0$$
+  the long exact sequence of $F$ is just
+  $$\cdots \to 0 \to 0 \to FA \to FB \to FC \to 0.$$
+
+  The cohomological case is formally dual.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\bibliographystyle{alpha}
+\bibliography{bibliography}
+\end{document}

@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+NAME1="project.summary"
+NAME2="project.description"
+PDFDIR=../pdf/
+FILE1="${NAME1}.tex"
+FILE2="${NAME2}.tex"
+texi2pdf $FILE1
+texi2pdf ${FILE2}
+
+if [ ! -d ../pdf ]; then
+    mkdir ../pdf
+fi
+
+mv ${NAME1}.pdf ../pdf
+mv ${NAME2}.pdf ../pdf
+
+rm -fr *.log
+rm -fr *.aux
+rm -fr *.bbl
+rm -fr *.blg
+rm -fr *~
