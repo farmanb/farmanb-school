@@ -1,11 +1,14 @@
 #!/usr/bin/env bash
 NAME1="project.summary"
 NAME2="project.description"
+NAME3="biosketch"
+NAME4="references"
 PDFDIR=../pdf/
 FILE1="${NAME1}.tex"
 FILE2="${NAME2}.tex"
-texi2pdf $FILE1
-texi2pdf ${FILE2}
+FILE3="${NAME3}.tex"
+FILE4="${NAME4}.tex"
+texi2pdf ${FILE1} && texi2pdf ${FILE2} && texi2pdf ${FILE3} && texi2pdf ${FILE4}
 
 if [ ! -d ../pdf ]; then
     mkdir ../pdf
@@ -13,6 +16,8 @@ fi
 
 mv ${NAME1}.pdf ../pdf
 mv ${NAME2}.pdf ../pdf
+mv ${NAME3}.pdf ../pdf
+mv ${NAME4}.pdf ../pdf
 
 rm -fr *.log
 rm -fr *.aux
