@@ -47,7 +47,7 @@ The main theorem of \cite{Orlov1997} is that equivalences of derived categories 
 The spectacular advantage of having kernels is the translation of an equivalence of derived categories, which is intrinsically cohomological data at the level of triangulated categories, to geometric data encoded by the kernel.
 The potency of this relationship is borne out by tying the minimal model program of birational geometry to semi-orthogonal decompositions of the derived category in \cite{Bridgeland02,kawamata2002} and the notion of Bridgeland stability \cite{Bri07, ABCH13, BM14a, BM14b}, which demonstrate the mixture of derived categories, moduli spaces, and birational geometry.
 
-The third point, which is the reason for this proposal, is that the methods of derived categories may yet serve as the dictionary between the methods of projective algebraic geometry and the study of noncommutative algebra.
+The final point, which is the reason for this proposal, is that the methods of derived categories may yet serve as the dictionary between the methods of projective algebraic geometry and the study of noncommutative algebra.
 While a direct generalization of schemes to noncommutative rings is, in some sense, highly pathological, one does have a good notion of quasi-coherent and coherent sheaves.
 The success in the commutative case to express geometric phenomena through the derived category suggests that the noncommutative analogue should serve as a bridge between these worlds.
 %The success in the commutative case to express geometric phenomena through the derived category suggests that derived categories should serve as a bridge between the methods of projective algebraic geometry and noncommutative algebra.
@@ -107,9 +107,9 @@ Specifically, we require that two connected graded algebras, $A$ and $B$, over a
 Under the same hypotheses, we obtain, as an easy corollary, a pleasing derived Morita statement.
 \begin{theorem}[\cite{BF17}]
   If there exists an equivalence
-  $$f \colon \operatorname{D}(\operatorname{QGr} A) \to \operatorname{D}(\operatorname{QGr} B)$$
+  $f \colon \operatorname{D}(\operatorname{QGr} A) \to \operatorname{D}(\operatorname{QGr} B)$
   then there exists an object $P$ of $\operatorname{D}\left(\operatorname{QGr} \left(A^{\operatorname{op}} \otimes_k B\right)\right)$ and a Fourier-Mukai transform
-  $$\Phi_P \colon \operatorname{D}(\operatorname{QGr} A) \to \operatorname{D}(\operatorname{QGr} B)$$
+  $\Phi_P \colon \operatorname{D}(\operatorname{QGr} A) \to \operatorname{D}(\operatorname{QGr} B)$
   that is an equivalence.
 \end{theorem}
 
@@ -118,34 +118,87 @@ Under the same hypotheses, we obtain, as an easy corollary, a pleasing derived M
 %identifies these internal Homs for more geometrically and establishes such Fourier-Mukai kernels for Noncommutative Projective Schemes \cite{BF17} by imposing common cohomological conditions on the rings.
 
 \section{Research Objectives, Methods and Significance}
+
 As the introduction of Fourier-Mukai kernels to noncommutative algebraic geometry is a new development, there are a great many questions suggested by the commutative case that need to be addressed.
 Some questions include
 \begin{enumerate}[(a)]
 \item
   How far away from isomorphic are derived equivalent noncommutative projective schemes?
+
+  As noted in the introduction, partial answers to this question have been given in the commutative case.
+  For curves over an algebraically closed field, isomorphism and derived equivalence are the same thanks to \cite{Orlov1997}.
+  For dimension two, this also holds true for surfaces that not elliptic, abelian, or K3 \cite[Prop. 12.1]{HuyFMT}.
+  For higher dimensions, it is known that there are countably many derived equivalent surfaces \cite{AnToe}.
 \item
-  As in Mukai's work, can moduli spaces of sheaves on a variety be encoded in the derived category of a noncommutative projective scheme?
+  Can moduli spaces of sheaves on a noncommutative variety be encoded in the derived category of a noncommutative projective scheme?
+
+  From Mukai's work \cite{Mukai81,Mukai87}, this is known in the commutative case, with special cases in which the moduli space can be the entire derived category.
 \item
   Can Bridgeland stability be ported over from the commutative case?
   \begin{itemize}
   \item
     Constructions exist for Sklyanin algebras, which suggest that this may be possible.
   \item
-    Bridgeland started with K3 surfaces, so it seems natural to start with the noncommutative projective Calabi-Yau schemes of \cite{kanazawa2015}.
+    Bridgeland started with K3 surfaces \cite{Bri07,Bri08}, so it seems natural to start with the noncommutative projective Calabi-Yau schemes of \cite{kanazawa2015}.
   \end{itemize}
+
+  For the commutative case, seminal papers \cite{Bri07, ABCH13, BM14a, BM14b} stand as the guiding intuition, while \cite{LiZhMMP} gives practical guidance on how to make this work in noncommutative geometry with constructions for the Sklyanin algebras.
     \item
     Does the analogue of \cite{Bondal-Orlov} hold in noncommutative projective geometry?
 \end{enumerate}
-To the third point, the classification results of \cite{ATV} make use of the so-called point modules, which serve as a noncommutative analogue of points of a scheme.
-Bondal and Orlov make use of the skyscraper sheaves of points in their classification of fully-faithful functors of Fourier-Mukai type, and the plentitude of point modules from \cite{ATV} indicate that the Sklyanin algebras, which are those algebras of the form
-$$S_{abc} = k\langle x,y,z \rangle/(axy + byx + cz^2, ayz + bzy + cx^2, azx + bxz + cy^2),$$
-may prove amenable to this type of analysis.
-Towards Artin's conjecture, the author proposes to study conditions for which the quasi-coherent sheaves, $\operatorname{QGr} A$, of a connected graded $k$-algebra, $A$, can be detected by point modules.
-The author expects that this should yield, in some cases, a noncommutative analogue of \cite{Bondal-Orlov} for the Sklyanin algebras.
+To the final point, the Bondal-Orlov reconstruction theorem forms a cornerstone for our understanding of derived categories.
+For a variety with ample canonical or anti-canonical bundle, this result says that the data of the derived category is as robust as the data of the variety itself, and clearly demonstrates the depth of geometric information found in the derived category.
+The author wonders, can we expect this to hold for non-commutative projective schemes?
+
+On the one hand, it is false if we replace varieties by stacks--the derived category of the weighted projective stack, $\mathbb{P}(1,1,2)$, is equivalent to the derived category of the Hirzebruch surface, $\mathbb{F}_2$ \cite{BF12}.
+Both of these can be viewed as noncommutative projective schemes, the stacky weighted projective space $\mathbb{P}(a,b,c)$ as graded modules over $k[x,y,z]$ with weights $a,b,c$ on $x,y,z$, which has ample anti-canonical bundle.
+%This is Fano.
+The anti-canonical divisor on the Hirzebruch surface $\mathbb{F}_2$ is nef and big, but not ample.
+So already we see some interesting relationships developing in the mildly noncommutative case of stacks.
+
+We can avoid stackiness by restricting our attention to graded algebras generated in degree one and pose the question anew.
+It seems likely that this remains true in the noncommutative setting.
+The first case to understand is the noncommutative analogues of $\mathbb{P}^2$.
+These were classified in \cite{ATV,Stephenson96,Stephenson97} and are the Artin-Schelter regular algebras \cite{AS87} of Gelfand-Kirillov dimension 3 with Hilbert series $(1-t)^{-3}$ \cite[Section 11]{SVdB01}.
+%, which includes the Sklyanin algebras
+$$S_{abc} = k\langle x,y,z \rangle/(axy + byx + cz^2, ayz + bzy + cx^2, azx + bxz + cy^2).$$
+More importantly, the tool of classification--moduli of point modules--aligns perfectly with the method of Bondal-Orlov point objects.
+Indeed, the noncommutative analogues of a $\mathbb{P}^2$ fall broadly into two categories \cite{Stafford02}: those that are an honest $\mathbb{P}^2$ in the sense that $\operatorname{qgr} A$ is equivalent to the coherent sheaves on a commutative $\mathbb{P}^2$, and those whose point modules are parametrized by an elliptic curve, the latter containing the Sklyanin algebras.
+
+Some questions arise naturally: for a noncommutative $\mathbb{P}^2$, are the point modules a spanning class of the derived category?
+More generally, when are the point modules a spanning class?
+Can one classify the point objects in the derived categories of a noncommutative $\mathbb{P}^2$ in the style of \cite{Bondal-Orlov}?
+Answers to these questions will provide deeper insight into the structure of noncommutative projective geometry in general.
+
+%the classification results of \cite{ATV} make use of the so-called point modules, which serve as a noncommutative analogue of points of a scheme.
+%Bondal and Orlov make use of the skyscraper sheaves of points in their classification of fully-faithful functors of Fourier-Mukai type, and the plentitude of point modules from \cite{ATV} indicate that the Sklyanin algebras, which are those algebras of the form
+%$$S_{abc} = k\langle x,y,z \rangle/(axy + byx + cz^2, ayz + bzy + cx^2, azx + bxz + cy^2),$$
+%may prove amenable to this type of analysis.
+%Towards Artin's conjecture, the author proposes to study conditions for which the quasi-coherent sheaves, $\operatorname{QGr} A$, of a connected graded $k$-algebra, $A$, can be detected by point modules.
+%The author expects that this should yield, in some cases, a noncommutative analogue of \cite{Bondal-Orlov} for the Sklyanin algebras.
 %TODO: Outline the attack from F-M Kernels.
+
+%I think a noncommutative Bondal-Orlov reconstruction statement is a good choice.
+
+The project will be successful if even partial answers can be given to the questions above.
+The current state of derived categories in noncommutative projective geometry is highly undeveloped.
+Having partial answers, even in the negative, stands to provide deep insight into the precise relationship between the commutative and noncommutative projective geometries.
+%As noted in the introduction, there is a circle of ideas relating commutative and noncommutative projective geometry; commutative projective geometry drives intuition in noncommutative algebra through noncommutative projective geometry, derived categories inform commutative projective geometry and thus derived categories should prove important in the noncommutative world.
+
+If this project is successful, great strides can be made in the world of noncommutative algebra.
+Following the path laid out by commutative algebraic geometry, developments in the area of derived categories for noncommutative algebraic geometry should allow the author to translate seminal results from the commutative case to the noncommutative case, and should yield rapid and impressive results.
+Moreover, deep connections to physics promise advancements outside of mathematics.
+The Heisenberg uncertainty principle tells us that noncommutative algebra is essential to a description of the physical world.
+More precisely, noncommutative spacetimes are an essential part of modern theoretical physics, e.g. \cite{DoNe01}, and already appear in homological mirror symmetry \cite{AKO08}.
+Moduli spaces and birational geometry are essential tools for noncommutative projective schemes and derived categories will serve to strengthen and extend their reach.
+
 
 
 \section{Career Development}
+The fellowship activities will have a profound impact on the author's career.
+The author stands poised at the forefront of an important and unexplored area of mathematics equipped with the tools to make great strides.
+The opportunities afforded by the MSPRF to attack these problems head on will ensure that the author will develop a significant body of work necessary to obtain a research appointment at the close of the fellowship period.
+
 \section{Sponsoring Scientist and Host Institution}
 The selection of Professor Ragnar Buchweitz and the Fields Institute as sponsoring scientist and host institution will provide a stimulating research environment.
 Professor Buchweitz is an internationally renowed mathematician at the interface of commutative and noncommutative algebra.
@@ -153,9 +206,16 @@ Being that the project attempts in large part to export methods of commutative a
 
 Additionally, the Fields Institute is a vibrant research community with a host of visiting mathematicians that will provide the opportunity for meaningful face to face conversations that may otherwise be difficult to achieve.
 The thematic program in Homological Mirror Symmetry in Spring 2019 will allow for a great deal of potential collaboration.
+
 \section{Broader Impacts}
 
-\newpage
+As laid out above, the proposed activities will have a profound impact on the advancement scientific knowledge, both in mathematics and physics, as well as the mentoring of an early career researcher.
+Beyond these, work at the Fields Institute these activities will help foster international connections, not only between the Canadian researchers based in Toronto, but with the many other international researchers who visit.
+
+Additionally, the author has participated in the development of K-12 students in mathematics through the University of South Carolina's high school math contest.
+The author plans to seek out further opportunities in the future.
+
+
 \setcounter{page}{1}
 \bibliographystyle{alpha}
 \nobibliography{biblio}
