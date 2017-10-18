@@ -1,8 +1,12 @@
 \documentclass[11pt]{article}
 \renewcommand{\familydefault}{\rmdefault}
 \openup 2pt
+
+\usepackage{shadethm}
 \usepackage{bibentry}
-\usepackage{enumerate}
+\usepackage{enumitem}
+\setlist{nosep}
+%\usepackage{enumerate}
 \usepackage[margin=1in]{geometry}
 \usepackage{amsthm}
 \usepackage{amsmath}
@@ -10,7 +14,7 @@
 \usepackage{tikz-cd}
 
 \newtheorem{theorem}{Theorem}[section]
-
+\newshadetheorem{objective}{Objective}
 \title{MSPRF: Derived Categories in Noncommutative Projective Algebraic Geometry\\\small{Project Description}}
 \author{Blake A. Farman}
 \date{}
@@ -121,7 +125,7 @@ Under the same hypotheses, we obtain, as an easy corollary, a pleasing derived M
 
 As the introduction of Fourier-Mukai kernels to noncommutative algebraic geometry is a new development, there are a great many questions suggested by the commutative case that need to be addressed.
 Some questions include
-\begin{enumerate}[(a)]
+\begin{enumerate}
 \item
   How far away from isomorphic are derived equivalent noncommutative projective schemes?
 
@@ -141,12 +145,10 @@ Some questions include
   \item
     Bridgeland started with K3 surfaces \cite{Bri07,Bri08}, so it seems natural to start with the noncommutative projective Calabi-Yau schemes of \cite{kanazawa2015}.
   \end{itemize}
-
+  
   For the commutative case, seminal papers \cite{Bri07, ABCH13, BM14a, BM14b} stand as the guiding intuition, while \cite{LiZhMMP} gives practical guidance on how to make this work in noncommutative geometry with constructions for the Sklyanin algebras.
-    \item
-    Does the analogue of \cite{Bondal-Orlov} hold in noncommutative projective geometry?
 \end{enumerate}
-While space does not permit a detailed treatment of each question, the author would like to discuss the final point further.
+While space does not permit a detailed treatment of each question, the author would like to discuss the first point further.
 The Bondal-Orlov reconstruction theorem forms a cornerstone for our understanding of derived categories.
 For a variety with ample canonical or anti-canonical bundle, this result says that the data of the derived category is as robust as the data of the variety itself, and clearly demonstrates the depth of geometric information found in the derived category.
 The author wonders, can we expect this to hold for non-commutative projective schemes?
@@ -166,6 +168,9 @@ These were classified in \cite{ATV,Stephenson96,Stephenson97} and are the Artin-
 
 More importantly, the tool of classification--moduli of point modules--aligns perfectly with the method of Bondal-Orlov point objects.
 Indeed, the noncommutative analogues of a $\mathbb{P}^2$ fall broadly into two categories \cite{Stafford02}: those that are an honest $\mathbb{P}^2$ in the sense that $\operatorname{qgr} A$ is equivalent to the coherent sheaves on a commutative $\mathbb{P}^2$, and those whose point modules are parametrized by an elliptic curve, the latter containing the Sklyanin algebras.
+\begin{objective}
+  Let $X$ be a noncommutative $\mathbb{P}^2$
+\end{objective}
 
 Some questions arise naturally: for a noncommutative $\mathbb{P}^2$, are the point modules a spanning class of the derived category?
 More generally, when are the point modules a spanning class?
@@ -182,7 +187,7 @@ Answers to these questions will provide deeper insight into the structure of non
 
 %I think a noncommutative Bondal-Orlov reconstruction statement is a good choice.
 
-This project will be successful if it advances our understanding of mathematics as laid out above.  This can be tangibly measured by production of preprints submitted to the arXiv and peer-reviewed journal publications, as well as talks given within the Fields Institute and to the broader mathematical community.
+This project will be successful if it advances our understanding of mathematics as laid out above.  This can be tangibly measured by production of preprints submitted to the arXiv and peer-reviewed journal publications, as well as talks given within the University of Toronto and to the broader mathematical community.
 
 %The project will be successful if even partial answers can be given to the questions above.
 %The current state of derived categories in noncommutative projective geometry is highly undeveloped.
@@ -204,17 +209,18 @@ The author stands poised at the forefront of an important and unexplored area of
 The opportunities afforded by the MSPRF to attack these problems head on will ensure that the author will develop a significant body of work necessary to obtain a research appointment at the close of the fellowship period.
 
 \section{Sponsoring Scientist and Host Institution}
-The selection of Professor Ragnar Buchweitz and the Fields Institute as sponsoring scientist and host institution will provide a stimulating research environment.
+The selection of Professor Ragnar Buchweitz and the University of Toronto as sponsoring scientist and host institution will provide a stimulating research environment.
 Professor Buchweitz is an internationally renowed mathematician at the interface of commutative and noncommutative algebra.
 Being that the project attempts in large part to export methods of commutative algebra to the setting of noncommutative rings, this seems a natural choice.
 
-Additionally, the Fields Institute is a vibrant research community with a host of visiting mathematicians that will provide the opportunity for meaningful face to face conversations that may otherwise be difficult to achieve.
-The thematic program in Homological Mirror Symmetry in Spring 2019 will allow for a great deal of potential collaboration.
+Additionally, the proximity to the Fields Institute, which is a vibrant research community with a host of visiting mathematicians will provide the opportunity for meaningful face to face conversations that may otherwise be difficult to achieve.
+The thematic program in Homological Mirror Symmetry hosted there in Spring 2019 will allow for a great deal of potential collaboration.
+As a result of participation in this thematic program, the author would have the opportunity for an affiliation with the institue for at least one semester.
 
 \section{Broader Impacts}
 
 As laid out above, the proposed activities will have a profound impact on the advancement of scientific knowledge, both in mathematics and physics, as well as the mentoring of an early career researcher.
-Beyond these, work at the Fields Institute will help foster international connections, not only between the Canadian researchers based in Toronto, but with the many other international researchers who visit.
+Beyond these, work at the University of Toronto will help foster international connections, not only between the Canadian researchers based in Toronto, but with the many other international researchers who visit the Fields Institute just next door.
 
 Additionally, the author has participated in the development of K-12 students in mathematics through the University of South Carolina's high school math contest.
 Receipt of the MSPRF will help ensure that the author is in a position to seek out further opportunities of this kind in the future.
