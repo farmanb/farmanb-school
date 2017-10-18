@@ -1,8 +1,7 @@
 \documentclass[11pt]{article}
 \renewcommand{\familydefault}{\rmdefault}
 \openup 2pt
-
-\usepackage{shadethm}
+\usepackage{tcolorbox}
 \usepackage{bibentry}
 \usepackage{enumitem}
 \setlist{nosep}
@@ -14,7 +13,7 @@
 \usepackage{tikz-cd}
 
 \newtheorem{theorem}{Theorem}[section]
-\newshadetheorem{objective}{Objective}
+\newtheorem{objective}{Objective}
 \title{MSPRF: Derived Categories in Noncommutative Projective Algebraic Geometry\\\small{Project Description}}
 \author{Blake A. Farman}
 \date{}
@@ -43,7 +42,7 @@ Moreover, much work in the direction of derived categories in algebraic geometry
 Thanks to \cite{Orlov1997}, it is known that over an algebraically closed field, curves are derived equivalent if and only if they are isomorphic.
 In dimension two, for X smooth and projective, but not elliptic, K3, nor abelian, it is known that derived equivalence implies isomorphism \cite[Prop. 12.1]{HuyFMT}.
 In higher dimension, it was originally conjectured in \cite{kawamata2002} that there are only finitely many derived equivalent surfaces up to isomorphism.
-In \cite{AnToe} it was shown that there are at most countably many such derived equivalent surfaces, while the original conjecture is shown to be false in \cite{lesieutre2014}.
+In \cite{AnToe} it was shown that there are at most countably many varieties in the derived equivalence class, while the original conjecture is shown to be false in \cite{lesieutre2014}.
 
 Of central importance in each of the situations above are the so-called kernels of Fourier-Mukai transforms.
 For smooth projective varieties, $X$ and $Y$, the kernels are objects in the derived category of $X \times_k Y$ which induce an equivalence of their respective derived categories, this equivalence being called a Fourier-Mukai transform.
@@ -128,49 +127,51 @@ Some questions include
 \begin{enumerate}
 \item
   How far away from isomorphic are derived equivalent noncommutative projective schemes?
-
-  As noted in the introduction, partial answers to this question have been given in the commutative case.
-  For curves over an algebraically closed field, isomorphism and derived equivalence are the same thanks to \cite{Orlov1997}.
-  For dimension two, this also holds true for surfaces that are not elliptic, abelian, or K3 \cite[Prop. 12.1]{HuyFMT}.
-  For higher dimensions, it is known that there are countably many derived equivalent surfaces \cite{AnToe}.
+  \begin{tcolorbox}
+    \begin{objective}
+      There are only finitely many Fourier-Mukai partners for noncommutative surfaces.
+    \end{objective}
+  \end{tcolorbox}
+  For dimension two this holds true in the commutative case \cite[Sect. 12]{HuyFMT}.
+  For higher dimensions, it is known that there are countably many varieties in the derived equivalent class \cite{AnToe}.
 \item
-  Can moduli spaces of sheaves on a noncommutative variety be encoded in the derived category of a noncommutative projective scheme?
-
-  From Mukai's work \cite{Mukai81,Mukai87}, this is known in the commutative case, with special cases in which the moduli space can be the entire derived category.
+  Can moduli spaces and birational geometry of noncommutative varieties be encoded in their derived categories?
+  \begin{tcolorbox}
+    \begin{objective}
+      Take Van den Bergh's blowing up from \cite{van2001blowing} and prove a semi-orthogonal decomposition along the lines of \cite{Bondal-Orlov}.
+    \end{objective}
+  \end{tcolorbox}
+  Mukai's work \cite{Mukai81,Mukai87} provides guidance towards the noncommutative case of relating moduli spaces to the derived category.
 \item
   Can Bridgeland stability be ported over from the commutative case?
-  \begin{itemize}
-  \item
-    Constructions exist for Sklyanin algebras, which suggest that this may be possible.
-  \item
-    Bridgeland started with K3 surfaces \cite{Bri07,Bri08}, so it seems natural to start with the noncommutative projective Calabi-Yau schemes of \cite{kanazawa2015}.
-  \end{itemize}
-  
-  For the commutative case, seminal papers \cite{Bri07, ABCH13, BM14a, BM14b} stand as the guiding intuition, while \cite{LiZhMMP} gives practical guidance on how to make this work in noncommutative geometry with constructions for the Sklyanin algebras.
+  \begin{tcolorbox}
+    \begin{objective}
+      Develop Brigeland stability for noncommutative surfaces.
+    \end{objective}
+  \end{tcolorbox}
+  In the commutative case, seminal papers \cite{Bri07, ABCH13, BM14a, BM14b} establish Bridgeland stability as an impressive tool for studying the birational geometry of moduli of sheaves on surfaces, while \cite{LiZhMMP} gives practical guidance on how to make this work in noncommutative geometry with constructions for the Sklyanin algebras.
 \end{enumerate}
 While space does not permit a detailed treatment of each question, the author would like to discuss the first point further.
-The Bondal-Orlov reconstruction theorem forms a cornerstone for our understanding of derived categories.
-For a variety with ample canonical or anti-canonical bundle, this result says that the data of the derived category is as robust as the data of the variety itself, and clearly demonstrates the depth of geometric information found in the derived category.
+The simplest surfaces are noncommutative $\mathbb{P}^2$'s.
+In the commutative case, surfaces of this type can be handled by the Bondal-Orlov reconstruction theorem, which forms a cornerstone for our understanding of derived categories.
+For a variety with ample canonical or anti-canonical bundle, this result says that the data of the derived category is as robust as the data of the variety itself.
 The author wonders, can we expect this to hold for non-commutative projective schemes?
 
 On the one hand, it is false if we replace varieties by stacks--the derived category of the weighted projective stack, $\mathbb{P}(1,1,2)$, is equivalent to the derived category of the Hirzebruch surface, $\mathbb{F}_2$ \cite{BF12}.
-Both of these can be viewed as noncommutative projective schemes, the stacky weighted projective space $\mathbb{P}(a,b,c)$ as graded modules over $k[x,y,z]$ with weights $a,b,c$ on $x,y,z$, which has ample anti-canonical bundle.
-%This is Fano.
-The anti-canonical divisor on the Hirzebruch surface $\mathbb{F}_2$ is nef and big, but not ample.
-So already we see some interesting relationships developing in the mildly noncommutative case of stacks.
-
+Both of these can be viewed as noncommutative projective schemes.
 We can avoid stackiness by restricting our attention to graded algebras generated in degree one and pose the question anew.
 It seems likely that this remains true in the noncommutative setting.
-The first case to understand is the noncommutative analogues of $\mathbb{P}^2$.
-These were classified in \cite{ATV,Stephenson96,Stephenson97} and are the Artin-Schelter regular algebras \cite{AS87} of Gelfand-Kirillov dimension 3 with Hilbert series $(1-t)^{-3}$ \cite[Section 11]{SVdB01}.
+
+Noncommutative analogues of $\mathbb{P}^2$ were classified in \cite{ATV,Stephenson96,Stephenson97} and are the Artin-Schelter regular algebras \cite{AS87} of Gelfand-Kirillov dimension 3 with Hilbert series $(1-t)^{-3}$ \cite[Section 11]{SVdB01}.
+\begin{tcolorbox}\begin{objective}
+    If $X$ and $X^\prime$ are derived equivalent noncommutative $\mathbb{P}^2$'s, then $X \cong X^\prime$.
+  \end{objective}
+\end{tcolorbox}
 %, which includes the Sklyanin algebras
 %$$S_{abc} = k\langle x,y,z \rangle/(axy + byx + cz^2, ayz + bzy + cx^2, azx + bxz + cy^2).$$
 
-More importantly, the tool of classification--moduli of point modules--aligns perfectly with the method of Bondal-Orlov point objects.
+Importantly, the tool of classification--moduli of point modules--aligns perfectly with the method of Bondal-Orlov point objects.
 Indeed, the noncommutative analogues of a $\mathbb{P}^2$ fall broadly into two categories \cite{Stafford02}: those that are an honest $\mathbb{P}^2$ in the sense that $\operatorname{qgr} A$ is equivalent to the coherent sheaves on a commutative $\mathbb{P}^2$, and those whose point modules are parametrized by an elliptic curve, the latter containing the Sklyanin algebras.
-\begin{objective}
-  Let $X$ be a noncommutative $\mathbb{P}^2$
-\end{objective}
 
 Some questions arise naturally: for a noncommutative $\mathbb{P}^2$, are the point modules a spanning class of the derived category?
 More generally, when are the point modules a spanning class?
@@ -223,7 +224,7 @@ As laid out above, the proposed activities will have a profound impact on the ad
 Beyond these, work at the University of Toronto will help foster international connections, not only between the Canadian researchers based in Toronto, but with the many other international researchers who visit the Fields Institute just next door.
 
 Additionally, the author has participated in the development of K-12 students in mathematics through the University of South Carolina's high school math contest.
-Receipt of the MSPRF will help ensure that the author is in a position to seek out further opportunities of this kind in the future.
+These activities will help ensure that the author is in a position to seek out further opportunities in the future.
 
 \bibliographystyle{alpha}
 \nobibliography{biblio}
