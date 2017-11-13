@@ -1,0 +1,93 @@
+\documentclass[reqno, 12pt]{amsart}
+\usepackage{style}
+
+\title[Seminar]{Homological Algebra Seminar}
+\author{Blake Farman}
+\date{October 4, 2017}
+
+\begin{document}
+\maketitle
+
+\section{\cite[Section 3.5]{Weibel95}: Derived Functors of the Inverse Limit}
+
+Recall that a category, $\C$, is said to be \textbf{complete} if for all small categories $I$ and all functors $F \colon I \to \C$, the limit, $\lim_I F$, exists in $\C$.
+\begin{exercise}
+  An abelian category, $\A$, is complete if and only if
+  $\prod_{i \in I} A_i$
+  exists in $\A$.
+
+  That is, for an abelian category, replacing 'every small category $I$' by 'every small \textit{discrete} indexing category $I$' in the definition gives an equivalent notion.
+\end{exercise}
+
+\begin{remark}
+  This is also known as the condition (AB$3^\ast$).
+\end{remark}
+
+Let $\A$ be a complete abelian category with enough injectives, $I$ be a small category and consider the functor category $\A^I = \Fun(I,A)$.
+By \cite[Example 2.3.13]{Weibel95} this is an abelian category with enough injectives.
+
+\begin{definition}
+  A \textbf{filtered category} $I$ is a category for which
+  \begin{itemize}
+  \item
+    $I$ is non-empty,
+  \item
+    For any two objects $i,j$ of $I$ there exists an object $k$ of $I$ and morphisms
+    $$\begin{tikzcd}
+      i \arrow{r} & k & j \arrow{l}
+    \end{tikzcd}$$
+  \item
+    For any two parallel morphisms
+    $$\begin{tikzcd}
+      i \arrow[shift left=.5ex]{r}{f} \arrow[swap,shift left=-.5ex]{r}{g} & j
+    \end{tikzcd}$$
+    there exists a morphism $h \colon j \to k$ such that the diagram
+    $$\begin{tikzcd}
+      i \arrow{r}{f}\arrow{d}{g}& j\arrow{d}{h}\\
+        j\arrow{r}{h} & k
+    \end{tikzcd}$$
+    commutes.
+  \end{itemize}
+  A \textbf{cofiltered category} $I$ is a category for which $I^\opp$ is filtered.
+\end{definition}
+
+Say we have a totally ordered set $I$, and a collection of objects $\{A_i\}_I$ with morphisms $A_i \to A_j$ for $j \leq i$ such that all possible morphisms
+$$\begin{tikzcd}
+  A_i \arrow{r}\arrow{rd} & A_j \arrow{d}\\
+  & A_k
+\end{tikzcd}$$
+commute.
+This gives an \textbf{inverse system} of objects
+$$\begin{tikzcd}
+  \cdots \arrow{r} & A_{i} \arrow{r} & A_{j} \arrow{r} & \cdots
+\end{tikzcd}$$
+The limit of the inverse system, often called the \textbf{inverse limit} and denoted by $A = \varprojlim_I A_i$, is a universal cone
+$$\begin{tikzcd}
+  & A \arrow{d}\arrow{rd}\arrow{ld}\arrow{rrd}\\
+  \cdots \arrow{r} & A_{i} \arrow{r} & A_{j} \arrow{r} & \cdots
+\end{tikzcd}$$
+meaning that $A$ is the final object amongs all such cones.
+It's easy to verify that such an $I$ is an example of a cofiltered category, and $A$ is a cofiltered limit; meaning that it is the limit of a functor from a cofiltered category.
+
+\begin{example}
+  Let $I$ be the category with objects $\mathbb{N}$ and morphisms
+  $$I(m,n) = \left\{
+  \begin{array}{ll}
+    \{\ast\} & n \leq m,\\
+    \emptyset & \text{else}
+  \end{array}
+  \right.$$
+  Fix a rational prime, $p$.
+  In the category of rings, we have the inverse system
+  $$\begin{tikzcd}
+    \cdots \arrow{r} & \Z/p^n\Z \arrow{r} & \Z/p^{n-1}\Z \arrow{r} & \cdots \arrow{r} & \Z/p\Z
+  \end{tikzcd}$$
+  with the morphisms
+  $$\begin{tikzcd}
+    p^{n}\Z \arrow{r}\arrow[bend left]{rrr}{0} & p^{n-1}\Z \arrow{r} & \Z \arrow{d}\arrow{r} & \Z/p^{n-1}\Z\\
+    & & \Z/p^{n}\Z \arrow[dashed]{ur}{\exists !}
+  \end{tikzcd}$$
+\end{example}
+\bibliographystyle{alpha}
+\bibliography{bibliography}
+\end{document}
