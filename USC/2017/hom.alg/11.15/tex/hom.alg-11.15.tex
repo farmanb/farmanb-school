@@ -10,84 +10,90 @@
 
 \section{\cite[Section 3.5]{Weibel95}: Derived Functors of the Inverse Limit}
 
-Recall that a category, $\C$, is said to be \textbf{complete} if for all small categories $I$ and all functors $F \colon I \to \C$, the limit, $\lim_I F$, exists in $\C$.
+Recall that a category, $\C$, is said to be \textbf{complete} if for all small categories $\I$ and all functors $F \colon \I \to \C$, the limit, $\lim_\I F$, exists in $\C$.
 \begin{exercise}
   An abelian category, $\A$, is complete if and only if
-  $\prod_{i \in I} A_i$
+  $\prod_{i \in \I} A_i$
   exists in $\A$.
 
-  That is, for an abelian category, replacing 'every small category $I$' by 'every small \textit{discrete} indexing category $I$' in the definition gives an equivalent notion.
+  That is, for an abelian category, replacing 'every small category $\I$' by 'every small \textit{discrete} indexing category $\I$' in the definition gives an equivalent notion.
 \end{exercise}
 
 \begin{remark}
   This is also known as the condition (AB$3^\ast$).
 \end{remark}
 
-Let $\A$ be a complete abelian category with enough injectives, $I$ be a small category and consider the functor category $\A^I = \Fun(I,A)$.
-By \cite[Example 2.3.13]{Weibel95} this is an abelian category with enough injectives.
+Let $\A$ be a complete abelian category, let $\I$ be a small category and consider the functor category $\A^\I = \Fun(\I,A)$.
 
-\begin{definition}
-  A \textbf{filtered category} $I$ is a category for which
-  \begin{itemize}
-  \item
-    $I$ is non-empty,
-  \item
-    For any two objects $i,j$ of $I$ there exists an object $k$ of $I$ and morphisms
-    $$\begin{tikzcd}
-      i \arrow{r} & k & j \arrow{l}
-    \end{tikzcd}$$
-  \item
-    For any two parallel morphisms
-    $$\begin{tikzcd}
-      i \arrow[shift left=.5ex]{r}{f} \arrow[swap,shift left=-.5ex]{r}{g} & j
-    \end{tikzcd}$$
-    there exists a morphism $h \colon j \to k$ such that the diagram
-    $$\begin{tikzcd}
-      i \arrow{r}{f}\arrow{d}{g}& j\arrow{d}{h}\\
-        j\arrow{r}{h} & k
-    \end{tikzcd}$$
-    commutes.
-  \end{itemize}
-  A \textbf{cofiltered category} $I$ is a category for which $I^\opp$ is filtered.
-\end{definition}
+\begin{proposition}
+  The functor
+  $$\lim_\I \colon \Fun(\I, \A) \to \A$$
+  admits a left adjoint
+  $$\Delta \colon \A \to \Fun(\I, \A),$$
+  called the \textbf{diagonal functor}.
+  As a result, the functor $\lim_\I$ is left exact.
+  
+  The functor $\Delta$ is defined as follows.
+  For each object $A$ of $\A$, the functor $\Delta(A) \colon \I \to \A$ is defined to be $\Delta(A)(i) = A$ on objects and $\Delta(A)(\varphi) = \id_A$ on morphisms $\varphi \in \I(i,j)$.
+  To each morphism $f \in \A(A,B)$ we assign the natural transformation $\Delta(f)(i) = f$.
+\end{proposition}
 
-Say we have a totally ordered set $I$, and a collection of objects $\{A_i\}_I$ with morphisms $A_i \to A_j$ for $j \leq i$ such that all possible morphisms
-$$\begin{tikzcd}
-  A_i \arrow{r}\arrow{rd} & A_j \arrow{d}\\
-  & A_k
-\end{tikzcd}$$
-commute.
-This gives an \textbf{inverse system} of objects
-$$\begin{tikzcd}
-  \cdots \arrow{r} & A_{i} \arrow{r} & A_{j} \arrow{r} & \cdots
-\end{tikzcd}$$
-The limit of the inverse system, often called the \textbf{inverse limit} and denoted by $A = \varprojlim_I A_i$, is a universal cone
-$$\begin{tikzcd}
-  & A \arrow{d}\arrow{rd}\arrow{ld}\arrow{rrd}\\
-  \cdots \arrow{r} & A_{i} \arrow{r} & A_{j} \arrow{r} & \cdots
-\end{tikzcd}$$
-meaning that $A$ is the final object amongs all such cones.
-It's easy to verify that such an $I$ is an example of a cofiltered category, and $A$ is a cofiltered limit; meaning that it is the limit of a functor from a cofiltered category.
+\begin{proof}
+  We provide the isomorphism
+  $$\Fun(\I,\A)(\Delta(A), F) \cong \A(A, \lim_\I F)$$
+  and note that naturality is clear from the universal property of limits and the construction.
 
-\begin{example}
-  Let $I$ be the category with objects $\mathbb{N}$ and morphisms
-  $$I(m,n) = \left\{
-  \begin{array}{ll}
-    \{\ast\} & n \leq m,\\
-    \emptyset & \text{else}
-  \end{array}
-  \right.$$
-  Fix a rational prime, $p$.
-  In the category of rings, we have the inverse system
+  Fix a functor $F \colon \I \to \A$ and an object $A$ of $\A$.
+  For ease of notation, let $L = \lim_\I F$.
+  First we note that $L$ comes equipped with morphisms $\lambda_i \colon L \to F(i)$ and  we have a natural transformation $\lambda \colon \Delta(L) \to F$
   $$\begin{tikzcd}
-    \cdots \arrow{r} & \Z/p^n\Z \arrow{r} & \Z/p^{n-1}\Z \arrow{r} & \cdots \arrow{r} & \Z/p\Z
+    i \arrow{d}{\varphi} & L \arrow{r}{\lambda(i) = \lambda_i} \arrow{d}{\id_{L F}} & F(i)\arrow{d}{F(\varphi)}\\
+    j & L \arrow{r}{\lambda(j) = \lambda_j} & F(j)
   \end{tikzcd}$$
-  with the morphisms
+
+  We construct the morphism
+  $$\Phi \colon \A(A, L) \to \Fun(\I, \A)(\Delta(A), F)$$
+  as follows.
+  Given a morphism $f \in \A(A, L)$ we then have the horizontal composition of natural transformations
   $$\begin{tikzcd}
-    p^{n}\Z \arrow{r}\arrow[bend left]{rrr}{0} & p^{n-1}\Z \arrow{r} & \Z \arrow{d}\arrow{r} & \Z/p^{n-1}\Z\\
-    & & \Z/p^{n}\Z \arrow[dashed]{ur}{\exists !}
+    i \arrow{d}{\varphi} & A \arrow{r}{f}\arrow{d}{\id_A} & L \arrow{r}{\lambda_i}\arrow{d}{\id_{L}} & F(i)\arrow{d}{F(\varphi)}\\
+    j & A \arrow{r}{f} & L \arrow{r}{\lambda_j} & F(j)
   \end{tikzcd}$$
-\end{example}
+  since
+  $$F(\varphi) \circ \lambda_i \circ f = \lambda_j \circ f.$$
+  Define
+  $$\Phi(f)(i) = (\lambda \circ \Delta)(i) = \lambda(i) \circ \Delta(f)(i) = \lambda_i \circ f.$$
+
+  Next we construct a morphism
+  $$\Psi \colon \Fun(\I,\A)(\Delta(A), F) \to \A(A, L)$$
+  and show that this is the inverse of $\Phi$.
+  Giving a morphism $\eta \colon \Delta(A) \to F$ is equivalent to giving a collection of morphisms $\eta(i) \colon \Delta(A)(i) = A \to F(i)$ for each $i$ subject to the naturality squares in $\A$
+  $$\begin{tikzcd}
+    i \arrow{d}{\varphi} & A \arrow{d}{\id_A}\arrow{r}{\eta(i)} & F(i)\arrow{d}{F(\varphi)}\\
+    j & A \arrow{r}{\eta(j)} & F(j)
+  \end{tikzcd}$$
+  which is just to say that the object $A$ equipped with the morphisms $A \overset{\eta(i)}\to F(i)$ is a cone over the inverse system defined by $F$.
+  By the universal property of limits, there exists a unique morphism $f \in \A(A,L)$ such that for all morphisms $\varphi \in \I(i,j)$ the diagram
+  $$\begin{tikzcd}[row sep=large,column sep=huge]
+    & A\arrow[swap]{ldd}{\eta(i)}\arrow{rdd}{\eta(j)}\arrow[dashed]{d}{\exists !f}\\
+    & L\arrow[swap]{ld}{\lambda_i}\arrow{rd}{\lambda_j}\\
+    F(i) \arrow{rr}{F(\varphi)} & & F(j)
+  \end{tikzcd}$$
+  Define $\Psi(\eta) = f$ and note that by construction we have 
+  $$\Phi \circ \Psi(\eta)(i) = f \circ \lambda_i = \eta(i).$$
+  Now for an arbitrary $f \in \A(A,L)$ we have
+  $$\Psi \circ \Phi(f) = \Psi(\lambda \circ \Delta(f))$$
+  is the unique morphism making all diagrams
+  $$\begin{tikzcd}[row sep=large,column sep=huge]
+    & A\arrow[swap]{ldd}{f \circ \lambda_i}\arrow{rdd}{f \circ \lambda_j}\arrow[dashed]{d}{\exists !}\\
+    & L\arrow[swap]{ld}{\lambda_i}\arrow{rd}{\lambda_j}\\
+    F(i) \arrow{rr}{F(\varphi)} & & F(j)
+  \end{tikzcd}$$
+  commute, which implies by unicity that $f = \Psi \circ \Phi(f)$.
+\end{proof}
+
+By \cite[Example 2.3.13]{Weibel95} $\Fun(\I,\A)$ is an abelian category with enough injectives, so the right derived functors of $\lim_\I$ make sense.
+
 \bibliographystyle{alpha}
 \bibliography{bibliography}
 \end{document}
