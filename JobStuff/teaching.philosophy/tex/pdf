@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+NAME="teaching.philosophy"
+PDFDIR=../pdf/
+FILE="${NAME}.tex"
+texi2pdf ${FILE}
+
+if [ ! -d ../pdf ]; then
+    mkdir ../pdf
+fi
+
+mv ${NAME}.pdf ../pdf
+
+rm -fr *.log
+rm -fr *.aux
+rm -fr *.bbl
+rm -fr *.blg
+rm -fr *~
