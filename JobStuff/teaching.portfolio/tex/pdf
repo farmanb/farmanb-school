@@ -11,8 +11,10 @@ fi
 
 mv $NAME.pdf ../pdf
 
-#rm -fr *.log
-#rm -fr *.aux
-#rm -fr *.bbl
-#rm -fr *.blg
+rm -fr *.log
+rm -fr *.aux
+rm -fr *.bbl
+rm -fr *.blg
+rm -fr *.out
+rm -fr *.toc
 rm -fr *~
