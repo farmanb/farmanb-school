@@ -1,0 +1,30 @@
+\documentclass[10pt]{amsart}
+\usepackage{mystyle}
+\openup 5pt
+\author{Blake Farman}
+\title{Teaching Portfolio}
+\date{}
+\pdfpagewidth 8.5in
+\pdfpageheight 11in
+
+\setcounter{tocdepth}{3}
+\let\oldtocsection=\tocsection
+ 
+\let\oldtocsubsection=\tocsubsection
+ 
+\let\oldtocsubsubsection=\tocsubsubsection
+ 
+\renewcommand{\tocsection}[2]{\hspace{0em}\oldtocsection{#1}{#2}}
+\renewcommand{\tocsubsection}[2]{\hspace{1em}\oldtocsubsection{#1}{#2}}
+\renewcommand{\tocsubsubsection}[2]{\hspace{2em}\oldtocsubsubsection{#1}{#2}}
+\begin{document}
+\maketitle
+
+\tableofcontents
+
+\section{Courses Taught}
+\subfile{courses.tex}
+\section{Materials}
+\subfile{materials.tex}
+%\subfile{evaluations.tex}
+\end{document}
