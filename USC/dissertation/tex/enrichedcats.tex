@@ -3,43 +3,43 @@
 \subsection{Enriched Categories}
 \begin{defn}[\cite{Borceux2}]
   Let $\mathscr{V}$ be a monoidal category.
-  A $\mathscr{V}$-category, $\CC$, is a category such that $\CC(X,Y)$ is an object of $\mathscr{V}$ for all objects $X$, $Y$ of $\CC$ with an associative composition 
-  $$c_{XYZ} \colon \CC(X,Y) \otimes \CC(Y,Z) \to \CC(X,Z)$$
+  A $\mathscr{V}$-category, $\C$, is a category such that $\C(X,Y)$ is an object of $\mathscr{V}$ for all objects $X$, $Y$ of $\C$ with an associative composition 
+  $$c_{XYZ} \colon \C(X,Y) \otimes \C(Y,Z) \to \C(X,Z)$$
   making the diagram
   $$\begin{tikzcd}
-    \left(\CC(X,Y) \otimes \CC(Y,Z)\right) \otimes \CC(Z,W)\arrow{rr}{c_{XYZ} \otimes 1}\arrow{dd}{a_{\CC(X,Y),\CC(Y,Z),\CC(Z,W)}} && \CC(X,Z) \otimes \CC(Z,W)\arrow{dddd}{c_{XZW}}\\
+    \left(\C(X,Y) \otimes \C(Y,Z)\right) \otimes \C(Z,W)\arrow{rr}{c_{XYZ} \otimes 1}\arrow{dd}{a_{\C(X,Y),\C(Y,Z),\C(Z,W)}} && \C(X,Z) \otimes \C(Z,W)\arrow{dddd}{c_{XZW}}\\
     \\
-    \CC(X,Y) \otimes \left(\CC(Y,Z) \otimes \CC(Z,W)\right)\arrow{dd}{1 \otimes c_{YZW}}\\
+    \C(X,Y) \otimes \left(\C(Y,Z) \otimes \C(Z,W)\right)\arrow{dd}{1 \otimes c_{YZW}}\\
     \\
-    \CC(X,Y) \otimes \CC(Y,W)\arrow{rr}{c_{XYW}} && \CC(X,W)
+    \C(X,Y) \otimes \C(Y,W)\arrow{rr}{c_{XYW}} && \C(X,W)
   \end{tikzcd}$$
-  commutes for all quadruples $X,Y,Z,W$ of $\CC$
+  commutes for all quadruples $X,Y,Z,W$ of $\C$
   and a unit morphism
-  $$u_X \colon I \to \CC(X,X)$$
-  for each object $X$ of $\CC$ making the diagram 
+  $$u_X \colon I \to \C(X,X)$$
+  for each object $X$ of $\C$ making the diagram 
   $$\begin{tikzcd}
-    I \otimes \CC(X,Y) \arrow{rr}{l_\CC(X,Y)}\arrow{dd}{u_X \otimes 1} && \CC(X,Y) \arrow{dd}{1}&& \CC(X,Y) \otimes I \arrow[swap]{ll}{r_{\CC(X,Y)}}\arrow{dd}{1 \otimes u_Y}\\
+    I \otimes \C(X,Y) \arrow{rr}{l_\C(X,Y)}\arrow{dd}{u_X \otimes 1} && \C(X,Y) \arrow{dd}{1}&& \C(X,Y) \otimes I \arrow[swap]{ll}{r_{\C(X,Y)}}\arrow{dd}{1 \otimes u_Y}\\
     \\
-    \CC(X,X) \otimes \CC(X,Y) \arrow{rr}{c_{XXY}} && \CC(X,Y) && \CC(X,Y) \otimes \CC(Y,Y)\arrow[swap]{ll}{c_{XYY}}
+    \C(X,X) \otimes \C(X,Y) \arrow{rr}{c_{XXY}} && \C(X,Y) && \C(X,Y) \otimes \C(Y,Y)\arrow[swap]{ll}{c_{XYY}}
   \end{tikzcd}$$
   commute.
 \end{defn}
 
 \begin{defn}[\cite{Borceux2}]
   Let $\mathscr{V}$ be a monoidal category.
-  Given $\mathscr{V}$-categories $\CC$, $\D$, a $\mathscr{V}$-functor $\F : \CC \to \D$ is a functor such that for each pair of objects $X,X^\prime$ of $\CC$
-  $$\F_{X,X^\prime} \colon \CC(X,X^\prime) \to \D(\F(X),\F(X^\prime))$$
+  Given $\mathscr{V}$-categories $\C$, $\D$, a $\mathscr{V}$-functor $\F : \C \to \D$ is a functor such that for each pair of objects $X,X^\prime$ of $\C$
+  $$\F_{X,X^\prime} \colon \C(X,X^\prime) \to \D(\F(X),\F(X^\prime))$$
   is a morphism of $\mathscr{V}$
-  such that for all triples $X,X^\prime, X^{\prime\prime}$ of $\CC$ the diagram
+  such that for all triples $X,X^\prime, X^{\prime\prime}$ of $\C$ the diagram
   $$\begin{tikzcd}
-    \CC(X,X^\prime) \otimes \CC(X^\prime, X^{\prime\prime}) \arrow{rr}{C_{XX{^\prime}X^{\prime\prime}}}\arrow{dd}{\F_{XX^\prime} \otimes \F_{X^\prime X^{\prime\prime}}} && \CC(X,X^{\prime\prime})\arrow{dd}{\F_{XX^{\prime\prime}}}\\
+    \C(X,X^\prime) \otimes \C(X^\prime, X^{\prime\prime}) \arrow{rr}{C_{XX{^\prime}X^{\prime\prime}}}\arrow{dd}{\F_{XX^\prime} \otimes \F_{X^\prime X^{\prime\prime}}} && \C(X,X^{\prime\prime})\arrow{dd}{\F_{XX^{\prime\prime}}}\\
     \\
     \D(\F X, \F X^\prime) \otimes \D(\F X^\prime, \F X^{\prime\prime}) \arrow{rr}{c_{\F X,\F X^\prime,\F X^{\prime\prime}}}&& \D(\F X, \F X^{\prime\prime})
   \end{tikzcd}$$
   commutes (composition)
-  and for every object $X$ of $\CC$ the diagram
+  and for every object $X$ of $\C$ the diagram
   $$\begin{tikzcd}
-    I \arrow{rr}{u_X}\arrow{rrdd}{u_{\F X}} && \CC(X,X)\arrow{dd}{\F_{XX}}\\
+    I \arrow{rr}{u_X}\arrow{rrdd}{u_{\F X}} && \C(X,X)\arrow{dd}{\F_{XX}}\\
     \\
     &&\D(\F X, \F X)
   \end{tikzcd}$$
@@ -48,14 +48,14 @@
 
 \begin{defn}[\cite{Borceux2}]\label{VNatDefn}
   Let $\mathscr{V}$ be a monoidal category.
-  Let $\CC$,$\D$, be two $\mathscr{V}$-categories and let $\F,\G : \CC \to \D$ be two $\mathscr{V}$-functors.
+  Let $\C$,$\D$, be two $\mathscr{V}$-categories and let $\F,\G : \C \to \D$ be two $\mathscr{V}$-functors.
   A $\mathscr{V}$-natural transformation $\eta \colon \F \to \G$ is a collection of morphisms
   $$\eta_X \colon I \to \D(\F(A), \G(A))$$
   of $\mathscr{V}$ making the diagram
   $$\begin{tikzcd}
-    && \CC(X,X^\prime) \arrow[swap]{lldd}{l^{-1}_{\CC(X,X^\prime)}} \arrow{rrdd}{r^{-1}_{\CC(X,X^\prime)}}\\
+    && \C(X,X^\prime) \arrow[swap]{lldd}{l^{-1}_{\C(X,X^\prime)}} \arrow{rrdd}{r^{-1}_{\C(X,X^\prime)}}\\
     \\
-    I \otimes \CC(X,X^\prime)\arrow{dd}{\eta_X \otimes \G_{XX^\prime}} &&&& \CC(X,X^\prime) \otimes I\arrow{dd}{\F_{X,X^\prime} \otimes \eta_{X^\prime}}\\
+    I \otimes \C(X,X^\prime)\arrow{dd}{\eta_X \otimes \G_{XX^\prime}} &&&& \C(X,X^\prime) \otimes I\arrow{dd}{\F_{X,X^\prime} \otimes \eta_{X^\prime}}\\
     \\
     \D(\F X, \G X) \otimes \D(\G X, \G X^\prime) \arrow{rrdd}{c_{\F X, \G X, \G X^\prime}} &&&& \D(\F X, \F X^\prime) \otimes \D(\F X^\prime, \G X^\prime) \arrow[swap]{lldd}{c_{\F X, \F X^\prime, \G X^\prime}}\\
     \\
@@ -78,7 +78,7 @@
 %TODO: This might require some of the nonsense about $\V$-distributors..?
 \begin{prop}[\cite{Borceux2}]
   Let $\V$ be a complete symmetric monoidal closed category.
-  Given two $\V$-categories, $\CC$, $\D$, with $\CC$ small, the category of $\V$-functors $\CC \to \D$ and $\V$-natural transformations can be provided with the structure of a $\V$-category, written $\V[\CC,\D]$.
+  Given two $\V$-categories, $\C$, $\D$, with $\C$ small, the category of $\V$-functors $\C \to \D$ and $\V$-natural transformations can be provided with the structure of a $\V$-category, written $\V[\C,\D]$.
 \end{prop}
 
 \begin{cor}[\cite{Borceux2}]
@@ -87,16 +87,16 @@
 \end{cor}
 
 \begin{thm}[Enriched Yoneda Lemma, \cite{Borceux2}]
-  Let $\V$ be a symmetric monoidal closed category and $\CC$ a small $\V$-category.
-  For every object $X$ of $\CC$ and every $\V$-functor $\F \colon \CC \to \V$, the object of $\V$-natural transformations from $\CC(X,-)$ to $\F$ exists and there is an isomorphism in $\V$
-  $$\operatorname{\V-Nat}(\CC(X,-),\F) \cong \F(X),$$
+  Let $\V$ be a symmetric monoidal closed category and $\C$ a small $\V$-category.
+  For every object $X$ of $\C$ and every $\V$-functor $\F \colon \C \to \V$, the object of $\V$-natural transformations from $\C(X,-)$ to $\F$ exists and there is an isomorphism in $\V$
+  $$\operatorname{\V-Nat}(\C(X,-),\F) \cong \F(X),$$
   natural in both $\F$ and $X$.
 \end{thm}
 
 \begin{cor}[Enriched Yoneda Embedding, \cite{Borceux2}]
   Let $\V$ be a complete symmetric monoidal closed category.
-  For every small $\V$-category, $\CC$, the mapping
-  $$Y \colon \CC \to \operatorname{\V-Nat},\, X \mapsto \CC(X,-)$$
+  For every small $\V$-category, $\C$, the mapping
+  $$Y \colon \C \to \operatorname{\V-Nat},\, X \mapsto \C(X,-)$$
   can be extended to a $\V$-functor, called the $\V$-Yoneda Embedding.
 \end{cor}
 \end{document}

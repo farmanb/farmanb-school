@@ -3,7 +3,7 @@
 
 \subsection{Basic Properties of Triangulated Categories}
 \begin{defn}
-  Let $\T$ be an additive category equipped with autoequivalences of categories, $[n] : \CC \rightarrow \CC$ for $n \in \Z$, and a class of distinguished triangles.
+  Let $\T$ be an additive category equipped with autoequivalences of categories, $[n] : \C \rightarrow \C$ for $n \in \Z$, and a class of distinguished triangles.
   We say $\T$ is {\it triangulated} if the distinguished triangles satisfy the following axioms:
   \begin{description}[style=nextline]
     \item[TR1]\label{TR1}
@@ -189,7 +189,7 @@ commute.
 
 \begin{defn}
   Let $\T$ be a triangulated category and let $\A$ be an abelian category.
-  An additive functor $H : \T \rightarrow \A$ (resp. $H : \T^\text{op}\rightarrow A$) is called {\it homological} (resp. {\it cohomological}) if for every distinguished triangle 
+  An additive functor $H : \T \rightarrow \A$ (resp. $H : \T^\opp\rightarrow A$) is called {\it homological} (resp. {\it cohomological}) if for every distinguished triangle 
   \begin{tikzcd}
     X \arrow{r}{f} & Y \arrow{r}{g} & Z \arrow{r}{h} & X[1]
   \end{tikzcd}
@@ -247,7 +247,7 @@ commute.
     which yields $f_*(-\gamma[-1]) = -f \circ \gamma[-1] = \psi$.
     Therefore $f_* = \ker g_*$, as desired.
     
-    By replacing $\T$ by $\T^\text{op}$, we see that $h_X$ is cohomological.
+    By replacing $\T$ by $\T^\opp$, we see that $h_X$ is cohomological.
   \end{proof}
 \end{prop}
 

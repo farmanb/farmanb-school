@@ -189,9 +189,9 @@
   $$\begin{tikzcd}
     \cdots \arrow{r}{f_{n+1}} & X_n \arrow{r}{f_n} & X_{n-1} \arrow{r}{f_{n-1}} & \cdots
   \end{tikzcd}$$
-  for which $X = \operatorname{hocolim}X_n$ exists, the canonical morphism
+  for which $X = \op{hocolim}X_n$ exists, the canonical morphism
   $$\begin{tikzcd}
-    \operatorname{colim} \Hom{\T}{K,X_n} \arrow{r} & \Hom{\T}{K,X}
+    \op{colim} \Hom{\T}{K,X_n} \arrow{r} & \Hom{\T}{K,X}
   \end{tikzcd}$$
   is an isomorphism.
 \end{lem}
@@ -199,7 +199,7 @@
 \begin{lem}\label{hocolim}
   Let $\T$ be a triangulated category with coproducts.
   If $\left\{E_i\right\}_{i \in I}$ is a family of compact objects of $\T$ such that $\bigoplus_{i \in I}{E_i}$ generates $\T$, then every object $X$ of $\T$ can be written as 
-  $$X = \operatorname{hocolim}X_n,$$
+  $$X = \op{hocolim}X_n,$$
   where $X_1$ is a direct sum of shifts of the $E_i$ and each transition morphism fits into a distinguished triangle $Y_n \rightarrow X_n \rightarrow X_{n+1} \rightarrow Y_n[1]$, where $Y_n$ is a direct sum of shifts of the $E_i$.
 \end{lem}
 
@@ -290,18 +290,18 @@
     Conversely, assume that $E$ is a generator for $\T$.
     By definition, $\T$ is compactly generated, so it remains to show that $\T_c = \langle E \rangle$.
     Towards that end, let $X$ be an object of $\T_c$.
-    By applying Lemma~\ref{hocolim} with $I = \{1\}$ and $E_1 = E$, using the same notation, we can write $X = \operatorname{hocolim}X_n$.
+    By applying Lemma~\ref{hocolim} with $I = \{1\}$ and $E_1 = E$, using the same notation, we can write $X = \op{hocolim}X_n$.
     By Lemma~\ref{homhocolimiscolim}, there exists a factorization
     $$\begin{tikzcd}
-      X \arrow{rd}\arrow{rr}{\sim} & & \operatorname{hocolim} X_n\\
+      X \arrow{rd}\arrow{rr}{\sim} & & \op{hocolim} X_n\\
       & X_n\arrow{ur}
     \end{tikzcd}$$
     for some $n$.
     Using Proposition~\ref{isotriangle}, (TR1), and (TR4), we obtain a commutative diagram 
     $$\begin{tikzcd}
       X \arrow{r}\arrow{d} & X_n \arrow{r}\arrow{d} & A \arrow{d}\arrow{r} & X[1]\arrow{d}\\
-      X \arrow{d}\arrow{r} & \operatorname{hocolim}X_n \arrow{d}\arrow{r} & 0 \arrow{d}\arrow{r} & X[1]\arrow{d}\\
-      X_n \arrow{d}\arrow{r} & \operatorname{hocolim}X_n \arrow{d}\arrow{r} & B \arrow{r}\arrow{d} & X_n[1]\arrow{d}\\
+      X \arrow{d}\arrow{r} & \op{hocolim}X_n \arrow{d}\arrow{r} & 0 \arrow{d}\arrow{r} & X[1]\arrow{d}\\
+      X_n \arrow{d}\arrow{r} & \op{hocolim}X_n \arrow{d}\arrow{r} & B \arrow{r}\arrow{d} & X_n[1]\arrow{d}\\
       A \arrow{r} & 0 \arrow{r} & B \arrow{r} & A[1]
     \end{tikzcd}$$
     with rows distinguished triangles, showing that $A \rightarrow X[1]$ is the zero morphism.

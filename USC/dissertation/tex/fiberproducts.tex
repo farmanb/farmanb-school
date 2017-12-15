@@ -159,7 +159,7 @@ Some nice properties derived from fiber products.
 \begin{prop}\label{p.5}
   A morphism $f : A \rightarrow B$ of $\mathscr{C}$ is a monomorphism if and only if the fiber product $A \times_B A$ exists and the diagram
   $$\begin{tikzcd}
-    A \arrow{d}{\operatorname{id}_A}\arrow{r}{\operatorname{id}_A} & A\arrow{d}{f}\\
+    A \arrow{d}{\op{id}_A}\arrow{r}{\op{id}_A} & A\arrow{d}{f}\\
     A\arrow{r}{f} & B
   \end{tikzcd}$$
   is a fiber product diagram.
@@ -173,7 +173,7 @@ Some nice properties derived from fiber products.
     we have an induced diagram
     $$\begin{tikzcd}
       Z \arrow[bend right]{ddr}{g} \arrow[bend left]{rrd}{h} \arrow[dotted]{rd}{\exists !h^\prime}\\
-      & A\arrow{d}{\operatorname{id}_A}\arrow{r}{\operatorname{id}_A} & A\arrow{d}{f}\\
+      & A\arrow{d}{\op{id}_A}\arrow{r}{\op{id}_A} & A\arrow{d}{f}\\
       & A\arrow{r}{f} & B.
     \end{tikzcd}$$
     By assumption, taking $h^\prime = h$ or $h^\prime = g$ makes the diagram commute, so by uniqueness of $h^\prime$ we have $h = g$.
@@ -192,7 +192,7 @@ Some nice properties derived from fiber products.
     Therefore we have a unique morphism $g = h$ making the diagram
     $$\begin{tikzcd}
       Z \arrow[bend right]{ddr}{g} \arrow[bend left]{rrd}{h} \arrow[dotted]{rd}{\exists !g = h}\\
-      & A\arrow{d}{\operatorname{id}_A}\arrow{r}{\operatorname{id}_A} & A\arrow{d}{f}\\
+      & A\arrow{d}{\op{id}_A}\arrow{r}{\op{id}_A} & A\arrow{d}{f}\\
       & A\arrow{r}{f} & B.
     \end{tikzcd}$$
     commute, as desired.
@@ -204,9 +204,9 @@ Some nice properties derived from fiber products.
 
   \begin{proof}
     Given a monomorphism $f \colon A \rightarrow B$ of $\mathscr{C}$, we must show that the induced morphism $\hat{f} \colon h_A \rightarrow h_B$ is a monomorphism.
-    By Proposition~\ref{p.5} and the fact that $\hat{\operatorname{id}_A} = \operatorname{id}_{h_A}$, this is equivalent to showing that the diagram
+    By Proposition~\ref{p.5} and the fact that $\hat{\op{id}_A} = \op{id}_{h_A}$, this is equivalent to showing that the diagram
     $$\begin{tikzcd}
-      h_A \arrow{d}{\operatorname{id}_{h_A}}\arrow{r}{\operatorname{id}_{h_A}} & h_A\arrow{d}{\hat{f}}\\
+      h_A \arrow{d}{\op{id}_{h_A}}\arrow{r}{\op{id}_{h_A}} & h_A\arrow{d}{\hat{f}}\\
     h_A \arrow{r}{\hat{f}} & h_B
   \end{tikzcd}$$
     is a fiber product diagram.

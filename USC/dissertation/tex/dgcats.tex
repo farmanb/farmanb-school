@@ -20,40 +20,40 @@
 \end{defn}
 
 \begin{defn}
-  We say a category, $\CC$, is a {\it $k$-category} if
+  We say a category, $\C$, is a {\it $k$-category} if
   \begin{enumerate}
   \item
-    for each pair of objects $X$ and $Y$ of $\CC$, $\Hom{\CC}{X,Y}$ is a $k$-module, and
+    for each pair of objects $X$ and $Y$ of $\C$, $\Hom{\C}{X,Y}$ is a $k$-module, and
   \item
     composition 
-    $$\Hom{\CC}{X,Y} \otimes_k \Hom{\CC}{Y,Z} \rightarrow \Hom{\CC}{X,Z}$$
-    in $\CC$ is $k$-linear, associative, admitting units $\id_X \in \Hom{\CC}{X,X}$.
+    $$\Hom{\C}{X,Y} \otimes_k \Hom{\C}{Y,Z} \rightarrow \Hom{\C}{X,Z}$$
+    in $\C$ is $k$-linear, associative, admitting units $\id_X \in \Hom{\C}{X,X}$.
   \end{enumerate}
 \end{defn}
 
 \section{The Category of Differential Graded Categories}
 
 \begin{defn}
-  A {\it differential graded} or {\it dg category} is a $k$-category, $\CC$, satisfying
+  A {\it differential graded} or {\it dg category} is a $k$-category, $\C$, satisfying
   \begin{enumerate}
   \item
-    $\Hom{\CC}{X,Y}$ is a dg $k$-module for all objects $X,Y$ of $\CC$, and
+    $\Hom{\C}{X,Y}$ is a dg $k$-module for all objects $X,Y$ of $\C$, and
   \item
     composition 
     $$\begin{tikzcd}
-      \Hom{\CC}{X,Y} \otimes_k \Hom{\CC}{Y,Z} \arrow{r} & \Hom{\CC}{X,Z}
+      \Hom{\C}{X,Y} \otimes_k \Hom{\C}{Y,Z} \arrow{r} & \Hom{\C}{X,Z}
     \end{tikzcd}$$
-    in $\CC$ is a morphism of dg $k$-modules;
+    in $\C$ is a morphism of dg $k$-modules;
     that is a morphism of $\Ch{k}$.
   \end{enumerate}
   
-  A {\it morphism of dg categories}, or {\it dg functor}, $\mathscr{F} \colon \CC \rightarrow \D$, is a functor such that
+  A {\it morphism of dg categories}, or {\it dg functor}, $\mathscr{F} \colon \C \rightarrow \D$, is a functor such that
   $$F(X,Y) \colon 
   \begin{tikzcd}
-    \Hom{\CC}{X,Y} \arrow{r} & \Hom{\D}{FX,FY}
+    \Hom{\C}{X,Y} \arrow{r} & \Hom{\D}{FX,FY}
   \end{tikzcd}$$
   is a morphism of dg $k$-modules.
-  Denote by $\operatorname{dgcat}_k$ the category with objects small dg categories and morphisms dg functors.
+  Denote by $\op{dgcat}_k$ the category with objects small dg categories and morphisms dg functors.
 \end{defn}
 
 \begin{eg}
@@ -104,18 +104,18 @@
 \end{eg}
 
 \begin{defn}
-  Let $\CC$ and $\D$ be objects of $\operatorname{dgcat}_k$.
-  The {\it tensor product}, $\CC \otimes \D$, is the dg category with objects $\operatorname{ob}\CC \times \operatorname{ob}\D$ and
+  Let $\C$ and $\D$ be objects of $\op{dgcat}_k$.
+  The {\it tensor product}, $\C \otimes \D$, is the dg category with objects $\op{ob}\C \times \op{ob}\D$ and
   morphisms
   $$\begin{tikzcd}
-    \Hom{\CC \otimes \D}{(X, Y), (X^\prime, Y^\prime)} = \Hom{\CC}{X,X^\prime} \otimes_k \Hom{\D}{Y,Y^\prime}.
+    \Hom{\C \otimes \D}{(X, Y), (X^\prime, Y^\prime)} = \Hom{\C}{X,X^\prime} \otimes_k \Hom{\D}{Y,Y^\prime}.
   \end{tikzcd}$$
-  For ease of notation, we will denote by $X \otimes Y$ the object $(X,Y)$ of $\CC \otimes \D$.
+  For ease of notation, we will denote by $X \otimes Y$ the object $(X,Y)$ of $\C \otimes \D$.
 \end{defn}
 
 \begin{defn}
-  Given two dg functors $\mathscr{F},\mathscr{G} \colon \CC \rightarrow \D$, define $\SHom{\mathscr{F},\mathscr{G}}^n$ to be the $k$-module of degree $n$ natural transformations.
-  That is, morphisms of functors, $\eta \colon \mathscr{F} \rightarrow \mathscr{G}$ such that for each object $X$ of $\CC$, $\eta(X) \in \Hom{\D}{\mathscr{F}(X),\mathscr{G}(X)}^n$.
+  Given two dg functors $\mathscr{F},\mathscr{G} \colon \C \rightarrow \D$, define $\SHom{\mathscr{F},\mathscr{G}}^n$ to be the $k$-module of degree $n$ natural transformations.
+  That is, morphisms of functors, $\eta \colon \mathscr{F} \rightarrow \mathscr{G}$ such that for each object $X$ of $\C$, $\eta(X) \in \Hom{\D}{\mathscr{F}(X),\mathscr{G}(X)}^n$.
 \end{defn}
 
 \begin{prop}
@@ -131,7 +131,7 @@
     will be a complex.
     
     First we note that, by definition, any dg functor necessarily commutes with the differentials:
-    $$d_{\D(\mathscr{F}X, \mathscr{F}X^\prime)}\left(\mathscr{F}(f) \right) = \mathscr{F}\left(d_{\CC(X,X^\prime)}(f)\right)$$
+    $$d_{\D(\mathscr{F}X, \mathscr{F}X^\prime)}\left(\mathscr{F}(f) \right) = \mathscr{F}\left(d_{\C(X,X^\prime)}(f)\right)$$
     and composition is a morphism of dg $k$-modules, so we have the commutative diagrams
     $$\begin{tikzcd}
       \D(\F X^\prime, \G X^\prime) \otimes_k \D(\F X, \F X^\prime) \arrow{r}\arrow[swap]{d}{d \otimes 1 + 1 \otimes d}& \D(\F X, \G X^\prime)\arrow{d}{d}\\
@@ -142,7 +142,7 @@
       \D(\G X, \G X^\prime) \otimes_k \D(\F X, \G X) \arrow{r}\arrow[swap]{d}{d \otimes 1 + 1 \otimes d}& \D(\F X, \G X^\prime)\arrow{d}{d}\\
       \D(\G X, \G X^\prime) \otimes_k \D(\F X, \G X)[1] \arrow{r}& \D(\F X, \G X^\prime)[1]
     \end{tikzcd}$$
-    For a morphism $f \in \CC(X,X^\prime)$, chasing $\eta(X^\prime) \otimes \F(f)$ and $\G(f) \otimes \eta(X)$ through the diagram gives
+    For a morphism $f \in \C(X,X^\prime)$, chasing $\eta(X^\prime) \otimes \F(f)$ and $\G(f) \otimes \eta(X)$ through the diagram gives
     \begin{eqnarray*}
       d(\eta(X^\prime)) \circ \F(f) + \eta(X^\prime) \circ d(\F(f)) 
       &=& d(\eta(X^\prime) \circ \F(f))\\
@@ -158,26 +158,26 @@
 \end{prop}
 
 \begin{defn}
-  For two objects $\CC$ and $\D$ of $\operatorname{dgcat}_k$, define the object $\SHom{\CC,\D}$ of $\operatorname{dgcat}_k$ to be the category with objects dg functors $\mathscr{F} \colon \CC \rightarrow \D$ and morphisms $\SHom{\mathscr{F},\mathscr{G}}$.
+  For two objects $\C$ and $\D$ of $\op{dgcat}_k$, define the object $\SHom{\C,\D}$ of $\op{dgcat}_k$ to be the category with objects dg functors $\mathscr{F} \colon \C \rightarrow \D$ and morphisms $\SHom{\mathscr{F},\mathscr{G}}$.
   
-  Given two dg functors $\F,\G \colon \CC \rightarrow \D$, define a {\it morphism of dg functors}, $\eta \colon \F \rightarrow \G$ to be a closed, degree zero natural transformation.
+  Given two dg functors $\F,\G \colon \C \rightarrow \D$, define a {\it morphism of dg functors}, $\eta \colon \F \rightarrow \G$ to be a closed, degree zero natural transformation.
   That is, $\eta \in \SHom{\F, \G}^0$ and its image in $\SHom{\F,\G}^1$ under the differential is zero.
 \end{defn}
 
 \begin{rmk}
   There is a natural isomorphism of bifunctors
-  $$\Hom{\operatorname{dgcat}_k}{\CC \otimes \D, \mathscr{E}} \cong \Hom{\operatorname{dgcat}_k}{\CC, \SHom{\D,\mathscr{E}}},$$
-  which endows $\operatorname{dgcat}_k$ with a symmetric monoidal closed structure.
+  $$\Hom{\op{dgcat}_k}{\C \otimes \D, \mathscr{E}} \cong \Hom{\op{dgcat}_k}{\C, \SHom{\D,\mathscr{E}}},$$
+  which endows $\op{dgcat}_k$ with a symmetric monoidal closed structure.
 
-  For $X,\A, \B, \CC$ dg-categories, we have by abstract nonsense
+  For $X,\A, \B, \C$ dg-categories, we have by abstract nonsense
   \begin{eqnarray*}
-    \dgcat_k\left(X, \SHom{\A \otimes \B, \CC}\right) &\cong& \dgcat_k\left(X \otimes \A \otimes \B, \CC\right)\\
-    &\cong& \dgcat_k\left(X \otimes \A, \SHom{\B, \CC}\right)\\
-    &\cong& \dgcat_k\left(X, \SHom{\A,\SHom{\B, \CC}}\right)
+    \dgcat{k}\left(X, \SHom{\A \otimes \B, \C}\right) &\cong& \dgcat{k}\left(X \otimes \A \otimes \B, \C\right)\\
+    &\cong& \dgcat{k}\left(X \otimes \A, \SHom{\B, \C}\right)\\
+    &\cong& \dgcat{k}\left(X, \SHom{\A,\SHom{\B, \C}}\right)
   \end{eqnarray*}
-  and hence $\SHom{\A \otimes \B, \CC} \cong \SHom{\A, \SHom{\B, \CC}}$ follows from the enriched Yoneda Lemma.
-  For $\CC = \cdg{k}$, we can write down an explicit isomorphism between dg-bimodules and $\Ch{k}$-enriched Hom sets,
-  $$\cdg{\A \otimes \B^\text{op}} = \SHom{\A \otimes \B^\text{op}, \cdg{k}} \cong \SHom{\A, \SHom{\B^\op, \cdg{k}}} = \SHom{\A,\cdg{\B^\op}}.$$
+  and hence $\SHom{\A \otimes \B, \C} \cong \SHom{\A, \SHom{\B, \C}}$ follows from the enriched Yoneda Lemma.
+  For $\C = \cdg{k}$, we can write down an explicit isomorphism between dg-bimodules and $\Ch{k}$-enriched Hom sets,
+  $$\cdg{\A \otimes \B^\text{op}} = \SHom{\A \otimes \B^\text{op}, \cdg{k}} \cong \SHom{\A, \SHom{\B^\opp, \cdg{k}}} = \SHom{\A,\cdg{\B^\opp}}.$$
   
   Given a bimodule $\funct{P}$, we obtain a dg-functor $\Phi_{\funct{P}} \colon \A \to \cdg{\B^\text{op}}$ which takes objects to the right dg $\B$-module 
   $$\Phi_{\funct{P}}(X)(Y) = \funct{P}(X,Y)$$
@@ -217,7 +217,7 @@
   \end{tikzcd}
   $$
   with top horizontal morphisms the canonical isomorphisms, right isomorphisms the associativity isomorphisms, and horizontal morphisms composition.
-  The top squares commute because $\A \otimes \B^\op$ is a dg-category, and the bottom squares commute because $\funct{P}$ is dg-functor.
+  The top squares commute because $\A \otimes \B^\opp$ is a dg-category, and the bottom squares commute because $\funct{P}$ is dg-functor.
   We then see that the naturality squares
   $$\begin{tikzcd}
     X \arrow{dd}{f} & Y^\prime \arrow{dd}{g} & \funct{P}(X,Y) \arrow{rr}{\Phi_{\funct{P}}(f)(Y^\prime)}\arrow{dd}{\Phi_{\funct{P}}(g)} && \funct{P}(X^\prime, Y)\arrow{dd}{\Phi_{\funct{P}}(X^\prime)(g)}\\
@@ -228,26 +228,26 @@
   This makes $\Phi_\funct{P}$ a dg-functor.
   A morphism $\eta \colon \funct{P} \to \funct{P}^\prime$ is a collection of morphisms $\eta(X \otimes Y) \colon \funct{P}(X \otimes Y) \to \funct{P}^\prime(X \otimes Y)$, which we can view as a morphism of functors $\Phi(\eta) \colon \Phi_{\funct{P}} \to \Phi_{\funct{P}^\prime}$ by $\Phi(\eta)(X)(Y) = \eta(X \otimes Y)$.
 
-  Conversely, if we have a dg-functor $\F \colon \A \to \cdg{\B^\op}$, we can construct a dg $\A \otimes \B^\op$-module as follows.
+  Conversely, if we have a dg-functor $\F \colon \A \to \cdg{\B^\opp}$, we can construct a dg $\A \otimes \B^\opp$-module as follows.
   Consider the two natural functors
   $$\begin{tikzcd}
-    \B^\op \arrow{r}{h_-} & \cdg{\B^\op} \arrow{rrr}{\cdg{\B^\op}(-, \F X)} &&& \cdg{k}
+    \B^\opp \arrow{r}{h_-} & \cdg{\B^\opp} \arrow{rrr}{\cdg{\B^\opp}(-, \F X)} &&& \cdg{k}
   \end{tikzcd}
   \ \text{and}\ 
   \begin{tikzcd}
-    \A \arrow{r}{\F} & \cdg{\B^\op} \arrow{rrr}{\cdg{\B^\op}(h_Y, -)} &&& \cdg{k}
+    \A \arrow{r}{\F} & \cdg{\B^\opp} \arrow{rrr}{\cdg{\B^\opp}(h_Y, -)} &&& \cdg{k}
   \end{tikzcd}$$
   for fixed $X$ and $Y$.
   We obtain a chain complex for each pair of objects $X$ of $\A$ and $Y$ of $\B$ from
-  $$\cdg{\B^\op}(h_Y, \F(X)) \cong \F(X)(Y)$$
+  $$\cdg{\B^\opp}(h_Y, \F(X)) \cong \F(X)(Y)$$
   and a structure morphism
   $$\begin{tikzcd}
     \A(X,X^\prime) \otimes_k \B(Y^\prime, Y)\arrow{d}{\F(X,X^\prime) \otimes_k h_-(Y^\prime, Y)}\\
-    \cdg{\B^\op}(\F(X), \F(X^\prime)) \otimes_k \cdg{\B^\op}(h_{Y^\prime}, h_Y)\arrow{d}{\cdg{\B^\op}(h_Y, -)(\F(X),\F(X^\prime)) \otimes_k \cdg{\B^\op}(-, \F(X^\prime))(h_{Y^\prime}, h_Y)}\\
+    \cdg{\B^\opp}(\F(X), \F(X^\prime)) \otimes_k \cdg{\B^\opp}(h_{Y^\prime}, h_Y)\arrow{d}{\cdg{\B^\opp}(h_Y, -)(\F(X),\F(X^\prime)) \otimes_k \cdg{\B^\opp}(-, \F(X^\prime))(h_{Y^\prime}, h_Y)}\\
     \cdg{k}(\F(X)(Y), \F(X^\prime)(Y)) \otimes_k \cdg{k}(\F(X^\prime)(Y), \F(X^\prime)(Y^\prime))\arrow{d}{c_{\F(X)(Y), \F(X^\prime)(Y), \F(X^\prime)(Y^\prime)}}\\
     \cdg{k}(\F(X)(Y), \F(X^\prime)(Y^\prime))
   \end{tikzcd}$$
-  If we denote by $\mathbbm{k}$ the unit of $\dgcat_k$, which has one object and endomorphisms the complex with $k$ in degree zero, then a morphism $\eta \colon \F \to \G$ is simply a collection of morphisms $\eta(X) \colon \mathbbm{k} \to \cdg{\B^\op}(\F(X),\G(X))$ as in Definition~\ref{VNatDefn}, which is mapped to the collection of morphisms $\eta(X)(Y) \colon \cdg{k}(\F(X)(Y),\G(X)(Y))$ which clearly make the naturality diagrams
+  If we denote by $\mathbbm{k}$ the unit of $\dgcat{k}$, which has one object and endomorphisms the complex with $k$ in degree zero, then a morphism $\eta \colon \F \to \G$ is simply a collection of morphisms $\eta(X) \colon \mathbbm{k} \to \cdg{\B^\opp}(\F(X),\G(X))$ as in Definition~\ref{VNatDefn}, which is mapped to the collection of morphisms $\eta(X)(Y) \colon \cdg{k}(\F(X)(Y),\G(X)(Y))$ which clearly make the naturality diagrams
   $$\begin{tikzcd}
     X \otimes Y^\prime \arrow{d} & \F(X)(Y^\prime) \arrow{r}{\eta(X)(Y)}\arrow{d} & \G(X)(Y^\prime)\arrow{d}\\
     X^\prime \otimes Y & \F(X^\prime)(Y) \arrow{r}{\eta(X^\prime)(Y^\prime)} & \G(X^\prime)(Y)
@@ -256,35 +256,35 @@
 \end{rmk}
 
 \begin{defn}
-  Let $\CC$ be a dg category.
+  Let $\C$ be a dg category.
   Define
   \begin{enumerate}
   \item
-    the category $Z^0(\CC)$ to be the category with objects those of $\CC$ and morphisms
-    $$\Hom{Z^0(\CC)}{X,Y} = Z^0\left(\Hom{\CC}{X,Y}\right),$$
+    the category $Z^0(\C)$ to be the category with objects those of $\C$ and morphisms
+    $$\Hom{Z^0(\C)}{X,Y} = Z^0\left(\Hom{\C}{X,Y}\right),$$
   \item
-    the category $H^0(\CC)$ to be the category with objects those of $\CC$ and morphisms
-    $$\Hom{H^0(\CC)}{X,Y} = H^0\left(\Hom{\CC}{X,Y}\right),$$
+    the category $H^0(\C)$ to be the category with objects those of $\C$ and morphisms
+    $$\Hom{H^0(\C)}{X,Y} = H^0\left(\Hom{\C}{X,Y}\right),$$
   \item
-    the {\it homology category}, $H^\ast(\CC)$, to be the category with objects those of $\CC$ and morphisms 
-    $$H^\ast\CC(X,Y) = \bigoplus H^n\CC(X,Y).$$
+    the {\it homology category}, $H^\ast(\C)$, to be the category with objects those of $\C$ and morphisms 
+    $$H^\ast\C(X,Y) = \bigoplus H^n\C(X,Y).$$
   \end{enumerate}
 \end{defn}
 
 \begin{rmk}\label{DGInducedHomology}
-  Note that given a dg functor, $\mathscr{F} \colon \CC \rightarrow \D$, for $X$ and $Y$ objects of $\CC$, 
-  $$\mathscr{F}(X,Y) \colon \CC(X,Y) \rightarrow \D(\mathscr{F}X, \mathscr{F}Y)$$
+  Note that given a dg functor, $\mathscr{F} \colon \C \rightarrow \D$, for $X$ and $Y$ objects of $\C$, 
+  $$\mathscr{F}(X,Y) \colon \C(X,Y) \rightarrow \D(\mathscr{F}X, \mathscr{F}Y)$$
   is a morphism of $\mathcal{C}(k)$ and this immediately implies the diagram
   $$\begin{tikzcd}
-    B^n(\CC(X,Y))\arrow{r}{\imath^n}\arrow[bend left]{rr}{\im d^{n-1}}\arrow[dashed]{d}{\exists !B^n(\F(X,Y))} & Z^n(\CC(X,Y)) \arrow{r}{\ker d^n}\arrow[dashed]{d}{\exists !Z^n(\F(X,Y))} & \CC(X,Y)^{n} \arrow{d}{\F(X,Y)}\\
+    B^n(\C(X,Y))\arrow{r}{\imath^n}\arrow[bend left]{rr}{\im d^{n-1}}\arrow[dashed]{d}{\exists !B^n(\F(X,Y))} & Z^n(\C(X,Y)) \arrow{r}{\ker d^n}\arrow[dashed]{d}{\exists !Z^n(\F(X,Y))} & \C(X,Y)^{n} \arrow{d}{\F(X,Y)}\\
     B^n(\D(\F X,\F Y) \arrow{r}{\imath^n}\arrow[bend right]{rr}{\im d^{n-1}} & Z^n(\D(\F X,\F Y))\arrow{r}{\ker d^n} & \D(\F X,\F Y)^{n}
   \end{tikzcd}$$
   commutes for each $n$.
   Hence $H^n$ induces a functor
-  $H^n(\mathscr{F}) \colon H^n(\CC) \rightarrow H^n(\D)$
+  $H^n(\mathscr{F}) \colon H^n(\C) \rightarrow H^n(\D)$
   with object map\\ $H^n(\mathscr{F})(X) = \mathscr{F}(X)$ and induced arrow map 
   $$\begin{tikzcd}
-    0 \arrow{r} & B^n(\CC(X,Y))\arrow{r}{\imath^n}\arrow{d}{B^n(\F(X,Y))} & Z^n(\CC(X,Y)) \arrow{r}{\coker \imath^n}\arrow{d}{Z^n(\F(X,Y))} & H^n(\CC(X,Y)) \arrow[dashed]{d}{\exists !H^n(\F(X,Y))}\arrow{r} & 0 \\
+    0 \arrow{r} & B^n(\C(X,Y))\arrow{r}{\imath^n}\arrow{d}{B^n(\F(X,Y))} & Z^n(\C(X,Y)) \arrow{r}{\coker \imath^n}\arrow{d}{Z^n(\F(X,Y))} & H^n(\C(X,Y)) \arrow[dashed]{d}{\exists !H^n(\F(X,Y))}\arrow{r} & 0 \\
     0 \arrow{r} & B^n(\D(\F X,\F Y) \arrow{r}{\imath^n} & Z^n(\D(\F X,\F Y))\arrow{r}{\coker \imath^n} & H^n(\D(\F X,\F Y)) \arrow{r} & 0
   \end{tikzcd}$$
 \end{rmk}
@@ -292,25 +292,25 @@
 \section{Modules over a Differential Graded Category}
 
 \begin{defn}
-  Let $\CC$ be a small dg category and let $\mathscr{M} : \CC \rightarrow \cdg{k}$ be a dg functor.
+  Let $\C$ be a small dg category and let $\mathscr{M} : \C \rightarrow \cdg{k}$ be a dg functor.
   \begin{enumerate}
   \item
-    We say that $\mathscr{M}$ is a right (resp. left) dg $\CC$-module if $\mathscr{M}$ is contravariant (resp. covariant).
+    We say that $\mathscr{M}$ is a right (resp. left) dg $\C$-module if $\mathscr{M}$ is contravariant (resp. covariant).
   \item
-    The {\it homology of a dg $\CC$-module}, $\mathscr{M}$, is the induced functor
+    The {\it homology of a dg $\C$-module}, $\mathscr{M}$, is the induced functor
     $$\begin{tikzcd}
-      H^\ast(\CC) \arrow{r}{H^\ast(\mathscr{M})}& \Gr{k}\\
+      H^\ast(\C) \arrow{r}{H^\ast(\mathscr{M})}& \Gr{k}\\
       X \arrow[mapsto]{r} & H^\ast(\mathscr{M}(X))
-      %H^\ast(\CC(Y,X)) \arrow[mapsto]{r} & H^\ast(\mathcal{C}_\text{dg}(\mathscr{M}(X),\mathscr{M}(Y))
+      %H^\ast(\C(Y,X)) \arrow[mapsto]{r} & H^\ast(\mathcal{C}_\text{dg}(\mathscr{M}(X),\mathscr{M}(Y))
     \end{tikzcd}$$
     where $\Gr{k}$ denotes the category of graded modules.
   \item
-    Define the category of dg $\CC$-modules $\cdg{\CC} = \SHom{\CC, \cdg{k}}$, and the category of right $\CC$-modules by
-    $$\mathcal{C}(\CC) = Z^0 \cdg{\CC}.$$
-    Note that the morphisms of this category are just $\Ch{k}$-natural transformations and this endows $\mathcal{C}(\CC)$ with the structure of an abelian category.
+    Define the category of dg $\C$-modules $\cdg{\C} = \SHom{\C, \cdg{k}}$, and the category of right $\C$-modules by
+    $$\mathcal{C}(\C) = Z^0 \cdg{\C}.$$
+    Note that the morphisms of this category are just $\Ch{k}$-natural transformations and this endows $\mathcal{C}(\C)$ with the structure of an abelian category.
     %TODO: This should probably be justified at some point; either in here, or somewhere else.  It's not immediately clear at the moment.
   \item
-    A morphism $\eta \colon \mathscr{L} \rightarrow \mathscr{M}$ of $\CC$-modules is the data of a collection of morphisms $\eta(X) \in \Ch{k}(\funct{L}X,\funct{M}X)$, natural in $X$.
+    A morphism $\eta \colon \mathscr{L} \rightarrow \mathscr{M}$ of $\C$-modules is the data of a collection of morphisms $\eta(X) \in \Ch{k}(\funct{L}X,\funct{M}X)$, natural in $X$.
     As such, each $\eta(X)$ induces a morphism
     $$H^\ast(\eta(X)) \colon H^\ast(\funct{L}X) \to H^\ast(\funct{M}X)$$
     and naturality of $\eta$ ensures naturality of $H^\ast(\eta)$, giving a morphism
@@ -321,48 +321,48 @@
 
 \subsection{The Category up to Homotopy}
 \begin{defn}
-  Let $\CC$ be a small dg category.
-  The {\it category up to homotopy of dg $\CC$-modules} is defined to be $\mathcal{H}(\CC) = H^0(\cdg{\CC})$.
-  %Note that $\mathcal{H}(\CC)$ is a triangulated category.
+  Let $\C$ be a small dg category.
+  The {\it category up to homotopy of dg $\C$-modules} is defined to be $\mathcal{H}(\C) = H^0(\cdg{\C})$.
+  %Note that $\mathcal{H}(\C)$ is a triangulated category.
   %TODO: Is this obviously just the same proof for K(A), where A is an abelian category?
 \end{defn}
 
-Given a dg $\CC$-module, $\mathscr{M} \colon \CC^\text{op} \rightarrow \cdg{k}$, by Remark~\ref{DGInducedHomology} we have a well-defined map
+Given a dg $\C$-module, $\mathscr{M} \colon \C^\text{op} \rightarrow \cdg{k}$, by Remark~\ref{DGInducedHomology} we have a well-defined map
 $$Z^0(\mathscr{M}(Y,X)) \colon
 \begin{tikzcd}
-  Z^0(\CC(Y,X)) \arrow{r} & Z^0(\cdg{k}(\mathscr{M}X,\mathscr{M}Y)) = \mathcal{C}(k)(X,Y)
+  Z^0(\C(Y,X)) \arrow{r} & Z^0(\cdg{k}(\mathscr{M}X,\mathscr{M}Y)) = \mathcal{C}(k)(X,Y)
 \end{tikzcd}$$
-which allows us to view the image of $\mathscr{M}$ in $\mathcal{C}(\CC)$ as a presheaf $\mathscr{M} \colon Z^0(\CC) \to \mathcal{C}(k)$.
+which allows us to view the image of $\mathscr{M}$ in $\mathcal{C}(\C)$ as a presheaf $\mathscr{M} \colon Z^0(\C) \to \mathcal{C}(k)$.
 
 \begin{defn}
-  Given a morphism $\eta \in \mathcal{C}(\CC)(\mathscr{L}, \mathscr{M})$, we note that for each object $X$ of $\CC$, $\eta(X)$ is a morphism of chain complexes.
-  Define the dg functor $\cone{\eta} \colon \CC^\text{op} \rightarrow \cdg{k}$ as follows.
-  For each object $X$ of $\CC$ we have the chain complex $\cone{\eta}(X) = \cone{\eta(X)}$ equipped with the differential
+  Given a morphism $\eta \in \mathcal{C}(\C)(\mathscr{L}, \mathscr{M})$, we note that for each object $X$ of $\C$, $\eta(X)$ is a morphism of chain complexes.
+  Define the dg functor $\cone{\eta} \colon \C^\text{op} \rightarrow \cdg{k}$ as follows.
+  For each object $X$ of $\C$ we have the chain complex $\cone{\eta}(X) = \cone{\eta(X)}$ equipped with the differential
   $$d_{\cone{\eta}(X)} = \left(\begin{matrix}
     d_{\mathscr{L}(X)[1]} & 0\\
     \\
     -\eta(X)[1] & d_{\mathscr{M}(X)}
   \end{matrix}\right).$$
 
-  Given a morphism $f \in \CC(Y,X)^n$, we define $\cone{\eta}(f)$ by
+  Given a morphism $f \in \C(Y,X)^n$, we define $\cone{\eta}(f)$ by
   $$\begin{tikzcd}[ampersand replacement=\&]
     \cone{\eta}(X) \arrow{rrrr}{\left(\begin{matrix}(-1)^n\mathscr{L}(f)[1] & 0\\0 & \mathscr{M}(f)\end{matrix}\right)} \&\&\&\& \cone{\eta}(Y)[n]
   \end{tikzcd}.$$
   Since both $\mathscr{L}$ and $\mathscr{M}$ are dg functors and $\eta$ is natural, it is straightforward to see that this gives a morphism of complexes
   $$\begin{tikzcd}
-    \CC(Y,X) \arrow{r} & \mathcal{C}(k)(\cone{\eta(X)}, \cone{\eta(Y)})
+    \C(Y,X) \arrow{r} & \mathcal{C}(k)(\cone{\eta(X)}, \cone{\eta(Y)})
   \end{tikzcd}$$
 \end{defn}
 
 \begin{rmk}
   \begin{enumerate}
   \item
-    Note that if we are given a morphism $f \in Z^0(\CC(Y,X))$, then $\mathscr{L}(f)$ and $\mathscr{M}(f)$ are both morphisms of complexes and $\eta$ is natural, so we obtain a morphism of complexes, $\cone{\eta}(f)$,
+    Note that if we are given a morphism $f \in Z^0(\C(Y,X))$, then $\mathscr{L}(f)$ and $\mathscr{M}(f)$ are both morphisms of complexes and $\eta$ is natural, so we obtain a morphism of complexes, $\cone{\eta}(f)$,
     $$\begin{tikzcd}[ampersand replacement=\&]
       \cone{\eta}(X) \arrow{rrr}{\left(\begin{matrix}\mathscr{L}(f)[1] & 0\\0 & \mathscr{M}(f)\end{matrix}\right)} \&\&\& \cone{\eta}(Y)
     \end{tikzcd}.$$
   \item
-    We also note that we have a short exact sequence of $\CC$-modules
+    We also note that we have a short exact sequence of $\C$-modules
     $$\begin{tikzcd}
       0 \arrow{r} & \mathscr{M} \arrow{r}{\left(\begin{matrix}0\\1\end{matrix}\right)} & \cone{\eta} \arrow{r}{\left(-1\ 0\right)} & \mathscr{L}[1] \arrow{r} & 0
     \end{tikzcd}$$
@@ -370,16 +370,16 @@ which allows us to view the image of $\mathscr{M}$ in $\mathcal{C}(\CC)$ as a pr
 \end{rmk}
 
 \begin{prop}
-  The category $\mathcal{H}(\CC)$ with distinguished triangles those triangles that are isomorphic to the image of
+  The category $\mathcal{H}(\C)$ with distinguished triangles those triangles that are isomorphic to the image of
   $$\begin{tikzcd}
     \mathscr{L} \arrow{r}{\eta} & \mathscr{M} \arrow{r} & \cone{\eta} \arrow{r} & \mathscr{L}[1] 
   \end{tikzcd}$$
-  in $\mathcal{H}(\CC)$ is triangulated.
+  in $\mathcal{H}(\C)$ is triangulated.
 
   \begin{proof}
-    First, suppose that we are given two morphisms $\eta, \nu \in \mathcal{C}(\CC)(\mathscr{L},\mathscr{M})$ having the same image in $\mathcal{H}(\CC)(\mathscr{L},\mathscr{M})$.
-    By definition, there exists a morphism $h \in \cdg{\CC}(\mathscr{L},\mathscr{M})^{-1}$ such that 
-    $$\eta - \nu = d_{\cdg{\CC}(\mathscr{L},\mathscr{M})}^{-1}(h) = d_\mathscr{M} \circ h + h \circ d_\mathscr{L}.$$
+    First, suppose that we are given two morphisms $\eta, \nu \in \mathcal{C}(\C)(\mathscr{L},\mathscr{M})$ having the same image in $\mathcal{H}(\C)(\mathscr{L},\mathscr{M})$.
+    By definition, there exists a morphism $h \in \cdg{\C}(\mathscr{L},\mathscr{M})^{-1}$ such that 
+    $$\eta - \nu = d_{\cdg{\C}(\mathscr{L},\mathscr{M})}^{-1}(h) = d_\mathscr{M} \circ h + h \circ d_\mathscr{L}.$$
     It's straightforward to show that
     $$\begin{tikzcd}[ampersand replacement=\&]
       \cone{\eta} \arrow{r}{\left(\begin{matrix}1 & 0\\-h & 1\end{matrix}\right)} \& \cone{\nu}
@@ -388,26 +388,26 @@ which allows us to view the image of $\mathscr{M}$ in $\mathcal{C}(\CC)$ as a pr
     \begin{tikzcd}[ampersand replacement=\&]
       \cone{\nu} \arrow{r}{\left(\begin{matrix}1 & 0\\h & 1\end{matrix}\right)} \& \cone{\eta}
     \end{tikzcd}$$
-    give mutually inverse morphisms of $\mathcal{C}(\CC)$, so the triangles are well-defined.
+    give mutually inverse morphisms of $\mathcal{C}(\C)$, so the triangles are well-defined.
     
-    For (TR1) we see that given any morphism $\overline{\eta} \in \mathcal{H}(\CC)(\mathscr{L},\mathscr{M})$, we can fit $\overline{\eta}$ into a distinguished triangle by lifting to $\mathcal{C}(\CC)$ and taking the image of
+    For (TR1) we see that given any morphism $\overline{\eta} \in \mathcal{H}(\C)(\mathscr{L},\mathscr{M})$, we can fit $\overline{\eta}$ into a distinguished triangle by lifting to $\mathcal{C}(\C)$ and taking the image of
     $$\begin{tikzcd}
       \mathscr{L} \arrow{r}{\eta} & \mathscr{M} \arrow{r} & \cone{\eta} \arrow{r} & \mathscr{L}[1]
     \end{tikzcd}$$
-    in $\mathcal{H}(\CC)$.
+    in $\mathcal{H}(\C)$.
   \end{proof}
 \end{prop}
-\section{The Model Structure on $\mathcal{C}(\CC)$}
+\section{The Model Structure on $\mathcal{C}(\C)$}
 
 
 \begin{defn}[\cite{Toen}]
-  Let $\CC$ be a small dg category and $\eta \colon \funct{L} \to \funct{M}$ a morphism of $\mathcal{C}(\CC)$.
-  Equipping $\Ch{K}$ with the projective model structure, we say the morphism $\eta$ is a weak-equivalence (resp. fibration) if for each object $X$ of $\CC$ the morphism
+  Let $\C$ be a small dg category and $\eta \colon \funct{L} \to \funct{M}$ a morphism of $\mathcal{C}(\C)$.
+  Equipping $\Ch{K}$ with the projective model structure, we say the morphism $\eta$ is a weak-equivalence (resp. fibration) if for each object $X$ of $\C$ the morphism
   $$\eta(X) \in \Ch{k}(\funct{L}X, \funct{M}X)$$
   is a weak-equivalence (resp. fibration).
-  This endows $\mathcal{C}(\CC)$ with the structure of a cofibrantly generated model category in the sense of \cite{HoveyMC}, 2.1.
+  This endows $\mathcal{C}(\C)$ with the structure of a cofibrantly generated model category in the sense of \cite{Hovey98}, 2.1.
   %From Keller
-  %A dg $\CC$-module, $\mathscr{M}$, is {\it cofibrant} if for every epimorphic quasi-isomorphism $\mathscr{L} \rightarrow \mathscr{N}$, every morphism $\mathscr{M} \rightarrow \mathscr{L}$ factors through $\mathscr{L}$,
+  %A dg $\C$-module, $\mathscr{M}$, is {\it cofibrant} if for every epimorphic quasi-isomorphism $\mathscr{L} \rightarrow \mathscr{N}$, every morphism $\mathscr{M} \rightarrow \mathscr{L}$ factors through $\mathscr{L}$,
   %$$\begin{tikzcd}
   %  & \mathscr{M}\arrow{d}\arrow[dashed,swap]{ld}{\exists}\\
   %  \mathscr{L} \arrow{r} & \mathscr{N} \arrow{r} & 0
@@ -419,35 +419,35 @@ which allows us to view the image of $\mathscr{M}$ in $\mathcal{C}(\CC)$ as a pr
   \begin{itemize}
   \item
     We note that the representables are all cofibrant by the Yoneda Lemma.
-    Namely, given an object $X$ of $\CC$, a trivial cofibration (i.e. a level-wise epimorphic quasi-isomorphism) 
-    $\eta \in \mathcal{C}(\CC)(\funct{L},\funct{M})$,
+    Namely, given an object $X$ of $\C$, a trivial cofibration (i.e. a level-wise epimorphic quasi-isomorphism) 
+    $\eta \in \mathcal{C}(\C)(\funct{L},\funct{M})$,
     and a morphism 
-    $\nu \in \mathcal{C}(\CC)(h_X, \funct{M})$$ \cong \funct{M}(X)$ 
+    $\nu \in \mathcal{C}(\C)(h_X, \funct{M})$$ \cong \funct{M}(X)$ 
     we can pull the image of $\nu$ back along $\eta(X)$ to some\\
-    $\xi \in \mathcal{C}(\CC)(h_X, \funct{L}) \cong \funct{L}(X),$
+    $\xi \in \mathcal{C}(\C)(h_X, \funct{L}) \cong \funct{L}(X),$
     giving the desired lift
     $$\begin{tikzcd}
       0 \arrow{r}\arrow{d} & \funct{L}\arrow{d}{\eta}\\
       h_X \arrow{r}{\nu}\arrow[dashed]{ur}{\exists \xi} & \funct{M}
     \end{tikzcd}$$
   \item
-    Regarding $\dgcat_k$ as the 2-category of $\Ch{k}$-enriched categories, it's clear from Proposition~\ref{modulesaretensored} that $\cdg{\CC}$ is a tensored and cotensored category, which gives rise to bifunctors
-    $$\otimes: \cdg{k} \times \cdg{\CC} \to \cdg{\CC}\ \text{and}\ \cdg{k}(-,-) \colon \cdg{k}^\text{op} \times \cdg{\CC} \to \cdg{\CC}$$
+    Regarding $\dgcat{k}$ as the 2-category of $\Ch{k}$-enriched categories, it's clear from Proposition~\ref{modulesaretensored} that $\cdg{\C}$ is a tensored and cotensored category, which gives rise to bifunctors
+    $$\otimes: \cdg{k} \times \cdg{\C} \to \cdg{\C}\ \text{and}\ \cdg{k}(-,-) \colon \cdg{k}^\text{op} \times \cdg{\C} \to \cdg{\C}$$
     and isomorphisms 
-    $$\cdg{k}(C, \cdg{\CC}(\F, \G)) 
-    \cong \cdg{\CC}(C \otimes \F, \G)
-    \cong \cdg{\CC}(\F, \cdg{k}(C,\G)).$$
+    $$\cdg{k}(C, \cdg{\C}(\F, \G)) 
+    \cong \cdg{\C}(C \otimes \F, \G)
+    \cong \cdg{\C}(\F, \cdg{k}(C,\G)).$$
     for each object $C$ of $\cdg{k}$, $\Ch{k}$-natural in $\F$ and $\G$.
-    This is an adjunction of two variables in the sense of \cite{HoveyMC} 4.1.12 and the bifunctor endows $\cdg{\CC}$ with the structure of a $\Ch{k}$-module in the sense of \cite{HoveyMC}, 4.2.18.
+    This is an adjunction of two variables in the sense of \cite{Hovey98} 4.1.12 and the bifunctor endows $\cdg{\C}$ with the structure of a $\Ch{k}$-module in the sense of \cite{Hovey98}, 4.2.18.
     Applying $Z^0$ gives rise to an adjunction of two variables
-    $$\mathcal{C}(k)(C, \cdg{\CC}(\F,\G))
-    \cong \mathcal{C}(\CC)(C \otimes \F, \G)
-    \cong \mathcal{C}(\CC)(\F, \cdg{k}(C,\G)).$$
-    We show that this endows $\mathcal{C}(\CC)$ with a $\mathcal{C}(k)$-model structure.
+    $$\mathcal{C}(k)(C, \cdg{\C}(\F,\G))
+    \cong \mathcal{C}(\C)(C \otimes \F, \G)
+    \cong \mathcal{C}(\C)(\F, \cdg{k}(C,\G)).$$
+    We show that this endows $\mathcal{C}(\C)$ with a $\mathcal{C}(k)$-model structure.
     
-    Since $\mathcal{C}(k)$ is a symmetric monoidal model category (see \cite{HoveyMC}, 4.2.13) with cofibrant unit $k$, the chain complex consisting of $k$ in degree zero, it suffices to show that the adjunction is Quillen.
-    Given cofibrations $f \colon C \to D$ of $\mathcal{C}(k)$ and $\eta \colon \F \to \G$ of $\mathcal{C}(\CC)$,
-    we have the pushout in $\mathcal{C}(\CC)$
+    Since $\mathcal{C}(k)$ is a symmetric monoidal model category (see \cite{Hovey98}, 4.2.13) with cofibrant unit $k$, the chain complex consisting of $k$ in degree zero, it suffices to show that the adjunction is Quillen.
+    Given cofibrations $f \colon C \to D$ of $\mathcal{C}(k)$ and $\eta \colon \F \to \G$ of $\mathcal{C}(\C)$,
+    we have the pushout in $\mathcal{C}(\C)$
     $$\begin{tikzcd}
       C \otimes \F \arrow{rr}{1 \otimes \eta}\arrow{dd}{f \otimes 1} && C \otimes \G \arrow{dd}{u_1}\arrow[bend left]{rdddd}{f \otimes 1}\\
       \\
@@ -464,74 +464,74 @@ which allows us to view the image of $\mathscr{M}$ in $\mathcal{C}(\CC)$ as a pr
     %    \\
     %    & & & D \otimes \G(X)
     %  \end{tikzcd}$$
-    indexed by the objects of $\CC$, we reduce to the case that $(f \square \eta)(X)$ is a cofibration that is trivial provided either one $\eta(X)$ or $f$ is.
-    By definition of the model structure on $\mathcal{C}(\CC$, $\eta(X)$ is a cofibration, so this follows directly from the fact that $\mathcal{C}(k)$ is a symmetric monoidal model category.
-    We note that when we restrict to the subcategory of $\cdg{\CC}$ with cofibrant and fibrant objects, then by \cite{HoveyMC} 4.3.1 this induces a Quillen adjunction 
-    $$[C,\mathbb{R}\Hom{\cdg{\CC}}{\F,\G}]_{\mathcal{C}(k)}
-    \cong [C \otimes^\mathbb{L} \F, \G]_{\mathcal{C}(\CC)}
-    \cong [\F, \mathbb{R}\Hom{\cdg{k}}{C,\G}]_{\mathcal{C}(\CC)},$$
-    where $[-,-]$ denotes morphisms of the homotopy category, $\mathbb{R}\operatorname{Hom}$ and $\otimes^\mathbb{L}$ are the right and left derived functors, respectively.
-    In particular, denoting by $\mathcal{I}$ the dg category with one object and endomorphisms the complex with $k$ concentrated in degree zero, we note that $\mathcal{C}(\CC)$ is obtained from
+    indexed by the objects of $\C$, we reduce to the case that $(f \square \eta)(X)$ is a cofibration that is trivial provided either one $\eta(X)$ or $f$ is.
+    By definition of the model structure on $\mathcal{C}(\C$, $\eta(X)$ is a cofibration, so this follows directly from the fact that $\mathcal{C}(k)$ is a symmetric monoidal model category.
+    We note that when we restrict to the subcategory of $\cdg{\C}$ with cofibrant and fibrant objects, then by \cite{Hovey98} 4.3.1 this induces a Quillen adjunction 
+    $$[C,\mathbb{R}\Hom{\cdg{\C}}{\F,\G}]_{\mathcal{C}(k)}
+    \cong [C \otimes^\mathbb{L} \F, \G]_{\mathcal{C}(\C)}
+    \cong [\F, \mathbb{R}\Hom{\cdg{k}}{C,\G}]_{\mathcal{C}(\C)},$$
+    where $[-,-]$ denotes morphisms of the homotopy category, $\mathbb{R}\op{Hom}$ and $\otimes^\mathbb{L}$ are the right and left derived functors, respectively.
+    In particular, denoting by $\mathcal{I}$ the dg category with one object and endomorphisms the complex with $k$ concentrated in degree zero, we note that $\mathcal{C}(\C)$ is obtained from
     \begin{eqnarray*}
-      \dgcat_k(\mathcal{I}, \cdg{\CC}) &=& \dgcat_k(\mathcal{I}, \SHom{\CC^\text{op}, \cdg{k}}\\
-      &\cong& \dgcat_k(\mathcal{I} \otimes_k \CC^\text{op}, \cdg{k})\\
-      &\cong& \dgcat_k(\CC^\text{op}, \cdg{k})\\
-      &=& Z^0 \SHom{\CC^{op}, \cdg{k}}\\
-      &=& Z^0\cdg{\CC}\\
-      &=:& \mathcal{C}(\CC).
+      \dgcat{k}(\mathcal{I}, \cdg{\C}) &=& \dgcat{k}(\mathcal{I}, \SHom{\C^\text{op}, \cdg{k}}\\
+      &\cong& \dgcat{k}(\mathcal{I} \otimes_k \C^\text{op}, \cdg{k})\\
+      &\cong& \dgcat{k}(\C^\text{op}, \cdg{k})\\
+      &=& Z^0 \SHom{\C^{op}, \cdg{k}}\\
+      &=& Z^0\cdg{\C}\\
+      &=:& \mathcal{C}(\C).
     \end{eqnarray*}
-    Denoting by $\cdg{\CC}_\text{cf}$ the subcategory of cofibrant and fibrant objects, we obtain an equivalence between $H^0\cdg{\CC}_\text{cf}$ and $\mathcal{D}(\CC) = \operatorname{Ho}(\mathcal{C}(\CC))$ by the isomorphism
-    $$H^0(\mathbb{R}\Hom{\cdg{C}}{\F,\G}) \cong [k,\mathbb{R}\Hom{\cdg{\CC}}{\F,\G}]_{\mathcal{C}(k)} \cong [k \otimes^\mathbb{L} \F, \G]_{\mathcal{C}(\CC)} \cong [\F,\G]_{\mathcal{C}(\CC)}.$$
+    Denoting by $\cdg{\C}_\text{cf}$ the subcategory of cofibrant and fibrant objects, we obtain an equivalence between $H^0\cdg{\C}_\text{cf}$ and $\mathcal{D}(\C) = \op{Ho}(\mathcal{C}(\C))$ by the isomorphism
+    $$H^0(\mathbb{R}\Hom{\cdg{C}}{\F,\G}) \cong [k,\mathbb{R}\Hom{\cdg{\C}}{\F,\G}]_{\mathcal{C}(k)} \cong [k \otimes^\mathbb{L} \F, \G]_{\mathcal{C}(\C)} \cong [\F,\G]_{\mathcal{C}(\C)}.$$
   \end{itemize}
 \end{rmk}
 
 %From Keller
 %\begin{thm}
-%  The category $\mathcal{C}(\CC)$ admits a projective model structure with weak equivalences quasi-isomorphisms and fibrations epimorphisms.
-%  For this structure, each object is fibrant and the cofibrant objects are the cofibrant dg $\CC$-modules.
+%  The category $\mathcal{C}(\C)$ admits a projective model structure with weak equivalences quasi-isomorphisms and fibrations epimorphisms.
+%  For this structure, each object is fibrant and the cofibrant objects are the cofibrant dg $\C$-modules.
 %\end{thm}
 
 \section{The Derived Category of a Differential Graded Category}
 
 \begin{defn}
-  Let $\CC$ be a small dg category.
-  The derived category $\mathcal{D}(\CC)$ is the localization of $\mathcal{C}(\CC)$ at the class of quasi-isomorphisms, $\operatorname{Ho}(\mathcal{C}(\CC))$.
-  Equivalently, this is the Verdier quotient of $\mathcal{H}(\CC)$ by acyclics.
+  Let $\C$ be a small dg category.
+  The derived category $\mathcal{D}(\C)$ is the localization of $\mathcal{C}(\C)$ at the class of quasi-isomorphisms, $\op{Ho}(\mathcal{C}(\C))$.
+  Equivalently, this is the Verdier quotient of $\mathcal{H}(\C)$ by acyclics.
 \end{defn}
 
 \section{Generators of Differential Graded Categories}
 \subsection{Pretriangulated Differential Graded Categories}
 
 \begin{defn}
-  Let $\CC$ be a small dg category.
+  Let $\C$ be a small dg category.
   We have the Yoneda embedding 
   $$\begin{tikzcd}
-    Z^0(\CC) \arrow{r}{h_{\_}} & \mathcal{C}(\CC)\\
+    Z^0(\C) \arrow{r}{h_{\_}} & \mathcal{C}(\C)\\
     X \arrow[mapsto]{r} & h_X.
   \end{tikzcd}$$
-  We say that $\mathscr{M} \colon \CC^\text{op} \rightarrow \cdg{k}$ is {\it quasi-representable} if there is an object $X$ of $\CC$ such that $h_X$ is quasi-isomorphic to $\mathscr{M}$
+  We say that $\mathscr{M} \colon \C^\text{op} \rightarrow \cdg{k}$ is {\it quasi-representable} if there is an object $X$ of $\C$ such that $h_X$ is quasi-isomorphic to $\mathscr{M}$
   
-  We say that $\CC$ is {\it pretriangulated} if
+  We say that $\C$ is {\it pretriangulated} if
   \begin{enumerate}
   \item
-    for each $n \in \Z$ and each object $X$ of $\CC$, $h_X[n]$ is quasi-representable, and
+    for each $n \in \Z$ and each object $X$ of $\C$, $h_X[n]$ is quasi-representable, and
   \item
-    for all $f \in Z^0(\CC)(X,Y)$, $\operatorname{cone}(f_*)$ is quasi-representable, where $f_* : h_X \rightarrow h_Y$ is the image of $f$ under the Yoneda embedding.
+    for all $f \in Z^0(\C)(X,Y)$, $\op{cone}(f_*)$ is quasi-representable, where $f_* : h_X \rightarrow h_Y$ is the image of $f$ under the Yoneda embedding.
   \end{enumerate}
 \end{defn}
 
 \begin{defn}
-  Let $\CC$ be a pretriangulated dg category and let $E$ be an object of $\CC$.
+  Let $\C$ be a pretriangulated dg category and let $E$ be an object of $\C$.
   By abuse of notation, 
   \begin{enumerate}
   \item
-    We say $E$ is a {\it classical generator} of $\CC$ if $h_E$ is a classical generator of $H^0(\CC)$,
+    We say $E$ is a {\it classical generator} of $\C$ if $h_E$ is a classical generator of $H^0(\C)$,
   \item
-    We say $E$ is a {\it strong generator} of $\CC$ if $h_E$ is a strong generator of $H^0(\CC)$,
+    We say $E$ is a {\it strong generator} of $\C$ if $h_E$ is a strong generator of $H^0(\C)$,
   \item
-    We say $E$ is a {\it (weak) generator} of $\CC$ if $h_E$ is a (weak) generator of $H^0(\CC)$, and
+    We say $E$ is a {\it (weak) generator} of $\C$ if $h_E$ is a (weak) generator of $H^0(\C)$, and
   \item
-    We say $\CC$ is compactly generated if $H^0(\CC)$ is.
+    We say $\C$ is compactly generated if $H^0(\C)$ is.
   \end{enumerate}
 \end{defn}
 
@@ -542,50 +542,50 @@ which allows us to view the image of $\mathscr{M}$ in $\mathcal{C}(\CC)$ as a pr
 %\end{lem}
 
 \begin{defn}
-  A dg functor $\mathscr{F} \colon \CC \rightarrow \D$ is called a {\it quasi-equivalence} if 
+  A dg functor $\mathscr{F} \colon \C \rightarrow \D$ is called a {\it quasi-equivalence} if 
   \begin{enumerate}
   \item
-    for all objects $X$ and $Y$ of $\CC$, the morphism
+    for all objects $X$ and $Y$ of $\C$, the morphism
     $$\mathscr{F}(X,Y) \colon
     \begin{tikzcd}
-      \CC(X,Y) \arrow{r} & \D(\mathscr{F}X,\mathscr{F}Y)
+      \C(X,Y) \arrow{r} & \D(\mathscr{F}X,\mathscr{F}Y)
     \end{tikzcd}$$
     of $\mathcal{C}(k)$ is a quasi-isomorphism, and
   \item
-    the induced functor $H^0(\mathscr{F}) \colon H^0(\CC) \rightarrow H^0(\D)$ is an equivalence.
+    the induced functor $H^0(\mathscr{F}) \colon H^0(\C) \rightarrow H^0(\D)$ is an equivalence.
   \end{enumerate}
 \end{defn}
 
 \begin{lem}
-  Let $k$ be a field, and let $\CC$, $\D$ be objects of $\dgcat_k$.
-  Given an object $\mathscr{L}$ of $\cdg{\CC}$ (resp. an object $\mathscr{M}$ of $\cdg{\D}$), there is a well-defined dg functor $\mathscr{L} \otimes - \colon \cdg{\D} \to \cdg{\CC \otimes \D}$ (resp. $- \otimes \mathscr{M} \colon \cdg{\CC} \to \cdg{\CC \otimes \D}$).
+  Let $k$ be a field, and let $\C$, $\D$ be objects of $\dgcat{k}$.
+  Given an object $\mathscr{L}$ of $\cdg{\C}$ (resp. an object $\mathscr{M}$ of $\cdg{\D}$), there is a well-defined dg functor $\mathscr{L} \otimes - \colon \cdg{\D} \to \cdg{\C \otimes \D}$ (resp. $- \otimes \mathscr{M} \colon \cdg{\C} \to \cdg{\C \otimes \D}$).
   
 
   \begin{proof}
     For an object $\mathscr{M}$ of $\D$, define 
     $$\mathscr{L} \otimes \mathscr{M}(X \otimes Y) = \mathscr{L}(X) \otimes_k \mathscr{M}(X).$$
     Since $\mathscr{L}$ and $\mathscr{M}$ are both dg-functors, we have morphisms of $\mathcal{C}(k)$
-    $$\CC(X^\prime, X) \to [\mathscr{L}(X), \mathscr{L}(X^\prime)]\ \text{and}\ \D(Y^\prime, Y) \to [\mathscr{M}(Y), \mathscr{M}(Y^\prime)],$$
+    $$\C(X^\prime, X) \to [\mathscr{L}(X), \mathscr{L}(X^\prime)]\ \text{and}\ \D(Y^\prime, Y) \to [\mathscr{M}(Y), \mathscr{M}(Y^\prime)],$$
     which correspond under the adjunction of Proposition~\ref{ChHomTensorAdjunction} to morphisms
-    $$\CC(X^\prime, X) \otimes_k \mathscr{L}(X) \to \mathscr{L}(X^\prime)
+    $$\C(X^\prime, X) \otimes_k \mathscr{L}(X) \to \mathscr{L}(X^\prime)
     \ \text{and}\ 
     \D(Y^\prime, Y) \otimes_k \mathscr{M}(Y) \to \mathscr{M}(Y^\prime),$$
     respectively.
     Tensoring the left-hand morphism by $\D(Y^\prime,Y) \otimes_k \mathscr{M}(Y)$ and the right hand-morphism by $\mathscr{L^\prime}(X^\prime)$ we obtain a morphism
-    $$\CC(X^\prime, X) \otimes_k \D(Y^\prime, Y) \otimes_k \mathscr{L}(X) \otimes_k \mathscr{M}(Y) \to 
+    $$\C(X^\prime, X) \otimes_k \D(Y^\prime, Y) \otimes_k \mathscr{L}(X) \otimes_k \mathscr{M}(Y) \to 
     \mathscr{L}(X) \otimes_k \D(Y^\prime,Y) \otimes_k \mathscr{M}(Y) \to
     \mathscr{L}(X^\prime) \otimes_k \mathscr{M}(Y^\prime)$$
     which corresponds under the adjunction to a morphism
-    $$\CC \otimes \D(X^\prime \otimes Y^\prime, X \otimes Y) \to
+    $$\C \otimes \D(X^\prime \otimes Y^\prime, X \otimes Y) \to
     [\mathscr{L}(X) \otimes_k \mathscr{M}(Y), \mathscr{L}(X^\prime) \otimes_k \mathscr{M}(Y^\prime)].$$
     Using the adjunction of Proposition~\ref{ChHomTensorAdjunction} we obtain the morphism
     $$\begin{tikzcd}
-      \Ch{k}(\cdg{\CC}, [\funct{L}(X), \funct{L}(X^\prime)]) \arrow{d}[rotate=90,xshift=-1ex,yshift=1ex]{\sim}\\
-      \Ch{k}(\cdg{\CC} \otimes_k \funct{L}(X), \funct{L}(X^\prime))\arrow{d}{- \otimes_k \left(\D(Y^\prime, Y) \otimes_k \funct{M}(Y)\right)}\\
-      \Ch{k}(\cdg{\CC \otimes \D}(X^\prime \otimes Y^\prime, X \otimes Y) \otimes_k \funct{L}(X) \otimes \funct{M}(Y), \funct{L}(X^\prime) \otimes_k \funct{M}(Y^\prime) \otimes_k \D(Y^\prime, Y))
+      \Ch{k}(\cdg{\C}, [\funct{L}(X), \funct{L}(X^\prime)]) \arrow{d}[rotate=90,xshift=-1ex,yshift=1ex]{\sim}\\
+      \Ch{k}(\cdg{\C} \otimes_k \funct{L}(X), \funct{L}(X^\prime))\arrow{d}{- \otimes_k \left(\D(Y^\prime, Y) \otimes_k \funct{M}(Y)\right)}\\
+      \Ch{k}(\cdg{\C \otimes \D}(X^\prime \otimes Y^\prime, X \otimes Y) \otimes_k \funct{L}(X) \otimes \funct{M}(Y), \funct{L}(X^\prime) \otimes_k \funct{M}(Y^\prime) \otimes_k \D(Y^\prime, Y))
       \arrow{d}{\funct{L}(X^\prime) \otimes_k \D(Y^\prime,Y) \otimes_k M(Y) \to \funct{L}(X^\prime) \otimes_k \funct{M}(Y^\prime) \circ -}\\
-      \Ch{k}(\cdg{\CC \otimes \D}(X^\prime \otimes Y^\prime, X \otimes Y) \otimes_k \funct{L}(X) \otimes_k \funct{M}(Y), \funct{L}(X^\prime) \otimes_k \funct{M}(Y^\prime))\arrow{d}[rotate=90,xshift=-1ex,yshift=1ex]{\sim}\\
-      \Ch{k}(\cdg{\CC \otimes \D}(X^\prime \otimes Y^\prime), [\funct{L}(X) \otimes_k \funct{M}(X), \funct{L}(X^\prime) \otimes_k \funct{M}(Y^\prime)])
+      \Ch{k}(\cdg{\C \otimes \D}(X^\prime \otimes Y^\prime, X \otimes Y) \otimes_k \funct{L}(X) \otimes_k \funct{M}(Y), \funct{L}(X^\prime) \otimes_k \funct{M}(Y^\prime))\arrow{d}[rotate=90,xshift=-1ex,yshift=1ex]{\sim}\\
+      \Ch{k}(\cdg{\C \otimes \D}(X^\prime \otimes Y^\prime), [\funct{L}(X) \otimes_k \funct{M}(X), \funct{L}(X^\prime) \otimes_k \funct{M}(Y^\prime)])
     \end{tikzcd}$$
   \end{proof}
 \end{lem}
@@ -618,20 +618,20 @@ which allows us to view the image of $\mathscr{M}$ in $\mathcal{C}(\CC)$ as a pr
 %TODO: Make the statement more precise.
 %Fit it to context.
 \begin{lem}\label{AdditiveFunctorsCommuteWithCones}
-  If $\F \colon \CC \rightarrow \D$ is an additive functor, then for any morphism, $f$, of complexes of $\CC$ we have
+  If $\F \colon \C \rightarrow \D$ is an additive functor, then for any morphism, $f$, of complexes of $\C$ we have
   $\F\left(\cone{f}\right) \cong \cone{\F(f)}$.
 \end{lem}
 
 \begin{lem}\label{RepresentablesGenerateSmallDG}
-  If $\CC$ is a small dg-category, then $\mathcal{D}(\CC)$ is compactly generated.
+  If $\C$ is a small dg-category, then $\mathcal{D}(\C)$ is compactly generated.
 
   \begin{proof}
-    We view $\mathcal{D}(\CC)$ as the Verdier quotient of $\mathcal{H}(\CC)$ by level-wise acyclic modules.
-    Let $H = \oplus_{X \in \ob{\CC}} h_X$.
-    Given an object $\mathcal{M}$ of $\mathcal{D}(\CC)$ such that for all objects $X$ of $\CC$ and all $n$
-    $$0 \cong \mathcal{D}(\CC)(H, \mathcal{M}[n]) \cong \prod_{X \in \ob{\CC}} H^n\mathcal{M}(X)$$
-    then $\mathcal{M}$ is level-wise acyclic, and hence $\mathcal{M} \cong 0$ in $\mathcal{D}(\CC)$, as desired.
-    Therefore $\mathcal{D}(\CC)$ is compactly generated by the representables.
+    We view $\mathcal{D}(\C)$ as the Verdier quotient of $\mathcal{H}(\C)$ by level-wise acyclic modules.
+    Let $H = \oplus_{X \in \ob{\C}} h_X$.
+    Given an object $\mathcal{M}$ of $\mathcal{D}(\C)$ such that for all objects $X$ of $\C$ and all $n$
+    $$0 \cong \mathcal{D}(\C)(H, \mathcal{M}[n]) \cong \prod_{X \in \ob{\C}} H^n\mathcal{M}(X)$$
+    then $\mathcal{M}$ is level-wise acyclic, and hence $\mathcal{M} \cong 0$ in $\mathcal{D}(\C)$, as desired.
+    Therefore $\mathcal{D}(\C)$ is compactly generated by the representables.
   \end{proof}
 \end{lem}
 
@@ -655,9 +655,9 @@ which allows us to view the image of $\mathscr{M}$ in $\mathcal{C}(\CC)$ as a pr
 \end{prop}
 
 \begin{cor}
-  Let $\CC$ be as above and $H$ be as above.
-  The object $H$ clasically generates the compact subcategory, $\Perf{\CC}$, of $D(\CC)$,
-  $$\Perf{\CC} = \langle H \rangle.$$
+  Let $\C$ be as above and $H$ be as above.
+  The object $H$ clasically generates the compact subcategory, $\Perf{\C}$, of $D(\C)$,
+  $$\Perf{\C} = \langle H \rangle.$$
 
   \begin{proof}
     Apply Proposition~\ref{GeneratorIFFClassicAndCompactlyGenerated}.
@@ -665,26 +665,26 @@ which allows us to view the image of $\mathscr{M}$ in $\mathcal{C}(\CC)$ as a pr
 \end{cor}
 
 \begin{thm}
-  Let $k$ be a field, and let $\CC$ and $\mathscr{D}$ be pretriangulated dg-categories.
-  %If $E_i$ is a family of generators for $\CC$ and $F_i$ is a family of generators for $\mathscr{D}$, then the $E_i \otimes F_j$ are a family of generators for $\mathcal{H}\left(\CC \otimes \mathscr{D}\right)$.
-  If $G$ is a classical generator for $\CC$ and $H$ is a classical generator for $\mathscr{D}$, then $h_G \otimes h_H$ is a generator for $\mathcal{D}\left(\CC \otimes \mathscr{D}\right)$.
+  Let $k$ be a field, and let $\C$ and $\mathscr{D}$ be pretriangulated dg-categories.
+  %If $E_i$ is a family of generators for $\C$ and $F_i$ is a family of generators for $\mathscr{D}$, then the $E_i \otimes F_j$ are a family of generators for $\mathcal{H}\left(\C \otimes \mathscr{D}\right)$.
+  If $G$ is a classical generator for $\C$ and $H$ is a classical generator for $\mathscr{D}$, then $h_G \otimes h_H$ is a generator for $\mathcal{D}\left(\C \otimes \mathscr{D}\right)$.
   
   \begin{proof}
-    First we note that the images of the representables are all compact, and by Lemma~\ref{RepresentablesCompactlyGenerateSmallDG} they generate $\mathcal{D}(\CC \otimes \D)$, hence also $\mathcal{D}(\CC \otimes \D)_c$.
-    It then follows from Lemma~\ref{GeneratorIFFClassicAndCompactlyGenerated} that the representables clasically generate $\mathcal{D}(\CC \otimes \D)_c$.
-    By another application of Lemma~\ref{GeneratorIFFClassicAndCompactlyGenerated}, it suffices to show that $h_G \otimes h_H$ classically generates the representables, for then we have that $\mathcal{D}(\CC \otimes \D)$ is compactly generated and 
-    $$\langle h_G \otimes h_H \rangle = \mathcal{D}(\CC \otimes \D)_c$$
-    from which it follows that $h_G \otimes h_H$ generates $\mathcal{D}(\CC \otimes \D)$.
+    First we note that the images of the representables are all compact, and by Lemma~\ref{RepresentablesCompactlyGenerateSmallDG} they generate $\mathcal{D}(\C \otimes \D)$, hence also $\mathcal{D}(\C \otimes \D)_c$.
+    It then follows from Lemma~\ref{GeneratorIFFClassicAndCompactlyGenerated} that the representables clasically generate $\mathcal{D}(\C \otimes \D)_c$.
+    By another application of Lemma~\ref{GeneratorIFFClassicAndCompactlyGenerated}, it suffices to show that $h_G \otimes h_H$ classically generates the representables, for then we have that $\mathcal{D}(\C \otimes \D)$ is compactly generated and 
+    $$\langle h_G \otimes h_H \rangle = \mathcal{D}(\C \otimes \D)_c$$
+    from which it follows that $h_G \otimes h_H$ generates $\mathcal{D}(\C \otimes \D)$.
     
-    We observe that because $\CC$ and $\D$ are pre-triangulated categories, the Yoneda functors
-    $$H^0(\CC) \to \mathcal{H}(\CC)\ \text{and}\ H^0(\D) \to \mathcal{H}(\D)$$
+    We observe that because $\C$ and $\D$ are pre-triangulated categories, the Yoneda functors
+    $$H^0(\C) \to \mathcal{H}(\C)\ \text{and}\ H^0(\D) \to \mathcal{H}(\D)$$
     are both triangulated.
-    Identifying $H^0(\CC)$ and $H^0(\D)$ with their images we have
-    $$H^0(\CC) \subseteq \langle h_G \rangle\ \text{and}\ H^0(\D) \subseteq \langle h_H \rangle$$
+    Identifying $H^0(\C)$ and $H^0(\D)$ with their images we have
+    $$H^0(\C) \subseteq \langle h_G \rangle\ \text{and}\ H^0(\D) \subseteq \langle h_H \rangle$$
     by Lemma~\ref{TriangulatedFunctorsPreserveGens}.
     
-    Fix an object $X$ of $\CC$ and view $h_X$ as an object of $\mathcal{D}(\CC)$.
-    Consider the additive functor $h_X \otimes -: \mathcal{D}(\D) \to \mathcal{D}\left(\CC \otimes \mathscr{D}\right)$. %TODO: Is this really additive?  Does it make sense?
+    Fix an object $X$ of $\C$ and view $h_X$ as an object of $\mathcal{D}(\C)$.
+    Consider the additive functor $h_X \otimes -: \mathcal{D}(\D) \to \mathcal{D}\left(\C \otimes \mathscr{D}\right)$. %TODO: Is this really additive?  Does it make sense?
     It follows from Lemma~\ref{AdditiveFunctorsCommuteWithCones} that $\F$ is triangulated and hence 
     $$h_X \otimes \langle h_H \rangle \subseteq \langle h_X \otimes h_H \rangle$$
     by Lemma~\ref{TriangulatedFunctorsPreserveGens}.
@@ -694,7 +694,7 @@ which allows us to view the image of $\mathscr{M}$ in $\mathcal{C}(\CC)$ as a pr
     $$h_X \otimes h_H \in \langle h_G \rangle_m \otimes h_H \subseteq \langle h_G \otimes h_H \rangle_m$$
     %$$\langle h_X \otimes h_H \rangle \subseteq \langle h_G \otimes h_H\rangle_m$$
     follows from a symmetric argument with $- \otimes h_G$.
-    Therefore for any object $X$ of $\CC$ and any object $Y$ of $\D$,
+    Therefore for any object $X$ of $\C$ and any object $Y$ of $\D$,
     $$h_X \otimes h_Y \in \langle h_X \otimes h_H \rangle \subseteq \langle h_G \otimes h_H\rangle$$
     follows by minimality.
   \end{proof}

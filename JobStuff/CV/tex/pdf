@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-NAME="dissertation"
+NAME="CV-BFarman"
 PDFDIR=../pdf/
 FILE="$NAME.tex"
 
@@ -15,6 +15,4 @@ rm -fr *.log
 rm -fr *.aux
 rm -fr *.bbl
 rm -fr *.blg
-rm -fr *.out
-rm -fr *.toc
 rm -fr *~

@@ -103,7 +103,7 @@ Similarly, define a covariant functor $h^X : \mathscr{C} \rightarrow \mathfrak{S
 
 \begin{lem}[Yoneda]
   If $F \colon \mathscr{C} \rightarrow \mathfrak{Sets}$ is any presheaf of sets, then for any object $X$ of $\mathscr{C}$ of $\mathscr{C}$, there is a natural isomorphism of sets
-  $$\operatorname{Nat}(h_X, F) \cong F(X).$$
+  $$\op{Nat}(h_X, F) \cong F(X).$$
 
   \begin{proof}
     First we define the morphisms of sets
@@ -185,8 +185,8 @@ Similarly, define a covariant functor $h^X : \mathscr{C} \rightarrow \mathfrak{S
 \end{lem}
 
 This lemma allows us to define the Yoneda functor
-$$Y : \mathscr{C} \rightarrow \hat{\mathscr{C}} = \operatorname{Fun}(\CC^\text{op}, \mathfrak{Set})$$
-where $\operatorname{Fun}(\CC^\text{op}, \mathfrak{Set})$ is the category with objects presheaves of sets on $\mathscr{C}$ and morphisms natural transformations.
+$$Y : \mathscr{C} \rightarrow \hat{\mathscr{C}} = \op{Fun}(\C^\opp, \mathfrak{Set})$$
+where $\op{Fun}(\C^\opp, \mathfrak{Set})$ is the category with objects presheaves of sets on $\mathscr{C}$ and morphisms natural transformations.
 This functor takes an object $X$ of $\mathscr{C}$ to the presheaf $h_X$ and takes a morphism $f : Y \rightarrow X$ to the natural transformation $f_* : h_Y \rightarrow h_X$ of Proposition~\ref{p.1}.
 
 \begin{cor}\label{c.1}

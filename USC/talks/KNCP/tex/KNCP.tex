@@ -23,8 +23,8 @@
 The classical example of Morita theory is for rings:
 
 \begin{theorem}\label{thm: Morita}
-  If $A$ and $B$ are unital rings, then the categories $\Mod{A}$ and $\Mod{B}$ of left modules are equivalent if and only if there exists a $B$-$A$-bimodule, $P$ and an $A$-$B$-bimodule $Q$ such that
-  $$Q \otimes_B P \cong B\ \text{and}\ P \otimes_A Q \cong A.$$
+  If $A$ and $B$ are unital rings, then the categories $\Mod{A}$ and $\Mod{B}$ of left modules are equivalent if and only if there exists a $B$-$A$-bimodule, $P$, and an $A$-$B$-bimodule, $Q$, such that
+  $$Q \otimes_B P \cong A\ \text{and}\ P \otimes_A Q \cong B.$$
 \end{theorem}
 
 \begin{lemma}\label{lem: endomorphisms of identity functor are the center}
@@ -34,12 +34,6 @@ The classical example of Morita theory is for rings:
 There is an isomorphism
 $$Z(A) \cong \End_{\Mod{A}}(\id_{\Mod{A}}, \id_{\Mod{A}}).$$
 \end{lemma}
-
-\begin{remark}
-  We note that when $A$ is not necessarily commutative, it is imperative that $z \in Z(A)$, for otherwise the associated morphism $\eta_A$ does not commute with left multiplication by some element of $a \in A$, since
-  $$\varphi_a \circ \eta_A(a^\prime) = a(za^\prime) \neq z(aa^\prime) = \eta_A \circ \varphi_a(a^\prime),$$
-  which breaks the naturality of $\eta$.
-\end{remark}
 
 \begin{corollary}\label{cor: morita implies isomorphic centers}
   If $A$ and $B$ are Morita equivalent, then $Z(A) \cong Z(B)$.
@@ -427,6 +421,12 @@ For the reverse mapping, we note that it's clear that an element $z \in Z(A)$ de
 $$\eta_M \circ f(m) = zf(m) = f(zm) = f \circ \eta_M(m).$$
 This mapping gives the inverse to the morphism of rings constructed above.
 \end{proof}
+
+\begin{remark}
+  We note that when $A$ is not necessarily commutative, it is imperative that $z \in Z(A)$, for otherwise the associated morphism $\eta_A$ does not commute with left multiplication by some element of $a \in A$, since
+  $$\varphi_a \circ \eta_A(a^\prime) = a(za^\prime) \neq z(aa^\prime) = \eta_A \circ \varphi_a(a^\prime),$$
+  which breaks the naturality of $\eta$.
+\end{remark}
 
 \begin{proof}[Proof of Corollary~\ref{cor: morita implies isomorphic centers}]
   Denote by $\varepsilon \colon \id_{\Mod{A}} \to RL$ and $\eta \colon LR \to \id_{\Mod{B}}$ the unit and counit of the equivalence.

@@ -1,86 +1,101 @@
 % LaTeX resume using res.cls
-\documentclass[line,margin]{res} 
+\documentclass{article}
+\usepackage{hyperref}
+\usepackage[margin=1in]{geometry}
+\usepackage{tabularx}
 \pdfpagewidth 8.5in
 \pdfpageheight 11in
 % \usepackage{helvetica} % uses helvetica postscript font (download helvetica.sty)
 % \usepackage{newcent}   % uses new century schoolbook postscript font 
 
 \begin{document}
-\name{Blake A. Farman}
-% \address used twice to have two lines of address
-\address{13B Franklin Street, Winooski, VT 05404}
-\address{(802) 282-8205}
+\noindent\textbf{\large{Blake Alexander Farman}} \hfill \today\\
+\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
 
-\begin{resume}
-  
-%  \section{OBJECTIVE}
+\section*{Contact Information}
+\begin{minipage}{1.3in}
+  2807 Holt Dr.\\
+  Columbia, SC 29205
+\end{minipage}
+\hfill
+\begin{minipage}{2.15in}
+  farmanb@math.sc.edu\\
+  %+1 802 282 8205\\
+  \hyperref[http://people.math.sc.edu/farmanb]{http://people.math.sc.edu/farmanb}
+\end{minipage}
+
+%  \section*{Objective}
 %  I endeavour to find a position in which I have ample
 %  opportunity to apply my knowledge of both computer science and mathematics.
   
-  \section{EDUCATION} {\sl Master of Science,} Mathematics\\
-  % \sl will be bold italic in New Century Schoolbook (or
-  % any postscript font) and just slanted in
-  % Computer Modern (default) font
-  University of Vermont, Burlington, VT, 
-  received May 2011, 
-  GPA 3.74/4.0\\
-  Concentration: Abstract Algebra\\
-  Minor: Algebraic Number Theory
-
-  {\sl Bachelor of Science,} Computer Science \\
-  % \sl will be bold italic in New Century Schoolbook (or
-  % any postscript font) and just slanted in
-  % Computer Modern (default) font
-  Rensselaer Polytechnic Institute, Troy, NY, 
-  received May 2009,
-  GPA 3.13/4.0\\
-  Concentration: Computer Science \\
-  Minors: Mathematics, French\\
-
-  \section{RELATED\\EXPERIENCE} 
-  {\sl Graduate Teaching Fellow} \hfill May 2010 - Present \\
+  \section*{Education} 
+  \textsl{Doctor of Philosophy,} Mathematics \hfill Expected May 2018\\
+  University of South Carolina, Columbia, SC\\
+  Dissertation Title: Geometry of derived categories on noncommutative projective schemes\\
+  Advisor: Matthew R. Ballard\\
+  
+  \noindent
+  \textsl{Master of Science,} Mathematics \hfill May 2011\\
   University of Vermont, Burlington, VT\\
+  Major Concentration: Abstract Algebra\\
+  Minor Concentration: Algebraic Number Theory\\
+  
+  \noindent\textsl{Bachelor of Science,} Computer Science \hfill May 2009\\
+  Rensselaer Polytechnic Institute, Troy, NY\\
+  Minors: Applied Mathematics and French
+  
+  \section*{Employment}
+  \textsl{Graduate Teaching Assistant} \hfill August 2012 - Present \\
+  University of South Carolina, Columbia, SC
   \begin{itemize}  \itemsep -2pt % reduce space between items
   \item
-    Taught undergraduate level introductory calculus and discrete mathematics courses while working towards an M.S. degree.
+    Teach undergraduate level mathematics courses ranging from basic college algebra to calculus II while working towards a Ph.D in Mathematics.
   \item 
-    Helped run a math department sponsored Help Session for undergraduates.
+    Help run a mathematics department sponsored tutoring center for undergraduates.
   \end{itemize}
 
-  {\sl Undergraduate Research/Teaching Assistant} \hfill May 2008 - May 2009 \\
-  Rensselaer Polytechnic Institute, Troy, NY\\
+  \noindent\textsl{Associate} \hfill August 2011 - August 2012\\
+  Princeton Consultants, Inc, Princeton, NJ
+  \begin{itemize}\itemsep -2pt
+  \item
+    Assisted in back end design of a web based planning utility for intermodal logistics.
+  \item
+    Java development, build management, scripting, and other back end development.
+  \end{itemize}
+  
+  \noindent\textsl{Graduate Teaching Assistant} \hfill August 2009 - May 2011 \\
+  University of Vermont, Burlington, VT
   \begin{itemize}  \itemsep -2pt % reduce space between items
-  \item Assisted Professor Jeffrey C. Trinkle \& Steven Berard with development of the Qt interface for the daVinci Code (DVC) physical simulator\\ (http://www.robotics.cs.rpi.edu/dvc).
+  \item
+    Taught undergraduate level introductory calculus and discrete mathematics courses while working towards an M.S. in Mathematics.
+  \item 
+    Helped run a mathematics department sponsored Help Session for undergraduates.
+  \end{itemize}
+
+  \noindent\textsl{Undergraduate Research/Teaching Assistant} \hfill May 2008 - May 2009 \\
+  Rensselaer Polytechnic Institute, Troy, NY
+  \begin{itemize}  \itemsep -2pt % reduce space between items
+  \item Assisted Professor Jeffrey C. Trinkle and his student, Steven Berard, with development of the Qt interface for the daVinci Code (DVC) physical simulator (http://www.robotics.cs.rpi.edu/dvc).
   \item Served as Teaching Assistant for Professor Trinkle's Robotics Course, which used DVC.
     Responsibilities included teaching students how to use the software and designing/grading homework assignments that used DVC.
   \end{itemize}
-
-  {\sl Intern} \hfill            Summers 2005-2007 \\
-  Vermont Electric Power Company (VELCO), Rutland, VT \\
-  \begin{itemize}  \itemsep -2pt %reduce space between items
-  \item{2007} Assisted VELCO's Information Systems group with development of stand alone and Microsoft SharePoint composite software for dynamic tracking of network hosts and a Virtual Help Desk solution.
-  \item{2006}
-    Assisted VELCO's System Protection group with software maintenance and development including preparation for installing software for automatic retrieval of information from Digital Fault Recorders and Relays.
-  \item{2005}
-    Assisted the VELCO Information Systems department with network maintenance, PC preparation, operating systems \& software installation and maintenance.
-  \end{itemize} 
 
   %\section{COMMUNITY \\ SERVICE}  Organized and directed the 1988 and 1989 Grand 
   %Marshall Week \newline ``Basketball Marathon.'' A 24 hour 
   %charity event to benefit the Troy Boys Club. Over 
   %250 people participated each year. 
-  \section{OTHER\\ EXPERIENCE}             
+  \section*{Other Experience}             
   {\it Mountain Ambassador} \hfill Winters 2004-2008\\
   Killington, Ltd., Killington, VT \\
   The Killington Ambassador Program is an on-slope volunteer program designed to improve the experience of guests by providing local knowledge, information, directions, safety tips, and just about any other help a guest might need.
 
-  \section{HONORS}
-  Rensselaer Medalist
+  \section*{Honors}
+  Rensselaer Medalist\\
+  Four your, \$60,000 merit scholarship to Rensselaer Polytechnic Institute.
   
 %  \section{HOBBIES}
 %  Snowboarding, Hiking, Biking, Reading
 
-\end{resume}
 \end{document}
 
 

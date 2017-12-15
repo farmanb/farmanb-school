@@ -1,61 +1,61 @@
 \documentclass[dissertation.tex]{subfiles}
 \begin{document}
 \begin{defn}
-  Let $\CC$ be a category.
+  Let $\C$ be a category.
   \begin{itemize}
   \item
-    We say a subcategory $\CC^\prime$ of $\CC$ is {\it full} if 
-    $\Hom{\CC^\prime}{X,Y} = \Hom{\CC}{X,Y}$
-    for all objects $X,Y$ of $\CC^\prime$.
+    We say a subcategory $\C^\prime$ of $\C$ is {\it full} if 
+    $\Hom{\C^\prime}{X,Y} = \Hom{\C}{X,Y}$
+    for all objects $X,Y$ of $\C^\prime$.
   \item
-    We say a full subcategory $\CC^\prime$ of $\CC$ is {\it strictly full} if whenever $X \rightarrow Y$ is an isomorphism with $X$ an object of $\CC^\prime$, then $Y$ is an object of $\CC^\prime$.
+    We say a full subcategory $\C^\prime$ of $\C$ is {\it strictly full} if whenever $X \rightarrow Y$ is an isomorphism with $X$ an object of $\C^\prime$, then $Y$ is an object of $\C^\prime$.
   \end{itemize}
 \end{defn}
 
 \begin{defn}
-  Let $\CC$ be a category, and let $f : X \to Y$ be a morphism of $\CC$.
+  Let $\C$ be a category, and let $f : X \to Y$ be a morphism of $\C$.
   \begin{itemize}
     \item
       If $f$ is a monomorphism, we say that $f$ is {\it normal} if it is the kernel of some morphism $Y \rightarrow Z$.
     \item
       If $f$ is an epimorphism, we say that $f$ is {\it conormal} if $f$ is the cokernel of some morphism $Z \rightarrow X$.
     \item
-      If every monomorphism of $\CC$ is normal, then we say that $\CC$ is {\it normal}.
+      If every monomorphism of $\C$ is normal, then we say that $\C$ is {\it normal}.
     \item
-      If every epimorphism of $\CC$ is conormal, then we say that $\CC$ is {\it conormal}.
+      If every epimorphism of $\C$ is conormal, then we say that $\C$ is {\it conormal}.
     \item
-      If $\CC$ is both normal and conormal, then we say that $\CC$ is {\it binormal}.
+      If $\C$ is both normal and conormal, then we say that $\C$ is {\it binormal}.
   \end{itemize}
   
 \end{defn}
 
 \begin{defn}
-  Let $\CC$ be a category.
+  Let $\C$ be a category.
   \begin{itemize}
   \item
-    We say that $\CC$ is {\it $\Ab$-enriched} if for every pair of objects $X$ and $Y$ of $\CC$, $\Hom{\CC}{X,Y}$ is an abelian group and composition 
-    $$\Hom{\CC}{X,Y} \times \Hom{\CC}{Y,Z} \rightarrow \Hom{\CC}{X,Z}$$
+    We say that $\C$ is {\it $\Ab$-enriched} if for every pair of objects $X$ and $Y$ of $\C$, $\Hom{\C}{X,Y}$ is an abelian group and composition 
+    $$\Hom{\C}{X,Y} \times \Hom{\C}{Y,Z} \rightarrow \Hom{\C}{X,Z}$$
     is $\Z$-bilinear.
   \item
-    We say that an $\Ab$-enriched category, $\CC$, is {\it pre-additive} if $\CC$ has a zero object.
+    We say that an $\Ab$-enriched category, $\C$, is {\it pre-additive} if $\C$ has a zero object.
   \item
-    We say that a pre-additive category, $\CC$, is {\it additive} if $\CC$ admits all binary products or coproducts.
+    We say that a pre-additive category, $\C$, is {\it additive} if $\C$ admits all binary products or coproducts.
     \begin{rmk}
       Note that in this case, it is straightforward to show that any finite product is also a coproduct and vise-versa.
     \end{rmk}
   \item
-    We say that an additive category, $\CC$, is {\it abelian} if $\CC$ is binormal.
+    We say that an additive category, $\C$, is {\it abelian} if $\C$ is binormal.
   \end{itemize}
 \end{defn}
 
 \begin{defn}
-  Let $\CC$ and $\D$ be additive categories.
-  A functor $\mathscr{F} \colon \CC \rightarrow \D$ is called an {\it additive functor} if 
+  Let $\C$ and $\D$ be additive categories.
+  A functor $\mathscr{F} \colon \C \rightarrow \D$ is called an {\it additive functor} if 
   \begin{enumerate}
   \item
     $\mathscr{F}(0) \cong 0$, and
   \item
-    For any two objects $X$ and $Y$ of $\CC$,
+    For any two objects $X$ and $Y$ of $\C$,
     $$F(X \oplus Y) \cong F(X) \oplus F(Y).$$
   \end{enumerate}
 \end{defn}

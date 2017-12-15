@@ -78,7 +78,7 @@ Throughout this section, let $\T$ be a triangulated category and let $\T^\prime$
         X \arrow{r}{f} & Y \arrow{r} & 0 \arrow{r} & X[1]
       \end{tikzcd}$$
       is a distinguished triangle, and since $\T^\prime$ is an additive subcategory of $\T$, $0$ is an object of $\T^\prime$.
-      Thus $f \in \operatorname{Mor}_{\T^\prime}(X,Y)$ and, in particular, $\id_X \in \operatorname{Mor}_{\T^\prime}(X,X)$.
+      Thus $f \in \op{Mor}_{\T^\prime}(X,Y)$ and, in particular, $\id_X \in \op{Mor}_{\T^\prime}(X,X)$.
     \item
       By (TR1) and (TR4) we have a commutative octohedral diagram
       $$\begin{tikzcd}
@@ -89,22 +89,22 @@ Throughout this section, let $\T$ be a triangulated category and let $\T^\prime$
       \end{tikzcd}$$
       with distinguished rows.
       To say that any two of 
-      $f \in \operatorname{Mor}_{\T^\prime}(X,Y)$,
-      $g \in \operatorname{Mor}_{\T^\prime}(Y,Z)$,
-      $g \circ f \in \operatorname{Mor}_{\T^\prime}(X,Z)$
+      $f \in \op{Mor}_{\T^\prime}(X,Y)$,
+      $g \in \op{Mor}_{\T^\prime}(Y,Z)$,
+      $g \circ f \in \op{Mor}_{\T^\prime}(X,Z)$
       hold is to say that any two of $C^\prime, C, C^{\prime\prime}$ are objects of $\T^\prime$.
       Since $\T^\prime$ is a strictly full triangulated subcategory, the last row of the diagram implies by Proposition~\ref{fulltriangles} that if any two of $C^\prime, C, C^{\prime\prime}$ are objects of $\T^\prime$, then so is the third.
       Therefore if any two of 
-      $f \in \operatorname{Mor}_{\T^\prime}(X,Y)$,
-      $g \in \operatorname{Mor}_{\T^\prime}(Y,Z)$,
-      $g \circ f \in \operatorname{Mor}_{\T^\prime}(X,Z)$
+      $f \in \op{Mor}_{\T^\prime}(X,Y)$,
+      $g \in \op{Mor}_{\T^\prime}(Y,Z)$,
+      $g \circ f \in \op{Mor}_{\T^\prime}(X,Z)$
       hold, then so does the third.
     \end{enumerate}
   \end{proof}
 \end{lem}
 
 \begin{defn}
-  By the previous Lemma, we are justified in defining the subcategory $\operatorname{Mor}_{\T^\prime}$ to be the category with objects those of $\T$ and morphisms $\operatorname{Mor}_{\T^\prime}(X,Y)$ for any pair of objects $X$ and $Y$ of $\T$.
+  By the previous Lemma, we are justified in defining the subcategory $\op{Mor}_{\T^\prime}$ to be the category with objects those of $\T$ and morphisms $\op{Mor}_{\T^\prime}(X,Y)$ for any pair of objects $X$ and $Y$ of $\T$.
 \end{defn}
 
 \begin{lem}
@@ -161,7 +161,7 @@ Throughout this section, let $\T$ be a triangulated category and let $\T^\prime$
     & Z\arrow{rd}{f}\arrow{ld}{g}\\
     X & & Y
   \end{tikzcd}$$
-  with $f \in \operatorname{Mor}_{\T^\prime}(Z,X)$,
+  with $f \in \op{Mor}_{\T^\prime}(Z,X)$,
   $$(Z,f,g) \sim (Z^\prime, f^\prime, g^\prime)$$
   if and only if there exists a third diagram $(Z^{\prime\prime}, f^{\prime\prime}, g^{\prime\prime})$ and a commutative diagram
   $$\begin{tikzcd}
