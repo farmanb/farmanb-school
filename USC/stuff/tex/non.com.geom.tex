@@ -53,21 +53,21 @@ That is,
 \end{itemize}
 
 \begin{defn}
-  A full subcategory, $\A$, of $\C$ is called a Serre (or \'{e}paisse/thick/dense) subcategory if for any short exact sequence
+  A full subcategory, $\mathcal{S}$, of an abelian category, $\A$, is called a \textbf{Serre (or \'{e}paisse/thick/dense) subcategory} if for any short exact sequence
   $$\begin{tikzcd}
     0 \arrow{r} & X^\prime \arrow{r} & X \arrow{r} & X^{\prime\prime} \arrow{r} & 0
   \end{tikzcd}$$
-  of $\C$, $X$ is an object of $\A$ if and only if both $X^\prime$ and $X^{\prime\prime}$ are.
+  of $\A$, $X$ is an object of $\mathcal{S}$ if and only if both $X^\prime$ and $X^{\prime\prime}$ are.
 \end{defn}
 
 Denote by $\Tors$ (resp. $\tors$) the Serre subcategory of torsion modules (resp. finite), where a module $M$ is called torsion if
 $$\tau(M) = \left\{m \in M \;\middle\vert\; xA_{\geq s} = 0\ \text{for some}\ s\right\} = M$$
 
 \section{Quotient Categories}
-Throughout, let $\C$ be an abelian category.
+Throughout, let $\A$ be an abelian category.
 
 \begin{defn}
-  Let $X$ be an object of $\C$.
+  Let $X$ be an object of $\A$.
   For two subobjects $i_1 \colon X_1 \rightarrow X$ and $i_2 \colon X_2 \rightarrow X$ denote by $X_1 \cap X_2$ the fibered product
   $$\begin{tikzcd}
     X_1 \cap X_2 \arrow{d}{i_2^\prime}\arrow{r}{i_1^\prime} & X_1\arrow{d}{i_1}\\
@@ -98,13 +98,13 @@ Throughout, let $\C$ be an abelian category.
 \end{rmk}
 
 \begin{defn}
-  Given an object $X$ of $\C$, an essential extension is a monomorphism $i \colon X \rightarrow E$ such that for any non-zero subobject $E^\prime \rightarrow E$, $E \cap X$ is non-zero.
+  Given an object $X$ of $\A$, an essential extension is a monomorphism $i \colon X \rightarrow E$ such that for any non-zero subobject $E^\prime \rightarrow E$, $E \cap X$ is non-zero.
   
   If $E$ is an injective object, then we say that $i$ is an injective envelope/hull.
 \end{defn}
 
 \begin{prop}
-  Let $f : X \rightarrow Y$ be a morphism of $\C$.
+  Let $f : X \rightarrow Y$ be a morphism of $\A$.
   The following are equivalent
   \begin{enumerate}
   \item
@@ -120,18 +120,22 @@ Throughout, let $\C$ be an abelian category.
   In particular, $f$ is an essential extension if and only if whenever $f \circ\zeta$ is a monomorphism, $\zeta$ is a morphism.
 \end{prop}
 
-\begin{prop}
-  Let $Q$ be an object of $\C$.
+\subsection{Some Properties of Injectives}
+
+\begin{defn}
+  An object $Q$ of $\A$ is \textbf{injective} if for every morphism $X \to Q$ and every monomorphism $X \to Y$ we have an extension
+  $$\begin{tikzcd}
+    0 \arrow{r} & X\arrow{d} \arrow{r} & Y \arrow[dashed]{ld}{\exists}\\
+    & Q
+  \end{tikzcd}$$
+\end{defn}
+
+\begin{prop}\label{prop: characterization of injectives}
+  Let $Q$ be an object of $\A$.
   The following are equivalent.
   \begin{enumerate}
   \item
     $Q$ is injective,
-  \item
-    every morphism $X \rightarrow Q$ lifts over monics,
-    $$\begin{tikzcd}
-      0 \arrow{r} & X\arrow{d} \arrow{r} & Y \arrow[dashed]{ld}{\exists}\\
-      & Q
-    \end{tikzcd}$$
   \item
     the presheaf of abelain groups $h_Q$ is exact, and
   \item
@@ -143,9 +147,77 @@ Throughout, let $\C$ be an abelian category.
   \end{enumerate}
 \end{prop}
 
+\begin{proof}
+  Assume that $Q$ is injective.
+  Given an exact sequence
+  $$0 \to X \to Y \to Z$$
+  by the left-exactness of the Hom functors, it suffices to show that the last morphism in the sequence
+  $$0 \to \A(Z,Q) \to \A(Y,Q) \to \A(X,Q)$$
+  is an epimorphism.
+  Given a morphism $X \to Q$, we have the extension
+  $$\begin{tikzcd}
+    0 \arrow{r} & X \arrow{r}\arrow{d} & Y \arrow[dashed,swap]{ld}{\exists}\\
+    & Q
+  \end{tikzcd}$$
+  because $Q$ is injective.
+  This establishes (2).
+
+  Assume (2) holds.
+  We have the short exact sequence
+  $$0 \to \A(X/Q,Q) \to \A(X,Q) \to \A(Q,Q) \to 0$$
+  and thus there exists a retract of the monomorphism $Q \to X$ given by the preimage of $\id_Q$ under the last morphism.
+  This retract gives the desired splitting.
+
+  Assume (3) holds.
+  Given a morphism $f \colon X \to Q$ and a monomorphism $\imath \colon X \to Y$ we have pushout
+  $$\begin{tikzcd}
+    0 \arrow{r}\arrow[dashed]{d}{\exists !} & X \arrow{r}{\imath}\arrow{d}{f} & Y \arrow{r}{p}\arrow{d}{f^\prime} & Y/X \arrow{r}\arrow[dashed]{d}{\exists !} & 0\\
+    K \arrow{r} & Q \arrow{r}{j} & Q \coprod_X Y \arrow{r}{q} & C \arrow{r} & 0
+  \end{tikzcd}$$
+  From basic properties of the pushout, the morphism of cokernels is necessarily an isomorphism and the morphism of kernels is necessarily an epimorphism, hence $K \cong 0$.
+  Now the bottom row splits by assumption, and the retract $r \colon Q \coprod_X Y \to Q$ gives the desired extension
+  $$\begin{tikzcd}
+    0 \arrow{r} & X \arrow{r}{i}\arrow{d}{f} & Y \arrow{d}{f^\prime}\\
+    & Q & Q \coprod_X \arrow[swap]{l}{r}
+  \end{tikzcd}$$
+  since $j$ is a monomorphism and
+  $$j \circ r \circ f^\prime \circ \imath = f^\prime \circ \imath = j \circ f.$$
+\end{proof}
+
+\begin{proposition}
+  Let $\{Q_i\}_I$ be a family of objects of $\A$.
+  If $Q = \prod_{i \in I} Q_i$ exists, then $Q$ is injective if and only if each $Q_i$ is injective.
+\end{proposition}
+
+\begin{proof}
+  First we note that the existence of $Q$ is equivalent to the functor
+  $$\prod_{i \in I} h_{Q_i} \colon \A \to \Ab$$
+  being represented by $Q$.
+  Since $\Ab$ is an $(\op{AB4^*})$ category and cohomology commutes with products, for any short exact sequence 
+  $$0 \to X_1\to X_0 \to X_{-1} \to 0$$
+  the complex of Abelian groups
+  $$0 \to \prod_{i \in I}h_{Q_i}(X_{-1}) \to \prod_{i \in I}h_{Q_i}(X_0) \to \prod_{i \in I}h_{Q_i}(X_1) \to 0.$$
+  is exact if and only if each complex
+  $$0 \to h_{Q_i}(X_{-1}) \to h_{Q_i}(X_0) \to h_{Q_i}(X_1) \to 0$$
+  is exact.
+  Therefore $Q$ is injective if and only if each $Q_i$ is injective by part (2) of Proposition~\ref{prop: characterization of injectives}.
+\end{proof}
+
+\begin{cor}
+  The quotient of an injective by an injective is injective.
+\end{cor}
+
+\begin{proof}
+  If we have an exact sequence
+  $$0 \to Q^\prime \to Q \to Q/Q^\prime \to 0$$
+  with $Q^\prime$, $Q$ injective then $Q \cong Q^\prime \oplus Q/Q^\prime \cong Q^\prime \times Q/Q^\prime$.
+  Apply the previous proposition.
+\end{proof}
+
+\subsection{Subobjects}
 \begin{defn}
-  We say that a subobject, $X^\prime$, of an object, $X$, is an $\A$-subobject of $X$ if $X^\prime$ is an object of $\A$.
-  We say that an $\A$-subobject, $X^\prime$, is maximal if for every $\A$-subobject $X^{\prime\prime}$ we have a commutative diagram
+  We say that a subobject, $X^\prime$, of an object, $X$, is an $\mathcal{S}$-subobject of $X$ if $X^\prime$ is an object of $\mathcal{S}$.
+  We say that an $\mathcal{S}$-subobject, $X^\prime$, is maximal if for every $\mathcal{S}$-subobject $X^{\prime\prime}$ we have a commutative diagram
   \begin{center}
     \begin{tikzcd}
       X^{\prime\prime}\arrow{rd}\arrow[dashed]{rr}{\exists !h} & & X^\prime\arrow{ld}\\
@@ -153,37 +225,38 @@ Throughout, let $\C$ be an abelian category.
     \end{tikzcd}
   \end{center}
   
-  If $X$ has no non-zero $\A$ subobjects, then we say that $X$ is $\A$-torsionfree.
+  If $X$ has no non-zero $\mathcal{S}$ subobjects, then we say that $X$ is $\mathcal{S}$-torsionfree.
 \end{defn}
 
 \begin{prop}
-  Let $X$ and $Y$ be objects of $\C$.
-  The collection of pairs of subobjects $(X^\prime, Y^\prime)$ such that $X/X^\prime$ and $Y^\prime$ are objects of $\A$ is directed by the relation
+  Let $X$ and $Y$ be objects of $\A$.
+  The collection of pairs of subobjects $(X^\prime, Y^\prime)$ such that $X/X^\prime$ and $Y^\prime$ are objects of $\mathcal{S}$ is directed by the relation
   $$(X^\prime, Y^\prime) \leq (X^{\prime\prime}, Y^{\prime\prime})$$
   if $X^{\prime\prime} \leq X^\prime$ and $Y^\prime \leq Y^{\prime\prime}$.
   
   Moreover, the system of Abelian groups
-  $$\Hom{\C}{X^\prime, Y/Y^\prime}$$
+  $$\Hom{\A}{X^\prime, Y/Y^\prime}$$
   induced by pairs $(X^\prime, Y^\prime)$ above is a directed system with morphisms
   $$\begin{tikzcd}
-    \Hom{\C}{X^\prime, Y/Y^\prime} \arrow{r} &\Hom{\C}{X^{\prime\prime}, Y^{\prime\prime}}\\
+    \Hom{\A}{X^\prime, Y/Y^\prime} \arrow{r} &\Hom{\A}{X^{\prime\prime}, Y^{\prime\prime}}\\
     (X^\prime \rightarrow Y/Y^\prime) \arrow[mapsto]{r} & (X^{\prime\prime} \rightarrow X^\prime \rightarrow Y/Y^\prime \rightarrow Y/Y^{\prime\prime})
   \end{tikzcd}$$
   whenever $(X^\prime, Y^\prime) \leq (X^{\prime\prime}, Y^{\prime\prime})$.
 \end{prop}
 
+\subsection{Construction of the Quotient}
 \begin{defn}
-  Define the quotient category, $\C/\A$, to be the category with objects the objects of $\C$ and morphisms
-  $$\Hom{\C/\A}{X, Y} = \op{colim}_{(X^\prime, Y^\prime)} \Hom{\C}{X^\prime, Y/Y^\prime}.$$
-  Let $\pi \colon \C \rightarrow \C/\A$ be the canonical projection functor, defined by $\pi(X) = X$ and sending a morphism $f \colon X \rightarrow Y$ to its image, $\pi(f)$, in the colimit.
+  Define the \textbf{quotient of $\A$ by $\mathcal{S}$}, $\A/\mathcal{S}$, to be the category with objects the objects of $\A$ and morphisms
+  $$\Hom{\A/\mathcal{S}}{X, Y} = \op{colim}_{(X^\prime, Y^\prime)} \Hom{\A}{X^\prime, Y/Y^\prime}.$$
+  Let $\pi \colon \A \rightarrow \A/\mathcal{S}$ be the canonical projection functor, defined by $\pi(X) = X$ and sending a morphism $f \colon X \rightarrow Y$ to its image, $\pi(f)$, in the colimit.
 \end{defn}
 
 \begin{lem}
-  The quotient category, $\C/\A$, is an additive category and $\pi$ is an additive functor.
+  The quotient category, $\A/\mathcal{S}$, is an additive category and $\pi$ is an additive functor.
 \end{lem}
 
 \begin{lem}
-  Let $f \colon X \rightarrow Y$ be a morphism of $\C$.  
+  Let $f \colon X \rightarrow Y$ be a morphism of $\A$.  
   We have a factorization of $f$
   $$\begin{tikzcd}
     X \arrow{rd}{\coim{f}}\arrow{rr}{f} & & Y\\
@@ -196,16 +269,16 @@ Throughout, let $\C$ be an abelian category.
   Then
   \begin{enumerate}
   \item
-    $\pi(f) = 0$ if and only if $f(X)$ is an object of $\A$,
+    $\pi(f) = 0$ if and only if $f(X)$ is an object of $\mathcal{S}$,
   \item
-    $\pi(f)$ is a monomorphism if and only if $K$ is an object of $\A$, and
+    $\pi(f)$ is a monomorphism if and only if $K$ is an object of $\mathcal{S}$, and
   \item
-    $\pi(f)$ is an epimorphism if and only if $C$ is an object of $\A$.
+    $\pi(f)$ is an epimorphism if and only if $C$ is an object of $\mathcal{S}$.
   \end{enumerate}
 \end{lem}
 
 \begin{lem}
-  For any morphism $f \colon X \rightarrow Y$ of $\C$, we have an exact sequence 
+  For any morphism $f \colon X \rightarrow Y$ of $\A$, we have an exact sequence 
   $$\begin{tikzcd}
     0 \arrow{r} & K \arrow{r}{\ker{f}} & X \arrow{r}{f} & Y \arrow{r}{\coker{f}} & C \arrow{r} & 0.
   \end{tikzcd}$$ 
@@ -221,14 +294,14 @@ Throughout, let $\C$ be an abelian category.
   $$\begin{tikzcd}
     0 \arrow{r} & K \arrow{r}{\ker{f}} & X \arrow{r}{f} & Y \arrow{r}{\coker{f}} & C \arrow{r} & 0.
   \end{tikzcd}$$ 
-  of $\C$, $f$ is an isomorphism if and only if $K$ and $C$ are both objects of $\A$.
+  of $\A$, $f$ is an isomorphism if and only if $K$ and $C$ are both objects of $\mathcal{S}$.
 \end{lem}
 
 \begin{prop}
-  The quotient category $\C/\A$ is an abelian category and $\pi$ is an exact functor.
+  The quotient category $\A/\mathcal{S}$ is an abelian category and $\pi$ is an exact functor.
 \end{prop}
 
-\section{Proj}
+\section{$\op{Proj}$}
 Denote by $\QGr{A}$ (resp. $\qgr{A}$) the quotient category $\Gr{A}/\Tors$ (resp. $\gr{A}/\tors$).
 It can be shown that $\QGr{A}$ is an $\op{Ab} 5$ category; see III.4 of Des Cat\`{e}gories Ab\'{e}lienne.
 We view $\QGr{A}$ as the analogue of quasi-coherent sheaves and $\qgr{A}$ as the analogue of coherent sheaves.
@@ -236,12 +309,12 @@ We view $\QGr{A}$ as the analogue of quasi-coherent sheaves and $\qgr{A}$ as the
 \begin{defn}
   \begin{enumerate}
   \item
-    Let $\C$, and $\C^\prime$ be $k$-linear abelian categories; that is categories enriched over $\Mod{k}$.
-    For $X$ and $X^\prime$ objects of $\C$ and $\C^\prime$, a morphism of pairs
-    $$(\C, X) \rightarrow (\C^\prime, X^\prime)$$
-    is a pair $(f, \theta)$ consisting of an isomorphism $\theta \colon f(X) \rightarrow X^\prime$ and a $k$-linear functor $f \colon \C \rightarrow \C^\prime$; that is, the canonical morphism
+    Let $\A$, and $\A^\prime$ be $k$-linear abelian categories; that is categories enriched over $\Mod{k}$.
+    For $X$ and $X^\prime$ objects of $\A$ and $\A^\prime$, a morphism of pairs
+    $$(\A, X) \rightarrow (\A^\prime, X^\prime)$$
+    is a pair $(f, \theta)$ consisting of an isomorphism $\theta \colon f(X) \rightarrow X^\prime$ and a $k$-linear functor $f \colon \A \rightarrow \A^\prime$; that is, the canonical morphism
     $$\begin{tikzcd}
-      \Hom{\C}{A,B}\arrow{r}& \Hom{\C^\prime}{f(A), f(B)}.
+      \Hom{\A}{A,B}\arrow{r}& \Hom{\A^\prime}{f(A), f(B)}.
     \end{tikzcd}$$
     is $k$-linear.
     \begin{enumerate}
@@ -253,16 +326,16 @@ We view $\QGr{A}$ as the analogue of quasi-coherent sheaves and $\qgr{A}$ as the
       Two morphisms of pairs $(f,\theta)$ and $(f^\prime, \theta^\prime)$ are said to be equivalent if there is a natural isomorphism $\eta \colon f \rightarrow f^\prime$ compatible with $\theta$ and $\theta^\prime$.
     \end{enumerate}
   \item
-    Given two $k$-linear abelian categories $\C$ and $\C^\prime$ equipped with autoequivalences $s : \C \rightarrow \C$ and $s^\prime : \C^\prime \rightarrow \C^\prime$, and objects $X$ of $\C$ and $X^\prime$ of $\C$, a morphism of triples
-    $$(\C, X, s) \rightarrow (\C^\prime, X^\prime, s^\prime)$$
-    is a triple $(f, \theta, \mu)$ with $f : \C \rightarrow \C^\prime$ a $k$-linear functor, $\theta : f(X) \rightarrow X^\prime$ an isomorphism, and $\mu : f \circ s \rightarrow s^\prime \circ f$ a natural isomorphism.
+    Given two $k$-linear abelian categories $\A$ and $\A^\prime$ equipped with autoequivalences $s : \A \rightarrow \A$ and $s^\prime : \A^\prime \rightarrow \A^\prime$, and objects $X$ of $\A$ and $X^\prime$ of $\A$, a morphism of triples
+    $$(\A, X, s) \rightarrow (\A^\prime, X^\prime, s^\prime)$$
+    is a triple $(f, \theta, \mu)$ with $f : \A \rightarrow \A^\prime$ a $k$-linear functor, $\theta : f(X) \rightarrow X^\prime$ an isomorphism, and $\mu : f \circ s \rightarrow s^\prime \circ f$ a natural isomorphism.
     \begin{enumerate}
     \item
       A morphism of triples is said to be right exact if $f$ preserves direct limits.
     \item
       Two morphisms of triples $(f_1, \theta_1, \mu_1)$ and $(f_2, \theta_2, \mu_2)$ are said to be equivalent if there exists a natural isomorphism $\eta : f_1 \rightarrow f_2$ such that
       $$\theta_1 = \theta_2 \circ \eta(A)$$
-      and for all objects $A$ of $\C$
+      and for all objects $A$ of $\A$
       $$(s^\prime \circ \eta(A)) \circ \mu_1 = \mu_2 \circ \eta(s(A)).$$
     \item
       A morphism of triples is said to be an isomorphism if $f$ is an equivalence of categories.
@@ -279,6 +352,7 @@ We view $\QGr{A}$ as the analogue of quasi-coherent sheaves and $\qgr{A}$ as the
   Analogous definitions are made for $\proj{A}$ by substituting $\QGr{A}$ with $\qgr{A}$ as necessary.
 \end{defn}
 
+\subsection{Morphisms in $\QGr{A}$}
 The next two propositions describe the morphisms of $\QGr{A}$ explicitly.
 
 \begin{prop}
@@ -326,7 +400,7 @@ The next two propositions describe the morphisms of $\QGr{A}$ explicitly.
 \section{The Section Functor}
 
 \begin{lem}\label{lem1}
-  If $X$ is an object of $\C$, then the following are equivalent.
+  If $X$ is an object of $\A$, then the following are equivalent.
   \begin{enumerate}
   \item\label{lem1.1}
     Given a short exact sequence 
@@ -335,33 +409,33 @@ The next two propositions describe the morphisms of $\QGr{A}$ explicitly.
         0 \arrow{r} & K \arrow{r}{\ker{f}} & Z \arrow{r}{f} & Y \arrow{r}{\coker{f}} & C \arrow{r} & 0
       \end{tikzcd}
     \end{center}
-    with $K$ and $C$ objects of $\A$, then the canonical morphism
+    with $K$ and $C$ objects of $\mathcal{S}$, then the canonical morphism
     $$h_X(f) \colon h_X(Y) \rightarrow h_X(Z)$$
     is an isomorphism,
   \item\label{lem1.2}
-    $X$ is $\A$-torsionfree and 
-    %Every monic $X^\prime \rightarrow X$ with $X^\prime$ an object of $\A$ is zero and 
+    $X$ is $\mathcal{S}$-torsionfree and 
+    %Every monic $X^\prime \rightarrow X$ with $X^\prime$ an object of $\mathcal{S}$ is zero and 
     any short exact sequence 
     \begin{center}
       \begin{tikzcd}
         0 \arrow{r} & X \arrow{r}{f} & Y \arrow{r}{\coker{f}} &C \arrow{r} & 0
       \end{tikzcd}
     \end{center}
-    with $C$ an object of $\A$ splits, and
+    with $C$ an object of $\mathcal{S}$ splits, and
   \item\label{lem1.3}
-    For any object $Y$ of $\C$, $\pi \colon \C \rightarrow \C/\A$ induces an isomorphism
-    $$\Hom{\C}{Y, X} \cong \Hom{\C/\A}{\pi(Y), \pi(X)}.$$
+    For any object $Y$ of $\A$, $\pi \colon \A \rightarrow \A/\mathcal{S}$ induces an isomorphism
+    $$\Hom{\A}{Y, X} \cong \Hom{\A/\mathcal{S}}{\pi(Y), \pi(X)}.$$
   \end{enumerate}
   
   \begin{proof}
-    (\ref{lem1.1}) $\implies$ (\ref{lem1.2}).  Given an $\A$-subobject $i \colon X^\prime \rightarrow X$, then we have the short exact sequence
+    (\ref{lem1.1}) $\implies$ (\ref{lem1.2}).  Given an $\mathcal{S}$-subobject $i \colon X^\prime \rightarrow X$, then we have the short exact sequence
     \begin{center}
       \begin{tikzcd}
         0 \arrow{r} & X^\prime \arrow{r}{i} & X \arrow{r}{\coker{i}} & X/X^\prime \arrow{r} & 0
       \end{tikzcd}
     \end{center}
-    both $X^\prime$ and $0$ are objects of $\A$, hence an isomorphism
-    $$h_X(\coker{i}) \colon \Hom{\C}{X/X^\prime, X} \rightarrow \Hom{\C}{X,X}$$
+    both $X^\prime$ and $0$ are objects of $\mathcal{S}$, hence an isomorphism
+    $$h_X(\coker{i}) \colon \Hom{\A}{X/X^\prime, X} \rightarrow \Hom{\A}{X,X}$$
     which implies that $\coker{i}$ is monic.
     Therefore $\coker{i} \circ i = 0$ implies $i = 0$.
 
@@ -371,13 +445,13 @@ The next two propositions describe the morphisms of $\QGr{A}$ explicitly.
         0 \arrow{r} & X \arrow{r}{f} & Y \arrow{r}{p} & C \arrow{r} & 0
       \end{tikzcd}
     \end{center}
-    be a short exact sequence with $C$ an object of $\A$, then the isomorphism
-    $$h_X(f) \colon \Hom{\C}{Y,X} \rightarrow \Hom{\C}{X,X}$$
+    be a short exact sequence with $C$ an object of $\mathcal{S}$, then the isomorphism
+    $$h_X(f) \colon \Hom{\A}{Y,X} \rightarrow \Hom{\A}{X,X}$$
     yields a section $s \colon Y \rightarrow X$ of $f$, so the sequence splits.
 
-    (\ref{lem1.2}) $\implies$ (\ref{lem1.3}).  Let $Y$ be an object of $\C$.
-    Given a morphism $f : \pi(Y) \rightarrow \pi(X)$, we lift to a morphism $f^\prime \colon Y^\prime \rightarrow X/X^\prime$ with $Y/Y^\prime$ and $X^\prime$ objects of $\A$.
-    Since we have assumed that $X$ has no non-trivial $\A$-subobjects, it follows that $X/X^\prime = X$.
+    (\ref{lem1.2}) $\implies$ (\ref{lem1.3}).  Let $Y$ be an object of $\A$.
+    Given a morphism $f : \pi(Y) \rightarrow \pi(X)$, we lift to a morphism $f^\prime \colon Y^\prime \rightarrow X/X^\prime$ with $Y/Y^\prime$ and $X^\prime$ objects of $\mathcal{S}$.
+    Since we have assumed that $X$ has no non-trivial $\mathcal{S}$-subobjects, it follows that $X/X^\prime = X$.
     By dualizing the relevant theorems on fiber products, this gives the commutative diagram with exact rows
     \begin{center}
       \begin{tikzcd}
@@ -386,20 +460,20 @@ The next two propositions describe the morphisms of $\QGr{A}$ explicitly.
       \end{tikzcd}
     \end{center}
     and with $h$ an isomorphism.
-    Since $Y/Y^\prime$ was assumed to be an object of $\A$, so too is $\left(Y \coprod_{Y^\prime} X\right)/X$ and thus there exists a section $s : Y \coprod_{Y^\prime} X \rightarrow X$ of $i$ so that
+    Since $Y/Y^\prime$ was assumed to be an object of $\mathcal{S}$, so too is $\left(Y \coprod_{Y^\prime} X\right)/X$ and thus there exists a section $s : Y \coprod_{Y^\prime} X \rightarrow X$ of $i$ so that
     $$f^\prime = id_X \circ f^\prime = s\circ i \circ f^\prime = s \circ f^{\prime\prime} \circ j.$$
     By commutativity of the diagram
     \begin{center}
       \begin{tikzcd}
-        \Hom{\C}{Y,X} \arrow{rr}{\_\, \circ j} \arrow{rd} & & \Hom{\C}{Y^\prime,X} \arrow{ld}\\
-        & \Hom{\C/\A}{\pi(Y), \pi(X)} &
+        \Hom{\A}{Y,X} \arrow{rr}{\_\, \circ j} \arrow{rd} & & \Hom{\A}{Y^\prime,X} \arrow{ld}\\
+        & \Hom{\A/\mathcal{S}}{\pi(Y), \pi(X)} &
       \end{tikzcd}
     \end{center}
     we see that $\pi(s \circ f^{\prime\prime}) = f$ and thus
-    $$\Hom{\C}{Y,X} \rightarrow \Hom{\C/\A}{\pi(Y), \pi(X)}$$
+    $$\Hom{\A}{Y,X} \rightarrow \Hom{\A/\mathcal{S}}{\pi(Y), \pi(X)}$$
     is surjective.
     For injectivity, suppose that $f \colon Y \rightarrow X$ satisfies $\pi(f) = 0$.
-    Then $f(Y)$ is an object of $\A$ and from the short exact sequence
+    Then $f(Y)$ is an object of $\mathcal{S}$ and from the short exact sequence
     \begin{center}
       \begin{tikzcd}
         0 \arrow{r} & f(Y) \arrow{r}{\im{f}} & X \arrow{r}{\coker{f}} & C \arrow{r} & 0
@@ -414,12 +488,12 @@ The next two propositions describe the morphisms of $\QGr{A}$ explicitly.
         0 \arrow{r} & K \arrow{r}{i} & Z \arrow{r}{f} & Y \arrow{r}{p} & C \arrow{r} & 0
       \end{tikzcd}
     \end{center}
-    be an exact sequence with $K$ and $C$ objects of $\A$.
+    be an exact sequence with $K$ and $C$ objects of $\mathcal{S}$.
     We have the commutative diagram
     \begin{center}
       \begin{tikzcd}
-        Z\arrow{d}{f} & & \Hom{\C}{Y,X} \arrow{d}{h_X(f)}\arrow{r}& \Hom{\C/\A}{\pi(Y), \pi(X)} \arrow{d}{h_{\pi(X)}(\pi(f))}\\
-        Y & & \Hom{\C}{Z,X} \arrow{r}{\sim}& \Hom{\C/\A}{\pi(Z), \pi(X)}
+        Z\arrow{d}{f} & & \Hom{\A}{Y,X} \arrow{d}{h_X(f)}\arrow{r}& \Hom{\A/\mathcal{S}}{\pi(Y), \pi(X)} \arrow{d}{h_{\pi(X)}(\pi(f))}\\
+        Y & & \Hom{\A}{Z,X} \arrow{r}{\sim}& \Hom{\A/\mathcal{S}}{\pi(Z), \pi(X)}
       \end{tikzcd}
     \end{center}
     with $h_{\pi(X)}(\pi(f))$ an isomorphism because $\pi(f)$ is.
@@ -430,102 +504,102 @@ The next two propositions describe the morphisms of $\QGr{A}$ explicitly.
 \begin{defn}
   \begin{enumerate}
   \item
-    If $X$ is an object of $\C$ satisfying any of the conditions in Lemma~\ref{lem1}, then we say that $X$ is $\A$-closed.
+    If $X$ is an object of $\A$ satisfying any of the conditions in Lemma~\ref{lem1}, then we say that $X$ is \textbf{$\mathcal{S}$-closed}.
   \item
-    A morphism $X \rightarrow Y$ is an $\A$-envelope if in the exact sequence
+    A morphism $X \rightarrow Y$ is an \textbf{$\mathcal{S}$-envelope} if in the exact sequence
     \begin{center}
       \begin{tikzcd}
         0 \arrow{r} & K \arrow{r} & X \arrow{r} & Y \arrow{r} & C \arrow{r} & 0
       \end{tikzcd}
     \end{center}
-    $Y$ is $\A$-closed, and both $K$ and $C$ are objects of $\A$.
+    $Y$ is $\mathcal{S}$-closed, and both $K$ and $C$ are objects of $\mathcal{S}$.
   \end{enumerate}
 \end{defn}
 
 \begin{lem}\label{lem2}
-  If $X$ has a maximal $\A$-subobject, $X_\A$, then $X/X_\A$ is $\A$-torsionfree.
+  If $X$ has a maximal $\mathcal{S}$-subobject, $X_\mathcal{S}$, then $X/X_\mathcal{S}$ is $\mathcal{S}$-torsionfree.
   \begin{proof}
-    Let $j \colon Y \rightarrow X/X_\A$ be a monic with $Y$ an object of $\A$.
+    Let $j \colon Y \rightarrow X/X_\mathcal{S}$ be a monic with $Y$ an object of $\mathcal{S}$.
     We have the commutative diagram
     \begin{center}
       \begin{tikzcd}
-        0 \arrow{r} & K \arrow[dashed]{d}{\exists ! h}\arrow{r}{\ker p^\prime} & X \times_{X/X_\A} Y \arrow{d}{i^\prime}\arrow{r}{p^\prime} & Y \arrow{d}{j}\arrow{r}{\coker{p^\prime}} & C \arrow[dashed]{d}{\exists ! h^\prime}\\
-        0 \arrow{r} & X_\A \arrow{r}{i} & X \arrow{r}{p} & X/X_\A \arrow{r}{\coker p} & 0
+        0 \arrow{r} & K \arrow[dashed]{d}{\exists ! h}\arrow{r}{\ker p^\prime} & X \times_{X/X_\mathcal{S}} Y \arrow{d}{i^\prime}\arrow{r}{p^\prime} & Y \arrow{d}{j}\arrow{r}{\coker{p^\prime}} & C \arrow[dashed]{d}{\exists ! h^\prime}\\
+        0 \arrow{r} & X_\mathcal{S} \arrow{r}{i} & X \arrow{r}{p} & X/X_\mathcal{S} \arrow{r}{\coker p} & 0
       \end{tikzcd}
     \end{center}
     with $h$ an isomorphism, and $h^\prime$ monic, hence an isomorphism.
     The top row gives us the short exact sequence
     \begin{center}
       \begin{tikzcd}
-        0 \arrow{r} & K \arrow{r}{\ker p^\prime} & X \times_{X/X_\A} Y \arrow{r}{p^\prime} & Y \arrow{r}{\coker{p^\prime}} & 0
+        0 \arrow{r} & K \arrow{r}{\ker p^\prime} & X \times_{X/X_\mathcal{S}} Y \arrow{r}{p^\prime} & Y \arrow{r}{\coker{p^\prime}} & 0
       \end{tikzcd}
     \end{center}
-    with $K$ and $Y$ objects of $\A$, hence $X \times_{X/X_\A} Y$ is also an object of $\A$.
-    By maximality of $X_\A$,  $i^\prime$ factors through $i$ uniquely,
+    with $K$ and $Y$ objects of $\mathcal{S}$, hence $X \times_{X/X_\mathcal{S}} Y$ is also an object of $\mathcal{S}$.
+    By maximality of $X_\mathcal{S}$,  $i^\prime$ factors through $i$ uniquely,
     \begin{center}
       \begin{tikzcd}
-        X \times_{X/X_\A} Y \arrow{rd}{i^\prime}\arrow[dashed]{rr}{i^{\prime\prime}}& & X_\A \arrow{ld}{i}\\
+        X \times_{X/X_\mathcal{S}} Y \arrow{rd}{i^\prime}\arrow[dashed]{rr}{i^{\prime\prime}}& & X_\mathcal{S} \arrow{ld}{i}\\
         & X &
       \end{tikzcd}
     \end{center}
     and so we see
     $$j \circ p^\prime = p \circ i = p \circ (i \circ i^{\prime\prime}) = (p \circ i) \circ i^{\prime\prime} = 0$$
     implies, because $p^\prime$ is epic, that $j = 0$.
-    Therefore $X/X_\A$ is $\A$-torsionfree, as desired.
+    Therefore $X/X_\mathcal{S}$ is $\mathcal{S}$-torsionfree, as desired.
   \end{proof}
 \end{lem}
 
 \begin{lem}\label{lem3}
-  If $\C$ is such that every object of $\C$ has a maximal $\A$-subobject and every $\A$-torsionfree object has a monomorphism to an $\A$-closed object, then every object of $\C$ has an $\A$-envelope.
-  %In particular, if $X$ is an object of $\C$ and $X^\prime$ its maximal $\A$-subobject, then the canonical epimorphism $X \rightarrow X/X^\prime$ is an $\A$-envelope. 
+  If $\A$ is such that every object of $\A$ has a maximal $\mathcal{S}$-subobject and every $\mathcal{S}$-torsionfree object has a monomorphism to an $\mathcal{S}$-closed object, then every object of $\A$ has an $\mathcal{S}$-envelope.
+  %In particular, if $X$ is an object of $\A$ and $X^\prime$ its maximal $\mathcal{S}$-subobject, then the canonical epimorphism $X \rightarrow X/X^\prime$ is an $\mathcal{S}$-envelope. 
   \begin{proof}
-    Let $X$ be an object of $\C$ and let $X_\A$ be its maximal $\A$-subobject, so we have the short exact sequence
+    Let $X$ be an object of $\A$ and let $X_\mathcal{S}$ be its maximal $\mathcal{S}$-subobject, so we have the short exact sequence
     $$\begin{tikzcd}
-      0 \arrow{r}& X_\A \arrow{r}{i} & X \arrow{r}{p} & X/X_\A \arrow{r} & 0.
+      0 \arrow{r}& X_\mathcal{S} \arrow{r}{i} & X \arrow{r}{p} & X/X_\mathcal{S} \arrow{r} & 0.
     \end{tikzcd}$$
-    By assumption, there exists an $\A$-closed object $Y$ and a short exact sequence
+    By assumption, there exists an $\mathcal{S}$-closed object $Y$ and a short exact sequence
     $$\begin{tikzcd}
-      0 \arrow{r} & X/X_\A \arrow{r}{j} & Y \arrow{r}{q} & C \arrow{r} & 0
+      0 \arrow{r} & X/X_\mathcal{S} \arrow{r}{j} & Y \arrow{r}{q} & C \arrow{r} & 0
     \end{tikzcd}$$
     from which we construct the pullback
     $$\begin{tikzcd}
-      0 \arrow{r} & K \arrow[dashed]{d}{\exists !h}\arrow{r}{\ker{q^\prime}} & q^{-1}(C_\A) \arrow{r}{q^\prime} \arrow{d}{k^\prime} & C_\A\arrow{d}{k} \arrow{r}&0\\
-      0 \arrow{r} & X/X_\A \arrow{r}{j} & Y \arrow{r}{q} & C \arrow{r} & 0,
+      0 \arrow{r} & K \arrow[dashed]{d}{\exists !h}\arrow{r}{\ker{q^\prime}} & q^{-1}(C_\mathcal{S}) \arrow{r}{q^\prime} \arrow{d}{k^\prime} & C_\mathcal{S}\arrow{d}{k} \arrow{r}&0\\
+      0 \arrow{r} & X/X_\mathcal{S} \arrow{r}{j} & Y \arrow{r}{q} & C \arrow{r} & 0,
     \end{tikzcd}$$
     with $h$ an isomorphism.
     Then from the short exact sequence 
     $$\begin{tikzcd}
-      0 \arrow{r} & X/X_\A \cong K \arrow{r}{\ker{q^\prime}} & q^{-1}(C_\A) \arrow{r}{q^\prime} & C_\A\arrow{r} & 0
+      0 \arrow{r} & X/X_\mathcal{S} \cong K \arrow{r}{\ker{q^\prime}} & q^{-1}(C_\mathcal{S}) \arrow{r}{q^\prime} & C_\mathcal{S}\arrow{r} & 0
     \end{tikzcd}$$
-    it suffices to show that $q^{-1}(C_\A)$ is $\A$-closed.
+    it suffices to show that $q^{-1}(C_\mathcal{S})$ is $\mathcal{S}$-closed.
     
-    It's clear that $q^{-1}(C_\A)$ is $\A$-torsionfree because it is a subobject of the $\A$-closed object $Y$.
+    It's clear that $q^{-1}(C_\mathcal{S})$ is $\mathcal{S}$-torsionfree because it is a subobject of the $\mathcal{S}$-closed object $Y$.
     If we have any short exact sequence
     $$\begin{tikzcd}
-      0 \arrow{r} & q^{-1}(C_\A) \arrow{r}{s} & A \arrow{r}{\coker{s}} & B \arrow{r} & 0
+      0 \arrow{r} & q^{-1}(C_\mathcal{S}) \arrow{r}{s} & A \arrow{r}{\coker{s}} & B \arrow{r} & 0
     \end{tikzcd}$$
-    with $B$ an object of $\A$, then by Lemma~\ref{lem1.1} there is a unique morphism $\varphi : A \rightarrow Y$ such that 
+    with $B$ an object of $\mathcal{S}$, then by Lemma~\ref{lem1.1} there is a unique morphism $\varphi : A \rightarrow Y$ such that 
     $$k^\prime = \varphi \circ s = h_Y(s)(\varphi).$$
     Now we have the commutative diagram
     $$\begin{tikzcd}
       A \arrow[dashed]{rd}{\exists ! r} \arrow[bend right]{ddr}{\varphi} \arrow[bend left]{rrd}{0}\\
-      & q^{-1}(C_\A) \arrow{r}{q^\prime} \arrow{d}{k^\prime} & C_\A \arrow{d}{k}\\
+      & q^{-1}(C_\mathcal{S}) \arrow{r}{q^\prime} \arrow{d}{k^\prime} & C_\mathcal{S} \arrow{d}{k}\\
       & Y \arrow{r}{q} & C
     \end{tikzcd}$$
     from which we see that 
-    $$k^\prime \circ id_{q^{-1}(C_\A)} = k^\prime = \varphi \circ s = (k^\prime \circ r) \circ s = k^\prime (\circ r \circ s)$$
-    and thus $r \circ s = id_{q^{-1}(C_\A)}.$
-    Therefore $q^{-1}(C_\A)$ is $\A$-closed by Lemma~\ref{lem1}.\ref{lem1.2}, as desired.
+    $$k^\prime \circ id_{q^{-1}(C_\mathcal{S})} = k^\prime = \varphi \circ s = (k^\prime \circ r) \circ s = k^\prime (\circ r \circ s)$$
+    and thus $r \circ s = id_{q^{-1}(C_\mathcal{S})}.$
+    Therefore $q^{-1}(C_\mathcal{S})$ is $\mathcal{S}$-closed by Lemma~\ref{lem1}.\ref{lem1.2}, as desired.
   \end{proof}
 \end{lem}
 
 \begin{lem}\label{lem4}
-  If $\pi \colon \C \rightarrow \C/\A$ has a right adjoint, $\omega \colon \C/\A \rightarrow \C$, then
+  If $\pi \colon \A \rightarrow \A/\mathcal{S}$ has a right adjoint, $\omega \colon \A/\mathcal{S} \rightarrow \A$, then
   \begin{enumerate}
   \item\label{lem4.1}
-    for each object $Y$ of $\C$, $\omega\pi(Y)$ is $\A$-closed,
+    for each object $X$ of $\A$, $\omega\pi(X)$ is $\mathcal{S}$-closed,
   \item\label{lem4.2}
-    for $Y$ an object of $\C$, the morphism $\eta_{\pi(Y)} : \pi\omega\pi(Y) \rightarrow \pi(Y)$ is an isomorphism, and
+    for $X$ an object of $\A$, the morphism $\eta_{\pi(X)} : \pi\omega\pi(X) \rightarrow \pi(X)$ is an isomorphism, and
   \item\label{lem4.3}
     $\omega$ is fully faithful.
   \end{enumerate}
@@ -536,54 +610,60 @@ The next two propositions describe the morphisms of $\QGr{A}$ explicitly.
       Given an exact sequence 
       \begin{center}
         \begin{tikzcd}
-          0 \arrow{r} & K \arrow{r} & Z \arrow{r}{f} & Y \arrow{r} & C \arrow{r} & 0
+          0 \arrow{r} & K \arrow{r} & V \arrow{r}{f} & U \arrow{r} & C \arrow{r} & 0
         \end{tikzcd}
       \end{center}
-      with $K$ and $C$ objects of $\A$, we have that $\pi(f)$ is an isomorphism and hence $h_{\pi(Y)}(\pi(f))$ is also an isomorphism.
-      From the adjunction we get the commutative diagram
+      with $K$ and $C$ objects of $\mathcal{S}$, then $\pi(f)$ is an isomorphism.
+      By the Yoneda Lemma, the natural transformation 
+      $$(\pi{f})^\ast \colon h^{\pi{U}} \to h^{\pi{V}}$$
+      is an isomorphism.
+      Since $(\pi{f})^\ast(\pi{X}) = h_{\pi{X}}(\pi{f})$ we have by adjunction the commutative diagram
       \begin{center}
         \begin{tikzcd}
-          \Hom{\C}{X, \omega\pi(Y)} \arrow{r}{\sim} \arrow{d}{h_{\omega\pi(Y)}(f)} & \Hom{\C/\A}{\pi(X), \pi(Y)} \arrow{d}{h_{\pi(Y)}(\pi(f))}\\
-          \Hom{\C}{Z,\omega\pi(Y)} \arrow{r}{\sim} & \Hom{\C/\A}{\pi(Z), \pi(Y)}
+          \A(U, \omega\pi{X}) \arrow{r}{\sim} \arrow{d}{f^\ast(\omega\pi X)} & \A/\mathcal{S}(\pi{U}, \pi{X}) \arrow{d}{(\pi{f})^\ast(\pi{X})}\\
+          \A(V,\omega\pi{X}) \arrow{r}{\sim} & \A/\mathcal{S}(\pi{V}, \pi{X})
         \end{tikzcd}
       \end{center}
-      which shows that $h_{\pi(Y)}{\pi(F)}$ is an isomorphism.
-      Therefore $\omega\pi(Y)$ is $\A$-closed by part \ref{lem1.1} of Lemma~\ref{lem1}.
+      which shows that $f^\ast(\omega\pi X) = h_{\omega\pi{X}}(f) \colon \A(U, \omega\pi{X}) \to \A(V,\omega\pi{X})$ is an isomorphism.
+      Therefore $\omega\pi{X}$ is $\mathcal{S}$-closed by part~(\ref{lem1.3}) of Lemma~\ref{lem1}.
     \item
-      We have the commutative diagram
-      \begin{center}
-        \begin{tikzcd}
-          %\Hom{\C}{\omega\pi(Y), \omega\pi(Y)} \arrow{r}{\sim} \arrow{d}{h_{\omega\pi(Y)}(\varepsilon_{Y})} & \Hom{\C/\A}{\pi(Y), \pi(Y)} \arrow{d}{h_{\pi(Y)}(\pi(\varepsilon_Y))}\\
-          %\Hom{\C}{Y,\omega\pi(Y)} \arrow{r}{\sim} & \Hom{\C/\A}{\pi(Y), \pi(Y)}\\
-          \Hom{\C}{\omega\pi(Y),\omega\pi(Y)}\arrow{rr}{\sim}\arrow{rd}{\sim} & & \Hom{\C/\A}{\pi\omega\pi(Y), \pi\omega\pi(Y)}\arrow{ld}{h_{\pi\omega\pi(Y)}(\eta_{\pi(Y)})}\\
-          & \Hom{\C/\A}{\pi\omega\pi(Y), \pi(Y)}&  
-        \end{tikzcd}
-      \end{center}
-      since for any morphism $f \colon \omega\pi(Y) \rightarrow \omega\pi(Y)$, the image under the adjunction isomorphism is just $\eta_{\pi(Y)} \circ \pi(f)$.
-      This immediately implies that $h_{\pi\omega\pi(Y)}(\eta_{\pi(Y)})$ is an isomorphism, and hence so is $\eta_{\pi(Y)}$.
+      By the Yoneda Lemma, it suffices to show that the natural transformation
+      $$(\eta_{\pi{X}})_\ast \colon h_{\pi\omega\pi{X}} \to h_{\pi{X}}$$
+      is an isomorphism of functors.
+      Since $\omega\pi{X}$ is $\mathcal{S}$-closed, for any object $Y$ of $\A$, the structure morphism of $\pi$
+      $$\pi_{Y,\omega\pi{X}} \colon \A(Y,\omega\pi{X}) \to \A/\mathcal{S}(\pi{Y}, \pi\omega\pi{X})$$
+      is an isomorphism.
+      The composition
+      $$\begin{tikzcd}[column sep=huge]
+        \A(Y, \omega\pi{X}) \arrow{r}{\pi_{Y,\omega\pi{X}}} \arrow{rd} & \A/\mathcal{S}(\pi{Y}, \pi\omega\pi{X}) \arrow{d}{(\eta_{\pi{X}})_\ast(\pi{Y})}\\
+        & \A/\mathcal{S}(\pi{Y}, \pi{X})
+      \end{tikzcd}$$
+      is easily verified to be the isomorphism of adjunction:
+      $$(\eta_{\pi{X}})_\ast(\pi{Y}) \circ\pi_{Z,\omega\pi{X}}(f) = \eta_{\pi{X}} \circ \pi{f}.$$
+      Since two out of three of the arrows are isomorphisms, it follows that $(\eta_{\pi{X}})_\ast(\pi{Y})$ is an isomorphism.
+      Therefore $(\eta_{\pi{X}})_\ast$ is a natural isomorphism, as desired.
     \item
-      Since $\omega$ being fully faithful is equivalent to $\eta$ being a natural isomorpism, this is a consequence of the definition of $\C/\A$.  
-      Indeed, every object of $\C/\A$ is $\pi(X)$ for some object $X$ of $\C$, and the result follows.
+      This is immediate from (2) and the fact that every object of $\A/\mathcal{S}$ is of the form $\pi(X)$ for some object $X$ of $\A$.
     \end{enumerate}
   \end{proof}
 \end{lem}
 
 %\begin{cor}\label{cor1}
-%  If $\pi \colon \C \rightarrow \C/\A$ has a right adjoint, $\omega \colon \C/\A \rightarrow \C$, then $\omega$ is fully faithful.
+%  If $\pi \colon \A \rightarrow \A/\mathcal{S}$ has a right adjoint, $\omega \colon \A/\mathcal{S} \rightarrow \A$, then $\omega$ is fully faithful.
 %\end{cor}
 
 \begin{thm}\label{thm1}
   The following are equivalent.
   \begin{enumerate}
   \item
-    $\pi \colon \C \rightarrow \C/\A$ has a right adjoint, and
+    $\pi \colon \A \rightarrow \A/\mathcal{S}$ has a right adjoint, and
   \item
-    Every object of $\A$ has a maximal $\A$-subobject and every $\A$-torsionfree object has a monomorphism into an $\A$-closed object.
+    Every object of $\mathcal{S}$ has a maximal $\mathcal{S}$-subobject and every $\mathcal{S}$-torsionfree object has a monomorphism into an $\mathcal{S}$-closed object.
   \end{enumerate}
 
   \begin{proof}
-    First assume that $\pi$ has a right adjoint, $\omega \colon \C/\A \rightarrow \C$, and let $Y$ be an object of $\C$.
-    There are then two natural transformations of adjunction, $\varepsilon : \id_\C \rightarrow \omega\pi$ (unit) and $\eta : \pi\omega \rightarrow \id_{\C/\A}$ (counit), the latter being an isomorphism by Lemma~\ref{lem4}.
+    First assume that $\pi$ has a right adjoint, $\omega \colon \A/\mathcal{S} \rightarrow \A$, and let $Y$ be an object of $\A$.
+    There are then two natural transformations of adjunction, $\varepsilon : \id_\A \rightarrow \omega\pi$ (unit) and $\eta : \pi\omega \rightarrow \id_{\A/\mathcal{S}}$ (counit), the latter being an isomorphism by Lemma~\ref{lem4}.
     It follows from the commutative diagram
     \begin{center}
       \begin{tikzcd}
@@ -597,9 +677,9 @@ The next two propositions describe the morphisms of $\QGr{A}$ explicitly.
         0 \arrow{r} & K \arrow{r} & Y \arrow{r}{\varepsilon_Y} & \omega\pi(Y) \arrow{r} & C \arrow{r} & 0
       \end{tikzcd}
     \end{center}
-    both $K$ and $C$ are objects of $\A$.
-    We show that $K$ is the desired subobject.
-    Indeed, let $j \colon Y^\prime \rightarrow Y$ be a subobject of $Y$ with $Y^\prime$ and object of $\A$.
+    both $K$ and $C$ are objects of $\mathcal{S}$.
+    We show that $K \cong Y_\mathcal{S}$.
+    Indeed, let $j \colon Y^\prime \rightarrow Y$ be a subobject of $Y$ with $Y^\prime$ and object of $\mathcal{S}$.
     We have the commutative diagram
     \begin{center}
       \begin{tikzcd}
@@ -607,7 +687,7 @@ The next two propositions describe the morphisms of $\QGr{A}$ explicitly.
         & \varepsilon_Y(Y^\prime)\arrow[swap]{ur}{\im{(\varepsilon_Y \circ j})} &
       \end{tikzcd}
     \end{center}
-    and we note that because $\omega\pi(Y)$ is $\A$-closed and $\varepsilon_Y(Y^\prime) \cong Y^\prime/\left(Y^\prime \cap K\right)$ is an object of $\A$, the monic $\im{(\varepsilon_Y \circ j)}$ is zero.
+    and we note that because $\omega\pi(Y)$ is $\mathcal{S}$-closed and $\varepsilon_Y(Y^\prime) \cong Y^\prime/\left(Y^\prime \cap K\right)$ is an object of $\mathcal{S}$, the monic $\im{(\varepsilon_Y \circ j)}$ is zero.
     Therefore by the kernel diagram
     \begin{center}
       \begin{tikzcd}
@@ -617,45 +697,63 @@ The next two propositions describe the morphisms of $\QGr{A}$ explicitly.
     \end{center}
     we see that $j^\prime$ is monic, and $K$ is maximal, as desired. 
     
-    Conversely, assume that every object of $\C$ has a maximal $\A$-subobject and every $\A$-torsionfree object has a monomorphism into an $\A$-closed object.
-    Let $Y$ be an object of $\C$.
-    By Lemma~\ref{lem3}, $Y$ has an $\A$-envelope $Y \rightarrow E$.
+    Conversely, assume that every object of $\A$ has a maximal $\mathcal{S}$-subobject and every $\mathcal{S}$-torsionfree object has a monomorphism into an $\mathcal{S}$-closed object.
+    Let $Y$ be an object of $\A$.
+    By Lemma~\ref{lem3}, $Y$ has an $\mathcal{S}$-envelope $Y \rightarrow E$.
     Hence $\pi(Y) \cong \pi(E)$ and by the natural isomorphisms
-    $$\Hom{\C}{\,\_\, , E} \cong \Hom{\C/\A}{\pi(\,\_\,), \pi(E)} \cong \Hom{\C/\A}{\pi(\,\_\,), \pi(Y)},$$
-    the presheaf $\Hom{\C/\A}{\pi(\_), \pi(Y)}$ on $\C$ is representable.
+    $$\A(- , E) \cong \A/\mathcal{S}(\pi(-), \pi{E}) \cong \A/\mathcal{S}(\pi(-), \pi{Y}),$$
+    the presheaf $\A/\mathcal{S}(\pi(\_), \pi(Y))$ on $\A$ is representable.
     Therefore $\pi$ admits a right adjoint.
   \end{proof}
 \end{thm}
 
 \begin{defn}
-  If $\pi$ has a right adjoint, then we say that $\A$ is a localizing subcategory.
+  If $\pi$ has a right adjoint, then we say that $\mathcal{S}$ is a \textbf{localizing subcategory}.
 \end{defn}
 
 \begin{cor}\label{cor1}
-  Assume that $\pi$ has a right adjoint, $\omega \colon \C/\A \rightarrow \C$.
+  Assume that $\pi$ has a right adjoint, $\omega \colon \A/\mathcal{S} \rightarrow \A$.
   Then 
   \begin{enumerate}
   \item
-    $\A$-envelopes are unique up to unique isomorphism,
+    $\mathcal{S}$-envelopes are unique up to unique isomorphism,
   \item
-    for every object $X$ of $\C$, $\omega\pi(X) \cong E$, where $X \rightarrow E$ is an $\A$-envelope of $X$,
+    for every object $X$ of $\A$, $\omega\pi(X) \cong E$, where $X \rightarrow E$ is an $\mathcal{S}$-envelope of $X$,
   \end{enumerate}
   \begin{proof}
     \begin{enumerate}
     \item
-      By the proof of Theorem~\ref{thm1}, an $\A$-envelope of an object $Y$ of $\C$ represents the presheaf $\Hom{\C/\A}{\pi(\,\_\,), Y}$ and thus is unique up to unique isomorphism.
+      By the proof of Theorem~\ref{thm1}, an $\mathcal{S}$-envelope of an object $Y$ of $\A$ represents the presheaf $\A/\mathcal{S}(\pi(-), \pi{Y})$ and thus is unique up to unique isomorphism.
     \item
       This is immediate from Yoneda's Lemma.
     \end{enumerate}
   \end{proof}
 \end{cor}
 
+\begin{proposition}
+  Whenver $\pi$ admits a section, the unit $\varepsilon(X) \colon X \to \omega\pi{X}$ is an isomorphism if and only if $X$ is $\mathcal{S}$-closed.
+\end{proposition}
+
+\begin{proof}
+  One direction is obvious.
+  Assume that $X$ is $\mathcal{S}$-closed.
+  We have an isomorphism of functors
+  $$\A(-, X) \cong \A/\mathcal{S}(\pi(-), \pi{X}) \cong \A(-, \omega\pi{X})$$
+  with the first isomorphism because $X$ is $\mathcal{S}$-closed, and the second isomorphism from the adjunction.
+  By the Yoneda Lemma, this isomorphism of functors corresponds to the image of $\id_X$, which is just
+  $$\omega\pi({\id_X}) \circ \varepsilon(X) =
+  \omega(\id_{\pi{X}}) \circ \varepsilon(X) =
+  \id_{\omega\pi{X}} \circ \varepsilon(X)
+  = \varepsilon(X).$$
+  Therefore $\varepsilon(X)$ is an isomorphism.
+\end{proof}
+
 \begin{lem}\label{lem5}
-  Assume that $\A$ is a localizing subcategory, $X$, $Y$, objects of $\C$, $X_\A$, $Y_\A$, their maximal $\A$-subobjects.
+  Assume that $\mathcal{S}$ is a localizing subcategory, $X$, $Y$, objects of $\A$, $X_\mathcal{S}$, $Y_\mathcal{S}$, their maximal $\mathcal{S}$-subobjects.
   A morphism $f \colon X \rightarrow Y$ induces a morphism
   $$\begin{tikzcd}
-    X_\A \arrow{r}{i} & X \arrow{r}{f}\arrow{d}{p} & Y\arrow{d}{q}\\
-    & X/X_\A \arrow[dashed]{r}{\exists !h} & Y/Y_\A
+    X_\mathcal{S} \arrow{r}{i} & X \arrow{r}{f}\arrow{d}{p} & Y\arrow{d}{q}\\
+    & X/X_\mathcal{S} \arrow[dashed]{r}{\exists !h} & Y/Y_\mathcal{S}
   \end{tikzcd}$$
   and the morphism $\pi(f)$ is an essential extension if and only if $h$ is.
 
@@ -663,7 +761,7 @@ The next two propositions describe the morphisms of $\QGr{A}$ explicitly.
     We first note that $\pi(p)$ and $\pi(h)$ are isomorphisms, hence essential extensions, so 
     $$\pi(f) = \pi(q)^{-1} \circ \pi(h) \circ \pi(p)$$
     is an essential extension if and only if $\pi(h)$ is.
-    Hence it suffices to assume that $X_\A = Y_\A = 0$ and $h = f$.
+    Hence it suffices to assume that $X_\mathcal{S} = Y_\mathcal{S} = 0$ and $h = f$.
     
     Assume first that $\pi(f)$ is an essential extension.
     Given a subobject $k : Y^\prime \rightarrow Y$ we get the pullback 
@@ -672,8 +770,8 @@ The next two propositions describe the morphisms of $\QGr{A}$ explicitly.
       \pi(Y^\prime) \arrow{r}{\pi(k)} &\pi(Y)
     \end{tikzcd}$$
     because $\pi$ is exact.
-    We note that so long as $Y^\prime$ is not an object of $\A$, $\pi(Y^\prime)$ is not zero.
-    Since $Y$ was assumed to be $\A$-torsionfree, this is equivalent to $Y^\prime$ being non-zero.
+    We note that so long as $Y^\prime$ is not an object of $\mathcal{S}$, $\pi(Y^\prime)$ is not zero.
+    Since $Y$ was assumed to be $\mathcal{S}$-torsionfree, this is equivalent to $Y^\prime$ being non-zero.
     Therefore $\pi(Y^\prime \times_Y X)$ is non-zero whenever $Y^\prime$ is non-zero because $\pi(f)$ is essential and hence so is $Y^\prime \times_Y X$.
     
     Conversely, assume that $f$ is an essential extension.
@@ -681,13 +779,13 @@ The next two propositions describe the morphisms of $\QGr{A}$ explicitly.
     $$\begin{tikzcd}
       0 \arrow{r} & K \arrow{r}{\ker{j}} & Z^\prime \arrow{r}{j} & Y
     \end{tikzcd}$$
-    with $Z/Z^\prime$ and $K$ objects of $\A$ since $k$ is monic and $Y$ has no non-zero $\A$-subobjects.
+    with $Z/Z^\prime$ and $K$ objects of $\mathcal{S}$ since $k$ is monic and $Y$ has no non-zero $\mathcal{S}$-subobjects.
     Since $f$ is an essential extension we have the non-zero pullback
     $$\begin{tikzcd}
       Z^\prime / K \times_Y X \arrow{r}{k}\arrow{d}{f^\prime} & X\arrow{d}{f} \\
       Z/K \arrow{r}{\im{j}}& Y
     \end{tikzcd}$$
-    As $K$ is an object of $\A$, the short exact sequence
+    As $K$ is an object of $\mathcal{S}$, the short exact sequence
     $$\begin{tikzcd}
       0 \arrow{r} & K \arrow{r}{\ker{j}} & Z^\prime \arrow{r}{\coim{j}} & Z^\prime/K \arrow{r} & 0
     \end{tikzcd}$$
@@ -700,45 +798,17 @@ The next two propositions describe the morphisms of $\QGr{A}$ explicitly.
 \end{lem}
 
 \begin{lem}\label{lem6}
-  If $Q$ is an $\A$-closed injective, then $\pi(Q)$ is injective.
+  If $Q$ is an $\mathcal{S}$-closed injective, then $\pi{Q}$ is injective.
 
   \begin{proof}
-    Given a short exact sequence
-    $$\begin{tikzcd}
-      0 \arrow{r} & \pi(Q) \arrow{r}{s} & \pi(X) \arrow{r}{\coker{s}} & \pi(X/Q) \arrow{r} & 0
-    \end{tikzcd}$$
-    it is enough to show that $s$ is a section; that is, there exists a morphism $r \colon \pi(X) \rightarrow \pi(Q)$ such that $r \circ s = \id_{\pi(Q)}$.
-    We can lift $s$ to a morphism 
-    $$\begin{tikzcd}
-      0 \arrow{r} & K \arrow{r}{\ker{t}} & Q^\prime \arrow{r}{t} & X/X^\prime
-    \end{tikzcd}$$
-    with $K$, $Q/Q^\prime$, and $X^\prime$ objects of $\A$.
-    Since we have assumed that $Q$ is $\A$-closed, the diagram
-    $$\begin{tikzcd}
-      K \arrow{r}{\ker t}\arrow[bend left]{rr}{0} & Q^\prime \arrow{r}{i} & Q
-    \end{tikzcd}$$
-    commutes and thus we see that $\ker{t} = 0$ because $i$ is a monomorphism.
-    Since $Q$ was assumed to be injective, we have the lift
-    $$\begin{tikzcd}
-      0 \arrow{r} & Q^\prime \arrow{r}{t} \arrow{d}{i} & X/X^\prime\arrow[dashed]{ld}{\exists r}\\
-      & Q.
-    \end{tikzcd}$$
-    If we let $q \colon X \rightarrow X/X^\prime$ be the canonical projection, then we have the diagram
-    $$\begin{tikzcd}
-      \pi(Q^\prime)\arrow[swap]{d}{\pi(i)}\arrow{r}{\pi(t)} & \pi(X/X^\prime)\arrow[swap]{ld}{\pi(r)}\\
-      \pi(Q)\arrow{r}{s} & \pi(X)\arrow[swap]{u}{\pi(q)}
-    \end{tikzcd}$$
-    with $\pi(i)$ and $\pi(q)$ isormoprhisms, the top left triangle commutative, and the outer square commutative.
-    Therefore
-    $$\id_{\pi(Q)} \circ \pi(i) = \pi(i) = \pi(r) \circ \pi(t) = \pi(r) \circ \pi(q) \circ s \circ \pi(i)$$
-    implies, because $\pi(i)$ is an isomorphism, that
-    $$\left(\pi(r) \circ \pi(q)\right) \circ s = \id_{\pi(Q)},$$
-    as desired.
+    Since $Q$ is $\mathcal{S}$-closed, we have
+    $$\A(-, Q) \cong \A/\mathcal{S}(\pi(-), \pi{Q})$$
+    is an exact functor.
   \end{proof}
 \end{lem}
 
 \begin{lem}\label{lem7}
-  If $i \colon X \rightarrow E$ is an injective envelope and $X$ is $\A$-torsionfree, then $E$ is $\A$-closed and the morphism $\pi(i) \colon \pi(X) \rightarrow \pi(E)$ is an injective envelope.
+  If $i \colon X \rightarrow E$ is an injective envelope and $X$ is $\mathcal{S}$-torsionfree, then $E$ is $\mathcal{S}$-closed and the morphism $\pi(i) \colon \pi(X) \rightarrow \pi(E)$ is an injective envelope.
 
   \begin{proof}
     Since $E$ is injective, every short exact sequence
@@ -746,48 +816,48 @@ The next two propositions describe the morphisms of $\QGr{A}$ explicitly.
       0 \arrow{r} & E \arrow{r} & A \arrow{r} & B \arrow{r} & 0
     \end{tikzcd}$$
     splits.  
-    To see that $E$ is $\A$-closed, it then suffices by Lemma~\ref{lem1}.\ref{lem1.2} to show that $E$ is $\A$-torsionfree.
-    Given an $\A$-subobject $j : E^\prime \rightarrow E$, we have the pullback 
+    To see that $E$ is $\mathcal{S}$-closed, it then suffices by Lemma~\ref{lem1}.\ref{lem1.2} to show that $E$ is $\mathcal{S}$-torsionfree.
+    Given an $\mathcal{S}$-subobject $j : E^\prime \rightarrow E$, we have the pullback 
     $$\begin{tikzcd}
       E^\prime \times_E X \arrow{r}{j^\prime}\arrow{d}{i^\prime} & X\arrow{d}{i}\\
       E^\prime \arrow{r}{j} & E
     \end{tikzcd}$$
-    and the morphism $i^\prime$ gives $E^\prime \times_E X$ $E$-subobject structure, hence is an object of $\A$.
-    Since $X$ is $\A$-torsionfree by assumption, $E^\prime \times_E X = 0$ and thus $E^\prime$ is also zero because $i$ is essential.
+    and the morphism $i^\prime$ gives $E^\prime \times_E X$ $E$-subobject structure, hence is an object of $\mathcal{S}$.
+    Since $X$ is $\mathcal{S}$-torsionfree by assumption, $E^\prime \times_E X = 0$ and thus $E^\prime$ is also zero because $i$ is essential.
     
     By Lemma~\ref{lem6} we see that $\pi(E)$ is injective, so it remains to show that $\pi(i)$ is essential.
-    To see this, we note that the assumption $\A$ is a localizing subcategory in Lemma~\ref{lem5} was only used to produce maximal $\A$-subobjects, and hence the same argument shows that $\pi(i)$ is essential.
+    To see this, we note that the assumption $\mathcal{S}$ is a localizing subcategory in Lemma~\ref{lem5} was only used to produce maximal $\mathcal{S}$-subobjects, and hence the same argument shows that $\pi(i)$ is essential.
     Therefore $\pi(i)$ is an injective envelope.
   \end{proof}
 \end{lem}
 
 \begin{prop}\label{prop1}
-  Assume that $\A$ is a localizing subcategory.
-  If $\C$ has injective envelopes, then
+  Assume that $\mathcal{S}$ is a localizing subcategory.
+  If $\A$ has injective envelopes, then
   \begin{enumerate}
   \item
-    $\C/\A$ has injective envelopes,
+    $\A/\mathcal{S}$ has injective envelopes,
   \item
-    Every injective object of $\C/\A$ is isomorphic to $\pi(Q)$ for some $\A$-closed injective, $Q$, and
+    Every injective object of $\A/\mathcal{S}$ is isomorphic to $\pi(Q)$ for some $\mathcal{S}$-closed injective, $Q$, and
   \item
-    Every injective object $Q$ of $\C$ is isomorphic to $E \oplus \omega(Q_2)$, where $Q_\A \rightarrow E$ is an injective envelope of the maximal $\A$-subobject of $Q$ and $Q_2$ is an injective object of $\C/\A$.
+    Every injective object $Q$ of $\A$ is isomorphic to $E \oplus \omega(Q_2)$, where $Q_\mathcal{S} \rightarrow E$ is an injective envelope of the maximal $\mathcal{S}$-subobject of $Q$ and $Q_2$ is an injective object of $\A/\mathcal{S}$.
   \end{enumerate}
   
   \begin{proof}
     \begin{enumerate}
     \item
-      Given an object $\pi(X)$ of $\C/\A$, let $X_\A$ be the maximal $\A$-subobject of $X$.
-      Since $\C$ has injective envelopes and $X/X_\A$ is $\A$-torsionfree, an injective envelope $X/X_\A \rightarrow E$ gives the injective envelope
-      $$\pi(X) \cong \pi(X/X_\A) \rightarrow \pi(E)$$
+      Given an object $\pi(X)$ of $\A/\mathcal{S}$, let $X_\mathcal{S}$ be the maximal $\mathcal{S}$-subobject of $X$.
+      Since $\A$ has injective envelopes and $X/X_\mathcal{S}$ is $\mathcal{S}$-torsionfree, an injective envelope $X/X_\mathcal{S} \rightarrow E$ gives the injective envelope
+      $$\pi(X) \cong \pi(X/X_\mathcal{S}) \rightarrow \pi(E)$$
       by Lemma~\ref{lem7}.
     \item
-      Given an injective object $\pi(Q)$ of $\C/\A$, $\omega\pi(Q)$ is $\A$-closed by Lemma~\ref{lem4}.\ref{lem4.1} and is injective because $\pi$ is exact.
+      Given an injective object $\pi(Q)$ of $\A/\mathcal{S}$, $\omega\pi(Q)$ is $\mathcal{S}$-closed by Lemma~\ref{lem4}.\ref{lem4.1} and is injective because $\pi$ is exact.
       Therefore by Lemma~\ref{lem4}.\ref{lem4.3}, $\pi(Q) \cong \pi(\omega\pi(Q))$.
     \item
-      Let $Q$ be an injective object of $\C$, let $i \colon Q_\A \rightarrow Q$ be its maximal $\A$-subobject, and let $j \colon Q_\A \rightarrow E$ be an injective envelope.
+      Let $Q$ be an injective object of $\A$, let $i \colon Q_\mathcal{S} \rightarrow Q$ be its maximal $\mathcal{S}$-subobject, and let $j \colon Q_\mathcal{S} \rightarrow E$ be an injective envelope.
       Since $Q$ is injective we have the lift
       $$\begin{tikzcd}
-        0 \arrow{r} & Q_\A \arrow{r}{j} \arrow{d}{i}& E \arrow[dashed]{ld}{\exists k}\\
+        0 \arrow{r} & Q_\mathcal{S} \arrow{r}{j} \arrow{d}{i}& E \arrow[dashed]{ld}{\exists k}\\
         & Q
       \end{tikzcd}$$
       with $k$ a monomorphism because $j$ is essential and $\ker{(k \circ j)} = \ker{i} = 0$.
@@ -795,14 +865,14 @@ The next two propositions describe the morphisms of $\QGr{A}$ explicitly.
       $$\begin{tikzcd}
         0 \arrow{r} & E \arrow[shift left=0.5]{r}{k} & Q \arrow[shift left=0.5]{r}{p}\arrow[shift left=0.5ex]{l}{r} & Q/E \arrow[shift left=0.5ex]{l}{s} \arrow{r} & 0
       \end{tikzcd}$$
-      so we need only show that $Q/E$ is an $\A$-closed injective, for then $\pi(Q/E)$ is injective by Lemma~\ref{lem6}, and $Q/E \cong \omega\pi(Q/E)$. 
+      so we need only show that $Q/E$ is an $\mathcal{S}$-closed injective, for then $\pi(Q/E)$ is injective by Lemma~\ref{lem6}, and $Q/E \cong \omega\pi(Q/E)$. 
       
       The fact that $Q/E$ is injective follows from the fact that both $Q$ and $E$ are injective.
-      Thus every monomorphism out of $Q/E$ splits, so by Lemma~\ref{lem1}.\ref{lem1.2} it is enough to show that $Q/E$ is $\A$-torsionfree.
-      Given an $\A$-subobject $\varphi \colon X \rightarrow E$, the fact that $Q/Q_\A$ is $\A$-torsionfree gives the kernel diagram
+      Thus every monomorphism out of $Q/E$ splits, so by Lemma~\ref{lem1}.\ref{lem1.2} it is enough to show that $Q/E$ is $\mathcal{S}$-torsionfree.
+      Given an $\mathcal{S}$-subobject $\varphi \colon X \rightarrow E$, the fact that $Q/Q_\mathcal{S}$ is $\mathcal{S}$-torsionfree gives the kernel diagram
       $$\begin{tikzcd}
-        X \arrow[swap,dashed]{rrd}{\exists !h}\arrow[bend left]{rrr}{0} \arrow{r}{\varphi} & Q/E \arrow{r}{s} & Q \arrow{r} & Q/Q_\A\\
-        & & Q_\A\arrow{u}{i}
+        X \arrow[swap,dashed]{rrd}{\exists !h}\arrow[bend left]{rrr}{0} \arrow{r}{\varphi} & Q/E \arrow{r}{s} & Q \arrow{r} & Q/Q_\mathcal{S}\\
+        & & Q_\mathcal{S}\arrow{u}{i}
       \end{tikzcd}$$
       Therefore
       $$\varphi = \id_{Q/E} \circ \varphi = p \circ s \circ \varphi = p \circ i \circ h = p \circ k \circ j \circ h = 0,$$
@@ -812,11 +882,11 @@ The next two propositions describe the morphisms of $\QGr{A}$ explicitly.
 \end{prop}
 
 \begin{cor}\label{cor2}
-  Assume that $\A$ is a localizing subcategory and that $\C$ has injective envelopes.
-  If the injective envelope of an object of $\A$ is a morphism of $\A$, then
+  Assume that $\mathcal{S}$ is a localizing subcategory and that $\A$ has injective envelopes.
+  If the injective envelope of an object of $\mathcal{S}$ is a morphism of $\mathcal{S}$, then
   \begin{enumerate}
   \item\label{cor2.1}
-    the maximal subobject of an injective is injective and thus the $\A$-envelope of an injective, $Q$, is $Q \rightarrow Q/Q_\A$, where $Q_\A$ is the maximal $\A$-subobject, 
+    the maximal subobject of an injective is injective and thus the $\mathcal{S}$-envelope of an injective, $Q$, is $Q \rightarrow Q/Q_\mathcal{S}$, where $Q_\mathcal{S}$ is the maximal $\mathcal{S}$-subobject, 
   \item\label{cor2.2}
     $\pi$ preserves injectives, and
     %      \item
@@ -825,77 +895,77 @@ The next two propositions describe the morphisms of $\QGr{A}$ explicitly.
   \begin{proof}
     \begin{enumerate}
     \item
-      Let $Q$ be an injective object of $\C$ and $i \colon Q_\A \rightarrow Q$ its maximal $\A$-subobject.
-      Given an injective envelope $j \colon Q_\A \rightarrow E$, we have the lift
+      Let $Q$ be an injective object of $\A$ and $i \colon Q_\mathcal{S} \rightarrow Q$ its maximal $\mathcal{S}$-subobject.
+      Given an injective envelope $j \colon Q_\mathcal{S} \rightarrow E$, we have the lift
       $$\begin{tikzcd}
-        0 \arrow{r} & Q_\A \arrow{d}{i} \arrow{r}{j} & E \arrow[dashed]{ld}{\exists k}\\
+        0 \arrow{r} & Q_\mathcal{S} \arrow{d}{i} \arrow{r}{j} & E \arrow[dashed]{ld}{\exists k}\\
         & Q
       \end{tikzcd}$$
       with $k$ a monomorphism because $j$ is essential.
-      Since $E$ is assumed to be an object of $\A$, $k$ factors through $i$ uniquely,
+      Since $E$ is assumed to be an object of $\mathcal{S}$, $k$ factors through $i$ uniquely,
       $$\begin{tikzcd}
-        E \arrow{rd}{k}\arrow[dashed]{r}{\exists !\varphi} & Q_\A\arrow{d}{i}\\
+        E \arrow{rd}{k}\arrow[dashed]{r}{\exists !\varphi} & Q_\mathcal{S}\arrow{d}{i}\\
         & Q.
       \end{tikzcd}$$
       So we see that
       $$k \circ j \circ \varphi = i \circ \varphi = k = k \circ id_E$$
       implies that  $j \circ \varphi = id_E$
       and
-      $$i \circ \varphi \circ j = k \circ j = i = i \circ id_{Q_\A}$$
-      implies $\varphi \circ j = id_{Q_\A}$.
+      $$i \circ \varphi \circ j = k \circ j = i = i \circ id_{Q_\mathcal{S}}$$
+      implies $\varphi \circ j = id_{Q_\mathcal{S}}$.
       Hence $\varphi$ is an isomorphism.
       Therefore by Proposition~\ref{prop1} we have the short exact sequence
       $$\begin{tikzcd}
-        0 \arrow{r} & Q_\A \arrow{r} & Q_\A \oplus Q/Q_\A \arrow{r} & Q/Q_\A \arrow{r} & 0
+        0 \arrow{r} & Q_\mathcal{S} \arrow{r} & Q_\mathcal{S} \oplus Q/Q_\mathcal{S} \arrow{r} & Q/Q_\mathcal{S} \arrow{r} & 0
       \end{tikzcd}$$
-      and $Q/Q_\A$ is $\A$-closed, as desired.
+      and $Q/Q_\mathcal{S}$ is $\mathcal{S}$-closed, as desired.
     \item
-      If $Q$ is an injective object of $\C$, then by the above $Q/Q_\A$ is $\A$-closed and hence $\pi(Q) \cong \pi(Q/Q_\A)$ is injective by Lemma~\ref{lem6}.
+      If $Q$ is an injective object of $\A$, then by the above $Q/Q_\mathcal{S}$ is $\mathcal{S}$-closed and hence $\pi(Q) \cong \pi(Q/Q_\mathcal{S})$ is injective by Lemma~\ref{lem6}.
       %      \item
-      %        Given an object $X$, let $i \colon X_\A \rightarrow X$ be the maximal $\A$-subobject of $X$, let $k \colon X \rightarrow E$ be an injective envelope, and let $j \colon E_\A \rightarrow E$ be the maximal $\A$-subobject of $E$.
+      %        Given an object $X$, let $i \colon X_\mathcal{S} \rightarrow X$ be the maximal $\mathcal{S}$-subobject of $X$, let $k \colon X \rightarrow E$ be an injective envelope, and let $j \colon E_\mathcal{S} \rightarrow E$ be the maximal $\mathcal{S}$-subobject of $E$.
       %        We have already shown that $\pi(Q)$ is injective, so we need only show that $\pi(i)$ is an essential extension.
       
-      %        It's clear that $k^{-1}(E_\A) \cong X_\A$, so we have an induced monomorphism 
+      %        It's clear that $k^{-1}(E_\mathcal{S}) \cong X_\mathcal{S}$, so we have an induced monomorphism 
       %        $$\begin{tikzcd}
-      %          0 \arrow{r} & X_\A \arrow{r}{i}\arrow{d}{k^\prime} & X \arrow{r}{p}\arrow{d}{k} & X/X_\A \arrow{r}\arrow[dashed]{d}{\exists !h} & 0\\
-      %          0 \arrow{r} & E_\A \arrow{r}{j} & E \arrow{r}{q} & E/E_\A \arrow{r} & 0
+      %          0 \arrow{r} & X_\mathcal{S} \arrow{r}{i}\arrow{d}{k^\prime} & X \arrow{r}{p}\arrow{d}{k} & X/X_\mathcal{S} \arrow{r}\arrow[dashed]{d}{\exists !h} & 0\\
+      %          0 \arrow{r} & E_\mathcal{S} \arrow{r}{j} & E \arrow{r}{q} & E/E_\mathcal{S} \arrow{r} & 0
       %        \end{tikzcd}$$
       %Since the left-most square is Cartesian if and only if the sequence
       %$$\begin{tikzcd}
-      %  0 \arrow{r} & X_\A \arrow{r}{i} & X \arrow{r}{q \circ k} & E
+      %  0 \arrow{r} & X_\mathcal{S} \arrow{r}{i} & X \arrow{r}{q \circ k} & E
       %\end{tikzcd}$$
       %is exact, we note that $i = \ker{(q \circ k)}$.
       
-      %        Suppose that we are given a morphism $f \colon E/E_\A \rightarrow Y$ such that $f \circ h$ is monic and consider $\ker{f} \colon K \rightarrow E/E_\A$.
+      %        Suppose that we are given a morphism $f \colon E/E_\mathcal{S} \rightarrow Y$ such that $f \circ h$ is monic and consider $\ker{f} \colon K \rightarrow E/E_\mathcal{S}$.
       %        We have the pullback
       %        $$\begin{tikzcd}
-      %          E_\A \cap q^{-1}(K) \arrow{d}\arrow{r}{\ker{(q \circ \ker{(f \circ q)})}} & q^{-1}(K) \arrow{d}{\ker{(f \circ q)}} \arrow{r}{q^\prime} & K\arrow{d}{\ker{f}}\\
-      %          E_\A \arrow{r}{j} & E \arrow{r}{q} & E/E_\A \arrow{r}{f} & Y
+      %          E_\mathcal{S} \cap q^{-1}(K) \arrow{d}\arrow{r}{\ker{(q \circ \ker{(f \circ q)})}} & q^{-1}(K) \arrow{d}{\ker{(f \circ q)}} \arrow{r}{q^\prime} & K\arrow{d}{\ker{f}}\\
+      %          E_\mathcal{S} \arrow{r}{j} & E \arrow{r}{q} & E/E_\mathcal{S} \arrow{r}{f} & Y
       %        \end{tikzcd}$$
-      %        Then we see that $h^{-1}(K) \cong K \cap X/X_\A = 0$, so it follows that 
-      %        $$(q \circ k)^{-1}(K) = (h \circ p)^{-1}(K) \cong p^{-1}(h^{-1}(K)) = p^{-1}(0) \cong X_\A.$$
+      %        Then we see that $h^{-1}(K) \cong K \cap X/X_\mathcal{S} = 0$, so it follows that 
+      %        $$(q \circ k)^{-1}(K) = (h \circ p)^{-1}(K) \cong p^{-1}(h^{-1}(K)) = p^{-1}(0) \cong X_\mathcal{S}.$$
       %        Consider
       %        $$\begin{tikzcd}
-      %          X_\A \arrow{r}\arrow{d}{i} & q^{-1}(K) \arrow{r}\arrow{d} & K \arrow{d}{\ker{f}}\\
-      %          X \arrow[bend right]{rr}{h \circ p}\arrow{r}{k} & E \arrow{r}{q} & E/E_\A \arrow{r}{f} & Y
+      %          X_\mathcal{S} \arrow{r}\arrow{d}{i} & q^{-1}(K) \arrow{r}\arrow{d} & K \arrow{d}{\ker{f}}\\
+      %          X \arrow[bend right]{rr}{h \circ p}\arrow{r}{k} & E \arrow{r}{q} & E/E_\mathcal{S} \arrow{r}{f} & Y
       %        \end{tikzcd}$$
-      %Given a non-zero subobject \begin{tikzcd} 0 \arrow{r} & Z \arrow{r}{\varphi} & E/E_\A\end{tikzcd}, we have
+      %Given a non-zero subobject \begin{tikzcd} 0 \arrow{r} & Z \arrow{r}{\varphi} & E/E_\mathcal{S}\end{tikzcd}, we have
       %  $$p^{-1}(h^{-1}(Z)) \cong (h \circ p)^{-1}(Z) =  (q \circ k)^{-1}(Z) \cong k^{-1}(q^{-1}(Z))$$
       %  and the pullback diagram
       %  $$\begin{tikzcd}
-      %    0 \arrow{r} & X_\A \cap k^{-1}(q^{-1}(Z)) \arrow{d}{\varphi^{\prime\prime\prime}}\arrow{r}{i^\prime} & k^{-1}(q^{-1}(Z)) \arrow{r}{k^\prime}\arrow{d}{\varphi^{\prime\prime}} & q^{-1}(Z) \arrow{r}{q^\prime}\arrow{d}{\varphi^\prime} & Z \arrow{d}{\varphi}\\
-      %    0 \arrow{r} & X_\A \arrow{r}{i} & X \arrow{r}{k} & E \arrow{r}{q} & E/E_\A
+      %    0 \arrow{r} & X_\mathcal{S} \cap k^{-1}(q^{-1}(Z)) \arrow{d}{\varphi^{\prime\prime\prime}}\arrow{r}{i^\prime} & k^{-1}(q^{-1}(Z)) \arrow{r}{k^\prime}\arrow{d}{\varphi^{\prime\prime}} & q^{-1}(Z) \arrow{r}{q^\prime}\arrow{d}{\varphi^\prime} & Z \arrow{d}{\varphi}\\
+      %    0 \arrow{r} & X_\mathcal{S} \arrow{r}{i} & X \arrow{r}{k} & E \arrow{r}{q} & E/E_\mathcal{S}
       %  \end{tikzcd}$$
       %  with all squares cartesian.
-      %  Since $\varphi$ is not zero, clearly $Z$ is not an object of $\A$ and hence, because $q^\prime$ is epic, it follows that $q^{-1}(Z)$ is not an object of $\A$.
+      %  Since $\varphi$ is not zero, clearly $Z$ is not an object of $\mathcal{S}$ and hence, because $q^\prime$ is epic, it follows that $q^{-1}(Z)$ is not an object of $\mathcal{S}$.
       %  As $k$ is an essential extension, $\varphi^{\prime\prime} : k^{-1}(q^{-1}(Z)) \rightarrow X$ is a non-zero subobject of $X$.
       
-      %  that is not $X_\A$ and hence it must be that $h^{-1}(Z)$ is also a non-zero subobject of $X/X_\A$.
+      %  that is not $X_\mathcal{S}$ and hence it must be that $h^{-1}(Z)$ is also a non-zero subobject of $X/X_\mathcal{S}$.
       %  This implies that $h$ is an essential extension.
       %  Therefore $\pi(i)$ is an essential extension by Lemma~\ref{lem5}, as desired.
       %  $$\begin{tikzcd}
       %    p^{-1}(h^{-1}(Z)) \arrow{r}{p^\prime}\arrow{d}{\psi^{\prime}} & h^{-1}(Z) \arrow{r}{h^\prime}\arrow{d}{\psi} & Z \arrow{d}{\varphi}\\
-      %    X \arrow{r}{p} & X/X_\A \arrow{r}{h} & E/E_\A
+      %    X \arrow{r}{p} & X/X_\mathcal{S} \arrow{r}{h} & E/E_\mathcal{S}
       %  \end{tikzcd}$$
     \end{enumerate}
   \end{proof}
@@ -924,9 +994,9 @@ The next two propositions describe the morphisms of $\QGr{A}$ explicitly.
 \section{Cohomology}
 
 \begin{cor}\label{cor3}
-  Assume that $\A$ is a localizing subcategory and that $\C$ has injective envelopes.
-  If the injective envelope of an object of $\A$ is a morphism of $\A$, then for objects $X$ and $Y$ of $\C$
-  $$\Ext{i}{\C/\A}{\pi(X), \pi(Y)} \cong R^i \Hom{\C}{X, \omega\pi(Y)}.$$
+  Assume that $\mathcal{S}$ is a localizing subcategory and that $\A$ has injective envelopes.
+  If the injective envelope of an object of $\mathcal{S}$ is a morphism of $\mathcal{S}$, then for objects $X$ and $Y$ of $\A$
+  $$\Ext{i}{\A/\mathcal{S}}{\pi(X), \pi(Y)} \cong R^i \Hom{\A}{X, \omega\pi(Y)}.$$
   
   \begin{proof}
     Take an injective resolution
@@ -935,24 +1005,24 @@ The next two propositions describe the morphisms of $\QGr{A}$ explicitly.
     \end{tikzcd}$$
     of $Y$.
     By Corollary~\ref{cor2}.\ref{cor2.2}, $\pi(Q^\cdot)$ is an injective resolution of $\pi(Y)$.
-    Using the natural transformation $\varepsilon \colon id_{\C} \rightarrow \omega\pi$ we have for each $n$ an isomorphism of adjunction
+    Using the natural transformation $\varepsilon \colon id_{\A} \rightarrow \omega\pi$ we have for each $n$ an isomorphism of adjunction
     $$\begin{tikzcd}
-      \Phi^n \colon \Hom{\C/\A}{\pi(X), \pi(Q^n)} \arrow{r} & \Hom{\C}{X, \omega\pi(Q^n)}\\
+      \Phi^n \colon \Hom{\A/\mathcal{S}}{\pi(X), \pi(Q^n)} \arrow{r} & \Hom{\A}{X, \omega\pi(Q^n)}\\
       \varphi \arrow[mapsto]{r} & \omega(\varphi) \circ \varepsilon_X
     \end{tikzcd}$$
     and so we get an isomorphism of chain complexes
     $$\begin{tikzcd}[column sep=large]
-      \Hom{\C/\A}{\pi(X), \pi(Q^\cdot)} \colon 0 \arrow{r} & \Hom{\C/\A}{\pi(X),\pi(Q^0)} \arrow{d}{\Phi^0}\arrow{r}{h^{\pi(X)}(\pi(d^0))} & \Hom{\C/\A}{\pi(X), \pi(Q^1)}\arrow{d}{\Phi^1} \arrow{r}{h^{\pi(X)}(\pi(d^1))} & \cdots\\
-      \Hom{\C}{X, \omega\pi(Q^\cdot)} \colon 0 \arrow{r} & \Hom{\C}{X,\omega\pi(Q^0)} \arrow{r}{h^X(\omega\pi(d^0))} & \Hom{\C}{X, \omega\pi(Q^1)} \arrow{r}{h^X(\omega\pi(d^1))} & \cdots
+      \Hom{\A/\mathcal{S}}{\pi(X), \pi(Q^\cdot)} \colon 0 \arrow{r} & \Hom{\A/\mathcal{S}}{\pi(X),\pi(Q^0)} \arrow{d}{\Phi^0}\arrow{r}{h^{\pi(X)}(\pi(d^0))} & \Hom{\A/\mathcal{S}}{\pi(X), \pi(Q^1)}\arrow{d}{\Phi^1} \arrow{r}{h^{\pi(X)}(\pi(d^1))} & \cdots\\
+      \Hom{\A}{X, \omega\pi(Q^\cdot)} \colon 0 \arrow{r} & \Hom{\A}{X,\omega\pi(Q^0)} \arrow{r}{h^X(\omega\pi(d^0))} & \Hom{\A}{X, \omega\pi(Q^1)} \arrow{r}{h^X(\omega\pi(d^1))} & \cdots
     \end{tikzcd}$$
-    since for $\varphi \in \Hom{\C/\A}{\pi(X), Q^n}$ we have
+    since for $\varphi \in \Hom{\A/\mathcal{S}}{\pi(X), Q^n}$ we have
     $$h^X(\omega\pi(d^n)) \circ \Phi^n(\varphi) = \omega\pi(d^n) \circ \omega(\varphi) \circ \varepsilon_X = \omega(\pi(d^n) \circ \varphi) \circ \varepsilon_X = \Phi^{n+1} \circ h^X(\pi(d^n))(\varphi).$$
     Therefore 
-    $$\Ext{i}{\C/\A}{\pi(X), \pi(Y)} \cong h^i\left(\Hom{\C/\A}{\pi(X), \pi(Q^\cdot)}\right) \cong h^i\left(\Hom{\C}{X, \omega\pi(Q^\cdot)}\right) \cong R^i \Hom{\C}{X, \omega\pi(Y)}$$
+    $$\Ext{i}{\A/\mathcal{S}}{\pi(X), \pi(Y)} \cong h^i\left(\Hom{\A/\mathcal{S}}{\pi(X), \pi(Q^\cdot)}\right) \cong h^i\left(\Hom{\A}{X, \omega\pi(Q^\cdot)}\right) \cong R^i \Hom{\A}{X, \omega\pi(Y)}$$
   \end{proof}
 \end{cor}
 
-From here on, let $A$ be a right Noetherian $\Z_{\geq 0}$-graded algebra over a commutative Noetherian ring $k$, $\C = \Gr{A}$, $\A = \Tors$, $\C/\A = \QGr{A}$.
+From here on, let $A$ be a right Noetherian $\Z_{\geq 0}$-graded algebra over a commutative Noetherian ring $k$, $\A = \Gr{A}$, $\mathcal{S} = \Tors$, $\A/\mathcal{S} = \QGr{A}$.
 
 \begin{defn}
   Define the graded modules
