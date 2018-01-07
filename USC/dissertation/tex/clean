@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+echo "Cleaning:"
+
+find . -type f -iname "*.log" -delete -print
+find . -type f -iname "*.aux" -delete -print
+find . -type f -iname "*.bbl" -delete -print
+find . -type f -iname "*.blg" -delete -print
+find . -type f -iname "*.out" -delete -print
+find . -type f -iname "*.toc" -delete -print
+find . -type f -iname "*.bcf" -delete -print
+find . -type f -iname "*.lof" -delete -print
+find . -type f -iname "*.lot" -delete -print
+find . -type f -iname "*.xml" -delete -print
+find . -type f -iname "*.dvi" -delete -print
+find . -type f -iname "*~" -delete -print

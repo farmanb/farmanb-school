@@ -1,0 +1,59 @@
+%%=================================================
+%% Copyright (C) 2007--2008  George F. McNulty
+%%
+%%
+%% This file may be distributed and/or modified
+%%
+%% 1. under the LaTeX Project Public License and/or
+%% 2. under the GNU Public License.
+%%
+%% See the file doc/licenses/LICENSE in the standard
+%% LaTeX distribution for more details.
+%%
+%% This package is intended for the typesetting
+%% of theses and dissertations submitted to the
+%% Graduate School of the University of South Carolina.
+%% It is intended to use with natbib.sty to achieve
+%% layout of the bibliography required by the Graduate
+%% School.  To use it, in place in the preamble
+%%
+%% \usepackage{natbib}
+%% \bibliographystype{plainnat}
+%% \usepacakge{uscnatbib} 
+%%
+%%==================================================
+
+
+
+
+\NeedsTeXFormat{LaTeX2e}[1994/12/01]
+\ProvidesPackage{uscnatbib}[2009/02/03]
+
+\let\bibliofont\normalsize
+\providecommand{\MR}{\relax\ifhmode\unskip\space\fi }
+\setlength\bibhang{20pt}
+
+\renewenvironment{thebibliography}[1]{%
+ \bibsection\parindent \z@\bibpreamble\bibfont\list
+   {\@biblabel{\arabic{NAT@ctr}}}{\@bibsetup{#1}%  
+    \setcounter{NAT@ctr}{0}}%
+    \ifNAT@openbib
+      \renewcommand\newblock{\par}
+    \else
+      \renewcommand\newblock{\hskip .11em \@plus.33em \@minus.07em}%
+    \fi
+    \sloppy\clubpenalty4000\widowpenalty4000
+    \sfcode`\.=1000\relax
+    \SingleSpacing                            %% July 2007 adjustment
+    \setlength{\parskip}{\baselineskip}     %% July 2007 adjustment
+    \vspace*{-\baselineskip}                %% July 2007 adjustment
+    \let\citeN\cite \let\shortcite\cite
+    \let\citeasnoun\cite
+ }{\def\@noitemerr{%
+  \PackageWarning{natbib}
+     {Empty `thebibliography' environment}}%
+  \endlist\vskip-\lastskip}
+ 
+
+
+

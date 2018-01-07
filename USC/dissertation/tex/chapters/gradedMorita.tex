@@ -1,0 +1,146 @@
+\chapter{Graded Morita Theory: A Warmup} \label{subsection: graded Morita}
+
+This section demonstrates how the tools of dg-categories yield a nice perspective on derived graded Morita. Compare with the well-known graded Morita statement in \cite{Zhang96}. 
+
+In order to utilize the machinery of dg-categories, we must first translate chain complexes of graded modules into dg-categories.
+While one can na\"ively regard this category as a dg-category by way of an enriched Hom entirely analogous to the ungraded situation, the relevant statements of \cite{Toen07} are better suited to the perspective of functor categories.
+As such, we adapt the association of a ringoid with one object to a ring from Section~\ref{subsection: dg modules} to the graded situation, considering instead a ringoid with multiple objects.
+
+\section{Preliminaries on Ringoids and Modules over Them}
+Throughout this section, we will let \(G = (G, +)\) be an abelian group, and let \(A\) and \(B\) be not necessarily commutative \(G\)-graded algebras over \(k\).
+Though these results are stated in fuller generality, in the sequel we will generally be concerned only with the groups \(\Z\) and \(\Z^2\).
+We begin our adaptation with our notion of ringoids with multiple objects.
+
+\begin{definition}
+  To a \(G\)-graded \(k\)-algebra, \(A\), associate the category \(\A\) with objects the group \(G\), morphisms given by
+  \[\A(g_1, g_2) = A_{g_2 - g_1},\]
+  and composition defined by the multiplication \(A_{g_2 - g_1}A_{g_3 - g_2} \subseteq A_{g_3 - g_1}\).
+\end{definition}
+
+The category $\A$ is naturally enriched over $\Mod{k}$.
+However, since we wish to deal with chain complexes, we will upgrade our enriching category to the category of chain complexes by viewing modules as chain complexes concentrated in degree zero.
+In particular, we regard \(\A\) as a dg-category by considering the \(k\)-module of morphisms as the complex
+$$\A(g_1,g_2)^n = \left\{
+\begin{array}{ll}
+  A_{g_2 - g_1} & \text{if}\ n = 0,\\
+  0 & \text{else}.
+\end{array}
+\right.$$
+with zero differential.
+From this point on, whenever we speak of modules, we will mean the full subcategory of the functor category $\op{Fun}(\A^\opp,\CH{k})$ consisting of $\Ch{k}$-enriched functors, which we denote by $\dgMod{\A}$.
+
+As an unfortunate side effect of considering chain complexes of graded modules, there will be many instances where there are two simultaneous gradings on an object: homological degree and homogenous degree. 
+We avoid the latter term, preferring weight, and use degree solely when referring to homological degree.
+
+For clarity, consider the example of a complex of \(G\)-graded left \(A\)-modules, \(M\).
+The degree \(n\) piece of \(M\) is the \(G\)-graded left \(A\)-module \(M^n\).
+The weight \(g\) piece of the graded module \(M^n\) is the \(A_0\)-module of homogenous elements of (graded) degree \(g\), \(M^n_g\).
+Note that in this terminology, the usual morphisms of graded modules are the weight zero morphisms.
+
+As mentioned above, we have a natural enrichment of the category of chain complexs of graded modules over a graded ring.
+
+\begin{definition}
+  Denote by \(\ldgGrMod{A}\) the dg-category with objects chain complexes of \(G\)-graded left \(A\)-modules and morphisms defined as follows.
+  
+  We say that a morphism \(f \colon M \to N\) of degree \(p\) is a collection of morphisms \(f^n \colon M^n \to N^{n+p}\) of weight zero.
+  We denote by \(\ldgGrMod{A}\left(M,N\right)^p\) the collection of all such morphisms, which we equip with the differential
+  \[d(f) = d_N \circ f + (-1)^{p+1}f \circ d_M\]
+  and define \(\ldgGrMod{A}(M,N)\) to be the resulting chain complex.
+  Composition is the usual composition of graded morphisms.
+
+  We denote by \(\rdgGrMod{A}\) the same construction with \(G\)-graded right \(A\)-modules, which are equivalently left modules over the opposite ring, \(A^\opp\).
+\end{definition}
+
+\begin{remark}
+  One should note that the closed morphisms are precisely the morphisms of complexes \(M \to N[p]\) and, in particular, the closed degree zero morphisms are precisely the usual morphisms of complexes.
+\end{remark}
+
+The following lemma illustrates that modules and chain complexes are one and the same.
+
+\begin{lemma}\label{lem:GrModAsMod}
+  Let \(G\) be an abelian group.
+  If \(A\) is a \(G\)-graded algebra over \(k\) and \(\A\) the associated dg-category, then there is an isomorphism of dg-categories
+  \[\ldgGrMod{A} \cong \dgMod{\A}.\]
+
+  \begin{proof}
+    We first construct a dg-functor \(F \colon \ldgGrMod{A} \to \dgMod{\A}\).
+    For each \(g \in G\), denote by \(A(g)[0]\) the complex with \(A(g)\) in degree zero and consider the full subcategory of \(\ldgGrMod{A}\) of all such complexes.
+    We see that a morphism \[f \in \ldgGrMod{A}(A(g)[0],M)^n\] is just the data of a morphism \(f^0 \colon A(g) \to M^n\) which gives
+    \[\ldgGrMod{A}(A(g)[0],M)^n \cong \Gr{A}(A(g), M^n) \cong M^n_{-g}\]
+    and hence \(M_{-g} := \ldgGrMod{A}(A(g)[0], M)\) is the complex with \(M^n_{-g}\) in degree \(n\).
+    In particular, when \(M = A(h)[0]\), we have
+    %\[\ldgGrMod{A}(A(g)[0],A(h)[0]) \cong \Gr{A}(A(g), A(h)) \cong A_{h - g} = \A(g,h),\]
+    \[\ldgGrMod{A}(A(g)[0],A(h)[0]) := A(h)[0]_{-g} = \A(g,h),\]
+    which allows us to identify this subcategory with \(\A\) via the enriched Yoneda embedding, \(A(h)[0]\) corresponding to the representable functor \(\A(-,h)\).
+    Using this identification, we can define the image of \(M\) in \(\dgMod{\A}\) to be the dg-functor that takes an object \(g \in G\) to
+    \[M_{-g} = \ldgGrMod{A}(A(g)[0], M)\]
+    with structure morphism
+    \[\A(g,h) \cong \ldgGrMod{A}(A(g)[0], A(h)[0]) \to \CH{k}(M_{-h}, M_{-g})\]
+    induced by the representable functor \(\ldgGrMod{A}(-, M)\).
+    The image of a morphism \(f \in \ldgGrMod{A}(M,N)\) is defined to be the natural transformation given by the collection of morphisms
+    \[h^{A(-g)[0]}(f) \colon \ldgGrMod{A}(A(-g)[0], M) \to \ldgGrMod{A}(A(-g)[0],N)\]
+    indexed by \(G\).
+
+    Conversely, we note that the data of a functor \(M \colon \A^\opp \to \CH{k}\) is a collection of chain complexes, \(M_g := M(g)\), indexed by \(G\) and morphisms of complexes
+    \[\begin{tikzcd}
+    \cdots \arrow{r} & A_{g - h} \arrow{r}\arrow{d} & 0 \arrow{r}\arrow{d} & \cdots\\
+    \cdots \arrow{r} & \CH{k}(M_g,M_h)^0 \arrow{r} & \CH{k}(M_g, M_h)^1 \arrow{r} & \cdots
+    \end{tikzcd}\]    The non-zero arrow factors through \(Z^0(\CH{k}(M_g, M_h))\), so the structure morphism is equivalent to giving a morphism
+    \[A_{g - h} \to \CH{k}(M_g,M_h)\]
+    and thus \(M\) determines a complex of graded \(A\)-modules
+    \[\widetilde{M} = \bigoplus_{g \in G}M_{-g}.\]
+    A morphism \(\eta \colon M \to N\) is simply a collection of natural transformations \(\eta^p\) such that for each \(g \in G\) we have \(\eta^p(g) \in \CH{k}(M_g,N_g)^p\) and the naturality implies that \(\eta^p(g)\) is \(A\)-linear.
+    The natural transformation \(\eta^p\) thus determines a morphism
+    \[\bigoplus_{g \in G} \eta^p(-g) \in \ldgGrMod{A}\left(\widetilde{M}, \widetilde{N}\right)^p,\]
+    and hence \(\eta\) determines a morphism in \(\ldgGrMod{A}\left(\widetilde{M}, \widetilde{N}\right)\), which is the collection of all such homogenous components.
+    This defines a dg-functor \(\dgMod{\A} \to \ldgGrMod{A}\) which is clearly the inverse of \(F\).
+  \end{proof}
+\end{lemma}
+
+\begin{remark}
+  It is worth noting that it is natural from the ringoid perspective to reverse the weighting on the opposite ring in that, formally,
+  \[A^\opp_{g} = \A^\opp(0,g) = \A(g,0) = A_{-g}\]
+  so that \(\A^\opp(-, h) = \A(h,-)\) is the representable functor corresponding to the left module \(A^\opp(h)\) by
+  \[\bigoplus_{g \in G} \A^\opp(-g,h) = \bigoplus_{g \in G} \A(h,-g) = \bigoplus_{g \in G} A_{-(g + h)} = \bigoplus_{g \in G} A^\opp_{g + h} = A^\opp(h).\]
+  With this convention, when considering right modules, one can dispense with the formality of the opposite ring by constructing from a complex, \(M\), the dg-functor \(\A \to \CH{k}\) mapping \(g\) to \(M_g := \rdgGrMod{A}(A(-g)[0], M)\).
+%  As such, the covariant representable functor corresponding to the left \(A^\opp\)-module, \(A(h)\), is
+  %\[g \mapsto \ldgGrMod{A^\opp}(A(-g)[0], A(h)[0]) =: A(h)[0]_g = \A^\opp(g, -h) = \A(-h, g)\]
+  %since
+  %\[(A^\opp)_i =: \A^\opp(-i,0) = \A(0,-i) = A_{-i}.\]
+\end{remark}
+When \(G = \Z^2\), and \(A\), \(B\) are \(\Z\)-graded algebras over \(k\), we denote the dg-category of chain complexes of \(G\)-graded \(B\)-\(A\)-bimodules by \(\ldgGrMod{A^\opp \otimes_k B}\).
+We associate to the \(\Z^2\)-graded \(k\)-algebra \(A^\opp \otimes_k B\) the tensor product of the associated dg-categories, \(\A^\opp \otimes \B\).
+Note that in the identification
+\[\ldgGrMod{\left(A^\opp \otimes_k B\right)} \cong \dgMod{\A^\opp \otimes \B}\]
+the weighting coming from the \(A\)-module structure is reversed, as in the remark above.
+
+\section{Derived Graded Morita Theory}
+From this construction, we have a dg-enhancement, \(\hproj{\A}\), of the derived category of graded modules, \(\mathrm{D}(\Gr{A})\).
+Passing through the machinery of Corollary~\ref{corollary: Toen}, we have an isomorphism in \(\Ho{\dgcat{k}}\)
+\[\RHomc{\hproj{\A}, \hproj{\B}} \cong \hproj{\A^\opp \otimes \B}.\]
+This allows us to identify an object, \(F\), of \(\RHomc{\hproj{A}, \hproj{B}}\) with a dg \(\A\)-\(\B\)-bimodule, \(P\), which in turn corresponds to a morphism \(\Phi_P \colon \A \to \hproj{\B}\) by way of the symmetric monoidal closed structure on \(\dgcat{k}\).
+
+Following Section 3.3 of \cite{CS15}, we identify the homotopy equivalence class, \([P]_{\op{Iso}}\), of \(P\) with \([\Phi_P] \in [\A, \hproj{\B}]\).
+The extension of \(\Phi_P\),
+\[P \otimes_\A - = \widehat{\Phi_P} \colon \hproj{\A} \to \hproj{\B}\]
+descends to a morphism \([\widehat{\Phi_P}] \in [\hproj{\A}, \hproj{\B}]\)
+and induces a triangulated functor that commutes with coproducts
+\[\begin{tikzcd}[row sep=tiny]
+H^0(\widehat{\Phi_P}) \colon \mathrm{D}(\Gr{A}) \arrow{r} & \mathrm{D}(\Gr{B})\\
+\quad\quad M \arrow[mapsto]{r} & P \otimes_\A^\mathbf{L} M.
+\end{tikzcd}\]
+In particular, given an equivalence \(f \colon \mathrm{D}(\Gr{A}) \to \mathrm{D}(\Gr{B})\), we obtain from \cite{Lunts-Orlov} a quasi-equivalence
+\[F \colon \hproj{\A} \to \hproj{\B}.\]
+Tracing through the remarks above, we obtain an object \(P\) of \(\hproj{\A^\opp \otimes \B}\) providing an equivalence
+\[H^0(\widehat{\Phi_P}) \colon \mathrm{D}(\Gr{A}) \to \mathrm{D}(\Gr{B}).\]
+
+\subsection{A Comparison with the Commutative Situation}
+
+To provide a touchstone for the reader, we interpret the definitions and results when \(A\) and \(B\) are commutative and finitely-generated by elements of weight \(1\). Then, \(A = k[x_1,\ldots,x_n]/I_A\) and \(B = k[y_1,\ldots,y_m]/I_B\) for some homogenous ideals \(I_A,I_B\). So \(\op{Spec} A\) is a closed \(\mathbf{G}_m\)-closed subscheme of affine space \(\mathbf{A}^n\) and similarly for \(\op{Spec} B\). Let \(X\) and \(Y\) be the associated projective schemes. Then, 
+\begin{displaymath}
+  \op{Spec} A \otimes_k B \subset \mathbf{A}^{n+m}
+\end{displaymath}
+is \(\mathbf{G}_m^2\)-closed. The category \(\Gr{A \otimes_k B}\) is equivalent to the \(\mathbf{G}_m^2\)-equivariant quasi-coherent sheaves on \(\op{Spec} A \otimes_k B\) with \(\Tors{A \otimes_k B}\) being those modules supported on the subscheme corresponding to \((x_1,\ldots,x_n)(y_1,\ldots,y_m)\). Descent then gives that 
+\begin{displaymath}
+  \QGr{\left(A \otimes_k B\right)} \cong \op{Qcoh}(X \times Y). 
+\end{displaymath}

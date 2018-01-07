@@ -1,0 +1,182 @@
+%%=================================================
+%% Copyright (C) 2009  George F. McNulty
+%%
+%%
+%% This file may be distributed and/or modified
+%%
+%% 1. under the LaTeX Project Public License and/or
+%% 2. under the GNU Public License.
+%%
+%% See the file doc/licenses/LICENSE in the standard
+%% LaTeX distribution for more details.
+%%
+%% The is the LaTeX package uscamsrefs.sty version 1.0
+%% It is a simple modification of amsrefs.sty intended
+%% to produce bibliographies for theses and dissertations
+%% submitted to the Graduate School at the University
+%% of South Carolina.
+%%
+%%==================================================
+
+
+
+
+\NeedsTeXFormat{LaTeX2e}[1994/12/01]
+\ProvidesPackage{uscamsrefs.sty}[2009/4/02 v1.01]
+
+\newboolean{@authoryear}
+\setboolean{@authoryear}{false}
+
+\DeclareOption{author-year}{%
+   \PassOptionsToPackage{author-year}{amsrefs}
+   \setboolean{@authoryear}{true}}
+
+\ProcessOptions
+
+\let\bibsection\relax
+
+\RequirePackage{amsrefs}\relax
+
+\newcounter{newwpage}
+
+\renewenvironment{biblist}{%
+        \setcounter{bib}\z@
+        \@biblist\normalsize\SingleSpacing
+        \setlength{\itemsep}{\baselineskip}
+        \ifthenelse{\boolean{@authoryear}}{\leftskip20pt}{}
+}{%
+\@endbiblist
+}
+
+\renewenvironment{biblist*}{%
+        \@biblist\normalsize\SingleSpacing
+}{%
+\@endbiblist
+}
+
+
+\renewcommand{\bibdiv}{\@memb@bchap}
+\bibintoc
+
+\ifthenelse{\boolean{@authoryear}}{%
+\BibSpec{article}{%
+    +{}  {\hspace*{-20pt}}              {transition}
+    +{}  {\PrintAuthors}                {author}
+    +{.} { \PrintDate}                  {date}  
+    +{.} { \textit}                     {title} 
+    +{.} { }                            {part}  
+    +{:} { \textit}                     {subtitle}
+    +{,} { \PrintContributions}         {contribution}
+    +{.} { \PrintPartials}              {partial}
+    +{,} { }                            {journal}
+    +{}  { \textbf}                     {volume} 
+    +{,} { \issuetext}                  {number} 
+    +{,} { \eprintpages}                {pages}  
+    +{,} { }                            {status} 
+    +{,} { \PrintDOI}                   {doi}    
+    +{,} { available at \eprint}        {eprint} 
+    +{}  { \parenthesize}               {language}
+    +{}  { \PrintTranslation}           {translation}
+    +{;} { \PrintReprint}               {reprint}
+    +{.} { }                            {note}   
+    +{.} {}                             {transition}
+    +{}  {\SentenceSpace \PrintReviews} {review}
+}
+
+\BibSpec{book}{%
+    +{}  {\hspace*{-20pt}}              {transition}
+    +{}  {\PrintPrimary}                {transition}
+    +{.} { \PrintDate}                  {date}
+    +{.} { \textit}                     {title}
+    +{.} { }                            {part} 
+    +{:} { \textit}                     {subtitle}
+    +{,} { \PrintEdition}               {edition} 
+    +{}  { \PrintEditorsB}              {editor}  
+    +{,} { \PrintTranslatorsC}          {translator}
+    +{,} { \PrintContributions}         {contribution}
+    +{,} { }                            {series}
+    +{,} { \voltext}                    {volume}
+    +{,} { }                            {publisher}
+    +{,} { }                            {organization}
+    +{,} { }                            {address}
+    +{,} { }                            {status} 
+    +{}  { \parenthesize}               {language}
+    +{}  { \PrintTranslation}           {translation}
+    +{;} { \PrintReprint}               {reprint}
+    +{.} { }                            {note}   
+    +{.} {}                             {transition}
+    +{}  {\SentenceSpace \PrintReviews} {review}
+}
+ 
+\BibSpec{collection.article}{%
+    +{}  {\hspace*{-20pt}}              {transition}
+    +{}  {\PrintAuthors}                {author}
+    +{.} { \PrintDate}                  {date}  
+    +{.} { \textit}                     {title} 
+    +{.} { }                            {part}  
+    +{:} { \textit}                     {subtitle}
+    +{,} { \PrintContributions}         {contribution}
+    +{,} { \PrintConference}            {conference}  
+    +{}  {\PrintBook}                   {book}
+    +{,} { }                            {booktitle}
+    +{,} { pp.~}                        {pages}
+    +{,} { }                            {status}
+    +{,} { \PrintDOI}                   {doi}   
+    +{,} { available at \eprint}        {eprint}
+    +{}  { \parenthesize}               {language}
+    +{}  { \PrintTranslation}           {translation}
+    +{;} { \PrintReprint}               {reprint}
+    +{.} { }                            {note}   
+    +{.} {}                             {transition}
+    +{}  {\SentenceSpace \PrintReviews} {review}
+}
+ 
+\BibSpec{report}{%
+    +{}  {\hspace*{-20pt}}              {transition}
+    +{}  {\PrintPrimary}                {transition}
+    +{.} { \PrintDate}                  {date}
+    +{.} { \textit}                     {title}
+    +{.} { }                            {part} 
+    +{:} { \textit}                     {subtitle}
+    +{,} { \PrintEdition}               {edition} 
+    +{,} { \PrintContributions}         {contribution}
+    +{,} { Technical Report }           {number}
+    +{,} { }                            {series}
+    +{,} { }                            {organization}
+    +{,} { }                            {address}
+    +{,} { \eprint}                     {eprint} 
+    +{,} { }                            {status} 
+    +{}  { \parenthesize}               {language}
+    +{}  { \PrintTranslation}           {translation}
+    +{;} { \PrintReprint}               {reprint}
+    +{.} { }                            {note}   
+    +{.} {}                             {transition}
+    +{}  {\SentenceSpace \PrintReviews} {review}
+}
+ 
+\BibSpec{thesis}{%
+    +{}  {\hspace*{-20pt}}              {transition}
+    +{}  {\PrintAuthors}                {author}
+    +{.} { \PrintDate}                  {date}  
+    +{.} { \textit}                     {title} 
+    +{:} { \textit}                     {subtitle}
+    +{,} { \PrintThesisType}            {type}
+    +{,} { }                            {organization}
+    +{,} { }                            {address}
+    +{,} { \eprint}                     {eprint} 
+    +{,} { }                            {status} 
+    +{}  { \parenthesize}               {language}
+    +{}  { \PrintTranslation}           {translation}
+    +{;} { \PrintReprint}               {reprint}
+    +{.} { }                            {note}   
+    +{.} {}                             {transition}
+    +{}  {\SentenceSpace \PrintReviews} {review}
+}
+
+}{%
+\renewcommand{\BibLabel}{%
+  \hyper@anchorstart{cite.\CurrentBib}\relax\thebib\hyper@anchorend.%
+}}
+
+%\endinput
+

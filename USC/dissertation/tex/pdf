@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+NAME="main"
+PDFDIR=../pdf/
+FILE="${NAME}.tex"
+
+texi2pdf $FILE
+
+if [ ! -d ../pdf ]; then
+   mkdir ../pdf
+fi
+
+mv ${NAME}.pdf ../pdf/dissertation.pdf
+
+./clean

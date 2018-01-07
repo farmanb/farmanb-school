@@ -1,0 +1,537 @@
+\chapter{Noncommutative Projective Schemes}\label{chapter: background on NCP}
+
+%\section{Recollections and conditions} \label{subsection: standard results and conditions}
+Noncommutative projective schemes were introduced by Artin and Zhang in \cite{AZ94}.
+In this section, we recall some of the basic definitions and results, as well as conditions that will appear in the sequel.
+
+\section{Graded Rings and Modules}
+\begin{definition}
+  Let \(G\) be a finitely-generated abelian group. We say that a \(k\)-algebra \(A\) is \(G\)-graded if there exists a decomposition as \(k\)-modules 
+  \begin{displaymath}
+    A = \bigoplus_{g \in G} A_g
+  \end{displaymath}
+  with \(A_g A_h \subset A_{g+h}\). One says that \(A\) is \textbf{connected graded} if it is \(\Z\)-graded with \(A_0 = k\) and \(A_n = 0\) for \(n < 0\). 
+\end{definition}
+
+%For algebraic geometers, the most common example is the homogenous coordinate ring of a projective scheme. These are of course commutative. One has a plentitude of noncommutative examples. 
+
+%\begin{example} \label{example: ncPs}
+%  Let us take \(k = \mathbf{C}\) and consider the following quotient of the free algebra 
+%  \begin{displaymath}
+%    A_q := \mathbf{C}\langle x_0,\ldots,x_n \rangle/(x_i x_j - q_{ij} x_j x_i)
+%  \end{displaymath}
+%  for \(q_{ij} \in \mathbf{C}^\times\). These give noncommutative deformations of \(\mathbf{P}^n\).
+%\end{example}
+
+%\begin{example} \label{example: ncCY}
+%  Building off of Example~\ref{example: ncPs}, we recall the following class of noncommutative algebras of Kanazawa \cite{Kanazawa15}. Pick \(\phi \in \mathbf{C}\). And set 
+%  \begin{displaymath}
+%    A^\phi_q := A_q / \left( \sum_{i = 0}^n x_i^{n+1} - \phi(n+1)(x_0\cdots x_n) \right). 
+%  \end{displaymath}
+%  This is the noncommutative version of the homogeneous coordinate rings of the Hesse (or Dwork) pencil of Calabi-Yau hypersurfaces in \(\mathbf{P}^n\). 
+%\end{example}
+
+\begin{definition}
+  We associate to a graded ring \(A\) the Grothendieck category of (left) \(G\)-graded modules, \(\Gr{A}\), with morphisms \(\Gr{A}(M,N)\) all degree preserving \(A\)-linear morphisms.
+
+  For a \(G\)-graded \(A\)-module, \(N\), we write for \(h \in G\)
+  \[N(h) = \bigoplus_{g \in G} N_{g + h}\]
+  and we denote the graded module of morphism by
+  \[\GR{A}(M,N) := \bigoplus_{g \in G} \Gr{A}(M,N(g)).\]
+\end{definition}
+
+\begin{remark}
+  In keeping with the notation above, we denote by \(A^\opp\) the opposite ring with multiplication reversed and we view the category of right \(G\)-graded \(A\)-modules as the category of left \(G\)-graded \(A^\opp\)-modules.
+\end{remark}
+
+\begin{definition}
+  Let \(M\) be a graded \(A\)-module. We say that \(M\) has \textbf{right limited grading} if there exists some \(D\) such that \(M_{d} = 0\) for all \(D \leq d\). We define \textbf{left limited grading} analogously.
+\end{definition}
+
+For a connected graded \(k\)-algebra, \(A\), one has the bi-ideal
+\begin{displaymath}
+  A_{\geq m} :=  \bigoplus_{n\geq m} A_n.
+\end{displaymath}
+
+\begin{definition}
+  Let \(A\) be a connected graded algebra. Recall that an element, \(m\), of a module, \(M\), is \textbf{torsion} if there is an \(n\) such that
+  \begin{displaymath}
+    A_{\geq n} m = 0.
+  \end{displaymath}
+  We say that \(M\) is torsion if all its elements are torsion.
+\end{definition}
+
+\section{Quotient Categories}
+
+Since the language for the objects in this section seems variable in the literature, we collect here some basic definitions and results from the theory of quotient categories so as to avoid any confusion.
+The standard reference is \cite{DCA62}.
+
+\begin{definition}
+  A full subcategory, \(\Serre\), of an abelian category, \(\A\) is called a \textbf{Serre subcategory} if for any short exact sequence
+  \[0 \to X^\prime \to X \to X^{\prime\prime} \to 0\]
+  of \(\A\), \(X\) is an object of \(\Serre\) if and only if both \(X^\prime\) and \(X^{\prime\prime}\) are objects of \(\Serre\).
+\end{definition}
+
+\begin{remark}
+  It is easy to check that a Serre subcategory is an abelian category in its own right.
+\end{remark}
+
+Our only concern for Serre subcategories will be for the construction of a quotient.
+It can be shown that for any pair \((X,Y)\) of objects of \(\A\), equipping the collection of pairs of subobjects \((X^\prime, Y^\prime)\) satisfying \(X/X^\prime\), \(Y^\prime\) both objects of \(\Serre\) with the ordering \((X^\prime, Y^\prime) \leq (X^{\prime\prime}, Y^{\prime\prime})\) if and only if \(X^{\prime\prime}\) is a subobject of \(X^\prime\) and \(Y^\prime\) is a subobject of \(Y^{\prime\prime}\) forms a directed system.
+One defines the \textbf{quotient of \(\A\) by the Serre subcategory \(\Serre\)} to be the category \(\A/\Serre\) with objects those of \(\A\) and morphisms given by the colimit over this system
+\[\A/\Serre(X,Y) = \colim_{(X^\prime, Y^\prime)} \A(X^\prime, Y/Y^\prime)\]
+This quotient category comes equipped with a canonical projection functor
+\[\pi \colon \A \to \A/\Serre\]
+which is the identity on objects and takes a morphism to its image in the colimit \cite[Cor. 1, III.1]{DCA62}.
+The quotient is especially nice in the sense that the quotient is always abelian, \(\pi\) is always exact and, in the case that \(\A\) is Grothendieck, the quotient is also Grothendieck.
+
+In nice situations, this projection admits a section functor in the following sense.
+
+\begin{proposition}\label{prop: existence of serre functor}
+  Let \(\A\) be an abelian category with injective envelopes and let \(\Serre\) be a serre subcategory.
+  The following are equivalent:
+  \begin{enumerate}[(i)]
+  \item
+    The functor \(\pi\) admits a fully faithful right adjoint, and
+  \item
+    Every object \(M\) of \(\A\) contains a subobject which is an object of \(\Serre\) and is maximal amongst all such subobjects.
+  \end{enumerate}
+  In this case, we say that \(\Serre\) is a \textbf{localizing subcategory}.
+\end{proposition}
+
+\begin{proof}
+  This is \cite[Cor. 1, III.3]{DCA62}.
+\end{proof}
+
+It is well known that when \(A\) is a left Noetherian \(k\)-algebra, the full subcategory of \(\Gr{A}\) consisting of the torsion modules, which we denote by \(\Tors{A}\), is Serre.
+Moreover, it is a coreflective subcategory admitting a right adjoint, \(\tau\), to the inclusion, which takes a module \(M\) to its maximal torsion submodule, \(\tau{M}\).
+As such, we can form the quotient.
+\begin{definition}
+  For \(A\) a left Noetherian graded \(k\)-algebra, denote the quotient of the category of graded \(A\)-modules by torsion as
+  \begin{displaymath}
+    \QGr{A} := \Gr{A} / \Tors{A}
+  \end{displaymath}
+  Denote by \(\omega : \QGr{A} \to \Gr{A}\) the right adjoint of \(\pi\), and \(Q := \omega\pi\).
+\end{definition}
+
+\begin{remark}
+  In the sequel, it will be important to note that \(\omega\), being a fully faithful right adjoint to an exact functor, preserves injectives.
+  In particular, this will guarantee that the adjunction lifts to a Quillen adjunction between \(\Ch{\Gr{A}}\) and \(\Ch{\QGr{A}}\), both equipped with the standard injective model structures of.  For details, see \cite{Hovey01}.
+\end{remark}
+
+The category \(\QGr{A}\) is defined to be the quasi-coherent sheaves on the \textbf{noncommutative projective scheme} \(X\). 
+
+\begin{remark}
+  Note that, traditionally speaking, \(X\) is not a space, in general. In the case \(A\) is commutative and finitely-generated by elements of degree \(1\), then a famous result of Serre says that \(X\) is \(\op{Proj} A\).
+\end{remark}
+
+\begin{definition}\label{defn: serre closed}
+  Let \(\A\) be an abelian category and let \(\Serre\) be a Serre subcategory.
+  We say that an object \(X\) of \(\A\) is \(\Serre\)-closed if any of the following equivalent conditions are satisfied:
+  \begin{enumerate}
+  \item\label{defn:serre closed 1}
+    Given a short exact sequence 
+    \begin{center}
+      \begin{tikzcd}
+        0 \arrow{r} & K \arrow{r}{\ker{f}} & Z \arrow{r}{f} & Y \arrow{r}{\coker{f}} & C \arrow{r} & 0
+      \end{tikzcd}
+    \end{center}
+    with $K$ and $C$ objects of $\Serre$, then the canonical morphism
+    $$h_X(f) \colon \A(Y,X) \to \A(Z,X)$$
+    is an isomorphism,
+  \item\label{defn:serre closed 2}
+    The maximal \(\Serre\)-subobject of $X$ is the zero object and any short exact sequence 
+    \begin{center}
+      \begin{tikzcd}
+        0 \arrow{r} & X \arrow{r}{f} & Y \arrow{r}{\coker{f}} &C \arrow{r} & 0
+      \end{tikzcd}
+    \end{center}
+    with $C$ an object of $\Serre$ splits, and
+  \item\label{defn: serre closed 3}
+    For any object $Y$ of $\A$, $\pi \colon \A \rightarrow \A/\Serre$ induces an isomorphism
+    $$\A(Y, X) \cong \A/\Serre(\pi(Y), \pi(X)).$$
+  \end{enumerate}
+\end{definition}
+
+\begin{lemma}
+  An object \(M\) of \(\Gr{A}\) is \(\Tors{A}\)-closed if and only if \(M \cong QM\).
+  Consequently, \(\QGr{A}\) is equivalent to the the full subcategory of \(\Gr{A}\) consisting of \(\Tors{A}\)-closed objects.
+\end{lemma}
+\begin{proof}
+  This is immediate from the Yoneda Lemma and condition~\ref{defn: serre closed 3} of Definition~\ref{defn: serre closed}.
+\end{proof}
+
+\begin{lemma}
+  If \(I\) is a \(\Tors{A}\)-closed injective, then \(\pi{I}\) is injective.
+\end{lemma}
+
+\begin{proof}
+  This is immediate from the isomorphism \(\Gr{A}(-, I) \cong \QGr{A}(\pi(-), \pi{I})\).
+\end{proof}
+
+\begin{proposition}\label{prop: decomposition of injectives}
+  Let \(\A\) be an abelian category with injective envelopes, and let \(\Serre\) be a localizing subcategory.
+  For each object \(X\) of \(\A\) denote by \(X_\Serre\) the maximal \(\Serre\)-subobject.
+  If \(\Serre\) is closed under injective envelopes, then for every injective \(I\) of \(\A\)
+  \[I \cong I_\Serre \oplus \omega\pi{I}.\]
+\end{proposition}
+
+\begin{proof}
+  Let \(I_\Serre \to E\) be an injective envelope.
+  Since \(I\) is injective we have an extension over the inclusion of the maximal \(\Serre\)-subobject
+  \[\begin{tikzcd}
+  0 \arrow{r} & I_\Serre \arrow{r}\arrow{d} & E \arrow[dashed]{ld}{\exists}\\
+  & I
+  \end{tikzcd}\]
+  and this extension is necessarily monic because injective envelopes are essential monomorphisms.
+  By maximality of \(I_\Serre\) amongst all \(\Serre\)-subobjects of \(I\), it follows that \(I_\Serre = E\) is injective.
+  Denoting by \(\varepsilon\) the unit of the adjunction
+  \(\begin{tikzcd}
+  \pi \dashv \omega \colon \A \arrow[shift left=.5ex]{r} & \A/\Serre \arrow[shift left=.5ex]{l}
+  \end{tikzcd}\)
+  the exact sequence
+  \[\begin{tikzcd}
+  0 \arrow{r} & I_\Serre \arrow{r} & I \arrow{r}{\varepsilon(I)} & \omega\pi{A} I \arrow{r} & 0
+  \end{tikzcd}\]  splits, as desired.
+\end{proof}
+We record here as a corollary more explicit version of \cite[Prop 7.1 (5)]{AZ94}, which states that every injective object of \(\Gr{A}\) is of the form \(I_1 \oplus I_2\), with \(I_1\) a torsion-free injective and \(I_2\) an injective torsion module.
+This will be useful for computations involving total derived functors in the sequel.
+
+\begin{corollary} \label{cor: Gr injectives}
+  Every injective \(I\) of \(\Gr{A}\) is isomorphic to \(\tau_A I \oplus Q_A I\).
+
+\end{corollary}
+
+\begin{proof}
+  By \cite[Prop 2.2]{AZ94} any essential extension of a torsion module is torsion.
+  Now apply Proposition~\ref{prop: decomposition of injectives}.
+\end{proof}
+
+\section{Sheaf Cohomology}
+
+The funtor \(Q\) admits a more geometrically pleasing interpretation, which will serve to help interpret the somewhat onerous conditions in the sequel.
+We will often refer to the image of \(A\) in \(\QGr{A}\) as \(\mathcal{O}_X\), thinking of this as the structure sheaf on \(X\).
+Following \cite{AZ94}, one defines sheaf cohomology of a quasi-coherent sheaf \(\mathcal{M} = \pi{M}\) to be
+\[\underline{H}^i(\mathcal{M}) := \EXT^i_{\QGr{A}}(\mathcal{O}_X, \mathcal{M})\]
+and the un-graded sheaf cohomology by
+\[H^i(\mathcal{M}) := \underline{H}^i(\mathcal{M})_0.\]
+
+For the Ext-computations, generally one takes an injective resolution \(I\) of \(\omega\mathcal{M}\) in \(\Gr{A}\) then computes
+\[\underline{H}^i(\mathcal{M}) = H^i\QGR{A}(\mathcal{O}_X, \pi{I}) \cong H^i\GR{A}(A, QI) \cong H^i(QI) \cong \mathbf{R}^iQ(M).\]
+In some sense, the functor \(Q\) should therefore be like the usual global section functor.
+
+On the other hand, one can also give more explicit descriptions of \(Q\) and \(\tau\). 
+
+\begin{proposition}\label{prop: explicit Q and tau}
+  Let \(A\) be a connected graded \(k\)-algebra and let \(M\) be a graded \(A\)-module. Then 
+  \begin{align*}
+    \tau M & = \op{colim}_n \GR{A}(A/A_{\geq n}, M) \\
+    Q M & = \op{colim}_n \GR{A}(A_{\geq n}, M).
+  \end{align*}
+\end{proposition}
+
+\begin{proof}
+  This is standard localization theory, see \cite{Stenstrom75}.
+\end{proof}
+
+\section{Noncommutative Biprojective Schemes}
+In studying questions of kernels and bimodules, we will have to move outside the realm of \(\Z\)-gradings. While one can generally treat \(G\)-graded \(k\)-algebras in our analysis, we limit the scope a bit and only consider \(\Z^2\)-gradings of the following form.
+
+\begin{definition}
+  Let \(A\) and \(B\) be connected graded \(k\)-algebras. The tensor product \(A \otimes_k B\) will be equipped with its natural bi-grading 
+  \begin{displaymath}
+    (A \otimes_k B)_{n_1,n_2} = A_{n_1} \otimes_k B_{n_2}. 
+  \end{displaymath}
+  A \textbf{bi-bi module} for the pair \((A,B)\) is a \(\Z^2\)-graded \(A \otimes_k B\) module. 
+\end{definition}
+
+There are a few notions of torsion for a bi-bi module that one could use, but we take the following.
+
+\begin{definition}
+  Let \(M\) be a bi-bi \(A\)-\(B\) module. We say that \(M\) is \textbf{torsion} if it lies in the smallest Serre subcategory containing \(A\)-torsion bi-bi modules and \(B\)-torsion bi-bi modules.
+\end{definition}
+
+\begin{lemma} \label{lemma: alternate char of bibi torsion}
+  A bi-bi module \(M\) is torsion if and only if there exists \(n_1,n_2\) such that 
+  \begin{displaymath}
+    (A \otimes B)_{\geq n_1, \geq n_2} m = 0
+  \end{displaymath}
+  for all \(m \in M\).
+\end{lemma}
+
+\begin{proof}
+  For necessity, note that if \(M\) is \(A\)-torsion, then \((A \otimes B)_{\geq n, \geq 0} m = 0\) for some \(n\) for each \(m \in M\).
+  Similarly if \(M\) is \(B\)-torsion then \((A \otimes B)_{\geq 0,\geq n} M = 0\) for some \(n\).
+  So it suffices to show that if
+  \begin{displaymath}
+    (A \otimes B)_{\geq n_1, \geq n_2} m = 0 , \forall m \in M
+  \end{displaymath}
+  then it lies in the Serre category generated by \(A\) and \(B\) torsion. Let \(\tau_B M\) be the \(B\)-torsion submodule of \(M\) and consider the quotient \(M/\tau_B M\). For \(m \in M\), we have \(A_{\geq n_1}m\) is \(B\)-torsion, so its image in the quotient \(M/\tau_B M\) is \(A\)-torsion. Consequently, \(M / \tau_B M\) is \(A\)-torsion itself and \(M\) is an extension of \(B\)-torsion and \(A\)-torsion. 
+\end{proof}
+
+One can form the quotient category
+\begin{displaymath}
+  \QGr{A \otimes_k B} := \Gr{A \otimes_k B} / \Tors{A \otimes_k B}.
+\end{displaymath}
+
+\begin{lemma} \label{lemma: biQ and bQGr}
+  The quotient functor 
+  \begin{displaymath}
+    \pi : \Gr{A \otimes_k B} \to \QGr{A \otimes_k B}
+  \end{displaymath}
+  has a fully faithful right adjoint 
+  \begin{displaymath}
+    \omega : \QGr{A \otimes_k B} \to \Gr{A \otimes_k B}
+  \end{displaymath}
+  with 
+  \begin{displaymath}
+    QM := \omega \pi M = \op{colim}_{n_1,n_2} \GR{(A \otimes_k B)}( A_{\geq n_1} \otimes_k B_{\geq n_2} , M)
+  \end{displaymath}
+\end{lemma}
+
+\begin{proof}
+  Apply Proposition~\ref{prop: existence of serre functor} and Proposition~\ref{prop: explicit Q and tau}.
+\end{proof}
+
+\begin{corollary}\label{corollary: relation on Qs}
+  We have an isomorphism 
+  \begin{displaymath}
+    Q_{A \otimes_k B} \cong Q_A \circ Q_B \cong Q_B \circ Q_A
+  \end{displaymath}
+\end{corollary}
+
+\begin{proof}
+  This follows from Lemma~\ref{lemma: biQ and bQGr} using tensor-Hom adjunction. 
+\end{proof}
+
+We also have the following standard triangles of derived functors. 
+
+\begin{lemma} \label{lemma: exact triangles}
+  Let \(A\) and \(B\) be connected graded algebras. Then, we have natural transformations 
+  \begin{displaymath}
+    \mathbf{R} \tau \to \op{Id} \to \mathbf{R} Q 
+  \end{displaymath}
+  which when applied to any graded module \(M\) gives an exact triangle 
+  \begin{displaymath}
+    \mathbf{R} \tau M \to M \to \mathbf{R} Q M.
+  \end{displaymath}
+\end{lemma}
+
+\begin{proof}
+  Before we begin the proof, we clarify the statement. The conclusions hold for graded \(A\) (or \(B\)) modules and for bi-bi modules. Due to the formal properties, it is economical to keep the wording of the theorem as so since any reasonable interpretation yields a true statement. 
+  
+  For the case of graded \(A\) modules, this is well-known, see \cite[Property 4.6]{BVdB}. For the case of bi-bi \(A \otimes_k B\) modules, the natural transformations are obvious. For each \(M\), the sequence 
+  \begin{displaymath}
+    0 \to \tau M \to M \to Q M
+  \end{displaymath}
+  is exact. It suffices to prove that if \(M = I\) is injective, then the whole sequence is actually exact. Here one can use the system of exact sequences
+  \begin{displaymath}
+    0 \to A_{\geq n_1} \otimes_k B_{\geq n_2} \to A \otimes_k B \to (A \otimes_k B) / A_{\geq n_1} \otimes_k B_{\geq n_2} \to 0
+  \end{displaymath}
+  and exactness of \(\op{Hom}(-,I)\) plus Lemma~\ref{lemma: alternate char of bibi torsion} to get exactness. 
+\end{proof}
+
+\section{Cohomological Assumptions}
+
+In general, good behavior of \(\QGr{A}\) occurs with some homological assumptions on the ring \(A\). We recall two common such ones. 
+
+\begin{definition} \label{definition: Ext-finite}
+  Let \(A\) be a connected graded \(k\)-algebra. Following van den Bergh \cite{VdB}, we say that \(A\) is \textbf{Ext-finite} if for each \(n \geq 0\) the ungraded Ext-groups are finite dimensional 
+  \begin{displaymath}
+    \op{dim}_k \op{Ext}_A^n (k,k) < \infty.
+  \end{displaymath}
+\end{definition}
+
+\begin{remark}
+  The Ext's are taken in the category of left \(A\)-modules, a priori. 
+\end{remark}
+
+\begin{definition} \label{definition: chi}
+  Following Artin and Zhang \cite{AZ94}, given a graded left module \(M\), we say \(A\) satisfies \(\chi^\circ(M)\) if \(\underline{\op{Ext}}^n_A(k,M)\) has right limited grading for each \(n \geq 0\). 
+
+\end{definition}
+
+\begin{proof}
+  This is \cite[Proposition 3.8 (1)]{AZ94}.
+\end{proof}
+
+We recall some basic results on Ext-finiteness, essentially from \cite[Section 4]{VdB}.
+
+\begin{proposition} \label{proposition: tensor and op properties of ext-finite}
+  Assume that \(A\) and \(B\) are Ext-finite. Then
+  \begin{enumerate}
+  \item the ring \(A \otimes_k B\) is Ext-finite. 
+  \item the ring \(A^\opp\) is Ext-finite.
+  \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+  See \cite[Lemma 4.2]{VdB} and the discussion preceeding it. 
+\end{proof}
+
+\begin{proposition} \label{proposition: derived Q commutes with coproducts}
+  Assume that \(A\) is Ext-finite. Then \(\mathbf{R}\tau_A\) and \(\mathbf{R}Q_A\) both commute with coproducts. 
+\end{proposition}
+
+\begin{proof}
+  See \cite[Lemma 4.3]{VdB} for \(\mathbf{R}\tau_A\). Since coproducts are exact, using the triangle
+  \begin{displaymath}
+    \mathbf{R}\tau_A M \to M \to \mathbf{R}Q_A M 
+  \end{displaymath}
+  we see that \(\mathbf{R}\tau_A\) commutes with coproducts if and only if \(\mathbf{R}Q_A\) commutes with coproducts. 
+\end{proof}
+
+\begin{corollary} \label{corollary: Q preserves bimodules}
+  Let \(A\) and \(B\) be a \(\Z\)-graded \(k\)-algebras, and let \(P\) be a chain complex of bi-bi \(A \otimes_k B\) modules. Assume \(\mathbf{R}Q_A\) commutes with coproducts. Then, \(\mathbf{R}Q_A P\) is naturally also a chain complex of bi-bi modules. In particular, if \(A\) is Ext-finite, \(\mathbf{R}Q_A P\) has a natural bi-bi structure. 
+\end{corollary}
+
+\begin{proof}
+  Note we already have an \(A\)-module structure so we only need to provide a \(\Z^2\) grading and a \(B\)-action. If we write 
+  \begin{displaymath}
+    P = \bigoplus_{v \in \Z} P_{\ast,v}
+  \end{displaymath}
+  as a direct sum of left graded \(A\)-modules, then we set 
+  \begin{displaymath}
+    (\mathbf{R}Q_A P)_{u,v} : = ( \mathbf{R} Q_A (P_{\ast,v}) )_u.
+  \end{displaymath}
+  The \(B\) module structure is precomposition with the \(B\)-action on \(P\). The only non-obvious condition of the bi-bi structure is that 
+  \begin{displaymath}
+    \mathbf{R}Q_A P = \bigoplus_{u,v} (\mathbf{R}Q_A P)_{u,v}
+  \end{displaymath}
+  which is equivalent to pulling the coproduct outside of \(\mathbf{R}Q_A\). We can do this for Ext-finite \(A\) thanks to Proposition~\ref{proposition: derived Q commutes with coproducts}. 
+\end{proof}
+
+\begin{corollary} \label{corollary: natural maps between Qs}
+  Assume that \(\mathbf{R}\tau_A\) and \(\mathbf{R}\tau_B\) both commute with coproducts. There exist natural morphisms of bimodules 
+  \begin{align*}
+    \beta^l_P & : \mathbf{R}Q_{A} P \to \mathbf{R}Q_{A \otimes_k B} P \\
+    \beta^r_P & : \mathbf{R}Q_{B} P \to \mathbf{R}Q_{A \otimes_k B} P.
+  \end{align*}
+\end{corollary}
+
+\begin{proof}[Proof of {\ref{corollary: natural maps between Qs}}]
+  Thanks to Corollary~\ref{corollary: Q preserves bimodules}, we see that the question is well-posed. We handle the case of \(\beta^l_P\) and note that case of \(\beta^r_P\) is the same argument, mutatis mutandis.
+
+  First we make some observations about objects of \(\Gr{\left(A \otimes_k B\right)}\).
+  If we regard such an object, \(E\), as an \(A\)-module, the \(A\)-action is
+  \[a \cdot e = (a \otimes 1) \cdot e\]
+  and we can view \(\tau_A E\) as the elements \(e\) of \(E\) for which
+  \[a \cdot e = (a \otimes 1) \cdot e = 0\]
+  whenever \(a \in A_{\geq m}\) for some \(m \in \Z\).
+  As such, \(\tau_A E\) inherits a bimodule structure from \(E\) and \(\Z^2\)-grading \((\tau_A E)_{u,v} = (\tau_A E_{*,v})_u\) coming from the decomposition
+  \[\tau_A E = \tau_A \bigoplus_v E_{\ast,v} \cong \bigoplus_v \tau_A E_{\ast,v}.\]
+  Thanks to Lemma~\ref{lemma: alternate char of bibi torsion}, we can view \(\tau_{A \otimes_k B} E\) as the elements \(e\) of \(E\) for which there exists integers \(m\) and \(n\) such that \(a \otimes b \cdot e = 0\) for all \(a \in A_{\geq m}\) and \(b \in B_{\geq n}\).
+  From this viewpoint it's clear that
+  \[a \otimes b \cdot e = (1 \otimes b) \cdot (a \otimes 1 \cdot e)\]
+  implies \(\tau_A E\) includes into \(\tau_{A \otimes_k B} E\).
+
+  We equip \(\Ch{\Gr{A}}\) with the injective model structure and use the methods of model categories to compute the derived functors (see \cite{Hovey01} for more details).
+  Since we can always replace \(P\) by a quasi-isomorphic fibrant object, we can assume that \(P^n\) is an injective graded \(A \otimes_k B\)-module.
+  Moreover, the fact that the canonical morphisms \(A \to A \otimes_k B\) is flat implies that the associated adjunction is Quillen, and hence \(P\) is fibrant when regarded as an object of  \(\Ch{\Gr{A}}\).
+  Since \(Q_A\) is Quillen, it follows that \(Q_A P\) is a fibrant object of \(\Gr{A}\).
+  It's clear from the fact that \(\tau_A P^n\) is an \(A \otimes_k B\)-module that   \[0 \to \tau_A P^n \to P^n \to P^n/\tau_A P^n \to 0\]
+  is an exact sequence of \(\Gr{(A \otimes_k B)}\) for each \(n\).
+  Moreover, by Lemma~\ref{cor: Gr injectives} we have \(P^n/\tau_A P^n \cong Q_A P^n\).
+  We thus define \((\beta^l_P)^n\) to be the epimorphism induced by the unversal property for cokerenels as in the commutative diagram
+  \[\begin{tikzcd}
+  0 \arrow{r} & \tau_{A} P^n \arrow{d}\arrow{r} & P^n \arrow{d}{\id_{P^n}}\arrow{rr}{\varepsilon_{A}(P^n)} && Q_{A} P^n \arrow{r}\arrow[dashed]{d}{\exists ! (\beta^l_P)^n} & 0\\
+  0 \arrow{r} & \tau_{A \otimes_k B} P^n \arrow{r} & P^n\arrow{rr}{\varepsilon_{A \otimes_k B}(P^n)} && Q_{A \otimes_k B} P^n \arrow{r} & 0 
+  \end{tikzcd}\]  We observe here that by the Snake Lemma, \((\beta^l_P)^n\) is an isomorphism if and only if \(\tau_{A \otimes_k B} P^n \cong \tau_A P^n\), which is equivalent by the remarks above to the condition that \(\tau_B \tau_A P^n = \tau_A P^n\).
+
+  To see that \(\beta\) actually defines a morphism of complexes, we have by naturality of \(\varepsilon_A\), \(\varepsilon_{A \otimes_k B}\), and the commutative diagram defining \((\beta^l_P)^n\) above 
+  \begin{eqnarray*}
+    (\beta^l_P)^{n+1} \circ Q_{A}(d^n_{P}) \circ \varepsilon_{A}(P^n)
+    &=& (\beta^l_P)^{n+1} \circ \varepsilon_{A}(P^{n+1}) \circ d^n_{P}\\
+    &=& \varepsilon_{A \otimes_k B}(P^{n+1}) \circ d^n_{P}\\
+    &=& Q_{A \otimes_k B}(d_{P}^n) \circ \varepsilon_{A \otimes_k B}(P^n)\\
+    &=& Q_{A \otimes_k B}(d_{P}^n) \circ (\beta^l_P)^n \circ \varepsilon_{A}(P^n)
+  \end{eqnarray*}
+  implies
+  \[(\beta^l_P)^{n+1} \circ Q_{A}(d^n_{P}) = Q_{A \otimes_k B}(d^n_{P}) \circ (\beta^l_P)^n\]
+  because \(\varepsilon_{A \otimes_k B}(P^n)\) is epic. Hence we have a morphism
+  \[\beta^l_P \colon \mathbf{R}Q_{A} P = Q_{A} P \to Q_{A \otimes_k B} P = \mathbf{R}Q_{A \otimes_k B} P.\]
+
+  For naturality, we note that as the fibrant replacement is functorial if we have a morphism of bi-bi modules, then there is an induced morphism of complexes \(\varphi \colon P_1 \to P_2\) between the replacements and for each \(n\) a commutative diagram 
+  \[\begin{tikzcd}[column sep=large]
+  P_1^n \arrow{d}{\varphi^n}\arrow{r}{\varepsilon_{A}(P_1^n)} & Q_{A} P_1^n\arrow{d}{Q_{A}(\varphi^n)} \arrow{r}{(\beta^l_{P_1})^n} & Q_{A \otimes_k B}P_1^n \arrow{d}{Q_{A \otimes_k B}(\varphi^n)}\\
+  P_2^n \arrow{r}{\varepsilon_{A}(P_2^n)} & Q_{A} P_2^n \arrow{r}{(\beta^l_{P_2})^n} & Q_{A \otimes_k B} P_2^n
+  \end{tikzcd}\]  The left square commutes by naturality of \(\varepsilon_{A}\) and the right square commutes because
+  \begin{eqnarray*}
+    (\beta^l_{P_2})^n \circ Q_{A}(\varphi^n) \circ \varepsilon_{A}(P_1^n)
+    &=& (\beta^l_{P_2})^n \circ \varepsilon_{A}(P_2^n) \circ \varphi^n\\
+    &=&  \varepsilon_{A \otimes_k B}(P_2^n) \circ \varphi^n\\
+    &=& Q_{A \otimes_k B}(\varphi^n) \circ \varepsilon_{A \otimes_k B}(P_1^n)\\
+    &=& Q_{A \otimes_k B}(\varphi^n) \circ (\beta^l_{P_1})^n \circ \varepsilon_{A}(P_1^n)
+  \end{eqnarray*}
+  and \(\varepsilon_{A}(P_1^n)\) is epic.
+\end{proof}
+
+\begin{proposition} \label{proposition: bi-torsion is a composition}
+  Assume that \(A\) and \(B\) are Ext-finite. Then, we have natural quasi-isomorphisms 
+  \begin{align*}
+    \mathbf{R}Q_B(\beta^l_P) & : \mathbf{R}Q_{A \otimes_k B} P \to  \mathbf{R}Q_B(\mathbf{R}Q_A P) \\
+    \mathbf{R}Q_A(\beta^r_P) & : \mathbf{R}Q_{A \otimes_k B} P \to  \mathbf{R}Q_A(\mathbf{R}Q_B P).
+  \end{align*}
+  Consequently, \(\beta^l_P\) (respectively \(\beta^r_P\)) is an isomorphism if and only if \(\mathbf{R}Q_A P\) (respectively \(\mathbf{R}Q_B P\)) is \(Q_B\) (respectively \(Q_A\)) torsion-free.
+\end{proposition}
+
+
+\begin{proof}
+  As above, by possibly replacing \(P\) with a fibrant object, we assume that \(P\) is a complex of injective graded \(A \otimes_k B\)-modules.
+  We observe that \(P^n \cong \tau_A P^n \oplus Q_A P^n\) as bimodules implies \(Q_A P^n\) is injective as a bimodule for each \(n\), hence is also injective when regarded as a \(B\)-module.
+  It follows that we can compute \(\mathbf{R}Q_B(\mathbf{R}Q_A P)\) by \(Q_B(Q_A P)\)
+  and from Corollary~\ref{corollary: relation on Qs} we have
+  \[Q_{A \otimes_k B} P^n \cong Q_B(Q_A P^n).\]
+  Hence we see that \(\mathbf{R}Q_B(\beta^l_P)\) is a quasi-isomorphism.
+\end{proof}
+
+In the case that \(A=B\), there is a particular bi-bi module of interest.
+
+\begin{definition}
+  Let \(\Delta_A\) be the \(A\)-\(A\) bi-bi module with 
+  \begin{displaymath}
+    (\Delta_A)_{i,j} = A_{i+j}
+  \end{displaymath}
+  and the natural left and right \(A\) actions. If the context is clear, we will often simply write \(\Delta\). 
+\end{definition}
+
+Using the standard homological assumptions above, one has better statements for \(P = \Delta\). 
+
+\begin{proposition} \label{proposition: when beta is an isomorphism}
+  Let \(A\) be left (respectively, right) Noetherian and assume that the condition \(\chi^\circ(A)\) holds (respectively, as an \(A^\opp\)-module).
+  Then the morphism \(\beta^l_{\Delta}\) (respectively, \(\beta^r_{\Delta}\)) of Corollary~\ref{corollary: natural maps between Qs} is a quasi-isomorphism.
+  
+\end{proposition}
+
+\begin{proof}
+  We have a triangle in \(\mathrm{D}(\Gr{A \otimes_k A^\opp})\)
+  \[\mathbf{R}\tau_{A^\opp} (\mathbf{R}Q_A \Delta) \to \mathbf{R}Q_A \Delta \to \mathbf{R}Q_{A^\opp} (\mathbf{R}Q_A \Delta) \to \mathbf{R}\tau_{A^\opp} (\mathbf{R}Q_A \Delta)[1].\]
+  By Proposition~\ref{proposition: bi-torsion is a composition}, \(\mathbf{R}Q_{A^\opp}(\mathbf{R}Q_A \Delta) \cong \mathbf{R}Q_{A \otimes_k A^\opp} \Delta\), so it suffices to show that we have \(\mathbf{R}\tau_{A^\opp}(\mathbf{R}Q_A \Delta) = 0\).
+  Applying \(\mathbf{R}\tau_{A^\opp}\) to the triangle
+  \[\mathbf{R}\tau_A \Delta \to \Delta \to \mathbf{R}Q_A \Delta \to \mathbf{R}\tau_A \Delta[1]\]
+  we obtain the triangle
+  \[\mathbf{R}\tau_{A^\opp} (\mathbf{R}\tau_A \Delta) \to \mathbf{R}\tau_A \Delta \to \mathbf{R}\tau_{A^\opp} (\mathbf{R}Q_A \Delta) \to \mathbf{R}\tau_{A^\opp} (\mathbf{R}\tau_A \Delta)[1]\]
+  and so we are reduced to showing that
+  \[\mathbf{R}\tau_A \Delta \cong \mathbf{R}\tau_{A \otimes_k A^\opp}\Delta \cong \mathbf{R}\tau_{A^\opp} (\mathbf{R}\tau_A \Delta)\]
+  which then implies that \(\mathbf{R}\tau_A^\opp(\mathbf{R}Q_A \Delta) = 0\), as desired.
+
+  First we note that for any bi-bi module, \(P\), the natural morphism
+  \[\mathbf{R}\tau_{A^\opp} P \to P\]
+  is a quasi-isomorphism if and only if the natural morphism
+  \[\mathbf{R}\tau_{A^\opp} P_{x,\ast} \to P_{x,\ast}\]
+  is a quasi-isomorphism.
+  Moreover, for a right \(A\)-module, \(M\), if \(H^j(M)\) is right limited for each \(j\) then \(\mathbf{R} \tau_{A^\opp} M \to M\) is a quasi-isomorphism,
+  so it suffices to show that \((\mathbf{R}^j \tau_A \Delta)_{x,\ast}\) has right limited grading for each \(x\) and \(j\).
+  Now, by \cite[Cor. 3.6 (3)]{AZ94}, for each \(j\)
+  \[\mathbf{R}^j\tau_A(\Delta)_{x,y} = \mathbf{R}^j\tau_A(\Delta_{\ast,y})_x = \mathbf{R}^j\tau_A(A(y))_x = 0\]
+  for fixed \(x\) and sufficiently large \(y\).
+  This implies that the natural morphism
+  \[\mathbf{R}\tau_{A^\opp}(\mathbf{R}\tau_A(\Delta)_{x,\ast}) \to \mathbf{R}\tau_A\Delta_{x,\ast}\]
+  is a quasi-isomorphism, as desired.
+\end{proof}
+
+Similar hypotheses of Proposition~\ref{proposition: when beta is an isomorphism} will appear often so we attach a name. 
+
+\begin{definition} \label{definition: tasty pair}
+  Let \(A\) and \(B\) be connected graded \(k\)-algebras. If \(A\) is Ext-finite, left and right Noetherian, and satisfies \(\chi^\circ(A)\) and \(\chi^\circ(A^\opp)\) then we say that \(A\) is \textbf{truly tasty}. If \(A\) and \(B\) are both truly tasty, then we say that \(A\) and \(B\) form a \textbf{tasty pair}. 
+\end{definition}
