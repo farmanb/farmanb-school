@@ -1,4 +1,4 @@
-\documentclass{pkgs/uscthesis}
+\documentclass{uscthesis}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Options include: [forbinding], which produces 
@@ -13,7 +13,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\usepackage{pkgs/style}
+\usepackage{style}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% You should include above
@@ -21,8 +21,9 @@
 %% with this documentclass.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%\usepackage[style=uscauthoryear]{biblatex}
-\usepackage[author-year]{pkgs/uscamsrefs}
+\usepackage[style=uscauthoryear]{biblatex}
+\bibliography{bib/references}
+%\usepackage[author-year]{uscamsrefs}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% The lines above specify a BibTeX style which controls 
@@ -135,7 +136,7 @@ University of Vermont 2011\\ %% The \\ on this line is
 \dedication{FrontMatter/dedication}   %% Calls dedication.tex
 %%% Also optional
 
-\preface{FrontMatter/forward}    %% Calls forward.tex.  Optional.
+\preface{FrontMatter/preface}    %% Calls forward.tex.  Optional.
 
 %\makeLoT               %% Issue this command if your work has 
                        %% four or more tables.  A list of tables 
@@ -204,7 +205,7 @@ University of Vermont 2011\\ %% The \\ on this line is
                           %% \chapter*{Conclusion}
                           %% followed by the appropriate
                           %% text.
-%\printbibliography %%  This is the command to use to
+\printbibliography %%  This is the command to use to
 			       %%  insert the bibliography if you are using
                            %% the biblatex.sty package.  See the 
                            %% uscthesisdoc.pdf documentation for
@@ -219,7 +220,7 @@ University of Vermont 2011\\ %% The \\ on this line is
                         %% command \Appendix or \Appendices
                         %% you must use \input not \include
                         %% to load the first appendix.
-\bibliography{bib/references}
-\bibliographystyle{amsplain}
+
+%\bibliographystyle{amsplain}
 \end{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

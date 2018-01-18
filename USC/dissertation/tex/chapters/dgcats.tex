@@ -12,7 +12,7 @@ For any dg-category, \(\A\), we denote by \(Z^0(\A)\) the category with objects 
 \[Z^0(\A)(A_1, A_2) := Z^0(\A(A_1,A_2)).\]
 By \(H^0(\A)\) we denote the category with objects those of \(\A\) and morphisms
 \[H^0(\A)(A_1, A_2) := H^0(\A(A_1,A_2)).\]
-Following \cite{CS15}, we say that two objects \(A_1\), \(A_2\) of a dg-category, \(\A\), are \textbf{dg-isomorphic} (respectively, \textbf{homotopy equivalent}) if there is a morphism \(f \in Z^0(\A)(A_1, A_2)\) such that \(f\) (respectively, the image of \(f\) in \(H^0(\A)(A_1, A_2)\)) is an isomorphism.
+Following \parencite{CS15}, we say that two objects \(A_1\), \(A_2\) of a dg-category, \(\A\), are \textbf{dg-isomorphic} (respectively, \textbf{homotopy equivalent}) if there is a morphism \(f \in Z^0(\A)(A_1, A_2)\) such that \(f\) (respectively, the image of \(f\) in \(H^0(\A)(A_1, A_2)\)) is an isomorphism.
 In such a case, we say that \(f\) is a \textbf{dg-isomorphism} (respectively, \textbf{homotopy equivalence}).
 
 \section{The Model Structure on DG-Categories}
@@ -36,18 +36,18 @@ For any dg-functor \(F \colon \A \to \B\), we say that \(F\) is
     for any object \(A\) of \(\A\) and any isomorphism \(\eta \in H^0(\B)(H^0(F)A, B)\), there exists an isomorphism \(\nu \in H^0(\C)(A,A^\prime)\) such that \(H^0(F)(\nu) = \eta\).
   \end{enumerate}
 \end{enumerate}
-In \cite{Tabuada05} it is shown that taking the class of fibrations defined above and the class of weak equivalences to be the quasi-equivalences, \(\dgcat{k}\) becomes a cofibrantly generated model category.
+In \parencite{Tabuada05} it is shown that taking the class of fibrations defined above and the class of weak equivalences to be the quasi-equivalences, \(\dgcat{k}\) becomes a cofibrantly generated model category.
 The localization of \(\dgcat{k}\) at the class of quasi-equivalences is the homotopy category, \(\Ho{\dgcat{k}}\).
 We will denote by \([\A,\B]\) the morphisms of \(\Ho{\dgcat{k}}\).
 
 A small dg-category \(\A\) is said to be \textbf{h-projective} if for all objects \(A_1, A_2\) of \(\A\) and any acyclic complex, \(C\), every morphism of complexes \(\A(A_1, A_2) \to C\) is null-homotopic.
-In \cite{CS15}, it is shown that there exists an h-projective category \(A^{\op{hp}}\) quasi-equivalent to \(\A\) and, as a result, the localization of the full subcategory of \(\dgcat{k}\) of h-projective dg-categories at the class of quasi-equivalences is equivalent to \(\Ho{\dgcat{k}}\).
+In \parencite{CS15}, it is shown that there exists an h-projective category \(A^{\op{hp}}\) quasi-equivalent to \(\A\) and, as a result, the localization of the full subcategory of \(\dgcat{k}\) of h-projective dg-categories at the class of quasi-equivalences is equivalent to \(\Ho{\dgcat{k}}\).
 In particular, when \(k\) is a field, every dg-category is h-projective and hence one can compute the derived tensor product by
 \[\A \otimes^\mathbf{L} \B = \A^{\op{hp}} \otimes \B = \A \otimes \B.\]
 
 \section{Differential Graded Modules}\label{subsection: dg modules}
-Before making the relevant definitions, we pause for a brief semi-historical note on the use of the word module, which will be a recurring theme.
-To a ring $A$, one can associate the $\Ab$-enriched category, \(\A\), with one object and endomorphisms the abelian group $A$.
+Before making the relevant definitions, we pause for a brief justification of the use of the word module.
+To a ring $A$, one can associate the $\Ab$-enriched category, \(\A\), with one object, endomorphisms the abelian group $A$, and composition given by multiplication.
 We will refer to the category $\A$ as the \textbf{ringoid associated to $A$}.
 As one is wont to do in mathematics, we shift perspective by invoking enriched category theory and abstract away to the 2-category, $\op{Ab-cat}$, of all small $\Ab$-enriched categories.
 Indeed, it is an easy exercise in translation that one recovers the classical category of $A$-modules as the $\Ab$-enriched category of $\Ab$-enriched functors, $\op{Ab-cat}(\A, \Ab)$.
@@ -77,7 +77,7 @@ The image of a dg \(\A\)-\(\B\)-bimodule, \(E\), is the dg-functor \(\Phi_E(A) =
 
 As a final note, we draw a connection between chain complexes and dg-modules over a ringoid that parallels the discussion of $A$-modules and the so-called $\Ab$-modules above.
 Let $A$ be a $k$-algebra and consider the category of chain complexes, $\Ch{A}$.
-One can can construct (see, e.g., \cite{Weibel94}) for any two chain complexes a chain complex of morphisms
+One can can construct (see, e.g., \parencite{Weibel94}) for any two chain complexes a chain complex of morphisms
 \[\CH{A}(C,D)^n = \prod_{m \in \Z}\Mod{A}\left(C^m, D^{m + n}\right)\]
 with differential given by
 \[d(f) = d_D \circ f + (-1)^{n+1} f \circ d_C.\]
@@ -109,18 +109,18 @@ Hence we are justified in the following definitions:
 \item
   \(\eta\) is a \textbf{fibration} if \(\eta(A)\) is a degree-wise surjective morphism of complexes for all objects \(A\) of \(\A\).
 \end{enumerate}
-Equipping \(\Ch{k}\) with the standard projective model structure (see \cite[Section 2.3]{Hovey99}), these definitions endow \(Z^0(\dgMod{\A})\) with the structure of a particularly nice cofibrantly generated model category (see \cite[Section 3]{Toen07}).
+Equipping \(\Ch{k}\) with the standard projective model structure (see \parencite[Section 2.3]{Hovey99}), these definitions endow \(Z^0(\dgMod{\A})\) with the structure of a particularly nice cofibrantly generated model category (see \parencite[Section 3]{Toen07}).
 In analogy with the definition of the derived category of modules for a ring \(A\), the \textbf{derived category of \(\A\)} is defined to be the model category theoretic homotopy category,
 \[\mathrm{D}(\A) = \Ho{Z^0(\dgMod{\A})} = Z^0(\dgMod{\A})[\mathcal{W}^{-1}]\]
 obtained from localizing \(Z^0(\dgMod{\A})\) at the class, \(\mathcal{W}\), of quasi-isomorphisms.
 
-It can be shown (see \cite[Section 3.5]{Keller95}) that for every dg \(\A\)-module, \(M\), there exists an h-projective, \(N\), and a quasi-isomorphism \(N \to M\), which one calls an \textbf{h-projective resolution of \(M\)}.
+It can be shown (see \parencite[Section 3.5]{Keller95}) that for every dg \(\A\)-module, \(M\), there exists an h-projective, \(N\), and a quasi-isomorphism \(N \to M\), which one calls an \textbf{h-projective resolution of \(M\)}.
 Moreover, it is not difficult to see that any quasi-isomorphism between h-projective objects is in fact a homotopy equivalence.
 It follows that there is an equivalence of categories between \(H^0(\hproj{\A})\) and \(\mathrm{D}(\A)\) for any small dg-category, \(\A\).
 
 It should be noted that this generalizes the notion of derived categories of modules over a $k$-algebra, $A$.
 Making the identification of $\CH{A}$ and $\dgMod{\A}$ as at the end of Section~\ref{subsection: dg modules}, where $\A$ is the ringoid associated to $A$, it is easy to recognize the categories \(Z^0(\dgMod{\A})\), \(H^0(\dgMod{\A})\), and \(\mathrm{D}(\A)\), as the categories \(\Ch{A}\), \(K(A)\), the usual category up to homotopy, and the derived category of \(\Mod{A}\), respectively.
-In the language of \cite{Lunts-Orlov}, \(\hproj{\A}\) is a dg-enhancement of \(\mathrm{D}(\Mod{A})\).
+In the language of \parencite{Lunts-Orlov}, \(\hproj{\A}\) is a dg-enhancement of \(\mathrm{D}(\Mod{A})\).
 
 
 \section{Tensor Products of DG-Modules}
@@ -167,7 +167,7 @@ One can show that by a similar argument to the original that a morphism \(E \to 
 
 \section{Bimodules as Morphisms of Module Categories}
 Let \(E\) be a dg \(\A\)-\(\B\)-bimodule.
-Following \cite[Section 3]{CS15}, we can extend the associated functor \(\Phi_E\) to a dg-functor
+Following \parencite[Section 3]{CS15}, we can extend the associated functor \(\Phi_E\) to a dg-functor
 \[\widehat{\Phi_M} \colon \dgMod{\A} \to \dgMod{\B}\]
 defined by \(\widehat{\Phi_E}(M) = M \otimes_\A E\).
 Similarly, we have a dg-functor in the opposite direction
@@ -182,7 +182,7 @@ By way of the enriched Yoneda Lemma we see that for any object \(A\) of \(\A\) a
 
 We record here some useful propositions regarding extensions of dg-functors.
 
-\begin{proposition}[{\cite[Prop 3.2]{CS15}}]
+\begin{proposition}[{\parencite[Prop 3.2]{CS15}}]
   Let \(\A\) and \(\B\) be small dg-categories.
   Let \(F \colon \A \to \dgMod{\B}\) and \(G \colon \A \to \B\) be dg-functors.
   \begin{enumerate}[(i)]
@@ -222,7 +222,7 @@ We record here some useful propositions regarding extensions of dg-functors.
 \end{remark}
 
 When starting with an h-projective we have a very nice extension of dg-functors:
-\begin{proposition}[{\cite[Lemma 3.4]{CS15}}]
+\begin{proposition}[{\parencite[Lemma 3.4]{CS15}}]
   For any h-projective dg \(\A\)-\(\B\)-bimodule, \(E\), the associated functor
   \[\Phi_E \colon \A \to \dgMod{\B}\]
   factors through \(\hproj{\B}\).
@@ -234,7 +234,7 @@ Put another way, tensoring with an h-projective \(\A\)-\(\B\)-bimodule preserves
 
 One essential result about \(\dgcat{k}\) comes from T\"oen's result on the existence, and description of, the internal Hom in its homotopy category. 
 
-\begin{theorem}[{\cite[Theorem 1.1]{Toen07}}, {\cite[4.1]{CS15}}] \label{theorem: Toen}
+\begin{theorem}[{\parencite[Theorem 1.1]{Toen07}}, {\parencite[4.1]{CS15}}] \label{theorem: Toen}
   Let \(\A\), \(\B\), and \(\C\) be objects of \(\dgcat{k}\).
   There exists a natural bijection
   \[[\A,\C] \overset{1:1}\longleftrightarrow \Iso{H^0(\hproj{\A^{\opp} \otimes \C}^\rqr)}\]
@@ -243,16 +243,16 @@ One essential result about \(\dgcat{k}\) comes from T\"oen's result on the exist
   proving that the symmetric monoidal category \(\Ho{\dgcat{k}}\) is closed.
 \end{theorem}
 
-\begin{corollary}[{\cite[7.2]{Toen07}},{\cite[Cor. 4.2]{CS15}}] \label{corollary: Toen}
-  Given two dg categories \(\A\) and \(\B\), \\\(\RHom{\A, \hproj{\B}}\) and \(\hproj{\A^\opp \otimes \B}\) are isomorphic in \(\Ho{\dgcat{k}}\).
+\begin{corollary}[{\parencite[7.2]{Toen07}},{\parencite[Cor. 4.2]{CS15}}] \label{corollary: Toen}
+  Given two dg categories \(\A\) and \(\B\), \(\RHom{\A, \hproj{\B}}\) and \(\hproj{\A^\opp \otimes \B}\) are isomorphic in \(\Ho{\dgcat{k}}\).
   Moreover, there exists a quasi-equivalence
   \[\RHomc{\hproj{\A},\hproj{\B}} \to \RHom{\A, \hproj{B}}.\]
 \end{corollary}
 
-To get a sense of the value of this result, let us recall one application from \cite[Section 8.3]{Toen07}. Let \(X\) and \(Y\) be quasi-compact and separated schemes over \(\op{Spec} k\). 
-Recall the dg-model for \(\mathrm{D}(\op{Qcoh} X)\), \(\mathcal L_{\op{qcoh}}(X)\), is the \(\mathcal C(k)\)-enriched subcategory of fibrant-cofibrant objects in the injective model structure on \(C(\op{Qcoh} X)\).
+To get a sense of the value of this result, let us recall one application from \parencite[Section 8.3]{Toen07}. Let \(X\) and \(Y\) be quasi-compact and separated schemes over \(\op{Spec} k\). 
+Recall the dg-model for \(\mathrm{D}(\op{Qcoh} X)\), \(\mathcal L_{\op{qcoh}}(X)\), is the \(\mathcal C(k)\)-enriched subcategory of fibrant and cofibrant objects in the injective model structure on \(C(\op{Qcoh} X)\).
 
-\begin{theorem}[{\cite[Theorem 8.3]{Toen07}}]
+\begin{theorem}[{\parencite[Theorem 8.3]{Toen07}}]
   Let \(X\) and \(Y\) be quasi-compact, quasi-separated schemes over \(k\). Then there exists an isomorphism in \(\Ho{\dgcat{k}}\)
   \begin{displaymath}
     \RHomc{\mathcal L_{\op{qcoh}} X,\mathcal L_{\op{qcoh}} Y} \cong \mathcal L_{\op{qcoh}} (X \times_k Y)
@@ -265,5 +265,5 @@ Recall the dg-model for \(\mathrm{D}(\op{Qcoh} X)\), \(\mathcal L_{\op{qcoh}}(X)
 \end{theorem}
 
 \begin{proof}
-  The first part of the statement is exactly as in \cite{Toen07}. The second part is implicit. 
+  The first part of the statement is exactly as in \parencite{Toen07}. The second part is implicit. 
 \end{proof}

@@ -1,6 +1,6 @@
 \chapter{Derived Morita Theory for Noncommutative Projective Schemes} \label{section: morita for NCP}
 
-Let \(A\) and \(B\) be as in Chapter~\ref{chapter: background on NCP}. We want to extend the ideas from Section~\ref{subsection: graded Morita} to cover dg-enhancements of \(\mathrm{D}(\QGr{A})\). 
+Let \(A\) and \(B\) be as in Chapter~\ref{chapter: background on NCP}. We want to extend the ideas from Chapter~\ref{chapter: graded Morita} to cover dg-enhancements of \(\mathrm{D}(\QGr{A})\). 
 
 \section{Vanishing of a tensor product} \label{subsection: vanishing of tensor}
 
@@ -46,46 +46,68 @@ In the sequel, many of our properties will be of this type, so we give this litt
 \end{proposition}
 
 \begin{proof}
-  The necessity is clear, so assume that \(\bigstar( A(u), A(v) )\) holds for each \(u,v \in \Z\). Note that \(\bigstar(M , A(v))\) holds for all \(v\) is an RTJ property of \(M\) that holds for a set of compact generators \(A(u), u \in \Z\). Thus, by Proposition~\ref{proposition: RTJ properties}, \(\bigstar(M , A(v))\) holds for all \(v\) holds for all \(M\) in \(\mathrm{D}(\Gr{A})\). Similarly, we can consider the property of \(N\) in \(\mathrm{D}(\Gr{(A^\opp)})\): \(\bigstar(M , N)\) holds for all objects \(M\) of \(\mathrm{D}(\Gr{A})\). This is also RTJ so \(\bigstar(M,N)\) holds for all \(M\) and \(N\).
+  The necessity is clear, so assume that \(\bigstar(A(u), A(v))\) holds for each \(u,v \in \Z\).
+  First, we consider the property \(\bigstar(M, A(v))\) of objects, \(M\), of \(\mathrm{D}(\Gr{A})\).
+  It's clear that this is an RTJ property that holds, by assumption, for the set of compact generators, \(\{A(u)\}_{u \in \Z}\).
+  Hence \(\bigstar(M,A(v))\) holds for all \(M\) by Proposition~\ref{proposition: RTJ properties}.
+
+  Now fix any object \(M\) of \(\mathrm{D}(\Gr{A})\) and consider the property \(\bigstar(M, N)\) of objects, \(N\), of \(\mathrm{D}(\Gr{A^\opp})\).
+  This is again an RTJ property for which \(\bigstar(M,A(v))\) holds for all \(v \in \Z\).
+  By Proposition~\ref{proposition: RTJ properties}, \(\bigstar(M,N)\) holds for all N .
+  Since the choice of \(M\) was arbitrary, it follows that \(\bigstar(M,N)\) holds for all \(M\) and for all \(N\).
+  Therefore \(A\) satisfies \(\bigstar\).
+%  The necessity is clear, so assume that \(\bigstar( A(u), A(v) )\) holds for each \(u,v \in \Z\). Note that \(\bigstar(M , A(v))\) holds for all \(v\) is an RTJ property of \(M\) that holds for a set of compact generators \(A(u), u \in \Z\). Thus, by Proposition~\ref{proposition: RTJ properties}, \(\bigstar(M , A(v))\) holds for all \(v\) holds for all \(M\) in \(\mathrm{D}(\Gr{A})\). Similarly, we can consider the property of \(N\) in \(\mathrm{D}(\Gr{(A^\opp)})\): \(\bigstar(M , N)\) holds for all objects \(M\) of \(\mathrm{D}(\Gr{A})\). This is also RTJ so \(\bigstar(M,N)\) holds for all \(M\) and \(N\).
 \end{proof}
 
 There are various types of projection formulas.
 We record here two which will be useful in the sequel.
 
 \begin{proposition} \label{proposition: projection formula}
-  Let \(P\) be a complex of bi-bi \(A\)-modules and let \(M\) be a complex of left graded \(A\)-modules. Assume \(\mathbf{R} \tau_A\) commutes with coproducts. There is natural quasi-isomorphism
+  Let \(P\) be a complex of bi-bi \(A\)-modules and let \(M\) be a complex of left graded \(A\)-modules. Assume \(\mathbf{R} \tau_A\) commutes with coproducts. There is a natural quasi-isomorphism
   \begin{displaymath}
-    ( \mathbf{R} \tau_A P ) \overset{\mathbf{L}}{\otimes}_{\mathcal A} N \to \mathbf{R} \tau_A \left( P \overset{\mathbf{L}}{\otimes}_{\mathcal A} N \right).
+    ( \mathbf{R} \tau_A P ) \overset{\mathbf{L}}{\otimes}_{\mathcal A} M \to \mathbf{R} \tau_A \left( P \overset{\mathbf{L}}{\otimes}_{\mathcal A} M \right).
   \end{displaymath}
-  Assume \(\mathbf{R} Q_A\) commutes with coproducts. There is natural quasi-isomorphism
+  Assume \(\mathbf{R} Q_A\) commutes with coproducts. There is a natural quasi-isomorphism
   \begin{displaymath}
-    ( \mathbf{R} Q_A P ) \overset{\mathbf{L}}{\otimes}_{\mathcal A} N \to \mathbf{R} Q_A \left( P \overset{\mathbf{L}}{\otimes}_{\mathcal A} N \right).
+    ( \mathbf{R} Q_A P ) \overset{\mathbf{L}}{\otimes}_{\mathcal A} M \to \mathbf{R} Q_A \left( P \overset{\mathbf{L}}{\otimes}_{\mathcal A} M \right).
   \end{displaymath}
 \end{proposition}
 
 \begin{proof}
   We treat the \(\tau\) projection formula. The \(Q\) projection formula is analogous. By Corollary~\ref{corollary: Q preserves bimodules}, we see that the tensor product is well-defined. It suffices to exhibit a natural transformation for the underived functors applied to modules to generate the desired natural transformation. Given
   \begin{displaymath}
-    \psi \otimes_{\mathcal A} n \in \GR{A}(A/A_{\geq m}, P) \otimes_{\mathcal A} N 
+    \psi \otimes_{\mathcal A} m \in \GR{A}(A/A_{\geq m}, P) \otimes_{\mathcal A} M 
   \end{displaymath}
   we naturally get 
   \begin{align*}
-    \widetilde{\psi} : A/A_{\geq m} & \to P \otimes_{\mathcal A} N \\
-    a & \mapsto \psi(a) \otimes_{\mathcal A} n. 
+    \widetilde{\psi} : A/A_{\geq m} & \to P \otimes_{\mathcal A} M \\
+    a & \mapsto \psi(a) \otimes_{\mathcal A} m. 
   \end{align*}
-  Taking the colimit gives the natural transformation. Let us look at the natural transformation in the case that \(P = A(u) \otimes_k A(v)\) and \(N = A(w)\). Recall that 
-  \begin{gather*}
-    \left( A(u) \otimes_k A(v) \right) \overset{\mathbf{L}}{\otimes}_{\mathcal A} A(w) \cong \left( A(u) \otimes_k A(v) \right) \otimes_{\mathcal A} A(w) \\ \cong \left( A(u) \otimes_k A(v) \right)_{\ast,w} \cong A(u) \otimes_k A_{v+w}. 
-  \end{gather*}
-  So
-  \begin{displaymath}
-    \mathbf{R}\tau_A \left( \left( A(u) \otimes_k A(v) \right) \overset{\mathbf{L}}{\otimes}_{\mathcal A} A(w) \right) \cong \mathbf{R} \tau_A \left( A(u) \otimes_k \otimes_k A_{v+w} \right)
-  \end{displaymath}
-  while 
-  \begin{gather*}
-    \mathbf{R}\tau_A \left( A(u) \otimes_k A(v) \right) \overset{\mathbf{L}}{\otimes}_{\mathcal A} A(w) \cong \mathbf{R}\tau_A \left( A(u) \otimes_k A(v) \right)_w \\ \cong \mathbf{R}\tau_A \left( (A(u) \otimes_k A(v))_{\ast,w} \right) \cong \mathbf{R}\tau_A \left( A(u) \otimes_k A_{v+w} \right)
-  \end{gather*}
-  which are compatible with the natural transformation. The property that the natural transformation is a quasi-isomorphism is RTJ in each entry. Thus, it holds for all \(P\) and \(N\) by Proposition~\ref{proposition: RTJ properties}. 
+  Taking the colimit gives the natural transformation.
+  
+  Let us look at the natural transformation in the case that \(P = A(u) \otimes_k A(v)\) and \(M = A(w)\).
+  Recall from Remark~\ref{remark: tensor with twist} that
+  \[
+  \mathbf{R}\tau_A(P) \otimes_\A^\mathbf{L} A(w) \cong \mathbf{R}\tau_A(P) \otimes_\A A(w) \cong \mathbf{R}\tau_A(P)_{\ast,w} 
+  := \bigoplus_{x \in \Z} \mathbf{R}\tau_A(P_{\ast,w})_x
+  = \mathbf{R}\tau_A(P_{\ast,w})
+  \]
+  which is compatible with the natural transformation.
+  The property that the natural transformation is a quasi-isomorphism is RTJ in each entry.
+  Thus, it holds for all \(P\) and \(M\) by Proposition~\ref{proposition: RTJ properties}.
+%  Recall that 
+%  \begin{gather*}
+%    \left( A(u) \otimes_k A(v) \right) \overset{\mathbf{L}}{\otimes}_{\mathcal A} A(w) \cong \left( A(u) \otimes_k A(v) \right) \otimes_{\mathcal A} A(w) \\ \cong \left( A(u) \otimes_k A(v) \right)_{\ast,w} \cong A(u) \otimes_k A_{v+w}. 
+%  \end{gather*}
+%  So
+%  \begin{displaymath}
+%    \mathbf{R}\tau_A \left( \left( A(u) \otimes_k A(v) \right) \overset{\mathbf{L}}{\otimes}_{\mathcal A} A(w) \right) \cong \mathbf{R} \tau_A \left( A(u) \otimes_k A_{v+w} \right)
+%  \end{displaymath}
+%  while 
+%  \begin{gather*}
+%    \mathbf{R}\tau_A \left( A(u) \otimes_k A(v) \right) \overset{\mathbf{L}}{\otimes}_{\mathcal A} A(w) \cong \mathbf{R}\tau_A \left( A(u) \otimes_k A(v) \right)_w \\ \cong \mathbf{R}\tau_A \left( (A(u) \otimes_k A(v))_{\ast,w} \right) \cong \mathbf{R}\tau_A \left( A(u) \otimes_k A_{v+w} \right)
+%  \end{gather*}
+  %which are compatible with the natural transformation. The property that the natural transformation is a quasi-isomorphism is RTJ in each entry. Thus, it holds for all \(P\) and \(N\) by Proposition~\ref{proposition: RTJ properties}. 
 \end{proof}
 
 For the hypothesis, recall Definition~\ref{definition: tasty pair}. 
@@ -95,14 +117,19 @@ For the hypothesis, recall Definition~\ref{definition: tasty pair}.
 \end{proposition}
 
 \begin{proof}
-  By Proposition~\ref{proposition: big star condition}, it suffices to check \(\bigstar(A(u),N)\) for each \(u\). This is equivalent to \(\bigstar(\bigoplus_u A(u),N)\). Equipping the sum with a bi-bi structure as \(\Delta\), we reduce to checking \(\bigstar(\Delta,N)\). Using Proposition~\ref{proposition: when beta is an isomorphism} for \(A\) and \(A^\opp\), we have a natural quasi-isomorphism
-  \begin{displaymath}
-    \mathbf{R}\tau_{A^\opp} N \overset{\mathbf{L}}{\otimes}_{\mathcal A} \mathbf{R}Q_A \Delta \cong \mathbf{R}\tau_{A^\opp} N \overset{\mathbf{L}}{\otimes}_{\mathcal A} \mathbf{R}Q_{A^\opp} \Delta.
-  \end{displaymath}
+  By Proposition~\ref{proposition: big star condition}, it suffices to check \(\bigstar(M,A(v))\) for each \(v\). This is equivalent to \(\bigstar(M,\bigoplus_v A(v))\). Equipping the sum with a bi-bi structure as \(\Delta\), we reduce to checking \(\bigstar(M,\Delta)\). Using Proposition~\ref{proposition: when beta is an isomorphism} and Lemma~\ref{lemma: exact triangles} for \(A\) and \(A^\opp\), we have a natural quasi-isomorphism
+  \[\mathbf{R}\tau_{A^\opp} \Delta \overset{\mathbf{L}}{\otimes}_{\mathcal A} \mathbf{R}Q_A M \cong \mathbf{R}\tau_{A} \Delta \overset{\mathbf{L}}{\otimes}_{\mathcal A} \mathbf{R}Q_{A} M.\]
   Using Proposition~\ref{proposition: projection formula}, we have a natural quasi-isomorphism
-  \begin{displaymath}
-    \mathbf{R}\tau_{A^\opp} N \overset{\mathbf{L}}{\otimes}_{\mathcal A} \mathbf{R}Q_{A^\opp} \Delta \cong \mathbf{R}Q_{A^\opp} \left( \mathbf{R}\tau_{A^\opp} N \overset{\mathbf{L}}{\otimes}_{\mathcal A} \Delta  \right) \cong \mathbf{R}Q_{A^\opp} \left( \mathbf{R}\tau_{A^\opp} N \right) = 0.
-  \end{displaymath}
+  \[\mathbf{R}\tau_{A} \Delta \overset{\mathbf{L}}{\otimes}_{\mathcal A} \mathbf{R}Q_{A} M \cong \mathbf{R}\tau_{A} \left( \Delta \overset{\mathbf{L}}{\otimes}_{\mathcal A} \mathbf{R}Q_{A} M  \right) \cong \mathbf{R}\tau_{A} \left( \mathbf{R}Q_{A} M \right) = 0.\]
+  
+%  By Proposition~\ref{proposition: big star condition}, it suffices to check \(\bigstar(A(u),N)\) for each \(u\). This is equivalent to \(\bigstar(\bigoplus_u A(u),N)\). Equipping the sum with a bi-bi structure as \(\Delta\), we reduce to checking \(\bigstar(\Delta,N)\). Using Proposition~\ref{proposition: when beta is an isomorphism} for \(A\) and \(A^\opp\), we have a natural quasi-isomorphism
+%  \begin{displaymath}
+%    \mathbf{R}\tau_{A^\opp} N \overset{\mathbf{L}}{\otimes}_{\mathcal A} \mathbf{R}Q_A \Delta \cong \mathbf{R}\tau_{A^\opp} N \overset{\mathbf{L}}{\otimes}_{\mathcal A} \mathbf{R}Q_{A^\opp} \Delta.
+%  \end{displaymath}
+%  Using Proposition~\ref{proposition: projection formula}, we have a natural quasi-isomorphism
+%  \begin{displaymath}
+%    \mathbf{R}\tau_{A^\opp} N \overset{\mathbf{L}}{\otimes}_{\mathcal A} \mathbf{R}Q_{A^\opp} \Delta \cong \mathbf{R}Q_{A^\opp} \left( \mathbf{R}\tau_{A^\opp} N \overset{\mathbf{L}}{\otimes}_{\mathcal A} \Delta  \right) \cong \mathbf{R}Q_{A^\opp} \left( \mathbf{R}\tau_{A^\opp} N \right) = 0.
+%  \end{displaymath}
 \end{proof}
 
 \section{Duality}
@@ -156,7 +183,7 @@ Consider the functor
 \end{proof}
 
 \begin{definition}
-  Let \(Q\A\) be the full dg-subcategory of \(C(\Gr{A})\) with objects given by \(Q_A\) applied to injective resolutions of \(A(x)\) for all \(x\). 
+  Let \(Q\A\) be the full dg-subcategory of \(\CH{\Gr{A}}\) with objects given by \(Q_A\) applied to injective resolutions of \(A(x)\) for all \(x\). 
 \end{definition}
 
 \begin{corollary} \label{corollary: duality is a duality}
@@ -191,7 +218,7 @@ Consider the functor
 \section{Products} \label{section: products}
 
 \begin{definition}
-  For a graded \(k\)-algebra, \(A\), let \(\hinj{\Gr{A}}\) be the full dg-subcategory of \(C(\Gr{A})\) with objects the K-injective complexes of Spaltenstein \cite{Spaltenstein}. Similarly, we let \(\hinj{\QGr{A}}\) be the full dg-subcategory of \(C(\QGr{A})\) with objects the K-injective complexes.
+  For a graded \(k\)-algebra, \(A\), let \(\hinj{\Gr{A}}\) be the full dg-subcategory of \(\CH{\Gr{A}}\) with objects the K-injective complexes of Spaltenstein \parencite{Spaltenstein88}. Similarly, we let \(\hinj{\QGr{A}}\) be the full dg-subcategory of \(\CH{\QGr{A}}\) with objects the K-injective complexes.
 \end{definition}
 
 \begin{lemma} \label{lemma: omega of Kinj is Kinj}
@@ -225,7 +252,7 @@ for all \(u,v\). Denote this subcategory by \(\mathcal E\).
 \begin{proof}
   Recall that \(Q \A\) is the full dg-subcategory of \(\ldgGrMod{A}\) consisting of \(Q_{A}\) applied to injective resolutions of \(A(u)\), loosely denoted by \(\mathbf{R}Q_A A(u)\), and similarly for \(Q \B\). We have the exact functor
   \begin{displaymath}
-    \otimes_k : \ldgGrMod{A} \otimes_k \ldgGrMod{B} \to \ldgGrMod{A \otimes_k B}
+    - \otimes_k - : \ldgGrMod{A} \otimes_k \ldgGrMod{B} \to \ldgGrMod{A \otimes_k B}
   \end{displaymath}
   which tensors a pair of modules over \(k\) to yield a bimodule. First consider the triangle
   \begin{gather*}
@@ -312,7 +339,7 @@ Now we turn to the main result.
   \begin{displaymath}
     \hinj{\QGr{A^\opp \otimes_k B}} \to \hproj{Q \mathcal A^\opp \otimes_k Q \mathcal B}
   \end{displaymath}
-  which is a quasi-equivalence by a standard argument, see e.g. \cite[Theorem 5.1]{Dyckerhoff}.
+  which is a quasi-equivalence by a standard argument, see e.g. \parencite[Theorem 5.1]{Dyckerhoff11}.
   
   Tracing out the quasi-equivalences, one just needs to manipulate 
   \begin{align*}
@@ -325,7 +352,7 @@ Now we turn to the main result.
   \end{displaymath}
 \end{proof}
 
-The following statement is now a simple application of Theorem~\ref{theorem: derived morita for NCP} and results of \cite{Lunts-Orlov}. 
+The following statement is now a simple application of Theorem~\ref{theorem: derived morita for NCP} and results of \parencite{Lunts-Orlov}. 
 
 \begin{corollary} \label{corollary: NCP morita}
   Let \(A\) and \(B\) be a tasty pair of connected graded \(k\)-algebras with \(k\) a field. Assume that there exists an equivalence
@@ -340,7 +367,7 @@ The following statement is now a simple application of Theorem~\ref{theorem: der
 \end{corollary}
 
 \begin{proof}
-  Applying \cite[Theorem 1]{Lunts-Orlov} we know there is a quasi-equivalence between the unique enhancements, i.e. there is an \( F \in [ \hinj{ \QGr{A}}, \hinj{ \QGr{B}} ]\) giving an equivalence
+  Applying \parencite[Theorem 1]{Lunts-Orlov} we know there is a quasi-equivalence between the unique enhancements, i.e. there is an \( F \in [ \hinj{ \QGr{A}}, \hinj{ \QGr{B}} ]\) giving an equivalence
   \begin{displaymath}
     H^0(F) : H^0(\hinj{ \QGr{A} }) = \mathrm{D}(\QGr{A}) \to H^0(\hinj{ \QGr{B} }) = \mathrm{D}(\QGr{B}).
   \end{displaymath}

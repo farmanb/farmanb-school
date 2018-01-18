@@ -1,13 +1,13 @@
-\chapter{Graded Morita Theory: A Warmup} \label{subsection: graded Morita}
+\chapter{Graded Morita Theory: A Warmup} \label{chapter: graded Morita}
 
-This section demonstrates how the tools of dg-categories yield a nice perspective on derived graded Morita. Compare with the well-known graded Morita statement in \cite{Zhang96}. 
+This section demonstrates how the tools of dg-categories yield a nice perspective on derived graded Morita. Compare with the well-known graded Morita statement in \parencite{Zhang96}. 
 
 In order to utilize the machinery of dg-categories, we must first translate chain complexes of graded modules into dg-categories.
-While one can na\"ively regard this category as a dg-category by way of an enriched Hom entirely analogous to the ungraded situation, the relevant statements of \cite{Toen07} are better suited to the perspective of functor categories.
+While one can na\"ively regard this category as a dg-category by way of an enriched Hom entirely analogous to the ungraded situation, the relevant statements of \parencite{Toen07} are better suited to the perspective of functor categories.
 As such, we adapt the association of a ringoid with one object to a ring from Section~\ref{subsection: dg modules} to the graded situation, considering instead a ringoid with multiple objects.
 
-\section{Preliminaries on Ringoids and Modules over Them}
-Throughout this section, we will let \(G = (G, +)\) be an abelian group, and let \(A\) and \(B\) be not necessarily commutative \(G\)-graded algebras over \(k\).
+\section{Preliminaries on Ringoids and their Modules}
+
 Though these results are stated in fuller generality, in the sequel we will generally be concerned only with the groups \(\Z\) and \(\Z^2\).
 We begin our adaptation with our notion of ringoids with multiple objects.
 
@@ -108,19 +108,39 @@ The following lemma illustrates that modules and chain complexes are one and the
   %since
   %\[(A^\opp)_i =: \A^\opp(-i,0) = \A(0,-i) = A_{-i}.\]
 \end{remark}
+
 When \(G = \Z^2\), and \(A\), \(B\) are \(\Z\)-graded algebras over \(k\), we denote the dg-category of chain complexes of \(G\)-graded \(B\)-\(A\)-bimodules by \(\ldgGrMod{A^\opp \otimes_k B}\).
 We associate to the \(\Z^2\)-graded \(k\)-algebra \(A^\opp \otimes_k B\) the tensor product of the associated dg-categories, \(\A^\opp \otimes \B\).
-Note that in the identification
+Note that, as in the remark above, in the identification
 \[\ldgGrMod{\left(A^\opp \otimes_k B\right)} \cong \dgMod{\A^\opp \otimes \B}\]
-the weighting coming from the \(A\)-module structure is reversed, as in the remark above.
+the weighting coming from the \(A\)-module structure is reversed.
+The representable functors in this case are
+\[\A^\opp \otimes \B\left((-,-), (u,v)\right) := \A^\opp(-, u) \otimes_k \B(-,v)\]
+and correspond to \((A^\opp \otimes_k B)(u,v) := A^\opp(u) \otimes_k B(v)\) by 
+\[\bigoplus_{(x,y) \in \Z^2} \A^\opp \otimes \B\left((-x,-y),(u,v)\right) = \bigoplus_{(x,y) \in \Z^2} A^\opp_{u + x} \otimes_k B_{v + y} = A^\opp(u) \otimes_k B(v)\]
 
+
+\begin{remark}\label{remark: tensor with twist}
+  It is sometimes convenient to note the following.
+  Let \(P\) be a chain complex of bi-bi \(A\)-modules.
+  If \(\mathcal{P}(m,n) = P_{m,-n}\) is the corresponding dg \(\A\)-\(\A\)-bimodule, then by the construction of the tensor product, it's easy to see that for any \(u\) the tensor product 
+  \[\A(-, u) \otimes_\A \mathcal{P} \cong \mathcal{P}(u, -)\]
+  corresponds to the chain complex of left \(A\)-modules
+  \[\bigoplus_{n \in \Z} \mathcal{P}(u,-n) = \bigoplus_{n \in \Z} P_{u,n} = P_{u, \ast}\]
+  We will often identify \(P\) with \(\mathcal{P}\), as well as \(\A(-, u)\) with \(A(u)\), and write
+  \(P \otimes_\A A(u)= P_{u,\ast}.\)
+
+  Similarly, for any \(v\), if we regard \(A(v)\) as a right \(A\)-module, we will often write \(A(v) \otimes_\A P = P_{\ast,-v}\) for the chain complex of right \(A\)-modules.
+  We remark that as an artifact of the reverse weighting, we can homogenize these formulas by thinking of \(P\) as a left \(A^\opp\)-module, make the formal identification \(A(-v) = A^\opp(v)\) and then
+  \[A^\opp(v) \otimes_\A P = A(-v) \otimes_\A P = P_{\ast,v}.\]
+\end{remark}
 \section{Derived Graded Morita Theory}
 From this construction, we have a dg-enhancement, \(\hproj{\A}\), of the derived category of graded modules, \(\mathrm{D}(\Gr{A})\).
 Passing through the machinery of Corollary~\ref{corollary: Toen}, we have an isomorphism in \(\Ho{\dgcat{k}}\)
 \[\RHomc{\hproj{\A}, \hproj{\B}} \cong \hproj{\A^\opp \otimes \B}.\]
 This allows us to identify an object, \(F\), of \(\RHomc{\hproj{A}, \hproj{B}}\) with a dg \(\A\)-\(\B\)-bimodule, \(P\), which in turn corresponds to a morphism \(\Phi_P \colon \A \to \hproj{\B}\) by way of the symmetric monoidal closed structure on \(\dgcat{k}\).
 
-Following Section 3.3 of \cite{CS15}, we identify the homotopy equivalence class, \([P]_{\op{Iso}}\), of \(P\) with \([\Phi_P] \in [\A, \hproj{\B}]\).
+Following Section 3.3 of \parencite{CS15}, we identify the homotopy equivalence class, \([P]_{\op{Iso}}\), of \(P\) with \([\Phi_P] \in [\A, \hproj{\B}]\).
 The extension of \(\Phi_P\),
 \[P \otimes_\A - = \widehat{\Phi_P} \colon \hproj{\A} \to \hproj{\B}\]
 descends to a morphism \([\widehat{\Phi_P}] \in [\hproj{\A}, \hproj{\B}]\)
@@ -129,7 +149,7 @@ and induces a triangulated functor that commutes with coproducts
 H^0(\widehat{\Phi_P}) \colon \mathrm{D}(\Gr{A}) \arrow{r} & \mathrm{D}(\Gr{B})\\
 \quad\quad M \arrow[mapsto]{r} & P \otimes_\A^\mathbf{L} M.
 \end{tikzcd}\]
-In particular, given an equivalence \(f \colon \mathrm{D}(\Gr{A}) \to \mathrm{D}(\Gr{B})\), we obtain from \cite{Lunts-Orlov} a quasi-equivalence
+In particular, given an equivalence \(f \colon \mathrm{D}(\Gr{A}) \to \mathrm{D}(\Gr{B})\), we obtain from \parencite{Lunts-Orlov} a quasi-equivalence
 \[F \colon \hproj{\A} \to \hproj{\B}.\]
 Tracing through the remarks above, we obtain an object \(P\) of \(\hproj{\A^\opp \otimes \B}\) providing an equivalence
 \[H^0(\widehat{\Phi_P}) \colon \mathrm{D}(\Gr{A}) \to \mathrm{D}(\Gr{B}).\]

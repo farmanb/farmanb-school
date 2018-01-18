@@ -1,7 +1,7 @@
 \chapter{Noncommutative Projective Schemes}\label{chapter: background on NCP}
 
 %\section{Recollections and conditions} \label{subsection: standard results and conditions}
-Noncommutative projective schemes were introduced by Artin and Zhang in \cite{AZ94}.
+Noncommutative projective schemes were introduced by Artin and Zhang in \parencite{AZ94}.
 In this section, we recall some of the basic definitions and results, as well as conditions that will appear in the sequel.
 
 \section{Graded Rings and Modules}
@@ -24,7 +24,7 @@ In this section, we recall some of the basic definitions and results, as well as
 %\end{example}
 
 %\begin{example} \label{example: ncCY}
-%  Building off of Example~\ref{example: ncPs}, we recall the following class of noncommutative algebras of Kanazawa \cite{Kanazawa15}. Pick \(\phi \in \mathbf{C}\). And set 
+%  Building off of Example~\ref{example: ncPs}, we recall the following class of noncommutative algebras of Kanazawa \parencite{Kanazawa15}. Pick \(\phi \in \mathbf{C}\). And set 
 %  \begin{displaymath}
 %    A^\phi_q := A_q / \left( \sum_{i = 0}^n x_i^{n+1} - \phi(n+1)(x_0\cdots x_n) \right). 
 %  \end{displaymath}
@@ -64,7 +64,7 @@ For a connected graded \(k\)-algebra, \(A\), one has the bi-ideal
 \section{Quotient Categories}
 
 Since the language for the objects in this section seems variable in the literature, we collect here some basic definitions and results from the theory of quotient categories so as to avoid any confusion.
-The standard reference is \cite{DCA62}.
+The standard reference is \parencite{DCA62}.
 
 \begin{definition}
   A full subcategory, \(\Serre\), of an abelian category, \(\A\) is called a \textbf{Serre subcategory} if for any short exact sequence
@@ -82,7 +82,7 @@ One defines the \textbf{quotient of \(\A\) by the Serre subcategory \(\Serre\)} 
 \[\A/\Serre(X,Y) = \colim_{(X^\prime, Y^\prime)} \A(X^\prime, Y/Y^\prime)\]
 This quotient category comes equipped with a canonical projection functor
 \[\pi \colon \A \to \A/\Serre\]
-which is the identity on objects and takes a morphism to its image in the colimit \cite[Cor. 1, III.1]{DCA62}.
+which is the identity on objects and takes a morphism to its image in the colimit \parencite[Cor. 1, III.1]{DCA62}.
 The quotient is especially nice in the sense that the quotient is always abelian, \(\pi\) is always exact and, in the case that \(\A\) is Grothendieck, the quotient is also Grothendieck.
 
 In nice situations, this projection admits a section functor in the following sense.
@@ -100,7 +100,7 @@ In nice situations, this projection admits a section functor in the following se
 \end{proposition}
 
 \begin{proof}
-  This is \cite[Cor. 1, III.3]{DCA62}.
+  This is \parencite[Cor. 1, III.3]{DCA62}.
 \end{proof}
 
 It is well known that when \(A\) is a left Noetherian \(k\)-algebra, the full subcategory of \(\Gr{A}\) consisting of the torsion modules, which we denote by \(\Tors{A}\), is Serre.
@@ -116,7 +116,7 @@ As such, we can form the quotient.
 
 \begin{remark}
   In the sequel, it will be important to note that \(\omega\), being a fully faithful right adjoint to an exact functor, preserves injectives.
-  In particular, this will guarantee that the adjunction lifts to a Quillen adjunction between \(\Ch{\Gr{A}}\) and \(\Ch{\QGr{A}}\), both equipped with the standard injective model structures of.  For details, see \cite{Hovey01}.
+  In particular, this will guarantee that the adjunction lifts to a Quillen adjunction between \(\Ch{\Gr{A}}\) and \(\Ch{\QGr{A}}\), both equipped with the standard injective model structures of.  For details, see \parencite{Hovey01}.
 \end{remark}
 
 The category \(\QGr{A}\) is defined to be the quasi-coherent sheaves on the \textbf{noncommutative projective scheme} \(X\). 
@@ -194,7 +194,7 @@ The category \(\QGr{A}\) is defined to be the quasi-coherent sheaves on the \tex
   0 \arrow{r} & I_\Serre \arrow{r} & I \arrow{r}{\varepsilon(I)} & \omega\pi{A} I \arrow{r} & 0
   \end{tikzcd}\]  splits, as desired.
 \end{proof}
-We record here as a corollary more explicit version of \cite[Prop 7.1 (5)]{AZ94}, which states that every injective object of \(\Gr{A}\) is of the form \(I_1 \oplus I_2\), with \(I_1\) a torsion-free injective and \(I_2\) an injective torsion module.
+We record here as a corollary more explicit version of \parencite[Prop 7.1 (5)]{AZ94}, which states that every injective object of \(\Gr{A}\) is of the form \(I_1 \oplus I_2\), with \(I_1\) a torsion-free injective and \(I_2\) an injective torsion module.
 This will be useful for computations involving total derived functors in the sequel.
 
 \begin{corollary} \label{cor: Gr injectives}
@@ -203,7 +203,7 @@ This will be useful for computations involving total derived functors in the seq
 \end{corollary}
 
 \begin{proof}
-  By \cite[Prop 2.2]{AZ94} any essential extension of a torsion module is torsion.
+  By \parencite[Prop 2.2]{AZ94} any essential extension of a torsion module is torsion.
   Now apply Proposition~\ref{prop: decomposition of injectives}.
 \end{proof}
 
@@ -211,7 +211,7 @@ This will be useful for computations involving total derived functors in the seq
 
 The funtor \(Q\) admits a more geometrically pleasing interpretation, which will serve to help interpret the somewhat onerous conditions in the sequel.
 We will often refer to the image of \(A\) in \(\QGr{A}\) as \(\mathcal{O}_X\), thinking of this as the structure sheaf on \(X\).
-Following \cite{AZ94}, one defines sheaf cohomology of a quasi-coherent sheaf \(\mathcal{M} = \pi{M}\) to be
+Following \parencite{AZ94}, one defines sheaf cohomology of a quasi-coherent sheaf \(\mathcal{M} = \pi{M}\) to be
 \[\underline{H}^i(\mathcal{M}) := \EXT^i_{\QGr{A}}(\mathcal{O}_X, \mathcal{M})\]
 and the un-graded sheaf cohomology by
 \[H^i(\mathcal{M}) := \underline{H}^i(\mathcal{M})_0.\]
@@ -231,7 +231,7 @@ On the other hand, one can also give more explicit descriptions of \(Q\) and \(\
 \end{proposition}
 
 \begin{proof}
-  This is standard localization theory, see \cite{Stenstrom75}.
+  This is standard localization theory, see \parencite{Stenstrom75}.
 \end{proof}
 
 \section{Noncommutative Biprojective Schemes}
@@ -320,7 +320,7 @@ We also have the following standard triangles of derived functors.
 \begin{proof}
   Before we begin the proof, we clarify the statement. The conclusions hold for graded \(A\) (or \(B\)) modules and for bi-bi modules. Due to the formal properties, it is economical to keep the wording of the theorem as so since any reasonable interpretation yields a true statement. 
   
-  For the case of graded \(A\) modules, this is well-known, see \cite[Property 4.6]{BVdB}. For the case of bi-bi \(A \otimes_k B\) modules, the natural transformations are obvious. For each \(M\), the sequence 
+  For the case of graded \(A\) modules, this is well-known, see \parencite[Property 4.6]{BVdB}. For the case of bi-bi \(A \otimes_k B\) modules, the natural transformations are obvious. For each \(M\), the sequence 
   \begin{displaymath}
     0 \to \tau M \to M \to Q M
   \end{displaymath}
@@ -336,7 +336,7 @@ We also have the following standard triangles of derived functors.
 In general, good behavior of \(\QGr{A}\) occurs with some homological assumptions on the ring \(A\). We recall two common such ones. 
 
 \begin{definition} \label{definition: Ext-finite}
-  Let \(A\) be a connected graded \(k\)-algebra. Following van den Bergh \cite{VdB}, we say that \(A\) is \textbf{Ext-finite} if for each \(n \geq 0\) the ungraded Ext-groups are finite dimensional 
+  Let \(A\) be a connected graded \(k\)-algebra. Following van den Bergh \parencite{VdB}, we say that \(A\) is \textbf{Ext-finite} if for each \(n \geq 0\) the ungraded Ext-groups are finite dimensional 
   \begin{displaymath}
     \op{dim}_k \op{Ext}_A^n (k,k) < \infty.
   \end{displaymath}
@@ -347,15 +347,15 @@ In general, good behavior of \(\QGr{A}\) occurs with some homological assumption
 \end{remark}
 
 \begin{definition} \label{definition: chi}
-  Following Artin and Zhang \cite{AZ94}, given a graded left module \(M\), we say \(A\) satisfies \(\chi^\circ(M)\) if \(\underline{\op{Ext}}^n_A(k,M)\) has right limited grading for each \(n \geq 0\). 
+  Following Artin and Zhang \parencite{AZ94}, given a graded left module \(M\), we say \(A\) satisfies \(\chi^\circ(M)\) if \(\underline{\op{Ext}}^n_A(k,M)\) has right limited grading for each \(n \geq 0\). 
 
 \end{definition}
 
 \begin{proof}
-  This is \cite[Proposition 3.8 (1)]{AZ94}.
+  This is \parencite[Proposition 3.8 (1)]{AZ94}.
 \end{proof}
 
-We recall some basic results on Ext-finiteness, essentially from \cite[Section 4]{VdB}.
+We recall some basic results on Ext-finiteness, essentially from \parencite[Section 4]{VdB}.
 
 \begin{proposition} \label{proposition: tensor and op properties of ext-finite}
   Assume that \(A\) and \(B\) are Ext-finite. Then
@@ -366,7 +366,7 @@ We recall some basic results on Ext-finiteness, essentially from \cite[Section 4
 \end{proposition}
 
 \begin{proof}
-  See \cite[Lemma 4.2]{VdB} and the discussion preceeding it. 
+  See \parencite[Lemma 4.2]{VdB} and the discussion preceeding it. 
 \end{proof}
 
 \begin{proposition} \label{proposition: derived Q commutes with coproducts}
@@ -374,7 +374,7 @@ We recall some basic results on Ext-finiteness, essentially from \cite[Section 4
 \end{proposition}
 
 \begin{proof}
-  See \cite[Lemma 4.3]{VdB} for \(\mathbf{R}\tau_A\). Since coproducts are exact, using the triangle
+  See \parencite[Lemma 4.3]{VdB} for \(\mathbf{R}\tau_A\). Since coproducts are exact, using the triangle
   \begin{displaymath}
     \mathbf{R}\tau_A M \to M \to \mathbf{R}Q_A M 
   \end{displaymath}
@@ -425,7 +425,7 @@ We recall some basic results on Ext-finiteness, essentially from \cite[Section 4
   \[a \otimes b \cdot e = (1 \otimes b) \cdot (a \otimes 1 \cdot e)\]
   implies \(\tau_A E\) includes into \(\tau_{A \otimes_k B} E\).
 
-  We equip \(\Ch{\Gr{A}}\) with the injective model structure and use the methods of model categories to compute the derived functors (see \cite{Hovey01} for more details).
+  We equip \(\Ch{\Gr{A}}\) with the injective model structure and use the methods of model categories to compute the derived functors (see \parencite{Hovey01} for more details).
   Since we can always replace \(P\) by a quasi-isomorphic fibrant object, we can assume that \(P^n\) is an injective graded \(A \otimes_k B\)-module.
   Moreover, the fact that the canonical morphisms \(A \to A \otimes_k B\) is flat implies that the associated adjunction is Quillen, and hence \(P\) is fibrant when regarded as an object of  \(\Ch{\Gr{A}}\).
   Since \(Q_A\) is Quillen, it follows that \(Q_A P\) is a fibrant object of \(\Gr{A}\).
@@ -522,7 +522,7 @@ Using the standard homological assumptions above, one has better statements for 
   is a quasi-isomorphism.
   Moreover, for a right \(A\)-module, \(M\), if \(H^j(M)\) is right limited for each \(j\) then \(\mathbf{R} \tau_{A^\opp} M \to M\) is a quasi-isomorphism,
   so it suffices to show that \((\mathbf{R}^j \tau_A \Delta)_{x,\ast}\) has right limited grading for each \(x\) and \(j\).
-  Now, by \cite[Cor. 3.6 (3)]{AZ94}, for each \(j\)
+  Now, by \parencite[Cor. 3.6 (3)]{AZ94}, for each \(j\)
   \[\mathbf{R}^j\tau_A(\Delta)_{x,y} = \mathbf{R}^j\tau_A(\Delta_{\ast,y})_x = \mathbf{R}^j\tau_A(A(y))_x = 0\]
   for fixed \(x\) and sufficiently large \(y\).
   This implies that the natural morphism
