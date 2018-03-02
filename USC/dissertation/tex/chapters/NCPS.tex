@@ -245,6 +245,125 @@ In studying questions of kernels and bimodules, we will have to move outside the
   A \textbf{bi-bi module} for the pair \((A,B)\) is a \(\Z^2\)-graded \(A \otimes_k B\) module. 
 \end{definition}
 
+We make note of the following special \(\Z\)-graded subring of \(A \otimes_k B\)
+\begin{definition}\label{def: segre product}
+  Let \(A\) and \(B\) be connected graded \(k\)-algebras.
+  The \textbf{Segre product} of \(A\) and \(B\) is the graded \(k\)-algebra
+  \[ A \times_k B = \bigoplus_{0 \leq i} A_i \otimes_k B_i.\]
+\end{definition}
+
+\begin{proposition}\label{proposition: segre product of generated in degree 1 is generated in degree 1}
+  If \(A\) and \(B\) are connected graded \(k\)-algebras that are finitely generated in degree one, then \(A \times_k B\) is finitely generated in degree one.
+\end{proposition}
+
+\begin{proof}
+  Let \(S = \{x_i\}_{i = 1}^r \subseteq A_1\) and \(T = \{y_i\}_{i = 1}^s \subseteq B_1\) be generators.
+  Take a homogenous element \(a \otimes b \in A_d \otimes_k B_d\).
+  We can write
+  \[a = \sum_{i = 1}^m \alpha_i X_1^{(i)} \cdots X_d^{(i)}\ \text{and}\ b = \sum_{j = 1}^n \beta_j Y_1^{(j)} \cdots Y_d^{(j)}\]
+  for \(\alpha_i,\beta_j \in k\), \((X_1^{(i)}, \ldots, X_d^{(i))} \in \prod_{i = 1}^d S\), and \((Y_1^{(j)}, \ldots, Y_d^{(j)}) \in \prod_{i = 1}^d T\).
+  %\[a = \sum_{i = 1}^m \alpha_i x_1^{e_{1,i}} \cdots x_r^{e_{r,i}}\ \text{and}\ b = \sum_{j = 1}^n \beta_j y_1^{f_{1,i}} \cdots y_r^{f_{r,i}}\]
+  %where for each \(i\) and each \(j\) we have \(\alpha_i, \beta_j \in k\), and
+  %\[\sum_{\ell=1}^r e_{\ell,i} = d\ \text{and}\ \sum_{\ell=1}^s f_{\ell,j} = d.\]
+  Hence we have
+  \begin{eqnarray*}
+    a \otimes b &=& \left(\sum_{i=1}^m \alpha_i X_1^{(i)} \cdots X_d^{(i)}\right) \otimes \left(\sum_{j = 1}^n \beta_j Y_1^{(j)} \cdots Y_d^{(j)}\right)\\
+    &=& \sum_{i = 1}^m\left(\alpha_i X_1^{(i)} \cdots X_d^{(i)} \otimes \left(\sum_{j = 1}^n \beta_j Y_1^{(j)} \cdots Y_d^{(j)}\right)\right)\\
+    &=& \sum_{i = 1}^m\left(\sum_{j = 1}^n\left(\alpha_i  X_1^{(i)} \cdots X_d^{(i)} \otimes \beta_j Y_1^{(j)} \cdots Y_d^{(j)}\right)\right)\\
+    &=& \sum_{i,j} \alpha_i\beta_j (X_1^{(i)} \otimes Y_1^{(j)}) \cdots (X_d^{(i)} \otimes Y_d^{(j)})
+  \end{eqnarray*}
+    Therefore \(A \times_k B\) is finitely generated in degree one by \(\{x_i \otimes y_j\}_{i,j}\).
+  %\begin{eqnarray*}
+  %a \otimes b &=& \sum_{i = 1}^m \alpha_i x_1^{e_{1,i}} \cdots x_r^{e_{r,i}} \otimes \sum_{j = 1}^n \beta_j y_1^{f_{1,i}} \cdots y_r^{f_{r,i}}\\
+  %&=& \sum_{i = 1}^m \left(\alpha_i x_1^{e_{1,i}} \cdots x_r^{e_{r,i}} \otimes \sum_{j = 1}^n \beta_j y_1^{f_{1,i}} \cdots y_r^{f_{r,i}}\right)\\
+  %&=& \sum_{i = 1}^m \left(\sum_{j = 1}^n \alpha_i\beta_j \left(x_1^{e_{1,i}} \cdots x_r^{e_{r,i}} \otimes y_1^{f_{1,i}} \cdots y_r^{f_{r,i}}\right)\right)
+%\end{eqnarray*}
+
+%  Now, fix \(i\) and \(j\).
+ % We can rewrite
+ % \[x_1^{e_{1,i}} \cdots x_r^{e_{r,i}} = X_1^{(i)} \cdots X_d^{(i)}\ \text{and}\ y_1^{f_{1,i}} \cdots y_r^{f_{r,i}} = Y_1^{(j)} \cdots Y_d^{(j)}\]
+ % with each of the \(X\)'s a generator of \(A\) and each of the \(Y\)'s a generator of \(B\).
+ % Then we have
+  %\[x_1^{e_{1,i}} \cdots x_r^{e_{r,i}} \otimes y_1^{f_{1,i}} \cdots y_r^{f_{r,i}} = (X_1^{(i)} \otimes Y_1^{(j)}) \cdots (X_d^{(i)} \otimes Y_d^{(j)})\]
+\end{proof}
+
+\begin{proposition}\label{proposition: f.g. torsion}
+  Let \(A\) be a connected graded \(k\)-algebra.
+  Denote by \(\Tors{A}\), the full subcategory of \(\Gr{A}\) consisting of all modules \(M\) satisfying for each \(m \in M\) there exists some \(n\) such that \(A_{\geq n}m = 0\).
+  If \(A\) is finitely generated, then \(\Tors{A}\) is a Serre subcategory.
+\end{proposition}
+
+\begin{proof}
+  Let \(S = \{x_i\}_{i=1}^r\) be a set of generators for \(A\) as a \(k\)-algebra and let \(d_i = \deg(x_i)\).
+  Consider a short exact sequence
+  \[0 \to M^\prime \to M \overset{p}\to M^{\prime\prime} \to 0.\]
+  It's clear that if \(M\) is an object of \(\Tors{A}\), then so are \(M^\prime\) and \(M^{\prime\prime}\), so it suffices to show that if \(M^\prime\) and \(M^{\prime\prime}\) are both objects of \(\Tors{A}\), then so is \(M\).
+  
+  First assume that there exists some \(N\) such that for any \((X_1, X_2, \ldots, X_N) \in \prod_{i = 1}^N S\) we have \((X_1 \cdots X_N)m = 0\).
+  Let \(d = \max(\{d_i\}_{i = 1}^r\) and let \(a \in A_{\geq dN}\).
+  By assumption we can write \(a = \sum_{i=1}^n \alpha_i a_i\) with \(\alpha_i \in k\), each \(a_i\) of the form
+  \[a_i = X_{i,1} X_{i,2}\cdots X_{i, s_i},\, X_{i,j} \in S\]
+  and, for each \(i\),
+  \[dN \leq \sum_{j = 1}^{s_i} \deg(X_{i,j}) = \deg(a) \leq s_i d.\]
+  It follows that \(N \leq s_i\) and hence
+  \[am = \left(\sum_{i = 1}^n \alpha_i a_i\right) m = \sum_{i = 1}^n \alpha_i a_i m = 0.\]
+  Thus it suffices to find such an \(N\).
+
+  Fix an element \(m \in M\).
+  Since \(M^{\prime\prime}\) is an object of \(\Tors{A}\), there exists some \(n\) such that \(A_{\geq n} p(m) = 0\) and hence \(A_{\geq n}m \in M^\prime\).
+  In particular, if we let \(T = \prod_{i = 1}^n S\), then for any element \(t = (X_1, X_2, \ldots, X_n) \in T\) we have an element \(a_t = X_1 X_2 \cdots X_n \in A_{\geq n}\) and so \(a_t m \in M^\prime\).
+  Let \(n_t\) be such that \(A_{\geq n_t} (a_t m) = 0\) and take \(N = 2\max(\{n_t\}_{t \in T} \cup \{n\}) + 1\).
+  If we take any element \((X_1, X_2, \ldots, X_N) \in \prod_{i = 1}^N S\), then we can form an element \(a_t = X_{N - n} X_{N - n + 1} \cdots X_N \in A_{\geq n}\).
+  By construction, \(a_t m \in M^\prime\) and \(a_t^\prime = X_1 X_2 \cdots X_{N - n - 1} \in A_{\geq n_t}\) since \(n_t \leq N - n - 1\).
+  Therefore we have
+  \[0 = a_t^\prime (a_t m) = (X_1 X_2 \cdots X_N) m,\]
+  as desired.
+\end{proof}
+
+
+\begin{proposition}
+  Let \(A\) be a connected graded \(k\)-algebra.
+  Denote by \(\Tors{A}\), the full subcategory of \(\Gr{A}\) consisting of all modules \(M\) satisfying for each \(m \in M\) there exists some \(n\) such that \(A_{\geq n}m = 0\).
+  If \(A\) is finitely generated in degree one, then \(\Tors{A}\) is a Serre subcategory.
+\end{proposition}
+
+\begin{proof}
+  Let \(S = \{x_i\}_{i = 1}^r \subseteq A_1\) be a set of generators for \(A\) as a \(k\)-algebra.
+  Consider a short exact sequence
+  \[0 \to M^\prime \to M \overset{p}\to M^{\prime\prime} \to 0.\]
+  It's clear that if \(M\) is an object of \(\Tors{A}\), then so are \(M^\prime\) and \(M^{\prime\prime}\), so it suffices to show that if \(M^\prime\) and \(M^{\prime\prime}\) are both objects of \(\Tors{A}\), then so is \(M\).
+
+  We first observe that since \(A\) is generated in degree 1, it suffices to show that we can choose some sufficiently large integer, \(N\), such that for any element \(m\) and any
+  \[(X_1, X_2, \ldots, X_N) \in \prod_{i = 0}^N S\]
+  the product
+  \((X_1 X_2 \cdots X_N) m = 0\)
+  since all the homogenous elements of degree \(d\) in \(A_{\geq N}\) are \(k\)-linear combinations of \(X_1 X_2 \cdots X_d\) for some \((X_1, X_2, \ldots X_d) \in \prod_{i = 1}^d S\).
+ 
+  Let \(m \in M\) be given.
+  By assumption, we can choose some \(n\) such that \(A_{\geq {n}}p(m) = 0\).
+  Now let \(T = \prod_{i = 1}^n S\) and note that for every element \(t = (X_1, X_2, \ldots, X_n) \in T\) we can associate an element \(a_t = X_1 X_2 \cdots X_n \in A_{\geq n}\) and hence
+  \[p(a_t m) = a_t p(m) = 0\]
+  implies \(a_t m \in M^\prime\).
+  Since \(M^\prime\) is an object of \(\Tors{A}\), we can choose some \(n_t\) such that \(A_{\geq n_t} (a_tm) = 0\).
+
+  As \(T\) is a finite set, we can take \(N = 2\max\left(\{n_t\}_{t \in T} \cup \{n\}\right) + 1\), so for any 
+  \[(X_1, X_2, \ldots, X_{N}) \in \prod_{i = 1}^{N} S\]
+  by taking the last \(n\) elements of this list we obtain an element \(t = (X_{N - n}, \ldots, X_{N})\in T\), which implies that \(a_t m \in M^\prime\).
+  By constuction we have \(n_t \leq N - n - 1\), hence
+  \[0 = (X_1X_2\ldots X_{N - n - 1})(a_t m) = (X_1 X_2 \cdots X_{N}) m.\]
+  Therefore \(M\) is an object of \(\Tors{A}\), as desired.
+\end{proof}
+
+\begin{corollary}
+  Let \(A\), \(B\) be connected graded \(k\)-algebras.
+  If \(A\) and \(B\) are both finitely generated in degree 1, then the category \(\QGr{A \times_k B}\) is well defined and comes equipped with a fully faithful section functor
+  \[\omega_{A \times_k B} \colon \QGr{A \times_k B} \to \Gr{A \times_k B}.\]
+\end{corollary}
+
+\begin{proof}
+  Apply Proposition~\ref{proposition: segre product of generated in degree 1 is generated in degree 1}, Proposition~\ref{proposition: f.g. in degree 1 torsion}, and then \parencite[Cor. 1, III.3]{DCA62}.
+\end{proof}
+
 There are a few notions of torsion for a bi-bi module that one could use, but we take the following.
 
 \begin{definition}
@@ -409,7 +528,7 @@ We recall some basic results on Ext-finiteness, essentially from \parencite[Sect
   \end{align*}
 \end{corollary}
 
-\begin{proof}[Proof of {\ref{corollary: natural maps between Qs}}]
+\begin{proof}%[Proof of {\ref{corollary: natural maps between Qs}}]
   Thanks to Corollary~\ref{corollary: Q preserves bimodules}, we see that the question is well-posed. We handle the case of \(\beta^l_P\) and note that case of \(\beta^r_P\) is the same argument, mutatis mutandis.
 
   First we make some observations about objects of \(\Gr{\left(A \otimes_k B\right)}\).
@@ -428,7 +547,7 @@ We recall some basic results on Ext-finiteness, essentially from \parencite[Sect
   We equip \(\Ch{\Gr{A}}\) with the injective model structure and use the methods of model categories to compute the derived functors (see \parencite{Hovey01} for more details).
   Since we can always replace \(P\) by a quasi-isomorphic fibrant object, we can assume that \(P^n\) is an injective graded \(A \otimes_k B\)-module.
   Moreover, the fact that the canonical morphisms \(A \to A \otimes_k B\) is flat implies that the associated adjunction is Quillen, and hence \(P\) is fibrant when regarded as an object of  \(\Ch{\Gr{A}}\).
-  Since \(Q_A\) is Quillen, it follows that \(Q_A P\) is a fibrant object of \(\Gr{A}\).
+  Since \(Q_A\) preserves injectives, it follows that each \(Q_A P^n\) is an injective object of \(\Gr{A}\).
   It's clear from the fact that \(\tau_A P^n\) is an \(A \otimes_k B\)-module that   \[0 \to \tau_A P^n \to P^n \to P^n/\tau_A P^n \to 0\]
   is an exact sequence of \(\Gr{(A \otimes_k B)}\) for each \(n\).
   Moreover, by Lemma~\ref{cor: Gr injectives} we have \(P^n/\tau_A P^n \cong Q_A P^n\).
@@ -469,20 +588,26 @@ We recall some basic results on Ext-finiteness, essentially from \parencite[Sect
 \begin{proposition} \label{proposition: bi-torsion is a composition}
   Assume that \(A\) and \(B\) are Ext-finite. Then, we have natural quasi-isomorphisms 
   \begin{align*}
-    \mathbf{R}Q_B(\beta^l_P) & : \mathbf{R}Q_{A \otimes_k B} P \to  \mathbf{R}Q_B(\mathbf{R}Q_A P) \\
-    \mathbf{R}Q_A(\beta^r_P) & : \mathbf{R}Q_{A \otimes_k B} P \to  \mathbf{R}Q_A(\mathbf{R}Q_B P).
+    \mathbf{R}Q_B(\beta^l_P) & : \mathbf{R}Q_B(\mathbf{R}Q_A P) \to \mathbf{R}Q_{A \otimes_k B} P\\
+    \mathbf{R}Q_A(\beta^r_P) & : \mathbf{R}Q_A(\mathbf{R}Q_B P) \to \mathbf{R}Q_{A \otimes_k B} P.
   \end{align*}
   Consequently, \(\beta^l_P\) (respectively \(\beta^r_P\)) is an isomorphism if and only if \(\mathbf{R}Q_A P\) (respectively \(\mathbf{R}Q_B P\)) is \(Q_B\) (respectively \(Q_A\)) torsion-free.
 \end{proposition}
 
 
 \begin{proof}
-  As above, by possibly replacing \(P\) with a fibrant object, we assume that \(P\) is a complex of injective graded \(A \otimes_k B\)-modules.
-  We observe that \(P^n \cong \tau_A P^n \oplus Q_A P^n\) as bimodules implies \(Q_A P^n\) is injective as a bimodule for each \(n\), hence is also injective when regarded as a \(B\)-module.
-  It follows that we can compute \(\mathbf{R}Q_B(\mathbf{R}Q_A P)\) by \(Q_B(Q_A P)\)
-  and from Corollary~\ref{corollary: relation on Qs} we have
-  \[Q_{A \otimes_k B} P^n \cong Q_B(Q_A P^n).\]
-  Hence we see that \(\mathbf{R}Q_B(\beta^l_P)\) is a quasi-isomorphism.
+As above, we can replace \(P\) with a quasi-isomorphic fibrant object, so it suffices to assume that \(P\) is fibrant.
+  We see from Corollary~\ref{corollary: relation on Qs} that
+  \[\mathbf{R}Q_{A \otimes_k B} P \cong Q_{A \otimes_k B} P \cong Q_B \circ Q_A P \cong \mathbf{R}(Q_B \circ Q_A) P\]
+  The result now follows from the natural isomorphism (see, e.g., \parencite[Theorem 1.3.7]{Hov99})
+  \[\mathbf{R}Q_B \circ \mathbf{R}Q_A \to \mathbf{R}(Q_B \circ Q_A)\]
+  
+%  As above, by possibly replacing \(P\) with a fibrant object, we assume that \(P\) is a complex of injective graded \(A \otimes_k B\)-modules.
+%  We observe that \(P^n \cong \tau_A P^n \oplus Q_A P^n\) as bimodules implies \(Q_A P^n\) is injective as a bimodule for each \(n\), hence is also injective when regarded as a \(B\)-module.
+%  It follows that we can compute \(\mathbf{R}Q_B(\mathbf{R}Q_A P)\) by \(Q_B(Q_A P)\)
+%  and from Corollary~\ref{corollary: relation on Qs} we have
+%  \[Q_{A \otimes_k B} P^n \cong Q_B(Q_A P^n).\]
+%  Hence we see that \(\mathbf{R}Q_B(\beta^l_P)\) is a quasi-isomorphism.
 \end{proof}
 
 In the case that \(A=B\), there is a particular bi-bi module of interest.

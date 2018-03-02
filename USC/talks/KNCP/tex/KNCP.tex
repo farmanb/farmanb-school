@@ -102,7 +102,8 @@ $$\mathbf{R}{\pi_Y}_\ast \left(E \otimes^{\mathbf{L}} \mathbf{L}\pi_X^\ast M\rig
 \section{Noncommutative Global Morita}
 
 \subsection{Noncommutative Geometry}
-Let $k$ be a commutative ring, and let $A$ be a $\Z$-graded $k$ algebra.
+Let $k$ be a commutative ring.
+Throughout this section, all rings will be assumed to be finitely generated, connected graded \(k\)-algebras.
 Define $A_{\geq n} = \oplus_{n \leq d} A_d$.
 We denote by $\Gr{A}$ the category of $\Z$-graded $A$-modules and by $\Tors{A}$ the Serre subcategory of graded $A$-modules, where $M$ is torsion if for every element $m \in M$ there exists some $n$, possibly depending on $m$, such that $A_{\geq n}m = 0$.
 
@@ -163,7 +164,7 @@ The right adjoint to the inclusion is the functor $\tau$, which takes $M$ to its
 There is an exact sequence
 $$0 \to \tau M \to M \to Q M \to \mathbf{R}^1\tau M \to 0$$
 and isomorphisms $\mathbf{R}^iQ M \cong \mathbf{R}^{i+1}\tau M$ for $1 \leq i$.
-Of particular interest here is the fact that both $\tau$ and $Q$ preserve injective objects (see, e.g., \cite{AZ}), hence for an injective object, $E$, of $\Gr{A}$ we have a split exact sequence of injectives
+Of particular interest here is the fact that both $\tau$ and $Q$ preserve injective objects when \(A\) is Noetherian (see, e.g., \cite{AZ}), hence for an injective object, $E$, of $\Gr{A}$ we have a split exact sequence of injectives
 $$0 \to \tau E \to E \to Q E \to 0.$$
 \begin{definition}
   One defines sheaf cohomology of a quasi-coherent sheaf $\mathcal{M} := \pi(M)$ to be
@@ -189,8 +190,8 @@ One can think of a ring $A$ which is Ext-finite, and satisfies $\chi^\circ(A)$ a
 We make the following definition
 \begin{definition}
   Let $k$ be a commutative ring and let $A$ and $B$ be connected graded $k$-algebras.
-  If $A$ is Ext-finite, left and right Noetherian, and satisfies $\chi^\circ(A)$ and $\chi^\circ(A^\opp)$, then we say that $A$ is \textbf{truly tasty}.
-  If $A$ and $B$ are both truly tasty, then we say that $A$ and $B$ form a \textbf{tasty pair}.
+  If $A$ is Ext-finite, left and right Noetherian, and satisfies $\chi^\circ(A)$ and $\chi^\circ(A^\opp)$, then we say that $A$ is \textbf{delightful}.
+  If $A$ and $B$ are both delightful, then we say that $A$ and $B$ form a \textbf{delightful couple}.
 \end{definition}
 
 \subsection{Some examples of algebras that satisfy $\chi$}
@@ -232,18 +233,45 @@ then $A$ satisfies $\chi$.
 Let $B$ be a left Noetherian graded algebra.
 If the Veronese subring, $A = B^{(r)}$, for some $2 \leq r$, is Noetherian, then $B$ satisfies $\chi$ if and only if $A$ satisfies $\chi$.
 \section{The Main Result}
-As an application of our main result, we have a Morita-style statement for the noncommutative projective schemes associated to a tasty pair
+As an application of our main result, we have a Morita-style statement for the noncommutative projective schemes associated to a delightful couple
 \begin{theorem}[Ballard, F.]
-  Let $k$ be a field, let $A$ and $B$ be a tasty pair, and let $X$ and $Y$ be noncommutative projective schemes associated to $A$ and $B$, respectively.
+  Let $k$ be a field, let $A$ and $B$ be a delightful couple, and let $X$ and $Y$ be noncommutative projective schemes associated to $A$ and $B$, respectively.
   If there exists an equivalence of categories
   $$F \colon D(\Qcoh{X}) \to D(\Qcoh{Y})$$
-  then there exists an object $P \in D(\Qcoh{X \times Y})$ such that
+  then there exists an object $P \in D(\Qcoh{X^\opp \otimes_k Y})$ such that
   $$\begin{tikzcd}[row sep=tiny]
     \Phi_P \colon D(\Qcoh{X}) \arrow{r}& D(\Qcoh{Y})\\
-    M \arrow[mapsto]{r} & \mathbf{R}{\pi_Y}_\ast(E \otimes^\mathbf{L} \pi_X^\ast M)
+    M \arrow[mapsto]{r} & \mathbf{R}{\pi_Y}_\ast(P \otimes^\mathbf{L} \pi_X^\ast M)
   \end{tikzcd}$$
   is an equivalence.
 \end{theorem}
+
+In the special case where \(A\) and \(B\) are also finitely generated in degree one, then we have the following.
+
+\begin{theorem}[{\cite[Theorem 2.4]{VR96}}]\label{theorem: Van Rompay}
+    Let \(A\) and \(B\) be finitely generated, connected graded \(k\)-algebras, and let \(S = A \times_k B\), \(T = A \otimes_k B\).
+    If \(A\) and \(B\) are both generated in degree one, then there is an equivalence of categories
+    \[\begin{tikzcd}[row sep=tiny]
+    \mathbb{V} \colon \QGr{S} \arrow{r} & \QGr{T}\\
+    E \arrow[mapsto]{r} & \pi_{T}\left(T \otimes_S \omega_{S}E\right)
+    \end{tikzcd}\]
+\end{theorem}
+
+As an immediate corollary, we obtain
+
+\begin{corollary} \label{corollary: NCP morita degree 1}
+  Let \(A\) and \(B\) be a delightful couple of connected graded \(k\)-algebras with \(k\) a field that are both generated in degree one.
+  Let \(X^\opp \times_k Y\) denote the noncommutative projective scheme associated to \(A^\opp \times_k B\).
+  Assume that there exists an equivalence
+  \begin{displaymath}
+    f : \mathrm{D} (\Qcoh{X}) \to \mathrm{D} (\Qcoh{Y}).
+  \end{displaymath}
+  Then there exists an object \(P \in D ( \QGr{X^\opp \times_k Y} )\) that induces an equivalence
+  \[\begin{tikzcd}[row sep=tiny]
+  \mathrm{D}(\QGr{A}) \arrow{r}& \mathrm{D}(\QGr{B})\\
+  M \arrow[mapsto]{r} & \pi_B\left(\mathbb{V}(P) \otimes^\mathbf{L} \mathbf{R}\omega_A M\right)
+  \end{tikzcd}\]
+\end{corollary}
 
 \section{Internals}
 
@@ -315,7 +343,7 @@ The statement of our theorem specifies that given two noncommutative projective 
 
 The first obvious question is
 \begin{question}
-  What is a tasty pair, $A$ and $B$, such that $X$ and $Y$ are derived equivalent?
+  What is a delightful couple, $A$ and $B$, such that $X$ and $Y$ are derived equivalent?
 \end{question}
 It is known that noncommutative projective curves are actually commutative (see \cite{AS}), so standard techniques from the commutative situation can be used to produce equivalences.
 Similarly, for $A$ and $B$ commutative, one can produce derived equivalences by identifying the noncommutative projective schemes with the commutative projective schemes, and our result coincides with To\"en's.
@@ -526,5 +554,7 @@ This mapping gives the inverse to the morphism of rings constructed above.
 \bibitem[VdB97]{VdB}
   M. van den Bergh, \emph{Existence theorems for dualizing complexes over non-commutative graded and filtered rings}, J. Algebra 195 (1997), no. 2, pp. 662--679.
 
+\bibitem[VR96]{VR96}
+  Van Rompay, Kristel, \emph{Segre Product of Artin--Schelter Regular Algebras of Dimension 2 and Embeddings in Quantum P3's}, Journal of Algebra 180 (1996), no. 2, pp. 483--512.
 \end{thebibliography}
 \end{document}
