@@ -1,0 +1,42 @@
+\section{Tensor Products of DG-Modules}
+
+Let \(M\) be a dg \(\A\)-module, let \(N\) be a dg \(\A^{\opp}\)-module, and let \(A, B\) be objects of \(\A\).
+For ease of notation, we drop the functor notation \(M(A)\) in favor of \(M_A\) and write \(\A_{A,B}\) for the morphisms \(\A(A, B)\).
+We have structure morphisms
+\[M_{A,B} \in \CH{k}\left(\A_{A,B}, \CH{k}(M_B, M_A)\right) \cong \CH{k}\left(M_B \otimes_k \A_{A,B}, M_A\right)\]
+and
+\[N_{A,B} \in \CH{k}\left(\A_{A,B}, \CH{k}(N_A, N_B)\right) \cong \CH{k}\left(\A_{A,B} \otimes_k N_A, N_B\right),\]
+which give rise to a unique morphism
+\[M_B \otimes_k {A}_{A,B} \otimes_k N_A \ra M_A \otimes_k N_A \oplus M_B \otimes_k N_B\]
+induced by the universal properties of the biproduct.
+The two collections of morphisms given by projecting onto each factor induced morphisms 
+\[\Xi_1, \Xi_2 \colon \bigoplus_{A,B \in \op{Ob}(\A)} M_B \otimes_k \A_{A,B} \otimes_k N_A \ra \bigoplus_{\C \in \op{Ob}(\A)} M_C \otimes_k N_C,\]
+and we define the tensor product of \(M\) and \(N\) to be the coequalizer in \(\Ch{k}\)
+\[\begin{tikzcd}
+\bigoplus_{(i,j) \in \Z^2} M_j \otimes_k \A_{A,B} \otimes_k N_A \arrow[shift left]{r}{\Xi_1} \arrow[shift right,swap]{r}{\Xi_2} & \bigoplus_{\ell \in \Z} M_\ell \otimes_k N_\ell\arrow{r} & M \otimes_\A N
+\end{tikzcd}.\]It is routine to check that a morphism \(M \ra M^\prime\) of right dg \(\A\)-modules induces by the universal property for coequalizers a unique morphism
+\[M \otimes_\A N \ra M^\prime \otimes_\A N\]
+yielding a functor
+\[- \otimes_\A N \colon \dgMod{\A} \ra \CH{k}.\]
+
+One extends this construction to bimodules as follows.
+Given objects \(E\) of \(\dgMod{\A \otimes \B}\) and \(F\) of \(\dgMod{\B^{\opp} \otimes \C}\), we recall that we have associated to each a dg-functor \(\Phi_E \colon \A^{\opp} \ra \dgMod{\B}\) and \(\Phi_F \colon \C^{\opp} \ra \dgMod{\B^{\opp}}\) by the symmetric monoidal closed structure on \(\dgcat{k}\).
+For each pair of objects \(A\) of \(\A\) and \(C\) of \(\C\), we obtain dg-modules
+\[\Phi_E(A) = E(A, -) \colon \B^{\opp} \ra \CH{k}\ \text{and}\ \Phi_F(C) = F( -, C) \colon \B \ra \CH{k}\]
+and hence one may define the object \(E \otimes_\B F\) of \(\dgMod{\A \otimes \C}\) by
+\[\left(E \otimes_\B F\right)(A, C) = \Phi_E(A) \otimes_\B \Phi_F(C).\]
+One can show that by a similar argument to the original that a morphism \(E \to E^\prime\) of \(\dgMod{\A \otimes \B}\) induces a morphism \(E \otimes_\B F \to E^\prime \otimes_\B F\) of \(\dgMod{\A \otimes \C}\), and a morphism \(F \to F^\prime\) of \(\dgMod{\B^{\opp} \otimes \C}\) induces a morphism \(E \otimes_\B F \to E \otimes_\B F^\prime\) of \(\dgMod{\A \otimes \C}\).
+
+\begin{remark}\label{rem: tensor over k}
+  Denote by \(\K\) the dg-category with one object, \(\ast\), and morphisms given by the chain complex
+  \[\K(\ast,\ast)^n =
+  \left\{ \begin{matrix}
+    k & n = 0\\
+    0 & n \neq 0
+  \end{matrix}\right.\]  with zero differential.
+  This category serves as the unit of the symmetric monoidal structure on \(\dgcat{k}\), so for small dg-categories, \(\A\) and \(\C\), we can always identify \(\A\) with \(\A \otimes \K\) and \(\C\) with \(\K^\opp \otimes \C\).
+  With this identification in hand, we obtain from taking \(\B = \K\) in the latter construction a special case:
+  Given a dg \(\A^\opp\)-module, \(E\), and a dg \(\C\)-module, \(F\), we have a dg \(\A\)-\(\C\)-bimodule defined by the tensor product
+  \[\left(E \otimes F\right)(A,C) := \left(E \otimes_{\K} F\right)(A,C) = E(A) \otimes_k F(C).\]
+\end{remark}
+

@@ -1,0 +1,102 @@
+\section{Bimodules as Morphisms of Module Categories}
+Let \(E\) be a dg \(\A\)-\(\B\)-bimodule.
+Following \parencite[Section 3]{CS15}, we can extend the associated functor \(\Phi_E\) to a dg-functor
+\[\widehat{\Phi_M} \colon \dgMod{\A} \to \dgMod{\B}\]
+defined by \(\widehat{\Phi_E}(M) = M \otimes_\A E\).
+Similarly, we have a dg-functor in the opposite direction
+\[\widetilde{\Phi_M} \colon \dgMod{\B} \to \dgMod{\A}\]
+defined by \(\widetilde{\Phi_M}(N) = \dgMod{\B}(\Phi_M( - ), N)\).
+
+For any dg-functor \(G \colon \A \to \B\) we denote by \(\Ind{G}\) the extension of the dg-functor
+\[A \to \B \overset{Y_\B}\to \dgMod{\B}\]
+and its right adjoint by \(\Res{G}\).
+By way of the enriched Yoneda Lemma we see that for any object \(A\) of \(\A\) and any dg \(\B\)-module, \(N\), 
+\[\Res{G}(N)(A) = \dgMod{\B}(h_{GA}, N) \cong N(GA).\]
+
+We record here some useful propositions regarding extensions of dg-functors.
+
+\begin{proposition}[{\parencite[Prop 3.2]{CS15}}]
+  Let \(\A\) and \(\B\) be small dg-categories.
+  Let \(F \colon \A \to \dgMod{\B}\) and \(G \colon \A \to \B\) be dg-functors.
+  \begin{enumerate}[(i)]
+  \item
+    \(\widehat{F}\) is left adjoint to \(\widetilde{F}\) (hence \(\Ind{G}\) is left adjoint to \(\Res{G}\)),
+  \item
+    \(\widehat{F} \circ Y_\A\) is dg-isomorphic to \(F\) and \(H^0(\widehat{F})\) is continuous (hence \(\Ind{G} \circ Y_\A\) is dg-isomorphic to \(Y_\B \circ G\) and \(H^0(\Ind{G})\) is continuous),
+  \item
+    \(\widehat{F}(\hproj{\A}) \subseteq \hproj{\B}\) if and only if \(F(A) \subseteq \hproj{B}\) (hence \(\Ind{G}(\hproj{\A}) \subseteq \hproj{B}\)),
+  \item
+    \(\Res{G}(\hproj{\B}) \subseteq \hproj{\A}\) if and only if \(\Res{G}(\bar{B}) \subseteq \hproj{\A}\); moreover,\\ \(H^0(\Res{G})\) is always continuous,
+  \item
+    \(\Ind{G} \colon \hproj{\A} \to \hproj{\B}\) is a quasi-equivalence if \(G\) is a quasi-equivalence.
+  \end{enumerate}
+\end{proposition}
+
+\begin{remark}\label{rem: tensoring with reps}
+  \begin{enumerate}
+  \item
+    We note that for dg \(\A\)- and \(\A^\opp\)-modules, \(M\) and \(N\), part \((i)\) implies that the dg-functors
+    \[- \otimes_\A N \colon \dgMod{\A} \to \CH{k}\ \text{and}\ M \otimes_\A - \colon \dgMod{\A^\opp} \to \CH{k}\]
+    have right adjoints
+    \[\widetilde{N}(C) = \CH{k}(N( - ), C)\ \text{and}\ \widetilde{M}(C) = \CH{k}(M( - ), C),\]
+    respectively.
+    As an immediate consequence of the enriched Yoneda Lemma
+    \[h_A \otimes_\A N \cong N(A)\ \text{and}\ M \otimes_\A h^A \cong M(A)\]
+    holds for any object \(A\) of \(\A\).
+  \item
+    We denote by \(\Delta_\A\) the dg \(\A\)-\(\A\)-bimodule corresponding to the Yoneda embedding, \(Y_\A\), under the isomorphism
+    \[\dgMod{\A^\opp \otimes \A} \cong \DGCAT{k}\left(\A, \dgMod{\A}\right).\]
+    It's clear that we have a dg-functor
+    \[\Delta_\A \otimes_\A - \colon \dgMod{\A^\opp \otimes \A} \to \dgMod{\A^\opp \otimes \A}\]
+    and for any dg \(\A\)-\(\A\)-bimodule, \(E\), we see that
+    \[(\Delta_\A \otimes_\A E)(A,A^\prime) = h_A \otimes_\A E(- , A^\prime) \cong E(A,A^\prime)\]
+    implies that \(\Delta_\A \otimes_\A E \cong E\).
+  \end{enumerate}
+\end{remark}
+
+When starting with an h-projective we have a very nice extension of dg-functors:
+\begin{proposition}[{\parencite[Lemma 3.4]{CS15}}]
+  For any h-projective dg \(\A\)-\(\B\)-bimodule, \(E\), the associated functor
+  \[\Phi_E \colon \A \to \dgMod{\B}\]
+  factors through \(\hproj{\B}\).
+\end{proposition}
+
+As a direct consequence of the penultimate proposition, this means that we can view the extension of \(\Phi_E\) as a dg-functor
+\[\widehat{\Phi_E} = - \otimes_\A E \colon \hproj{A} \to \hproj{B}.\]
+Put another way, tensoring with an h-projective \(\A\)-\(\B\)-bimodule preserves h-projectives.
+
+One essential result about \(\dgcat{k}\) comes from T\"oen's result on the existence, and description of, the internal Hom in its homotopy category. 
+
+\begin{theorem}[{\parencite[Theorem 1.1]{Toen07}}, {\parencite[4.1]{CS15}}] \label{theorem: Toen}
+  Let \(\A\), \(\B\), and \(\C\) be objects of \(\dgcat{k}\).
+  There exists a natural bijection
+  \[[\A,\C] \overset{1:1}\longleftrightarrow \Iso{H^0(\hproj{\A^{\opp} \otimes \C}^\rqr)}\]
+  Moreover, the dg-category \(\RHom{\B,\C} := \hproj{\B^\opp \otimes \C}^\rqr\) yields a natural bijection
+  \[[\A \otimes \B, \C] \overset{1:1}\longleftrightarrow [\A, \RHom{\B,\C}]\]
+  proving that the symmetric monoidal category \(\Ho{\dgcat{k}}\) is closed.
+\end{theorem}
+
+\begin{corollary}[{\parencite[7.2]{Toen07}},{\parencite[Cor. 4.2]{CS15}}] \label{corollary: Toen}
+  Given two dg categories \(\A\) and \(\B\), \(\RHom{\A, \hproj{\B}}\) and \(\hproj{\A^\opp \otimes \B}\) are isomorphic in \(\Ho{\dgcat{k}}\).
+  Moreover, there exists a quasi-equivalence
+  \[\RHomc{\hproj{\A},\hproj{\B}} \to \RHom{\A, \hproj{B}}.\]
+\end{corollary}
+
+To get a sense of the value of this result, let us recall one application from \parencite[Section 8.3]{Toen07}. Let \(X\) and \(Y\) be quasi-compact and separated schemes over \(\op{Spec} k\). 
+Recall the dg-model for \(\mathrm{D}(\op{Qcoh} X)\), \(\mathcal L_{\op{qcoh}}(X)\), is the \(\mathcal C(k)\)-enriched subcategory of fibrant and cofibrant objects in the injective model structure on \(C(\op{Qcoh} X)\).
+
+\begin{theorem}[{\parencite[Theorem 8.3]{Toen07}}]
+  Let \(X\) and \(Y\) be quasi-compact, quasi-separated schemes over \(k\). Then there exists an isomorphism in \(\Ho{\dgcat{k}}\)
+  \begin{displaymath}
+    \RHomc{\mathcal L_{\op{qcoh}} X,\mathcal L_{\op{qcoh}} Y} \cong \mathcal L_{\op{qcoh}} (X \times_k Y)
+  \end{displaymath}
+  which takes a complex \(E \in \mathcal L_{\op{qcoh}} (X \times_k Y)\) to the exact functor on the homotopy categories
+  \begin{align*}
+    \Phi_E : \mathrm{D}(\Qcoh{X}) & \to \mathrm{D}(\Qcoh{Y}) \\
+    M & \mapsto \mathbf{R}\pi_{2 \ast} \left( E \overset{\mathbf{L}}{\otimes} \mathbf{L}\pi_1^\ast M \right)
+  \end{align*}
+\end{theorem}
+
+\begin{proof}
+  The first part of the statement is exactly as in \parencite{Toen07}. The second part is implicit. 
+\end{proof}

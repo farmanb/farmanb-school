@@ -1,0 +1,57 @@
+\section{Graded Rings and Modules}
+\begin{definition}
+  Let \(G\) be a finitely-generated abelian group. We say that a \(k\)-algebra \(A\) is \(G\)-graded if there exists a decomposition as \(k\)-modules 
+  \begin{displaymath}
+    A = \bigoplus_{g \in G} A_g
+  \end{displaymath}
+  with \(A_g A_h \subset A_{g+h}\). One says that \(A\) is \textbf{connected graded} if it is \(\Z\)-graded with \(A_0 = k\) and \(A_n = 0\) for \(n < 0\). 
+\end{definition}
+
+%For algebraic geometers, the most common example is the homogenous coordinate ring of a projective scheme. These are of course commutative. One has a plentitude of noncommutative examples. 
+
+%\begin{example} \label{example: ncPs}
+%  Let us take \(k = \mathbf{C}\) and consider the following quotient of the free algebra 
+%  \begin{displaymath}
+%    A_q := \mathbf{C}\langle x_0,\ldots,x_n \rangle/(x_i x_j - q_{ij} x_j x_i)
+%  \end{displaymath}
+%  for \(q_{ij} \in \mathbf{C}^\times\). These give noncommutative deformations of \(\mathbf{P}^n\).
+%\end{example}
+
+%\begin{example} \label{example: ncCY}
+%  Building off of Example~\ref{example: ncPs}, we recall the following class of noncommutative algebras of Kanazawa \parencite{Kanazawa15}. Pick \(\phi \in \mathbf{C}\). And set 
+%  \begin{displaymath}
+%    A^\phi_q := A_q / \left( \sum_{i = 0}^n x_i^{n+1} - \phi(n+1)(x_0\cdots x_n) \right). 
+%  \end{displaymath}
+%  This is the noncommutative version of the homogeneous coordinate rings of the Hesse (or Dwork) pencil of Calabi-Yau hypersurfaces in \(\mathbf{P}^n\). 
+%\end{example}
+
+\begin{definition}
+  We associate to a graded ring \(A\) the Grothendieck category of (left) \(G\)-graded modules, \(\Gr{A}\), with morphisms \(\Gr{A}(M,N)\) all degree preserving \(A\)-linear morphisms.
+
+  For a \(G\)-graded \(A\)-module, \(N\), we write for \(h \in G\)
+  \[N(h) = \bigoplus_{g \in G} N_{g + h}\]
+  and we denote the graded module of morphism by
+  \[\GR{A}(M,N) := \bigoplus_{g \in G} \Gr{A}(M,N(g)).\]
+\end{definition}
+
+\begin{remark}
+  In keeping with the notation above, we denote by \(A^\opp\) the opposite ring with multiplication reversed and we view the category of right \(G\)-graded \(A\)-modules as the category of left \(G\)-graded \(A^\opp\)-modules.
+\end{remark}
+
+\begin{definition}
+  Let \(M\) be a graded \(A\)-module. We say that \(M\) has \textbf{right limited grading} if there exists some \(D\) such that \(M_{d} = 0\) for all \(D \leq d\). We define \textbf{left limited grading} analogously.
+\end{definition}
+
+For a connected graded \(k\)-algebra, \(A\), one has the bi-ideal
+\begin{displaymath}
+  A_{\geq m} :=  \bigoplus_{n\geq m} A_n.
+\end{displaymath}
+
+\begin{definition}
+  Let \(A\) be a finitely generated connected graded algebra. Recall that an element, \(m\), of a module, \(M\), is \textbf{torsion} if there is an \(n\) such that
+  \begin{displaymath}
+    A_{\geq n} m = 0.
+  \end{displaymath}
+  We say that \(M\) is torsion if all its elements are torsion.
+  We denote by \(\Tors{A}\) the full subcategory of \(\Gr{A}\) consisting of torsion modules.
+\end{definition}

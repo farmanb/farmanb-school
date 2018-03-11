@@ -1,0 +1,83 @@
+\section{Duality}
+
+One can regard the bimodule \(\mathbf{R}Q_{A \otimes_k A^\opp}\Delta\) as a sum of \(A\)-modules
+\[\mathbf{R}Q_{A \otimes_k A^\opp}\Delta = \bigoplus_{x} (\mathbf{R}Q_{A \otimes_k A^\opp}\Delta)_{\ast,x}\]
+and define for any object, \(M\), of \(\ldgGrMod{A}\) the object
+\[\mathbf{R}\underline{\op{Hom}}_A(M, \mathbf{R}Q_{A \otimes_k A^\opp}\Delta) = \bigoplus_x \mathbf{R}\op{Hom}_A(M, \mathbf{R}Q_{A \otimes_k A^\opp}\Delta_{\ast,x})\]
+of \(\rdgGrMod{A}\).
+Consider the functor
+\begin{align*}
+  (-)^{\vee} : \ldgGrMod{A}^\opp & \to \rdgGrMod{A} \\
+  M & \mapsto \mathbf{R}\underline{\op{Hom}}_A \left( M , \mathbf{R}Q_{A \otimes_k A^\opp} \Delta \right)
+\end{align*}
+
+\begin{lemma} \label{lemma: duality really is a duality}
+  Assume \(A\) is truly tasty. Then the natural map 
+  \begin{displaymath}
+    \id \to (-)^{\vee \vee}
+  \end{displaymath}
+  given by evaluation is a quasi-isomorphism for \(\mathbf{R}Q_A A(x)\), for all \(x\). Furthermore, there are quasi-isomorphisms
+  \begin{displaymath}
+    \left( \mathbf{R}Q_A A(x) \right)^\vee \cong \mathbf{R}Q_{A^\opp} A(-x).
+  \end{displaymath}
+\end{lemma}
+
+\begin{proof}
+  We first exhibit the latter quasi-isomorphisms. We have 
+  \begin{displaymath}
+    (\mathbf{R}Q_A A(x))^\vee \cong \mathbf{R}\op{Hom}_A (A(x), \mathbf{R}Q_{A \otimes_k A^\opp} \Delta) \cong (\mathbf{R}Q_{A \otimes_k A^\opp} \Delta)_{-x,\ast}
+  \end{displaymath}
+  since \(\mathbf{R}Q_{A \otimes_k A^\opp} \Delta\) is right orthogonal to \(\tau_A\)-torsion. From Proposition~\ref{proposition: when beta is an isomorphism}, we get 
+  \begin{displaymath}
+    (\mathbf{R}Q_{A \otimes_k A^\opp} \Delta)_{-x,\ast} \cong (\mathbf{R}Q_{A^\opp} \Delta)_{-x,\ast} = \mathbf{R}Q_{A^\opp} A(-x).
+  \end{displaymath}
+  Applying this twice, we get 
+  \begin{displaymath}
+    (\mathbf{R}Q_A A(x))^{\vee \vee} \cong \mathbf{R}Q_A A(x).
+  \end{displaymath}
+  We just need to check that the natural map \(\nu : 1 \to (-)^{\vee \vee}\) induces the identity after this quasi-isomorphism.
+
+  Note that we found a map
+  \begin{displaymath}
+    A(-x) \to \mathbf{R}Q_A A(-x) \to ( \mathbf{R}Q_A A(x) )^\vee 
+  \end{displaymath}
+  inducing the quasi-isomorphism \((\mathbf{R}Q_A A(x))^{\vee \vee} \cong \mathbf{R}Q_A A(x)\). One can identify the image of \(1\) as a map 
+  \begin{displaymath}
+    \mathbf{R}Q_A A(x) \to \mathbf{R}Q_{A \otimes_k A^\opp} \Delta (0,x) \cong \mathbf{R}Q_A ( \Delta (x,0) )
+  \end{displaymath}
+  which, after applying the quasi-isomorphism, is the natural inclusion. Evaluating this at \(a \in \mathbf{R}Q_A A(x)\) gives \(a\) back. Thus, we see that \(\nu\) is quasi-fully faithful on \(\mathbf{R}Q_A A(x)\) for all \(x\). 
+\end{proof}
+
+\begin{definition}
+  Let \(Q\A\) be the full dg-subcategory of \(\CH{\Gr{A}}\) with objects given by \(Q_A\) applied to injective resolutions of \(A(x)\) for all \(x\). 
+\end{definition}
+
+\begin{corollary} \label{corollary: duality is a duality}
+  Assume that \(A\) is truly tasty. The functor \((-)^\vee\) induces a quasi-equivalence \((Q\A)^\opp \cong Q(\A^\opp)\). 
+\end{corollary}
+
+\begin{proof}
+  From Lemma~\ref{lemma: duality really is a duality}, we see that \((-)^\vee\) is quasi-fully faithful on \(Q\A\) and has quasi-essential image \(Q(\A^\opp)\). 
+\end{proof}
+
+\begin{lemma} \label{lemma: trace map}
+  Assume that \(A\) is truly tasty. There is a natural map 
+  \begin{displaymath}
+    \eta : M^\vee \overset{\mathbf{L}}{\otimes}_{\mathcal A} N \to \op{Hom}_A(M,N).
+  \end{displaymath}
+  Then \(\eta\) is a quasi-isomorphism for any \(M\) and any \(N \cong \mathbf{R}Q_A N\). 
+\end{lemma}
+
+\begin{proof}
+  First, note that we have the natural map 
+  \begin{displaymath}
+    M^\vee \overset{\mathbf{L}}{\otimes}_{\mathcal A} N \to \mathbf{R}\underline{\op{Hom}}_A(M, \mathbf{R}Q_{A \otimes_k A^\opp} \Delta \overset{\mathbf{L}}{\otimes}_{\mathcal A} N).
+  \end{displaymath}
+  For \(M = A(x)\), we see this map is a quasi-isomorphism using the fact that \(A\) satisfies \(\bigstar\) from Proposition~\ref{proposition: vanishing of tensor}. 
+  Since \(A\) satisfies \(\bigstar\), the map \(N \cong \Delta \otimes_{\mathcal A} N \to \mathbf{R}Q_{A \otimes_k A^\opp} \Delta \overset{\mathbf{L}}{\otimes}_{\mathcal A} N\) is a quasi-isomorphism. So the map  
+  \begin{displaymath}
+    \mathbf{R}\underline{\op{Hom}}_A(M, N) \to \mathbf{R}\underline{\op{Hom}}_A(M, \mathbf{R}Q_{A \otimes_k A^\opp} \Delta \overset{\mathbf{L}}{\otimes}_{\mathcal A} N)
+  \end{displaymath}
+  is also a quasi-isomorphism. Combining the two gives the desired quasi-isomorphism for \(M = A(x)\). But the condition \(\eta\) is a quasi-isomorphism is RTJ in \(M\) so is true for all \(M\) by Proposition~\ref{proposition: RTJ properties}
+\end{proof}
+

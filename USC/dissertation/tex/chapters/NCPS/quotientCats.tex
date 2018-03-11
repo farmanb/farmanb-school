@@ -1,0 +1,182 @@
+\section{Quotient Categories}
+
+Since the language for the objects in this section seems variable in the literature, we collect here some basic definitions and results from the theory of quotient categories so as to avoid any confusion.
+The standard reference is \parencite{DCA62}.
+
+\begin{definition}
+  A full subcategory, \(\Serre\), of an abelian category, \(\A\) is called a \textbf{Serre subcategory} if for any short exact sequence
+  \[0 \to X^\prime \to X \to X^{\prime\prime} \to 0\]
+  of \(\A\), \(X\) is an object of \(\Serre\) if and only if both \(X^\prime\) and \(X^{\prime\prime}\) are objects of \(\Serre\).
+\end{definition}
+
+\begin{remark}
+  It is easy to check that a Serre subcategory is an abelian category in its own right.
+\end{remark}
+
+It is well known that for a left Noetherian, connected graded \(k\)-algebra, \(A\), \(\Tors{A}\) is a well-behaved Serre subcategory.
+In the commutative case, this of course covers the class of all finitely generated \(k\)-algebras.
+However, as noncommutative rings are generally less well behaved than their commutative counterparts, we note that even the noncommutative polynomial algebra \(k\langle x,y\rangle\) is no longer left Noetherian (see, e.g. \parencite[Exercise 1, p. 8]{Goodearl}.
+The following proposition allows us to consider non-Noetherian rings.
+
+\begin{proposition}\label{proposition: f.g. torsion}
+  Let \(A\) be a connected graded \(k\)-algebra.
+  If \(A\) is finitely generated in positive degree, then \(\Tors{A}\) is a Serre subcategory.
+\end{proposition}
+
+\begin{proof}
+  Let \(S = \{x_i\}_{i=1}^r\) be a set of generators for \(A\) as a \(k\)-algebra and let \(d_i = \deg(x_i)\).
+  Consider a short exact sequence
+  \[0 \to M^\prime \to M \overset{p}\to M^{\prime\prime} \to 0.\]
+  It's clear that if \(M\) is an object of \(\Tors{A}\), then so are \(M^\prime\) and \(M^{\prime\prime}\).
+  Hence it suffices to show that if \(M^\prime\) and \(M^{\prime\prime}\) are both objects of \(\Tors{A}\), then so is \(M\).
+  
+  First assume that there exists some \(N\) such that for any \((X_1, X_2, \ldots, X_N) \in \prod_{i = 1}^N S\) we have \((X_1 \cdots X_N)m = 0\).
+  Let \(d = \max(\{d_i\}_{i = 1}^r)\) and take any \(a \in A_{\geq dN}\).
+  By assumption we can write \(a = \sum_{i=1}^n \alpha_i a_i\) with \(\alpha_i \in k\), each \(a_i\) of the form
+  \[a_i = X_{i,1} X_{i,2}\cdots X_{i, s_i},\, X_{i,j} \in S\]
+  and, for each \(i\),
+  \[dN \leq \sum_{j = 1}^{s_i} \deg(X_{i,j}) = \deg(a) \leq ds_i.\]
+  It follows that \(N \leq s_i\) and hence \(am = 0\).
+  Thus it suffices to find such an \(N\).
+
+  Fix an element \(m \in M\).
+  Since \(M^{\prime\prime}\) is an object of \(\Tors{A}\), there exists some \(n\) such that \(A_{\geq n} p(m) = 0\) and hence \(A_{\geq n}m \in M^\prime\).
+  In particular, if we let \(T = \prod_{i = 1}^n S\), then for any element \(t = (X_1, X_2, \ldots, X_n) \in T\) we have an element \(a_t = X_1 X_2 \cdots X_n \in A_{\geq n}\) and so \(a_t m \in M^\prime\).
+  Let \(n_t\) be such that \(A_{\geq n_t} (a_t m) = 0\) and take \(N = 2\max(\{n_t\}_{t \in T} \cup \{n\}) + 1\).
+  If we take any element \((X_1, X_2, \ldots, X_N) \in \prod_{i = 1}^N S\), then we can form an element \(a_t = X_{N - n} X_{N - n + 1} \cdots X_N \in A_{\geq n}\).
+  By construction, \(a_t m \in M^\prime\) and \(a_t^\prime = X_1 X_2 \cdots X_{N - n - 1} \in A_{\geq n_t}\) since \(n_t \leq N - n - 1\).
+  Therefore we have
+  \[0 = a_t^\prime (a_t m) = (X_1 X_2 \cdots X_N) m,\]
+  as desired.
+\end{proof}
+
+Our only concern for Serre subcategories will be for the construction of a quotient.
+It can be shown that for any pair \((X,Y)\) of objects of \(\A\), equipping the collection of pairs of subobjects \((X^\prime, Y^\prime)\) satisfying \(X/X^\prime\), \(Y^\prime\) both objects of \(\Serre\) with the ordering \((X^\prime, Y^\prime) \leq (X^{\prime\prime}, Y^{\prime\prime})\) if and only if \(X^{\prime\prime}\) is a subobject of \(X^\prime\) and \(Y^\prime\) is a subobject of \(Y^{\prime\prime}\) forms a directed system.
+One defines the \textbf{quotient of \(\A\) by the Serre subcategory \(\Serre\)} to be the category \(\A/\Serre\) with objects those of \(\A\) and morphisms given by the colimit over this system
+\[\A/\Serre(X,Y) = \colim_{(X^\prime, Y^\prime)} \A(X^\prime, Y/Y^\prime)\]
+This quotient category comes equipped with a canonical projection functor
+\[\pi \colon \A \to \A/\Serre\]
+which is the identity on objects and takes a morphism to its image in the colimit \parencite[Cor. 1, III.1]{DCA62}.
+The quotient is especially nice in the sense that the quotient is always abelian, \(\pi\) is always exact and, in the case that \(\A\) is Grothendieck, the quotient is also Grothendieck.
+
+In nice situations, this projection admits a section functor in the following sense.
+
+\begin{proposition}\label{prop: existence of serre functor}
+  Let \(\A\) be an abelian category with injective envelopes and let \(\Serre\) be a serre subcategory.
+  The following are equivalent:
+  \begin{enumerate}[(i)]
+  \item
+    The functor \(\pi\) admits a fully faithful right adjoint, and
+  \item
+    Every object \(M\) of \(\A\) contains a subobject which is an object of \(\Serre\) and is maximal amongst all such subobjects.
+  \end{enumerate}
+  In this case, we say that \(\Serre\) is a \textbf{localizing subcategory}.
+\end{proposition}
+
+\begin{proof}
+  This is \parencite[Cor. 1, III.3]{DCA62}.
+\end{proof}
+
+Thanks to Proposition~\ref{proposition: f.g. torsion}, \(\Tors{A}\) is a coreflective Serre subcategory admitting a right adjoint, \(\tau\), to the inclusion, which takes a module \(M\) to its maximal torsion submodule, \(\tau{M}\), whenever \(A\) is finitely generated in positive degree.
+As such, we can form the quotient.
+\begin{definition}
+  For \(A\) a finitely generated graded \(k\)-algebra, denote the quotient of the category of graded \(A\)-modules by torsion as
+  \begin{displaymath}
+    \QGr{A} := \Gr{A} / \Tors{A}
+  \end{displaymath}
+  Denote by \(\omega : \QGr{A} \to \Gr{A}\) the right adjoint of \(\pi\), and \(Q := \omega\pi\).
+\end{definition}
+
+\begin{remark}
+  In the sequel, it will be important to note that \(\omega\), being a fully faithful right adjoint to an exact functor, preserves injectives.
+  In particular, this will guarantee that the adjunction lifts to a Quillen adjunction between \(\Ch{\Gr{A}}\) and \(\Ch{\QGr{A}}\), both equipped with the standard injective model structures.  For details, see \parencite{Hovey01}.
+\end{remark}
+
+The category \(\QGr{A}\) is defined to be the quasi-coherent sheaves on the \textbf{noncommutative projective scheme} \(X\). 
+
+\begin{remark}
+  Note that, traditionally speaking, \(X\) is not a space, in general. In the case \(A\) is commutative and finitely-generated by elements of degree \(1\), then a famous result of Serre says that \(X\) is \(\op{Proj} A\).
+\end{remark}
+
+\begin{definition}\label{defn: serre closed}
+  Let \(\A\) be an abelian category and let \(\Serre\) be a Serre subcategory.
+  We say that an object \(X\) of \(\A\) is \(\Serre\)-closed if any of the following equivalent conditions are satisfied:
+  \begin{enumerate}
+  \item\label{defn:serre closed 1}
+    Given a short exact sequence 
+    \begin{center}
+      \begin{tikzcd}
+        0 \arrow{r} & K \arrow{r}{\ker{f}} & Z \arrow{r}{f} & Y \arrow{r}{\coker{f}} & C \arrow{r} & 0
+      \end{tikzcd}
+    \end{center}
+    with $K$ and $C$ objects of $\Serre$, then the canonical morphism
+    $$h_X(f) \colon \A(Y,X) \to \A(Z,X)$$
+    is an isomorphism,
+  \item\label{defn:serre closed 2}
+    The maximal \(\Serre\)-subobject of $X$ is the zero object and any short exact sequence 
+    \begin{center}
+      \begin{tikzcd}
+        0 \arrow{r} & X \arrow{r}{f} & Y \arrow{r}{\coker{f}} &C \arrow{r} & 0
+      \end{tikzcd}
+    \end{center}
+    with $C$ an object of $\Serre$ splits, and
+  \item\label{defn: serre closed 3}
+    For any object $Y$ of $\A$, $\pi \colon \A \rightarrow \A/\Serre$ induces an isomorphism
+    $$\A(Y, X) \cong \A/\Serre(\pi(Y), \pi(X)).$$
+  \end{enumerate}
+\end{definition}
+
+\begin{lemma}
+  An object \(M\) of \(\Gr{A}\) is \(\Tors{A}\)-closed if and only if \(M \cong QM\).
+  Consequently, \(\QGr{A}\) is equivalent to the the full subcategory of \(\Gr{A}\) consisting of \(\Tors{A}\)-closed objects.
+\end{lemma}
+\begin{proof}
+  This is immediate from the Yoneda Lemma and condition~\ref{defn: serre closed 3} of Definition~\ref{defn: serre closed}.
+\end{proof}
+
+\begin{lemma}
+  If \(I\) is a \(\Tors{A}\)-closed injective, then \(\pi{I}\) is injective.
+\end{lemma}
+
+\begin{proof}
+  This is immediate from the isomorphism \(\Gr{A}(-, I) \cong \QGr{A}(\pi(-), \pi{I})\).
+\end{proof}
+
+\begin{proposition}\label{prop: decomposition of injectives}
+  Let \(\A\) be an abelian category with injective envelopes, and let \(\Serre\) be a localizing subcategory.
+  For each object \(X\) of \(\A\) denote by \(X_\Serre\) the maximal \(\Serre\)-subobject.
+  If \(\Serre\) is closed under injective envelopes, then for every injective \(I\) of \(\A\)
+  \[I \cong I_\Serre \oplus \omega\pi{I}.\]
+\end{proposition}
+
+\begin{proof}
+  Let \(I_\Serre \to E\) be an injective envelope.
+  Since \(I\) is injective we have an extension over the inclusion of the maximal \(\Serre\)-subobject
+  \[\begin{tikzcd}
+  0 \arrow{r} & I_\Serre \arrow{r}\arrow{d} & E \arrow[dashed]{ld}{\exists}\\
+  & I
+  \end{tikzcd}\]
+  and this extension is necessarily monic because injective envelopes are essential monomorphisms.
+  By maximality of \(I_\Serre\) amongst all \(\Serre\)-subobjects of \(I\), it follows that \(I_\Serre = E\) is injective.
+  Denoting by \(\varepsilon\) the unit of the adjunction
+  \(\begin{tikzcd}
+  \pi \dashv \omega \colon \A \arrow[shift left=.5ex]{r} & \A/\Serre \arrow[shift left=.5ex]{l}
+  \end{tikzcd}\)
+  the exact sequence
+  \[\begin{tikzcd}
+  0 \arrow{r} & I_\Serre \arrow{r} & I \arrow{r}{\varepsilon(I)} & \omega\pi{A} I \arrow{r} & 0
+  \end{tikzcd}\]  splits, as desired.
+\end{proof}
+We record here as a corollary a more explicit version of \parencite[Prop 7.1 (5)]{AZ94}, which states that every injective object of \(\Gr{A}\) is of the form \(I_1 \oplus I_2\), with \(I_1\) a torsion-free injective and \(I_2\) an injective torsion module.
+This will be useful for computations involving total derived functors in the sequel.
+
+\begin{corollary} \label{cor: Gr injectives}
+  Let \(A\) be a left Noetherian, connected graded \(k\)-algebra.
+  Every injective \(I\) of \(\Gr{A}\) is isomorphic to \(\tau_A I \oplus Q_A I\).
+
+\end{corollary}
+
+\begin{proof}
+  By \parencite[Prop 2.2]{AZ94} any essential extension of a torsion module is torsion.
+  Now apply Proposition~\ref{prop: decomposition of injectives}.
+\end{proof}

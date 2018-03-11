@@ -1,0 +1,30 @@
+\section{The Model Structure on DG-Categories}
+We collect here some basic results on the model structure for \(\dgcat{k}\).
+For any dg-functor \(F \colon \A \to \B\), we say that \(F\) is
+\begin{enumerate}[(i)]
+\item
+  \textbf{quasi-fully faithful} if for any two objects \(A_1\), \(A_2\) of \(\A\) the morphism
+  \[F(A_1, A_2) \colon \A(A_1, \A_2) \to \B(FA_1, FA_2)\]
+  is a quasi-isomorphism of chain complexes,
+\item
+  \textbf{quasi-essentially surjective} if the induced functor \(H^0(F) \colon H^0(\A) \to H^0(\B)\) is essentially surjective,
+\item
+  a \textbf{quasi-equivalence} if \(F\) is quasi-fully faithful and quasi-essentially surjective,
+\item
+  a \textbf{fibration} if \(F\) satisfies the following two conditions:
+  \begin{enumerate}[(a)]
+  \item
+    for all objects \(A_1, A_2\) of \(\A\), the morphism \(F(A_1,A_2)\) is a degree-wise surjective morphism of complexes, and
+  \item
+    for any object \(A\) of \(\A\) and any isomorphism \(\eta \in H^0(\B)(H^0(F)A, B)\), there exists an isomorphism \(\nu \in H^0(\C)(A,A^\prime)\) such that \(H^0(F)(\nu) = \eta\).
+  \end{enumerate}
+\end{enumerate}
+In \parencite{Tabuada05} it is shown that taking the class of fibrations defined above and the class of weak equivalences to be the quasi-equivalences, \(\dgcat{k}\) becomes a cofibrantly generated model category.
+The localization of \(\dgcat{k}\) at the class of quasi-equivalences is the homotopy category, \(\Ho{\dgcat{k}}\).
+We will denote by \([\A,\B]\) the morphisms of \(\Ho{\dgcat{k}}\).
+
+A small dg-category \(\A\) is said to be \textbf{h-projective} if for all objects \(A_1, A_2\) of \(\A\) and any acyclic complex, \(C\), every morphism of complexes \(\A(A_1, A_2) \to C\) is null-homotopic.
+In \parencite{CS15}, it is shown that there exists an h-projective category \(A^{\op{hp}}\) quasi-equivalent to \(\A\) and, as a result, the localization of the full subcategory of \(\dgcat{k}\) of h-projective dg-categories at the class of quasi-equivalences is equivalent to \(\Ho{\dgcat{k}}\).
+In particular, when \(k\) is a field, every dg-category is h-projective and hence one can compute the derived tensor product by
+\[\A \otimes^\mathbf{L} \B = \A^{\op{hp}} \otimes \B = \A \otimes \B.\]
+

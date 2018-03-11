@@ -1,0 +1,42 @@
+\section{Segre Products}
+\begin{definition}\label{def: segre product}
+  Let \(A\) and \(B\) be connected graded \(k\)-algebras.
+  The \textbf{Segre product} of \(A\) and \(B\) is the graded \(k\)-algebra
+  \[ A \times_k B = \bigoplus_{0 \leq i} A_i \otimes_k B_i.\]
+\end{definition}
+
+\begin{proposition}\label{proposition: segre product of generated in degree 1 is generated in degree 1}
+  If \(A\) and \(B\) are connected graded \(k\)-algebras that are finitely generated in degree one, then \(A \times_k B\) is finitely generated in degree one.
+\end{proposition}
+
+\begin{proof}
+  Let \(S = \{x_i\}_{i = 1}^r \subseteq A_1\) and \(T = \{y_i\}_{i = 1}^s \subseteq B_1\) be generators.
+  Take a homogenous element \(a \otimes b \in A_d \otimes_k B_d\).
+  We can write
+  \[a = \sum_{i = 1}^m \alpha_i X_1^{(i)} \cdots X_d^{(i)}\ \text{and}\ b = \sum_{j = 1}^n \beta_j Y_1^{(j)} \cdots Y_d^{(j)}\]
+  for \(\alpha_i,\beta_j \in k\), \((X_1^{(i)}, \ldots, X_d^{(i)}) \in \prod_{i = 1}^d S\), and \((Y_1^{(j)}, \ldots, Y_d^{(j)}) \in \prod_{i = 1}^d T\).
+  Hence we have
+  \begin{eqnarray*}
+    a \otimes b &=& \left(\sum_{i=1}^m \alpha_i X_1^{(i)} \cdots X_d^{(i)}\right) \otimes \left(\sum_{j = 1}^n \beta_j Y_1^{(j)} \cdots Y_d^{(j)}\right)\\
+    &=& \sum_{i = 1}^m\left(\alpha_i X_1^{(i)} \cdots X_d^{(i)} \otimes \left(\sum_{j = 1}^n \beta_j Y_1^{(j)} \cdots Y_d^{(j)}\right)\right)\\
+    &=& \sum_{i = 1}^m\left(\sum_{j = 1}^n\left(\alpha_i  X_1^{(i)} \cdots X_d^{(i)} \otimes \beta_j Y_1^{(j)} \cdots Y_d^{(j)}\right)\right)\\
+    &=& \sum_{i,j} \alpha_i\beta_j (X_1^{(i)} \otimes Y_1^{(j)}) \cdots (X_d^{(i)} \otimes Y_d^{(j)})
+  \end{eqnarray*}
+    Therefore \(A \times_k B\) is finitely generated in degree one by \(\{x_i \otimes y_j\}_{i,j}\).
+\end{proof}
+
+As a nice corollary, we can relax the conditions on \cite[Theorem 2.4]{VR96} to avoid the Noetherian conditions on the Segre and tensor products.
+
+\begin{theorem}[{\cite[Theorem 2.4]{VR96}}]\label{theorem: Van Rompay}
+    Let \(A\) and \(B\) be finitely generated, connected graded \(k\)-algebras, and let \(S = A \times_k B\), \(T = A \otimes_k B\).
+    If \(A\) and \(B\) are both generated in degree one, then there is an equivalence of categories
+    \[\begin{tikzcd}[row sep=tiny]
+    \mathbb{V} \colon \QGr{S} \arrow{r} & \QGr{T}\\
+    E \arrow[mapsto]{r} & \pi_{T}\left(T \otimes_S \omega_{S}E\right)
+    \end{tikzcd}\]
+\end{theorem}
+
+\begin{proof}
+  As noted in Van Rompay's comments preceding the Theorem, the hypothesis is necessary only to ensure that \(\QGr{S}\) and \(\QGr{T}\) are well-defined.
+  Thanks to Proposition~\ref{proposition: f.g. torsion} and Lemma~\ref{lemma: alternate char of bibi torsion}, the equivalence follows by running the same argument.
+\end{proof}

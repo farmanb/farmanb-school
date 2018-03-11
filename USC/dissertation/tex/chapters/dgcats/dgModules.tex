@@ -1,0 +1,38 @@
+\section{Differential Graded Modules}\label{subsection: dg modules}
+Before making the relevant definitions, we pause for a brief justification of the use of the word module.
+To a ring $A$, one can associate the $\Ab$-enriched category, \(\A\), with one object, endomorphisms the abelian group $A$, and composition given by multiplication.
+We will refer to the category $\A$ as the \textbf{ringoid associated to $A$}.
+As one is wont to do in mathematics, we shift perspective by invoking enriched category theory and abstract away to the 2-category, $\op{Ab-cat}$, of all small $\Ab$-enriched categories.
+Indeed, it is an easy exercise in translation that one recovers the classical category of $A$-modules as the $\Ab$-enriched category of $\Ab$-enriched functors, $\op{Ab-cat}(\A, \Ab)$.
+
+More generally, for any $\Ab$-enriched category, $\A$, one could reasonably call $\op{Ab-cat}(\A,\Ab)$ the category of $\Ab$-modules over $\A$; the classical $A$-modules could then be regarded as $\Ab$-modules over the ringoid $\A$.
+%In this way, one could reasonbly regard the classical notion of modules over a ring as a special case of what one might call $\Ab$-modules over $\A$.
+Since these constructions really only rely on the fact that $\Ab$ is a symmetric monoidal closed category, one is naturally led to think about mimicing this construction with another category, $\V$, of the same type.
+This of course leads to $\V$-modules over a $\V$-category, $\A$.
+As dg-categories are just $\V$-enriched categories for $\V = \Ch{k}$, we adopt the name dg-module.
+
+For any small dg-category, \(\A\), denote
+\[\dgMod{\A} := \DGCAT{k}\left(\A^{\opp},\CH{k}\right),\]
+the dg-category of dg-functors, where \(\CH{k}\) denotes the dg-category of chain complexes equipped with the internal Hom from its symmetric monoidal closed structure.
+The objects of \(\dgMod{\A}\) will be called \textbf{dg \(\A\)-modules}.
+Since one may view the dg \(\A^{\opp}\)-modules as what should reasonably be called left dg \(\A\)-modules, the terms right and left will be dropped in favor of dg \(\A\)-modules and dg \(\A^{\opp}\)-modules, respectively.
+We note here that the somewhat vexing choice of terminology is such that we can view objects of \(\A\) as dg \(\A\)-modules by way of the enriched Yoneda embedding
+\[Y_\A \colon \A \to \dgMod{\A}.\]
+
+Just as one usually calls an abelian group with compatible left $A$-action and right $B$-action an $A$-$B$-module, we define for any two small dg-categories, \(\A\) and \(\B\), the category of dg \(\A\)-\(\B\)-bimodules to be \(\dgMod{\A^{\opp} \otimes \B}\).
+We note here that the symmetric monoidal closed structure on \(\dgcat{k}\) allows us to view bimodules as morphisms of dg-categories by the isomorphism
+\begin{eqnarray*}
+  \dgMod{\A^{\opp} \otimes \B} &=& \DGCAT{k}\left(\A \otimes \B^{\opp}, \CH{k}\right)\\
+  &\cong& \DGCAT{k}(\A, \DGCAT{k}\left(\B^{\opp}, \CH{k}\right))\\
+  &=& \DGCAT{k}\left(\A, \dgMod{\B}\right).
+\end{eqnarray*}
+The image of a dg \(\A\)-\(\B\)-bimodule, \(E\), is the dg-functor \(\Phi_E(A) = E(A,-)\).
+
+As a final note, we draw a connection between chain complexes and dg-modules over a ringoid that parallels the discussion of $A$-modules and the so-called $\Ab$-modules above.
+Let $A$ be a $k$-algebra and consider the category of chain complexes, $\Ch{A}$.
+One can can construct (see, e.g., \parencite{Weibel94}) for any two chain complexes a chain complex of morphisms
+\[\CH{A}(C,D)^n = \prod_{m \in \Z}\Mod{A}\left(C^m, D^{m + n}\right)\]
+with differential given by
+\[d(f) = d_D \circ f + (-1)^{n+1} f \circ d_C.\]
+Denoting by $\CH{A}$ the category with objects chain complexes of $A$-modules and morphisms given by this complex, a similar translation shows that this is equivalent to the dg-category $\dgMod{\A}$.
+

@@ -1,0 +1,27 @@
+ \section{The Derived Category of a DG-Category}
+By definition, a degree zero closed morphism
+\[\eta \in Z^0(\dgMod{\A})(M,N)\]
+satisfies
+\[\eta(A) \in Z^0(\CH{k}(M(A), N(A))) = \Ch{k}(M(A), N(A))\]
+for all objects \(A\) of \(\A\).
+Hence we are justified in the following definitions:
+\begin{enumerate}[(i)]
+\item
+  \(\eta\) is a \textbf{quasi-isomorphism} if \(\eta(A)\) is a quasi-isomorphism of chain complexes for all objects \(A\) of \(\A\), and
+\item
+  \(\eta\) is a \textbf{fibration} if \(\eta(A)\) is a degree-wise surjective morphism of complexes for all objects \(A\) of \(\A\).
+\end{enumerate}
+Equipping \(\Ch{k}\) with the standard projective model structure (see \parencite[Section 2.3]{Hovey99}), these definitions endow \(Z^0(\dgMod{\A})\) with the structure of a particularly nice cofibrantly generated model category (see \parencite[Section 3]{Toen07}).
+In analogy with the definition of the derived category of modules for a ring \(A\), the \textbf{derived category of \(\A\)} is defined to be the model category theoretic homotopy category,
+\[\mathrm{D}(\A) = \Ho{Z^0(\dgMod{\A})} = Z^0(\dgMod{\A})[\mathcal{W}^{-1}]\]
+obtained from localizing \(Z^0(\dgMod{\A})\) at the class, \(\mathcal{W}\), of quasi-isomorphisms.
+
+It can be shown (see \parencite[Section 3.5]{Keller95}) that for every dg \(\A\)-module, \(M\), there exists an h-projective, \(N\), and a quasi-isomorphism \(N \to M\), which one calls an \textbf{h-projective resolution of \(M\)}.
+Moreover, it is not difficult to see that any quasi-isomorphism between h-projective objects is in fact a homotopy equivalence.
+It follows that there is an equivalence of categories between \(H^0(\hproj{\A})\) and \(\mathrm{D}(\A)\) for any small dg-category, \(\A\).
+
+It should be noted that this generalizes the notion of derived categories of modules over a $k$-algebra, $A$.
+Making the identification of $\CH{A}$ and $\dgMod{\A}$ as at the end of Section~\ref{subsection: dg modules}, where $\A$ is the ringoid associated to $A$, it is easy to recognize the categories \(Z^0(\dgMod{\A})\), \(H^0(\dgMod{\A})\), and \(\mathrm{D}(\A)\), as the categories \(\Ch{A}\), \(K(A)\), the usual category up to homotopy, and the derived category of \(\Mod{A}\), respectively.
+In the language of \parencite{Lunts-Orlov}, \(\hproj{\A}\) is a dg-enhancement of \(\mathrm{D}(\Mod{A})\).
+
+

@@ -1,0 +1,145 @@
+\section{Noncommutative Biprojective Schemes}
+In studying questions of kernels and bimodules, we will have to move outside the realm of \(\Z\)-gradings. While one can generally treat \(G\)-graded \(k\)-algebras in our analysis, we limit the scope a bit and only consider \(\Z^2\)-gradings of the following form.
+
+\begin{definition}
+  Let \(A\) and \(B\) be connected graded \(k\)-algebras. The tensor product \(A \otimes_k B\) will be equipped with its natural bi-grading 
+  \begin{displaymath}
+    (A \otimes_k B)_{n_1,n_2} = A_{n_1} \otimes_k B_{n_2}. 
+  \end{displaymath}
+  A \textbf{bi-bi module} for the pair \((A,B)\) is a \(\Z^2\)-graded \(A \otimes_k B\) module. 
+\end{definition}
+
+\begin{remark}
+  As noted in the remarks above \parencite[Lemma 4.1]{VdB}, the notion of \(A\)-torsion and \(B\)-torsion bi-bi modules is well-defined provided that \(A\) and \(B\) are finitely generated as \(k\)-algebras.
+  From this point on, unless stated otherwise, all of our \(k\)-algebras will be assumed to be finitely generated.
+\end{remark}
+
+%We make note of the following special \(\Z\)-graded subring of \(A \otimes_k B\)
+%\begin{definition}\label{def: segre product}
+%  Let \(A\) and \(B\) be connected graded \(k\)-algebras.
+%  The \textbf{Segre product} of \(A\) and \(B\) is the graded \(k\)-algebra
+%  \[ A \times_k B = \bigoplus_{0 \leq i} A_i \otimes_k B_i.\]
+%\end{definition}
+
+%\begin{proposition}\label{proposition: segre product of generated in degree 1 is generated in degree 1}
+%  If \(A\) and \(B\) are connected graded \(k\)-algebras that are finitely generated in degree one, then \(A \times_k B\) is finitely generated in degree one.
+%\end{proposition}
+
+%\begin{proof}
+%  Let \(S = \{x_i\}_{i = 1}^r \subseteq A_1\) and \(T = \{y_i\}_{i = 1}^s \subseteq B_1\) be generators.
+%  Take a homogenous element \(a \otimes b \in A_d \otimes_k B_d\).
+%  We can write
+%  \[a = \sum_{i = 1}^m \alpha_i X_1^{(i)} \cdots X_d^{(i)}\ \text{and}\ b = \sum_{j = 1}^n \beta_j Y_1^{(j)} \cdots Y_d^{(j)}\]
+%  for \(\alpha_i,\beta_j \in k\), \((X_1^{(i)}, \ldots, X_d^{(i))} \in \prod_{i = 1}^d S\), and \((Y_1^{(j)}, \ldots, Y_d^{(j)}) \in \prod_{i = 1}^d T\).
+  %\[a = \sum_{i = 1}^m \alpha_i x_1^{e_{1,i}} \cdots x_r^{e_{r,i}}\ \text{and}\ b = \sum_{j = 1}^n \beta_j y_1^{f_{1,i}} \cdots y_r^{f_{r,i}}\]
+  %where for each \(i\) and each \(j\) we have \(\alpha_i, \beta_j \in k\), and
+  %\[\sum_{\ell=1}^r e_{\ell,i} = d\ \text{and}\ \sum_{\ell=1}^s f_{\ell,j} = d.\]
+%  Hence we have
+%  \begin{eqnarray*}
+%    a \otimes b &=& \left(\sum_{i=1}^m \alpha_i X_1^{(i)} \cdots X_d^{(i)}\right) \otimes \left(\sum_{j = 1}^n \beta_j Y_1^{(j)} \cdots Y_d^{(j)}\right)\\
+%    &=& \sum_{i = 1}^m\left(\alpha_i X_1^{(i)} \cdots X_d^{(i)} \otimes \left(\sum_{j = 1}^n \beta_j Y_1^{(j)} \cdots Y_d^{(j)}\right)\right)\\
+%    &=& \sum_{i = 1}^m\left(\sum_{j = 1}^n\left(\alpha_i  X_1^{(i)} \cdots X_d^{(i)} \otimes \beta_j Y_1^{(j)} \cdots Y_d^{(j)}\right)\right)\\
+%    &=& \sum_{i,j} \alpha_i\beta_j (X_1^{(i)} \otimes Y_1^{(j)}) \cdots (X_d^{(i)} \otimes Y_d^{(j)})
+%  \end{eqnarray*}
+%    Therefore \(A \times_k B\) is finitely generated in degree one by \(\{x_i \otimes y_j\}_{i,j}\).
+  %\begin{eqnarray*}
+  %a \otimes b &=& \sum_{i = 1}^m \alpha_i x_1^{e_{1,i}} \cdots x_r^{e_{r,i}} \otimes \sum_{j = 1}^n \beta_j y_1^{f_{1,i}} \cdots y_r^{f_{r,i}}\\
+  %&=& \sum_{i = 1}^m \left(\alpha_i x_1^{e_{1,i}} \cdots x_r^{e_{r,i}} \otimes \sum_{j = 1}^n \beta_j y_1^{f_{1,i}} \cdots y_r^{f_{r,i}}\right)\\
+  %&=& \sum_{i = 1}^m \left(\sum_{j = 1}^n \alpha_i\beta_j \left(x_1^{e_{1,i}} \cdots x_r^{e_{r,i}} \otimes y_1^{f_{1,i}} \cdots y_r^{f_{r,i}}\right)\right)
+%\end{eqnarray*}
+
+%  Now, fix \(i\) and \(j\).
+ % We can rewrite
+ % \[x_1^{e_{1,i}} \cdots x_r^{e_{r,i}} = X_1^{(i)} \cdots X_d^{(i)}\ \text{and}\ y_1^{f_{1,i}} \cdots y_r^{f_{r,i}} = Y_1^{(j)} \cdots Y_d^{(j)}\]
+ % with each of the \(X\)'s a generator of \(A\) and each of the \(Y\)'s a generator of \(B\).
+ % Then we have
+  %\[x_1^{e_{1,i}} \cdots x_r^{e_{r,i}} \otimes y_1^{f_{1,i}} \cdots y_r^{f_{r,i}} = (X_1^{(i)} \otimes Y_1^{(j)}) \cdots (X_d^{(i)} \otimes Y_d^{(j)})\]
+%\end{proof}
+
+There are a few notions of torsion for a bi-bi module that one could use, but we take the following.
+
+\begin{definition}
+  Let \(A\) and \(B\) be finitely generated, connected graded \(k\)-algebras, and let \(M\) be a bi-bi \(A\)-\(B\) module. We say that \(M\) is \textbf{torsion} if it lies in the smallest Serre subcategory containing \(A\)-torsion bi-bi modules and \(B\)-torsion bi-bi modules.
+\end{definition}
+
+\begin{lemma} \label{lemma: alternate char of bibi torsion}
+    Let \(A\) and \(B\) be finitely generated, connected graded \(k\)-algebras.
+  A bi-bi module \(M\) is torsion if and only if there exists \(n_1,n_2\) such that 
+  \begin{displaymath}
+    (A \otimes B)_{\geq n_1, \geq n_2} m = 0
+  \end{displaymath}
+  for all \(m \in M\).
+\end{lemma}
+
+\begin{proof}
+  For necessity, note that if \(M\) is \(A\)-torsion, then \((A \otimes B)_{\geq n, \geq 0} m = 0\) for some \(n\) for each \(m \in M\).
+  Similarly if \(M\) is \(B\)-torsion then \((A \otimes B)_{\geq 0,\geq n} M = 0\) for some \(n\).
+  So it suffices to show that if
+  \begin{displaymath}
+    (A \otimes B)_{\geq n_1, \geq n_2} m = 0 , \forall m \in M
+  \end{displaymath}
+  then it lies in the Serre category generated by \(A\) and \(B\) torsion. Let \(\tau_B M\) be the \(B\)-torsion submodule of \(M\) and consider the quotient \(M/\tau_B M\). For \(m \in M\), we have \(A_{\geq n_1}m\) is \(B\)-torsion, so its image in the quotient \(M/\tau_B M\) is \(A\)-torsion. Consequently, \(M / \tau_B M\) is \(A\)-torsion itself and \(M\) is an extension of \(B\)-torsion and \(A\)-torsion. 
+\end{proof}
+
+One can form the quotient category
+\begin{displaymath}
+  \QGr{A \otimes_k B} := \Gr{A \otimes_k B} / \Tors{A \otimes_k B}.
+\end{displaymath}
+
+\begin{lemma} \label{lemma: biQ and bQGr}
+  The quotient functor 
+  \begin{displaymath}
+    \pi : \Gr{A \otimes_k B} \to \QGr{A \otimes_k B}
+  \end{displaymath}
+  has a fully faithful right adjoint 
+  \begin{displaymath}
+    \omega : \QGr{A \otimes_k B} \to \Gr{A \otimes_k B}
+  \end{displaymath}
+  with 
+  \begin{displaymath}
+    QM := \omega \pi M = \op{colim}_{n_1,n_2} \GR{(A \otimes_k B)}( A_{\geq n_1} \otimes_k B_{\geq n_2} , M)
+  \end{displaymath}
+\end{lemma}
+
+\begin{proof}
+  %Apply Proposition~\ref{prop: existence of serre functor} and Proposition~\ref{prop: explicit Q and tau}.
+  This is just an application of \cite[Cor. 1, III.3]{DCA62}.
+\end{proof}
+
+\begin{corollary}\label{corollary: relation on Qs}
+  We have an isomorphism 
+  \begin{displaymath}
+    Q_{A \otimes_k B} \cong Q_A \circ Q_B \cong Q_B \circ Q_A
+  \end{displaymath}
+\end{corollary}
+
+\begin{proof}
+  This follows from Lemma~\ref{lemma: biQ and bQGr} using tensor-Hom adjunction. 
+\end{proof}
+
+We also have the following standard triangles of derived functors. 
+
+\begin{lemma} \label{lemma: exact triangles}
+    Let \(A\) and \(B\) be finitely generated connected graded algebras. Then, we have natural transformations 
+  \begin{displaymath}
+    \mathbf{R} \tau \to \op{Id} \to \mathbf{R} Q 
+  \end{displaymath}
+  which when applied to any graded module \(M\) gives an exact triangle 
+  \begin{displaymath}
+    \mathbf{R} \tau M \to M \to \mathbf{R} Q M.
+  \end{displaymath}
+\end{lemma}
+
+\begin{proof}
+  Before we begin the proof, we clarify the statement. The conclusions hold for graded \(A\) (or \(B\)) modules and for bi-bi modules. Due to the formal properties, it is economical to keep the wording of the theorem as so since any reasonable interpretation yields a true statement. 
+  
+  For the case of graded \(A\) modules, this is well-known, see \parencite[Property 4.6]{BVdB}. For the case of bi-bi \(A \otimes_k B\) modules, the natural transformations are obvious. For each \(M\), the sequence 
+  \begin{displaymath}
+    0 \to \tau M \to M \to Q M
+  \end{displaymath}
+  is exact. It suffices to prove that if \(M = I\) is injective, then the whole sequence is actually exact. Here one can use the system of exact sequences
+  \begin{displaymath}
+    0 \to A_{\geq n_1} \otimes_k B_{\geq n_2} \to A \otimes_k B \to (A \otimes_k B) / A_{\geq n_1} \otimes_k B_{\geq n_2} \to 0
+  \end{displaymath}
+  and exactness of \(\op{Hom}(-,I)\) plus Lemma~\ref{lemma: alternate char of bibi torsion} to get exactness. 
+\end{proof}

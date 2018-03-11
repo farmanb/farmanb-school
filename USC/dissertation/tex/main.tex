@@ -89,11 +89,11 @@ University of Vermont 2011\\ %% The \\ on this line is
                                  %% Graduate School.
 \college{College of Arts and Sciences}  %%As listed by Grad School
 
-\advisor {Dr.}{Matthew R. Ballard}{Major Professor}  %%% Be sure the 
-\readera{Dr.}{Frank Thorne}{Committee Member}     %%% third field is 
-\readerb{Dr.}{Jesse Kass}{Jazzman}          %%% the one used in 
-\readerc{Dr.}{Andrew Kustin}{Fourth Reader} %%% your department.
-\readerd{Dr.}{Michael Filaseta}{King}               %%% Only use as many as
+\advisor {Dr.}{Matthew R. Ballard}{Advisor}  %%% Be sure the 
+\readera{Dr.}{Frank Thorne}{Reader}     %%% third field is 
+\readerb{Dr.}{Jesse Kass}{Reader}          %%% the one used in 
+\readerc{Dr.}{Andrew Kustin}{Reader} %%% your department.
+\readerd{Dr.}{Michael Filaseta}{Reader}               %%% Only use as many as
 %%% If you have just two readers, for example, leave out \readerc and
 %%% \readerd
 %%%
@@ -169,11 +169,36 @@ University of Vermont 2011\\ %% The \\ on this line is
                           %% \chapter*{Introduction}
                           %% followed by the text of the 
                           %% introduction.
+%Differential Graded Categories
+\include{chapters/dgcats/intro}
+\include{chapters/dgcats/modelStructure}
+\include{chapters/dgcats/dgModules}
+\include{chapters/dgcats/h-projectives}
+\include{chapters/dgcats/derivedCategory}
+\include{chapters/dgcats/tensorProducts}
+\include{chapters/dgcats/bimodsAsMorphisms}
 
-\include{chapters/dgcats}
-\include{chapters/NCPS}
-\include{chapters/gradedMorita}
-\include{chapters/gradedNonComMorita}
+%Noncommutative Projective Schemes
+\include{chapters/NCPS/intro}
+\include{chapters/NCPS/gradedRingsAndModules}
+\include{chapters/NCPS/quotientCats}
+\include{chapters/NCPS/sheafCohomology}
+\include{chapters/NCPS/noncomBiProjSchemes}
+\include{chapters/NCPS/cohomologicalAssumptions}
+\include{chapters/NCPS/segreProducts}
+
+%Graded Morita Theory
+\include{chapters/gradedMoritaintro}
+\include{chapters/gradedMoritaringoidsAndModules}
+\include{chapters/gradedMorita/derivedGradedMorita}
+
+%Noncommutative Grade Morita Theory
+\include{chapters/gradedNonComMorita/intro}
+\include{chapters/gradedNonComMorita/vanishingOfATensorProduct}
+\include{chapters/gradedNonComMorita/duality}
+\include{chapters/gradedNonComMorita/products}
+\include{chapters/gradedNonComMorita/theQuasiEquivalence}
+
 %\include{chapters/background}         %% The three sections of Chapter 1 
 %\input{Cube}             %% are in the files Squares.tex,  
 %\input{Hypercubes}	   %% Cubes.tex and Hypercubes.tex

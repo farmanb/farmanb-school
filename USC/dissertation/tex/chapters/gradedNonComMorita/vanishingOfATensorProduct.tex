@@ -1,0 +1,130 @@
+\section{Vanishing of a tensor product} \label{subsection: vanishing of tensor}
+
+We recall a particularly nice type of property of objects in the setting of compactly generated triangulated categories.
+In the sequel, many of our properties will be of this type, so we give this little gem a name.
+
+\begin{definition} \label{definition: run the jewels}
+  Let \(\D\) be a compactly generated triangulated category.
+  Let \(\mathtt{P}\) be a property of objects of \(\D\). 
+  We say that \(\mathtt{P}\) is \textbf{RTJ} if it satisifies the following three conditions.
+  \begin{itemize}
+  \item Whenever \(A \to B \to C\) is a triangle in \(\D\) and \(\mathtt{P}\) holds for \(A\) and \(B\), then \(\mathtt{P}\) holds for \(C\). 
+  \item If \(\mathtt{P}\) holds for \(A\), then \(\mathtt{P}\) holds for the translate \(A[1]\).
+  \item Let \(I\) be a set and \(A_i\) be objects of \(\D\) for each \(i \in I\). If \(\mathtt{P}\) holds for each \(A_i\), then \(\mathtt{P}\) holds for \(\bigoplus_{i \in I} A_i\). 
+  \end{itemize}
+\end{definition}
+
+\begin{proposition} \label{proposition: RTJ properties}
+  Let \(\mathtt{P}\) be an RTJ property that holds for a set of compact generators of \(\D\). Then \(\mathtt{P}\) holds for all objects of \(\D\).
+\end{proposition}
+
+\begin{proof}
+  Let \(P\) be the full triangulated subcategory of objects for which \(\mathtt{P}\) holds. Then \(P\)
+  \begin{itemize}
+  \item contains a set of compact generators,
+  \item is triangulated, and
+  \item is closed under formation of coproducts. 
+  \end{itemize}
+  Thus, \(P\) is all of \(\D\). 
+\end{proof}
+
+
+\begin{definition} \label{definition: tensor vanishing}
+  Let \(M\) be a complex of left graded \(A\)-modules and let \(N\) be a complex of right graded \(A\)-modules. We say that the pair satisfies \(\bigstar(M,N)\) if we have vanishing of the tensor product
+  \begin{displaymath}
+    \mathbf{R} \tau_{A^\opp} N {\otimes}^{\mathbf{L}}_{\mathcal A} \mathbf{R} Q_A M = 0.
+  \end{displaymath}
+  If \(\bigstar(M,N)\) holds for all \(M\) and \(N\), then we say that \(A\) satisfies \(\bigstar\). 
+\end{definition}
+
+\begin{proposition} \label{proposition: big star condition}
+  Assume that \(\mathbf{R}\tau_A\) and \(\mathbf{R}\tau_{A^\opp}\) commute with coproducts. Then \(A\) satisfies \(\bigstar\) if and only \(\bigstar( A(u), A(v) )\) holds for each \(u,v \in \Z\).
+\end{proposition}
+
+\begin{proof}
+  The necessity is clear, so assume that \(\bigstar(A(u), A(v))\) holds for each \(u,v \in \Z\).
+  First, we consider the property \(\bigstar(M, A(v))\) of objects, \(M\), of \(\mathrm{D}(\Gr{A})\).
+  It's clear that this is an RTJ property that holds, by assumption, for the set of compact generators, \(\{A(u)\}_{u \in \Z}\).
+  Hence \(\bigstar(M,A(v))\) holds for all \(M\) by Proposition~\ref{proposition: RTJ properties}.
+
+  Now fix any object \(M\) of \(\mathrm{D}(\Gr{A})\) and consider the property \(\bigstar(M, N)\) of objects, \(N\), of \(\mathrm{D}(\Gr{A^\opp})\).
+  This is again an RTJ property for which \(\bigstar(M,A(v))\) holds for all \(v \in \Z\).
+  By Proposition~\ref{proposition: RTJ properties}, \(\bigstar(M,N)\) holds for all N .
+  Since the choice of \(M\) was arbitrary, it follows that \(\bigstar(M,N)\) holds for all \(M\) and for all \(N\).
+  Therefore \(A\) satisfies \(\bigstar\).
+%  The necessity is clear, so assume that \(\bigstar( A(u), A(v) )\) holds for each \(u,v \in \Z\). Note that \(\bigstar(M , A(v))\) holds for all \(v\) is an RTJ property of \(M\) that holds for a set of compact generators \(A(u), u \in \Z\). Thus, by Proposition~\ref{proposition: RTJ properties}, \(\bigstar(M , A(v))\) holds for all \(v\) holds for all \(M\) in \(\mathrm{D}(\Gr{A})\). Similarly, we can consider the property of \(N\) in \(\mathrm{D}(\Gr{(A^\opp)})\): \(\bigstar(M , N)\) holds for all objects \(M\) of \(\mathrm{D}(\Gr{A})\). This is also RTJ so \(\bigstar(M,N)\) holds for all \(M\) and \(N\).
+\end{proof}
+
+There are various types of projection formulas.
+We record here two which will be useful in the sequel.
+
+\begin{proposition} \label{proposition: projection formula}
+  Let \(P\) be a complex of bi-bi \(A\)-modules and let \(M\) be a complex of left graded \(A\)-modules. Assume \(\mathbf{R} \tau_A\) commutes with coproducts. There is a natural quasi-isomorphism
+  \begin{displaymath}
+    ( \mathbf{R} \tau_A P ) \overset{\mathbf{L}}{\otimes}_{\mathcal A} M \to \mathbf{R} \tau_A \left( P \overset{\mathbf{L}}{\otimes}_{\mathcal A} M \right).
+  \end{displaymath}
+  Assume \(\mathbf{R} Q_A\) commutes with coproducts. There is a natural quasi-isomorphism
+  \begin{displaymath}
+    ( \mathbf{R} Q_A P ) \overset{\mathbf{L}}{\otimes}_{\mathcal A} M \to \mathbf{R} Q_A \left( P \overset{\mathbf{L}}{\otimes}_{\mathcal A} M \right).
+  \end{displaymath}
+\end{proposition}
+
+\begin{proof}
+  We treat the \(\tau\) projection formula. The \(Q\) projection formula is analogous. By Corollary~\ref{corollary: Q preserves bimodules}, we see that the tensor product is well-defined. It suffices to exhibit a natural transformation for the underived functors applied to modules to generate the desired natural transformation. Given
+  \begin{displaymath}
+    \psi \otimes_{\mathcal A} m \in \GR{A}(A/A_{\geq m}, P) \otimes_{\mathcal A} M 
+  \end{displaymath}
+  we naturally get 
+  \begin{align*}
+    \widetilde{\psi} : A/A_{\geq m} & \to P \otimes_{\mathcal A} M \\
+    a & \mapsto \psi(a) \otimes_{\mathcal A} m. 
+  \end{align*}
+  Taking the colimit gives the natural transformation.
+  
+  Let us look at the natural transformation in the case that \(P = A(u) \otimes_k A(v)\) and \(M = A(w)\).
+  Recall from Remark~\ref{remark: tensor with twist} that
+  \[
+  \mathbf{R}\tau_A(P) \otimes_\A^\mathbf{L} A(w) \cong \mathbf{R}\tau_A(P) \otimes_\A A(w) \cong \mathbf{R}\tau_A(P)_{\ast,w} 
+  := \bigoplus_{x \in \Z} \mathbf{R}\tau_A(P_{\ast,w})_x
+  = \mathbf{R}\tau_A(P_{\ast,w})
+  \]
+  which is compatible with the natural transformation.
+  The property that the natural transformation is a quasi-isomorphism is RTJ in each entry.
+  Thus, it holds for all \(P\) and \(M\) by Proposition~\ref{proposition: RTJ properties}.
+%  Recall that 
+%  \begin{gather*}
+%    \left( A(u) \otimes_k A(v) \right) \overset{\mathbf{L}}{\otimes}_{\mathcal A} A(w) \cong \left( A(u) \otimes_k A(v) \right) \otimes_{\mathcal A} A(w) \\ \cong \left( A(u) \otimes_k A(v) \right)_{\ast,w} \cong A(u) \otimes_k A_{v+w}. 
+%  \end{gather*}
+%  So
+%  \begin{displaymath}
+%    \mathbf{R}\tau_A \left( \left( A(u) \otimes_k A(v) \right) \overset{\mathbf{L}}{\otimes}_{\mathcal A} A(w) \right) \cong \mathbf{R} \tau_A \left( A(u) \otimes_k A_{v+w} \right)
+%  \end{displaymath}
+%  while 
+%  \begin{gather*}
+%    \mathbf{R}\tau_A \left( A(u) \otimes_k A(v) \right) \overset{\mathbf{L}}{\otimes}_{\mathcal A} A(w) \cong \mathbf{R}\tau_A \left( A(u) \otimes_k A(v) \right)_w \\ \cong \mathbf{R}\tau_A \left( (A(u) \otimes_k A(v))_{\ast,w} \right) \cong \mathbf{R}\tau_A \left( A(u) \otimes_k A_{v+w} \right)
+%  \end{gather*}
+  %which are compatible with the natural transformation. The property that the natural transformation is a quasi-isomorphism is RTJ in each entry. Thus, it holds for all \(P\) and \(N\) by Proposition~\ref{proposition: RTJ properties}. 
+\end{proof}
+
+For the hypothesis, recall Definition~\ref{definition: tasty pair}. 
+
+\begin{proposition} \label{proposition: vanishing of tensor}
+  Assume \(A\) is truly tasty. Then \(\bigstar\) holds for \(A\).
+\end{proposition}
+
+\begin{proof}
+  By Proposition~\ref{proposition: big star condition}, it suffices to check \(\bigstar(M,A(v))\) for each \(v\). This is equivalent to \(\bigstar(M,\bigoplus_v A(v))\). Equipping the sum with a bi-bi structure as \(\Delta\), we reduce to checking \(\bigstar(M,\Delta)\). Using Proposition~\ref{proposition: when beta is an isomorphism} and Lemma~\ref{lemma: exact triangles} for \(A\) and \(A^\opp\), we have a natural quasi-isomorphism
+  \[\mathbf{R}\tau_{A^\opp} \Delta \overset{\mathbf{L}}{\otimes}_{\mathcal A} \mathbf{R}Q_A M \cong \mathbf{R}\tau_{A} \Delta \overset{\mathbf{L}}{\otimes}_{\mathcal A} \mathbf{R}Q_{A} M.\]
+  Using Proposition~\ref{proposition: projection formula}, we have a natural quasi-isomorphism
+  \[\mathbf{R}\tau_{A} \Delta \overset{\mathbf{L}}{\otimes}_{\mathcal A} \mathbf{R}Q_{A} M \cong \mathbf{R}\tau_{A} \left( \Delta \overset{\mathbf{L}}{\otimes}_{\mathcal A} \mathbf{R}Q_{A} M  \right) \cong \mathbf{R}\tau_{A} \left( \mathbf{R}Q_{A} M \right) = 0.\]
+  
+%  By Proposition~\ref{proposition: big star condition}, it suffices to check \(\bigstar(A(u),N)\) for each \(u\). This is equivalent to \(\bigstar(\bigoplus_u A(u),N)\). Equipping the sum with a bi-bi structure as \(\Delta\), we reduce to checking \(\bigstar(\Delta,N)\). Using Proposition~\ref{proposition: when beta is an isomorphism} for \(A\) and \(A^\opp\), we have a natural quasi-isomorphism
+%  \begin{displaymath}
+%    \mathbf{R}\tau_{A^\opp} N \overset{\mathbf{L}}{\otimes}_{\mathcal A} \mathbf{R}Q_A \Delta \cong \mathbf{R}\tau_{A^\opp} N \overset{\mathbf{L}}{\otimes}_{\mathcal A} \mathbf{R}Q_{A^\opp} \Delta.
+%  \end{displaymath}
+%  Using Proposition~\ref{proposition: projection formula}, we have a natural quasi-isomorphism
+%  \begin{displaymath}
+%    \mathbf{R}\tau_{A^\opp} N \overset{\mathbf{L}}{\otimes}_{\mathcal A} \mathbf{R}Q_{A^\opp} \Delta \cong \mathbf{R}Q_{A^\opp} \left( \mathbf{R}\tau_{A^\opp} N \overset{\mathbf{L}}{\otimes}_{\mathcal A} \Delta  \right) \cong \mathbf{R}Q_{A^\opp} \left( \mathbf{R}\tau_{A^\opp} N \right) = 0.
+%  \end{displaymath}
+\end{proof}
+

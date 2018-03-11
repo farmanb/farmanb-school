@@ -1,0 +1,13 @@
+\section{h-Projective DG-Modules}
+We say that a dg \(\A\)-module, \(N\), is \textbf{acyclic} if \(N(A)\) is an acyclic chain complex for all objects \(A\) of \(\A\).
+A dg \(\A\)-module, \(M\), is said to be \textbf{h-projective} if
+\[H^0(\dgMod{\A})(M,N) := H^0(\dgMod{A}(M,N)) = 0\]
+for every acyclic dg \(\A\)-module, \(N\).
+The full dg-subcategory of \(\dgMod{\A}\) consisting of h-projectives will be called \(\hproj{\A}\).
+
+We always have a special class of h-projectives given by the representables, \(h_A = \A(-, A)\) for if \(M\) is acyclic, then from the enriched Yoneda Lemma we have
+\[H^0(\dgMod{A})(h_A,M) := H^0(\dgMod{\A}(h_A, M)) \cong H^0(M(A)) = 0.\]
+Noting that closure of \(\hproj{\A}\) under homotopy equivalence follows immediately from the Yoneda Lemma applied to \(H^0(\dgMod{A})\), we define \(\overline{\A}\) to be the full dg-subcategory of \(\hproj{\A}\) consisting of the dg \(\A\)-modules homotopy equivalent to representables.
+
+We will say an h-projective dg \(\A\)-\(\B\)-bimodule, \(E\), is \textbf{right quasi-representable} if for every object \(A\) of \(\A\) the dg \(\B\)-module \(\Phi_E(A)\) is an object of \(\overline{\B}\), and we will denote by \(\hproj{\A^\opp \otimes \B}^\rqr\) the full subcategory of \(\hproj{\A^\opp \otimes \B}\) consisting of all right quasi-representables.
+
