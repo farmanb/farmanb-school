@@ -1,9 +1,7 @@
-\section{The quasi-equivalence}
-
 Now we turn to the main result. 
 
 \begin{theorem} \label{theorem: derived morita for NCP}
-  Let \(k\) be a field. Let \(A\) and \(B\) be connected graded \(k\)-algebras. If \(A\) and \(B\) form a tasty pair, then there is a natural quasi-equivalence 
+  Let \(k\) be a field. Let \(A\) and \(B\) be connected graded \(k\)-algebras. If \(A\) and \(B\) form a delightful couple, then there is a natural quasi-equivalence 
   \begin{displaymath}
     F : \hinj{\QGr{A^\opp \otimes_k B}} \to \RHomc{ \hinj{\QGr{A}}, \hinj{\QGr{B}} }
   \end{displaymath}
@@ -46,7 +44,7 @@ Now we turn to the main result.
 The following statement is now a simple application of Theorem~\ref{theorem: derived morita for NCP} and results of \parencite{Lunts-Orlov}. 
 
 \begin{corollary} \label{corollary: NCP morita}
-  Let \(A\) and \(B\) be a tasty pair of connected graded \(k\)-algebras with \(k\) a field. Assume that there exists an equivalence
+  Let \(A\) and \(B\) be a delightful couple of connected graded \(k\)-algebras with \(k\) a field. Assume that there exists an equivalence
   \begin{displaymath}
     f : \mathrm{D} (\QGr{A}) \to \mathrm{D} (\QGr{B}).
   \end{displaymath}
@@ -65,44 +63,25 @@ The following statement is now a simple application of Theorem~\ref{theorem: der
   Then, by Theorem~\ref{theorem: derived morita for NCP}, there exists a \(P \in \mathrm{D}(\QGr{A^\opp \otimes_k B})\) such that \(\Phi_P = H^0(F)\). 
 \end{proof}
 
-%TODO: Determine if this gets yanked into Section 2 or not.
-We wish to identify the kernels as objects of the derived category of an honest noncommutative projective scheme.  Towards this end, we define a graded ring associated to a pair of graded \(k\)-algebras.
-\begin{definition}\label{def: segre product}
-  Let \(A\) and \(B\) be connected graded \(k\)-algebras.
-  The \textbf{Segre product} of \(A\) and \(B\) is the graded \(k\)-algebra
-  \[ A \times_k B = \bigoplus_{0 \leq i} A_i \otimes_k B_i.\]
-\end{definition}
-
+We wish to identify the kernels as objects of the derived category of an honest noncommutative projective scheme.
 In general, one can only hope that kernels obtained as above are objects of the derived category of a noncommutative (bi)projective scheme.
 However, we have the following special case in which we can collapse the \(\Z^2\)-grading to a \(\Z\)-grading.
-Denote by \(\A \times \B\) the dg-category with objects \(\Z\) and morphisms \(\A \times \B(i,j)\) the chain complex with \(A_i \otimes_k B_i\) in degree zero.
 
-\begin{lemma}\label{lemma: Q(AxB) is Q(A tensor B)}
-  Assume \(A\) and \(B\) satisfy (insert hypotheses here).
-  Then there is a quasi-equivalence
-  \[Q(\A \times \B) \to Q(\A \otimes \B)\]
-\end{lemma}
-
-\begin{proof}
-  We have an obvious functor \(\Delta \colon \A \times \B \to \A \otimes \B\) defined by \(\Delta(i) = (i,i)\) on objects with structure morphism the identity.
-  %\[ \A \times \B(i,j) = A_{j-i} \otimes_k B_{j-i} \to A_{j-i} \otimes_k B_{j-i}= \A \otimes \B((i,i), (j,j)).\]
-  This yields an adjoint pair of dg-functors \(\Ind{\Delta} \colon \dgMod{\A \times \B} \to \dgMod{\A \otimes \B}\) and \(\Res{\Delta} \colon \dgMod{\A \otimes \B} \to \dgMod{\A \times \B}\).
-  Moreover, it is easy to check that \(\Ind{\Delta}\) is induced by the object \(P\) of \(\dgMod{\left(\A \times \B\right)^\opp \otimes \left(\A \otimes \B \right)}\) defined by
-  \[P(i,(m,n)) = \left(\A \otimes \B\right)^\opp\left((i,i),(m,n)\right) = A_{i- m} \otimes_k B_{i - n}\]
-  in the sense that \(\Ind{\Delta} \cong \widehat{\Phi_P} = - \otimes_{\A \times \B} P\).
-\end{proof}
 \begin{corollary} \label{corollary: NCP morita degree 1}
-  Let \(A\) and \(B\) be a tasty pair of connected graded \(k\)-algebras with \(k\) a field that are both generated in degree one.
+  Let \(A\) and \(B\) be a delightful couple of connected graded \(k\)-algebras with \(k\) a field that are both generated in degree one.
   Assume that there exists an equivalence
   \begin{displaymath}
     f : \mathrm{D} (\QGr{A}) \to \mathrm{D} (\QGr{B}).
   \end{displaymath}
-  Then there exists an object \(P \in D ( \QGr{A^\opp \times_k B} )\) such that 
-  \begin{displaymath}
-    \Phi_P : \mathrm{D} ( \QGr{A}) \to \mathrm{D} (\QGr{B} )
-  \end{displaymath}
-  is an equivalence.
+  Then there exists an object \(P \in D ( \QGr{A^\opp \times_k B} )\) that induces an equivalence
+  \[\begin{tikzcd}[row sep=tiny]
+  \mathrm{D}(\QGr{A}) \arrow{r}& \mathrm{D}(\QGr{B})\\
+  M \arrow[mapsto]{r} & \pi_B\left(\mathbb{V}_\text{dg}(P) \otimes^\mathbf{L} \mathbf{R}\omega_A M\right)
+  \end{tikzcd}\]
 \end{corollary}
 
 \begin{proof}
+  The equivalence \(\mathbb{V}\) of Theorem~\ref{theorem: Van Rompay} extends naturally to a quasi-equivalence
+  \[\mathbb{V}_\text{dg} \colon \hinj{\QGr{S}} \to \hinj{\QGr{T}}.\]
+  Now choose \(P\) such that \(\mathbb{V}_\text{dg}(P)\) is homotopy equivalent to the kernel obtained by an application of Corollary~\ref{corollary: NCP morita}, so the desired equivalence is \(\Phi_{\mathbb{V}_\text{dg}(P)}\).
 \end{proof}
