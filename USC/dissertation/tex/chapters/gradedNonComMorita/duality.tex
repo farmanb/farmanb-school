@@ -1,7 +1,7 @@
 One can regard the bimodule \(\mathbf{R}Q_{A \otimes_k A^\opp}\Delta\) as a sum of \(A\)-modules
 \[\mathbf{R}Q_{A \otimes_k A^\opp}\Delta = \bigoplus_{x} (\mathbf{R}Q_{A \otimes_k A^\opp}\Delta)_{\ast,x}\]
 and define for any object, \(M\), of \(\ldgGrMod{A}\) the object
-\[\mathbf{R}\underline{\op{Hom}}_A(M, \mathbf{R}Q_{A \otimes_k A^\opp}\Delta) = \bigoplus_x \mathbf{R}\op{Hom}_A(M, \mathbf{R}Q_{A \otimes_k A^\opp}\Delta_{\ast,x})\]
+\[\mathbf{R}\underline{\op{Hom}}_A(M, \mathbf{R}Q_{A \otimes_k A^\opp}\Delta) = \bigoplus_x \mathbf{R}\op{Hom}_A(M, (\mathbf{R}Q_{A \otimes_k A^\opp}\Delta)_{\ast,x})\]
 of \(\rdgGrMod{A}\).
 Consider the functor
 \begin{align*}
@@ -21,29 +21,75 @@ Consider the functor
 \end{lemma}
 
 \begin{proof}
-  We first exhibit the latter quasi-isomorphisms. We have 
+  We first exhibit the latter quasi-isomorphisms.
+  We observe that because \(\mathbf{R}Q_A\) and \(\mathbf{R}Q_{A^\opp}\) both commute with coproducts we obtain from Proposition~\ref{proposition: when beta is an isomorphism} two decompositions of \(\mathbf{R}Q_{A \otimes_k A^\opp} \Delta\) as an \(A\)-module
+  \begin{gather*}
+    \mathbf{R}Q_{A \otimes_k A^\opp} \Delta \cong \mathbf{R}Q_{A} \circ \mathbf{R}Q_{A^\opp} \Delta
+    = \mathbf{R}Q_{A} \circ \mathbf{R}Q_{A^\opp} \left(\bigoplus_j \Delta_{\ast,j}\right)\\
+    \cong \bigoplus_j \mathbf{R}Q_A \circ \mathbf{R}Q_{A^\opp} \left(\Delta_{\ast,j}\right) \cong \bigoplus_j \mathbf{R}Q_A (\Delta_{\ast,j}) = \bigoplus_j \mathbf{R}Q_A A(j)
+  \end{gather*}
+  and as an \(A^\opp\)-module
+  \begin{gather*}
+    \mathbf{R}Q_{A \otimes_k A^\opp} \Delta \cong \mathbf{R}Q_{A^\opp} \circ \mathbf{R}Q_A \Delta
+    = \mathbf{R}Q_{A^\opp} \circ \mathbf{R}Q_A \left(\bigoplus_i \Delta_{i,\ast}\right)\\
+    \cong \bigoplus_i \mathbf{R}Q_{A^\opp} \circ \mathbf{R}Q_A (\Delta_{i,\ast})
+    \cong \bigoplus_i \mathbf{R}Q_{A^\opp} (\Delta_{i,\ast})
+    \cong \bigoplus_i \mathbf{R}Q_{A^\opp} A(i).
+  \end{gather*}
+  The first decomposition implies that \((\mathbf{R}Q_{A \otimes_k A^\opp} \Delta)_{\ast,j} \cong \mathbf{R}Q_A A(j)\) is right orthogonal to \(\tau_A\)-torsion, hence by applying \(\mathbf{R}\underline{\op{Hom}}_A(-, \mathbf{R}Q_{A \otimes_k A^\opp} \Delta)\) to the triangle
+  \[\mathbf{R}\tau_A A(x) \to A(x) \to \mathbf{R}Q_A A(x)\]
+  we obtain a triangle %(\mathbf{R}Q_{A \otimes_k A^\opp} \Delta)_{-x,\ast} \cong
+  \[(\mathbf{R}\tau_A A(x))^\vee \cong 0 \to A(x)^\vee \overset{\sim}\to (\mathbf{R}Q_A A(x))^\vee.\]
+  Moreover, since \(A(x)\) is compact, we also obtain a quasi-isomorphism
+  \begin{gather*}
+    (\mathbf{R}Q_A A(x))^\vee
+    \cong A(x)^\vee
+    = \bigoplus_j \mathbf{R}\op{Hom}_A(A(x), (\mathbf{R}Q_{A \otimes_k A^\opp}\Delta)_{\ast,j})\\
+    \cong \mathbf{R}\op{Hom}_A\left(A(x), \bigoplus_j(\mathbf{R}Q_{A \otimes_k A^\opp}\Delta)_{\ast,j}\right)
+    = \mathbf{R}\op{Hom}_A(A(x), \mathbf{R}Q_{A \otimes_k A^\opp} \Delta) \\
+    \cong (\mathbf{R}Q_{A \otimes_k A^\opp} \Delta)_{-x,\ast}
+  \end{gather*}
+  and the second decomposition yields
   \begin{displaymath}
-    (\mathbf{R}Q_A A(x))^\vee \cong \mathbf{R}\op{Hom}_A (A(x), \mathbf{R}Q_{A \otimes_k A^\opp} \Delta) \cong (\mathbf{R}Q_{A \otimes_k A^\opp} \Delta)_{-x,\ast}
-  \end{displaymath}
-  since \(\mathbf{R}Q_{A \otimes_k A^\opp} \Delta\) is right orthogonal to \(\tau_A\)-torsion. From Proposition~\ref{proposition: when beta is an isomorphism}, we get 
-  \begin{displaymath}
-    (\mathbf{R}Q_{A \otimes_k A^\opp} \Delta)_{-x,\ast} \cong (\mathbf{R}Q_{A^\opp} \Delta)_{-x,\ast} = \mathbf{R}Q_{A^\opp} A(-x).
+    \left(\mathbf{R}Q_A A(x)\right)^\vee \cong (\mathbf{R}Q_{A \otimes_k A^\opp} \Delta)_{-x,\ast} \cong \mathbf{R}Q_{A^\opp} A(-x).
   \end{displaymath}
   Applying this twice, we get 
   \begin{displaymath}
     (\mathbf{R}Q_A A(x))^{\vee \vee} \cong \mathbf{R}Q_A A(x).
   \end{displaymath}
-  We just need to check that the natural map \(\nu : 1 \to (-)^{\vee \vee}\) induces the identity after this quasi-isomorphism.
+  We need only check that the natural map \(\nu : 1 \to (-)^{\vee \vee}\) induces the identity after this quasi-isomorphism.
+
+%  Using the fact that \(\pi_A A(x)\) is a compact object and the derived adjunction \(\pi_A \dashv \mathbf{R}\omega_A\), we observe also that there is a quasi-isomorphism
+%  \begin{gather*}
+%    \mathbf{R}\op{Hom}_A(\mathbf{R}Q_A A(x), \mathbf{R}Q_{A \otimes_k A^\opp}\Delta) \cong \mathbf{R}\op{Hom}_{\QGr{A}}(\pi_A A(x), \pi_A \mathbf{R}Q_{A^\opp} \Delta) \\\cong \bigoplus_j \mathbf{R}\op{Hom}_{\QGr{A}}(\pi_A A(x), (\pi_A \mathbf{R}Q_{A^\opp} \Delta)_{\ast,j}) \cong \bigoplus_j \mathbf{R}\op{Hom}_A(\mathbf{R}Q_A A(x), (\mathbf{R}Q_{A \otimes_k A^\opp} \Delta)_{\ast,j})\\
+%    = (\mathbf{R}Q_A A(x))^\vee
+%  \end{gather*}
+
+%  We have 
+%  \begin{displaymath}
+%    (\mathbf{R}Q_A A(x))^\vee \cong \mathbf{R}\op{Hom}_A (A(x), \mathbf{R}Q_{A \otimes_k A^\opp} \Delta) \cong (\mathbf{R}Q_{A \otimes_k A^\opp} \Delta)_{-x,\ast}
+%  \end{displaymath}
 
   Note that we found a map
   \begin{displaymath}
-    A(-x) \to \mathbf{R}Q_A A(-x) \to ( \mathbf{R}Q_A A(x) )^\vee 
+    A(-x) \to \mathbf{R}Q_{A^\opp} A(-x) \to ( \mathbf{R}Q_A A(x) )^\vee 
   \end{displaymath}
-  inducing the quasi-isomorphism \((\mathbf{R}Q_A A(x))^{\vee \vee} \cong \mathbf{R}Q_A A(x)\). One can identify the image of \(1\) as a map 
-  \begin{displaymath}
-    \mathbf{R}Q_A A(x) \to \mathbf{R}Q_{A \otimes_k A^\opp} \Delta (0,x) \cong \mathbf{R}Q_A ( \Delta (x,0) )
-  \end{displaymath}
-  which, after applying the quasi-isomorphism, is the natural inclusion. Evaluating this at \(a \in \mathbf{R}Q_A A(x)\) gives \(a\) back. Thus, we see that \(\nu\) is quasi-fully faithful on \(\mathbf{R}Q_A A(x)\) for all \(x\). 
+  inducing the quasi-isomorphism \((\mathbf{R}Q_A A(x))^{\vee \vee} \cong \mathbf{R}Q_A A(x)\).
+  If \(\alpha\) is the image of \(1\) in \(\mathbf{R}Q_{A^\opp} A(-x)\), denote by \(\alpha^\vee\) the image in \((\mathbf{R}Q_A A(x))^\vee\).
+  Since \(1 \in A(-x)_x\), one can identify \(\alpha^\vee\) as a morphism
+  \[
+  \mathbf{R}Q_A A(x) \to (\mathbf{R}Q_{A \otimes_k A^\opp} \Delta)_{\ast,x} \cong \mathbf{R}Q_A A(x)
+  \]
+  %\begin{displaymath}
+  %\mathbf{R}Q_A A(x) \to \mathbf{R}Q_{A \otimes_k A^\opp} \Delta (0,x) \cong \mathbf{R}Q_A ( \Delta (x,0) )
+%\end{displaymath}
+  which is the natural inclusion.
+  For any \(a \in \mathbf{R}Q_A A(x)\) we obtain a morphism
+  \[\op{ev}_a \colon (\mathbf{R}Q_A A(x))^\vee \to \mathbf{R}Q_{A \otimes A^\opp} \Delta \]
+  and hence
+  \[\op{ev}_a(\alpha^\vee) = \alpha^\vee(a) = a\]
+  %Evaluating this at \(a \in \mathbf{R}Q_A A(x)\) gives \(a\) back.
+  Thus, we see that \(\nu\) is quasi-fully faithful on \(\mathbf{R}Q_A A(x)\) for all \(x\). 
 \end{proof}
 
 \begin{definition}
