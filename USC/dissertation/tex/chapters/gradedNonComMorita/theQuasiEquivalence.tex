@@ -22,14 +22,30 @@ Now we turn to the main result.
   \end{displaymath}
   From Lemma~\ref{lemma: another model for QA otimes QB} we have a quasi-fully faithful functor 
   \begin{displaymath}
-    Q \mathcal A^\opp \otimes_k Q \mathcal B \to \hinj{\QGr{A^\opp \otimes_k B}}. 
+    \imath \colon Q \mathcal A^\opp \otimes_k Q \mathcal B \to \hinj{\QGr{A^\opp \otimes_k B}}
   \end{displaymath}
-  This gives a functor 
+  which induces a dg-functor
   \begin{displaymath}
-    \hinj{\QGr{A^\opp \otimes_k B}} \to \hproj{Q \mathcal A^\opp \otimes_k Q \mathcal B}
+    \imath^\ast \colon \hinj{\QGr{A^\opp \otimes_k B}} \to \dgMod{Q \mathcal A^\opp \otimes_k Q \mathcal B}
   \end{displaymath}
-  which is a quasi-equivalence by a standard argument, see e.g. \parencite[Theorem 5.1]{Dyckerhoff11}.
-  
+  mapping an object \(P\) of \(\hinj{\QGr{A^\opp \otimes_k B}}\) to the dg-functor
+  \[\begin{tikzcd}[row sep=tiny]
+  \left(Q\A^\opp \otimes Q\B\right)^\opp \arrow{r} & \CH{k}\\
+  E \arrow[mapsto]{r} & \hinj{\QGr{A^\opp \otimes_k B}}(iE, P).
+  \end{tikzcd}\]
+  We first note that, because the image of objects of \(Q\A^\opp \otimes Q\B\) are compact in \(\hinj{\QGr{A^\opp \otimes_k B}}\), for any set \(J\) the natural map
+  \[\imath^\ast\left(\bigoplus_{j \in J} P_j\right)\to \bigoplus_{j \in J} \imath^\ast(P_j)\]
+    is a weak equivalence, so \(\imath^\ast\) is continuous.
+    By identifying \(P_{u,v} = \pi_{A^\opp \otimes_k B}(A(u) \otimes_k B(v))\) as an object of \(\dgMod{Q\A^\opp \otimes Q\B}\), we obtain the weak equivalence
+    \[\imath^\ast(P) = \hinj{\QGr{A^\opp \otimes_k B}}(\imath(-), P) \cong \dgMod{Q\A^\opp \otimes_k Q\B}(-, P)\]
+    and, consequently, the weak equivalence
+    \begin{eqnarray*}
+      \dgMod{Q\A^\opp \otimes Q\B}(i^\ast(P_{u,v}), \imath^\ast(P_{u^\prime, v^\prime}))
+      &\cong& \imath^\ast(P_{u^\prime, v^\prime})(P_{u,v}) \\
+      &=& \hinj{\QGr{A^\opp \otimes_k B}}(P_{u,v}, P_{u^\prime, v^\prime}).
+    \end{eqnarray*}
+    Since the collection \(\{P_{u,v}\}_{\Z^2}\) are compact generators for \(\hinj{\QGr{A^\opp \otimes_k B}}\), it follows that \(\imath^\ast\) is a quasi-equivalence.
+
   Tracing out the quasi-equivalences, one just needs to manipulate 
   \begin{align*}
     \op{Hom} (\mathbf{R}Q_A A(x)^\vee \otimes_k \mathbf{R}Q_B B(y), P) & \cong \op{Hom} ( \mathbf{R}Q_B B(y) , \op{Hom}( \mathbf{R}Q_A A(x)^\vee, \mathbf{R}\omega_{A^\opp \otimes_k B} P)) \\
