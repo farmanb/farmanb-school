@@ -21,22 +21,29 @@ Consider the functor
 \end{lemma}
 
 \begin{proof}
-  We first exhibit the latter quasi-isomorphisms.
-  We observe that because \(\mathbf{R}Q_A\) and \(\mathbf{R}Q_{A^\opp}\) both commute with coproducts we obtain from Proposition~\ref{proposition: when beta is an isomorphism} two decompositions of \(\mathbf{R}Q_{A \otimes_k A^\opp} \Delta\) as an \(A\)-module
-  \begin{gather*}
-    \mathbf{R}Q_{A \otimes_k A^\opp} \Delta \cong \mathbf{R}Q_{A} \circ \mathbf{R}Q_{A^\opp} \Delta
-    = \mathbf{R}Q_{A} \circ \mathbf{R}Q_{A^\opp} \left(\bigoplus_j \Delta_{\ast,j}\right)\\
-    \cong \bigoplus_j \mathbf{R}Q_A \circ \mathbf{R}Q_{A^\opp} \left(\Delta_{\ast,j}\right) \cong \bigoplus_j \mathbf{R}Q_A (\Delta_{\ast,j}) = \bigoplus_j \mathbf{R}Q_A A(j)
-  \end{gather*}
-  and as an \(A^\opp\)-module
-  \begin{gather*}
-    \mathbf{R}Q_{A \otimes_k A^\opp} \Delta \cong \mathbf{R}Q_{A^\opp} \circ \mathbf{R}Q_A \Delta
-    = \mathbf{R}Q_{A^\opp} \circ \mathbf{R}Q_A \left(\bigoplus_i \Delta_{i,\ast}\right)\\
-    \cong \bigoplus_i \mathbf{R}Q_{A^\opp} \circ \mathbf{R}Q_A (\Delta_{i,\ast})
-    \cong \bigoplus_i \mathbf{R}Q_{A^\opp} (\Delta_{i,\ast})
-    \cong \bigoplus_i \mathbf{R}Q_{A^\opp} A(i).
-  \end{gather*}
-  The first decomposition implies that \((\mathbf{R}Q_{A \otimes_k A^\opp} \Delta)_{\ast,j} \cong \mathbf{R}Q_A A(j)\) is right orthogonal to \(\tau_A\)-torsion, hence by applying \(\mathbf{R}\underline{\op{Hom}}_A(-, \mathbf{R}Q_{A \otimes_k A^\opp} \Delta)\) to the triangle
+  %We observe that because \(\mathbf{R}Q_A\) and \(\mathbf{R}Q_{A^\opp}\) both commute with coproducts we obtain from Proposition~\ref{proposition: when beta is an isomorphism} two decompositions of \(\mathbf{R}Q_{A \otimes_k A^\opp} \Delta\) as an \(A\)-module
+  %\begin{gather*}
+  %\mathbf{R}Q_{A \otimes_k A^\opp} \Delta \cong \mathbf{R}Q_{A} \circ \mathbf{R}Q_{A^\opp} \Delta
+  %= \mathbf{R}Q_{A} \circ \mathbf{R}Q_{A^\opp} \left(\bigoplus_j \Delta_{\ast,j}\right)\\
+  %\cong \bigoplus_j \mathbf{R}Q_A \circ \mathbf{R}Q_{A^\opp} \left(\Delta_{\ast,j}\right) \cong \bigoplus_j \mathbf{R}Q_A (\Delta_{\ast,j}) = \bigoplus_j \mathbf{R}Q_A A(j)
+%\end{gather*}
+  %and as an \(A^\opp\)-module
+  %\begin{gather*}
+  %\mathbf{R}Q_{A \otimes_k A^\opp} \Delta \cong \mathbf{R}Q_{A^\opp} \circ \mathbf{R}Q_A \Delta
+  %= \mathbf{R}Q_{A^\opp} \circ \mathbf{R}Q_A \left(\bigoplus_i \Delta_{i,\ast}\right)\\
+  %\cong \bigoplus_i \mathbf{R}Q_{A^\opp} \circ \mathbf{R}Q_A (\Delta_{i,\ast})
+  %\cong \bigoplus_i \mathbf{R}Q_{A^\opp} (\Delta_{i,\ast})
+  %\cong \bigoplus_i \mathbf{R}Q_{A^\opp} A(i).
+  %\end{gather*}
+  We first exhibit the latter quasi-isomorphisms.  
+%  By Proposition~\ref{proposition: bi-torsion is a composition}, we have quasi-isomorphisms
+ % \[\mathbf{R}Q_{A \otimes_k A^\opp} \Delta \cong \mathbf{R}Q_{A} \circ \mathbf{R}Q_{A^\opp} \Delta\ \text{and}\ \mathbf{R}Q_{A \otimes_k A^\opp} \Delta \cong \mathbf{R}Q_{A^\opp} \circ \mathbf{R}Q_A \Delta.\]
+  Using the quasi-isomorphisms of Proposition~\ref{proposition: when beta is an isomorphism}, we obtain two quasi-isomorphic decompositions of \(\mathbf{R}Q_{A \otimes_k A^\opp} \Delta\) as a sum of \(A\)-modules
+  %we have a quasi-isomorphism \(\mathbf{R}Q_{A \otimes_k A^\opp} \Delta \cong \mathbf{R}Q_A \Delta\) and hence
+  \[(\mathbf{R}Q_{A \otimes_k A^\opp} \Delta)_{\ast,j} \cong (\mathbf{R}Q_{A} \Delta)_{\ast,j} = \bigoplus_i (\mathbf{R}Q_{A} \Delta)_{i,j} = \bigoplus_i \mathbf{R}Q_A(\Delta_{\ast,j})_i = \mathbf{R}Q_A A(j)\]
+  and as a sum of \(A^\opp\)-modules
+  \[(\mathbf{R}Q_{A \otimes_k A^\opp} \Delta)_{i,\ast} \cong (\mathbf{R}Q_{A^\opp} \Delta)_{i,\ast} = \bigoplus_j (\mathbf{R}Q_{A^\opp} \Delta)_{i,j} = \bigoplus_j \mathbf{R}Q_{A^\opp}(\Delta_{i,\ast})_j = \mathbf{R}Q_{A^\opp} A(i).\]
+  The first implies that \((\mathbf{R}Q_{A \otimes_k A^\opp} \Delta)_{\ast,j}\) is right orthogonal to \(\tau_A\)-torsion, hence by applying \(\mathbf{R}\underline{\op{Hom}}_A(-, \mathbf{R}Q_{A \otimes_k A^\opp} \Delta)\) to the triangle
   \[\mathbf{R}\tau_A A(x) \to A(x) \to \mathbf{R}Q_A A(x)\]
   we obtain a triangle %(\mathbf{R}Q_{A \otimes_k A^\opp} \Delta)_{-x,\ast} \cong
   \[(\mathbf{R}\tau_A A(x))^\vee \cong 0 \to A(x)^\vee \overset{\sim}\to (\mathbf{R}Q_A A(x))^\vee.\]
