@@ -4,7 +4,9 @@ PDFDIR=../pdf/
 FILE="${NAME}.tex"
 
 #texi2pdf $FILE
-latex ${NAME} && biber ${NAME} && pdflatex ${NAME}
+#latex ${NAME} && biber ${NAME} && pdflatex ${NAME}
+pdflatex ${NAME} && biber ${NAME} && pdflatex ${NAME}
+
 
 if [ ! -d ../pdf ]; then
    mkdir ../pdf
