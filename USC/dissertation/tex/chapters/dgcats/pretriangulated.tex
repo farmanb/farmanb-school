@@ -90,13 +90,15 @@ As a first application, we record a handy proposition.  It is suspected that thi
   Finally, for any distinguished triangle \(D_1 \to D_2 \to Z \to D_1[1]\) of \(H^0(\A)\) with \(D_1, D_2\) objects of \(\D\) we see that \(Z\) is an object of \(\D\) by applying the 5 Lemma to the morphism of long exact sequences induced by the cohomological functors \(H^0(\A)(-, X)\) and \(H^0(\B)(-, FX)\)
   \[\begin{tikzcd}[column sep=tiny]
   \cdots \arrow{r} & H^0(\A(D_1, X)) \arrow{r}\arrow{d}{H^0(F_{D_1,X})} & H^1(\A(Z, X)) \arrow{r}\arrow{d}{H^1(F_{Z,X})} & H^1(\A(D_2, X)) \arrow{r}\arrow{d}{H^1(F_{D_2,X})} & \cdots\\
-  \cdots \arrow{r} H^0(\B(FD_1, FX)) \arrow{r} & H^1(\B(FZ, FX)) \arrow{r} & H^1(\B(FD_2, FX)) \arrow{r}& \cdots\\
+  \cdots \arrow{r} & H^0(\B(FD_1, FX)) \arrow{r} & H^1(\B(FZ, FX)) \arrow{r} & H^1(\B(FD_2, FX)) \arrow{r}& \cdots\\
   \end{tikzcd}\]
   %\[\begin{tikzcd}[column sep=tiny]
   %\cdots \arrow{r} & H^0(\A(D_2, X)) \arrow{r}\arrow{d}{H^0(F_{D_2,X})} & H^0(\A(D_1, X)) \arrow{r}\arrow{d}{H^0(F_{D_1,X})} & H^1(\A(Z, X)) \arrow{r}\arrow{d}{H^1(F_{Z,X})} & H^1(\A(D_2, X)) \arrow{r}\arrow{d}{H^1(F_{D_2,X})} & \cdots\\
   %\cdots \arrow{r} & H^0(\B(FD_2, FX)) \arrow{r} & H^0(\B(FD_1, FX)) \arrow{r} & H^1(\B(FZ, FX)) \arrow{r} & H^1(\B(FD_2, FX)) \arrow{r}& \cdots\\
   %\end{tikzcd}\]
   for each \(i \in I\).
-  Hence by equipping \(H^0(\D)\) with the distinguished triangles \(D_1 \to D_2 \to D_3 \to D_1[1]\) of \(H^0(\A)\), where the \(D_i\) are objects of \(\D\), inherits the structure of a triangulated subcategory.
+  Hence by equipping \(H^0(\D)\) with the distinguished triangles
+  \[D_1 \to D_2 \to D_3 \to D_1[1]\]
+  of \(H^0(\A)\), where the \(D_i\) are objects of \(\D\), inherits the structure of a triangulated subcategory.
   Therefore \(D = \A\) and \(F\) is quasi-fully faithful, as desired.
 \end{proof}
