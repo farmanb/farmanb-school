@@ -1,90 +1,3 @@
-
-\begin{lemma} \label{lemma: quasi-equivalence on gens is quasi-equivalence}
-  Let \(\A\) and \(\B\) be dg-categories.
-  Assume that \(H^0(\A)\) and \(H^0(\B)\) are both triangulated categories, each with a set of compact generators \(\{A_i\}_I\) and \(\{B_j\}_J\).
-  If \(F \colon \A \to \B\) is a continuous dg-functor satisfying \(F(\{A_i\}_I) = \{B_j\}_J\) and the structure morphism
-  \[F_{A_{i_1}, A_{i_2}} \colon \A(A_{i_1}, A_{i_2}) \to \B(FA_{i_1}, FA_{i_2})\]
-  is a quasi-isomorphism for all \(i_1, i_2 \in I\), then \(F\) is a quasi-equivalence.
-\end{lemma}
-
-\begin{proof}
-  We observe that it suffices to show that \(F\) is quasi-fully faithful.
-  Indeed, if \(F\) is quasi-fully faithful, then the essential image of \(H^0(\A)\) under \(H^0(F)\) is a triangulated subcategory of \(H^0(\B)\) that is closed under coproducts and contains the generators \(\{B_j\}_J\) by assumption.
-  Since \(H^0(\B)\) is the smallest such triangulated subcategory, it follows that the essential image of \(H^0(\A)\) is all of \(H^0(\B)\) and thus \(F\) is quasi-essentially surjective.
-
-  We break the argument into two pieces.
-  %First we show that \(F_{A_i, X} \colon \A(A_i, X) \to \B(FA_i, FX)\) is a quasi-isomorphism for all objects \(X\) of \(A\).
-  %With this established, we are able to extend the result to all pairs of objects of \(A\).
-  The proof of each case is similar in style to the proof that \(F\) is quasi-essentially surjective above.
-  In the first case, we show that the full dg-subcategory, \(\C\), of \(\A\) consisting of objects \(C\) such that
-  \[F_{A_i,C} \colon \A(A_i, C) \to \B(FA_i, FC)\]
-  is a quasi-isomorphism for all \(i \in I\) satisfies \(H^0(\C) = H^0(\A)\), so that, being a full dg-subcategory of \(\A\) with the same objects as \(H^0(\C)\), \(\C = \A\).
-  Having established this, we obtain a non-trivial full dg-subcategory, \(\D\), of \(\A\) consisting of objects \(D\) such that
-  \[F_{D,X} \colon \A(D,X) \to \B(FD, FX)\]
-  is a quasi-isomorphism for all objects \(X\) of \(\A\).
-  Once again we show that \(H^0(\D) = H^0(\A)\).
-  By the same argument, mutatis mutandis, this implies that \(\D = \A\) and \(F\) is quasi-fully faithful.
-  
-  %Consider the full dg-subcategory, \(\C\), of \(\A\) consisting of objects \(C\) such that
-  %\[F_{A_i,C} \colon \A(A_i, C) \to \B(FA_i, FC)\]
-  %is a quasi-isomorphism for all \(i \in I\).
-  %First we show that \(\C = \A\), which is equivalent to showing that \(H^0(\C) = H^0(\A)\) because the objects of \(H^0(\C)\) coincide with the objects of \(\C\) and the objects of \(H^0(\A)\) coincide with the objects of \(\A\).
-  %We reduce further to showing that \(H^0(\C)\) is a triangulated subcategory of \(H^0(\A)\) that is closed under coproducts and contains \(\{A_i\}_I\), since \(H^0(\A)\) is the smallest triangulated subcategory satisfying this property.
-  Towards the first goal, we note that it suffices to show \(H^0(\C)\) is triangulated, closed under coproducts, and contains \(\{A_i\}_I\).
-  The latter condition is guaranteed by hypothesis.
-  That \(H^0(\C)\) is closed under translation follows from the fact that if \(C\) is an object of \(\C\), then for all \(i\) and for all \(n\)
-  \[H^0(\A(A_i, C[n])) \cong H^{n}(\A(A_i, C)) \cong H^{n}(\B(FA_i, FC)) \cong H^0(\B(FA_i, FC[n])).\]
-  Now, for any distinguished triangle \(C_1 \to C_2 \to X \to C_1[1]\) of \(H^0(\A)\) with \(C_1, C_2\) objects of \(\C\) we see that \(X\) is an object of \(\C\) by applying the 5 Lemma to the morphism of long exact sequences induced by the homological functors \(H^0(\A)(A_i, -)\) and \(H^0(\B)(FA_i, -)\)
-  \[\begin{tikzcd}[column sep=tiny]
-  \cdots \arrow{r} & H^0(\A(A_i, C_1)) \arrow{r}\arrow{d}{H^0(F_{A_i,C_1})} & H^0(\A(A_i, C_2)) \arrow{r}\arrow{d}{H^0(F_{A_i,C_2})} & H^0(\A(A_i, X)) \arrow{r}\arrow{d}{H^0(F_{A_i,X})} & H^1(\A(A_i, C_1)) \arrow{r}\arrow{d}{H^1(F_{A_i, C})} & \cdots\\
-  \cdots \arrow{r} & H^0(\B(FA_i, FC_1)) \arrow{r} & H^0(\B(FA_i, FC_2)) \arrow{r} & H^0(\B(F_i, FC)) \arrow{r} & H^1(\B(F_i, FC_1)) \arrow{r}& \cdots\\
-  \end{tikzcd}\]
-  for each \(i \in I\).
-  Hence by equipping \(H^0(\C)\) with the distinguished triangles from \(H^0(\A)\) of the form \(C_1 \to C_2 \to C_3 \to C_1[1]\) with the \(C_i\) objects of \(\C\), \(H^0(\C)\) inherits the structure of a triangulated subcategory.
-  Finally we note that because \(A_i\) and \(FA_i \in \{B_j\}_J\) are compact, and the induced functor \(H^0(F)\) commutes with direct sums, we have for any set, \(\{C_\alpha\}\), of objects of \(\C\) the isomorphism
-  \begin{gather*}
-    H^0\left(\A\left(A_i, \bigoplus_\alpha C_\alpha\right)\right) \cong \bigoplus_\alpha H^0\left(\A\left(A_i, C_\alpha\right)\right) \cong \bigoplus_\alpha H^0\left(\B\left(FA_i, C_\alpha\right)\right)\\
-    \cong H^0\left(\B\left(FA_i, \bigoplus_\alpha FC_\alpha\right)\right) \cong H^0\left(\B\left(FA_i, F\left(\bigoplus_\alpha C_\alpha\right)\right)\right)
-  \end{gather*}
-  implies that \(H^0(\C)\) is closed under coproducts.
-  %As \(H^0(\A)\) is the smallest triangulated subcategory of itself containing \(\{A_i\}_I\) and closed under coproducts, it follows that \(H^0(\C) = H^0(\A)\) and thus \(\C = \A\).
-
-  %Now consider the full dg-subcategory, \(\D\), of \(\A\) consisting of objects \(D\) such that
-  %\[F_{D,X} \colon \A(D,X) \to \B(FD, FX)\]
-  %is a quasi-isomorphism for all objects \(X\) of \(\A\), which we have established is non-trivial since it contains \(\{A_i\}_I\).
-  To see that \(\D = \A\), we again observe that it suffices to show \(H^0(\D)\) is triangulated, closed under coproducts, and contains the generators, \(\{A_i\}_I\).
-  The latter condition follows from the fact that the category \(\C\) contains \(\{A_i\}_I\).
-  For any object \(D\) of \(\D\) and any object \(X\) of \(\A\), the fact that translation is an auto-equivalence yields the natural isomorphism
-  \[\A(D[n], X) \cong \A(D, X[-n])\]
-  from which we obtain the isomorphism
-  \[H^0(\A(D[n], X)) \cong H^{-n}(\A(D,X)) \cong H^{-n}(\B(FD, FX)) \cong H^0(\B(FD[n], FX))\]
-  for all \(n\).
-  Hence \(H^0(\D)\) is closed under translations.
-  Next we see that for any set of objects \(\{D_\alpha\}\) of \(\D\) and any object \(X\) of \(\A\) we have the isomorphism
-  \begin{gather*}
-    H^0\left(\A\left(\bigoplus_\alpha D_\alpha, X\right)\right)
-  \cong \prod_\alpha H^0\left(\A\left(D_\alpha, X\right)\right)
-    \cong \prod_\alpha H^0\left(\B\left(FD_\alpha, X\right)\right)\\
-    \cong H^0\left(\B\left(\bigoplus_\alpha FD_\alpha, X\right)\right)
-    \cong H^0\left(\B\left(F\left(\bigoplus_\alpha D_\alpha\right), X\right)\right)
-  \end{gather*}
-  which implies that \(H^0(\D)\) is closed under coproducts.
-  Finally, for any distinguished triangle \(D_1 \to D_2 \to Z \to D_1[1]\) of \(H^0(\A)\) with \(D_1, D_2\) objects of \(\D\) we see that \(Z\) is an object of \(\D\) by applying the 5 Lemma to the morphism of long exact sequences induced by the cohomological functors \(H^0(\A)(-, X)\) and \(H^0(\B)(-, FX)\)
-  \[\begin{tikzcd}[column sep=tiny]
-  \cdots \arrow{r} & H^0(\A(D_2, X)) \arrow{r}\arrow{d}{H^0(F_{D_2,X})} & H^0(\A(D_1, X)) \arrow{r}\arrow{d}{H^0(F_{D_1,X})} & H^1(\A(Z, X)) \arrow{r}\arrow{d}{H^1(F_{Z,X})} & H^1(\A(D_2, X)) \arrow{r}\arrow{d}{H^1(F_{D_2,X})} & \cdots\\
-  \cdots \arrow{r} & H^0(\B(FD_2, FX)) \arrow{r} & H^0(\B(FD_1, FX)) \arrow{r} & H^1(\B(FZ, FX)) \arrow{r} & H^1(\B(FD_2, FX)) \arrow{r}& \cdots\\
-  \end{tikzcd}\]
-  for each \(i \in I\).
-  Hence by equipping \(H^0(\D)\) with the distinguished triangles \(D_1 \to D_2 \to D_3 \to D_1[1]\) of \(H^0(\A)\), where the \(D_i\) are objects of \(\D\), inherits the structure of a triangulated subcategory.
-  Therefore \(D = \A\) and \(F\) is quasi-fully faithful, as desired.
-  %As \(H^0(\A)\) is the smallest triangulated subcategory of \(H^0(\A)\) containing \(\{A_i\}_I\) and closed under coproducts, we see that \(H^0(\C) = H^0(\A)\).
-  %Since the objects of \(H^0(\A)\) coincide with those of \(\A\), it follows that \(F\) is quasi-fully faithful.
-
-  %The quasi-essential image of \(F\) is therefore a triangulated subcategory of \(H^0(\B)\) that contains \(\{B_j\}_J\) and is closed under coproducts.
-  %Therefore \(F\) is quasi-essentially surjective, as desired.
-\end{proof}
-
-
 We now turn to the main result.
 
 \begin{theorem} \label{theorem: derived morita for NCP}
@@ -118,20 +31,20 @@ We now turn to the main result.
   mapping an object \(P\) of \(\hinj{\QGr{A^\opp \otimes_k B}}\) to the dg-functor
   \[\begin{tikzcd}[row sep=tiny]
   \left(Q\A^\opp \otimes Q\B\right)^\opp \arrow{r} & \CH{k}\\
-  E \arrow[mapsto]{r} & \hinj{\QGr{A^\opp \otimes_k B}}(iE, P).
+  E \arrow[mapsto]{r} & \hinj{\QGr{A^\opp \otimes_k B}}(\imath E, P).
   \end{tikzcd}\]
   We first note that, because the image of objects of \(Q\A^\opp \otimes Q\B\) are compact in \(\hinj{\QGr{A^\opp \otimes_k B}}\), for any set \(J\) the natural map
   \[\imath^\ast\left(\bigoplus_{j \in J} P_j\right)\to \bigoplus_{j \in J} \imath^\ast(P_j)\]
-    is a weak equivalence, so \(\imath^\ast\) is continuous.
-    By identifying \(P_{u,v} = \pi_{A^\opp \otimes_k B}(A(u) \otimes_k B(v))\) as an object of \(\dgMod{Q\A^\opp \otimes Q\B}\), we obtain the weak equivalence
-    \[\imath^\ast(P) = \hinj{\QGr{A^\opp \otimes_k B}}(\imath(-), P) \cong \dgMod{Q\A^\opp \otimes_k Q\B}(-, P)\]
-    and, consequently, the weak equivalence
-    \begin{eqnarray*}
-      \dgMod{Q\A^\opp \otimes Q\B}(i^\ast(P_{u,v}), \imath^\ast(P_{u^\prime, v^\prime}))
-      &\cong& \imath^\ast(P_{u^\prime, v^\prime})(P_{u,v}) \\
-      &=& \hinj{\QGr{A^\opp \otimes_k B}}(P_{u,v}, P_{u^\prime, v^\prime}).
-    \end{eqnarray*}
-    Since the collection \(\{P_{u,v}\}_{\Z^2}\) are compact generators for \(\hinj{\QGr{A^\opp \otimes_k B}}\), it follows that \(\imath^\ast\) is a quasi-equivalence between \(\hinj{\QGr{A^\opp \otimes_k B}}\) and \(\hproj{Q\A^\opp \otimes Q\B}\), the full dg-subcategory of compact objects of \(\dgMod{Q\A^\opp \otimes Q\B}\), by Lemma~\ref{lemma: quasi-equivalence on gens is quasi-equivalence}
+  is a quasi-isomorphism, so \(\imath^\ast\) is continuous.
+  By identifying \(P_{u,v} = \pi_{A^\opp \otimes_k B}(A(u) \otimes_k B(v))\) as an object of \(\dgMod{Q\A^\opp \otimes Q\B}\), we obtain the quasi-isomorphism
+  \[\imath^\ast(P_{u,v}) = \hinj{\QGr{A^\opp \otimes_k B}}(\imath(-), P_{u,v}) \cong \dgMod{Q\A^\opp \otimes_k Q\B}(-, P_{u,v})\]
+  and, consequently, the quasi-isomorphism
+  \begin{eqnarray*}
+    \dgMod{Q\A^\opp \otimes Q\B}(\imath^\ast(P_{u,v}), \imath^\ast(P_{u^\prime, v^\prime}))
+    &\cong& \imath^\ast(P_{u^\prime, v^\prime})(P_{u,v}) \\
+    &=& \hinj{\QGr{A^\opp \otimes_k B}}(P_{u,v}, P_{u^\prime, v^\prime}).
+  \end{eqnarray*}
+  Since the collections \(\{\imath^\ast P_{u,v}\}_{\Z^2}\) and \(\{P_{u,v}\}_{\Z^2}\) are compact generators for \(\hproj{Q\A^\opp \otimes_k Q\B}\) and \(\hinj{\QGr{A^\opp \otimes_k B}}\), respectively, it follows that \(\imath^\ast\) is a quasi-equivalence between \(\hinj{\QGr{A^\opp \otimes_k B}}\) and \(\hproj{Q\A^\opp \otimes Q\B}\), the full dg-subcategory of compact objects of \(\dgMod{Q\A^\opp \otimes Q\B}\), by Proposition~\ref{proposition: quasi-equivalence on gens is quasi-equivalence}.
 
   Tracing out the quasi-equivalences, one just needs to manipulate 
   \begin{align*}
@@ -144,7 +57,7 @@ We now turn to the main result.
   \end{displaymath}
 \end{proof}
 
-The following statement is now a simple application of Theorem~\ref{theorem: derived morita for NCP} and results of \parencite{Lunts-Orlov}. 
+The following statement is now a simple application of Theorem~\ref{theorem: derived morita for NCP} and results of \textcite{Lunts-Orlov}. 
 
 \begin{corollary} \label{corollary: NCP morita}
   Let \(A\) and \(B\) be a delightful couple of connected graded \(k\)-algebras with \(k\) a field. Assume that there exists an equivalence
@@ -159,7 +72,7 @@ The following statement is now a simple application of Theorem~\ref{theorem: der
 \end{corollary}
 
 \begin{proof}
-  Applying \parencite[Theorem 1]{Lunts-Orlov} we know there is a quasi-equivalence between the unique enhancements, i.e. there is an \( F \in [ \hinj{ \QGr{A}}, \hinj{ \QGr{B}} ]\) giving an equivalence
+  Applying \textcite[Theorem 1]{Lunts-Orlov} we know there is a quasi-equivalence between the unique enhancements, i.e. there is an \( F \in [ \hinj{ \QGr{A}}, \hinj{ \QGr{B}} ]\) giving an equivalence
   \begin{displaymath}
     H^0(F) : H^0(\hinj{ \QGr{A} }) = \mathrm{D}(\QGr{A}) \to H^0(\hinj{ \QGr{B} }) = \mathrm{D}(\QGr{B}).
   \end{displaymath}

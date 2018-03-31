@@ -1,5 +1,5 @@
 Let \(E\) be a dg \(\A\)-\(\B\)-bimodule.
-Following \parencite[Section 3]{CS15}, we can extend the associated functor \(\Phi_E\) to a dg-functor
+Following \textcite[Section 3]{CS15}, we can extend the associated functor \(\Phi_E\) to a dg-functor
 \[\widehat{\Phi_M} \colon \dgMod{\A} \to \dgMod{\B}\]
 defined by \(\widehat{\Phi_E}(M) = M \otimes_\A E\).
 Similarly, we have a dg-functor in the opposite direction
@@ -14,7 +14,7 @@ By way of the enriched Yoneda Lemma we see that for any object \(A\) of \(\A\) a
 
 We record here some useful propositions regarding extensions of dg-functors.
 
-\begin{proposition}[{\parencite[Prop 3.2]{CS15}}]
+\begin{proposition}[{\textcite[Prop 3.2]{CS15}}]
   Let \(\A\) and \(\B\) be small dg-categories.
   Let \(F \colon \A \to \dgMod{\B}\) and \(G \colon \A \to \B\) be dg-functors.
   \begin{enumerate}[(i)]
@@ -54,7 +54,7 @@ We record here some useful propositions regarding extensions of dg-functors.
 \end{remark}
 
 When starting with an h-projective we have a very nice extension of dg-functors:
-\begin{proposition}[{\parencite[Lemma 3.4]{CS15}}]
+\begin{proposition}[{\textcite[Lemma 3.4]{CS15}}]
   For any h-projective dg \(\A\)-\(\B\)-bimodule, \(E\), the associated functor
   \[\Phi_E \colon \A \to \dgMod{\B}\]
   factors through \(\hproj{\B}\).
@@ -66,7 +66,7 @@ Put another way, tensoring with an h-projective \(\A\)-\(\B\)-bimodule preserves
 
 One essential result about \(\dgcat{k}\) comes from T\"oen's result on the existence, and description of, the internal Hom in its homotopy category. 
 
-\begin{theorem}[{\parencite[Theorem 1.1]{Toen07}}, {\parencite[4.1]{CS15}}] \label{theorem: Toen}
+\begin{theorem}[{\textcite[Theorem 1.1]{Toen07}}, {\textcite[Section 4]{CS15}}] \label{theorem: Toen}
   Let \(\A\), \(\B\), and \(\C\) be objects of \(\dgcat{k}\).
   There exists a natural bijection
   \[[\A,\C] \overset{1:1}\longleftrightarrow \Iso{H^0(\hproj{\A^{\opp} \otimes \C}^\rqr)}\]
@@ -75,16 +75,16 @@ One essential result about \(\dgcat{k}\) comes from T\"oen's result on the exist
   proving that the symmetric monoidal category \(\Ho{\dgcat{k}}\) is closed.
 \end{theorem}
 
-\begin{corollary}[{\parencite[7.2]{Toen07}},{\parencite[Cor. 4.2]{CS15}}] \label{corollary: Toen}
+\begin{corollary}[{\textcite[Theorem 7.2]{Toen07}},{\textcite[Cor. 4.2]{CS15}}] \label{corollary: Toen}
   Given two dg categories \(\A\) and \(\B\), \(\RHom{\A, \hproj{\B}}\) and \(\hproj{\A^\opp \otimes \B}\) are isomorphic in \(\Ho{\dgcat{k}}\).
   Moreover, there exists a quasi-equivalence
   \[\RHomc{\hproj{\A},\hproj{\B}} \to \RHom{\A, \hproj{B}}.\]
 \end{corollary}
 
-To get a sense of the value of this result, let us recall one application from \parencite[Section 8.3]{Toen07}. Let \(X\) and \(Y\) be quasi-compact and separated schemes over \(\op{Spec} k\). 
+To get a sense of the value of this result, let us recall one application from \textcite[Section 8.3]{Toen07}. Let \(X\) and \(Y\) be quasi-compact and separated schemes over \(\op{Spec} k\). 
 Recall the dg-model for \(\mathrm{D}(\op{Qcoh} X)\), \(\mathcal L_{\op{qcoh}}(X)\), is the \(\mathcal C(k)\)-enriched subcategory of fibrant and cofibrant objects in the injective model structure on \(C(\op{Qcoh} X)\).
 
-\begin{theorem}[{\parencite[Theorem 8.3]{Toen07}}]
+\begin{theorem}[{\textcite[Theorem 8.3]{Toen07}}]
   Let \(X\) and \(Y\) be quasi-compact, quasi-separated schemes over \(k\). Then there exists an isomorphism in \(\Ho{\dgcat{k}}\)
   \begin{displaymath}
     \RHomc{\mathcal L_{\op{qcoh}} X,\mathcal L_{\op{qcoh}} Y} \cong \mathcal L_{\op{qcoh}} (X \times_k Y)
@@ -97,5 +97,5 @@ Recall the dg-model for \(\mathrm{D}(\op{Qcoh} X)\), \(\mathcal L_{\op{qcoh}}(X)
 \end{theorem}
 
 \begin{proof}
-  The first part of the statement is exactly as in \parencite{Toen07}. The second part is implicit. 
+  The first part of the statement is exactly as in \textcite{Toen07}. The second part is implicit. 
 \end{proof}
