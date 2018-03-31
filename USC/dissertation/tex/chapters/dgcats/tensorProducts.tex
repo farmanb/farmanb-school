@@ -7,7 +7,7 @@ and
 which give rise to a unique morphism
 \[M_B \otimes_k {A}_{A,B} \otimes_k N_A \ra M_A \otimes_k N_A \oplus M_B \otimes_k N_B\]
 induced by the universal properties of the biproduct.
-The two collections of morphisms given by projecting onto each factor induced morphisms 
+The two collections of morphisms given by projecting onto each factor induce morphisms 
 \[\Xi_1, \Xi_2 \colon \bigoplus_{A,B \in \op{Ob}(\A)} M_B \otimes_k \A_{A,B} \otimes_k N_A \ra \bigoplus_{\C \in \op{Ob}(\A)} M_C \otimes_k N_C,\]
 and we define the tensor product of \(M\) and \(N\) to be the coequalizer in \(\Ch{k}\)
 \[\begin{tikzcd}
@@ -18,7 +18,9 @@ yielding a functor
 \[- \otimes_\A N \colon \dgMod{\A} \ra \CH{k}.\]
 
 One extends this construction to bimodules as follows.
-Given objects \(E\) of \(\dgMod{\A \otimes \B}\) and \(F\) of \(\dgMod{\B^{\opp} \otimes \C}\), we recall that we have associated to each a dg-functor \(\Phi_E \colon \A^{\opp} \ra \dgMod{\B}\) and \(\Phi_F \colon \C^{\opp} \ra \dgMod{\B^{\opp}}\) by the symmetric monoidal closed structure on \(\dgcat{k}\).
+Given objects \(E\) of \(\dgMod{\A \otimes \B}\) and \(F\) of \(\dgMod{\B^{\opp} \otimes \C}\), we recall that we have associated to each a dg-functor
+\[\Phi_E \colon \A^{\opp} \ra \dgMod{\B}\ \text{and}\ \Phi_F \colon \C^{\opp} \ra \dgMod{\B^{\opp}}\]
+by the symmetric monoidal closed structure on \(\dgcat{k}\).
 For each pair of objects \(A\) of \(\A\) and \(C\) of \(\C\), we obtain dg-modules
 \[\Phi_E(A) = E(A, -) \colon \B^{\opp} \ra \CH{k}\ \text{and}\ \Phi_F(C) = F( -, C) \colon \B \ra \CH{k}\]
 and hence one may define the object \(E \otimes_\B F\) of \(\dgMod{\A \otimes \C}\) by

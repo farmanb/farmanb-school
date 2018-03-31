@@ -49,7 +49,15 @@ The following proposition allows us to consider non-Noetherian rings.
 \end{proof}
 
 Our only concern for Serre subcategories will be for the construction of a quotient.
-It can be shown that for any pair \((X,Y)\) of objects of \(\A\), equipping the collection of pairs of subobjects \((X^\prime, Y^\prime)\) satisfying \(X/X^\prime\), \(Y^\prime\) both objects of \(\Serre\) with the ordering \((X^\prime, Y^\prime) \leq (X^{\prime\prime}, Y^{\prime\prime})\) if and only if \(X^{\prime\prime}\) is a subobject of \(X^\prime\) and \(Y^\prime\) is a subobject of \(Y^{\prime\prime}\) forms a directed system.
+It can be shown that for any pair \((X,Y)\) of objects of \(\A\), equipping the collection of pairs of subobjects \((X^\prime, Y^\prime)\) satisfying \(X/X^\prime\), \(Y^\prime\) both objects of \(\Serre\) with the ordering
+\[(X^\prime, Y^\prime) \leq (X^{\prime\prime}, Y^{\prime\prime})\
+\text{if and only if}\
+X^{\prime\prime}\
+\text{is a subobject of}\
+X^\prime,Y^\prime\
+\text{is a subobject of}\
+Y^{\prime\prime}\]
+forms a directed system.
 One defines the \textbf{quotient of \(\A\) by the Serre subcategory \(\Serre\)} to be the category \(\A/\Serre\) with objects those of \(\A\) and morphisms given by the colimit over this system
 \[\A/\Serre(X,Y) = \colim_{(X^\prime, Y^\prime)} \A(X^\prime, Y/Y^\prime)\]
 This quotient category comes equipped with a canonical projection functor

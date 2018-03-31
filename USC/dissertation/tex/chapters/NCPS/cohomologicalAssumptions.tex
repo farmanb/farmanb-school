@@ -1,4 +1,4 @@
-In general, good behavior of \(\QGr{A}\) occurs with some homological assumptions on the ring \(A\). We recall two common such ones. 
+In general, good behavior of \(\QGr{A}\) occurs with some homological assumptions on the ring \(A\). We recall two such common assumptions. 
 
 \begin{definition} \label{definition: Ext-finite}
   Let \(A\) be a connected graded \(k\)-algebra. Following \textcite{VdB}, we say that \(A\) is \textbf{Ext-finite} if for each \(n \geq 0\) the ungraded Ext-groups are finite dimensional 
@@ -48,7 +48,7 @@ We recall some basic results on Ext-finiteness, essentially from \textcite[Secti
 \end{proof}
 
 \begin{corollary} \label{corollary: Q preserves bimodules}
-    Let \(A\) and \(B\) be finitely generated, connected graded \(k\)-algebras, and let \(P\) be a chain complex of bi-bi \(A \otimes_k B\) modules. Assume \(\mathbf{R}Q_A\) commutes with coproducts. Then, \(\mathbf{R}Q_A P\) is naturally also a chain complex of bi-bi modules. In particular, if \(A\) is Ext-finite, \(\mathbf{R}Q_A P\) has a natural bi-bi structure. 
+  Let \(A\) and \(B\) be finitely generated, connected graded \(k\)-algebras, and let \(P\) be a chain complex of bi-bi \(A \otimes_k B\) modules. Assume \(\mathbf{R}Q_A\) commutes with coproducts. Then, \(\mathbf{R}Q_A P\) is naturally also a chain complex of bi-bi modules. In particular, if \(A\) is Ext-finite, \(\mathbf{R}Q_A P\) has a natural bi-bi structure. 
 \end{corollary}
 
 \begin{proof}
@@ -68,7 +68,7 @@ We recall some basic results on Ext-finiteness, essentially from \textcite[Secti
 \end{proof}
 
 \begin{corollary} \label{corollary: natural maps between Qs}
-    Assume that \(A\) and \(B\) are left Noetherian, and that \(\mathbf{R}\tau_A\) and \(\mathbf{R}\tau_B\) both commute with coproducts. There exist natural morphisms of bimodules 
+  Assume that \(A\) and \(B\) are left Noetherian, and that \(\mathbf{R}\tau_A\) and \(\mathbf{R}\tau_B\) both commute with coproducts. There exist natural morphisms of bimodules 
   \begin{align*}
     \beta^l_P & : \mathbf{R}Q_{A} P \to \mathbf{R}Q_{A \otimes_k B} P \\
     \beta^r_P & : \mathbf{R}Q_{B} P \to \mathbf{R}Q_{A \otimes_k B} P.
@@ -98,11 +98,12 @@ We recall some basic results on Ext-finiteness, essentially from \textcite[Secti
   It's clear from the fact that \(\tau_A P^n\) is an \(A \otimes_k B\)-module that   \[0 \to \tau_A P^n \to P^n \to P^n/\tau_A P^n \to 0\]
   is an exact sequence of \(\Gr{(A \otimes_k B)}\) for each \(n\).
   Moreover, by Lemma~\ref{cor: Gr injectives} we have \(P^n/\tau_A P^n \cong Q_A P^n\).
-  We thus define \((\beta^l_P)^n\) to be the epimorphism induced by the unversal property for cokerenels as in the commutative diagram
+  We thus define \((\beta^l_P)^n\) to be the epimorphism induced by the universal property for cokerenels as in the commutative diagram
   \[\begin{tikzcd}
   0 \arrow{r} & \tau_{A} P^n \arrow{d}\arrow{r} & P^n \arrow{d}{\id_{P^n}}\arrow{rr}{\varepsilon_{A}(P^n)} && Q_{A} P^n \arrow{r}\arrow[dashed]{d}{\exists ! (\beta^l_P)^n} & 0\\
   0 \arrow{r} & \tau_{A \otimes_k B} P^n \arrow{r} & P^n\arrow{rr}{\varepsilon_{A \otimes_k B}(P^n)} && Q_{A \otimes_k B} P^n \arrow{r} & 0 
-  \end{tikzcd}\]  We observe here that by the Snake Lemma, \((\beta^l_P)^n\) is an isomorphism if and only if \(\tau_{A \otimes_k B} P^n \cong \tau_A P^n\), which is equivalent by the remarks above to the condition that \(\tau_B \tau_A P^n = \tau_A P^n\).
+  \end{tikzcd}\]
+  %We observe here that by the Snake Lemma, \((\beta^l_P)^n\) is an isomorphism if and only if \(\tau_{A \otimes_k B} P^n \cong \tau_A P^n\), which is equivalent by the remarks above to the condition that \(\tau_B \tau_A P^n = \tau_A P^n\).
 
   To see that \(\beta\) actually defines a morphism of complexes, we have by naturality of \(\varepsilon_A\), \(\varepsilon_{A \otimes_k B}\), and the commutative diagram defining \((\beta^l_P)^n\) above 
   \begin{eqnarray*}
@@ -117,7 +118,7 @@ We recall some basic results on Ext-finiteness, essentially from \textcite[Secti
   because \(\varepsilon_{A \otimes_k B}(P^n)\) is epic. Hence we have a morphism
   \[\beta^l_P \colon \mathbf{R}Q_{A} P = Q_{A} P \to Q_{A \otimes_k B} P = \mathbf{R}Q_{A \otimes_k B} P.\]
 
-  For naturality, we note that as the fibrant replacement is functorial if we have a morphism of bi-bi modules, then there is an induced morphism of complexes \(\varphi \colon P_1 \to P_2\) between the replacements and for each \(n\) a commutative diagram 
+  For naturality, we note that, as the fibrant replacement is functorial, if we have a morphism of bi-bi modules, then there is an induced morphism of complexes \(\varphi \colon P_1 \to P_2\) between the replacements and for each \(n\) a commutative diagram 
   \[\begin{tikzcd}[column sep=large]
   P_1^n \arrow{d}{\varphi^n}\arrow{r}{\varepsilon_{A}(P_1^n)} & Q_{A} P_1^n\arrow{d}{Q_{A}(\varphi^n)} \arrow{r}{(\beta^l_{P_1})^n} & Q_{A \otimes_k B}P_1^n \arrow{d}{Q_{A \otimes_k B}(\varphi^n)}\\
   P_2^n \arrow{r}{\varepsilon_{A}(P_2^n)} & Q_{A} P_2^n \arrow{r}{(\beta^l_{P_2})^n} & Q_{A \otimes_k B} P_2^n
@@ -133,7 +134,7 @@ We recall some basic results on Ext-finiteness, essentially from \textcite[Secti
 \end{proof}
 
 \begin{proposition} \label{proposition: bi-torsion is a composition}
-    Assume that \(A\) and \(B\) are left Noetherian and Ext-finite. Then, we have natural quasi-isomorphisms 
+  Assume that \(A\) and \(B\) are left Noetherian and Ext-finite. Then, we have natural quasi-isomorphisms 
   \begin{align*}
     \mathbf{R}Q_B(\beta^l_P) & : \mathbf{R}Q_B(\mathbf{R}Q_A P) \to \mathbf{R}Q_{A \otimes_k B} P \\
     \mathbf{R}Q_A(\beta^r_P) & : \mathbf{R}Q_A(\mathbf{R}Q_B P) \to \mathbf{R}Q_{A \otimes_k B} P.
@@ -143,18 +144,18 @@ We recall some basic results on Ext-finiteness, essentially from \textcite[Secti
 
 
 \begin{proof}
-As above, we can replace \(P\) with a quasi-isomorphic fibrant object, so it suffices to assume that \(P\) is fibrant.
+  As above, we can replace \(P\) with a quasi-isomorphic fibrant object, so it suffices to assume that \(P\) is fibrant.
   We see from Corollary~\ref{corollary: relation on Qs} that
   \[\mathbf{R}Q_{A \otimes_k B} P \cong Q_{A \otimes_k B} P \cong Q_B \circ Q_A P \cong \mathbf{R}(Q_B \circ Q_A) P\]
   The result now follows from the natural isomorphism (see, e.g., \textcite[Theorem 1.3.7]{Hov99})
   \[\mathbf{R}Q_B \circ \mathbf{R}Q_A \to \mathbf{R}(Q_B \circ Q_A)\]
   
-%  As above, by possibly replacing \(P\) with a fibrant object, we assume that \(P\) is a complex of injective graded \(A \otimes_k B\)-modules.
-%  We observe that \(P^n \cong \tau_A P^n \oplus Q_A P^n\) as bimodules implies \(Q_A P^n\) is injective as a bimodule for each \(n\), hence is also injective when regarded as a \(B\)-module.
-%  It follows that we can compute \(\mathbf{R}Q_B(\mathbf{R}Q_A P)\) by \(Q_B(Q_A P)\)
-%  and from Corollary~\ref{corollary: relation on Qs} we have
-%  \[Q_{A \otimes_k B} P^n \cong Q_B(Q_A P^n).\]
-%  Hence we see that \(\mathbf{R}Q_B(\beta^l_P)\) is a quasi-isomorphism.
+  %  As above, by possibly replacing \(P\) with a fibrant object, we assume that \(P\) is a complex of injective graded \(A \otimes_k B\)-modules.
+  %  We observe that \(P^n \cong \tau_A P^n \oplus Q_A P^n\) as bimodules implies \(Q_A P^n\) is injective as a bimodule for each \(n\), hence is also injective when regarded as a \(B\)-module.
+  %  It follows that we can compute \(\mathbf{R}Q_B(\mathbf{R}Q_A P)\) by \(Q_B(Q_A P)\)
+  %  and from Corollary~\ref{corollary: relation on Qs} we have
+  %  \[Q_{A \otimes_k B} P^n \cong Q_B(Q_A P^n).\]
+  %  Hence we see that \(\mathbf{R}Q_B(\beta^l_P)\) is a quasi-isomorphism.
 \end{proof}
 
 In the case that \(A=B\), there is a particular bi-bi module of interest.
@@ -202,7 +203,7 @@ Using the standard homological assumptions above, one has better statements for 
   is a quasi-isomorphism, as desired.
 \end{proof}
 
-Similar hypotheses of Proposition~\ref{proposition: when beta is an isomorphism} will appear often so we attach a name. 
+Similar hypotheses of Proposition~\ref{proposition: when beta is an isomorphism} will appear often, so we attach a name. 
 
 \begin{definition} \label{definition: delightful couple}
   Let \(A\) and \(B\) be connected graded \(k\)-algebras. If \(A\) is Ext-finite, left and right Noetherian, and satisfies \(\chi^\circ(A)\) and \(\chi^\circ(A^\opp)\) then we say that \(A\) is \textbf{delightful}. If \(A\) and \(B\) are both delightful, then we say that \(A\) and \(B\) form a \textbf{delightful couple}. 

@@ -32,7 +32,9 @@ As mentioned above, we have a natural enrichment of the category of chain comple
 \begin{definition}
   Denote by \(\ldgGrMod{A}\) the dg-category with objects chain complexes of \(G\)-graded left \(A\)-modules and morphisms defined as follows.
   
-  We say that a morphism \(f \colon M \to N\) of degree \(p\) is a collection of morphisms \(f^n \colon M^n \to N^{n+p}\) of weight zero.
+  We say that a morphism \(f \colon M \to N\) of degree \(p\) is a collection of morphisms
+  \[f^n \colon M^n \to N^{n+p}\]
+  of weight zero.
   We denote by \(\ldgGrMod{A}\left(M,N\right)^p\) the collection of all such morphisms, which we equip with the differential
   \[d(f) = d_N \circ f + (-1)^{p+1}f \circ d_M\]
   and define \(\ldgGrMod{A}(M,N)\) to be the resulting chain complex.
@@ -67,7 +69,7 @@ The following lemma illustrates that modules and chain complexes are one and the
     with structure morphism
     \[\A(g,h) \cong \ldgGrMod{A}(A(g)[0], A(h)[0]) \to \CH{k}(M_{-h}, M_{-g})\]
     induced by the representable functor \(\ldgGrMod{A}(-, M)\).
-    The image of a morphism \(f \in \ldgGrMod{A}(M,N)\) is defined to be the natural transformation given by the collection of morphisms
+    We define the image of a morphism \(f \in \ldgGrMod{A}(M,N)\) to be the natural transformation given by the collection of morphisms
     \[h^{A(-g)[0]}(f) \colon \ldgGrMod{A}(A(-g)[0], M) \to \ldgGrMod{A}(A(-g)[0],N)\]
     indexed by \(G\).
 
@@ -93,7 +95,7 @@ The following lemma illustrates that modules and chain complexes are one and the
   so that \(\A^\opp(-, h) = \A(h,-)\) is the representable functor corresponding to the left module \(A^\opp(h)\) by
   \[\bigoplus_{g \in G} \A^\opp(-g,h) = \bigoplus_{g \in G} \A(h,-g) = \bigoplus_{g \in G} A_{-(g + h)} = \bigoplus_{g \in G} A^\opp_{g + h} = A^\opp(h).\]
   With this convention, when considering right modules, one can dispense with the formality of the opposite ring by constructing from a complex, \(M\), the dg-functor \(\A \to \CH{k}\) mapping \(g\) to \(M_g := \rdgGrMod{A}(A(-g)[0], M)\).
-%  As such, the covariant representable functor corresponding to the left \(A^\opp\)-module, \(A(h)\), is
+  %  As such, the covariant representable functor corresponding to the left \(A^\opp\)-module, \(A(h)\), is
   %\[g \mapsto \ldgGrMod{A^\opp}(A(-g)[0], A(h)[0]) =: A(h)[0]_g = \A^\opp(g, -h) = \A(-h, g)\]
   %since
   %\[(A^\opp)_i =: \A^\opp(-i,0) = \A(0,-i) = A_{-i}.\]

@@ -7,7 +7,9 @@ Similarly, we have a dg-functor in the opposite direction
 defined by \(\widetilde{\Phi_M}(N) = \dgMod{\B}(\Phi_M( - ), N)\).
 
 For any dg-functor \(G \colon \A \to \B\) we denote by \(\Ind{G}\) the extension of the dg-functor
-\[A \to \B \overset{Y_\B}\to \dgMod{\B}\]
+\[\begin{tikzcd}
+\A  \arrow{r} & \B \arrow{r}{Y_\B} & \dgMod{\B}
+\end{tikzcd}\]
 and its right adjoint by \(\Res{G}\).
 By way of the enriched Yoneda Lemma we see that for any object \(A\) of \(\A\) and any dg \(\B\)-module, \(N\), 
 \[\Res{G}(N)(A) = \dgMod{\B}(h_{GA}, N) \cong N(GA).\]
@@ -66,7 +68,7 @@ Put another way, tensoring with an h-projective \(\A\)-\(\B\)-bimodule preserves
 
 One essential result about \(\dgcat{k}\) comes from T\"oen's result on the existence, and description of, the internal Hom in its homotopy category. 
 
-\begin{theorem}[{\textcite[Theorem 1.1]{Toen07}}, {\textcite[Section 4]{CS15}}] \label{theorem: Toen}
+\begin{theorem}[{\textcite[Thm 1.1]{Toen07}}, {\textcite[Section 4]{CS15}}] \label{theorem: Toen}
   Let \(\A\), \(\B\), and \(\C\) be objects of \(\dgcat{k}\).
   There exists a natural bijection
   \[[\A,\C] \overset{1:1}\longleftrightarrow \Iso{H^0(\hproj{\A^{\opp} \otimes \C}^\rqr)}\]
@@ -75,7 +77,7 @@ One essential result about \(\dgcat{k}\) comes from T\"oen's result on the exist
   proving that the symmetric monoidal category \(\Ho{\dgcat{k}}\) is closed.
 \end{theorem}
 
-\begin{corollary}[{\textcite[Theorem 7.2]{Toen07}},{\textcite[Cor. 4.2]{CS15}}] \label{corollary: Toen}
+\begin{corollary}[{\textcite[Thm 7.2]{Toen07}},{\textcite[Cor. 4.2]{CS15}}] \label{corollary: Toen}
   Given two dg categories \(\A\) and \(\B\), \(\RHom{\A, \hproj{\B}}\) and \(\hproj{\A^\opp \otimes \B}\) are isomorphic in \(\Ho{\dgcat{k}}\).
   Moreover, there exists a quasi-equivalence
   \[\RHomc{\hproj{\A},\hproj{\B}} \to \RHom{\A, \hproj{B}}.\]
@@ -84,7 +86,7 @@ One essential result about \(\dgcat{k}\) comes from T\"oen's result on the exist
 To get a sense of the value of this result, let us recall one application from \textcite[Section 8.3]{Toen07}. Let \(X\) and \(Y\) be quasi-compact and separated schemes over \(\op{Spec} k\). 
 Recall the dg-model for \(\mathrm{D}(\op{Qcoh} X)\), \(\mathcal L_{\op{qcoh}}(X)\), is the \(\mathcal C(k)\)-enriched subcategory of fibrant and cofibrant objects in the injective model structure on \(C(\op{Qcoh} X)\).
 
-\begin{theorem}[{\textcite[Theorem 8.3]{Toen07}}]
+\begin{theorem}[{\textcite[Thm. 8.3]{Toen07}}]
   Let \(X\) and \(Y\) be quasi-compact, quasi-separated schemes over \(k\). Then there exists an isomorphism in \(\Ho{\dgcat{k}}\)
   \begin{displaymath}
     \RHomc{\mathcal L_{\op{qcoh}} X,\mathcal L_{\op{qcoh}} Y} \cong \mathcal L_{\op{qcoh}} (X \times_k Y)
