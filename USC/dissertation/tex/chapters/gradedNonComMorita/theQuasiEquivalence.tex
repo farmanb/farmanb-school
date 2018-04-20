@@ -44,13 +44,15 @@ We now turn to the main result.
     &\cong& \imath^\ast(P_{u^\prime, v^\prime})(P_{u,v}) \\
     &=& \hinj{\QGr{A^\opp \otimes_k B}}(P_{u,v}, P_{u^\prime, v^\prime}).
   \end{eqnarray*}
-  Since the collections \(\{\imath^\ast P_{u,v}\}_{\Z^2}\) and \(\{P_{u,v}\}_{\Z^2}\) are compact generators for \(\hproj{Q\A^\opp \otimes_k Q\B}\) and \(\hinj{\QGr{A^\opp \otimes_k B}}\), respectively, it follows that \(\imath^\ast\) is a quasi-equivalence between \(\hinj{\QGr{A^\opp \otimes_k B}}\) and \(\hproj{Q\A^\opp \otimes Q\B}\), the full dg-subcategory of compact objects of \(\dgMod{Q\A^\opp \otimes Q\B}\), by Proposition~\ref{proposition: quasi-equivalence on gens is quasi-equivalence}.
+  Since the collections \(\{\imath^\ast P_{u,v}\}_{\Z^2}\) and \(\{P_{u,v}\}_{\Z^2}\) are a set of compact generators for \(\hproj{Q\A^\opp \otimes_k Q\B}\) and \(\hinj{\QGr{A^\opp \otimes_k B}}\), respectively, it follows that \(\imath^\ast\) is a quasi-equivalence between \(\hinj{\QGr{A^\opp \otimes_k B}}\) and \(\hproj{Q\A^\opp \otimes Q\B}\), the full dg-subcategory of compact objects of \(\dgMod{Q\A^\opp \otimes Q\B}\), by Proposition~\ref{proposition: quasi-equivalence on gens is quasi-equivalence}.
 
   Tracing out the quasi-equivalences, one just needs to manipulate 
-  \begin{align*}
-    \op{Hom} (\mathbf{R}Q_A A(x)^\vee \otimes_k \mathbf{R}Q_B B(y), P) & \cong \op{Hom} ( \mathbf{R}Q_B B(y) , \op{Hom}( \mathbf{R}Q_A A(x)^\vee, \mathbf{R}\omega_{A^\opp \otimes_k B} P)) \\
-    & \cong \op{Hom} ( \mathbf{R}Q_B B(y) , \mathbf{R}\omega_{A^\opp \otimes_k B} P \overset{\mathbf{L}}{\otimes}_{\mathcal A} \mathbf{R}Q_A A(x) ) 
-  \end{align*}
+  \begin{gather*}
+    \op{Hom} (\mathbf{R}Q_A A(x)^\vee \otimes_k \mathbf{R}Q_B B(y), P) \cong\\
+    \op{Hom} ( \mathbf{R}Q_B B(y) , \op{Hom}( \mathbf{R}Q_A A(x)^\vee, \mathbf{R}\omega_{A^\opp \otimes_k B} P))
+    \cong
+    \\ \op{Hom} ( \mathbf{R}Q_B B(y) , \mathbf{R}\omega_{A^\opp \otimes_k B} P \overset{\mathbf{L}}{\otimes}_{\mathcal A} \mathbf{R}Q_A A(x) ) 
+  \end{gather*}
   using Propostion~\ref{proposition: vanishing of tensor} and Lemma~\ref{lemma: trace map}. This says that the induced continuous functor is
   \begin{displaymath}
     M \mapsto \pi_B \left( \mathbf{R}\omega_{A^\opp \otimes_k B} P \overset{\mathbf{L}}{\otimes}_{\mathcal A} \mathbf{R}\omega_A M \right). 
@@ -72,11 +74,13 @@ The following statement is now a simple application of Theorem~\ref{theorem: der
 \end{corollary}
 
 \begin{proof}
-  Applying \textcite[Theorem 1]{Lunts-Orlov} we know there is a quasi-equivalence between the unique enhancements, i.e. there is an \( F \in [ \hinj{ \QGr{A}}, \hinj{ \QGr{B}} ]\) giving an equivalence
+  Applying \textcite[Theorem 1]{Lunts-Orlov} we know there is a quasi-equivalence between the unique enhancements, that is a morphism
+  \[F : \hinj{\QGr{A}} \to \hinj{\QGr{B}}\]
+  of \(\Ho{\dgcat{k}}\) inducing an equivalence
   \begin{displaymath}
     H^0(F) : H^0(\hinj{ \QGr{A} }) = \mathrm{D}(\QGr{A}) \to H^0(\hinj{ \QGr{B} }) = \mathrm{D}(\QGr{B}).
   \end{displaymath}
-  Then, by Theorem~\ref{theorem: derived morita for NCP}, there exists a \(P \in \mathrm{D}(\QGr{A^\opp \otimes_k B})\) such that \(\Phi_P = H^0(F)\). 
+  By Theorem~\ref{theorem: derived morita for NCP}, there exists a \(P \in \mathrm{D}(\QGr{A^\opp \otimes_k B})\) such that \(\Phi_P = H^0(F)\). 
 \end{proof}
 
 We wish to identify the kernels as objects of the derived category of an honest noncommutative projective scheme.

@@ -56,10 +56,10 @@ As a first application, we record a handy proposition.  It is suspected that thi
   That \(H^0(\C)\) is closed under translation follows from the pretriangulated structure.  Indeed, for any integer \(n\), any \(i \in I\), and any object \(C\) of \(\C\) we have the isomorphisms
   \[H^0(\A(A_i, C[n])) \cong H^0(\A(A_i, C)[n]) \cong H^n(\A(A_i, C))\]
   and, similarly, \(H^0(\B(FA_i, FC[n])) \cong H^n(\B(FA_i, FC))\).
-  Now, for any distinguished triangle \(C_1 \to C_2 \to X \to C_1[1]\) of \(H^0(\A)\) with \(C_1, C_2\) objects of \(\C\) we see that \(X\) is an object of \(\C\) by applying the 5 Lemma to the morphism of long exact sequences induced by the homological functors \(H^0(\A)(A_i, -)\) and \(H^0(\B)(FA_i, -)\)
+  Now, for any distinguished triangle \(C_1 \to C_2 \to X \to C_1[1]\) of \(H^0(\A)\) with \(C_1, C_2\) objects of \(\C\) we see that \(X\) is an object of \(\C\) by applying the 5 Lemma to the morphism of long exact sequences induced by the homological functors \(h^0_{A_i}(-) := H^0(\A)(A_i, -)\) and \(h^0_{FA_i}(-) := H^0(\B)(FA_i, -)\)
   \[\begin{tikzcd}[column sep=tiny]
-  \cdots \arrow{r} & H^0(\A(A_i, C_1)) \arrow{r}\arrow{d}{H^0(F_{A_i,C_1})} & H^0(\A(A_i, C_2)) \arrow{r}\arrow{d}{H^0(F_{A_i,C_2})} & H^0(\A(A_i, X)) \arrow{r}\arrow{d}{H^0(F_{A_i,X})} & H^1(\A(A_i, C_1)) \arrow{r}\arrow{d}{H^1(F_{A_i, C})} & \cdots\\
-  \cdots \arrow{r} & H^0(\B(FA_i, FC_1)) \arrow{r} & H^0(\B(FA_i, FC_2)) \arrow{r} & H^0(\B(F_i, FC)) \arrow{r} & H^1(\B(F_i, FC_1)) \arrow{r}& \cdots\\
+  \cdots \arrow{r} & h^0_{A_i}(C_1) \arrow{r}\arrow{d}{H^0(F_{A_i,C_1})} & h^0_{A_i}(C_2) \arrow{r}\arrow{d}{H^0(F_{A_i,C_2})} & h^0_{A_i}(X) \arrow{r}\arrow{d}{H^0(F_{A_i,X})} & h^1_{A_i}(C_1) \arrow{r}\arrow{d}{H^1(F_{A_i, C_1})} & h^1_{A_i}(C_2) \arrow{r}\arrow{d}{H^1(F_{A_i,C_2})} & \cdots\\
+  \cdots \arrow{r} & h^0_{FA_i}(FC_1) \arrow{r} & h^0_{FA_i}(FC_2) \arrow{r} & h^0_{FA_i}(FX) \arrow{r} & h^1_{FA_i}(FC_1) \arrow{r}& h^1_{FA_i}(FC_2)\arrow{r}&\cdots
   \end{tikzcd}\]
   for each \(i \in I\).
   Hence by equipping \(H^0(\C)\) with the distinguished triangles from \(H^0(\A)\) of the form \(C_1 \to C_2 \to C_3 \to C_1[1]\) with the \(C_i\) objects of \(\C\), \(H^0(\C)\) inherits the structure of a triangulated subcategory.
@@ -87,10 +87,10 @@ As a first application, we record a handy proposition.  It is suspected that thi
     \cong H^0\left(\B\left(F\left(\bigoplus_\alpha D_\alpha\right), X\right)\right)
   \end{gather*}
   which implies that \(H^0(\D)\) is closed under coproducts.
-  Finally, for any distinguished triangle \(D_1 \to D_2 \to Z \to D_1[1]\) of \(H^0(\A)\) with \(D_1, D_2\) objects of \(\D\) we see that \(Z\) is an object of \(\D\) by applying the 5 Lemma to the morphism of long exact sequences induced by the cohomological functors \(H^0(\A)(-, X)\) and \(H^0(\B)(-, FX)\)
+  Finally, for any distinguished triangle \(D_1 \to D_2 \to Z \to D_1[1]\) of \(H^0(\A)\) with \(D_1, D_2\) objects of \(\D\) we see that \(Z\) is an object of \(\D\) by applying the 5 Lemma to the morphism of long exact sequences induced by the cohomological functors \(h^X_0(-) := H^0(\A)(-, X)\) and \(h^{FX}_0(-) := H^0(\B)(-, FX)\)
   \[\begin{tikzcd}[column sep=tiny]
-  \cdots \arrow{r} & H^0(\A(D_1, X)) \arrow{r}\arrow{d}{H^0(F_{D_1,X})} & H^1(\A(Z, X)) \arrow{r}\arrow{d}{H^1(F_{Z,X})} & H^1(\A(D_2, X)) \arrow{r}\arrow{d}{H^1(F_{D_2,X})} & \cdots\\
-  \cdots \arrow{r} & H^0(\B(FD_1, FX)) \arrow{r} & H^1(\B(FZ, FX)) \arrow{r} & H^1(\B(FD_2, FX)) \arrow{r}& \cdots\\
+  \cdots \arrow{r} & h^X_0(D_2) \arrow{r}\arrow{d}{H^0(F_{D_2,X})} & h^X_0(D_1) \arrow{r}\arrow{d}{H^0(F_{D_1,X})} & h^X_1(Z) \arrow{r}\arrow{d}{H^1(F_{Z,X})} & h^X_1(D_2) \arrow{r}\arrow{d}{H^1(F_{D_2,X})} & h^X_1(D_1) \arrow{d}{H^1(F_{D_1,X})}\arrow{r}& \cdots\\
+  \cdots \arrow{r} & h^{FX}_0(FD_X) \arrow{r} & h^{FX}_0(FD_1) \arrow{r} & h^{FX}_1(FZ) \arrow{r} & h^{FX}_1(FD_2) \arrow{r} & h^{FX}_1(FD_1)\arrow{r} & \cdots
   \end{tikzcd}\]
   %\[\begin{tikzcd}[column sep=tiny]
   %\cdots \arrow{r} & H^0(\A(D_2, X)) \arrow{r}\arrow{d}{H^0(F_{D_2,X})} & H^0(\A(D_1, X)) \arrow{r}\arrow{d}{H^0(F_{D_1,X})} & H^1(\A(Z, X)) \arrow{r}\arrow{d}{H^1(F_{Z,X})} & H^1(\A(D_2, X)) \arrow{r}\arrow{d}{H^1(F_{D_2,X})} & \cdots\\
