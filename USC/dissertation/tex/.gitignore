@@ -1,1 +1,5 @@
 oldmain.tex
+*.bbl
+*.bcf
+*.blg
+*.xml

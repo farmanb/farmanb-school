@@ -203,24 +203,16 @@ The category \(\QGr{A}\) is defined to be the quasi-coherent sheaves on the \tex
   This establishes (\ref{defn: serre closed 1}).
 \end{proof}
 
-\begin{lemma}
+As an immediate consequence of the Yoneda Lemma and condition~\ref{defn: serre closed 3} of Proposition~\ref{defn: serre closed}, loosely speaking, \(\QGr{A}\) is just the full subcategory of \(\Tors{A}\)-closed objects.
+\begin{corollary}
   An object \(M\) of \(\Gr{A}\) is \(\Tors{A}\)-closed if and only if \(M \cong QM\).
-  Consequently, \(\QGr{A}\) is equivalent to the the full subcategory of \(\Gr{A}\) consisting of \(\Tors{A}\)-closed objects.
-
-  That is to say, loosely, that \(\QGr{A} = Q(\Gr{A})\).
-\end{lemma}
+  Consequently, \(\pi\) preserves \(\Tors{A}\)-closed injectives.
+\end{corollary}
 \begin{proof}
-  This is immediate from the Yoneda Lemma and condition~\ref{defn: serre closed 3} of Definition~\ref{defn: serre closed}.
+  The second statement is immediate from the isomorphism of adjunction, \(\Gr{A}(-, I) \cong \QGr{A}(\pi(-), \pi{I})\).
 \end{proof}
 
-\begin{lemma}
-  If \(I\) is a \(\Tors{A}\)-closed injective, then \(\pi{I}\) is injective.
-\end{lemma}
-
-\begin{proof}
-  This is immediate from the isomorphism \(\Gr{A}(-, I) \cong \QGr{A}(\pi(-), \pi{I})\).
-\end{proof}
-
+In the special case that a localizing subcategory is closed under injective envelopes, we have the following characterization of injectives within the ambient abelian category.
 \begin{proposition}\label{prop: decomposition of injectives}
   Let \(\A\) be an abelian category with injective envelopes, and let \(\Serre\) be a localizing subcategory.
   For each object \(X\) of \(\A\) denote by \(X_\Serre\) the maximal \(\Serre\)-subobject.
