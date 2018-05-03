@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-NAME="cover.letter-bfarman"
+NAME="cover.letter"
 PDFDIR=../pdf/
 
 texi2pdf $NAME.tex
