@@ -865,31 +865,32 @@ Deparment of Mathematics}{\th@ugradsig}
  
 \th@StoreIn{\th@committeeA}{%
 	{\SingleSpacing%\expandafter{%
-        \vspace*{8mm}
+ %       \vspace*{8mm}
 	\setlength{\tabcolsep}{2pt}	
 	\begin{tabular}{ccc}
         \th@esignature{\th@advisor}{ \th@advisorspot}{\th@advisorsig}&%
         \hspace*{.3in}&\th@esignature{\th@readera}
         {\th@readeraspot}{\th@readerasig}\\
            
-	\noalign{\vspace*{2mm}}
+%	\noalign{\vspace*{8mm}}
 	\if@makereaderb
 	\th@esignature{\th@readerb} {\th@readerbspot}{\th@readerbsig}&&
-	\if@makereaderc\th@esignature{\th@readerc}{ \th@readercspot}{\th@readercsig}\fi \\ 
+	\if@makereaderc
+		\th@esignature{\th@readerc}{ \th@readercspot}{\th@readercsig}\fi \\ 
         \fi
 	\if@makereaderd
-%	\noalign{\vspace*{2mm}}
+%	\noalign{\vspace*{8mm}}
 	\th@esignature{\th@readerd}{ \th@readerdspot}{\th@readerdsig}&&
 	\if@makereadere\th@esignature{\th@readere}{ \th@readerespot}{\th@readeresig}\else
         \th@esignature{\th@dean}{\th@deanspot}{\th@deansig}\fi\\
 	\fi
 	\if@makereaderf
-%	\noalign{\vspace*{2mm}}
+%	\noalign{\vspace*{8mm}}
 	\th@esignature{\th@readerf}{ \th@readerfspot}{\th@readerfsig}&&
         \th@esignature{\th@dean}{\th@deanspot}{\th@deansig}\\
 	\@makedeanfalse\vspace*{-3\baselineskip}
 	\fi
-%	\noalign{\vspace*{2mm}}
+%	\noalign{\vspace*{8mm}}
 	\if@makereaderf \else
 	\if@makereadere 
 	\multicolumn{3}{c}{\th@esignature{\th@dean}{ 
@@ -1161,7 +1162,7 @@ All Rights Reserved.\\
 
 \DeclareDocumentCommand\advisor{o m m m}{%
 \IfNoValueTF{#1}
-{	\th@StoreIn{\th@advisorsig}{\vrule width 0pt height 5mm}
+{	\th@StoreIn{\th@advisorsig}{\vrule width 0pt height 12mm}
 	\th@StoreIn{\th@advisor}{#3}
 	\th@StoreIn{\th@advisortitle}{#2}
         \th@StoreIn{\th@advisorspot}{#4}
@@ -1195,7 +1196,7 @@ All Rights Reserved.\\
 \DeclareDocumentCommand\readerb{o m m m}{%
 \@makereaderbtrue
 \IfNoValueTF{#1}
-{	\th@StoreIn{\th@readerbsig}{\vrule width 0pt height 12mm}
+{	\th@StoreIn{\th@readerbrsig}{\vrule width 0pt height 12mm}
 	\th@StoreIn{\th@readerb}{#3}
 	\th@StoreIn{\th@readerbtitle}{#2}
         \th@StoreIn{\th@readerbspot}{#4}
