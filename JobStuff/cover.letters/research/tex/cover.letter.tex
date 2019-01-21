@@ -1,4 +1,4 @@
-\documentclass[11pt]{letter}
+\documentclass[10pt]{letter}
 
 \usepackage[margin=1in]{geometry}
 \usepackage{amsmath}
@@ -13,16 +13,12 @@
 
 \def\position{Assistant Professor position}
 \def\posloc{MathJobs.org}
-
-\def\materials{the standard AMS cover sheet,
-  a curriculum vitae,
+%the standard AMS cover sheet,
+\def\materials{a curriculum vitae,
+  unofficial undergraduate and graduate transcripts,
+  a diversity statement,
   a research statement,
-  and a teaching statement}
-  %and a publication list}
-%and a teaching portfolio}
-  %and an unofficial transcript}
-\def\contacts{Manuel Reyes}
-
+  and a teaching portfolio}
 \def\numresrefs{three}
 \def\numteachrefs{two}
 \def\refs{Matthew Ballard,
@@ -36,42 +32,43 @@
 
 \def\researchblurb{My research lies at the intersection of Kontsevich and Artin-Zhang style noncommutative geometry, where I study the derived category of quasi-coherent sheaves on noncommutative projective schemes via the framework of differential graded categories.
   My dissertation provides a noncommutative definition of integral transform and proves, under appropriate cohomological assumptions, that to any equivalence between derived categories of quasi-coherent sheaves one may associate an integral transform.
-  In the commutative situation, the analogous result is due to Orlov (and To\"{e}n and Lunts in more generality), and forms a corner stone for our understanding of derived categories in algebraic geometry.
-  For a more detailed treatment, please see the enclosed research statement.}
+  In the commutative situation, the analogous result is due to Orlov (and To\"{e}n and Lunts in more generality), and forms a corner stone for our understanding of derived categories in algebraic geometry.}
+  %For a more detailed treatment, please see the enclosed research statement.}
 
 \def\teachingblurb{As an instructor, I have a deep appreciation for the beauty and power of mathematics that I am always excited to share with students.
-  I have a wealth of experience as instructor of record for undergraduate courses ranging from college algebra to calculus II, as well as guest lectures, seminars, and colloquium talks aimed at the graduate level.
-  
+  I have a wealth of experience as instructor of record for undergraduate courses ranging from college algebra to calculus II.
+  In addition, I have delivered guest lectures, seminars, and colloquium talks aimed at the graduate level.
+  A list of courses that I have taught can be found in my curriculum vitae, and detailed information about those courses are available on my website.
 }
 
-%My research lies in noncommutative algebraic geometry, at the intersection of the styles of Artin-Zhang and Kontsevich.
-  %For the former, one studies a not necessarily commutative graded ring via an analog of Serre's description for sheaves on a projective variety, while for the latter, one focuses on the dg-category of quasi-coherent sheaves on a variety.
-  %Given a standard projective variety, one passes from the abelian category of coherent or quasi-coherent sheaves to its derived category, which is what we need to do to follow the edicts of physics, to understand deep but subtle connections in moduli theory, and to gain new insights into birational geometry.
+\def\diversityblurb{In all the courses that I teach, I feel that it is imperative to foster an inclusive environment.
+  It is my firmly held belief that everyone should have equal access to education and, along this line, I believe that traditionally underrepresented groups should be embraced and encouraged, a sentiment shared by the community at Lafayette College.
+  During my time here, I have had the opportunity to review literature regarding inclusivity in STEM, and to discuss these ideas and their implementation with fellow faculty members.
+  I have also taken the opportunity to participate in biweekly teaching lunches within the mathematics department, where colleagues share their philosophies and methods for fostering an inclusive and effective teaching environment.
+  As a direct result, I have incorporated examples from various disciplines which are relevant to students' lives, and implemented active learning techniques to reach a wide variety of learning styles.
+  I look forward to the opportunity to continuing this work as my career progresses.}
 
-  %In this commutative situation, an impressive machine has been constructed for varieties by Mukai, Bondal, Orlov, Bridgeland, and others to understand the homological algebra in terms of the geometry.
-  %In particular, thanks to Orlov (and To\"{e}n and Lunts in more generality) we know that any equivalence between \(\operatorname{D}(X)\) and \(\operatorname{D}(Y)\) is an integral transform associated to a kernel on the product \(X \times Y\).
-  %If we think non-commutatively, this is a derived Morita statement and we can ask if it holds for Artin-Zhang noncommutative projective schemes.
-  %By imposing some standard cohomological assumptions, my work yields a positive result.
-  
 \begin{document}
 \begin{letter}{
-    Department of Mathematics \& Applied Mathematics\\
-    PO Box 842014\\
-    Richmond, VA 23284\\
+    Department of Mathematics and Statistics\\
+    273 Wissink Hall\\
+    Minnesota State University, Mankato\\
+    Mankato, MN 56001
 }
   \opening{Dear Members of the Search Committee,}
   
   My name is Blake Farman, and I am currently a Visiting Assistant Professor at Lafayette College.
   I received my Ph.D. from the University of South Carolina on May 12, 2018 under the direction of Matthew Ballard in the area of Noncommutative Projective Algebraic Geometry.
-  I am writing to apply for the \position\ advertised on \posloc, to which I was referred by Professor Marco Aldi.
+  I am writing to apply for the \position\ advertised on \posloc.
 
   \researchblurb
 
   %\teachingblurb
+  %\diversityblurb
   
   With my application, I include \materials.
-  %\ReferencesBlurbListOnly
-  \ReferencesBlurbBoth
+  \ReferencesBlurbListOnly
+  %\ReferencesBlurbBoth
   %\ReferencesBlurbResearchOnly
 
   Please let me know if there is anything else I can provide.
@@ -79,11 +76,10 @@
   \closing{Sincerely,}
   \encl{
     Curriculum Vitae\\
+    Unofficial Undergraduate and Graduate Transcripts\\
+    Diversity Statement\\
     Research Statement\\
-    Teaching Statement\\
-    %Publication List\\
-    %Unofficial Transcript
-    %Teaching Portfolio
+    Teaching Portfolio\\
   }
 \end{letter}
 \end{document}

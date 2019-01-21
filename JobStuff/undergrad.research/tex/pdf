@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
-NAME="research.statement"
+NAME="undergrad.research"
 PDFDIR=../pdf/
 FILE="${NAME}.tex"
-texi2pdf ${FILE}
+#texi2pdf ${FILE}
+latexmk -pdf ${FILE}
 
 if [ ! -d ../pdf ]; then
     mkdir ../pdf
@@ -10,8 +11,9 @@ fi
 
 mv ${NAME}.pdf ../pdf
 
-rm -fr *.log
-rm -fr *.aux
+#rm -fr *.log
+#rm -fr *.aux
+#rm -fr *.blg
+latexmk -C
 rm -fr *.bbl
-rm -fr *.blg
 rm -fr *~
