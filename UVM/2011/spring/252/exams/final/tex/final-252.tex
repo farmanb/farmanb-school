@@ -1,5 +1,6 @@
 \documentclass[10pt]{amsart}
-\usepackage{amsmath,amsthm,amssymb,amsfonts,mymath}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate}
+\usepackage{../../../../../../../tex/mymath/mymath}
 \openup 5pt
 \author{Blake Farman}
 \title{Math-252:\\Final Exam}
@@ -11,7 +12,7 @@
 \maketitle
 
 \newtheorem{thm}{}
-
+\newcommand{\F}{\mathbb{F}}
 \begin{thm}
   \label{Ex1}
   Determine up to similarity all $3 \times 3$ matrices $A$ with coefficients in the finite field $\F_7$ with $A^3 = I$.
@@ -154,7 +155,7 @@
 
 \begin{thm}
   \label{Ex6}
-  \newcommand{\Tr}{\operatorname{Tr}}
+  \renewcommand{\Tr}{\operatorname{Tr}}
   Suppose $K/F$ is a Galois extension with Galois group $G$.
   For any $\alpha \in K$ define the trace of $\alpha$ from $K$ to $F$ to be $$\Tr_{K/F}(\alpha) = \sum_{\sigma \in G} \sigma(\alpha),$$
   i.e. the sum of all the Galois conjugates of $\alpha$.
@@ -170,7 +171,7 @@
 
 \begin{thm}
   \label{Ex7}
-  \begin{alphaenum}
+  \begin{enumerate}[(a)]
   \item
     Determine the splitting field $K$ of the polynomial $(x^3 - 2)(x^2 - 3)$ over $\Q$.
     In particular, determine the degree $[K:\Q]$.
@@ -178,10 +179,10 @@
     Explain why $K$ is Galois over $\Q$ and determine the Galois group $\Gal(K/\Q)$ up to isomorphism.
   \item
     Determine the number of subfields $E$ of $K$ with $[E:\Q] = 6$.
-  \end{alphaenum}
+  \end{enumerate}
 
   \begin{proof}
-    \begin{alphaenum}
+    \begin{enumerate}[(a)]
     \item
       The splitting field for $x^3 - 2$ is the field $Q\left(\sqrt[3]{2},\rho\right)$, where $\rho$ is a primitive third root of unity satisfying $\overline{\rho} + \rho + 1 = 0$.
       Moreover, $\im{\rho} = \sqrt{3}/2$, so by the identity $2\im{\rho} = \sqrt{3} = \rho - \overline{\rho}$, we have that the splitting field for $x^3 - 2$ contains $\Q\left(\sqrt{3}\right)$, the splitting field for $x^2 - 3$.
@@ -191,7 +192,7 @@
       The isomorphism type of the Galois group is $S_3$, as was determined in class.
     \item
       $K$ is the only subfield of $K$ with degree 6.
-    \end{alphaenum}
+    \end{enumerate}
   \end{proof}
 \end{thm}
 
@@ -225,7 +226,7 @@
 \begin{thm}
   \label{Ex9}
   Suppose the prime $p$ does not divide the positive integer $n$.
-  \begin{alphaenum}
+  \begin{enumerate}[(a)]
   \item
     Prove that the finite field $\F_{p^m}$ contains a primitive $n^{\text{th}}$ root of unity if and only if $n$ divides $p^m - 1$.
   \item
@@ -233,10 +234,10 @@
   \item
     Explain why the polynomial $f(x) = x^6 + x^5 + x^4 + x^3 + x^2 + x + 1$ is irreducible in $\Z[x]$ and is the product of 2 irreducible cubics in $\F_{67}$.
     Determine the first prime $p$ such that $f(x)$ is also irreducible modulo $p$.
-  \end{alphaenum}
+  \end{enumerate}
   \begin{proof}
     Let $K = \F_{p^m}$.
-    \begin{alphaenum}
+    \begin{enumerate}[(a)]
     \item
         By Lagrange's Theorem, the multiplicative group $G = (K)^{\times}$ contains an element of order $n$ if and only if $n$ divides $|G| = p^m - 1$.
         Therefore there exists an element $\zeta \in K$ such that $\zeta^n = 1$ if and only if $n$ divides $p^m - 1$.
@@ -250,7 +251,7 @@
         The smallest value of $f$ with $67^f \equiv 4^f \equiv 1 \pmod 7$ is $f = 3$, so the minimal polynomial of the seventh root of unity has degree 3.
         Hence $f$ must split into two irreducible cubics.
         The smallest prime for which this polynomial is irreducible is 3 as 6 is the smallest power of 3 such that $3^f \equiv 1 \pmod 7.$
-      \end{alphaenum}
+      \end{enumerate}
   \end{proof}
 \end{thm}
 
@@ -266,3 +267,4 @@ I certify that I have neither given nor received any assistance on this exam.
 
 Blake Farman
 \end{document}
+
