@@ -1,5 +1,6 @@
 \documentclass[10pt]{amsart}
-\usepackage{amsmath,amsthm,amssymb,amsfonts,mymath}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate}
+\usepackage{../../../../../../../tex/mymath/mymath}
 \openup 5pt
 \author{Blake Farman}
 \title{Math-252:\\Exam 2}
@@ -15,8 +16,7 @@
 \begin{thm}
   \label{Ex1}
   The matrices 
-  $$
-  A = \begin{pmatrix}
+  \[A = \begin{pmatrix}
     8 & -17 & -25\\
     -4 & 9 & 16\\
     5 & -11 & -18
@@ -26,16 +26,15 @@
     3 & -2 & 2\\
     0 & -1 & 0\\
     -4 & 2 & -3
-  \end{pmatrix}
-  $$
+  \end{pmatrix}\]
+  
   have the same characteristic polynomial $(x-1)(x+1)^2$.
   Determine the rational and JOrdan canonical forms for both $A$ and $B$, whether $A$ and $B$ are similar, and whether the matrices can be daigonalized.
   \begin{proof}
     It is an easy check by hand to calculate $m_A(x) = (x-1)(x+1)^2 = x^3 + x^2 - x - 1$ and $m_B(x) = (x-1)(x+1) = x^2 - 1$.
     Hence the invariant factors for $A$ and $B$ are $x^3 + x^2 - x - 1$ and $x^2-1, x+1$, respectively.
     Thus the rational canonical forms for $A$ and $B$ are
-    $$
-    \begin{pmatrix}
+    \[\begin{pmatrix}
       0 & 0  & 1\\
       1 & 0 & 1\\
       0 & 1 & -1
@@ -45,13 +44,11 @@
       -1 & 0 & 0\\
       0 & 0 & 1\\
       0 & 1 & 0
-    \end{pmatrix},
-    $$
+    \end{pmatrix},\]
     respectively.
     The elementary divisors for $A$ and $B$ are $x-1,(x+1)^2$ and $x-1, x+1, x+1$, respectively.
     Thus the Jordan canonical forms for $A$ and $B$ are 
-    $$
-    \begin{pmatrix}
+    \[\begin{pmatrix}
       1 & 0 & 0\\
       0 & -1 & 1\\
       0 & 0 & -1
@@ -61,8 +58,7 @@
       1 & 0 & 0\\
       0 & -1 & 0\\
       0 & 0 & -1
-    \end{pmatrix},
-    $$
+    \end{pmatrix},\]
     respectively.
     Since the canonical forms are not the same, $A$ and $B$ are not similar.
     Moreover, $B$ is the only matrix of the two which can be diagonalized, since its Jordan canonical form is diagonal.
@@ -72,24 +68,20 @@
 \begin{thm}
   \label{Ex2}
   Determine the Jordan canonical form for the matrix
-  $$
-  \begin{pmatrix}
+  \[\begin{pmatrix}
     1 & 2 & 0 & 0\\
     0 & 1 & 2 & 0\\
     0 & 0 & 1 & 2\\
     0 & 0 & 0 & 1
-  \end{pmatrix}.
-  $$
+  \end{pmatrix}.\]
   \begin{proof}
     By simply subtracting twice the fourth fourth row from the third, then twice the third from the second and finally twice the second from the first we obtain the diagonal matrix
-    $$
-    \begin{pmatrix}
+    \[\begin{pmatrix}
       1 & 0 & 0 & 0\\
       0 & 1 & 0 & 0\\
       0 & 0 & 1 & 0\\
       0 & 0 & 0 & 1
-    \end{pmatrix}.
-    $$
+    \end{pmatrix}.\]
     Since this diagonal matrix is similar to the one we started with, it must be the Jordan canonical form.
   \end{proof}
 \end{thm}
@@ -117,8 +109,7 @@
     Let $P$ be the matrix such that the Jordan canonical form of $A$ is given by $PAP^{-1}$.
     Using the fact that $A+I$ has five non-zero rows and so must $PAP^{-1} +I = P(A+I)P^{-1}$, it is clear that two of the elementary divisors must have degree 2.
     Hence the elementary divisors $(x+1)^4, (x+1)^2, (x+1)^2$ give rise to the Jordan canonical form
-    $$
-    \begin{pmatrix}
+    \[\begin{pmatrix}
       -1 & 1 & 0 & 0 & 0 & 0 & 0 & 0\\
       0 & - 1 & 1 & 0 & 0 & 0 & 0 & 0\\
       0 & 0 & -1 & 1 & 0 & 0 & 0 & 0\\
@@ -127,8 +118,8 @@
       0 & 0 & 0 & 0  & 0 & -1 & 0 & 0\\
       0 & 0 & 0 & 0  & 0 & 0 & -1 & 1\\
       0 & 0 & 0 & 0  & 0 & 0 & 0 & -1\\
-    \end{pmatrix}
-    $$
+    \end{pmatrix}\]
+
   \end{proof}
 \end{thm}
 
@@ -159,15 +150,15 @@
 \begin{thm}
   \label{Ex6}
   Suppose $f(x) \in \Q[x]$ is an irreducible polynomial of degree 5 and let $\alpha$ be a root of $f(x)$.
-  \begin{alphaenum}
-    \item
-      Determine $[\Q(\alpha):\Q]$.
-    \item
-      Prove that $f(x)$ is still irreducible over $F = \Q\left(\sqrt{2},\sqrt{3}\right)$, i.e. is still an irreducible when viewed in $F[x]$.
-  \end{alphaenum}
+  \begin{enumerate}[(a)]
+  \item
+    Determine $\abs{\Q(\alpha):\Q}$.
+  \item
+    Prove that $f(x)$ is still irreducible over $F = \Q\left(\sqrt{2},\sqrt{3}\right)$, i.e. is still an irreducible when viewed in $F[x]$.
+  \end{enumerate}
   
   \begin{proof}
-    \begin{alphaenum}
+    \begin{enumerate}[(a)]
     \item
       Since $\alpha$ is the root of an irreducible degree 5 polynomial, $[\Q(\alpha): \Q] = 5$.
     \item
@@ -176,7 +167,7 @@
       Consider the composite field $KF = F(\alpha) \cong F/(f(x))$.
       Since $(4,5) = 1$, it follows from Corollary 22 that $[KF:\Q] = 20$ and $[F(\alpha):F] = 5$.
       Therefore $f(x)$ is an irreducible polynomial of degree 5 over $F$.
-    \end{alphaenum}
+    \end{enumerate}
   \end{proof}
 \end{thm}
 
@@ -212,3 +203,4 @@ I certify that I have neither given nor received any assistance on this exam.
 
 Blake Farman
 \end{document}
+
